@@ -1,0 +1,34 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.productCardDiv {
+  height: 500px;
+  background-color: #fff;
+}
+/* .productCard :hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} */
+.productCardImg {
+  /* border-bottom: 10px solid #000; */
+  max-width: 80%;
+  height: 400px;
+  padding-top: 20px;
+  margin: 0 auto;
+  background: none;
+}
+.productCardTextDiv {
+  color: #fff;
+  background-color: #0092e0;
+  height: 80px;
+  border: 10px solid #fff;
+  margin-top: 20px;
+  align-items: center;
+  vertical-align: middle;
+  font-family: Noto Sans JP;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}

@@ -1,0 +1,24 @@
+.Btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: #252935;
+}
+
+.Btn__title {
+  flex: 1;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.Btn:hover {
+  background-color: #5a5d68;
+  cursor: pointer;
+}
+
+.Btn.selected {
+  background-color: #5a5d68;
+}

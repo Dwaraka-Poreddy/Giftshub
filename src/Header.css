@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+}
+.allheader {
+  align-items: center;
+  padding: 5px 20px;
+  background-color: #191e2b;
+  color: #ffffff;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 20px; */
+}
+
+.header__left {
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__leftStepper {
+  margin-left: 8px;
+}
+.header__right {
+  margin-right: 10px;
+}
+.header__rightbtn {
+  margin-right: 8px;
+}
+.header__logo {
+  height: 35px;
+  width: 35px;
+}
+
+/* body css */
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+/* leftbar css */
+.LeftSideBar {
+  position: relative;
+  flex: 0.18;
+  height: 78vh;
+  color: #ffffff;
+  /* overflow-x: auto; */
+}
+
+/* workspace css */
+.WorkSpace {
+  min-width: 50vw;
+  flex: 0.7;
+  margin-top: 1.5vh;
+  height: 77.8vh;
+  justify-content: center;
+  /* overflow-x: auto; */
+}
+
+/* RightBar1 css */
+.RightSideBar1 {
+  flex: 0.22;
+  background-color: #252935;
+  padding: 10px 10px;
+  height: 82.7vh;
+  /* overflow-x: auto; */
+}
+
+.RightSideBar1Btns {
+  display: flex;
+}
+
+.RightSideBar1Btn {
+  background-color: #393e49;
+  margin-right: 5px;
+  color: #ffffff;
+}
+
+.RightSideBar1__Padding {
+  display: flex;
+}
+
+.RightSideBar1__Color {
+  display: flex;
+}
+
+.RightSideBar1__Text {
+  margin-top: 40px;
+  margin-bottom: 5px;
+  color: #5a5d68;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* RightSideBar2 Css */
+.RightSideBar2 {
+  flex: 0.22;
+  background-color: #252935;
+  padding: 10px 10px;
+  height: 82.7vh;
+  /* overflow-y: auto;
+  overflow-x: auto; */
+}
+
+.RightSideBar2__Btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: #393e49;
+}
+
+.RightSideBar2__Btn__icon {
+  color: #ffffff;
+  font-size: large !important;
+}
+
+.RightSideBar2__Btn__title {
+  flex: 1;
+  margin-left: 5px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.RightSideBar2__Btn:hover {
+  background-color: #5a5d68;
+  cursor: pointer;
+}
+
+.RightSideBar2__Text {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #5a5d68;
+  font-weight: 700;
+  font-size: 15px;
+}

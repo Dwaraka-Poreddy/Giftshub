@@ -1,0 +1,17 @@
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+  /* background-color: #30343f; */
+  /* color: #ffffff; */
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.app__page {
+  display: flex;
+}
+a {
+  text-decoration: none;
+  color: #ffffff;
+}

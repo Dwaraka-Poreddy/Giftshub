@@ -1,0 +1,46 @@
+{
+  "name": "nov-12-7-37am-forked",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@material-ui/core": "4.11.0",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.56",
+    "dom-to-image-more": "2.8.0",
+    "file-saver": "2.0.2",
+    "firebase": "8.1.1",
+    "html2canvas": "1.0.0-rc.7",
+    "react": "16.13.1",
+    "react-canvas-js": "1.0.1",
+    "react-dom": "16.13.1",
+    "react-draggable": "4.4.3",
+    "react-dropzone": "11.2.4",
+    "react-input-color": "^3.0.1",
+    "react-owl-carousel": "2.3.1",
+    "react-resizable-rotatable-draggable": "0.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "^3.4.4",
+    "react-swipeable-views": "0.13.9",
+    "react-uuid": "^1.0.2",
+    "react-window": "1.8.5",
+    "styled-components": "5.2.1",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
