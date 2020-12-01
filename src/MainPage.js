@@ -218,7 +218,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/newspaper">
+              <Link className="productCard" to="/cubes">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -228,7 +228,7 @@ export default function App() {
                     />
                   </div>
                   <div className="productCardTextDiv">
-                    <h1>News Papers</h1>
+                    <h1>Cubes</h1>
                   </div>
                 </div>
               </Link>
