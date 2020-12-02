@@ -140,12 +140,13 @@ export default function App() {
               className="owl-theme"
               loop
               margin={20}
-              center
+              // center
               mergeFit
               autoplayTimeout={3000}
               nav
+              items={4}
               responsive
-              // autoplay
+              autoplay
               autoplayHoverPause
             >
               <Link className="productCard" to="/puzzlepage">
@@ -232,7 +233,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/magazine">
+              <Link className="productCard" to="/animatedframe">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -242,7 +243,64 @@ export default function App() {
                     />
                   </div>
                   <div className="productCardTextDiv">
-                    <h1>Magazine Covers</h1>
+                    <h1>Animation Frames</h1>
+                  </div>
+                </div>
+              </Link>
+              <Link className="productCard" to="/honeycomb">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>HoneyComb</h1>
+                  </div>
+                </div>
+              </Link>
+              <Link className="productCard" to="/specialcard">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>Special Card</h1>
+                  </div>
+                </div>
+              </Link>
+              <Link className="productCard" to="/splitwallimage">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>Split WallFrame</h1>
+                  </div>
+                </div>
+              </Link>
+
+              <Link className="productCard" to="/threedimage">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>3D Image Frame</h1>
                   </div>
                 </div>
               </Link>
@@ -259,7 +317,7 @@ export default function App() {
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
                 <a rel="nofollow" href="https://templatemo.com">
-                  TemplateMo
+                  Gift's Hub
                 </a>
               </p>
             </div>

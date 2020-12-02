@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Base64 } from "js-base64";
 import Puzzle from "./Puzzle";
+import PuzzleAnswer from "./PuzzleAnswer";
 const GeneratePuzzle = ({ match }) => {
   const [pzlimg, setPzlimg] = useState("");
   useEffect(() => {
@@ -12,14 +13,16 @@ const GeneratePuzzle = ({ match }) => {
     <div>
       <div
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
+          display: "flex",
+          width: "60%",
+          marginLeft: "20%",
+          // justifyContent: "space-evenly",
+          marginTop: "5vh",
         }}
       >
         {" "}
         <Puzzle bgimg={pzlimg} />
+        <PuzzleAnswer bgimg={pzlimg} />
       </div>
     </div>
   );

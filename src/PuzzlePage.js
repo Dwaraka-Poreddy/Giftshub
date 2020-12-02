@@ -11,6 +11,7 @@ import { saveAs } from "file-saver";
 import EditableText from "./EditableText";
 import { makeStyles } from "@material-ui/core/styles";
 import Puzzle from "./Puzzle";
+import PuzzleAnswer from "./PuzzleAnswer";
 import { Base64 } from "js-base64";
 
 import { useDropzone } from "react-dropzone";
@@ -231,7 +232,9 @@ export default function PuzzlePage() {
           .getDownloadURL()
           .then((fireBaseUrl) => {
             setimg(fireBaseUrl);
+            console.log(fireBaseUrl);
             setImgurl(Base64.encode(fireBaseUrl));
+            console.log(imgurl);
           });
       }
     );
@@ -253,11 +256,11 @@ export default function PuzzlePage() {
 
   const handleCreateLink = () => {
     TinyURL.shorten(
-      `http://localhost:8000.com/live/puzzle/${imgurl}`,
+      `https://togbr.csb.app/live/puzzle/${imgurl}`,
       function (res, err) {
         if (err) console.log(err);
-        // console.log("sri hi ");
-        // console.log(res);
+        console.log("sri hi ");
+        console.log(res, "DDWarak");
         setTinyImgUrl(res);
       }
     );
@@ -271,13 +274,14 @@ export default function PuzzlePage() {
               {/* <Avatar className="header__logo" alt="logo" src="" /> */}
               <Btn className="header__leftStepper" title="Main page" />
             </Link>
-            {/* handleClick={() => handleMemeDownlod(this)} */}
-            {/* <Link to={`/live/puzzle/${imgurl}`}> */}
-            {/* <Btn
-              handleClick={() => handleCreateLink()}
-              className="header__leftStepper"
-              title="Generate"
-            /> */}
+
+            <Link to={`/live/puzzle/${imgurl}`}>
+              <Btn
+                handleClick={() => handleCreateLink()}
+                className="header__leftStepper"
+                title="Generate Game"
+              />
+            </Link>
             <div class="modal fade" id="myModal">
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -290,9 +294,15 @@ export default function PuzzlePage() {
                     </button>
                   </div>
 
-                  <div style={{ color: "#000" }} class="modal-body">
-                    <a style={{ color: "#000" }} href={tinyImgUrl}>
-                      {tinyImgUrl}
+                  <div
+                    style={{ color: "#000", overflow: "hidden" }}
+                    class="modal-body"
+                  >
+                    <a
+                      style={{ color: "#000" }}
+                      href={`localhost:3000/live/puzzle/${imgurl}`}
+                    >
+                      {`localhost:3000/live/puzzle/${imgurl}`}
                     </a>
                   </div>
 
@@ -315,7 +325,7 @@ export default function PuzzlePage() {
               data-target="#myModal"
               onClick={() => handleCreateLink()}
             >
-              Generate
+              Generate Link
             </button>
 
             {/* </Link> */}
@@ -329,20 +339,15 @@ export default function PuzzlePage() {
       <div>
         <div
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            display: "flex",
+            width: "60%",
+            marginLeft: "20%",
+            // justifyContent: "space-evenly",
+            marginTop: "5vh",
           }}
         >
           {" "}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
+          <div>
             <React.Fragment>
               {Modopen ? (
                 <Modal
@@ -473,6 +478,7 @@ export default function PuzzlePage() {
           <br />
           <br />
           <Puzzle bgimg={img} />
+          <PuzzleAnswer bgimg={img} />
         </div>
       </div>
     </div>
