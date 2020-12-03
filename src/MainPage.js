@@ -19,9 +19,9 @@ export default function App() {
           <div class="row">
             <div class="col-12">
               <nav class="main-nav">
-                <a href="#" class="logo">
+                <Link class="logo" to="/">
                   Gifts Hub
-                </a>
+                </Link>
 
                 <ul class="nav">
                   <li class="scroll-to-section">

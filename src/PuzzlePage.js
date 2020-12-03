@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import Btn from "./Btn";
 import HeaderBtn from "./HeaderBtn";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
-import { Avatar } from "@material-ui/core";
+
 import Canvas from "react-canvas-js";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
-import EditableText from "./EditableText";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Puzzle from "./Puzzle";
 import PuzzleAnswer from "./PuzzleAnswer";
@@ -473,12 +473,58 @@ export default function PuzzlePage() {
                   </button>
                 </span>
               )}
+              <button
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "8px 12px",
+                  marginTop: "5px",
+                  borderRadius: "5px",
+                  marginRight: "5px",
+                  backgroundColor: "#252935",
+                  color: "#fff",
+                }}
+                data-toggle="modal"
+                data-target="#myModal1"
+              >
+                Show Answer
+              </button>
             </React.Fragment>
           </div>
           <br />
           <br />
           <Puzzle bgimg={img} />
-          <PuzzleAnswer bgimg={img} />
+          <div class="modal fade" id="myModal1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 style={{ color: "#000" }} class="modal-title">
+                    Hover Over Me
+                  </h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+
+                <div
+                  style={{ color: "#000", overflow: "hidden" }}
+                  class="modal-body"
+                >
+                  <PuzzleAnswer bgimg={img} />
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
