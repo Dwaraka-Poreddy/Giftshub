@@ -3,7 +3,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import MainPage from "./MainPage";
-import Main from "./Main";
+
 import NewsPaper from "./NewsPaper";
 import Magazine from "./Magazine";
 import PuzzlePage from "./PuzzlePage";
@@ -13,7 +13,8 @@ import AnimatedFrame from "./AnimatedFrame";
 import SpecialCard from "./SpecialCard";
 import HoneyComb from "./HoneyComb.js";
 import SplitWallImagePage from "./SplitWallImagePage.js";
-import SplitWallImage from "./SplitWallImage";
+import LiveSplitWall from "./LiveSplitWall.js";
+
 import ThreeDImage from "./ThreeDImage";
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <Route exact path="/threedimage" component={ThreeDImage} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/live/puzzle/:slug" component={GeneratePuzzle} />
+        <Route exact path="/live/splitwall/:slug" component={LiveSplitWall} />
       </Switch>
     </div>
   );

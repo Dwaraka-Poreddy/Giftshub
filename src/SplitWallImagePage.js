@@ -5,25 +5,22 @@ import HeaderBtn from "./HeaderBtn";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { makeStyles } from "@material-ui/core/styles";
 import Firebaseimageinput from "./Firebaseimageinput";
+import firebase from "./firebase";
 
-const secuseStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(0),
-    },
-  },
-  input: {
-    display: "none",
-  },
-}));
 export default function SplitWallImagePage() {
   const [fbimg, setFbimg] = useState(
     "https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/portrait.jpg"
   );
-  const [image, setimage] = useState(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/portrait.jpg"
-  );
-  const secclasses = secuseStyles();
+
+  const genLink = () => {
+    const todoRef = firebase.database().ref("SplitWall");
+    const todo = {
+      url: fbimg
+    };
+    var newKey = todoRef.push(todo).getKey();
+    console.log("https://kstxn.csb.app/live/splitwall/" + newKey);
+  };
+
   return (
     <div className="App">
       <div>
@@ -52,7 +49,7 @@ export default function SplitWallImagePage() {
                       <a href="#services">Services</a>
                     </li>
                   </ul>
-                  <a class="menu-trigger">
+                  <a href="#menu" class="menu-trigger">
                     <span>Menu</span>
                   </a>
                 </nav>
@@ -68,11 +65,10 @@ export default function SplitWallImagePage() {
           backgroundColor: "#ffffff",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%",
+          height: "100%"
         }}
       >
         <div style={{ flex: "0.8", alignItems: "center" }}>
-          {fbimg}
           <SplitWallImage image={fbimg} />
         </div>
         <div
@@ -81,14 +77,18 @@ export default function SplitWallImagePage() {
             justifyContent: "center",
             alignItems: "center",
             flex: "0.2",
-            height: "100vh",
+            height: "100vh"
           }}
         >
           <Firebaseimageinput setFbimg={setFbimg} />
           <div style={{ marginTop: "50%", justifyContent: "center" }}>
             <center>
               <div style={{ width: "55%" }}>
-                <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />
+                <HeaderBtn
+                  handleClick={genLink}
+                  Icon={ViewModuleIcon}
+                  title="Generate Link "
+                />
               </div>
             </center>
           </div>
