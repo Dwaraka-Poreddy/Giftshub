@@ -16,11 +16,10 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import { Base64 } from "js-base64";
-
+import firebase from "./firebase";
 import { useDropzone } from "react-dropzone";
 import { storage } from "./firebase";
 import Modal from "@material-ui/core/Modal";
-
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -121,8 +120,11 @@ export default function SpecialCard() {
   );
   const [image_url, setimage_url] = useState("");
   const [cropmodal, setCropmodal] = useState(false);
-  const [liveImg, setLiveImg] = useState("");
+  const [liveImg, setLiveImg] = useState(
+    "https://picsum.photos/360/360?image=0"
+  );
   const [img1, setImg1] = useState("https://picsum.photos/360/360?image=0");
+  const [fireurl, setFireUrl] = useState("");
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -191,14 +193,14 @@ export default function SpecialCard() {
 
   const files = acceptedFiles.map((file) => <p key={file.path}>{file.path}</p>);
 
-  const handleFireBaseUpload = (e) => {
-    e.preventDefault();
+  const handleFireBaseUpload = () => {
     if (imageAsFile === "") {
       console.error(`not an image, the image file is a ${typeof imageAsFile}`);
     }
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    //initiates the firebase side uploading
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -212,12 +214,25 @@ export default function SpecialCard() {
         console.log(err);
       },
       () => {
-        storage
+        console.log(image_url);
+        var s = storage
           .ref("images")
-          .child(imageAsFile.name)
-          .getDownloadURL()
-          .then((fireBaseUrl) => {
-            setImg1(fireBaseUrl);
+          .child("srinivas")
+          .putString(image_url, "base64", { contentType: "image/jpg" })
+          .then((savedImage) => {
+            savedImage.ref.getDownloadURL().then((downUrl) => {
+              console.log(downUrl);
+              setFireUrl(downUrl);
+              const todoRef = firebase.database().ref("SpecialCard");
+              const todo = {
+                url: downUrl,
+                title: head1,
+                name: head2,
+                description: para,
+              };
+              var newKey = todoRef.push(todo).getKey();
+              console.log("http://localhost:3000/getting/" + newKey);
+            });
           });
       }
     );
@@ -290,19 +305,21 @@ export default function SpecialCard() {
     return tmpCanvas;
   }
 
+  const genSpecialCard = () => {
+    handleFireBaseUpload();
+  };
+
   function generateDownload(previewCanvas, crop) {
     if (!crop || !previewCanvas) {
       return;
     }
 
     const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
-    console.log(canvas, "entra, canvas");
     var base64Image = canvas.toDataURL("image/jpeg", 1.0);
     setLiveImg(base64Image);
     setCropmodal(true);
     var base64Img = base64Image.replace("data:image/jpeg;base64,", "");
     setimage_url(base64Img);
-    console.log(base64Img);
     canvas.toBlob(
       (blob) => {
         const previewUrl = window.URL.createObjectURL(blob);
@@ -463,10 +480,18 @@ export default function SpecialCard() {
             >
               <div class="img">
                 {" "}
-                <span style={{ backgroundImage: "url(" + img1 + ")" }}></span>
-                <span style={{ backgroundImage: "url(" + img1 + ")" }}></span>
-                <span style={{ backgroundImage: "url(" + img1 + ")" }}></span>
-                <span style={{ backgroundImage: "url(" + img1 + ")" }}></span>
+                <span
+                  style={{ backgroundImage: "url(" + liveImg + ")" }}
+                ></span>
+                <span
+                  style={{ backgroundImage: "url(" + liveImg + ")" }}
+                ></span>
+                <span
+                  style={{ backgroundImage: "url(" + liveImg + ")" }}
+                ></span>
+                <span
+                  style={{ backgroundImage: "url(" + liveImg + ")" }}
+                ></span>
               </div>
               <div class="content">
                 <h2>{head1}</h2>
@@ -579,6 +604,11 @@ export default function SpecialCard() {
                 }}
               />
             </div>
+            <HeaderBtn
+              handleClick={genSpecialCard}
+              Icon={ViewModuleIcon}
+              title="Generate Link"
+            />
           </div>
         </div>
       </div>

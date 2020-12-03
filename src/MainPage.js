@@ -275,7 +275,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/splitwallimage">
+              <Link className="productCard" to="/splitwallimagePage">
                 <div className="productCardDiv">
                   <div>
                     <img

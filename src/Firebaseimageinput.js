@@ -213,13 +213,14 @@ export default function Firebaseimageinput(props) {
             {
               <div className={classes.paper}>
                 <div>
+                  <br />
+                  <br />
+                  <br />
                   <div className="container">
                     <div {...getRootProps({ style })}>
                       <input {...getInputProps()} />
                       <p>Drag 'n' drop some files here</p>
-                      {/* <button type="button" onClick={open}>
-                        Upload From Device
-                      </button> */}
+
                       <Button
                         onClick={open}
                         variant="contained"
@@ -232,9 +233,12 @@ export default function Firebaseimageinput(props) {
                       </Button>
                     </div>
                   </div>
+                  <br />
                   <aside>
                     <center>
-                      <h4>Selected File {files[0]}</h4>
+                      <h4 style={{ color: "#009dd9" }}>
+                        Selected File {files[0]}
+                      </h4>
                     </center>
                   </aside>
                   <div className={Snackclasses.root}>
@@ -268,6 +272,7 @@ export default function Firebaseimageinput(props) {
                     </Portal>
                   </div>
                   <div>
+                    <br />
                     <center>
                       <form onSubmit={handleFireBaseUpload}>
                         {/* <button>SUBMIT</button> */}
@@ -303,7 +308,7 @@ export default function Firebaseimageinput(props) {
           </Modal>
         ) : (
           <div>
-            <a href={img}>Generated Link</a>
+            {/* <a href={img}>Generated Link</a> */}
             <span
               // style={{
               //   border: !Modopen && isMousedOver ? "1.25px dashed " : null

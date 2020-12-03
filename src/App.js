@@ -3,7 +3,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import MainPage from "./MainPage";
-
+import Nav from "./Nav";
 import NewsPaper from "./NewsPaper";
 import Magazine from "./Magazine";
 import PuzzlePage from "./PuzzlePage";
@@ -21,6 +21,7 @@ export default function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/nav" component={Nav} />
         <Route exact path="/newspaper" component={NewsPaper} />
         <Route exact path="/cubes" component={Cubes} />
         <Route exact path="/puzzlePage" component={PuzzlePage} />
@@ -28,7 +29,11 @@ export default function App() {
         <Route exact path="/greet" component={Header} />
         <Route exact path="/honeycomb" component={HoneyComb} />
         <Route exact path="/specialcard" component={SpecialCard} />
-        <Route exact path="/splitwallimage" component={SplitWallImagePage} />
+        <Route
+          exact
+          path="/splitwallimagePage"
+          component={SplitWallImagePage}
+        />
         <Route exact path="/threedimage" component={ThreeDImage} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/live/puzzle/:slug" component={GeneratePuzzle} />
