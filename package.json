@@ -30,6 +30,7 @@
     "react-scripts": "^3.4.4",
     "react-share": "^4.3.1",
     "react-swipeable-views": "0.13.9",
+    "react-use-clipboard": "^1.0.2",
     "react-uuid": "^1.0.2",
     "react-window": "1.8.5",
     "styled-components": "5.2.1",

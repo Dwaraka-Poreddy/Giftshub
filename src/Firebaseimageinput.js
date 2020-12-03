@@ -14,7 +14,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import HeaderBtn from "./HeaderBtn";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import Fab from "@material-ui/core/Fab";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -323,8 +323,8 @@ export default function Firebaseimageinput(props) {
                   <div style={{ width: "55%" }}>
                     <HeaderBtn
                       handleClick={() => setModopen(true)}
-                      Icon={ViewModuleIcon}
-                      title="Background Image"
+                      Icon={ImageIcon}
+                      title="Change Image"
                     />
                   </div>
                 </center>

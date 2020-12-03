@@ -10,6 +10,11 @@ import Modal from "@material-ui/core/Modal";
 import CloseIcon from "@material-ui/icons/Close";
 import Fab from "@material-ui/core/Fab";
 import MailIcon from "@material-ui/icons/Mail";
+import Share from "./Share";
+import Copy from "./Copy";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import LinkIcon from "@material-ui/icons/Link";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SplitWallImagePage() {
   const classes = useStyles();
+  const [showshare, setshowshare] = useState(false);
   const [previewlink, setpreviewlink] = useState("");
   const [livelink, setlivelink] = useState();
   const [fbimg, setFbimg] = useState(
@@ -114,7 +120,7 @@ export default function SplitWallImagePage() {
               <div style={{ width: "55%", marginTop: "20px" }}>
                 <HeaderBtn
                   handleClick={genLink}
-                  Icon={ViewModuleIcon}
+                  Icon={LinkIcon}
                   title="Generate Link "
                 />
               </div>
@@ -176,28 +182,28 @@ export default function SplitWallImagePage() {
               {livelink ? (
                 <div>
                   <div style={{ width: "55%", marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        navigator.clipboard.writeText({ livelink });
-                      }}
-                      Icon={ViewModuleIcon}
-                      title="Copy Link "
-                    />
+                    <Copy livelink={livelink} />
                   </div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        setmodopen(true);
-                      }}
-                      Icon={MailIcon}
-                      title="Email "
-                    />
-                  </div>
+
                   <div style={{ width: "55%", marginTop: "20px" }}>
                     <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={MailIcon} title="Preview " />
+                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                     </Link>
                   </div>
+
+                  {!showshare ? (
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <HeaderBtn
+                        handleClick={() => {
+                          setshowshare(true);
+                        }}
+                        Icon={ShareIcon}
+                        title="Share "
+                      />
+                    </div>
+                  ) : (
+                    <Share livelink={livelink} />
+                  )}
                 </div>
               ) : null}
             </center>
