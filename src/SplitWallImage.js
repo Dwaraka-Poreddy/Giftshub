@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SplitWallImage() {
+export default function SplitWallImage({ image }) {
   return (
     <div>
       <section
@@ -11,30 +11,26 @@ export default function SplitWallImage() {
           position: "relative",
         }}
       >
-        <img
-          style={{ width: "60%", marginTop: "10%" }}
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/portrait.jpg"
-          alt=""
-        />
+        <img style={{ width: "70%", marginTop: "10%" }} src={image} alt="" />
         <article
           style={{
             position: "absolute",
             top: "0",
             width: "100%",
-            backgroundColor: "white",
+            backgroundColor: "#ffffff",
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr",
             gridGap: "20px",
             mixBlendMode: "lighten",
           }}
         >
-          <div style={{ background: "black", height: "25.3vw" }}></div>
+          <div style={{ background: "black", height: "24vw" }}></div>
           <div
-            style={{ background: "black", height: "25.3vw", gridColumn: "2/4" }}
+            style={{ background: "black", height: "24vw", gridColumn: "2/4" }}
           ></div>
-          <div style={{ background: "black", height: "25.3vw" }}></div>
-          <div style={{ background: "black", height: "25.3vw" }}></div>
-          <div style={{ background: "black", height: "25.3vw" }}></div>
+          <div style={{ background: "black", height: "24vw" }}></div>
+          <div style={{ background: "black", height: "24vw" }}></div>
+          <div style={{ background: "black", height: "24vw" }}></div>
         </article>
       </section>
     </div>

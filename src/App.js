@@ -12,6 +12,7 @@ import GeneratePuzzle from "./GeneratePuzzle";
 import AnimatedFrame from "./AnimatedFrame";
 import SpecialCard from "./SpecialCard";
 import HoneyComb from "./HoneyComb.js";
+import SplitWallImagePage from "./SplitWallImagePage.js";
 import SplitWallImage from "./SplitWallImage";
 import ThreeDImage from "./ThreeDImage";
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
         <Route exact path="/greet" component={Header} />
         <Route exact path="/honeycomb" component={HoneyComb} />
         <Route exact path="/specialcard" component={SpecialCard} />
-        <Route exact path="/splitwallimage" component={SplitWallImage} />
+        <Route exact path="/splitwallimage" component={SplitWallImagePage} />
         <Route exact path="/threedimage" component={ThreeDImage} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/live/puzzle/:slug" component={GeneratePuzzle} />

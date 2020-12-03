@@ -41,8 +41,6 @@ const baseStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  // borderColor: "#000",
-  // borderStyle: "dashed",
   backgroundColor: "#5f5f5f",
   borderRadius: "15px",
   color: "#bdbdbd",
@@ -55,13 +53,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "15px",
     position: "absolute",
     width: "50vw",
-    maxWidth: "1000px",
+    maxWidth: "600px",
     minWidth: "400px",
-    marginTop: "20vh",
+    marginTop: "0vh",
     border: null,
     backgroundColor: "#303030",
-    // border: "2px solid #000",
-    // boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
   DelBut: {
@@ -114,7 +110,6 @@ export default function SpecialCard() {
   const [infoSnackopen, setinfoSnackopen] = React.useState(false);
   const classes = useStyles();
   const [imageAsFile, setImageAsFile] = useState("");
-  // const [img, setimg] = useState(props.src);
   const [progress, setProgress] = useState(0);
   const [Modopen, setModopen] = React.useState(false);
   const classesBut = useStylesBut();
@@ -124,6 +119,9 @@ export default function SpecialCard() {
   const [para, setpara] = useState(
     "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley"
   );
+  const [image_url, setimage_url] = useState("");
+  const [cropmodal, setCropmodal] = useState(false);
+  const [liveImg, setLiveImg] = useState("");
   const [img1, setImg1] = useState("https://picsum.photos/360/360?image=0");
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
@@ -132,6 +130,7 @@ export default function SpecialCard() {
   const [completedCrop, setCompletedCrop] = useState(null);
   const secclasses = secuseStyles();
   const onSelectFile = (e) => {
+    setCropmodal(true);
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.addEventListener("load", () => setUpImg(reader.result));
@@ -187,7 +186,6 @@ export default function SpecialCard() {
     noKeyboard: true,
     onDrop: (acceptedFiles) => {
       setImageAsFile(acceptedFiles[0]);
-      // console.log(imageAsFile);
     },
   });
 
@@ -195,15 +193,12 @@ export default function SpecialCard() {
 
   const handleFireBaseUpload = (e) => {
     e.preventDefault();
-    // console.log("start of upload");
-    // async magic goes here...
     if (imageAsFile === "") {
       console.error(`not an image, the image file is a ${typeof imageAsFile}`);
     }
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    //initiates the firebase side uploading
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -302,22 +297,28 @@ export default function SpecialCard() {
 
     const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
     console.log(canvas, "entra, canvas");
-
+    var base64Image = canvas.toDataURL("image/jpeg", 1.0);
+    setLiveImg(base64Image);
+    setCropmodal(true);
+    var base64Img = base64Image.replace("data:image/jpeg;base64,", "");
+    setimage_url(base64Img);
+    console.log(base64Img);
     canvas.toBlob(
       (blob) => {
         const previewUrl = window.URL.createObjectURL(blob);
 
-        const anchor = document.createElement("a");
-        anchor.download = "cropPreview.png";
-        anchor.href = URL.createObjectURL(blob);
-        setImg1(anchor.href);
-        anchor.click();
+        // const anchor = document.createElement("a");
+        // anchor.download = "cropPreview.png";
+        // anchor.href = URL.createObjectURL(blob);
+        // setImg1(anchor.href);
+        // anchor.click();
 
         window.URL.revokeObjectURL(previewUrl);
       },
       "image/png",
       1
     );
+    setCropmodal(false);
   }
 
   return (
@@ -363,131 +364,90 @@ export default function SpecialCard() {
         }}
         className="App"
       >
-        <React.Fragment>
-          {Modopen ? (
-            <Modal
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginRight: "auto",
-              }}
-              open={Modopen}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-            >
-              {
-                <div className={classes.paper}>
+        <Modal
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginRight: "auto",
+
+            alignItems: "center",
+          }}
+          open={cropmodal}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          {
+            <div className={classes.paper}>
+              <div>
+                <div>
                   <div>
-                    <div className="container">
-                      <div {...getRootProps({ style })}>
-                        <input {...getInputProps()} />
-                        <p>Drag 'n' drop some files here</p>
-                        {/* <button type="button" onClick={open}>
-                        Upload From Device
-                      </button> */}
-                        <Button
-                          onClick={open}
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          className={classesBut.button}
-                          startIcon={<ImportantDevicesIcon />}
+                    <div>
+                      <div>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
                         >
-                          Upload From Local Device
-                        </Button>
+                          &times;
+                        </button>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+
+                      <ReactCrop
+                        src={upImg}
+                        onImageLoaded={onLoad}
+                        crop={crop}
+                        onChange={(c) => setCrop(c)}
+                        onComplete={(c) => setCompletedCrop(c)}
+                      />
+                      <div style={{ display: "none" }}>
+                        <canvas
+                          ref={previewCanvasRef}
+                          // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
+                          style={{
+                            width: Math.round(completedCrop?.width ?? 0),
+                            height: Math.round(completedCrop?.height ?? 0),
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <center>
+                          <div style={{ width: "40%" }}>
+                            {" "}
+                            <HeaderBtn
+                              handleClick={() => {
+                                generateDownload(
+                                  previewCanvasRef.current,
+                                  completedCrop
+                                );
+                              }}
+                              Icon={ViewModuleIcon}
+                              title=" Download cropped image"
+                            />
+                          </div>
+                        </center>
                       </div>
                     </div>
-                    <aside>
-                      <center>
-                        <h4>Selected File {files[0]}</h4>
-                      </center>
-                    </aside>
-                    <div className={Snackclasses.root}>
-                      <Portal>
-                        <Snackbar
-                          open={progress === 100}
-                          autoHideDuration={1500}
-                          onClose={handleSnackClose}
-                        >
-                          <Alert severity="success">
-                            <strong>Image Uploaded Succesfully :) </strong>
-                          </Alert>
-                        </Snackbar>
-                        <Snackbar
-                          open={infoSnackopen}
-                          autoHideDuration={4000}
-                          onClose={handle2SnackClose}
-                        >
-                          <Alert
-                            severity="info"
-                            open={infoSnackopen}
-                            autoHideDuration={4000}
-                            onClose={handle2SnackClose}
-                          >
-                            <strong>
-                              It might take a few seconds for the image to get
-                              reflected in the website.
-                            </strong>
-                          </Alert>
-                        </Snackbar>
-                      </Portal>
-                    </div>
-                    <div>
-                      <center>
-                        <form onSubmit={handleFireBaseUpload}>
-                          {/* <button>SUBMIT</button> */}
-                          <Button
-                            variant="contained"
-                            color="default"
-                            type="submit"
-                            // onSubmit={handleFireBaseUpload}
-                            className={classesBut.button}
-                            startIcon={<CloudUploadIcon />}
-                          >
-                            Upload
-                          </Button>
-                        </form>
-                        <LinearProgressWithLabel
-                          variant="determinate"
-                          value={progress}
-                        />
-                        {/* <progress value={progress} max="100" /> */}
-                      </center>
-                    </div>
-                    <Fab
-                      onClick={handleFinalClose}
-                      className={classes.DelBut}
-                      color="primary"
-                      aria-label="add"
-                    >
-                      <CloseIcon />
-                    </Fab>
                   </div>
                 </div>
-              }
-            </Modal>
-          ) : (
-            <span
-              // style={{
-              //   border: !Modopen && isMousedOver ? "1.25px dashed " : null
-              // }}
-              onMouseOver={() => setMouseOver(true)}
-              onMouseOut={() => setMouseOver(false)}
-              onClick={() => setModopen(true)}
-            >
-              <img
-                // onClick={() => setModopen(true)}
-                style={{
-                  width: "100%",
-                  height: "80",
-                  border: !Modopen && isMousedOver ? "2px dashed " : null,
-                }}
-                src={img1}
-                alt="Hi"
-              />
-            </span>
-          )}
-        </React.Fragment>
+
+                <Fab
+                  onClick={() => {
+                    setCropmodal(false);
+                  }}
+                  className={classes.DelBut}
+                  color="primary"
+                  aria-label="add"
+                >
+                  <CloseIcon />
+                </Fab>
+              </div>
+            </div>
+          }
+        </Modal>
+
         <div style={{ flex: "0.8", alignItems: "center" }}>
           <center>
             <div
@@ -541,12 +501,6 @@ export default function SpecialCard() {
             <label htmlFor="LocalfileInput">
               <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />
             </label>
-            <div>
-              {" "}
-              <button data-toggle="modal" data-target="#myModal">
-                crop
-              </button>
-            </div>
             <div
               style={{ width: "80%", marginLeft: "10%" }}
               className="RightSideBar2__Btn"
@@ -624,61 +578,6 @@ export default function SpecialCard() {
                   setpara(e.target.value);
                 }}
               />
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-
-              <div
-                style={{ color: "#000", overflow: "hidden" }}
-                class="modal-body"
-              >
-                <ReactCrop
-                  src={upImg}
-                  onImageLoaded={onLoad}
-                  crop={crop}
-                  onChange={(c) => setCrop(c)}
-                  onComplete={(c) => setCompletedCrop(c)}
-                />
-                <div>
-                  <canvas
-                    ref={previewCanvasRef}
-                    // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
-                    style={{
-                      width: Math.round(completedCrop?.width ?? 0),
-                      height: Math.round(completedCrop?.height ?? 0),
-                    }}
-                  />
-                </div>
-
-                <button
-                  type="button"
-                  disabled={!completedCrop?.width || !completedCrop?.height}
-                  onClick={() => {
-                    generateDownload(previewCanvasRef.current, completedCrop);
-                  }}
-                >
-                  Download cropped image
-                </button>
-              </div>
-
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
             </div>
           </div>
         </div>
