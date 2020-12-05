@@ -17,7 +17,7 @@ import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import Copy from "./Copy";
 import firebase from "./firebase";
-import { useDropzone } from "react-dropzone";
+
 import { storage } from "./firebase";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
@@ -137,21 +137,6 @@ export default function SpecialCardPage() {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
-
-    // const genLink = () => {
-    //   const todoRef = firebase.database().ref("SplitWall");
-    //   const todo = {
-    //     url: fbimg,
-    //     head1: head1,
-    //     head2: head2,
-    //     para: para,
-    //     // title: "Srinivas",
-    //   };
-    //   var newKey = todoRef.push(todo).getKey();
-    //   setlivelink("localhost:3000/live/specialcard/" + newKey);
-    //   setpreviewlink("/live/specialcard/" + newKey);
-    //   console.log("localhost:3000/live/specialcard/" + newKey);
-    // };
 
     const image = imgRef.current;
     const canvas = previewCanvasRef.current;

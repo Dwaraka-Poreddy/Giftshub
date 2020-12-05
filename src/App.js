@@ -12,7 +12,7 @@ import OpenGreetingCard from "./OpenGreetingCard";
 import GeneratePuzzle from "./GeneratePuzzle";
 import AnimatedFramePage from "./AnimatedFramePage";
 import SpecialCardPage from "./SpecialCardPage";
-
+import HoneyComb from "./HoneyComb";
 import SplitWallImagePage from "./SplitWallImagePage.js";
 import LiveSplitWall from "./LiveSplitWall.js";
 import LiveThreeDImage from "./LiveThreeDImage";
@@ -31,6 +31,7 @@ export default function App() {
         <Route exact path="/slidepuzzlePage" component={SlidePuzzlePage} />
         <Route exact path="/magazine" component={Magazine} />
         <Route exact path="/greet" component={Header} />
+        <Route exact path="/honeycomb" component={HoneyComb} />
         <Route exact path="/opengreetingcard" component={OpenGreetingCard} />
         <Route exact path="/specialcardpage" component={SpecialCardPage} />
         <Route
