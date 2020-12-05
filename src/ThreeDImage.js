@@ -1,7 +1,7 @@
 import React from "react";
 import "./ThreeDImage.css";
 
-export default function ThreeDImage() {
+export default function ThreeDImage({ image }) {
   return (
     <div
       style={{
@@ -11,16 +11,56 @@ export default function ThreeDImage() {
       <div style={{ paddingTop: "5%" }} className="ThreeDImage">
         <div class="tdexample">
           <div class="tdblock">
-            <div class="tdside -tdmain"></div>
-            <div class="tdside -tdleft"></div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdmain">
+              <img
+                src={image}
+                alt=""
+                style={{ height: "100%", marginLeft: "-10%" }}
+              />
+            </div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdleft">
+              <img src={image} alt="" style={{ height: "100%" }} />
+            </div>
           </div>
           <div class="tdblock">
-            <div class="tdside -tdmain"></div>
-            <div class="tdside -tdleft"></div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdmain">
+              <img
+                src={image}
+                alt=""
+                style={{ height: "100%", marginLeft: "-75%" }}
+              />
+            </div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdleft">
+              <img
+                src={image}
+                alt=""
+                style={{
+                  height: "100%",
+                  marginLeft: "-277%",
+                  marginTop: "-1.2%",
+                }}
+              />
+            </div>
           </div>
           <div class="tdblock">
-            <div class="tdside -tdmain"></div>
-            <div class="tdside -tdleft"></div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdmain">
+              <img
+                src={image}
+                alt=""
+                style={{ height: "100%", marginLeft: "-245%" }}
+              />
+            </div>
+            <div style={{ overflow: "hidden" }} class="tdside -tdleft">
+              <img
+                src={image}
+                alt=""
+                style={{
+                  height: "100%",
+                  marginLeft: "-1130%",
+                  marginTop: "1%",
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ function Share({ livelink }) {
           onChange={(e) => {
             setto(e.target.value);
             settitle(
-              `Dear ${to}, a gift from ${from} is waiting for you at ${livelink}. Made by ${giftshub}`
+              `Dear ${to}, a gift from ${from} is waiting for you at <a src=${livelink}>${livelink}</a>. Made by ${giftshub}`
             );
             console.log({ title });
           }}
@@ -94,7 +94,7 @@ function Share({ livelink }) {
           windowHeight="500px"
           url={livelink}
           title={title}
-          separator="------>"
+          separator="::"
         >
           <HeaderBtn Icon={WhatsAppIcon} title="Whatsapp " />
         </WhatsappShareButton>

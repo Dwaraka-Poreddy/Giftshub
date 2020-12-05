@@ -9,6 +9,7 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
     "base-64": "^1.0.0",
+    "bootstrap": "^4.5.3",
     "dom-to-image-more": "2.8.0",
     "downloadjs": "^1.4.7",
     "file-saver": "2.0.2",

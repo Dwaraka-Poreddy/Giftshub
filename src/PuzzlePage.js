@@ -11,7 +11,7 @@ import { saveAs } from "file-saver";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Puzzle from "./Puzzle";
-import PuzzleAnswer from "./PuzzleAnswer";
+import PuzzleAnswer from "./SlidePuzzleAnswer";
 import { Base64 } from "js-base64";
 
 import { useDropzone } from "react-dropzone";
@@ -493,6 +493,7 @@ export default function PuzzlePage() {
           </div>
           <br />
           <br />
+          <img src={img} />
           <Puzzle bgimg={img} />
           <div class="modal fade" id="myModal1">
             <div class="modal-dialog modal-dialog-centered">

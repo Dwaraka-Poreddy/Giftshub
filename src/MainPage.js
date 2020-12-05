@@ -149,7 +149,7 @@ export default function App() {
               autoplay
               autoplayHoverPause
             >
-              <Link className="productCard" to="/puzzlepage">
+              <Link className="productCard" to="/slidepuzzlepage">
                 <div
                   className="productCardDiv"
                   // style={{
@@ -233,7 +233,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/animatedframe">
+              <Link className="productCard" to="/animatedframepage">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -247,7 +247,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/honeycomb">
+              <Link className="productCard" to="/opengreetingcard">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -257,11 +257,11 @@ export default function App() {
                     />
                   </div>
                   <div className="productCardTextDiv">
-                    <h1>HoneyComb</h1>
+                    <h1>Greeting Card</h1>
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/specialcard">
+              <Link className="productCard" to="/specialcardpage">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -290,7 +290,7 @@ export default function App() {
                 </div>
               </Link>
 
-              <Link className="productCard" to="/threedimage">
+              <Link className="productCard" to="/threedimagepage">
                 <div className="productCardDiv">
                   <div>
                     <img

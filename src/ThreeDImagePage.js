@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import SplitWallImage from "./SplitWallImage";
+import ThreeDImage from "./ThreeDImage";
 import HeaderBtn from "./HeaderBtn";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { makeStyles } from "@material-ui/core/styles";
@@ -34,25 +34,25 @@ const useStyles = makeStyles((theme) => ({
     left: theme.spacing(200),
   },
 }));
-export default function SplitWallImagePage() {
+export default function ThreeDImagePage() {
   const classes = useStyles();
   const [showshare, setshowshare] = useState(false);
   const [previewlink, setpreviewlink] = useState("");
   const [livelink, setlivelink] = useState();
   const [fbimg, setFbimg] = useState(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/portrait.jpg"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Ftoph.png?alt=media&token=4cfc32d1-628c-4573-a043-dab3d55d1654"
   );
-  // const [modopen, setmodopen] = useState(false);
+  const [modopen, setmodopen] = useState(false);
   const genLink = () => {
-    const todoRef = firebase.database().ref("SplitWall");
+    const todoRef = firebase.database().ref("ThreeDImage");
     const todo = {
       url: fbimg,
       // title: "Srinivas",
     };
     var newKey = todoRef.push(todo).getKey();
-    setlivelink("localhost:3000/live/splitwall/" + newKey);
-    setpreviewlink("/live/splitwall/" + newKey);
-    console.log("localhost:3000/live/splitwall/" + newKey);
+    setlivelink("localhost:3000/live/ThreeDImage/" + newKey);
+    setpreviewlink("/live/ThreeDImage/" + newKey);
+    console.log("localhost:3000/live/ThreeDImage/" + newKey);
   };
 
   return (
@@ -103,7 +103,8 @@ export default function SplitWallImagePage() {
         }}
       >
         <div style={{ flex: "0.8", alignItems: "center" }}>
-          <SplitWallImage image={fbimg} />
+          {fbimg}
+          <ThreeDImage image={fbimg} />
         </div>
         <div
           style={{
@@ -126,7 +127,7 @@ export default function SplitWallImagePage() {
               </div>
             </center>
             <center>
-              {/* <Modal
+              <Modal
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -176,7 +177,7 @@ export default function SplitWallImagePage() {
                     </div>
                   </div>
                 }
-              </Modal> */}
+              </Modal>
             </center>
             <center>
               {livelink ? (

@@ -30,10 +30,9 @@ export default function App() {
     var xRand = getRandom(max, min);
     var yRand = getRandom(max, min);
 
-    cube.style.webkitTransform =
-      "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
-    cube.style.transform =
-      "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
+    // cube.style.webkitTransform = " rotateY(" + yRand + "deg)";
+    // cube.style.transform =
+    //   "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
   }
 
   function getRandom(max, min) {
@@ -49,71 +48,131 @@ export default function App() {
           }}
           id="cube"
         >
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-              // backgroundPosition: "center",
-              // backgroundSize: "cover",
-              // backgroundRepeat: "no-repeat",
+          <div class="heart3d">
+            <div class="boom">
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img1 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="front bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img2 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="back bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img3 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="right bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img4 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="left  bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img5 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="top bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + img6 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
+                }}
+                class="bottom bob"
+              ></div>
+            </div>
+            <div class="rib1"></div>
+            <div class="rib2"></div>
+            <div class="rib3"></div>
+            <div class="rib4"></div>
+            <div class="rib5"></div>
+            <div class="rib6"></div>
+            <div class="rib7"></div>
+            <div class="rib8"></div>
+            <div class="rib9"></div>
+            <div class="rib10"></div>
+            <div class="rib11"></div>
+            <div class="rib12"></div>
+            <div class="rib13"></div>
+            <div class="rib14"></div>
+            <div class="rib15"></div>
 
-              // overflow: "hidden"
-            }}
-            class="front"
-          ></div>
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-            }}
-            class="back"
-          ></div>
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-            }}
-            class="right"
-          ></div>
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-            }}
-            class="left"
-          ></div>
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-            }}
-            class="top"
-          ></div>
-          <div
-            style={{
-              backgroundImage: "url(" + img1 + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              overflow: "hidden",
-            }}
-            class="bottom"
-          ></div>
+            <div class="rib16"></div>
+            <div class="rib17"></div>
+            <div class="rib18"></div>
+            <div class="rib19"></div>
+            <div class="rib20"></div>
+            <div class="rib21"></div>
+            <div class="rib22"></div>
+            <div class="rib23"></div>
+            <div class="rib24"></div>
+            <div class="rib25"></div>
+            <div class="rib26"></div>
+            <div class="rib27"></div>
+            <div class="rib28"></div>
+            <div class="rib29"></div>
+            <div class="rib30"></div>
+            <div class="rib31"></div>
+            <div class="rib32"></div>
+            <div class="rib33"></div>
+            <div class="rib34"></div>
+            <div class="rib35"></div>
+            <div class="rib36"></div>
+          </div>
         </div>
       </section>
     </div>

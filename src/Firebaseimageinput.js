@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useDropzone } from "react-dropzone";
 import { storage } from "./firebase";
 import Modal from "@material-ui/core/Modal";
@@ -152,14 +153,16 @@ export default function Firebaseimageinput(props) {
 
   const handleFireBaseUpload = (e) => {
     e.preventDefault();
+    var ud = uuidv4();
+    console.log(ud);
     // console.log("start of upload");
     // async magic goes here...
     if (imageAsFile === "") {
       console.error(`not an image, the image file is a ${typeof imageAsFile}`);
     }
-    const uploadTask = storage
-      .ref(`/images/${imageAsFile.name}`)
-      .put(imageAsFile);
+    var nameOfFile = imageAsFile.name + ud;
+    console.log(nameOfFile);
+    const uploadTask = storage.ref(`/images/${nameOfFile}`).put(imageAsFile);
     //initiates the firebase side uploading
     uploadTask.on(
       "state_changed",
@@ -176,7 +179,7 @@ export default function Firebaseimageinput(props) {
       () => {
         storage
           .ref("images")
-          .child(imageAsFile.name)
+          .child(nameOfFile)
           .getDownloadURL()
           .then((fireBaseUrl) => {
             setimg(fireBaseUrl);
