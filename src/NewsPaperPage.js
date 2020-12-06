@@ -21,12 +21,12 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(0)
-    }
+      margin: theme.spacing(0),
+    },
   },
   input: {
-    display: "none"
-  }
+    display: "none",
+  },
 }));
 
 function NewsPaperPage() {
@@ -48,7 +48,7 @@ function NewsPaperPage() {
 
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
+    console.log(send);
     setopencrop(true);
   };
 
@@ -81,7 +81,7 @@ function NewsPaperPage() {
               const todo = {
                 url: downUrl,
                 head: head,
-                para: para
+                para: para,
               };
               var newKey = todoRef.push(todo).getKey();
               setlivelink("http://localhost:3000/live/newspaper/" + newKey);
@@ -159,7 +159,7 @@ function NewsPaperPage() {
             justifyContent: "center",
             alignItems: "center",
             flex: "0.2",
-            height: "80vh"
+            height: "80vh",
           }}
         >
           <div style={{ marginTop: "20%", justifyContent: "center" }}>
@@ -194,7 +194,7 @@ function NewsPaperPage() {
                   style={{
                     margin: "0 10px 0 5px",
                     color: "#ffffff",
-                    fontSize: "large"
+                    fontSize: "large",
                   }}
                 />
                 <InputBase
@@ -204,7 +204,7 @@ function NewsPaperPage() {
                     color: "#068dc0",
                     margin: "0",
                     backgroundColor: "#ffffff",
-                    width: "100%"
+                    width: "100%",
                   }}
                   value={head}
                   onChange={(e) => {
@@ -220,7 +220,7 @@ function NewsPaperPage() {
                   style={{
                     margin: "0 10px 0 5px",
                     color: "#ffffff",
-                    fontSize: "large"
+                    fontSize: "large",
                   }}
                 />
                 <InputBase
@@ -230,7 +230,7 @@ function NewsPaperPage() {
                     color: "#068dc0",
                     margin: "0",
                     backgroundColor: "#ffffff",
-                    width: "100%"
+                    width: "100%",
                   }}
                   value={para}
                   onChange={(e) => {

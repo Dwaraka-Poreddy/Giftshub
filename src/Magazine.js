@@ -1,94 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Btn from "./Btn";
-import HeaderBtn from "./HeaderBtn";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
-import { Avatar } from "@material-ui/core";
-import Canvas from "react-canvas-js";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
-import { saveAs } from "file-saver";
-import EditableText from "./EditableText";
-import { makeStyles } from "@material-ui/core/styles";
 
-const secuseStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(0),
-    },
-  },
-  input: {
-    display: "none",
-  },
-}));
+export default function App({ head1, head2, fbimg }) {
+  // const [head1, sethead1] = useState("THE");
+  // const [head2, setheas2] = useState("UNSTOPPABLE");
+  // const [fbimg, setfbimg] = useState(require("../src/Images/Magazine.png"));
 
-export default function App() {
-  const [imgSource, setImgSource] = useState(
-    require("../src/Images/Magazine.png")
-  );
-  const secclasses = secuseStyles();
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
-  function handleMemeDownlod(el) {
-    var canvas = document.getElementById("magazine");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("magazine"))
-
-        .then(function (base64image) {
-          window.saveAs(base64image, "magazine");
-        });
-    });
-  }
   return (
     <div>
-      <div className="allheader">
-        <div className="header">
-          <div className="header__left">
-            <Link to="/">
-              {/* <Avatar className="header__logo" alt="logo" src="" /> */}
-              <Btn className="header__leftStepper" title="Main page" />
-            </Link>
-            <input
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              // multiple
-              type="file"
-              onChange={(event) => {
-                setImgSource(window.URL.createObjectURL(event.target.files[0]));
-                console.log(window.URL.createObjectURL(event.target.files[0]));
-              }}
-            />
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />
-            </label>
-          </div>
-
-          <p>GiftCard Generator</p>
-          <div style={{ display: "flex" }} className="header__right">
-            <Btn
-              handleClick={() => handleMemeDownlod(this)}
-              title="Export Image"
-            />
-          </div>
-        </div>
-      </div>
-      <div style={{ margin: "10px auto" }}>
+      <div>
         <center>
           <div
-            id="magazine"
             style={{
-              width: "650px",
-              height: "850px",
+              // width: "800px",
+              // height: "1050px",
               display: "block",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              backgroundImage: "url(" + imgSource + ")",
+              backgroundImage: "url(" + fbimg + ")",
               border: "20px solid #e90606",
               marginBottom: "20px",
             }}
@@ -129,7 +62,7 @@ export default function App() {
                     fontWeight: "600",
                   }}
                 >
-                  <EditableText text="THE" />
+                  {head1}
                 </h1>
                 <h1
                   style={{
@@ -140,7 +73,7 @@ export default function App() {
                     fontWeight: "600",
                   }}
                 >
-                  <EditableText text=" UNSTOPPABLE" />
+                  {head2}
                 </h1>
               </div>
               <div
@@ -157,7 +90,7 @@ export default function App() {
                 <h1 style={{ color: "#e90606" }}>CRICKET</h1>
                 <h1>WHY CAN'T WE</h1>
                 <h1>PLAY SPIN</h1>
-                <h1>SPIN</h1>
+                {/* <h1>SPIN</h1> */}
                 <h1>ANYMORE?</h1>
                 {/* <h1 style={{ color: "#e90606" }}>CINEMA</h1>
                 <h1>DEATH BY</h1>
@@ -175,14 +108,8 @@ export default function App() {
                 <hr
                   style={{ width: "28%", marginLeft: "70%", marginRight: "2%" }}
                 />
-                <h1 style={{ fontSize: "4em", color: "#e90606" }}>
-                  {" "}
-                  <EditableText text="MS" />
-                </h1>
-                <h1 style={{ fontSize: "4em", color: "#e90606" }}>
-                  {" "}
-                  <EditableText text="DHONI" />
-                </h1>
+                <h1 style={{ fontSize: "4em", color: "#e90606" }}> MS</h1>
+                <h1 style={{ fontSize: "4em", color: "#e90606" }}> DHONI</h1>
               </div>
             </div>
           </div>

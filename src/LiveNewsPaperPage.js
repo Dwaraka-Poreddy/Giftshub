@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import NewsPaper from "./NewsPaper";
 import firebase from "./firebase";
+import HeaderBtn from "./HeaderBtn";
+import domtoimage from "dom-to-image-more";
+import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
+import GetAppIcon from "@material-ui/icons/GetApp";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head, sethead] = useState("");
@@ -21,6 +25,18 @@ function LiveAnimatedFramePage({ match }) {
         setpara(para);
       });
   }, []);
+  function handleMemeDownlod(el) {
+    var canvas = document.getElementById("newspaper");
+    html2canvas(canvas).then(function (canvas) {
+      domtoimage
+        .toBlob(document.getElementById("newspaper"))
+
+        .then(function (base64image) {
+          console.log();
+          window.saveAs(base64image, "NewsPaper");
+        });
+    });
+  }
 
   return (
     <div>
@@ -42,6 +58,7 @@ function LiveAnimatedFramePage({ match }) {
                       Home
                     </a>
                   </li>
+
                   <li class="scroll-to-section">
                     <a href="#about">Combo</a>
                   </li>
@@ -52,6 +69,23 @@ function LiveAnimatedFramePage({ match }) {
                 <a href="#menu" class="menu-trigger">
                   <span>Menu</span>
                 </a>
+                {/* <li>
+                  <center>
+                    <div
+                      style={{
+                        width: "200px",
+                      }}
+                    >
+                      <HeaderBtn
+                        handleClick={() => {
+                          handleMemeDownlod(this);
+                        }}
+                        Icon={GetAppIcon}
+                        title="Download image"
+                      />
+                    </div>
+                  </center>
+                </li> */}
               </nav>
             </div>
           </div>
@@ -61,7 +95,7 @@ function LiveAnimatedFramePage({ match }) {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.8" }}>
+        <div id="newspaper" style={{ flex: "0.8" }}>
           <NewsPaper fbimg={fbimg} head={head} para={para} />
         </div>
       </div>

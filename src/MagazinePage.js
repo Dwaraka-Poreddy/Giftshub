@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import HeaderBtn from "./HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import AnimatedFrame from "./AnimatedFrame";
+import Magazine from "./Magazine";
+
+import domtoimage from "dom-to-image-more";
+import html2canvas from "html2canvas";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "./firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -15,7 +18,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import Copy from "./Copy";
 import Share from "./Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-
+import GetAppIcon from "@material-ui/icons/GetApp";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,46 +30,29 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AnimatedFramePage() {
+function MagazinePage() {
+  const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [fireurl, setFireUrl] = useState("");
   const [imageAsFile, setImageAsFile] = useState("");
-  // const [fbimg1, setfbimg1] = useState();
-  const [image_url1, setimage_url1] = useState();
-  const [opencrop1, setopencrop1] = useState(false);
-  const [send1, setsend1] = useState();
-  // const [fbimg2, setfbimg2] = useState();
-  const [image_url2, setimage_url2] = useState();
-  const [opencrop2, setopencrop2] = useState(false);
-  const [send2, setsend2] = useState();
-  const [title, settitle] = useState("Stop hovering");
-  const secclasses = secuseStyles();
+  const [image_url, setimage_url] = useState();
+  const [opencrop, setopencrop] = useState(false);
+  const [send, setsend] = useState();
+  const [head1, sethead1] = useState("THE");
+  const [head2, sethead2] = useState("UNSTOPPABLE");
 
-  const [fbimg2, setfbimg2] = useState(
-    "https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400"
-  );
-  const [fbimg1, setfbimg1] = useState(
-    "http://unsplash.imgix.net/reserve/de9uL9L7RSmzV4SAoAO5_Lauren%20and%20Winona%20Under%20a%20pass-1.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400"
-  );
-  const onSelectFile1 = (e) => {
-    setsend1(window.URL.createObjectURL(e.target.files[0]));
-
-    setopencrop1(true);
-  };
-
-  const onSelectFile2 = (e) => {
-    setsend2(window.URL.createObjectURL(e.target.files[0]));
-
-    setopencrop2(true);
+  const [fbimg, setfbimg] = useState(require("../src/Images/Magazine.png"));
+  const onSelectFile = (e) => {
+    setsend(window.URL.createObjectURL(e.target.files[0]));
+    console.log(send);
+    setopencrop(true);
   };
 
   const handleFireBaseUpload = () => {
-    var ud1 = uuidv4();
-    console.log(ud1);
-    var ud2 = uuidv4();
-    console.log(ud2);
+    var ud = uuidv4();
+    console.log(ud);
 
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
@@ -80,42 +66,42 @@ export default function AnimatedFramePage() {
         console.log(err);
       },
       () => {
-        console.log(image_url1);
-        storage
+        console.log(image_url);
+        var s = storage
           .ref("images")
-          .child(ud1)
-          .putString(image_url1, "base64", { contentType: "image/jpg" })
+          .child(ud)
+          .putString(image_url, "base64", { contentType: "image/jpg" })
           .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl1) => {
-              console.log(downUrl1);
-              setFireUrl(downUrl1);
-              storage
-                .ref("images")
-                .child(ud2)
-                .putString(image_url2, "base64", { contentType: "image/jpg" })
-                .then((savedImage) => {
-                  savedImage.ref.getDownloadURL().then((downUrl2) => {
-                    console.log(downUrl2);
-                    setFireUrl(downUrl2);
-                    const todoRef = firebase.database().ref("AnimatedFrame");
-                    const todo = {
-                      url1: downUrl1,
-                      url2: downUrl2,
-                      title: title,
-                    };
-                    var newKey = todoRef.push(todo).getKey();
-                    setlivelink(
-                      "http://localhost:3000/live/animatedframe/" + newKey
-                    );
-                    console.log(livelink);
-                    setpreviewlink("/live/animatedframe/" + newKey);
-                  });
-                });
+            savedImage.ref.getDownloadURL().then((downUrl) => {
+              console.log(downUrl);
+              setFireUrl(downUrl);
+              const todoRef = firebase.database().ref("Magazine");
+              const todo = {
+                url: downUrl,
+                head1: head1,
+                head2,
+              };
+              var newKey = todoRef.push(todo).getKey();
+              setlivelink("http://localhost:3000/live/magazine/" + newKey);
+              setpreviewlink("/live/magazine/" + newKey);
             });
           });
       }
     );
   };
+  function handleMemeDownlod(el) {
+    var canvas = document.getElementById("magazine");
+    html2canvas(canvas).then(function (canvas) {
+      domtoimage
+        .toBlob(document.getElementById("magazine"))
+
+        .then(function (base64image) {
+          console.log();
+          window.saveAs(base64image, "Magazine");
+        });
+    });
+  }
+
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -158,9 +144,12 @@ export default function AnimatedFramePage() {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7", width: "70%" }}>
-          <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
+        <div style={{ flex: "0.7" }}>
+          <div id="magazine">
+            <Magazine fbimg={fbimg} head1={head1} head2={head2} />
+          </div>
         </div>
+
         <div style={{ flex: "0.05" }}></div>
         <div
           style={{
@@ -171,76 +160,91 @@ export default function AnimatedFramePage() {
             height: "80vh",
           }}
         >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
+          <div style={{ marginTop: "20%", justifyContent: "center" }}>
             <input
               style={{ display: "none" }}
               accept="image/* "
               className={secclasses.input}
-              id="LocalfileInput1"
-              name="LocalfileInput1"
+              id="LocalfileInput"
+              name="LocalfileInput"
               multiple
               type="file"
               accept="image/*"
-              onChange={onSelectFile1}
+              onChange={onSelectFile}
             />
-            {opencrop1 ? (
+            {opencrop ? (
               <CropPage
-                send={send1}
-                setfbimg={setfbimg1}
-                setimage_url={setimage_url1}
+                send={send}
+                setfbimg={setfbimg}
+                setimage_url={setimage_url}
               />
             ) : null}
-            <label htmlFor="LocalfileInput1">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+            <label htmlFor="LocalfileInput">
+              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
             </label>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput2"
-              name="LocalfileInput2"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile2}
-            />
-            {opencrop2 ? (
-              <CropPage
-                send={send2}
-                setfbimg={setfbimg2}
-                setimage_url={setimage_url2}
-              />
-            ) : null}
-            <label htmlFor="LocalfileInput2">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  Image 2" />
-            </label>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={title}
-                onChange={(e) => {
-                  settitle(e.target.value);
-                }}
-              />
-            </div>
+
             <center>
+              <div
+                style={{ width: "80%", marginLeft: "10%" }}
+                className="RightSideBar2__Btn"
+              >
+                <CreateIcon
+                  style={{
+                    margin: "0 10px 0 5px",
+                    color: "#ffffff",
+                    fontSize: "large",
+                  }}
+                />
+                <InputBase
+                  className="RightSideBar2__Btn"
+                  multiline
+                  style={{
+                    color: "#068dc0",
+                    margin: "0",
+                    backgroundColor: "#ffffff",
+                    width: "100%",
+                  }}
+                  value={head1}
+                  onChange={(e) => {
+                    sethead1(e.target.value);
+                  }}
+                />
+              </div>
+              <div
+                style={{ width: "80%", marginLeft: "10%" }}
+                className="RightSideBar2__Btn"
+              >
+                <CreateIcon
+                  style={{
+                    margin: "0 10px 0 5px",
+                    color: "#ffffff",
+                    fontSize: "large",
+                  }}
+                />
+                <InputBase
+                  className="RightSideBar2__Btn"
+                  multiline
+                  style={{
+                    color: "#068dc0",
+                    margin: "0",
+                    backgroundColor: "#ffffff",
+                    width: "100%",
+                  }}
+                  value={head2}
+                  onChange={(e) => {
+                    sethead2(e.target.value);
+                  }}
+                />
+              </div>
+              <div style={{ width: "55%", marginTop: "20px" }}>
+                <HeaderBtn
+                  handleClick={() => {
+                    handleMemeDownlod(this);
+                  }}
+                  Icon={GetAppIcon}
+                  title="Download image"
+                />
+              </div>
               <div style={{ width: "55%", marginTop: "20px" }}>
                 <HeaderBtn
                   handleClick={() => {
@@ -329,3 +333,5 @@ export default function AnimatedFramePage() {
     </div>
   );
 }
+
+export default MagazinePage;

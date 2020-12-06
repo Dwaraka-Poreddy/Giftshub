@@ -1,38 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Cubes.css";
 
-export default function App() {
+export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
   const min = 1;
   const max = 24;
   const cube = document.getElementById("cube");
-  const [img1, setImg1] = useState(
-    "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw=&auto=format&fit=crop&w=1950&q=80"
-  );
-  const [img2, setImg2] = useState(
-    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  );
-  const [img3, setImg3] = useState(
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60"
-  );
-  const [img4, setImg4] = useState(
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  );
-  const [img5, setImg5] = useState(
+
+  const [img6, setImg6] = useState(
     "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
   );
-  const [img6, setImg6] = useState(
-    "https://images.unsplash.com/photo-1473172707857-f9e276582ab6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  );
+
   function handleClick() {
     const min = 1;
     const max = 24;
     const cube = document.getElementById("cube");
     var xRand = getRandom(max, min);
     var yRand = getRandom(max, min);
-
-    // cube.style.webkitTransform = " rotateY(" + yRand + "deg)";
-    // cube.style.transform =
-    //   "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
   }
 
   function getRandom(max, min) {
@@ -53,72 +36,58 @@ export default function App() {
               <div
                 style={{
                   opacity: "0.85",
-                  backgroundImage: "url(" + img1 + ")",
+                  backgroundImage: "url(" + fbimg1 + ")",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px"
+                  borderRadius: "10px",
                 }}
                 class="front bob"
               ></div>
               <div
                 style={{
                   opacity: "0.85",
-                  backgroundImage: "url(" + img2 + ")",
+                  backgroundImage: "url(" + fbimg2 + ")",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px"
+                  borderRadius: "10px",
                 }}
                 class="back bob"
               ></div>
               <div
                 style={{
                   opacity: "0.85",
-                  backgroundImage: "url(" + img3 + ")",
+                  backgroundImage: "url(" + fbimg3 + ")",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px"
+                  borderRadius: "10px",
                 }}
                 class="right bob"
               ></div>
               <div
                 style={{
                   opacity: "0.85",
-                  backgroundImage: "url(" + img4 + ")",
+                  backgroundImage: "url(" + fbimg4 + ")",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px"
+                  borderRadius: "10px",
                 }}
                 class="left  bob"
-              ></div>
-              <div
-                style={{
-                  opacity: "0.85",
-                  backgroundImage: "url(" + img5 + ")",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  overflow: "hidden",
-                  height: "175px",
-                  width: "175px",
-                  borderRadius: "10px"
-                }}
-                class="top bob"
               ></div>
               <div
                 style={{
@@ -130,7 +99,21 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px"
+                  borderRadius: "10px",
+                }}
+                class="top bob"
+              ></div>
+              <div
+                style={{
+                  opacity: "0.85",
+                  backgroundImage: "url(" + fbimg5 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  height: "175px",
+                  width: "175px",
+                  borderRadius: "10px",
                 }}
                 class="bottom bob"
               ></div>

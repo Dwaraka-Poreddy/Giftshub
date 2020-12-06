@@ -5,10 +5,10 @@ import Header from "./Header";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
 
-import Magazine from "./Magazine";
+import MagazinePage from "./MagazinePage";
 import NewsPaperPage from "./NewsPaperPage";
-import Cubes from "./Cubes";
 
+import CubesPage from "./CubesPage";
 import OpenGreetingCardPage from "./OpenGreetingCardPage";
 import LiveOpenGreetingCardPage from "./LiveOpenGreetingCardPage";
 import AnimatedFramePage from "./AnimatedFramePage";
@@ -21,7 +21,10 @@ import LiveSlidePuzzle from "./LiveSlidePuzzle";
 import LiveSpecialCard from "./LiveSpecialCard";
 import SlidePuzzlePage from "./SlidePuzzlePage";
 import ThreeDImagePage from "./ThreeDImagePage";
+import LiveCubesPage from "./LiveCubesPage";
 import LiveNewsPaperPage from "./LiveNewsPaperPage";
+import LiveAnimatedFramePage from "./LiveAnimatedFramePage";
+import LiveMagazinePage from "./LiveMagazinePage";
 export default function App() {
   return (
     <div className="App">
@@ -30,9 +33,9 @@ export default function App() {
         <Route exact path="/nav" component={Nav} />
 
         <Route exact path="/newspaperpage" component={NewsPaperPage} />
-        <Route exact path="/cubes" component={Cubes} />
+        <Route exact path="/cubespage" component={CubesPage} />
         <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
-        <Route exact path="/magazine" component={Magazine} />
+        <Route exact path="/magazinepage" component={MagazinePage} />
         <Route exact path="/greet" component={Header} />
         <Route exact path="/honeycomb" component={HoneyComb} />
         <Route
@@ -75,6 +78,13 @@ export default function App() {
           path="/live/opengreetingcard/:slug"
           component={LiveOpenGreetingCardPage}
         />
+        <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
+        <Route
+          exact
+          path="/live/animatedframe/:slug"
+          component={LiveAnimatedFramePage}
+        />
+        <Route exact path="/live/magazine/:slug" component={LiveMagazinePage} />
       </Switch>
     </div>
   );
