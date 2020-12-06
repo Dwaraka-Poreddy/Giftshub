@@ -3,7 +3,7 @@ import React, {
   useState,
   useCallback,
   useRef,
-  useEffect,
+  useEffect
 } from "react";
 import HeaderBtn from "./HeaderBtn";
 import Modal from "@material-ui/core/Modal";
@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0vh",
     border: null,
     backgroundColor: "#303030",
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(2, 4, 3)
   },
   DelBut: {
     position: "sticky",
     bottom: theme.spacing(142),
-    left: theme.spacing(200),
-  },
+    left: theme.spacing(200)
+  }
 }));
 
 function CropPage({ send, setfbimg, setimage_url }) {
@@ -40,17 +40,10 @@ function CropPage({ send, setfbimg, setimage_url }) {
   const [upImg, setUpImg] = useState(send);
   const previewCanvasRef = useRef(null);
   const imgRef = useRef(null);
-  const pixelRatio = 1;
+  const pixelRatio = window.devicePixelRatio || 1;
   const [completedCrop, setCompletedCrop] = useState(null);
-  const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 / 1 });
+  const [crop, setCrop] = useState({ unit: "%", width: 50, aspect: 1 / 1 });
   useEffect(() => {
-    // if (send.target.files && send.target.files.length > 0) {
-    //   const reader = new FileReader();
-    //   reader.addEventListener("load", () => setUpImg(reader.result));
-    //   reader.readAsDataURL(send.target.files[0]);
-    // } else {
-    //   console.log("dotdotdot");
-    // }
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
@@ -131,14 +124,13 @@ function CropPage({ send, setfbimg, setimage_url }) {
 
   return (
     <div>
-      <h1>crop page</h1>
       <Modal
         style={{
           display: "flex",
           justifyContent: "center",
           marginRight: "auto",
-
-          alignItems: "center",
+          overflow: "hidden",
+          alignItems: "center"
         }}
         open={cropmodal}
         aria-labelledby="simple-modal-title"
@@ -155,6 +147,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
                     <br />
 
                     <ReactCrop
+                      imageStyle={{ maxWidth: "900px" }}
                       src={upImg}
                       onImageLoaded={onLoad}
                       crop={crop}
@@ -166,7 +159,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
                         ref={previewCanvasRef}
                         style={{
                           width: Math.round(completedCrop?.width ?? 0),
-                          height: Math.round(completedCrop?.height ?? 0),
+                          height: Math.round(completedCrop?.height ?? 0)
                         }}
                       />
                     </div>

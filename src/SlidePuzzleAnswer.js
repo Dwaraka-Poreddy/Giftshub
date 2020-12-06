@@ -3,15 +3,27 @@ import "./SlidePuzzleAnswer.css";
 
 export default function PuzzleAnswer({ fbimg }) {
   return (
-    <div style={{ width: "400px", height: "400px" }} className="App">
-      {/* <img src={fbimg} alt="0" /> */}
-      <a
-        class="puzzleframe"
-        // style="--img:url(//images.unsplash.com/photo-1578188262493-80b9b9758ea4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80)"
-
-        href="//unsplash.com/photos/8bIFt7xq_uU"
-        target="_blank"
+    <div
+      style={{
+        width: "400px",
+        height: "400px",
+        fontSize: "1.17em",
+        fontWeight: "old"
+      }}
+      className="App"
+    >
+      <h3
+        style={{
+          marginLeft: "-100px",
+          marginBottom: "30px",
+          boxSizing: "border-box",
+          display: "block"
+        }}
       >
+        Hover over me for image
+      </h3>
+      {/* <img src={fbimg} alt="0" /> */}
+      <div class="puzzleframe">
         <div
           style={{ backgroundImage: "url(" + fbimg + ")" }}
           class="cell"
@@ -444,7 +456,22 @@ export default function PuzzleAnswer({ fbimg }) {
           style={{ backgroundImage: "url(" + fbimg + ")" }}
           class="cell"
         ></div>
-      </a>
+      </div>
+      <br />
+      <center>
+        <a
+          style={{
+            marginLeft: "-20%",
+            textDecoration: "none",
+            fontSize: "25px",
+            fontFamily: "Roboto, sans-serif",
+            color: "#337ab7"
+          }}
+          href="https://www.youtube.com/watch?v=EtXE08bOVZM"
+        >
+          How to Solve
+        </a>
+      </center>
     </div>
   );
 }

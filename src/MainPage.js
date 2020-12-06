@@ -129,7 +129,7 @@ export default function App() {
             marginTop: "-25px",
             color: "#ffd353",
             fontFamily: "Merriweather",
-            letterSpacing: "3px",
+            letterSpacing: "3px"
           }}
         >
           Customize
@@ -170,7 +170,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/newspaper">
+              <Link className="productCard" to="/newspaperpage">
                 <div className="productCardDiv">
                   <div>
                     <img
@@ -247,7 +247,7 @@ export default function App() {
                   </div>
                 </div>
               </Link>
-              <Link className="productCard" to="/opengreetingcard">
+              <Link className="productCard" to="/opengreetingcardpage">
                 <div className="productCardDiv">
                   <div>
                     <img

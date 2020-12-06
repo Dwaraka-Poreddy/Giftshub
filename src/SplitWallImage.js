@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SplitWallImage({ image }) {
+export default function SplitWallImage({ fbimg }) {
   return (
     <div>
       <section
@@ -8,10 +8,10 @@ export default function SplitWallImage({ image }) {
           width: "80%",
           margin: "0 auto",
           lineHeight: "0",
-          position: "relative",
+          position: "relative"
         }}
       >
-        <img style={{ width: "70%", marginTop: "10%" }} src={image} alt="" />
+        <img style={{ width: "70%", marginTop: "10%" }} src={fbimg} alt="" />
         <article
           style={{
             position: "absolute",
@@ -21,7 +21,7 @@ export default function SplitWallImage({ image }) {
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr",
             gridGap: "20px",
-            mixBlendMode: "lighten",
+            mixBlendMode: "lighten"
           }}
         >
           <div style={{ background: "black", height: "24vw" }}></div>

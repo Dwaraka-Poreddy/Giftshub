@@ -60,7 +60,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="front bob"
               ></div>
@@ -74,7 +74,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="back bob"
               ></div>
@@ -88,7 +88,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="right bob"
               ></div>
@@ -102,7 +102,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="left  bob"
               ></div>
@@ -116,7 +116,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="top bob"
               ></div>
@@ -130,7 +130,7 @@ export default function App() {
                   overflow: "hidden",
                   height: "175px",
                   width: "175px",
-                  borderRadius: "10px",
+                  borderRadius: "10px"
                 }}
                 class="bottom bob"
               ></div>

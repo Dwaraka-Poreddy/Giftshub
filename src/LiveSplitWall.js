@@ -17,9 +17,12 @@ export default function LiveSplitWall({ match }) {
   }, []);
   return (
     <div>
-      <Nav />
+      {/* <Nav /> */}
+      <br />
+      <br />
+      <br />
       <div style={{ marginTop: "5px" }}>
-        <SplitWallImage image={fbimg} />
+        <SplitWallImage fbimg={fbimg} />
       </div>
     </div>
   );

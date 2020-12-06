@@ -16,11 +16,11 @@ a {
   max-width: 1200px;
   width: 100%;
   height: 600px;
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   overflow: hidden;
   background: rgba(66, 66, 66, 0.5)
     /* url("https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400") */

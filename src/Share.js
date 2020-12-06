@@ -9,7 +9,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import {
   FacebookShareButton,
   TwitterShareButton,
-  WhatsappShareButton,
+  WhatsappShareButton
 } from "react-share";
 
 import "./styles.css";
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
+      width: "25ch"
+    }
+  }
 }));
 function Share({ livelink }) {
   const classes = useStyles();
