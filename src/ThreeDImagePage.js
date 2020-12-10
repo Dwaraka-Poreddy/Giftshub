@@ -17,12 +17,12 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(0)
-    }
+      margin: theme.spacing(0),
+    },
   },
   input: {
-    display: "none"
-  }
+    display: "none",
+  },
 }));
 
 function OpenGreetingCardPage() {
@@ -73,7 +73,7 @@ function OpenGreetingCardPage() {
               setFireUrl(downUrl);
               const todoRef = firebase.database().ref("ThreeDImage");
               const todo = {
-                url: downUrl
+                url: downUrl,
               };
               var newKey = todoRef.push(todo).getKey();
               setlivelink("http://localhost:3000/live/threedimage/" + newKey);
@@ -137,7 +137,7 @@ function OpenGreetingCardPage() {
             justifyContent: "center",
             alignItems: "center",
             flex: "0.2",
-            height: "80vh"
+            height: "80vh",
           }}
         >
           <div style={{ marginTop: "50%", justifyContent: "center" }}>
@@ -157,6 +157,7 @@ function OpenGreetingCardPage() {
                 send={send}
                 setfbimg={setfbimg}
                 setimage_url={setimage_url}
+                aspect_ratio={16 / 9}
               />
             ) : null}
             <label htmlFor="LocalfileInput">
@@ -212,7 +213,7 @@ function OpenGreetingCardPage() {
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
+                <a rel="nofollow" href="0">
                   Gift's Hub
                 </a>
               </p>

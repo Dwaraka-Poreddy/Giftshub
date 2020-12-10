@@ -261,6 +261,7 @@ function CubesPage() {
                 send={send1}
                 setfbimg={setfbimg1}
                 setimage_url={setimage_url1}
+                aspect_ratio={1 / 1}
               />
             ) : null}
             <label htmlFor="LocalfileInput1">
@@ -282,6 +283,7 @@ function CubesPage() {
                 send={send2}
                 setfbimg={setfbimg2}
                 setimage_url={setimage_url2}
+                aspect_ratio={1 / 1}
               />
             ) : null}
             <label htmlFor="LocalfileInput2">
@@ -303,6 +305,7 @@ function CubesPage() {
                 send={send3}
                 setfbimg={setfbimg3}
                 setimage_url={setimage_url3}
+                aspect_ratio={1 / 1}
               />
             ) : null}
             <label htmlFor="LocalfileInput3">
@@ -324,6 +327,7 @@ function CubesPage() {
                 send={send4}
                 setfbimg={setfbimg4}
                 setimage_url={setimage_url4}
+                aspect_ratio={1 / 1}
               />
             ) : null}
             <label htmlFor="LocalfileInput4">
@@ -345,6 +349,7 @@ function CubesPage() {
                 send={send5}
                 setfbimg={setfbimg5}
                 setimage_url={setimage_url5}
+                aspect_ratio={1 / 1}
               />
             ) : null}
             <label htmlFor="LocalfileInput5">

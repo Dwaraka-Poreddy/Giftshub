@@ -188,6 +188,7 @@ export default function AnimatedFramePage() {
                 send={send1}
                 setfbimg={setfbimg1}
                 setimage_url={setimage_url1}
+                aspect_ratio={16 / 9}
               />
             ) : null}
             <label htmlFor="LocalfileInput1">
@@ -209,6 +210,7 @@ export default function AnimatedFramePage() {
                 send={send2}
                 setfbimg={setfbimg2}
                 setimage_url={setimage_url2}
+                aspect_ratio={16 / 9}
               />
             ) : null}
             <label htmlFor="LocalfileInput2">
@@ -289,7 +291,7 @@ export default function AnimatedFramePage() {
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
+                <a rel="nofollow" href="/">
                   Gift's Hub
                 </a>
               </p>

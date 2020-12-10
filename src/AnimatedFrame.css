@@ -22,14 +22,14 @@ a {
   right: 0;
   bottom: 0; */
   overflow: hidden;
-  background: rgba(66, 66, 66, 0.5)
-    /* url("https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400") */
-    repeat fixed;
-  background-position: 50% 100%;
+  background: rgba(66, 66, 66, 0.5);
   background-size: cover;
   position: relative;
   z-index: 5;
   font-size: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .i {
@@ -41,12 +41,13 @@ a {
   padding: 2px;
   -webkit-transition: all 1.3s ease-in-out;
   transition: all 1.3s ease-in-out;
-  background: rgba(66, 66, 66, 0.5)
-    /* url("http://unsplash.imgix.net/reserve/de9uL9L7RSmzV4SAoAO5_Lauren%20and%20Winona%20Under%20a%20pass-1.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400") */
-    repeat fixed;
+  background: rgba(66, 66, 66, 0.5);
+
+  background-position: center;
   background-size: cover;
-  background-position: 50% 100%;
+  background-repeat: no-repeat;
   border-radius: 0%;
+  /* background-repeat: no-repeat; */
 }
 .i:hover {
   -webkit-transition: all 0s linear;

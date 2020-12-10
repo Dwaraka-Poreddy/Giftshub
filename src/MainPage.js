@@ -323,7 +323,7 @@ export default function App() {
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
+                <a rel="nofollow" href="/">
                   Gift's Hub
                 </a>
               </p>

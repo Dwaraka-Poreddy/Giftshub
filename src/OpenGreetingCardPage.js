@@ -18,12 +18,12 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(0)
-    }
+      margin: theme.spacing(0),
+    },
   },
   input: {
-    display: "none"
-  }
+    display: "none",
+  },
 }));
 
 function OpenGreetingCardPage() {
@@ -80,7 +80,7 @@ function OpenGreetingCardPage() {
                 url: downUrl,
                 text1: text1,
                 text2: text2,
-                maintext: maintext
+                maintext: maintext,
               };
               var newKey = todoRef.push(todo).getKey();
               setlivelink(
@@ -150,7 +150,7 @@ function OpenGreetingCardPage() {
             justifyContent: "center",
             alignItems: "center",
             flex: "0.2",
-            height: "80vh"
+            height: "80vh",
           }}
         >
           <div style={{ marginTop: "50%", justifyContent: "center" }}>
@@ -170,6 +170,7 @@ function OpenGreetingCardPage() {
                 send={send}
                 setfbimg={setfbimg}
                 setimage_url={setimage_url}
+                aspect_ratio={2 / 3}
               />
             ) : null}
             <label htmlFor="LocalfileInput">
@@ -184,7 +185,7 @@ function OpenGreetingCardPage() {
                 style={{
                   margin: "0 10px 0 5px",
                   color: "#ffffff",
-                  fontSize: "large"
+                  fontSize: "large",
                 }}
               />
               <InputBase
@@ -194,7 +195,7 @@ function OpenGreetingCardPage() {
                   color: "#068dc0",
                   margin: "0",
                   backgroundColor: "#ffffff",
-                  width: "100%"
+                  width: "100%",
                 }}
                 value={text1}
                 onChange={(e) => {
@@ -210,7 +211,7 @@ function OpenGreetingCardPage() {
                 style={{
                   margin: "0 10px 0 5px",
                   color: "#ffffff",
-                  fontSize: "large"
+                  fontSize: "large",
                 }}
               />
               <InputBase
@@ -220,7 +221,7 @@ function OpenGreetingCardPage() {
                   color: "#068dc0",
                   margin: "0",
                   backgroundColor: "#ffffff",
-                  width: "100%"
+                  width: "100%",
                 }}
                 value={text2}
                 onChange={(e) => {
@@ -236,7 +237,7 @@ function OpenGreetingCardPage() {
                 style={{
                   margin: "0 10px 0 5px",
                   color: "#ffffff",
-                  fontSize: "large"
+                  fontSize: "large",
                 }}
               />
               <InputBase
@@ -246,7 +247,7 @@ function OpenGreetingCardPage() {
                   color: "#068dc0",
                   margin: "0",
                   backgroundColor: "#ffffff",
-                  width: "100%"
+                  width: "100%",
                 }}
                 value={maintext}
                 onChange={(e) => {

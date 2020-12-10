@@ -34,7 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CropPage({ send, setfbimg, setimage_url }) {
+function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
+  const def = {
+    unit: "%",
+    width: 50,
+    aspect: aspect_ratio,
+  };
+
   const classes = useStyles();
   const [cropmodal, setCropmodal] = useState(true);
   const [upImg, setUpImg] = useState(send);
@@ -42,7 +48,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
   const imgRef = useRef(null);
   const pixelRatio = window.devicePixelRatio || 1;
   const [completedCrop, setCompletedCrop] = useState(null);
-  const [crop, setCrop] = useState({ unit: "%", width: 50, aspect: 16 / 9 });
+  const [crop, setCrop] = useState(def);
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;

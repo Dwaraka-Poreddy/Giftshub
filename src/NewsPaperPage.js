@@ -179,6 +179,7 @@ function NewsPaperPage() {
                 send={send}
                 setfbimg={setfbimg}
                 setimage_url={setimage_url}
+                aspect_ratio={16 / 9}
               />
             ) : null}
             <label htmlFor="LocalfileInput">
