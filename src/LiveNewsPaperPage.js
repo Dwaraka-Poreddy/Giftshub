@@ -6,7 +6,7 @@ import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
-function LiveAnimatedFramePage({ match }) {
+function LiveNewsPaperPage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head, sethead] = useState("");
   const [para, setpara] = useState("");
@@ -103,4 +103,4 @@ function LiveAnimatedFramePage({ match }) {
   );
 }
 
-export default LiveAnimatedFramePage;
+export default LiveNewsPaperPage;

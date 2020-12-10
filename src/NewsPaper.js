@@ -8,7 +8,7 @@ function NewsPaper({ head, para, fbimg }) {
           <div>
             <img
               style={{
-                width: "100%"
+                width: "100%",
               }}
               src={require("../src/Images/Heading.png")}
               alt="Heading"
@@ -24,17 +24,17 @@ function NewsPaper({ head, para, fbimg }) {
               style={{
                 width: "50%",
                 textAlign: "center",
-                backgroundColor: "#ffffff"
+                backgroundColor: "#ffffff",
               }}
             >
               <div>
                 <h1
                   style={{
                     textAlign: "justify",
-                    fontSize: "40px",
+                    fontSize: "45px",
                     fontFamily: "oxford",
-                    fontWeight: "400",
-                    margin: "5px"
+                    fontWeight: "500",
+                    margin: "5px",
                   }}
                 >
                   {head}
@@ -43,7 +43,7 @@ function NewsPaper({ head, para, fbimg }) {
                 <img
                   style={{
                     width: "100%",
-                    maxHeight: "550px"
+                    maxHeight: "550px",
                   }}
                   src={fbimg}
                   alt="MainImage"
@@ -54,7 +54,7 @@ function NewsPaper({ head, para, fbimg }) {
                     fontSize: "28px",
                     fontFamily: "oxford",
                     fontWeight: "400",
-                    margin: "10px 5px"
+                    margin: "10px 5px",
                   }}
                 >
                   {para}

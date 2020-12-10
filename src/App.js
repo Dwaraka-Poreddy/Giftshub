@@ -14,6 +14,7 @@ import LiveOpenGreetingCardPage from "./LiveOpenGreetingCardPage";
 import AnimatedFramePage from "./AnimatedFramePage";
 import SpecialCardPage from "./SpecialCardPage";
 import HoneyComb from "./HoneyComb";
+import MemoryGamePage from "./MemoryGamePage";
 import SplitWallImagePage from "./SplitWallImagePage.js";
 import LiveSplitWall from "./LiveSplitWall.js";
 import LiveThreeDImage from "./LiveThreeDImage";
@@ -30,7 +31,7 @@ export default function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/nav" component={Nav} />
+        <Route exact path="/memorygamepage" component={MemoryGamePage} />
 
         <Route exact path="/newspaperpage" component={NewsPaperPage} />
         <Route exact path="/cubespage" component={CubesPage} />

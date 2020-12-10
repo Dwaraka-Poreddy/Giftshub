@@ -149,15 +149,22 @@ export default function App() {
               autoplay
               autoplayHoverPause
             >
+              <Link className="productCard" to="/memorygamepage">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/right-image.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>Memory Game</h1>
+                  </div>
+                </div>
+              </Link>
               <Link className="productCard" to="/slidepuzzlepage">
-                <div
-                  className="productCardDiv"
-                  // style={{
-                  //   color: "#000",
-                  //   height: "500px",
-                  //   backgroundColor: "red",
-                  // }}
-                >
+                <div className="productCardDiv">
                   <div>
                     <img
                       className="productCardImg"

@@ -3,7 +3,7 @@ import React, {
   useState,
   useCallback,
   useRef,
-  useEffect
+  useEffect,
 } from "react";
 import HeaderBtn from "./HeaderBtn";
 import Modal from "@material-ui/core/Modal";
@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0vh",
     border: null,
     backgroundColor: "#303030",
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
   },
   DelBut: {
     position: "sticky",
     bottom: theme.spacing(142),
-    left: theme.spacing(200)
-  }
+    left: theme.spacing(200),
+  },
 }));
 
 function CropPage({ send, setfbimg, setimage_url }) {
@@ -42,7 +42,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
   const imgRef = useRef(null);
   const pixelRatio = window.devicePixelRatio || 1;
   const [completedCrop, setCompletedCrop] = useState(null);
-  const [crop, setCrop] = useState({ unit: "%", width: 50, aspect: 1 / 1 });
+  const [crop, setCrop] = useState({ unit: "%", width: 50, aspect: 16 / 9 });
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
@@ -109,7 +109,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
     // setCropmodal(true);
     var base64Img = base64Image.replace("data:image/jpeg;base64,", "");
     setimage_url(base64Img);
-    console.log(base64Img);
+    // console.log(base64Img);
     canvas.toBlob(
       (blob) => {
         const previewUrl = window.URL.createObjectURL(blob);
@@ -130,7 +130,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
           justifyContent: "center",
           marginRight: "auto",
           overflow: "hidden",
-          alignItems: "center"
+          alignItems: "center",
         }}
         open={cropmodal}
         aria-labelledby="simple-modal-title"
@@ -159,7 +159,7 @@ function CropPage({ send, setfbimg, setimage_url }) {
                         ref={previewCanvasRef}
                         style={{
                           width: Math.round(completedCrop?.width ?? 0),
-                          height: Math.round(completedCrop?.height ?? 0)
+                          height: Math.round(completedCrop?.height ?? 0),
                         }}
                       />
                     </div>
