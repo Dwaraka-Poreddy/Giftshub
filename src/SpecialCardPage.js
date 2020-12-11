@@ -110,9 +110,9 @@ export default function SpecialCardPage() {
   const classes = useStyles();
   const [imageAsFile, setImageAsFile] = useState("");
   const [progress, setProgress] = useState(0);
-  const [Modopen, setModopen] = React.useState(false);
+
   const classesBut = useStylesBut();
-  const [isMousedOver, setMouseOver] = useState(false);
+
   const [head1, sethead1] = useState("My Worst Friend");
   const [head2, sethead2] = useState("Srinivas K");
   const [para, setpara] = useState(
@@ -361,7 +361,7 @@ export default function SpecialCardPage() {
                                 );
                               }}
                               Icon={ViewModuleIcon}
-                              title=" Download cropped image"
+                              title=" Use cropped image"
                             />
                           </div>
                         </center>

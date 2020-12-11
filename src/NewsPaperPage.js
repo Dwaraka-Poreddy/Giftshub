@@ -3,7 +3,7 @@ import HeaderBtn from "./HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-
+import DatePicker from "react-datepicker";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
@@ -18,6 +18,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import Copy from "./Copy";
 import Share from "./Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import "react-datepicker/dist/react-datepicker.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -39,8 +40,15 @@ function NewsPaperPage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
+  const [startDate, setDate] = useState(new Date());
+  const today = new Date();
+  const selectDateHandler = (d) => {
+    setDate(d.toString);
+    console.log(startDate);
+  };
+
   const [head, sethead] = useState(
-    "Ms. Super Girl wins the coolest  friend of the year award 2020 "
+    "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
   );
 
   const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
@@ -48,7 +56,7 @@ function NewsPaperPage() {
 
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-    console.log(send);
+    // console.log(send);
     setopencrop(true);
   };
 
@@ -148,7 +156,12 @@ function NewsPaperPage() {
         <div style={{ flex: "0.05" }}></div>
         <div style={{ flex: "0.7" }}>
           <div id="newspaper">
-            <NewsPaper fbimg={fbimg} head={head} para={para} />
+            <NewsPaper
+              fbimg={fbimg}
+              head={head}
+              para={para}
+              startDate={startDate}
+            />
           </div>
         </div>
 
@@ -180,6 +193,8 @@ function NewsPaperPage() {
                 setfbimg={setfbimg}
                 setimage_url={setimage_url}
                 aspect_ratio={16 / 9}
+                opencrop={opencrop}
+                setopencrop={setopencrop}
               />
             ) : null}
             <label htmlFor="LocalfileInput">
@@ -237,6 +252,19 @@ function NewsPaperPage() {
                   onChange={(e) => {
                     setpara(e.target.value);
                   }}
+                />
+              </div>
+              <div
+                style={{ width: "80%", marginLeft: "10%" }}
+                className="RightSideBar2__Btn"
+              >
+                <DatePicker
+                  formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
+                  dateFormat=" MMMM dd, yyyy "
+                  selected={startDate}
+                  onChange={selectDateHandler}
+                  minDate={today}
+                  todayButton={"Today"}
                 />
               </div>
               <div style={{ width: "55%", marginTop: "20px" }}>

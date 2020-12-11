@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function NewsPaper({ head, para, fbimg }) {
+function NewsPaper({ head, para, fbimg, startDate }) {
   return (
     <div>
       <div style={{ display: "flex" }}>
         <div style={{ backgroundColor: "#FFFFFF" }} id="newsPaper">
-          <div>
+          {/* <div>
             <img
               style={{
                 width: "100%",
@@ -13,6 +13,94 @@ function NewsPaper({ head, para, fbimg }) {
               src={require("../src/Images/Heading.png")}
               alt="Heading"
             />
+          </div> */}
+          <div>
+            <img
+              style={{
+                width: "100%",
+              }}
+              src={require("../src/Images/white.png")}
+              alt="Heading"
+            />
+          </div>
+          <div style={{ display: "flex" }}>
+            <div>
+              <img
+                style={{
+                  width: "100%",
+                }}
+                src={require("../src/Images/the.png")}
+                alt="Heading"
+              />
+            </div>
+            <div style={{ display: "block" }}>
+              <div
+                style={{
+                  fontFamily: "Roboto Slab', serif",
+                  fontWeight: "600",
+                  fontSize: "12px",
+                }}
+              >
+                {" "}
+                Wednesday, December 12, 2020
+                {/* {new Date(startDate).toString()} */}
+                {/* {startDate.toString} */}
+                {/* <p style={{ fontSize: "15px" }}>{startDate}</p> */}
+              </div>
+              <div>
+                <img
+                  style={{
+                    width: "80%",
+                    marginLeft: "10px",
+                    marginRight: "px",
+                  }}
+                  src={require("../src/Images/logo1.png")}
+                  alt="Heading"
+                />
+              </div>
+            </div>
+            <div>
+              <img
+                style={{
+                  width: "100%",
+                }}
+                src={require("../src/Images/Hindu.png")}
+                alt="Heading"
+              />
+            </div>
+          </div>
+          <div style={{ display: "flex" }}>
+            <div>
+              <img
+                style={{
+                  width: "100%",
+                }}
+                src={require("../src/Images/tileLeft.png")}
+                alt="Heading"
+              />
+            </div>
+            <div>
+              <img
+                style={{
+                  width: "90%",
+                  marginLeft: "-40px",
+                  marginTop: "1.65px",
+                }}
+                src={require("../src/Images/tileRight1.png")}
+                alt="Heading"
+              />
+            </div>
+          </div>
+          <div style={{ display: "flex" }}>
+            <div>
+              <img
+                style={{
+                  width: "100%",
+                }}
+                src={require("../src/Images/ribbon.png")}
+                alt="Heading"
+              />
+            </div>
           </div>
           <div style={{ display: "flex" }}>
             <img
@@ -31,7 +119,7 @@ function NewsPaper({ head, para, fbimg }) {
                 <h1
                   style={{
                     textAlign: "justify",
-                    fontSize: "45px",
+                    fontSize: "38px",
                     fontFamily: "oxford",
                     fontWeight: "500",
                     margin: "5px",

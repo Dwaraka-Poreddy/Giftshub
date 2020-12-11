@@ -98,7 +98,7 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
     <div>
       <div className="text-center p-4 d-flex flex-column">
         <center>
-          <h1 className="example">Happy Birthday Sruthi !!!</h1>
+          <h1 className="example">Happy Birthday !!!</h1>
         </center>
 
         {list.length === 0 ? (
@@ -107,7 +107,10 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
           <div>
             <br />
             <br />
-            <div className="container">
+            <div
+              style={{ width: "1000px", height: "750px" }}
+              className="container"
+            >
               <div className="row no-gutters">
                 {list.map((item, index) => (
                   <div
@@ -161,13 +164,19 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
         <br />
         <br />
         <button
+          style={{
+            color: "#f8d3d3",
+            width: "125px",
+            margin: "-10px auto 0",
+            background: "-webkit-linear-gradient(59deg, #3a6073, #16222a)",
+          }}
           onClick={() => {
             setNewGame(!newGame);
             setVisibleItems([]);
             setFinishedItems([]);
             setWinner(false);
           }}
-          className="btn btn-warning mb-4"
+          className="btn  mb-4"
         >
           New Game
         </button>

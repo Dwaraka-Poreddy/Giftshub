@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "15px",
     position: "absolute",
-    width: "70vw",
-    height: "97vh",
-    maxWidth: "1000px",
-    // minWidth: "400px",
+    // width: "70vw",
+    // height: "97vh",
+    // maxWidth: "1000px",
+    // // minWidth: "400px",
     marginTop: "0vh",
     border: null,
     backgroundColor: "#303030",
@@ -34,7 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
+function CropPage({
+  send,
+  setfbimg,
+  setimage_url,
+  aspect_ratio,
+  setopencrop,
+  opencrop,
+}) {
   const def = {
     unit: "%",
     width: 50,
@@ -42,7 +49,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
   };
 
   const classes = useStyles();
-  const [cropmodal, setCropmodal] = useState(true);
+
   const [upImg, setUpImg] = useState(send);
   const previewCanvasRef = useRef(null);
   const imgRef = useRef(null);
@@ -112,7 +119,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
     const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
     var base64Image = canvas.toDataURL("image/jpeg", 1.0);
     setfbimg(base64Image);
-    // setCropmodal(true);
+
     var base64Img = base64Image.replace("data:image/jpeg;base64,", "");
     setimage_url(base64Img);
     // console.log(base64Img);
@@ -125,11 +132,13 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
       "image/png",
       1
     );
-    setCropmodal(false);
+
+    setopencrop(false);
   }
 
   return (
     <div>
+      {console.log(opencrop)}
       <Modal
         style={{
           display: "flex",
@@ -138,7 +147,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
           overflow: "hidden",
           alignItems: "center",
         }}
-        open={cropmodal}
+        open={opencrop}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
@@ -153,7 +162,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
                     <br />
 
                     <ReactCrop
-                      imageStyle={{ maxWidth: "900px" }}
+                      imageStyle={{ maxWidth: "800px", maxHeight: "450px" }}
                       src={upImg}
                       onImageLoaded={onLoad}
                       crop={crop}
@@ -181,7 +190,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
                               );
                             }}
                             Icon={ViewModuleIcon}
-                            title=" Download cropped image"
+                            title=" Use cropped image"
                           />
                         </div>
                       </center>
@@ -192,7 +201,7 @@ function CropPage({ send, setfbimg, setimage_url, aspect_ratio }) {
 
               <Fab
                 onClick={() => {
-                  setCropmodal(false);
+                  setopencrop(false);
                 }}
                 className={classes.DelBut}
                 color="primary"

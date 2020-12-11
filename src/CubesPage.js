@@ -262,6 +262,8 @@ function CubesPage() {
                 setfbimg={setfbimg1}
                 setimage_url={setimage_url1}
                 aspect_ratio={1 / 1}
+                opencrop={opencrop1}
+                setopencrop={setopencrop1}
               />
             ) : null}
             <label htmlFor="LocalfileInput1">
@@ -284,6 +286,8 @@ function CubesPage() {
                 setfbimg={setfbimg2}
                 setimage_url={setimage_url2}
                 aspect_ratio={1 / 1}
+                opencrop={opencrop2}
+                setopencrop={setopencrop2}
               />
             ) : null}
             <label htmlFor="LocalfileInput2">
@@ -306,6 +310,8 @@ function CubesPage() {
                 setfbimg={setfbimg3}
                 setimage_url={setimage_url3}
                 aspect_ratio={1 / 1}
+                opencrop={opencrop3}
+                setopencrop={setopencrop3}
               />
             ) : null}
             <label htmlFor="LocalfileInput3">
@@ -328,6 +334,8 @@ function CubesPage() {
                 setfbimg={setfbimg4}
                 setimage_url={setimage_url4}
                 aspect_ratio={1 / 1}
+                opencrop={opencrop4}
+                setopencrop={setopencrop4}
               />
             ) : null}
             <label htmlFor="LocalfileInput4">
@@ -350,6 +358,8 @@ function CubesPage() {
                 setfbimg={setfbimg5}
                 setimage_url={setimage_url5}
                 aspect_ratio={1 / 1}
+                opencrop={opencrop5}
+                setopencrop={setopencrop5}
               />
             ) : null}
             <label htmlFor="LocalfileInput5">

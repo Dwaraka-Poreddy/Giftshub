@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBtn from "./HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Cubes from "./Cubes";
+
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "./firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -188,7 +188,7 @@ function CubesPage() {
                                                 .then((downUrl6) => {
                                                   const todoRef = firebase
                                                     .database()
-                                                    .ref("Cubes");
+                                                    .ref("MemoryGame");
                                                   const todo = {
                                                     url1: downUrl1,
                                                     url2: downUrl2,
@@ -201,7 +201,7 @@ function CubesPage() {
                                                     .push(todo)
                                                     .getKey();
                                                   setlivelink(
-                                                    "http://localhost:3000/live/cubes/" +
+                                                    "http://localhost:3000/memorygame/" +
                                                       newKey
                                                   );
                                                   console.log(
@@ -209,7 +209,7 @@ function CubesPage() {
                                                     "livelink"
                                                   );
                                                   setpreviewlink(
-                                                    "/live/cubes/" + newKey
+                                                    "/memorygame/" + newKey
                                                   );
                                                 });
                                             });
@@ -298,6 +298,9 @@ function CubesPage() {
                 send={send1}
                 setfbimg={setfbimg1}
                 setimage_url={setimage_url1}
+                opencrop={opencrop1}
+                aspect_ratio={1 / 1}
+                setopencrop={setopencrop1}
               />
             ) : null}
             <label htmlFor="LocalfileInput1">
@@ -319,6 +322,9 @@ function CubesPage() {
                 send={send2}
                 setfbimg={setfbimg2}
                 setimage_url={setimage_url2}
+                aspect_ratio={1 / 1}
+                opencrop={opencrop2}
+                setopencrop={setopencrop2}
               />
             ) : null}
             <label htmlFor="LocalfileInput2">
@@ -340,6 +346,9 @@ function CubesPage() {
                 send={send3}
                 setfbimg={setfbimg3}
                 setimage_url={setimage_url3}
+                aspect_ratio={1 / 1}
+                opencrop={opencrop3}
+                setopencrop={setopencrop3}
               />
             ) : null}
             <label htmlFor="LocalfileInput3">
@@ -361,6 +370,9 @@ function CubesPage() {
                 send={send4}
                 setfbimg={setfbimg4}
                 setimage_url={setimage_url4}
+                aspect_ratio={1 / 1}
+                opencrop={opencrop4}
+                setopencrop={setopencrop4}
               />
             ) : null}
             <label htmlFor="LocalfileInput4">
@@ -382,6 +394,9 @@ function CubesPage() {
                 send={send5}
                 setfbimg={setfbimg5}
                 setimage_url={setimage_url5}
+                aspect_ratio={1 / 1}
+                opencrop={opencrop5}
+                setopencrop={setopencrop5}
               />
             ) : null}
             <label htmlFor="LocalfileInput5">
@@ -400,9 +415,12 @@ function CubesPage() {
             />
             {opencrop6 ? (
               <CropPage
-                send={send5}
+                send={send6}
                 setfbimg={setfbimg6}
                 setimage_url={setimage_url6}
+                aspect_ratio={1 / 1}
+                opencrop={opencrop6}
+                setopencrop={setopencrop6}
               />
             ) : null}
             <label htmlFor="LocalfileInput6">

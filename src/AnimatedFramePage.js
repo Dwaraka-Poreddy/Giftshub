@@ -189,6 +189,8 @@ export default function AnimatedFramePage() {
                 setfbimg={setfbimg1}
                 setimage_url={setimage_url1}
                 aspect_ratio={16 / 9}
+                opencrop={opencrop1}
+                setopencrop={setopencrop1}
               />
             ) : null}
             <label htmlFor="LocalfileInput1">
@@ -211,6 +213,8 @@ export default function AnimatedFramePage() {
                 setfbimg={setfbimg2}
                 setimage_url={setimage_url2}
                 aspect_ratio={16 / 9}
+                opencrop={opencrop2}
+                setopencrop={setopencrop2}
               />
             ) : null}
             <label htmlFor="LocalfileInput2">

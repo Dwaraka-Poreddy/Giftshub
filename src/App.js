@@ -26,6 +26,7 @@ import LiveCubesPage from "./LiveCubesPage";
 import LiveNewsPaperPage from "./LiveNewsPaperPage";
 import LiveAnimatedFramePage from "./LiveAnimatedFramePage";
 import LiveMagazinePage from "./LiveMagazinePage";
+import LiveMemoryGamePage from "./LiveMemoryGamePage";
 export default function App() {
   return (
     <div className="App">
@@ -80,6 +81,7 @@ export default function App() {
           component={LiveOpenGreetingCardPage}
         />
         <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
+        <Route exact path="/memorygame/:slug" component={LiveMemoryGamePage} />
         <Route
           exact
           path="/live/animatedframe/:slug"

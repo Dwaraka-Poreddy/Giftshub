@@ -158,6 +158,8 @@ function OpenGreetingCardPage() {
                 setfbimg={setfbimg}
                 setimage_url={setimage_url}
                 aspect_ratio={16 / 9}
+                opencrop={opencrop}
+                setopencrop={setopencrop}
               />
             ) : null}
             <label htmlFor="LocalfileInput">
