@@ -1,0 +1,14 @@
+.animatedrnav {
+  margin: 4.5%;
+}
+@media screen and (min-width: 400px) {
+  .animatedrnav {
+    margin: 4.5%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .animatedrnav {
+    margin: 0;
+  }
+}

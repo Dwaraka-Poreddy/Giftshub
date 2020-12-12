@@ -8,7 +8,7 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import "./AnimatedFramePage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
@@ -157,139 +157,144 @@ export default function AnimatedFramePage() {
       <br />
       <br />
       <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7", width: "70%" }}>
-          <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
-        </div>
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput1"
-              name="LocalfileInput1"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile1}
-            />
-            {opencrop1 ? (
-              <CropPage
-                send={send1}
-                setfbimg={setfbimg1}
-                setimage_url={setimage_url1}
-                aspect_ratio={2 / 1}
-                opencrop={opencrop1}
-                setopencrop={setopencrop1}
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="col-sm-1 "></div>
+          <div class="col-sm-8 ">
+            <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
+          </div>
+
+          <div
+            className="animatedrnav col-sm-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput1"
+                name="LocalfileInput1"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile1}
               />
-            ) : null}
-            <label htmlFor="LocalfileInput1">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
-            </label>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput2"
-              name="LocalfileInput2"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile2}
-            />
-            {opencrop2 ? (
-              <CropPage
-                send={send2}
-                setfbimg={setfbimg2}
-                setimage_url={setimage_url2}
-                aspect_ratio={2 / 1}
-                opencrop={opencrop2}
-                setopencrop={setopencrop2}
+              {opencrop1 ? (
+                <CropPage
+                  send={send1}
+                  setfbimg={setfbimg1}
+                  setimage_url={setimage_url1}
+                  aspect_ratio={2 / 1}
+                  opencrop={opencrop1}
+                  setopencrop={setopencrop1}
+                />
+              ) : null}
+              <label htmlFor="LocalfileInput1">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+              </label>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput2"
+                name="LocalfileInput2"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile2}
               />
-            ) : null}
-            <label htmlFor="LocalfileInput2">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  Image 2" />
-            </label>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
+              {opencrop2 ? (
+                <CropPage
+                  send={send2}
+                  setfbimg={setfbimg2}
+                  setimage_url={setimage_url2}
+                  aspect_ratio={2 / 1}
+                  opencrop={opencrop2}
+                  setopencrop={setopencrop2}
+                />
+              ) : null}
+              <label htmlFor="LocalfileInput2">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  Image 2" />
+              </label>
+              <div
+                style={{ width: "80%", marginLeft: "10%" }}
                 className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={title}
-                onChange={(e) => {
-                  settitle(e.target.value);
-                }}
-              />
-            </div>
-            <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
+              >
+                <CreateIcon
+                  style={{
+                    margin: "0 10px 0 5px",
+                    color: "#ffffff",
+                    fontSize: "large",
                   }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+                />
+                <InputBase
+                  className="RightSideBar2__Btn"
+                  multiline
+                  style={{
+                    color: "#068dc0",
+                    margin: "0",
+                    backgroundColor: "#ffffff",
+                    width: "100%",
+                  }}
+                  value={title}
+                  onChange={(e) => {
+                    settitle(e.target.value);
+                  }}
                 />
               </div>
-            </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
-                    </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )}
+              <center>
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
                 </div>
-              ) : null}
-            </center>
+              </center>
+              <center>
+                {livelink ? (
+                  <div>
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Copy livelink={livelink} />
+                    </div>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={livelink} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            </div>
           </div>
         </div>
       </div>
+
       <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
         <div className="container">
           <div className="row">

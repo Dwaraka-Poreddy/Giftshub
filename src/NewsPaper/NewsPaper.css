@@ -1,0 +1,29 @@
+.Newshead {
+  font-size: 10px !important;
+}
+@media screen and (min-width: 400px) {
+  .Newshead {
+    font-size: 25px !important;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .Newshead {
+    font-size: 38px !important;
+  }
+}
+
+.Newspara {
+  font-size: 8px !important;
+}
+@media screen and (min-width: 400px) {
+  .Newspara {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .Newspara {
+    font-size: 28px !important;
+  }
+}

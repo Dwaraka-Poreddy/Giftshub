@@ -8,7 +8,7 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import "./ThreeDImagePage.css";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
@@ -124,91 +124,98 @@ function OpenGreetingCardPage() {
       <br />
       <br />
       <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.7" }}>
-          <ThreeDImage fbimg={fbimg} />
-        </div>
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="col-sm-1 "></div>
+          <div class="col-sm-8 ">
+            <ThreeDImage fbimg={fbimg} />
+          </div>
 
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-            />
-            {opencrop ? (
-              <CropPage
-                send={send}
-                setfbimg={setfbimg}
-                setimage_url={setimage_url}
-                aspect_ratio={16 / 9}
-                opencrop={opencrop}
-                setopencrop={setopencrop}
+          <div
+            className="threedrnav col-sm-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput"
+                name="LocalfileInput"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile}
               />
-            ) : null}
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-            </label>
-
-            <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+              {opencrop ? (
+                <CropPage
+                  send={send}
+                  setfbimg={setfbimg}
+                  setimage_url={setimage_url}
+                  aspect_ratio={16 / 9}
+                  opencrop={opencrop}
+                  setopencrop={setopencrop}
                 />
-              </div>
-            </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
-                    </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )}
-                </div>
               ) : null}
-            </center>
+              <label htmlFor="LocalfileInput">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+              </label>
+
+              <center>
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              </center>
+              <center>
+                {livelink ? (
+                  <div>
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Copy livelink={livelink} />
+                    </div>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={livelink} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* <div style={{ display: "flex" }}>
+        
+      </div> */}
       <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
         <div className="container">
           <div className="row">

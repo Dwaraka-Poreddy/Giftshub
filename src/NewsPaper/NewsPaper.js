@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./NewsPaper.css";
 function NewsPaper({ head, para, fbimg, startDate }) {
   return (
     <div>
@@ -117,9 +117,10 @@ function NewsPaper({ head, para, fbimg, startDate }) {
             >
               <div>
                 <h1
+                  className="Newshead"
                   style={{
                     textAlign: "justify",
-                    fontSize: "38px",
+                    // fontSize: "38px",
                     fontFamily: "oxford",
                     fontWeight: "500",
                     margin: "5px",
@@ -138,8 +139,9 @@ function NewsPaper({ head, para, fbimg, startDate }) {
                 />
 
                 <h1
+                  className="Newspara"
                   style={{
-                    fontSize: "28px",
+                    // fontSize: "28px",
                     fontFamily: "oxford",
                     fontWeight: "400",
                     margin: "10px 5px",

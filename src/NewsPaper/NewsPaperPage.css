@@ -1,0 +1,14 @@
+.newspaperrnav {
+  margin: 4.5%;
+}
+@media screen and (min-width: 400px) {
+  .newspaperrnav {
+    margin: 4.5%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .newspaperrnav {
+    margin: 0;
+  }
+}

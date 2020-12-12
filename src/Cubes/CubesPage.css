@@ -1,0 +1,15 @@
+.cubesrnav {
+  margin: 4.5%;
+  margin-top: 40vh;
+}
+@media screen and (min-width: 400px) {
+  .cubesrnav {
+    margin: 4.5%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cubesrnav {
+    margin: 0;
+  }
+}

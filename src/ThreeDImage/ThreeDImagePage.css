@@ -1,0 +1,14 @@
+.threedrnav {
+  margin: 4.5%;
+}
+@media screen and (min-width: 400px) {
+  .threedrnav {
+    margin: 4.5%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .threedrnav {
+    margin: 0;
+  }
+}

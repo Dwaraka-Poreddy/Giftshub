@@ -11,7 +11,7 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import "./NewsPaperPage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
@@ -153,10 +153,10 @@ function NewsPaperPage() {
       <br />
       <br />
       <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7" }}>
-          <div id="newspaper">
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="col-sm-1 "></div>
+          <div id="newspaper" class="col-sm-8 ">
             <NewsPaper
               fbimg={fbimg}
               head={head}
@@ -164,161 +164,163 @@ function NewsPaperPage() {
               startDate={startDate}
             />
           </div>
-        </div>
 
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "20%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-            />
-            {opencrop ? (
-              <CropPage
-                send={send}
-                setfbimg={setfbimg}
-                setimage_url={setimage_url}
-                aspect_ratio={16 / 9}
-                opencrop={opencrop}
-                setopencrop={setopencrop}
+          <div
+            className="newspaperrnav col-sm-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput"
+                name="LocalfileInput"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile}
               />
-            ) : null}
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-            </label>
-
-            <center>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <CreateIcon
-                  style={{
-                    margin: "0 10px 0 5px",
-                    color: "#ffffff",
-                    fontSize: "large",
-                  }}
+              {opencrop ? (
+                <CropPage
+                  send={send}
+                  setfbimg={setfbimg}
+                  setimage_url={setimage_url}
+                  aspect_ratio={16 / 9}
+                  opencrop={opencrop}
+                  setopencrop={setopencrop}
                 />
-                <InputBase
-                  className="RightSideBar2__Btn"
-                  multiline
-                  style={{
-                    color: "#068dc0",
-                    margin: "0",
-                    backgroundColor: "#ffffff",
-                    width: "100%",
-                  }}
-                  value={head}
-                  onChange={(e) => {
-                    sethead(e.target.value);
-                  }}
-                />
-              </div>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <CreateIcon
-                  style={{
-                    margin: "0 10px 0 5px",
-                    color: "#ffffff",
-                    fontSize: "large",
-                  }}
-                />
-                <InputBase
-                  className="RightSideBar2__Btn"
-                  multiline
-                  style={{
-                    color: "#068dc0",
-                    margin: "0",
-                    backgroundColor: "#ffffff",
-                    width: "100%",
-                  }}
-                  value={para}
-                  onChange={(e) => {
-                    setpara(e.target.value);
-                  }}
-                />
-              </div>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <DatePicker
-                  formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
-                  dateFormat=" MMMM dd, yyyy "
-                  selected={startDate}
-                  onChange={selectDateHandler}
-                  minDate={today}
-                  todayButton={"Today"}
-                />
-              </div>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleMemeDownlod(this);
-                  }}
-                  Icon={LinkIcon}
-                  title="Download image"
-                />
-              </div>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
-                />
-              </div>
-            </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
-                    </div>
-                  ) : (
-                    <Share livelink={"livelink"} />
-                  )}
-                </div>
               ) : null}
-            </center>
+              <label htmlFor="LocalfileInput">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+              </label>
+
+              <center>
+                <div
+                  style={{ width: "80%", marginLeft: "10%", marginTop: "10px" }}
+                  className="RightSideBar2__Btn"
+                >
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "100%",
+                    }}
+                    value={head}
+                    onChange={(e) => {
+                      sethead(e.target.value);
+                    }}
+                  />
+                </div>
+                <div
+                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  className="RightSideBar2__Btn"
+                >
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "100%",
+                    }}
+                    value={para}
+                    onChange={(e) => {
+                      setpara(e.target.value);
+                    }}
+                  />
+                </div>
+                <div
+                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  className="RightSideBar2__Btn"
+                >
+                  <DatePicker
+                    formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
+                    dateFormat=" MMMM dd, yyyy "
+                    selected={startDate}
+                    onChange={selectDateHandler}
+                    minDate={today}
+                    todayButton={"Today"}
+                  />
+                </div>
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleMemeDownlod(this);
+                    }}
+                    Icon={LinkIcon}
+                    title="Download image"
+                  />
+                </div>
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              </center>
+              <center>
+                {livelink ? (
+                  <div>
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Copy livelink={livelink} />
+                    </div>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={"livelink"} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            </div>
           </div>
         </div>
       </div>
+
       <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
         <div className="container">
           <div className="row">
