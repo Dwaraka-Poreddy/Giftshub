@@ -1,32 +1,31 @@
 import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Header from "./Header";
+import Header from "./Studio/Header";
 import MainPage from "./MainPage";
-import Nav from "./Nav";
 
-import MagazinePage from "./MagazinePage";
-import NewsPaperPage from "./NewsPaperPage";
+import MagazinePage from "./Magazine/MagazinePage";
+import NewsPaperPage from "./NewsPaper/NewsPaperPage";
 
-import CubesPage from "./CubesPage";
-import OpenGreetingCardPage from "./OpenGreetingCardPage";
-import LiveOpenGreetingCardPage from "./LiveOpenGreetingCardPage";
-import AnimatedFramePage from "./AnimatedFramePage";
-import SpecialCardPage from "./SpecialCardPage";
-import HoneyComb from "./HoneyComb";
-import MemoryGamePage from "./MemoryGamePage";
-import SplitWallImagePage from "./SplitWallImagePage.js";
-import LiveSplitWall from "./LiveSplitWall.js";
-import LiveThreeDImage from "./LiveThreeDImage";
-import LiveSlidePuzzle from "./LiveSlidePuzzle";
-import LiveSpecialCard from "./LiveSpecialCard";
-import SlidePuzzlePage from "./SlidePuzzlePage";
-import ThreeDImagePage from "./ThreeDImagePage";
-import LiveCubesPage from "./LiveCubesPage";
-import LiveNewsPaperPage from "./LiveNewsPaperPage";
-import LiveAnimatedFramePage from "./LiveAnimatedFramePage";
-import LiveMagazinePage from "./LiveMagazinePage";
-import LiveMemoryGamePage from "./LiveMemoryGamePage";
+import CubesPage from "./Cubes/CubesPage";
+import OpenGreetingCardPage from "./OpenGreetingCard/OpenGreetingCardPage";
+import LiveOpenGreetingCardPage from "./LivePages/LiveOpenGreetingCardPage";
+import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
+import SpecialCardPage from "./SpecialCard/SpecialCardPage";
+
+import MemoryGamePage from "./MemoryGame/MemoryGamePage";
+import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
+import LiveSplitWall from "./LivePages/LiveSplitWall.js";
+import LiveThreeDImage from "./LivePages/LiveThreeDImage";
+import LiveSlidePuzzle from "./LivePages/LiveSlidePuzzle";
+import LiveSpecialCard from "./LivePages/LiveSpecialCard";
+import SlidePuzzlePage from "./SlidePuzzle/SlidePuzzlePage";
+import ThreeDImagePage from "./ThreeDImage/ThreeDImagePage";
+import LiveCubesPage from "./LivePages/LiveCubesPage";
+import LiveNewsPaperPage from "./LivePages/LiveNewsPaperPage";
+import LiveAnimatedFramePage from "./LivePages/LiveAnimatedFramePage";
+import LiveMagazinePage from "./LivePages/LiveMagazinePage";
+import LiveMemoryGamePage from "./LivePages/LiveMemoryGamePage";
 export default function App() {
   return (
     <div className="App">
@@ -39,7 +38,7 @@ export default function App() {
         <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
         <Route exact path="/magazinepage" component={MagazinePage} />
         <Route exact path="/greet" component={Header} />
-        <Route exact path="/honeycomb" component={HoneyComb} />
+
         <Route
           exact
           path="/opengreetingcardpage"
