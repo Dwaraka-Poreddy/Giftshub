@@ -36,6 +36,7 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import LiveLinksPage from "./pages/LiveLinksPage";
+import ScheduledThreeDImagePage from "./ScheduledLivePages/ScheduledLiveThreeDImage";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -112,6 +113,11 @@ export default function App() {
           exact
           path="/live/threedimage/:slug"
           component={LiveThreeDImage}
+        />
+        <Route
+          exact
+          path="/scheduledlive/threedimage/:id/:slug"
+          component={ScheduledThreeDImagePage}
         />
         <Route
           exact

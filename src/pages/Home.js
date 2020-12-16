@@ -18,6 +18,7 @@ const Home = ({ history }) => {
     if (!user) {
       history.push("/login");
     }
+    getPrevious();
   }, []);
   const getPrevious = () => {
     database
@@ -77,6 +78,7 @@ const Home = ({ history }) => {
           url7: "",
         });
         console.log("Tutorial created with ID: ", docRef.id);
+        history.push(`/ContinuePack/${docRef.id}`);
       })
       .catch(function (error) {
         console.error("Error adding Tutorial: ", error);
@@ -114,7 +116,7 @@ const Home = ({ history }) => {
 
         <input type="submit" value="Create 7 day pack" />
       </form>
-      <button onClick={getPrevious}>Get Previous</button>
+      {/* <button onClick={getPrevious}>Get Previous</button> */}
       <div>
         {error ? <p>Ops, there is an error :(</p> : null}
         <ul>
