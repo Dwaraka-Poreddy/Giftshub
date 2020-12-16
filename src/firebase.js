@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/storage";
 import "firebase/database";
 
@@ -10,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "update-image.appspot.com",
   messagingSenderId: "760869146000",
   appId: "1:760869146000:web:08608045caa9dc4288f715",
-  measurementId: "G-RKNX2Y23RH"
+  measurementId: "G-RKNX2Y23RH",
 };
 
 if (firebase.apps.length === 0) {
@@ -22,3 +23,5 @@ const storage = firebase.storage();
 const fb = firebase;
 
 export { storage, fb as default };
+export const auth = firebase.auth();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();

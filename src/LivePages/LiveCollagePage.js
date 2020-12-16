@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Collage from "../Collage/Collage";
+import LiveCollage from "../Collage/LiveCollage";
 
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
@@ -20,6 +20,7 @@ export default function LiveCollagePage({ match }) {
       .once("value")
       .then((snapshot) => {
         var img1 = snapshot.val().url1;
+        console.log(img1);
         setfbimg1(img1);
         var img2 = snapshot.val().url2;
         setfbimg2(img2);
@@ -41,7 +42,7 @@ export default function LiveCollagePage({ match }) {
   }, []);
   const func = () => {
     return (
-      <Collage
+      <LiveCollage
         fbimg1={fbimg1}
         fbimg2={fbimg2}
         fbimg3={fbimg3}

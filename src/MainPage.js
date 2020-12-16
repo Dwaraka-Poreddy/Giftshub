@@ -109,9 +109,12 @@ export default function App() {
                   sapien sit amet, ultrices malesuada odio. Donec non quam
                   euismod, mattis dui a, ultrices nisi.
                 </p>
-                <a href="#about2" className="main-button">
-                  Discover More
-                </a>
+                <Link to="/home">
+                  <button className="main-button">7-Day Pack</button>
+                  {/* <a href="#about2" className="main-button">
+                    7-Day Pack
+                  </a> */}
+                </Link>
               </div>
             </div>
           </div>
@@ -159,7 +162,7 @@ export default function App() {
                     />
                   </div>
                   <div className="productCardTextDiv">
-                    <h1>collage</h1>
+                    <h1>Collage</h1>
                   </div>
                 </div>
               </Link>
