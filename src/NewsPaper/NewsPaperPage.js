@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
 import DatePicker from "react-datepicker";
+import { jsPDF } from "jspdf";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -32,6 +35,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function NewsPaperPage() {
+  let docToPrint = React.createRef();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -100,19 +104,34 @@ function NewsPaperPage() {
       }
     );
   };
-  function handleMemeDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
+  function handleImageDownlod(el) {
+    const input = docToPrint.current;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "landscape",
+        unit: "px",
+        format: [600, 400],
+      });
+      pdf.addImage(imgData, "JPEG", 0, 0);
+      // pdf.output("dataurlnewwindow");
+      pdf.save("Up4-receipt.pdf");
     });
   }
-
+  function handlePdfDownlod(e) {
+    htmlToImage
+      .toPng(document.getElementById("newspaper"), { quality: 1.0 })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
+        link.download = "my-image-name.jpeg";
+        const pdf = new jsPDF();
+        const imgProps = pdf.getImageProperties(dataUrl);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save("download1.pdf");
+      });
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -156,7 +175,7 @@ function NewsPaperPage() {
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-sm-1 "></div>
-          <div id="newspaper" class="col-sm-8 ">
+          <div ref={docToPrint} id="newspaper" class="col-sm-8 ">
             <NewsPaper
               fbimg={fbimg}
               head={head}
@@ -271,10 +290,19 @@ function NewsPaperPage() {
                 <div style={{ width: "55%", marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
-                      handleMemeDownlod(this);
+                      handleImageDownlod(this);
                     }}
                     Icon={LinkIcon}
-                    title="Download image"
+                    title="Download as image"
+                  />
+                </div>
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handlePdfDownlod(this);
+                    }}
+                    Icon={LinkIcon}
+                    title="Download as pdf"
                   />
                 </div>
                 <div style={{ width: "55%", marginTop: "20px" }}>

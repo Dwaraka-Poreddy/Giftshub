@@ -149,6 +149,20 @@ export default function App() {
               autoplay
               autoplayHoverPause
             >
+              <Link className="productCard" to="/collagepage">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>collage</h1>
+                  </div>
+                </div>
+              </Link>
               <Link className="productCard" to="/memorygamepage">
                 <div className="productCardDiv">
                   <div>

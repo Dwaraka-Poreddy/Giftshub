@@ -6,7 +6,7 @@ import MainPage from "./MainPage";
 
 import MagazinePage from "./Magazine/MagazinePage";
 import NewsPaperPage from "./NewsPaper/NewsPaperPage";
-
+import CollagePage from "./Collage/CollagePage";
 import CubesPage from "./Cubes/CubesPage";
 import OpenGreetingCardPage from "./OpenGreetingCard/OpenGreetingCardPage";
 import LiveOpenGreetingCardPage from "./LivePages/LiveOpenGreetingCardPage";
@@ -26,13 +26,14 @@ import LiveNewsPaperPage from "./LivePages/LiveNewsPaperPage";
 import LiveAnimatedFramePage from "./LivePages/LiveAnimatedFramePage";
 import LiveMagazinePage from "./LivePages/LiveMagazinePage";
 import LiveMemoryGamePage from "./LivePages/LiveMemoryGamePage";
+import LiveCollagePage from "./LivePages/LiveCollagePage";
 export default function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/memorygamepage" component={MemoryGamePage} />
-
+        <Route exact path="/collagepage" component={CollagePage} />
         <Route exact path="/newspaperpage" component={NewsPaperPage} />
         <Route exact path="/cubespage" component={CubesPage} />
         <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
@@ -81,6 +82,7 @@ export default function App() {
         />
         <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
         <Route exact path="/memorygame/:slug" component={LiveMemoryGamePage} />
+        <Route exact path="/collage/:slug" component={LiveCollagePage} />
         <Route
           exact
           path="/live/animatedframe/:slug"
