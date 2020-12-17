@@ -92,39 +92,58 @@ export default function ScheduledLiveMemoryGame({ match }) {
   });
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">
+          Navbar
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url1}>
+                Day 1
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url2}>
+                Day 2
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url3}>
+                Day 3
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url4}>
+                Day 4
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url5}>
+                Day 5
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url6}>
+                Day 6
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={Livelinks.url7}>
+                Day 7
+              </a>
+            </li>
+          </ul>
         </div>
-      </header>
+      </nav>
       <br />
       <br />
       <div>

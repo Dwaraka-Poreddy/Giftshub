@@ -7,16 +7,12 @@ export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
   const timer = () => {
     setTimeout(() => {
       setOpenCard("gc_carrd open");
-      playAudio();
+
       setTimeout(() => {
         setOpenCard("gc_carrd");
         timer();
       }, 15000);
     }, 3000);
-  };
-  const playAudio = () => {
-    const audioEl = document.getElementsByClassName("audio-element")[0];
-    audioEl.play();
   };
 
   useEffect(() => {
@@ -25,9 +21,6 @@ export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
 
   return (
     <div>
-      <audio className="audio-element">
-        <source src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/audio.mp3?alt=media&token=5aef7a77-6a03-4af4-b29b-8cf80f7495e4"></source>
-      </audio>
       <div className="gc_mainCard">
         <section class="gc_containerr">
           <div className={openCard} id="theCard">

@@ -41,43 +41,53 @@ function ContinuePack({ match }) {
       const newCompleted = completed;
       newCompleted[0] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url2 != "") {
       const newCompleted = completed;
       newCompleted[1] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url3 != "") {
       const newCompleted = completed;
       newCompleted[2] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url4 != "") {
       const newCompleted = completed;
       newCompleted[3] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url5 != "") {
       const newCompleted = completed;
       newCompleted[4] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url6 != "") {
       const newCompleted = completed;
       newCompleted[5] = true;
       setCompleted(newCompleted);
-      handleNext();
     }
     if (data.url7 != "") {
       const newCompleted = completed;
       newCompleted[6] = true;
       setCompleted(newCompleted);
-      handleNext();
+    }
+    if (data.url1 == "") {
+      setActiveStep(0);
+    } else if (data.url2 == "") {
+      setActiveStep(1);
+    } else if (data.url3 == "") {
+      setActiveStep(2);
+    } else if (data.url4 == "") {
+      setActiveStep(3);
+    } else if (data.url5 == "") {
+      setActiveStep(4);
+    } else if (data.url6 == "") {
+      setActiveStep(5);
+    } else if (data.url7 == "") {
+      setActiveStep(6);
+    } else {
+      setActiveStep(7);
     }
     // for (var i = 0; i < 7; i++) {
     //   if (data.url + "i") {
@@ -140,7 +150,7 @@ function ContinuePack({ match }) {
       case 5:
         return <ScheduledCubesPage slug={slag} />;
       case 6:
-        return "Step 3: This is the bit I really care about!";
+        return "New Component will be added here";
       default:
         return "Unknown step";
     }
@@ -172,6 +182,7 @@ function ContinuePack({ match }) {
         ? steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
+    console.log(activeStep, "Hi");
   };
 
   const handleBack = () => {
