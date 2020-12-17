@@ -2,8 +2,34 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Fab from "@material-ui/core/Fab";
+import CloseIcon from "@material-ui/icons/Close";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    borderRadius: "15px",
+    position: "absolute",
+    // width: "70vw",
+    // height: "97vh",
+    // maxWidth: "1000px",
+    // // minWidth: "400px",
+    marginTop: "0vh",
+    border: null,
+    backgroundColor: "#303030",
+    padding: theme.spacing(2, 4, 3),
+  },
+  DelBut: {
+    position: "sticky",
+    bottom: theme.spacing(142),
+    left: theme.spacing(200),
+  },
+}));
 
 const Home = ({ history }) => {
+  const classes = useStyles();
+  const [openModal, setopenModal] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
   const database = firebase.firestore();
@@ -87,35 +113,82 @@ const Home = ({ history }) => {
   return (
     <>
       <p>Home</p>
-      <form onSubmit={CreatePack}>
-        <label>
-          FOLDER Name:
-          <input
-            onChange={(e) => setFolder_name(e.target.value)}
-            type="text"
-            name="Folder_name"
-          />
-        </label>
-        <label>
-          Secret_name Name:
-          <input
-            onChange={(e) => setSecret_name(e.target.value)}
-            type="text"
-            name="Secret_name"
-          />
-        </label>
-        <label>
-          Date:
-          <input
-            type="date"
-            id="birthday"
-            name="Bday_date"
-            onChange={(e) => setBday_date(e.target.value)}
-          />
-        </label>
+      <button
+        onClick={() => {
+          setopenModal(true);
+        }}
+      >
+        Create New Pack
+      </button>
+      <Modal
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginRight: "auto",
+          overflow: "hidden",
+          alignItems: "center",
+        }}
+        open={openModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {
+          <div className={classes.paper}>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <br />
+                    <br />
+                    <br />
+                    <form onSubmit={CreatePack}>
+                      <label>
+                        FOLDER Name:
+                        <input
+                          onChange={(e) => setFolder_name(e.target.value)}
+                          type="text"
+                          name="Folder_name"
+                        />
+                      </label>
+                      <label>
+                        Secret_name Name:
+                        <input
+                          onChange={(e) => setSecret_name(e.target.value)}
+                          type="text"
+                          name="Secret_name"
+                        />
+                      </label>
+                      <label>
+                        Date:
+                        <input
+                          type="date"
+                          id="birthday"
+                          name="Bday_date"
+                          onChange={(e) => setBday_date(e.target.value)}
+                        />
+                      </label>
 
-        <input type="submit" value="Create 7 day pack" />
-      </form>
+                      <input type="submit" value="Create 7 day pack" />
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <Fab
+                onClick={() => {
+                  setopenModal(false);
+                }}
+                className={classes.DelBut}
+                color="primary"
+                aria-label="add"
+              >
+                <CloseIcon />
+              </Fab>
+            </div>
+          </div>
+        }
+      </Modal>
+
       {/* <button onClick={getPrevious}>Get Previous</button> */}
       <div>
         {error ? <p>Ops, there is an error :(</p> : null}
@@ -134,53 +207,5 @@ const Home = ({ history }) => {
     </>
   );
 };
-
-// const Home = () => {
-//   const calculateTimeLeft = () => {
-//     let year = new Date().getFullYear();
-//     const difference = +new Date(`${year}-12-15`) - +new Date();
-//     let timeLeft = {};
-
-//     if (difference > 0) {
-//       timeLeft = {
-//         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-//         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-//         minutes: Math.floor((difference / 1000 / 60) % 60),
-//         seconds: Math.floor((difference / 1000) % 60),
-//       };
-//     }
-
-//     return timeLeft;
-//   };
-
-//   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-//   const [year] = useState(new Date().getFullYear());
-
-//   useEffect(() => {
-//     setTimeout(() => {
-//       setTimeLeft(calculateTimeLeft());
-//     }, 1000);
-//   });
-//   const timerComponents = [];
-
-//   Object.keys(timeLeft).forEach((interval) => {
-//     if (!timeLeft[interval]) {
-//       return;
-//     }
-
-//     timerComponents.push(
-//       <span>
-//         {timeLeft[interval]} {interval}{" "}
-//       </span>
-//     );
-//   });
-//   return (
-//     <div>
-//       <h1>HacktoberFest {year} Countdown</h1>
-//       <h2>With React Hooks!</h2>
-//       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-//     </div>
-//   );
-// };
 
 export default Home;

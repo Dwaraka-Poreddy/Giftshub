@@ -36,7 +36,12 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import LiveLinksPage from "./pages/LiveLinksPage";
-import ScheduledThreeDImagePage from "./ScheduledLivePages/ScheduledLiveThreeDImage";
+import ScheduledLiveMemoryGame from "./ScheduledLivePages/ScheduledLiveMemoryGame";
+import ScheduledLiveSlidePuzzle from "./ScheduledLivePages/ScheduledLiveSlidePuzzle";
+import ScheduledLiveNewsPaper from "./ScheduledLivePages/ScheduledLiveNewsPaper";
+import ScheduledLiveThreeDImagePage from "./ScheduledLivePages/ScheduledLiveThreeDImage";
+import ScheduledLiveOpenGreetCard from "./ScheduledLivePages/ScheduledLiveOpenGreetCard";
+import ScheduledLiveCubes from "./ScheduledLivePages/ScheduledLiveCubes";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -117,7 +122,32 @@ export default function App() {
         <Route
           exact
           path="/scheduledlive/threedimage/:id/:slug"
-          component={ScheduledThreeDImagePage}
+          component={ScheduledLiveThreeDImagePage}
+        />
+        <Route
+          exact
+          path="/scheduledlive/newspaper/:id/:slug"
+          component={ScheduledLiveNewsPaper}
+        />
+        <Route
+          exact
+          path="/scheduledlive/cubes/:id/:slug"
+          component={ScheduledLiveCubes}
+        />
+        <Route
+          exact
+          path="/scheduledlive/opengreetingcard/:id/:slug"
+          component={ScheduledLiveOpenGreetCard}
+        />
+        <Route
+          exact
+          path="/scheduledlive/slidepuzzle/:id/:slug"
+          component={ScheduledLiveSlidePuzzle}
+        />
+        <Route
+          exact
+          path="/scheduledlive/memorygame/:id/:slug"
+          component={ScheduledLiveMemoryGame}
         />
         <Route
           exact
