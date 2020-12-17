@@ -79,9 +79,13 @@ function ScheduledLiveSlidePuzzle({ match }) {
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+        <Link
+          class="navbar-brand"
+          to={`/scheduledlive/main/${match.params.slug}`}
+        >
+          {" "}
+          Main Page
+        </Link>
         <button
           class="navbar-toggler"
           type="button"

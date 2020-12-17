@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MemoryGame from "../MemoryGame/MemoryGame";
-
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function ScheduledLiveMemoryGame({ match }) {
@@ -93,9 +92,14 @@ export default function ScheduledLiveMemoryGame({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+        <Link
+          class="navbar-brand"
+          to={`/scheduledlive/main/${match.params.slug}`}
+        >
+          {" "}
+          Main Page
+        </Link>
+
         <button
           class="navbar-toggler"
           type="button"

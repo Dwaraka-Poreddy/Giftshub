@@ -32,7 +32,9 @@ function ContinuePack({ match }) {
       .doc(match.params.slug)
       .get();
     const data = snapshot.data();
-    setlivelink(window.location.href);
+    setlivelink(
+      "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
+    );
     console.log(window.location.href, "window.location.href");
     // setlivelink("http://localhost:3000/ContinuePack/" + `${user.uid}`);
     setFolderData(data);

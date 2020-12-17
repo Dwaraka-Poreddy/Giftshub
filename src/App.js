@@ -42,6 +42,7 @@ import ScheduledLiveNewsPaper from "./ScheduledLivePages/ScheduledLiveNewsPaper"
 import ScheduledLiveThreeDImagePage from "./ScheduledLivePages/ScheduledLiveThreeDImage";
 import ScheduledLiveOpenGreetCard from "./ScheduledLivePages/ScheduledLiveOpenGreetCard";
 import ScheduledLiveCubes from "./ScheduledLivePages/ScheduledLiveCubes";
+import ScheduledLiveMainPage from "./ScheduledLivePages/ScheduledLiveMainPage";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -133,6 +134,11 @@ export default function App() {
           exact
           path="/scheduledlive/cubes/:id/:slug"
           component={ScheduledLiveCubes}
+        />
+        <Route
+          exact
+          path="/scheduledlive/main/:slug"
+          component={ScheduledLiveMainPage}
         />
         <Route
           exact
