@@ -189,6 +189,9 @@ export default function AnimatedFramePage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile1}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop1 ? (
                 <CropPage
@@ -213,6 +216,9 @@ export default function AnimatedFramePage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile2}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop2 ? (
                 <CropPage

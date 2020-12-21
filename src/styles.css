@@ -32,3 +32,65 @@
   text-align: center;
   justify-content: center;
 }
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 20px !important;
+  }
+  h2 {
+    font-size: 22px !important;
+  }
+  h3 {
+    font-size: 18px !important;
+  }
+  h5 {
+    font-size: 16px !important;
+  }
+  h6 {
+    font-size: 8px !important;
+  }
+  h8 {
+    font-size: 12px !important;
+  }
+  p {
+    font-size: 18px !important;
+  }
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+/* Define minimum font size */
+html {
+  font-size: 1rem;
+}
+
+/* Define breakpoints and font sizes */
+@media (min-width: 640px) and (max-width: 1023px) {
+  html {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  html {
+    font-size: 1.125rem;
+  }
+}
+
+/* Define max font size and viewport */
+@media (min-width: 1280px) {
+  html {
+    font-size: 1.1875rem;
+  }
+}

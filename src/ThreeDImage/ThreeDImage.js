@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./ThreeDImage.css";
 
-export default function ThreeDImage({ fbimg }) {
+export default function ThreeDImage({ fbimg, firstcol, secondcol }) {
+  // const [firstcol, setfirstcol] = useState("#302015");
+  // const [secondcol, setsecondcol] = useState("#1c1008");
   return (
     <div
       style={{
-        backgroundColor: "linear-gradient(125deg, #302015 0%, #1c1008 100%)"
+        backgroundImage: `linear-gradient(to right, ${firstcol}, ${secondcol})`,
       }}
     >
       <div style={{ paddingTop: "5%" }} className="ThreeDImage">

@@ -15,6 +15,7 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
+import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -40,10 +41,12 @@ function OpenGreetingCardPage() {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
   );
-
+  const [firstcol, setfirstcol] = useState("#302015");
+  const [secondcol, setsecondcol] = useState("#1c1008");
+  const [color, setColor] = useState({});
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
+    console.log(window.URL.createObjectURL(e.target.files[0]), "1");
     setopencrop(true);
   };
 
@@ -76,6 +79,8 @@ function OpenGreetingCardPage() {
               const todoRef = firebase.database().ref("ThreeDImage");
               const todo = {
                 url: downUrl,
+                firstcol: firstcol,
+                secondcol: secondcol,
               };
               var newKey = todoRef.push(todo).getKey();
               setlivelink("http://localhost:3000/live/threedimage/" + newKey);
@@ -131,7 +136,11 @@ function OpenGreetingCardPage() {
         <div class="row">
           <div class="col-sm-1 "></div>
           <div class="col-sm-8 ">
-            <ThreeDImage fbimg={fbimg} />
+            <ThreeDImage
+              firstcol={firstcol}
+              secondcol={secondcol}
+              fbimg={fbimg}
+            />
           </div>
 
           <div
@@ -152,17 +161,20 @@ function OpenGreetingCardPage() {
                 className={secclasses.input}
                 id="LocalfileInput"
                 name="LocalfileInput"
-                multiple
+                // multiple
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop ? (
                 <CropPage
                   send={send}
                   setfbimg={setfbimg}
                   setimage_url={setimage_url}
-                  aspect_ratio={16 / 9}
+                  aspect_ratio={4 / 3}
                   opencrop={opencrop}
                   setopencrop={setopencrop}
                 />
@@ -170,7 +182,48 @@ function OpenGreetingCardPage() {
               <label htmlFor="LocalfileInput">
                 <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
               </label>
-
+              <input
+                type="color"
+                id="FirstColor"
+                initialValue="null"
+                value={color.hex}
+                onChange={(e) => {
+                  setfirstcol(e.target.value);
+                }}
+                placement="right"
+                autoAdjust="true"
+                style={{
+                  margin: "auto",
+                  visibility: "hidden",
+                  position: "relative",
+                  display: "flex",
+                  height: "5px",
+                }}
+              />
+              <label htmlFor="FirstColor">
+                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient from " />
+              </label>
+              <input
+                type="color"
+                id="ToColor"
+                initialValue="null"
+                value={color.hex}
+                onChange={(e) => {
+                  setsecondcol(e.target.value);
+                }}
+                placement="right"
+                autoAdjust="true"
+                style={{
+                  margin: "auto",
+                  visibility: "hidden",
+                  position: "relative",
+                  display: "flex",
+                  height: "5px",
+                }}
+              />
+              <label htmlFor="ToColor">
+                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
+              </label>
               <center>
                 <div style={{ width: "55%", marginTop: "20px" }}>
                   <HeaderBtn

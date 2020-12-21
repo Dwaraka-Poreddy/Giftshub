@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 export default function ScheduledLiveThreeDImage({ match }) {
   const database = firebase.firestore();
   const [fbimg, setfbimg] = useState("");
+  const [firstcol, setfirstcol] = useState("");
+  const [secondcol, setsecondcol] = useState("");
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(true);
   async function getDoc() {
@@ -30,6 +32,10 @@ export default function ScheduledLiveThreeDImage({ match }) {
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
+        var col1 = snapshot.val().firstcol;
+        setfirstcol(col1);
+        var col2 = snapshot.val().secondcol;
+        setsecondcol(col2);
       });
   }, []);
 
@@ -148,7 +154,11 @@ export default function ScheduledLiveThreeDImage({ match }) {
                     <h1 className="example">Six days to go !!!</h1>
                   </center>
 
-                  <ThreeDImage fbimg={fbimg} />
+                  <ThreeDImage
+                    firstcol={firstcol}
+                    secondcol={secondcol}
+                    fbimg={fbimg}
+                  />
                 </div>
               )}
             </div>

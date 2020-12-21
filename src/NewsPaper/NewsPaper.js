@@ -38,7 +38,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
                 style={{
                   fontFamily: "Roboto Slab', serif",
                   fontWeight: "600",
-                  fontSize: "12px",
+                  // fontSize: "12px",
                 }}
               >
                 {" "}
@@ -117,7 +117,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
             >
               <div>
                 <h1
-                  className="Newshead"
+                  // className="Newshead"
                   style={{
                     textAlign: "justify",
                     // fontSize: "38px",

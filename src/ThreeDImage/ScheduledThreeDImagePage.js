@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
+import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -44,6 +45,9 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
   );
+  const [firstcol, setfirstcol] = useState("#302015");
+  const [secondcol, setsecondcol] = useState("#1c1008");
+  const [color, setColor] = useState({});
   useEffect(() => {
     console.log(slug, "useeffect");
   }, []);
@@ -82,6 +86,8 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
               const todoRef = firebase.database().ref("ThreeDImage");
               const todo = {
                 url: downUrl,
+                firstcol: firstcol,
+                secondcol: secondcol,
               };
               var newKey = todoRef.push(todo).getKey();
               setlivelink(
@@ -157,7 +163,11 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
             <center>
               <h1 className="example">Six days to go !!!</h1>
             </center>
-            <ThreeDImage fbimg={fbimg} />
+            <ThreeDImage
+              firstcol={firstcol}
+              secondcol={secondcol}
+              fbimg={fbimg}
+            />
           </div>
 
           <div
@@ -182,13 +192,16 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop ? (
                 <CropPage
                   send={send}
                   setfbimg={setfbimg}
                   setimage_url={setimage_url}
-                  aspect_ratio={16 / 9}
+                  aspect_ratio={4 / 3}
                   opencrop={opencrop}
                   setopencrop={setopencrop}
                 />
@@ -196,7 +209,48 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
               <label htmlFor="LocalfileInput">
                 <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
               </label>
-
+              <input
+                type="color"
+                id="FirstColor"
+                initialValue="null"
+                value={color.hex}
+                onChange={(e) => {
+                  setfirstcol(e.target.value);
+                }}
+                placement="right"
+                autoAdjust="true"
+                style={{
+                  margin: "auto",
+                  visibility: "hidden",
+                  position: "relative",
+                  display: "flex",
+                  height: "5px",
+                }}
+              />
+              <label htmlFor="FirstColor">
+                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient from " />
+              </label>
+              <input
+                type="color"
+                id="ToColor"
+                initialValue="null"
+                value={color.hex}
+                onChange={(e) => {
+                  setsecondcol(e.target.value);
+                }}
+                placement="right"
+                autoAdjust="true"
+                style={{
+                  margin: "auto",
+                  visibility: "hidden",
+                  position: "relative",
+                  display: "flex",
+                  height: "5px",
+                }}
+              />
+              <label htmlFor="ToColor">
+                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
+              </label>
               <center>
                 <div style={{ width: "55%", marginTop: "20px" }}>
                   <HeaderBtn

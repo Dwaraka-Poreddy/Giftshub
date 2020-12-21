@@ -411,6 +411,9 @@ export default function SpecialCardPage() {
               type="file"
               accept="image/*"
               onChange={onSelectFile}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             <label htmlFor="LocalfileInput">
               <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />

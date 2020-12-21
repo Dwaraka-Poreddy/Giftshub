@@ -238,6 +238,9 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop ? (
                 <CropPage
