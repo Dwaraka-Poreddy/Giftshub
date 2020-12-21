@@ -16,6 +16,7 @@ import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
 import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
 import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
 import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
+import Loader from "react-loader-spinner";
 function ContinuePack({ match }) {
   const database = firebase.firestore();
   const { user } = useSelector((state) => ({ ...state }));
@@ -31,11 +32,10 @@ function ContinuePack({ match }) {
       .collection("giftshub")
       .doc(match.params.slug)
       .get();
-    const data = snapshot.data();
+    const data = await snapshot.data();
     setlivelink(
       "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
     );
-    console.log(window.location.href, "window.location.href");
     // setlivelink("http://localhost:3000/ContinuePack/" + `${user.uid}`);
     setFolderData(data);
 
@@ -101,14 +101,16 @@ function ContinuePack({ match }) {
     //   }
     // }
   }
-  useEffect(() => {
-    getDoc();
+  useEffect(async () => {
+    // setloading(true);
+    await getDoc();
+    setloading(true);
   }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(true);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setloading(true);
+  //   }, 3000);
+  // }, []);
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -222,9 +224,17 @@ function ContinuePack({ match }) {
               </Step>
             ))}
           </Stepper>
-        ) : null}
+        ) : (
+          <Loader
+            type="BallTriangle"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            // timeout={3000} //3 secs
+          />
+        )}
         <div>
-          {allStepsCompleted() ? (
+          {allStepsCompleted() && loading ? (
             <div>
               <Typography className={Stepperclasses.instructions}>
                 All Componenets completed - you&apos;re finished
@@ -234,44 +244,8 @@ function ContinuePack({ match }) {
           ) : (
             <div>
               <Typography className={Stepperclasses.instructions}>
-                {getStepContent(activeStep)}
+                {loading && getStepContent(activeStep)}
               </Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  className={Stepperclasses.button}
-                >
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                  className={Stepperclasses.button}
-                >
-                  Next
-                </Button>
-                {activeStep !== steps.length &&
-                  (completed[activeStep] ? (
-                    <Typography
-                      variant="caption"
-                      className={Stepperclasses.completed}
-                    >
-                      Step {activeStep + 1} already completed
-                    </Typography>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleComplete}
-                    >
-                      {completedSteps() === totalSteps() - 1
-                        ? "Finish"
-                        : "Complete Step"}
-                    </Button>
-                  ))}
-              </div>
             </div>
           )}
         </div>
@@ -284,37 +258,25 @@ function ContinuePack({ match }) {
       <br />
       <br />
       <br />
-      <div style={{ float: "right" }}>
-        {!showshare ? (
-          <div style={{ width: "150px", marginTop: "20px" }}>
-            <HeaderBtn
-              handleClick={() => {
-                setshowshare(true);
-              }}
-              Icon={ShareIcon}
-              title="Share "
-            />
-          </div>
-        ) : (
-          <Share livelink={livelink} />
-        )}
-      </div>
+      {loading ? (
+        <div style={{ float: "right" }}>
+          {!showshare ? (
+            <div style={{ width: "150px", marginTop: "20px" }}>
+              <HeaderBtn
+                handleClick={() => {
+                  setshowshare(true);
+                }}
+                Icon={ShareIcon}
+                title="Share "
+              />
+            </div>
+          ) : (
+            <Share livelink={livelink} />
+          )}
+        </div>
+      ) : null}
+
       {horizontalStepper()}
-      Secret :<p> {FolderData.Secret_name}</p>
-      *********************
-      <br />
-      <strong>
-        <p>Folder_name: {FolderData.Folder_name}</p>
-        <p>Secret_name: {FolderData.Secret_name}</p>
-        <p>Bday_date: {FolderData.Bday_date}</p>
-        <p>url1: {FolderData.url1}</p>
-        <p>url2: {FolderData.url2}</p>
-        <p>url3: {FolderData.url3}</p>
-        <p>url4: {FolderData.url4}</p>
-        <p>url5: {FolderData.url5}</p>
-        <p>url6: {FolderData.url6}</p>
-        <p>url7: {FolderData.url7}</p>
-      </strong>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ThreeDImage from "./ThreeDImage";
-
+import { toast } from "react-toastify";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -15,6 +15,7 @@ import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,6 +28,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledThreeDImagePage({ slug }) {
+  const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -51,6 +53,7 @@ function ScheduledThreeDImagePage({ slug }) {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -90,6 +93,7 @@ function ScheduledThreeDImagePage({ slug }) {
                 "/scheduledlive/threedimage/" + newKey + "/" + slug
               );
             });
+            setloading(false);
           });
       }
     );
@@ -110,6 +114,7 @@ function ScheduledThreeDImagePage({ slug }) {
     database.collection("Livelinks").doc(slug).update({
       url1: livelink,
     });
+    toast.success("3D image successfully added to your pack");
   };
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
@@ -205,6 +210,15 @@ function ScheduledThreeDImagePage({ slug }) {
                   />
                 </div>
               </center>
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  // timeout={3000} //3 secs
+                />
+              ) : null}
               <center>
                 {livelink ? (
                   <div>

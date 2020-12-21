@@ -47,6 +47,7 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export default function App() {
   const dispatch = useDispatch();
 

@@ -14,6 +14,7 @@ import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -35,7 +36,7 @@ function OpenGreetingCardPage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-
+  const [loading, setloading] = useState(false);
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
   );
@@ -47,6 +48,7 @@ function OpenGreetingCardPage() {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -79,6 +81,7 @@ function OpenGreetingCardPage() {
               setlivelink("http://localhost:3000/live/threedimage/" + newKey);
               setpreviewlink("/live/threedimage/" + newKey);
             });
+            setloading(false);
           });
       }
     );
@@ -179,35 +182,45 @@ function OpenGreetingCardPage() {
                   />
                 </div>
               </center>
-              <center>
-                {livelink ? (
-                  <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
-
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink}>
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
-                    </div>
-
-                    {!showshare ? (
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  // timeout={3000} //3 secs
+                />
+              ) : (
+                <center>
+                  {livelink ? (
+                    <div>
                       <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
+                        <Copy livelink={livelink} />
                       </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )}
-                  </div>
-                ) : null}
-              </center>
+
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <Link class="logo" to={previewlink}>
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
+
+                      {!showshare ? (
+                        <div style={{ width: "55%", marginTop: "20px" }}>
+                          <HeaderBtn
+                            handleClick={() => {
+                              setshowshare(true);
+                            }}
+                            Icon={ShareIcon}
+                            title="Share "
+                          />
+                        </div>
+                      ) : (
+                        <Share livelink={livelink} />
+                      )}
+                    </div>
+                  ) : null}
+                </center>
+              )}
             </div>
           </div>
         </div>

@@ -7,8 +7,9 @@ import "antd/dist/antd.css";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-
 import rootReducer from "./reducers/index";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
