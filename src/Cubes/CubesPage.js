@@ -261,6 +261,9 @@ function CubesPage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile1}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop1 ? (
                 <CropPage
@@ -285,6 +288,9 @@ function CubesPage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile2}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop2 ? (
                 <CropPage
@@ -309,6 +315,9 @@ function CubesPage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile3}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop3 ? (
                 <CropPage
@@ -333,6 +342,9 @@ function CubesPage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile4}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop4 ? (
                 <CropPage
@@ -357,6 +369,9 @@ function CubesPage() {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile5}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
               />
               {opencrop5 ? (
                 <CropPage

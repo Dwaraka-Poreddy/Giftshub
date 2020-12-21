@@ -140,6 +140,7 @@ function ContinuePack({ match }) {
   }
 
   function getStepContent(step) {
+    console.log("getstep");
     switch (step) {
       case 0:
         return <ScheduledThreeDImagePage slug={slag} getDoc={getDoc} />;
@@ -172,29 +173,13 @@ function ContinuePack({ match }) {
     return Object.keys(completed).length;
   };
 
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-    console.log(activeStep, "Hi");
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   const handleStep = (step) => () => {
     setActiveStep(step);
+    console.log(activeStep, "qwert");
     // console.log(step, completed, "qwert");
     // if (completed[step] == true) {
     //   console.log("inside if", "qwert");
@@ -202,17 +187,6 @@ function ContinuePack({ match }) {
     // console.log("after if", "qwert");
   };
 
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
   const horizontalStepper = () => {
     return (
       <div className={Stepperclasses.root}>
@@ -242,8 +216,8 @@ function ContinuePack({ match }) {
             <div>
               <Typography className={Stepperclasses.instructions}>
                 All Componenets completed - you&apos;re finished
+                {!loading && getStepContent(activeStep)}
               </Typography>
-              <Button onClick={handleReset}>Reset</Button>
             </div>
           ) : (
             <div>

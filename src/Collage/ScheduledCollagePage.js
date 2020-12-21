@@ -438,6 +438,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile1}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop1 ? (
               <CropPage
@@ -462,6 +465,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile2}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop2 ? (
               <CropPage
@@ -486,6 +492,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile3}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop3 ? (
               <CropPage
@@ -510,6 +519,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile4}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop4 ? (
               <CropPage
@@ -534,6 +546,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile5}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop5 ? (
               <CropPage
@@ -558,6 +573,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile6}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop6 ? (
               <CropPage
@@ -582,6 +600,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile7}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop7 ? (
               <CropPage
@@ -606,6 +627,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile8}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop8 ? (
               <CropPage
@@ -630,6 +654,9 @@ function ScheduledCollagePage({ slug, getDoc }) {
               type="file"
               accept="image/*"
               onChange={onSelectFile9}
+              onClick={(event) => {
+                event.target.value = null;
+              }}
             />
             {opencrop9 ? (
               <CropPage

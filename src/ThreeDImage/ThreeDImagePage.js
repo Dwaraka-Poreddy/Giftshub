@@ -16,6 +16,8 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
+import Tour from "reactour";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -28,6 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function OpenGreetingCardPage() {
+  const [isTourOpen, setIsTourOpen] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -44,6 +47,7 @@ function OpenGreetingCardPage() {
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
+  const [accentColor, setaccentColor] = useState("#5cb7b7");
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -91,9 +95,46 @@ function OpenGreetingCardPage() {
       }
     );
   };
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `changes the image`,
+    },
+    {
+      selector: '[data-tut="reactour__gradient"]',
+      content: `choose gradient from and to colors`,
+    },
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `generates a live link for this component`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `copies the generated live link to clipboard`,
+    },
 
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `previews the component  crerated`,
+    },
+    {
+      selector: '[data-tut=" reactour__sharelink"]',
+      content: `shares the live link of the component  crerated`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
       <header
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
@@ -130,7 +171,29 @@ function OpenGreetingCardPage() {
 
       <br />
       <br />
-      <br />
+      <div
+        style={{ backgroundColor: "#009dd9", float: "right", width: "150px" }}
+        className="HeaderBtn"
+        onClick={() => {
+          setIsTourOpen(true);
+        }}
+      >
+        <FlightTakeoffIcon style={{ color: "#ffffff", fontSize: "large" }} />
+        <h2
+          style={{
+            flex: 1,
+            marginLeft: "5px",
+            fontSize: "12px",
+            fontWeight: "700",
+            color: "#ffffff",
+            textDecoration: "none",
+          }}
+        >
+          {" "}
+          Start Tour{" "}
+        </h2>{" "}
+      </div>
+
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
@@ -155,76 +218,84 @@ function OpenGreetingCardPage() {
             }}
           >
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput"
-                name="LocalfileInput"
-                // multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={4 / 3}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  // multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-              </label>
-              <input
-                type="color"
-                id="FirstColor"
-                initialValue="null"
-                value={color.hex}
-                onChange={(e) => {
-                  setfirstcol(e.target.value);
-                }}
-                placement="right"
-                autoAdjust="true"
-                style={{
-                  margin: "auto",
-                  visibility: "hidden",
-                  position: "relative",
-                  display: "flex",
-                  height: "5px",
-                }}
-              />
-              <label htmlFor="FirstColor">
-                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient from " />
-              </label>
-              <input
-                type="color"
-                id="ToColor"
-                initialValue="null"
-                value={color.hex}
-                onChange={(e) => {
-                  setsecondcol(e.target.value);
-                }}
-                placement="right"
-                autoAdjust="true"
-                style={{
-                  margin: "auto",
-                  visibility: "hidden",
-                  position: "relative",
-                  display: "flex",
-                  height: "5px",
-                }}
-              />
-              <label htmlFor="ToColor">
-                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
-              </label>
-              <center>
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                </label>
+              </div>
+              <div data-tut="reactour__gradient">
+                <input
+                  type="color"
+                  id="FirstColor"
+                  initialValue="null"
+                  value={color.hex}
+                  onChange={(e) => {
+                    setfirstcol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
+                />
+                <label htmlFor="FirstColor">
+                  <HeaderBtn
+                    Icon={FormatColorFillIcon}
+                    title="Gradient from "
+                  />
+                </label>
+                <input
+                  type="color"
+                  id="ToColor"
+                  initialValue="null"
+                  value={color.hex}
+                  onChange={(e) => {
+                    setsecondcol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
+                />
+                <label htmlFor="ToColor">
+                  <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
+                </label>
+              </div>
+
+              <center data-tut="reactour__generatelink">
                 <div style={{ width: "55%", marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
@@ -247,18 +318,27 @@ function OpenGreetingCardPage() {
                 <center>
                   {livelink ? (
                     <div>
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ width: "55%", marginTop: "20px" }}
+                      >
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ width: "55%", marginTop: "20px" }}
+                      >
                         <Link class="logo" to={previewlink}>
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ width: "55%", marginTop: "20px" }}>
+                        <div
+                          data-tut="reactour__sharelink"
+                          style={{ width: "55%", marginTop: "20px" }}
+                        >
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);

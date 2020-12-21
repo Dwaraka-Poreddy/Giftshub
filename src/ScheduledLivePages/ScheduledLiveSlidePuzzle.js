@@ -144,6 +144,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
         <br />
         <div class="row">
           <div class="col-sm-2"></div>
+          qwerty
           <div style={{ paddingLeft: "5px" }} class="col-sm-4">
             {" "}
             <center>
@@ -156,20 +157,6 @@ function ScheduledLiveSlidePuzzle({ match }) {
           <div class="col-sm-2"></div>
         </div>
       </div>
-      {/* <br />
-      <br />
-      <div style={{ backgroundColor: "#70cff3" }}>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.2" }}></div>
-          <div style={{ flex: "0.3" }}>
-            <SlidePuzzle fbimg={fbimg} />
-          </div>
-          <div style={{ flex: "0.05" }}></div>
-          <div style={{ flex: "0.3", marginTop: "5%" }}>
-            <SlidePuzzleAnswer fbimg={fbimg} />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }
