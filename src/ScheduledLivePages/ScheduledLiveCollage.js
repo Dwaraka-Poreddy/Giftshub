@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
-import ThreeDImage from "../ThreeDImage/ThreeDImage";
-
+import Collage from "../Collage/Collage";
+import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
-export default function ScheduledLiveThreeDImage({ match }) {
-  const database = firebase.firestore();
-  const [fbimg, setfbimg] = useState("");
-  const [Livelinks, setLivelinks] = useState("");
+export default function LiveCollagePage({ match }) {
   const [loading, setloading] = useState(true);
+  const database = firebase.firestore();
+  const [Livelinks, setLivelinks] = useState("");
+  const [fbimg1, setfbimg1] = useState("");
+  const [fbimg2, setfbimg2] = useState("");
+  const [fbimg3, setfbimg3] = useState("");
+  const [fbimg4, setfbimg4] = useState("");
+  const [fbimg5, setfbimg5] = useState("");
+  const [fbimg6, setfbimg6] = useState("");
+  const [fbimg7, setfbimg7] = useState("");
+  const [fbimg8, setfbimg8] = useState("");
+  const [fbimg9, setfbimg9] = useState("");
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -25,14 +33,31 @@ export default function ScheduledLiveThreeDImage({ match }) {
   useEffect(() => {
     const todoRef = firebase
       .database()
-      .ref("/ThreeDImage/" + match.params.id)
+      .ref("/Collage/" + match.params.id)
       .once("value")
       .then((snapshot) => {
-        var img = snapshot.val().url;
-        setfbimg(img);
+        var img1 = snapshot.val().url1;
+        console.log(img1);
+        setfbimg1(img1);
+        var img2 = snapshot.val().url2;
+        setfbimg2(img2);
+        var img3 = snapshot.val().url3;
+        setfbimg3(img3);
+        var img4 = snapshot.val().url4;
+        setfbimg4(img4);
+        var img5 = snapshot.val().url5;
+        setfbimg5(img5);
+        var img6 = snapshot.val().url6;
+        setfbimg6(img6);
+        var img7 = snapshot.val().url7;
+        setfbimg7(img7);
+        var img8 = snapshot.val().url8;
+        setfbimg8(img8);
+        var img9 = snapshot.val().url9;
+        setfbimg9(img9);
+        setloading(true);
       });
   }, []);
-
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
     var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
@@ -77,6 +102,33 @@ export default function ScheduledLiveThreeDImage({ match }) {
     }, 5000);
   });
 
+  // const func = () => {
+  //   return (
+  //     <div>
+  //       {loading ? (
+  //         <Collage
+  //           fbimg1={fbimg1}
+  //           fbimg2={fbimg2}
+  //           fbimg3={fbimg3}
+  //           fbimg4={fbimg4}
+  //           fbimg5={fbimg5}
+  //           fbimg6={fbimg6}
+  //           fbimg7={fbimg7}
+  //           fbimg8={fbimg8}
+  //           fbimg9={fbimg9}
+  //         />
+  //       ) : (
+  //         <Loader
+  //           type="BallTriangle"
+  //           color="#00BFFF"
+  //           height={100}
+  //           width={100}
+  //           // timeout={3000} //3 secs
+  //         />
+  //       )}
+  //     </div>
+  //   );
+  // };
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -135,6 +187,8 @@ export default function ScheduledLiveThreeDImage({ match }) {
           </ul>
         </div>
       </nav>
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
@@ -145,10 +199,20 @@ export default function ScheduledLiveThreeDImage({ match }) {
               ) : (
                 <div>
                   <center>
-                    <h1 className="example">Six days to go !!!</h1>
+                    <h1 className="example">One day to go !!!</h1>
                   </center>
-
-                  <ThreeDImage fbimg={fbimg} />
+                  <Collage
+                    fbimg1={fbimg1}
+                    fbimg2={fbimg2}
+                    fbimg3={fbimg3}
+                    fbimg4={fbimg4}
+                    fbimg5={fbimg5}
+                    fbimg6={fbimg6}
+                    fbimg7={fbimg7}
+                    fbimg8={fbimg8}
+                    fbimg9={fbimg9}
+                  />
+                  {/* {func()} */}
                 </div>
               )}
             </div>

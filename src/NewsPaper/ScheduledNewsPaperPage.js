@@ -20,7 +20,8 @@ import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-
+import { toast } from "react-toastify";
+import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import "react-datepicker/dist/react-datepicker.css";
@@ -35,10 +36,11 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledNewsPaperPage({ slug }) {
+function ScheduledNewsPaperPage({ slug, getDoc }) {
   const database = firebase.firestore();
   let docToPrint = React.createRef();
   const secclasses = secuseStyles();
+  const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -69,6 +71,7 @@ function ScheduledNewsPaperPage({ slug }) {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -108,17 +111,14 @@ function ScheduledNewsPaperPage({ slug }) {
               );
               setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
             });
+            setloading(false);
           });
       }
     );
   };
 
-  const EditPack = (e) => {
-    // console.log(livelink);
-    // console.log(user.uid);
-    // console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -126,10 +126,12 @@ function ScheduledNewsPaperPage({ slug }) {
       .update({
         url2: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url2: livelink,
     });
-  };
+    toast.success("NewsPaper successfully added to your pack");
+    getDoc();
+  }
 
   function handleImageDownlod(el) {
     const input = docToPrint.current;
@@ -345,6 +347,14 @@ function ScheduledNewsPaperPage({ slug }) {
                   />
                 </div>
               </center>
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                />
+              ) : null}
               <center>
                 {livelink ? (
                   <div>

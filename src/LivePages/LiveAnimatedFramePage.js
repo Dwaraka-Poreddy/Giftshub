@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import AnimatedFrame from "../AnimatedFrames/AnimatedFrame";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
   const [title, settitle] = useState("");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/AnimatedFrame/" + match.params.slug)
       .once("value")
@@ -20,6 +22,7 @@ function LiveAnimatedFramePage({ match }) {
         var title = snapshot.val().title;
         settitle(title);
       });
+    setloading(false);
   }, []);
 
   return (
@@ -59,8 +62,11 @@ function LiveAnimatedFramePage({ match }) {
       </header>
       <br />
       <br />
-
-      <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
+      {loading ? (
+        <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
+      ) : (
+        <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
+      )}
     </div>
   );
 }

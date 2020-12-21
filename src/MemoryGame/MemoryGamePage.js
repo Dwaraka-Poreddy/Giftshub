@@ -8,7 +8,7 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import Loader from "react-loader-spinner";
 import MemoryGame from "./MemoryGame";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
@@ -27,6 +27,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function CubesPage() {
+  const [loading, setloading] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -118,6 +119,7 @@ function CubesPage() {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
     var ud3 = uuidv4();
@@ -202,7 +204,7 @@ function CubesPage() {
                                                     .push(todo)
                                                     .getKey();
                                                   setlivelink(
-                                                    "http://localhost:3000/memorygame/" +
+                                                    "http://localhost:3000/live/memorygame/" +
                                                       newKey
                                                   );
                                                   console.log(
@@ -210,9 +212,10 @@ function CubesPage() {
                                                     "livelink"
                                                   );
                                                   setpreviewlink(
-                                                    "/memorygame/" + newKey
+                                                    "/live/memorygame/" + newKey
                                                   );
                                                 });
+                                              setloading(false);
                                             });
                                         });
                                     });
@@ -438,35 +441,45 @@ function CubesPage() {
                 />
               </div>
             </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                // timeout={3000} //3 secs
+              />
+            ) : (
+              <center>
+                {livelink ? (
+                  <div>
                     <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
+                      <Copy livelink={livelink} />
                     </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )}
-                </div>
-              ) : null}
-            </center>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={livelink} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            )}
           </div>
         </div>
       </div>

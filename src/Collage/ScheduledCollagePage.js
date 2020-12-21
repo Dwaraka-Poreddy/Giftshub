@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { toast } from "react-toastify";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import Loader from "react-loader-spinner";
 import Collage from "./Collage";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
+import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import Loader from "react-loader-spinner";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,13 +26,15 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function CollagePage() {
+function ScheduledCollagePage({ slug, getDoc }) {
+  const [loading, setloading] = useState(false);
+  const database = firebase.firestore();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [imageAsFile, setImageAsFile] = useState("");
-  const [loading, setloading] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
   const [fbimg1, setfbimg1] = useState(
     "https://source.unsplash.com/2ShvY8Lf6l0/800x599"
   );
@@ -309,16 +310,20 @@ function CollagePage() {
                                                                                     )
                                                                                     .getKey();
                                                                                   setlivelink(
-                                                                                    "http://localhost:3000/live/collage/" +
-                                                                                      newKey
+                                                                                    "http://localhost:3000/scheduledlive/collage/" +
+                                                                                      newKey +
+                                                                                      "/" +
+                                                                                      slug
                                                                                   );
                                                                                   console.log(
                                                                                     livelink,
                                                                                     "livelink"
                                                                                   );
                                                                                   setpreviewlink(
-                                                                                    "live/collage/" +
-                                                                                      newKey
+                                                                                    "scheduledlive/collage/" +
+                                                                                      newKey +
+                                                                                      "/" +
+                                                                                      slug
                                                                                   );
                                                                                 }
                                                                               );
@@ -348,7 +353,21 @@ function CollagePage() {
       }
     );
   };
-
+  async function EditPack() {
+    await database
+      .collection("7-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update({
+        url7: livelink,
+      });
+    await database.collection("Livelinks").doc(slug).update({
+      url7: livelink,
+    });
+    toast.success("Collage successfully added to your pack");
+    getDoc();
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -391,7 +410,12 @@ function CollagePage() {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.7" }}>{func()}</div>
+        <div style={{ flex: "0.7" }}>
+          <center>
+            <h1 className="example">One day to go !!!</h1>
+          </center>
+          {func()}
+        </div>
 
         <div style={{ flex: "0.05" }}></div>
         <div
@@ -612,7 +636,7 @@ function CollagePage() {
                 send={send9}
                 setfbimg={setfbimg9}
                 setimage_url={setimage_url9}
-                aspect_ratio={4 / 3}
+                aspect_ratio={1 / 1}
                 opencrop={opencrop9}
                 setopencrop={setopencrop9}
               />
@@ -639,37 +663,31 @@ function CollagePage() {
                 width={100}
                 // timeout={3000} //3 secs
               />
-            ) : (
-              <center>
-                {livelink ? (
-                  <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
-
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink}>
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
-                    </div>
-
-                    {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )}
+            ) : null}
+            <center>
+              {livelink ? (
+                <div>
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <Copy livelink={livelink} />
                   </div>
-                ) : null}
-              </center>
-            )}
+
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <Link class="logo" to={previewlink}>
+                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                    </Link>
+                  </div>
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <HeaderBtn
+                      handleClick={() => {
+                        EditPack();
+                      }}
+                      Icon={ShareIcon}
+                      title="Add to Pack "
+                    />
+                  </div>
+                </div>
+              ) : null}
+            </center>
           </div>
         </div>
       </div>
@@ -720,4 +738,4 @@ function CollagePage() {
   );
 }
 
-export default CollagePage;
+export default ScheduledCollagePage;

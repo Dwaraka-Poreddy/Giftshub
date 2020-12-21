@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
 import HeaderBtn from "../Studio/HeaderBtn";
 import ShareIcon from "@material-ui/icons/Share";
+import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
 import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
 import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
 import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
@@ -21,24 +22,12 @@ function ContinuePack({ match }) {
   const database = firebase.firestore();
   const { user } = useSelector((state) => ({ ...state }));
   const [FolderData, setFolderData] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
   const [slag, setslag] = useState(match.params.slug);
   const [livelink, setlivelink] = useState();
   const [showshare, setshowshare] = useState(false);
-  async function getDoc() {
-    const snapshot = await database
-      .collection("7-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(match.params.slug)
-      .get();
-    const data = await snapshot.data();
-    setlivelink(
-      "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
-    );
-    // setlivelink("http://localhost:3000/ContinuePack/" + `${user.uid}`);
-    setFolderData(data);
-
+  async function getDocnew(data) {
+    console.log("getdocnew started");
     if (data.url1 != "") {
       const newCompleted = completed;
       newCompleted[0] = true;
@@ -86,31 +75,42 @@ function ContinuePack({ match }) {
       setActiveStep(4);
     } else if (data.url6 == "") {
       setActiveStep(5);
+      console.log(data.url6, "cubes");
     } else if (data.url7 == "") {
       setActiveStep(6);
     } else {
       setActiveStep(7);
     }
-    // for (var i = 0; i < 7; i++) {
-    //   if (data.url + "i") {
-    //     console.log(data.url + i);
-    //     const newCompleted = completed;
-    //     newCompleted[i] = true;
-    //     setCompleted(newCompleted);
-    //     console.log(i, completed, "completed");
-    //   }
-    // }
+    console.log("getdocnew ended");
+  }
+  async function getDoc() {
+    console.log(loading, "1");
+    setloading(true);
+    console.log(loading, "2");
+    console.log("getdoc running");
+    const snapshot = await database
+      .collection("7-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(match.params.slug)
+      .get();
+    const data = snapshot.data();
+    setlivelink(
+      "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
+    );
+    console.log(loading, "3");
+    setFolderData(data);
+    console.log("calling getdocnew");
+    await getDocnew(data);
+    console.log("finished getdocnew");
+    setloading(false);
+    console.log("setloading false");
   }
   useEffect(async () => {
-    // setloading(true);
     await getDoc();
-    setloading(true);
+    setloading(false);
   }, []);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setloading(true);
-  //   }, 3000);
-  // }, []);
+
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -135,26 +135,26 @@ function ContinuePack({ match }) {
       "Slide Puzzle",
       "Memory Game",
       "Cubes in Heart",
-      "Select campaign settings",
+      "Collage",
     ];
   }
 
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <ScheduledThreeDImagePage slug={slag} />;
+        return <ScheduledThreeDImagePage slug={slag} getDoc={getDoc} />;
       case 1:
-        return <ScheduledNewsPaperPage slug={slag} />;
+        return <ScheduledNewsPaperPage slug={slag} getDoc={getDoc} />;
       case 2:
-        return <ScheduledOpenGreetingCardPage slug={slag} />;
+        return <ScheduledOpenGreetingCardPage slug={slag} getDoc={getDoc} />;
       case 3:
-        return <ScheduledSlidePuzzlePage slug={slag} />;
+        return <ScheduledSlidePuzzlePage slug={slag} getDoc={getDoc} />;
       case 4:
-        return <ScheduledMemoryGamePage slug={slag} />;
+        return <ScheduledMemoryGamePage slug={slag} getDoc={getDoc} />;
       case 5:
-        return <ScheduledCubesPage slug={slag} />;
+        return <ScheduledCubesPage slug={slag} getDoc={getDoc} />;
       case 6:
-        return "New Component will be added here";
+        return <ScheduledCollagePage slug={slag} getDoc={getDoc} />;
       default:
         return "Unknown step";
     }
@@ -211,7 +211,7 @@ function ContinuePack({ match }) {
   const horizontalStepper = () => {
     return (
       <div className={Stepperclasses.root}>
-        {loading ? (
+        {!loading ? (
           <Stepper alternativeLabel nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
               <Step key={label}>
@@ -230,11 +230,10 @@ function ContinuePack({ match }) {
             color="#00BFFF"
             height={100}
             width={100}
-            // timeout={3000} //3 secs
           />
         )}
         <div>
-          {allStepsCompleted() && loading ? (
+          {allStepsCompleted() && !loading ? (
             <div>
               <Typography className={Stepperclasses.instructions}>
                 All Componenets completed - you&apos;re finished
@@ -244,7 +243,7 @@ function ContinuePack({ match }) {
           ) : (
             <div>
               <Typography className={Stepperclasses.instructions}>
-                {loading && getStepContent(activeStep)}
+                {!loading && getStepContent(activeStep)}
               </Typography>
             </div>
           )}
@@ -258,7 +257,7 @@ function ContinuePack({ match }) {
       <br />
       <br />
       <br />
-      {loading ? (
+      {!loading ? (
         <div style={{ float: "right" }}>
           {!showshare ? (
             <div style={{ width: "150px", marginTop: "20px" }}>

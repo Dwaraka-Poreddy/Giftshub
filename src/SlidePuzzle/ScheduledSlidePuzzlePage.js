@@ -9,13 +9,14 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import Loader from "react-loader-spinner";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,7 +28,8 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledSlidePuzzlePage({ slug }) {
+function ScheduledSlidePuzzlePage({ slug, getDoc }) {
+  const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -50,6 +52,7 @@ function ScheduledSlidePuzzlePage({ slug }) {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -89,16 +92,13 @@ function ScheduledSlidePuzzlePage({ slug }) {
                 "/scheduledlive/slidepuzzle/" + newKey + "/" + slug
               );
             });
+            setloading(false);
           });
       }
     );
   };
-  const EditPack = (e) => {
-    // console.log(livelink);
-    // console.log(user.uid);
-    // console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -106,10 +106,12 @@ function ScheduledSlidePuzzlePage({ slug }) {
       .update({
         url4: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url4: livelink,
     });
-  };
+    toast.success("Slide Puzzle successfully added to your pack");
+    getDoc();
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -226,6 +228,15 @@ function ScheduledSlidePuzzlePage({ slug }) {
                 />
               </div>
             </center>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                // timeout={3000} //3 secs
+              />
+            ) : null}
             <center>
               {livelink ? (
                 <div>

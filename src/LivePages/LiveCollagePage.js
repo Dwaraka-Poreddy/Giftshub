@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import LiveCollage from "../Collage/LiveCollage";
-
+import Collage from "../Collage/Collage";
+import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function LiveCollagePage({ match }) {
+  const [loading, setloading] = useState(false);
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
   const [fbimg3, setfbimg3] = useState("");
@@ -13,14 +14,15 @@ export default function LiveCollagePage({ match }) {
   const [fbimg7, setfbimg7] = useState("");
   const [fbimg8, setfbimg8] = useState("");
   const [fbimg9, setfbimg9] = useState("");
-  useEffect(() => {
-    const todoRef = firebase
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/Collage/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img1 = snapshot.val().url1;
-        console.log(img1);
+
         setfbimg1(img1);
         var img2 = snapshot.val().url2;
         setfbimg2(img2);
@@ -39,10 +41,11 @@ export default function LiveCollagePage({ match }) {
         var img9 = snapshot.val().url9;
         setfbimg9(img9);
       });
+    setloading(false);
   }, []);
   const func = () => {
     return (
-      <LiveCollage
+      <Collage
         fbimg1={fbimg1}
         fbimg2={fbimg2}
         fbimg3={fbimg3}
@@ -95,7 +98,18 @@ export default function LiveCollagePage({ match }) {
       <div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>{func()}</div>
+          <div style={{ flex: "0.7" }}>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              func()
+            )}
+          </div>
           <div style={{ flex: "0.15" }}></div>
         </div>
       </div>

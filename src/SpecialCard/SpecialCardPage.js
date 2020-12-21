@@ -33,7 +33,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import LinkIcon from "@material-ui/icons/Link";
 import Fab from "@material-ui/core/Fab";
-
+import Loader from "react-loader-spinner";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -107,6 +107,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 export default function SpecialCardPage() {
+  const [loading, setloading] = useState(false);
   const [Snackopen, setSnackopen] = React.useState(false);
   const [infoSnackopen, setinfoSnackopen] = React.useState(false);
   const classes = useStyles();
@@ -177,6 +178,7 @@ export default function SpecialCardPage() {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -217,6 +219,7 @@ export default function SpecialCardPage() {
               setlivelink("http://localhost:3000/live/specialcard/" + newKey);
               setpreviewlink("/live/specialcard/" + newKey);
             });
+            setloading(false);
           });
       }
     );
@@ -501,35 +504,45 @@ export default function SpecialCardPage() {
                 />
               </div>
             </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                // timeout={3000} //3 secs
+              />
+            ) : (
+              <center>
+                {livelink ? (
+                  <div>
                     <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
+                      <Copy livelink={livelink} />
                     </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )}
-                </div>
-              ) : null}
-            </center>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={livelink} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            )}
           </div>
         </div>
       </div>

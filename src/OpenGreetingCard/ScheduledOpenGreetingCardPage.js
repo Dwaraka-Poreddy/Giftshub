@@ -15,7 +15,8 @@ import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-
+import { toast } from "react-toastify";
+import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 const secuseStyles = makeStyles((theme) => ({
@@ -29,7 +30,8 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledOpenGreetingCardPage({ slug }) {
+function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
+  const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -56,6 +58,7 @@ function ScheduledOpenGreetingCardPage({ slug }) {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -98,16 +101,13 @@ function ScheduledOpenGreetingCardPage({ slug }) {
                 "/scheduledlive/opengreetingcard/" + newKey + "/" + slug
               );
             });
+            setloading(false);
           });
       }
     );
   };
-  const EditPack = (e) => {
-    // console.log(livelink);
-    // console.log(user.uid);
-    // console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -115,10 +115,12 @@ function ScheduledOpenGreetingCardPage({ slug }) {
       .update({
         url3: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url3: livelink,
     });
-  };
+    toast.success("Greeting Card successfully added to your pack");
+    getDoc();
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -297,6 +299,14 @@ function ScheduledOpenGreetingCardPage({ slug }) {
                 />
               </div>
             </center>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : null}
             <center>
               {livelink ? (
                 <div>

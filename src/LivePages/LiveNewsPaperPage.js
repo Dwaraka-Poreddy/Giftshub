@@ -4,15 +4,17 @@ import firebase from "../firebase";
 import HeaderBtn from "../Studio/HeaderBtn";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
 function LiveNewsPaperPage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head, sethead] = useState("");
   const [para, setpara] = useState("");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/NewsPaper/" + match.params.slug)
       .once("value")
@@ -24,6 +26,7 @@ function LiveNewsPaperPage({ match }) {
         var para = snapshot.val().para;
         setpara(para);
       });
+    setloading(false);
   }, []);
   function handleMemeDownlod(el) {
     var canvas = document.getElementById("newspaper");
@@ -96,7 +99,16 @@ function LiveNewsPaperPage({ match }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
         <div id="newspaper" style={{ flex: "0.8" }}>
-          <NewsPaper fbimg={fbimg} head={head} para={para} />
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <NewsPaper fbimg={fbimg} head={head} para={para} />
+          )}
         </div>
       </div>
     </div>

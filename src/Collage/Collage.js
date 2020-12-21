@@ -76,7 +76,7 @@ export default function Collage({
   };
 
   useEffect(() => {
-    setPhotos([
+    setItems([
       {
         src: fbimg1,
         width: 4,
@@ -129,7 +129,7 @@ export default function Collage({
     <div>
       <h2>Sortable Gallery</h2>
       <h3>Drag photo to rearrange</h3>
-      <SortableGallery items={photos} onSortEnd={onSortEnd} axis={"xy"} />
+      <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
     </div>
   );
 }

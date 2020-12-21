@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MemoryGame from "../MemoryGame/MemoryGame";
-
+import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function LiveMemoryGamePage({ match }) {
@@ -10,8 +10,10 @@ export default function LiveMemoryGamePage({ match }) {
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
   const [fbimg6, setfbimg6] = useState("");
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/MemoryGame/" + match.params.slug)
       .once("value")
@@ -29,6 +31,7 @@ export default function LiveMemoryGamePage({ match }) {
         var img6 = snapshot.val().url6;
         setfbimg6(img6);
       });
+    setloading(false);
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
@@ -71,14 +74,23 @@ export default function LiveMemoryGamePage({ match }) {
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
           <div style={{ flex: "0.7" }}>
-            <MemoryGame
-              fbimg1={fbimg1}
-              fbimg2={fbimg2}
-              fbimg3={fbimg3}
-              fbimg4={fbimg4}
-              fbimg5={fbimg5}
-              fbimg6={fbimg6}
-            />
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <MemoryGame
+                fbimg1={fbimg1}
+                fbimg2={fbimg2}
+                fbimg3={fbimg3}
+                fbimg4={fbimg4}
+                fbimg5={fbimg5}
+                fbimg6={fbimg6}
+              />
+            )}
           </div>
           <div style={{ flex: "0.15" }}></div>
         </div>

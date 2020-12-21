@@ -16,6 +16,8 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
+import { toast } from "react-toastify";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -27,7 +29,8 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledMemoryGamePage({ slug }) {
+function ScheduledMemoryGamePage({ slug, getDoc }) {
+  const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const { user } = useSelector((state) => ({ ...state }));
   const secclasses = secuseStyles();
@@ -119,12 +122,8 @@ function ScheduledMemoryGamePage({ slug }) {
       />
     );
   };
-  const EditPack = (e) => {
-    console.log(livelink);
-    console.log(user.uid);
-    console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -132,11 +131,14 @@ function ScheduledMemoryGamePage({ slug }) {
       .update({
         url5: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url5: livelink,
     });
-  };
+    toast.success("Memory Game successfully added to your pack");
+    getDoc();
+  }
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
     var ud3 = uuidv4();
@@ -237,6 +239,7 @@ function ScheduledMemoryGamePage({ slug }) {
                                                       slug
                                                   );
                                                 });
+                                              setloading(false);
                                             });
                                         });
                                     });
@@ -467,6 +470,14 @@ function ScheduledMemoryGamePage({ slug }) {
                 />
               </div>
             </center>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : null}
             <center>
               {livelink ? (
                 <div>
@@ -486,19 +497,6 @@ function ScheduledMemoryGamePage({ slug }) {
                     Icon={ShareIcon}
                     title="Add to Pack "
                   />
-                  {/* {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
-                    </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )} */}
                 </div>
               ) : null}
             </center>

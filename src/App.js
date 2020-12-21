@@ -36,6 +36,7 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import LiveLinksPage from "./pages/LiveLinksPage";
+import ScheduledLiveCollage from "./ScheduledLivePages/ScheduledLiveCollage";
 import ScheduledLiveMemoryGame from "./ScheduledLivePages/ScheduledLiveMemoryGame";
 import ScheduledLiveSlidePuzzle from "./ScheduledLivePages/ScheduledLiveSlidePuzzle";
 import ScheduledLiveNewsPaper from "./ScheduledLivePages/ScheduledLiveNewsPaper";
@@ -158,6 +159,11 @@ export default function App() {
         />
         <Route
           exact
+          path="/scheduledlive/collage/:id/:slug"
+          component={ScheduledLiveCollage}
+        />
+        <Route
+          exact
           path="/live/newspaper/:slug"
           component={LiveNewsPaperPage}
         />
@@ -167,8 +173,12 @@ export default function App() {
           component={LiveOpenGreetingCardPage}
         />
         <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
-        <Route exact path="/memorygame/:slug" component={LiveMemoryGamePage} />
-        <Route exact path="/collage/:slug" component={LiveCollagePage} />
+        <Route
+          exact
+          path="/live/memorygame/:slug"
+          component={LiveMemoryGamePage}
+        />
+        <Route exact path="/live/collage/:slug" component={LiveCollagePage} />
         <Route
           exact
           path="/live/animatedframe/:slug"

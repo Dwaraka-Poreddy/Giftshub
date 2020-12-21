@@ -15,6 +15,8 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Loader from "react-loader-spinner";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -26,7 +28,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledCubesPage({ slug }) {
+function ScheduledCubesPage({ slug, getDoc }) {
   const { user } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -55,7 +57,7 @@ function ScheduledCubesPage({ slug }) {
   const [image_url3, setimage_url3] = useState();
   const [opencrop3, setopencrop3] = useState(false);
   const [send3, setsend3] = useState();
-
+  const [loading, setloading] = useState(false);
   const [fbimg4, setfbimg4] = useState(
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
   );
@@ -91,6 +93,7 @@ function ScheduledCubesPage({ slug }) {
     setopencrop5(true);
   };
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
     var ud3 = uuidv4();
@@ -177,6 +180,7 @@ function ScheduledCubesPage({ slug }) {
                                               slug
                                           );
                                         });
+                                      setloading(false);
                                     });
                                 });
                             });
@@ -189,12 +193,8 @@ function ScheduledCubesPage({ slug }) {
       }
     );
   };
-  const EditPack = (e) => {
-    console.log(livelink);
-    console.log(user.uid);
-    console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -202,10 +202,12 @@ function ScheduledCubesPage({ slug }) {
       .update({
         url6: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url6: livelink,
     });
-  };
+    toast.success("3D cube successfully added to your pack");
+    getDoc();
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -402,6 +404,14 @@ function ScheduledCubesPage({ slug }) {
                   />
                 </div>
               </center>
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                />
+              ) : null}
               <center>
                 {livelink ? (
                   <div>

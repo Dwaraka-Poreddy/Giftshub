@@ -6,13 +6,15 @@ import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
+import Loader from "react-loader-spinner";
 function LiveMagazinePage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head1, sethead1] = useState("");
   const [head2, sethead2] = useState("");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/Magazine/" + match.params.slug)
       .once("value")
@@ -24,6 +26,7 @@ function LiveMagazinePage({ match }) {
         var head2 = snapshot.val().head2;
         sethead2(head2);
       });
+    setloading(false);
   }, []);
 
   function handleMemeDownlod(el) {
@@ -96,7 +99,16 @@ function LiveMagazinePage({ match }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
         <div style={{ flex: "0.8" }}>
-          <Magazine fbimg={fbimg} head1={head1} head2={head2} />
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <Magazine fbimg={fbimg} head1={head1} head2={head2} />
+          )}
         </div>
       </div>
     </div>

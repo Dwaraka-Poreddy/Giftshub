@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Cubes from "../Cubes/Cubes";
-
+import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function LiveCubesPage({ match }) {
@@ -9,9 +9,10 @@ export default function LiveCubesPage({ match }) {
   const [fbimg3, setfbimg3] = useState("");
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/Cubes/" + match.params.slug)
       .once("value")
@@ -27,6 +28,7 @@ export default function LiveCubesPage({ match }) {
         var img5 = snapshot.val().url5;
         setfbimg5(img5);
       });
+    setloading(false);
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
@@ -69,13 +71,22 @@ export default function LiveCubesPage({ match }) {
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
           <div style={{ flex: "0.7" }}>
-            <Cubes
-              fbimg1={fbimg1}
-              fbimg2={fbimg2}
-              fbimg3={fbimg3}
-              fbimg4={fbimg4}
-              fbimg5={fbimg5}
-            />
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <Cubes
+                fbimg1={fbimg1}
+                fbimg2={fbimg2}
+                fbimg3={fbimg3}
+                fbimg4={fbimg4}
+                fbimg5={fbimg5}
+              />
+            )}
           </div>
           <div style={{ flex: "0.15" }}></div>
         </div>

@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ThreeDImage from "./ThreeDImage";
-import { toast } from "react-toastify";
+
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -15,6 +15,7 @@ import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +28,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledThreeDImagePage({ slug }) {
+function ScheduledThreeDImagePage({ slug, getDoc }) {
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -98,12 +99,8 @@ function ScheduledThreeDImagePage({ slug }) {
       }
     );
   };
-  const EditPack = (e) => {
-    console.log(livelink);
-    console.log(user.uid);
-    console.log(slug, "slug");
-    // e.preventDefault();
-    database
+  async function EditPack() {
+    await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
@@ -111,11 +108,12 @@ function ScheduledThreeDImagePage({ slug }) {
       .update({
         url1: livelink,
       });
-    database.collection("Livelinks").doc(slug).update({
+    await database.collection("Livelinks").doc(slug).update({
       url1: livelink,
     });
     toast.success("3D image successfully added to your pack");
-  };
+    getDoc();
+  }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <header
@@ -216,7 +214,6 @@ function ScheduledThreeDImagePage({ slug }) {
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : null}
               <center>
@@ -240,19 +237,6 @@ function ScheduledThreeDImagePage({ slug }) {
                         title="Add to Pack "
                       />
                     </div>
-                    {/* {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )} */}
                   </div>
                 ) : null}
               </center>

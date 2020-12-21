@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [text1, settext1] = useState("");
   const [text2, settext2] = useState("");
   const [maintext, setmaintext] = useState("e");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/OpenGreetingCard/" + match.params.slug)
       .once("value")
@@ -24,6 +26,7 @@ function LiveAnimatedFramePage({ match }) {
         var MainTitle = snapshot.val().maintext;
         setmaintext(MainTitle);
       });
+    setloading(false);
   }, []);
 
   return (
@@ -63,13 +66,16 @@ function LiveAnimatedFramePage({ match }) {
       </header>
       <br />
       <br />
-
-      <OpenGreetingCard
-        fbimg={fbimg}
-        text1={text1}
-        text2={text2}
-        maintext={maintext}
-      />
+      {loading ? (
+        <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
+      ) : (
+        <OpenGreetingCard
+          fbimg={fbimg}
+          text1={text1}
+          text2={text2}
+          maintext={maintext}
+        />
+      )}
     </div>
   );
 }

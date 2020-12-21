@@ -22,6 +22,8 @@ import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
+
 import "react-datepicker/dist/react-datepicker.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +39,7 @@ const secuseStyles = makeStyles((theme) => ({
 function NewsPaperPage() {
   let docToPrint = React.createRef();
   const secclasses = secuseStyles();
+  const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -66,6 +69,7 @@ function NewsPaperPage() {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -97,9 +101,10 @@ function NewsPaperPage() {
                 para: para,
               };
               var newKey = todoRef.push(todo).getKey();
-              setlivelink("https://localhost:3000/live/newspaper/" + newKey);
+              setlivelink("http://localhost:3000/live/newspaper/" + newKey);
               setpreviewlink("/live/newspaper/" + newKey);
             });
+            setloading(false);
           });
       }
     );
@@ -315,35 +320,45 @@ function NewsPaperPage() {
                   />
                 </div>
               </center>
-              <center>
-                {livelink ? (
-                  <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
-
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink}>
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
-                    </div>
-
-                    {!showshare ? (
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  // timeout={3000} //3 secs
+                />
+              ) : (
+                <center>
+                  {livelink ? (
+                    <div>
                       <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
+                        <Copy livelink={livelink} />
                       </div>
-                    ) : (
-                      <Share livelink={"livelink"} />
-                    )}
-                  </div>
-                ) : null}
-              </center>
+
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <Link class="logo" to={previewlink}>
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
+
+                      {!showshare ? (
+                        <div style={{ width: "55%", marginTop: "20px" }}>
+                          <HeaderBtn
+                            handleClick={() => {
+                              setshowshare(true);
+                            }}
+                            Icon={ShareIcon}
+                            title="Share "
+                          />
+                        </div>
+                      ) : (
+                        <Share livelink={livelink} />
+                      )}
+                    </div>
+                  ) : null}
+                </center>
+              )}
             </div>
           </div>
         </div>

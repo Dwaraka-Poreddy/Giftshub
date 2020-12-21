@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Magazine from "./Magazine";
-
+import Loader from "react-loader-spinner";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
@@ -33,6 +33,7 @@ const secuseStyles = makeStyles((theme) => ({
 
 function MagazinePage() {
   const secclasses = secuseStyles();
+  const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -52,6 +53,7 @@ function MagazinePage() {
   };
 
   const handleFireBaseUpload = () => {
+    setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
@@ -86,6 +88,7 @@ function MagazinePage() {
               setlivelink("http://localhost:3000/live/magazine/" + newKey);
               setpreviewlink("/live/magazine/" + newKey);
             });
+            setloading(false);
           });
       }
     );
@@ -259,35 +262,45 @@ function MagazinePage() {
                 />
               </div>
             </center>
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-
-                  {!showshare ? (
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                // timeout={3000} //3 secs
+              />
+            ) : (
+              <center>
+                {livelink ? (
+                  <div>
                     <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
+                      <Copy livelink={livelink} />
                     </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )}
-                </div>
-              ) : null}
-            </center>
+
+                    <div style={{ width: "55%", marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+
+                    {!showshare ? (
+                      <div style={{ width: "55%", marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            setshowshare(true);
+                          }}
+                          Icon={ShareIcon}
+                          title="Share "
+                        />
+                      </div>
+                    ) : (
+                      <Share livelink={livelink} />
+                    )}
+                  </div>
+                ) : null}
+              </center>
+            )}
           </div>
         </div>
       </div>

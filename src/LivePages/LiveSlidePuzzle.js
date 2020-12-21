@@ -3,13 +3,14 @@ import SlidePuzzle from "../SlidePuzzle/SlidePuzzle";
 import SlidePuzzleAnswer from "../SlidePuzzle/SlidePuzzleAnswer";
 import firebase from "../firebase";
 import "./LiveSlidePuzzle.css";
-
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
-
-  useEffect(() => {
-    const todoRef = firebase
+  const [loading, setloading] = useState(false);
+  useEffect(async () => {
+    setloading(true);
+    const todoRef = await firebase
       .database()
       .ref("/SlidePuzzle/" + match.params.slug)
       .once("value")
@@ -17,6 +18,7 @@ function LiveAnimatedFramePage({ match }) {
         var img = snapshot.val().url;
         setfbimg(img);
       });
+    setloading(false);
   }, []);
 
   return (
@@ -62,19 +64,29 @@ function LiveAnimatedFramePage({ match }) {
         </center>
         <br />
         <br />
-        <div class="row">
-          <div class="col-sm-2"></div>
-          <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-            {" "}
-            <center>
-              <SlidePuzzle fbimg={fbimg} />
-            </center>
+
+        {loading ? (
+          <Loader
+            type="BallTriangle"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        ) : (
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+              {" "}
+              <center>
+                <SlidePuzzle fbimg={fbimg} />
+              </center>
+            </div>
+            <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+              <SlidePuzzleAnswer fbimg={fbimg} />
+            </div>
+            <div class="col-sm-2"></div>
           </div>
-          <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-            <SlidePuzzleAnswer fbimg={fbimg} />
-          </div>
-          <div class="col-sm-2"></div>
-        </div>
+        )}
       </div>
       {/* <br />
       <br />
