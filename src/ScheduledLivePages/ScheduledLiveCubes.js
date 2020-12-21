@@ -131,7 +131,7 @@ export default function ScheduledLiveCubes({ match }) {
                 Day 5
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url6}>
                 Day 6
               </a>

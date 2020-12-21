@@ -86,8 +86,10 @@ function ScheduledLiveMainPage({ match }) {
       <br />
       <strong>
         <p>Folder_name: {FolderData.Folder_name}</p>
-        <p>Secret_name: {FolderData.Secret_name}</p>
+        <p>From_name: {FolderData.From_name}</p>
+        <p>To_name: {FolderData.To_name}</p>
         <p>Bday_date: {FolderData.Bday_date}</p>
+        <img src={FolderData.fbimg} alt="sender" />
         <p>url1: {FolderData.url1}</p>
         <p>url2: {FolderData.url2}</p>
         <p>url3: {FolderData.url3}</p>

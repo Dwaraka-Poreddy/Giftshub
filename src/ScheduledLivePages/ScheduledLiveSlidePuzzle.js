@@ -111,7 +111,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                 Day 3
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url4}>
                 Day 4
               </a>

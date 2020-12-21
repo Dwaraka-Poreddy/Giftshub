@@ -120,7 +120,7 @@ function ScheduledLiveNewsPaper({ match }) {
                 Day 1
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url2}>
                 Day 2
               </a>

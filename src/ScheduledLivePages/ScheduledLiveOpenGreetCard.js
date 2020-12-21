@@ -113,7 +113,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
                 Day 2
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url3}>
                 Day 3
               </a>

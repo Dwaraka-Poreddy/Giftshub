@@ -104,7 +104,7 @@ function ContinuePack({ match }) {
     await getDocnew(data);
     console.log("finished getdocnew");
     setloading(false);
-    console.log("setloading false");
+    console.log(match.params.slug, "newslug");
   }
   useEffect(async () => {
     await getDoc();
@@ -195,6 +195,11 @@ function ContinuePack({ match }) {
 
   const handleStep = (step) => () => {
     setActiveStep(step);
+    // console.log(step, completed, "qwert");
+    // if (completed[step] == true) {
+    //   console.log("inside if", "qwert");
+    // }
+    // console.log("after if", "qwert");
   };
 
   const handleComplete = () => {

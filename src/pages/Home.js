@@ -6,15 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
-
+import HeaderBtn from "../Studio/HeaderBtn";
+import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import CropPage from "../Utils/CropPage";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "15px",
     position: "absolute",
-    // width: "70vw",
-    // height: "97vh",
-    // maxWidth: "1000px",
-    // // minWidth: "400px",
+
     marginTop: "0vh",
     border: null,
     backgroundColor: "#303030",
@@ -33,10 +32,16 @@ const Home = ({ history }) => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const database = firebase.firestore();
-  const [Folder_name, setFolder_name] = useState(false);
+  const [Folder_name, setFolder_name] = useState();
+  const [From_name, setFrom_name] = useState();
+  const [To_name, setTo_name] = useState();
   const [gifts, setGifts] = useState([]);
   const [error, setError] = useState();
-  const [Secret_name, setSecret_name] = useState();
+  const [opencrop, setopencrop] = useState(false);
+  const [send, setsend] = useState();
+  const [fbimg, setfbimg] = useState();
+
+  const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date("December 10, 1815"));
   useEffect(() => {
     var user = firebase.auth().currentUser;
@@ -68,7 +73,11 @@ const Home = ({ history }) => {
         setError(error);
       });
   };
+  const onSelectFile = (e) => {
+    setsend(window.URL.createObjectURL(e.target.files[0]));
 
+    setopencrop(true);
+  };
   const CreatePack = (e) => {
     e.preventDefault();
     console.log(Folder_name);
@@ -79,8 +88,10 @@ const Home = ({ history }) => {
     sevendayPackPack
       .add({
         Folder_name: Folder_name,
-        Secret_name: Secret_name,
+        fbimg: fbimg,
         Bday_date: Bday_date,
+        From_name: From_name,
+        To_name: To_name,
         url1: "",
         url2: "",
         url3: "",
@@ -93,8 +104,10 @@ const Home = ({ history }) => {
         var LivelinkPack = firebase.firestore().collection("/Livelinks");
         var LivelinkPackPack = LivelinkPack.doc(docRef.id).set({
           Folder_name: Folder_name,
-          Secret_name: Secret_name,
+          fbimg: fbimg,
+          From_name: From_name,
           Bday_date: Bday_date,
+          To_name: To_name,
           url1: "",
           url2: "",
           url3: "",
@@ -150,12 +163,51 @@ const Home = ({ history }) => {
                           name="Folder_name"
                         />
                       </label>
+
                       <label>
-                        Secret_name Name:
+                        From_name Name:
                         <input
-                          onChange={(e) => setSecret_name(e.target.value)}
+                          onChange={(e) => setFrom_name(e.target.value)}
                           type="text"
-                          name="Secret_name"
+                          name="From_name"
+                        />
+                      </label>
+                      <label>
+                        To_name Name:
+                        <input
+                          onChange={(e) => setTo_name(e.target.value)}
+                          type="text"
+                          name="To_name"
+                        />
+                      </label>
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        // className={secclasses.input}
+                        id="ImageInput"
+                        name="ImageInput"
+                        // multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop ? (
+                        <CropPage
+                          send={send}
+                          setfbimg={setfbimg}
+                          setimage_url={setimage_url}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop}
+                          setopencrop={setopencrop}
+                        />
+                      ) : null}
+                      <label htmlFor="ImageInput">
+                        <HeaderBtn
+                          Icon={ViewModuleIcon}
+                          title="Change  image "
                         />
                       </label>
                       <label>

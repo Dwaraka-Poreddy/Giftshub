@@ -130,7 +130,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
                 Day 4
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url5}>
                 Day 5
               </a>

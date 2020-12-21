@@ -179,7 +179,7 @@ export default function LiveCollagePage({ match }) {
                 Day 6
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href={Livelinks.url7}>
                 Day 7
               </a>

@@ -46,7 +46,7 @@ function OpenGreetingCardPage() {
   const [color, setColor] = useState({});
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-    console.log(window.URL.createObjectURL(e.target.files[0]), "1");
+
     setopencrop(true);
   };
 

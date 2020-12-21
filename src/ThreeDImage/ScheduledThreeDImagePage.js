@@ -70,7 +70,6 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
       "state_changed",
       (snapshot) => {},
       (err) => {
-        //catches the errors
         console.log(err);
       },
       () => {
