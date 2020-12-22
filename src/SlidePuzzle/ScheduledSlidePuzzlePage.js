@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,6 +29,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledSlidePuzzlePage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -44,7 +46,22 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
   );
-
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/SlidePuzzle/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img = snapshot.val().url;
+          setfbimg(img);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -155,32 +172,34 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.05" }}></div>
         <div style={{ flex: "0.7", width: "70%" }}>
-          <center>
-            <h1 className="example">Three days to go !!!</h1>
-          </center>
-          <div style={{ display: "flex" }}>
-            <div style={{ flex: "0.3" }}>
-              <SlidePuzzle fbimg={fbimg} />
+          {Cloading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              <center>
+                <h1 className="example">Five days to go !!!</h1>
+              </center>
+              <center>
+                <h1 className="example">Three days to go !!!</h1>
+              </center>
+              <div style={{ display: "flex" }}>
+                <div style={{ flex: "0.3" }}>
+                  <SlidePuzzle fbimg={fbimg} />
+                </div>
+                <div style={{ flex: "0.05" }}></div>
+                <div style={{ flex: "0.3", marginTop: "5%" }}>
+                  <SlidePuzzleAnswer fbimg={fbimg} />
+                </div>
+              </div>
             </div>
-            <div style={{ flex: "0.05" }}></div>
-            <div style={{ flex: "0.3", marginTop: "5%" }}>
-              <SlidePuzzleAnswer fbimg={fbimg} />
-            </div>
-          </div>
+          )}
         </div>
-        {/* <div style={{ flex: "0.1" }}></div>
-        <center>
-          <h1 className="example">Three days to go !!!</h1>
-        </center>
-        <div>
-          <div style={{ flex: "0.3" }}>
-            <SlidePuzzle fbimg={fbimg} />
-          </div>
-          <div style={{ flex: "0.05" }}></div>
-          <div style={{ flex: "0.3", marginTop: "5%" }}>
-            <SlidePuzzleAnswer fbimg={fbimg} />
-          </div>
-        </div> */}
+
         <div style={{ flex: "0.05" }}></div>
         <div
           style={{
@@ -221,25 +240,26 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
             </label>
 
             <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
                 />
-              </div>
+              ) : (
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              )}
             </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                // timeout={3000} //3 secs
-              />
-            ) : null}
+
             <center>
               {livelink ? (
                 <div>

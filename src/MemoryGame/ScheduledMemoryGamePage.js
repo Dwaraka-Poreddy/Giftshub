@@ -30,6 +30,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledMemoryGamePage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const { user } = useSelector((state) => ({ ...state }));
@@ -106,8 +108,33 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
     setopencrop6(true);
   };
   useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/MemoryGame/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img1 = snapshot.val().url1;
+          setfbimg1(img1);
+          var img2 = snapshot.val().url2;
+          setfbimg2(img2);
+          var img3 = snapshot.val().url3;
+          setfbimg3(img3);
+          var img4 = snapshot.val().url4;
+          setfbimg4(img4);
+          var img5 = snapshot.val().url5;
+          setfbimg5(img5);
+          var img6 = snapshot.val().url6;
+          setfbimg6(img6);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
+  useEffect(() => {
     func();
-    console.log("img changed");
   }, [fbimg1]);
 
   const func = () => {
@@ -298,10 +325,21 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
         <div style={{ flex: "0.7" }}>
-          <center>
-            <h1 className="example">Six days to go !!!</h1>
-          </center>
-          {func()}
+          {Cloading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              <center>
+                <h1 className="example">Six days to go !!!</h1>
+              </center>
+              {func()}
+            </div>
+          )}
         </div>
 
         <div style={{ flex: "0.05" }}></div>
@@ -478,24 +516,26 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
               <HeaderBtn Icon={ViewModuleIcon} title="Change  image 6" />
             </label>
             <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
                 />
-              </div>
+              ) : (
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              )}
             </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : null}
+
             <center>
               {livelink ? (
                 <div>

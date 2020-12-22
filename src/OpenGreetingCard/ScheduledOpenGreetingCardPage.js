@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -31,6 +31,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -50,7 +52,29 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
   );
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/OpenGreetingCard/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img = snapshot.val().url;
+          setfbimg(img);
 
+          var title1 = snapshot.val().text1;
+          settext1(title1);
+          var title2 = snapshot.val().text2;
+          settext2(title2);
+          var MainTitle = snapshot.val().maintext;
+          setmaintext(MainTitle);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -164,15 +188,26 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.05" }}></div>
         <div style={{ flex: "0.7", width: "70%" }}>
-          <center>
-            <h1 className="example">Four days to go !!!</h1>
-          </center>
-          <OpenGreetingCard
-            fbimg={fbimg}
-            text1={text1}
-            text2={text2}
-            maintext={maintext}
-          />
+          {Cloading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              <center>
+                <h1 className="example">Four days to go !!!</h1>
+              </center>
+              <OpenGreetingCard
+                fbimg={fbimg}
+                text1={text1}
+                text2={text2}
+                maintext={maintext}
+              />
+            </div>
+          )}
         </div>
         <div style={{ flex: "0.05" }}></div>
         <div
@@ -292,24 +327,26 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
               />
             </div>
             <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
                 />
-              </div>
+              ) : (
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              )}
             </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : null}
+
             <center>
               {livelink ? (
                 <div>

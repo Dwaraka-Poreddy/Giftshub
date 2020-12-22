@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import firebase from "../firebase";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
@@ -18,14 +18,18 @@ import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
 import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
 import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
 import Loader from "react-loader-spinner";
+
 function ContinuePack({ match }) {
   const database = firebase.firestore();
+  let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   const [FolderData, setFolderData] = useState("");
   const [loading, setloading] = useState(true);
   const [slag, setslag] = useState(match.params.slug);
   const [livelink, setlivelink] = useState();
   const [showshare, setshowshare] = useState(false);
+  const [data1, setdata1] = useState();
+
   async function getDocnew(data) {
     console.log("getdocnew started");
     if (data.url1 != "") {
@@ -95,6 +99,8 @@ function ContinuePack({ match }) {
       .doc(match.params.slug)
       .get();
     const data = snapshot.data();
+    setdata1(snapshot.data());
+
     setlivelink(
       "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
     );
@@ -179,12 +185,69 @@ function ContinuePack({ match }) {
 
   const handleStep = (step) => () => {
     setActiveStep(step);
-    console.log(activeStep, "qwert");
-    // console.log(step, completed, "qwert");
-    // if (completed[step] == true) {
-    //   console.log("inside if", "qwert");
-    // }
-    // console.log("after if", "qwert");
+    dispatch({
+      type: "EDIT_SCHEDULED",
+      payload: { text: "" },
+    });
+    if (completed[step] == true) {
+      if (step == 0) {
+        var splits = data1.url1.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+
+      if (step == 1) {
+        var splits = data1.url2.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+      if (step == 2) {
+        var splits = data1.url3.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+      if (step == 3) {
+        var splits = data1.url4.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+      if (step == 4) {
+        var splits = data1.url5.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+      if (step == 5) {
+        var splits = data1.url6.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+      if (step == 6) {
+        var splits = data1.url7.split("/");
+
+        dispatch({
+          type: "EDIT_SCHEDULED",
+          payload: { text: splits[5] },
+        });
+      }
+    }
   };
 
   const horizontalStepper = () => {

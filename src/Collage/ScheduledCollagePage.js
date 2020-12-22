@@ -27,7 +27,9 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledCollagePage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
   const [loading, setloading] = useState(false);
+  const [Cloading, setCLoading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -138,7 +140,39 @@ function ScheduledCollagePage({ slug, getDoc }) {
     func();
     console.log("img changed");
   }, [fbimg1]);
-
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/Collage/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img1 = snapshot.val().url1;
+          console.log(img1);
+          setfbimg1(img1);
+          var img2 = snapshot.val().url2;
+          setfbimg2(img2);
+          var img3 = snapshot.val().url3;
+          setfbimg3(img3);
+          var img4 = snapshot.val().url4;
+          setfbimg4(img4);
+          var img5 = snapshot.val().url5;
+          setfbimg5(img5);
+          var img6 = snapshot.val().url6;
+          setfbimg6(img6);
+          var img7 = snapshot.val().url7;
+          setfbimg7(img7);
+          var img8 = snapshot.val().url8;
+          setfbimg8(img8);
+          var img9 = snapshot.val().url9;
+          setfbimg9(img9);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const func = () => {
     return (
       <Collage
@@ -411,10 +445,21 @@ function ScheduledCollagePage({ slug, getDoc }) {
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
         <div style={{ flex: "0.7" }}>
-          <center>
-            <h1 className="example">One day to go !!!</h1>
-          </center>
-          {func()}
+          {Cloading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              <center>
+                <h1 className="example">One day to go !!!</h1>
+              </center>
+              {func()}
+            </div>
+          )}
         </div>
 
         <div style={{ flex: "0.05" }}></div>
@@ -663,7 +708,7 @@ function ScheduledCollagePage({ slug, getDoc }) {
                 send={send9}
                 setfbimg={setfbimg9}
                 setimage_url={setimage_url9}
-                aspect_ratio={1 / 1}
+                aspect_ratio={4 / 3}
                 opencrop={opencrop9}
                 setopencrop={setopencrop9}
               />
@@ -672,25 +717,27 @@ function ScheduledCollagePage({ slug, getDoc }) {
               <HeaderBtn Icon={ViewModuleIcon} title="Change  image 9" />
             </label>
             <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  // timeout={3000} //3 secs
                 />
-              </div>
+              ) : (
+                <div style={{ width: "55%", marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              )}
             </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                // timeout={3000} //3 secs
-              />
-            ) : null}
+
             <center>
               {livelink ? (
                 <div>

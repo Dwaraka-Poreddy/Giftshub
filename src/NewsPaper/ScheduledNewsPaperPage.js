@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,10 +37,13 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledNewsPaperPage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
   const database = firebase.firestore();
   let docToPrint = React.createRef();
   const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
+
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -63,7 +66,26 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
 
   const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
   const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
-
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/NewsPaper/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img = snapshot.val().url;
+          setfbimg(img);
+          var head = snapshot.val().head;
+          sethead(head);
+          var para = snapshot.val().para;
+          setpara(para);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
     // console.log(send);
@@ -205,15 +227,26 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
         <div class="row">
           <div class="col-sm-1 "></div>
           <div ref={docToPrint} id="newspaper" class="col-sm-8 ">
-            <center>
-              <h1 className="example">Five days to go !!!</h1>
-            </center>
-            <NewsPaper
-              fbimg={fbimg}
-              head={head}
-              para={para}
-              startDate={startDate}
-            />
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                <center>
+                  <h1 className="example">Five days to go !!!</h1>
+                </center>
+                <NewsPaper
+                  fbimg={fbimg}
+                  head={head}
+                  para={para}
+                  startDate={startDate}
+                />
+              </div>
+            )}
           </div>
 
           <div
@@ -340,24 +373,26 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                     title="Download as pdf"
                   />
                 </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
-                    }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
                   />
-                </div>
+                ) : (
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <HeaderBtn
+                      handleClick={() => {
+                        handleFireBaseUpload();
+                      }}
+                      Icon={LinkIcon}
+                      title="Generate Link"
+                    />
+                  </div>
+                )}
               </center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : null}
+
               <center>
                 {livelink ? (
                   <div>

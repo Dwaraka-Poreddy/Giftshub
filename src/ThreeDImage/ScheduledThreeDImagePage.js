@@ -18,6 +18,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
+import Tour from "reactour";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -30,6 +32,9 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledThreeDImagePage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [accentColor, setaccentColor] = useState("#5cb7b7");
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -45,11 +50,29 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
   );
+  const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
   useEffect(() => {
-    console.log(slug, "useeffect");
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/ThreeDImage/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img = snapshot.val().url;
+          setfbimg(img);
+          var col1 = snapshot.val().firstcol;
+          setfirstcol(col1);
+          var col2 = snapshot.val().secondcol;
+          setsecondcol(col2);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
   }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
@@ -119,8 +142,48 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
     toast.success("3D image successfully added to your pack");
     getDoc();
   }
+
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `changes the image`,
+    },
+    {
+      selector: '[data-tut="reactour__gradient"]',
+      content: `choose gradient from and to colors`,
+    },
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `generates a live link for this component. Once the link is generated few other options are shown`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `copies the generated live link to clipboard`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `previews the component  crerated`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `shares the live link of the component  crerated`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+          setlivelink("");
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
       <header
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
@@ -159,14 +222,25 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
         <div class="row">
           <div class="col-sm-1 "></div>
           <div class="col-sm-8 ">
-            <center>
-              <h1 className="example">Six days to go !!!</h1>
-            </center>
-            <ThreeDImage
-              firstcol={firstcol}
-              secondcol={secondcol}
-              fbimg={fbimg}
-            />
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                <center>
+                  <h1 className="example">Six days to go !!!</h1>
+                </center>
+                <ThreeDImage
+                  firstcol={firstcol}
+                  secondcol={secondcol}
+                  fbimg={fbimg}
+                />
+              </div>
+            )}
           </div>
 
           <div
@@ -180,6 +254,26 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
               right: "0",
             }}
           >
+            <center>
+              <div
+                style={{
+                  justifyContent: "center",
+                  padding: "20px 0 0 0 ",
+                  width: "40%",
+                }}
+              >
+                {livelink ? null : (
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                      setlivelink("123");
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                )}
+              </div>
+            </center>
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <input
                 style={{ display: "none" }}
@@ -251,24 +345,26 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
               </label>
               <center>
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
-                    }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
                   />
-                </div>
+                ) : (
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <HeaderBtn
+                      handleClick={() => {
+                        handleFireBaseUpload();
+                      }}
+                      Icon={LinkIcon}
+                      title="Generate Link"
+                    />
+                  </div>
+                )}
               </center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : null}
+
               <center>
                 {livelink ? (
                   <div>

@@ -106,7 +106,7 @@ function OpenGreetingCardPage() {
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `generates a live link for this component`,
+      content: `generates a live link for this component. Once the link is generated few other options are shown`,
     },
     {
       selector: '[data-tut="reactour__copylink"]',
@@ -118,7 +118,7 @@ function OpenGreetingCardPage() {
       content: `previews the component  crerated`,
     },
     {
-      selector: '[data-tut=" reactour__sharelink"]',
+      selector: '[data-tut="reactour__sharelink"]',
       content: `shares the live link of the component  crerated`,
     },
   ];
@@ -127,6 +127,7 @@ function OpenGreetingCardPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
+          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -171,28 +172,6 @@ function OpenGreetingCardPage() {
 
       <br />
       <br />
-      <div
-        style={{ backgroundColor: "#009dd9", float: "right", width: "150px" }}
-        className="HeaderBtn"
-        onClick={() => {
-          setIsTourOpen(true);
-        }}
-      >
-        <FlightTakeoffIcon style={{ color: "#ffffff", fontSize: "large" }} />
-        <h2
-          style={{
-            flex: 1,
-            marginLeft: "5px",
-            fontSize: "12px",
-            fontWeight: "700",
-            color: "#ffffff",
-            textDecoration: "none",
-          }}
-        >
-          {" "}
-          Start Tour{" "}
-        </h2>{" "}
-      </div>
 
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
@@ -217,7 +196,28 @@ function OpenGreetingCardPage() {
               right: "0",
             }}
           >
-            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+            <center>
+              <div
+                style={{
+                  justifyContent: "center",
+                  padding: "20px 0 0 0 ",
+                  width: "40%",
+                }}
+              >
+                {livelink ? null : (
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                      setlivelink("123");
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                )}
+              </div>
+            </center>
+            <hr />
+            <div style={{ justifyContent: "center", padding: " 0 0 0 20px " }}>
               <div data-tut="reactour__changeImage">
                 <input
                   style={{ display: "none" }}

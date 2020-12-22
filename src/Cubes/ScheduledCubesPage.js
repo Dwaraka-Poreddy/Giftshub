@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,6 +29,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledCubesPage({ slug, getDoc }) {
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -92,6 +94,30 @@ function ScheduledCubesPage({ slug, getDoc }) {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
     setopencrop5(true);
   };
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/Cubes/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img1 = snapshot.val().url1;
+          setfbimg1(img1);
+          var img2 = snapshot.val().url2;
+          setfbimg2(img2);
+          var img3 = snapshot.val().url3;
+          setfbimg3(img3);
+          var img4 = snapshot.val().url4;
+          setfbimg4(img4);
+          var img5 = snapshot.val().url5;
+          setfbimg5(img5);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud1 = uuidv4();
@@ -252,13 +278,27 @@ function ScheduledCubesPage({ slug, getDoc }) {
         <div class="row">
           <div class="col-sm-1 "></div>
           <div class="col-sm-8 " style={{ height: "70vh", marginTop: "-5vh" }}>
-            <Cubes
-              fbimg1={fbimg1}
-              fbimg2={fbimg2}
-              fbimg3={fbimg3}
-              fbimg4={fbimg4}
-              fbimg5={fbimg5}
-            />
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                <center>
+                  <h1 className="example">Two days to go !!!</h1>
+                </center>
+                <Cubes
+                  fbimg1={fbimg1}
+                  fbimg2={fbimg2}
+                  fbimg3={fbimg3}
+                  fbimg4={fbimg4}
+                  fbimg5={fbimg5}
+                />
+              </div>
+            )}
           </div>
 
           <div
@@ -409,24 +449,26 @@ function ScheduledCubesPage({ slug, getDoc }) {
                 <HeaderBtn Icon={ViewModuleIcon} title="Change  image 5" />
               </label>
               <center>
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
-                    }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
                   />
-                </div>
+                ) : (
+                  <div style={{ width: "55%", marginTop: "20px" }}>
+                    <HeaderBtn
+                      handleClick={() => {
+                        handleFireBaseUpload();
+                      }}
+                      Icon={LinkIcon}
+                      title="Generate Link"
+                    />
+                  </div>
+                )}
               </center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : null}
+
               <center>
                 {livelink ? (
                   <div>
