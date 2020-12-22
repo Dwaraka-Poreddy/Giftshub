@@ -21,8 +21,8 @@ export default function LiveThreeDImage({ match }) {
         setfirstcol(col1);
         var col2 = snapshot.val().secondcol;
         setsecondcol(col2);
+        setloading(false);
       });
-    setloading(false);
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>

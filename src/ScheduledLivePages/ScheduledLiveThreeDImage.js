@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ThreeDImage from "../ThreeDImage/ThreeDImage";
-
+import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function ScheduledLiveThreeDImage({ match }) {
@@ -9,7 +9,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
   const [firstcol, setfirstcol] = useState("");
   const [secondcol, setsecondcol] = useState("");
   const [Livelinks, setLivelinks] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -25,6 +25,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
   }, []);
 
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/ThreeDImage/" + match.params.id)
@@ -36,6 +37,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
         setfirstcol(col1);
         var col2 = snapshot.val().secondcol;
         setsecondcol(col2);
+        setloading(false);
       });
   }, []);
 
@@ -76,11 +78,6 @@ export default function ScheduledLiveThreeDImage({ match }) {
         {timeLeft[interval]} {interval}{" "}
       </span>
     );
-  });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
   });
 
   return (
@@ -144,26 +141,34 @@ export default function ScheduledLiveThreeDImage({ match }) {
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
-          {loading ? null : (
-            <div style={{ flex: "0.7" }}>
-              {timerComponents.length ? (
-                timerComponents
-              ) : (
-                <div>
-                  <center>
-                    <h1 className="example">Six days to go !!!</h1>
-                  </center>
+          <div style={{ flex: "0.7" }}>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                {timerComponents.length ? (
+                  timerComponents
+                ) : (
+                  <div>
+                    <center>
+                      <h1 className="example">Six days to go !!!</h1>
+                    </center>
 
-                  <ThreeDImage
-                    firstcol={firstcol}
-                    secondcol={secondcol}
-                    fbimg={fbimg}
-                  />
-                </div>
-              )}
-            </div>
-          )}
-
+                    <ThreeDImage
+                      firstcol={firstcol}
+                      secondcol={secondcol}
+                      fbimg={fbimg}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
           <div style={{ flex: "0.15" }}></div>
         </div>
       </div>

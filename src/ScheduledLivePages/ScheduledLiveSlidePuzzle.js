@@ -3,13 +3,13 @@ import SlidePuzzle from "../SlidePuzzle/SlidePuzzle";
 import SlidePuzzleAnswer from "../SlidePuzzle/SlidePuzzleAnswer";
 import firebase from "../firebase";
 import "./ScheduledLiveSlidePuzzle.css";
-
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 function ScheduledLiveSlidePuzzle({ match }) {
   const [fbimg, setfbimg] = useState("");
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -24,6 +24,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
     console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/SlidePuzzle/" + match.params.id)
@@ -31,6 +32,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
+        setloading(false);
       });
   }, []);
   const calculateTimeLeft = () => {
@@ -71,11 +73,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
       </span>
     );
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
-  });
+
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -144,16 +142,33 @@ function ScheduledLiveSlidePuzzle({ match }) {
         <br />
         <div class="row">
           <div class="col-sm-2"></div>
-          qwerty
-          <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-            {" "}
-            <center>
-              <SlidePuzzle fbimg={fbimg} />
-            </center>
-          </div>
-          <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-            <SlidePuzzleAnswer fbimg={fbimg} />
-          </div>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              {timerComponents.length ? (
+                timerComponents
+              ) : (
+                <div class="row">
+                  <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+                    {" "}
+                    <center>
+                      <SlidePuzzle fbimg={fbimg} />
+                    </center>
+                  </div>
+                  <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+                    <SlidePuzzleAnswer fbimg={fbimg} />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           <div class="col-sm-2"></div>
         </div>
       </div>

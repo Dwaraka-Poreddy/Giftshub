@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 export default function ScheduledLiveMemoryGame({ match }) {
   const database = firebase.firestore();
@@ -11,7 +12,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
   const [fbimg6, setfbimg6] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -27,6 +28,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
   }, []);
 
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/MemoryGame/" + match.params.id)
@@ -44,6 +46,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
         setfbimg5(img5);
         var img6 = snapshot.val().url6;
         setfbimg6(img6);
+        setloading(false);
       });
   }, []);
   const calculateTimeLeft = () => {
@@ -84,11 +87,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
       </span>
     );
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
-  });
+
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -154,8 +153,15 @@ export default function ScheduledLiveMemoryGame({ match }) {
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
           <div style={{ flex: "0.7" }}>
-            {loading ? null : (
-              <div style={{ flex: "0.7" }}>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
                 {timerComponents.length ? (
                   timerComponents
                 ) : (
@@ -176,6 +182,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
               </div>
             )}
           </div>
+
           <div style={{ flex: "0.15" }}></div>
         </div>
       </div>

@@ -251,7 +251,7 @@ function OpenGreetingCardPage() {
                 <input
                   type="color"
                   id="FirstColor"
-                  initialValue="null"
+                  initialValue={firstcol}
                   value={color.hex}
                   onChange={(e) => {
                     setfirstcol(e.target.value);
@@ -275,7 +275,7 @@ function OpenGreetingCardPage() {
                 <input
                   type="color"
                   id="ToColor"
-                  initialValue="null"
+                  initialValue={secondcol}
                   value={color.hex}
                   onChange={(e) => {
                     setsecondcol(e.target.value);

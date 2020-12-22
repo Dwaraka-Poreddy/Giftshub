@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 function ScheduledLiveOpenGreetCard({ match }) {
   const [fbimg, setfbimg] = useState("");
@@ -9,7 +10,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
   const [maintext, setmaintext] = useState("e");
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -24,6 +25,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
     console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/OpenGreetingCard/" + match.params.id)
@@ -38,6 +40,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
         settext2(title2);
         var MainTitle = snapshot.val().maintext;
         setmaintext(MainTitle);
+        setloading(false);
       });
   }, []);
   const calculateTimeLeft = () => {
@@ -78,11 +81,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
       </span>
     );
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
-  });
+
   return (
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -145,25 +144,34 @@ function ScheduledLiveOpenGreetCard({ match }) {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        {loading ? null : (
-          <div style={{ flex: "0.7" }}>
-            {timerComponents.length ? (
-              timerComponents
-            ) : (
-              <div>
-                <center>
-                  <h1 className="example">Four days to go !!!</h1>
-                </center>
-                <OpenGreetingCard
-                  fbimg={fbimg}
-                  text1={text1}
-                  text2={text2}
-                  maintext={maintext}
-                />
-              </div>
-            )}
-          </div>
-        )}
+        <div style={{ flex: "0.7" }}>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              {timerComponents.length ? (
+                timerComponents
+              ) : (
+                <div>
+                  <center>
+                    <h1 className="example">Four days to go !!!</h1>
+                  </center>
+                  <OpenGreetingCard
+                    fbimg={fbimg}
+                    text1={text1}
+                    text2={text2}
+                    maintext={maintext}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
 export default function LiveCollagePage({ match }) {
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
   const [fbimg1, setfbimg1] = useState("");
@@ -31,6 +31,7 @@ export default function LiveCollagePage({ match }) {
   }, []);
 
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/Collage/" + match.params.id)
@@ -55,7 +56,7 @@ export default function LiveCollagePage({ match }) {
         setfbimg8(img8);
         var img9 = snapshot.val().url9;
         setfbimg9(img9);
-        setloading(true);
+        setloading(false);
       });
   }, []);
   const calculateTimeLeft = () => {
@@ -96,39 +97,7 @@ export default function LiveCollagePage({ match }) {
       </span>
     );
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
-  });
 
-  // const func = () => {
-  //   return (
-  //     <div>
-  //       {loading ? (
-  //         <Collage
-  //           fbimg1={fbimg1}
-  //           fbimg2={fbimg2}
-  //           fbimg3={fbimg3}
-  //           fbimg4={fbimg4}
-  //           fbimg5={fbimg5}
-  //           fbimg6={fbimg6}
-  //           fbimg7={fbimg7}
-  //           fbimg8={fbimg8}
-  //           fbimg9={fbimg9}
-  //         />
-  //       ) : (
-  //         <Loader
-  //           type="BallTriangle"
-  //           color="#00BFFF"
-  //           height={100}
-  //           width={100}
-  //           // timeout={3000} //3 secs
-  //         />
-  //       )}
-  //     </div>
-  //   );
-  // };
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -192,31 +161,39 @@ export default function LiveCollagePage({ match }) {
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
-          {loading ? null : (
-            <div style={{ flex: "0.7" }}>
-              {timerComponents.length ? (
-                timerComponents
-              ) : (
-                <div>
-                  <center>
-                    <h1 className="example">One day to go !!!</h1>
-                  </center>
-                  <Collage
-                    fbimg1={fbimg1}
-                    fbimg2={fbimg2}
-                    fbimg3={fbimg3}
-                    fbimg4={fbimg4}
-                    fbimg5={fbimg5}
-                    fbimg6={fbimg6}
-                    fbimg7={fbimg7}
-                    fbimg8={fbimg8}
-                    fbimg9={fbimg9}
-                  />
-                  {/* {func()} */}
-                </div>
-              )}
-            </div>
-          )}
+          <div style={{ flex: "0.7" }}>
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                {timerComponents.length ? (
+                  timerComponents
+                ) : (
+                  <div>
+                    <center>
+                      <h1 className="example">One day to go !!!</h1>
+                    </center>
+                    <Collage
+                      fbimg1={fbimg1}
+                      fbimg2={fbimg2}
+                      fbimg3={fbimg3}
+                      fbimg4={fbimg4}
+                      fbimg5={fbimg5}
+                      fbimg6={fbimg6}
+                      fbimg7={fbimg7}
+                      fbimg8={fbimg8}
+                      fbimg9={fbimg9}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
           <div style={{ flex: "0.15" }}></div>
         </div>

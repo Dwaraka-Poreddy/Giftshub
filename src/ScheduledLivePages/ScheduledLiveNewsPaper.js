@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewsPaper from "../NewsPaper/NewsPaper";
 import firebase from "../firebase";
-
+import Loader from "react-loader-spinner";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ function ScheduledLiveNewsPaper({ match }) {
   const [head, sethead] = useState("");
   const [para, setpara] = useState("");
   const [Livelinks, setLivelinks] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -27,6 +27,7 @@ function ScheduledLiveNewsPaper({ match }) {
     console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
   useEffect(() => {
+    setloading(true);
     const todoRef = firebase
       .database()
       .ref("/NewsPaper/" + match.params.id)
@@ -38,6 +39,7 @@ function ScheduledLiveNewsPaper({ match }) {
         sethead(head);
         var para = snapshot.val().para;
         setpara(para);
+        setloading(false);
       });
   }, []);
   function handleMemeDownlod(el) {
@@ -90,11 +92,7 @@ function ScheduledLiveNewsPaper({ match }) {
       </span>
     );
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 5000);
-  });
+
   return (
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -157,20 +155,29 @@ function ScheduledLiveNewsPaper({ match }) {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        {loading ? null : (
-          <div style={{ flex: "0.7" }}>
-            {timerComponents.length ? (
-              timerComponents
-            ) : (
-              <div>
-                <center>
-                  <h1 className="example">Five days to go !!!</h1>
-                </center>
-                <NewsPaper fbimg={fbimg} head={head} para={para} />
-              </div>
-            )}
-          </div>
-        )}
+        <div style={{ flex: "0.7" }}>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              {timerComponents.length ? (
+                timerComponents
+              ) : (
+                <div>
+                  <center>
+                    <h1 className="example">Five days to go !!!</h1>
+                  </center>
+                  <NewsPaper fbimg={fbimg} head={head} para={para} />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
