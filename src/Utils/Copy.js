@@ -12,13 +12,9 @@ export default function Copy({ livelink }) {
     <div className="App">
       <HeaderBtn
         Icon={FileCopyIcon}
-        title={isCopied ? "Copied! 👍" : "Copy to Clipboard"}
+        title={isCopied ? "link Copied! 👍" : "Copy link to Clipboard"}
         handleClick={setCopied}
       />
-
-      {/* <button onClick={setCopied}>
-        {isCopied ? "Copied! 👍" : "Copy to Clipboard"}
-      </button> */}
     </div>
   );
 }

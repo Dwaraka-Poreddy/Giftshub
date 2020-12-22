@@ -203,189 +203,212 @@ function ScheduledCollagePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url1);
-        storage
-          .ref("images")
-          .child(ud1)
-          .putString(image_url1, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl1) => {
-              storage
-                .ref("images")
-                .child(ud2)
-                .putString(image_url2, "base64", { contentType: "image/jpg" })
-                .then((savedImage) => {
-                  savedImage.ref.getDownloadURL().then((downUrl2) => {
-                    storage
-                      .ref("images")
-                      .child(ud3)
-                      .putString(image_url3, "base64", {
-                        contentType: "image/jpg",
-                      })
-                      .then((savedImage) => {
-                        savedImage.ref.getDownloadURL().then((downUrl3) => {
-                          storage
-                            .ref("images")
-                            .child(ud4)
-                            .putString(image_url4, "base64", {
-                              contentType: "image/jpg",
-                            })
-                            .then((savedImage) => {
-                              savedImage.ref
-                                .getDownloadURL()
-                                .then((downUrl4) => {
-                                  storage
-                                    .ref("images")
-                                    .child(ud5)
-                                    .putString(image_url5, "base64", {
-                                      contentType: "image/jpg",
-                                    })
-                                    .then((savedImage) => {
-                                      savedImage.ref
-                                        .getDownloadURL()
-                                        .then((downUrl5) => {
-                                          storage
-                                            .ref("images")
-                                            .child(ud6)
-                                            .putString(image_url6, "base64", {
-                                              contentType: "image/jpg",
-                                            })
-                                            .then((savedImage) => {
-                                              savedImage.ref
-                                                .getDownloadURL()
-                                                .then((downUrl6) => {
-                                                  storage
-                                                    .ref("images")
-                                                    .child(ud7)
-                                                    .putString(
-                                                      image_url7,
-                                                      "base64",
-                                                      {
-                                                        contentType:
-                                                          "image/jpg",
-                                                      }
-                                                    )
-                                                    .then((savedImage) => {
-                                                      savedImage.ref
-                                                        .getDownloadURL()
-                                                        .then((downUrl7) => {
-                                                          storage
-                                                            .ref("images")
-                                                            .child(ud8)
-                                                            .putString(
-                                                              image_url8,
-                                                              "base64",
-                                                              {
-                                                                contentType:
-                                                                  "image/jpg",
-                                                              }
-                                                            )
-                                                            .then(
-                                                              (savedImage) => {
-                                                                savedImage.ref
-                                                                  .getDownloadURL()
-                                                                  .then(
-                                                                    (
-                                                                      downUrl8
-                                                                    ) => {
-                                                                      storage
-                                                                        .ref(
-                                                                          "images"
-                                                                        )
-                                                                        .child(
-                                                                          ud9
-                                                                        )
-                                                                        .putString(
-                                                                          image_url9,
-                                                                          "base64",
-                                                                          {
-                                                                            contentType:
-                                                                              "image/jpg",
-                                                                          }
-                                                                        )
-                                                                        .then(
-                                                                          (
-                                                                            savedImage
-                                                                          ) => {
-                                                                            savedImage.ref
-                                                                              .getDownloadURL()
-                                                                              .then(
-                                                                                (
-                                                                                  downUrl9
-                                                                                ) => {
-                                                                                  const todoRef = firebase
-                                                                                    .database()
-                                                                                    .ref(
-                                                                                      "Collage"
+    if (edit.text != "" || !livelink) {
+      const todoRef = firebase.database().ref("Collage");
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+        url6: fbimg6,
+        url7: fbimg7,
+        url8: fbimg8,
+        url9: fbimg9,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/collage/" + newKey + "/" + slug
+      );
+      console.log(livelink, "livelink");
+      setpreviewlink("scheduledlive/collage/" + newKey + "/" + slug);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url1);
+          storage
+            .ref("images")
+            .child(ud1)
+            .putString(image_url1, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl1) => {
+                storage
+                  .ref("images")
+                  .child(ud2)
+                  .putString(image_url2, "base64", { contentType: "image/jpg" })
+                  .then((savedImage) => {
+                    savedImage.ref.getDownloadURL().then((downUrl2) => {
+                      storage
+                        .ref("images")
+                        .child(ud3)
+                        .putString(image_url3, "base64", {
+                          contentType: "image/jpg",
+                        })
+                        .then((savedImage) => {
+                          savedImage.ref.getDownloadURL().then((downUrl3) => {
+                            storage
+                              .ref("images")
+                              .child(ud4)
+                              .putString(image_url4, "base64", {
+                                contentType: "image/jpg",
+                              })
+                              .then((savedImage) => {
+                                savedImage.ref
+                                  .getDownloadURL()
+                                  .then((downUrl4) => {
+                                    storage
+                                      .ref("images")
+                                      .child(ud5)
+                                      .putString(image_url5, "base64", {
+                                        contentType: "image/jpg",
+                                      })
+                                      .then((savedImage) => {
+                                        savedImage.ref
+                                          .getDownloadURL()
+                                          .then((downUrl5) => {
+                                            storage
+                                              .ref("images")
+                                              .child(ud6)
+                                              .putString(image_url6, "base64", {
+                                                contentType: "image/jpg",
+                                              })
+                                              .then((savedImage) => {
+                                                savedImage.ref
+                                                  .getDownloadURL()
+                                                  .then((downUrl6) => {
+                                                    storage
+                                                      .ref("images")
+                                                      .child(ud7)
+                                                      .putString(
+                                                        image_url7,
+                                                        "base64",
+                                                        {
+                                                          contentType:
+                                                            "image/jpg",
+                                                        }
+                                                      )
+                                                      .then((savedImage) => {
+                                                        savedImage.ref
+                                                          .getDownloadURL()
+                                                          .then((downUrl7) => {
+                                                            storage
+                                                              .ref("images")
+                                                              .child(ud8)
+                                                              .putString(
+                                                                image_url8,
+                                                                "base64",
+                                                                {
+                                                                  contentType:
+                                                                    "image/jpg",
+                                                                }
+                                                              )
+                                                              .then(
+                                                                (
+                                                                  savedImage
+                                                                ) => {
+                                                                  savedImage.ref
+                                                                    .getDownloadURL()
+                                                                    .then(
+                                                                      (
+                                                                        downUrl8
+                                                                      ) => {
+                                                                        storage
+                                                                          .ref(
+                                                                            "images"
+                                                                          )
+                                                                          .child(
+                                                                            ud9
+                                                                          )
+                                                                          .putString(
+                                                                            image_url9,
+                                                                            "base64",
+                                                                            {
+                                                                              contentType:
+                                                                                "image/jpg",
+                                                                            }
+                                                                          )
+                                                                          .then(
+                                                                            (
+                                                                              savedImage
+                                                                            ) => {
+                                                                              savedImage.ref
+                                                                                .getDownloadURL()
+                                                                                .then(
+                                                                                  (
+                                                                                    downUrl9
+                                                                                  ) => {
+                                                                                    const todoRef = firebase
+                                                                                      .database()
+                                                                                      .ref(
+                                                                                        "Collage"
+                                                                                      );
+                                                                                    const todo = {
+                                                                                      url1: downUrl1,
+                                                                                      url2: downUrl2,
+                                                                                      url3: downUrl3,
+                                                                                      url4: downUrl4,
+                                                                                      url5: downUrl5,
+                                                                                      url6: downUrl6,
+                                                                                      url7: downUrl7,
+                                                                                      url8: downUrl8,
+                                                                                      url9: downUrl9,
+                                                                                    };
+                                                                                    var newKey = todoRef
+                                                                                      .push(
+                                                                                        todo
+                                                                                      )
+                                                                                      .getKey();
+                                                                                    setlivelink(
+                                                                                      "http://localhost:3000/scheduledlive/collage/" +
+                                                                                        newKey +
+                                                                                        "/" +
+                                                                                        slug
                                                                                     );
-                                                                                  const todo = {
-                                                                                    url1: downUrl1,
-                                                                                    url2: downUrl2,
-                                                                                    url3: downUrl3,
-                                                                                    url4: downUrl4,
-                                                                                    url5: downUrl5,
-                                                                                    url6: downUrl6,
-                                                                                    url7: downUrl7,
-                                                                                    url8: downUrl8,
-                                                                                    url9: downUrl9,
-                                                                                  };
-                                                                                  var newKey = todoRef
-                                                                                    .push(
-                                                                                      todo
-                                                                                    )
-                                                                                    .getKey();
-                                                                                  setlivelink(
-                                                                                    "http://localhost:3000/scheduledlive/collage/" +
-                                                                                      newKey +
-                                                                                      "/" +
-                                                                                      slug
-                                                                                  );
-                                                                                  console.log(
-                                                                                    livelink,
-                                                                                    "livelink"
-                                                                                  );
-                                                                                  setpreviewlink(
-                                                                                    "scheduledlive/collage/" +
-                                                                                      newKey +
-                                                                                      "/" +
-                                                                                      slug
-                                                                                  );
-                                                                                }
+                                                                                    console.log(
+                                                                                      livelink,
+                                                                                      "livelink"
+                                                                                    );
+                                                                                    setpreviewlink(
+                                                                                      "scheduledlive/collage/" +
+                                                                                        newKey +
+                                                                                        "/" +
+                                                                                        slug
+                                                                                    );
+                                                                                  }
+                                                                                );
+                                                                              setloading(
+                                                                                false
                                                                               );
-                                                                            setloading(
-                                                                              false
-                                                                            );
-                                                                          }
-                                                                        );
-                                                                    }
-                                                                  );
-                                                              }
-                                                            );
-                                                        });
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
+                                                                            }
+                                                                          );
+                                                                      }
+                                                                    );
+                                                                }
+                                                              );
+                                                          });
+                                                      });
+                                                  });
+                                              });
+                                          });
+                                      });
+                                  });
+                              });
+                          });
                         });
-                      });
+                    });
                   });
-                });
+              });
             });
-          });
-      }
-    );
+        }
+      );
+    }
   };
   async function EditPack() {
     await database

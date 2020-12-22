@@ -127,7 +127,6 @@ export default function Collage({
 
   return (
     <div>
-      <h2>Sortable Gallery</h2>
       <h3>Drag photo to rearrange</h3>
       <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
     </div>

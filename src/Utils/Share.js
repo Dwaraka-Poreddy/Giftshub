@@ -6,6 +6,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import emailjs from "emailjs-com";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -20,46 +21,54 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-function Share({ livelink }) {
+function Share({ livelink, from, to }) {
   const classes = useStyles();
-  const [to, setto] = useState("Srinivas");
+  const [receiverEmail, setreceiverEmail] = useState();
   const [giftshub, setgiftshub] = useState("https://www.google.com/");
-  const [from, setfrom] = useState("Dwaraka");
+
   const [title, settitle] = useState(
     `Dear ${to}, a gift from ${from} is waiting for you at ${livelink}. Made by ${giftshub} with love`
   );
   const [title1, settitle1] = useState(
     `Dear ${to}, a gift  is waiting for you at ${livelink}. Made by ${giftshub}`
   );
+
+  function sendEmail(e) {
+    var items = {
+      to_name: to,
+      from_name: from,
+      to_email: receiverEmail,
+      gift_link: livelink,
+    };
+
+    emailjs
+      .send(
+        "gifts_hub",
+        "template_d9tubms",
+        items,
+        "user_2oABpGWP8WfHfd6Kmlto3"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        (err) => {
+          console.log("FAILED...", err);
+        }
+      );
+  }
+
   return (
     <div className="App">
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
-          value={from}
+          value={receiverEmail}
           onChange={(e) => {
-            setfrom(e.target.value);
-            settitle(
-              `Dear ${to}, a gift from ${from} is waiting for you at ${livelink}. Made by ${giftshub}`
-            );
-            console.log({ title });
+            setreceiverEmail(e.target.value);
           }}
           required
           id="filled-basic"
-          label="From"
-          variant="filled"
-        />
-        <TextField
-          value={to}
-          onChange={(e) => {
-            setto(e.target.value);
-            settitle(
-              `Dear ${to}, a gift from ${from} is waiting for you at <a src=${livelink}>${livelink}</a>. Made by ${giftshub}`
-            );
-            console.log({ title });
-          }}
-          required
-          id="filled-basic"
-          label="To"
+          label="Receiver Email"
           variant="filled"
         />
       </form>
@@ -80,13 +89,10 @@ function Share({ livelink }) {
         url={livelink}
         title={title1}
       >
-        <HeaderBtn
-          Icon={TwitterIcon}
-          title="Twitterttwittertwittertwittettwitter "
-        />
+        <HeaderBtn Icon={TwitterIcon} title="Twitter " />
       </TwitterShareButton>
       <br />
-      <div style={{ width: "100%", backgroundColor: "red" }}>
+      <div>
         {" "}
         <WhatsappShareButton
           windowWidth="500px"
@@ -97,6 +103,15 @@ function Share({ livelink }) {
         >
           <HeaderBtn Icon={WhatsAppIcon} title="Whatsapp " />
         </WhatsappShareButton>
+      </div>
+      <div>
+        <HeaderBtn
+          handleClick={() => {
+            sendEmail();
+          }}
+          Icon={MailIcon}
+          title="Email "
+        />
       </div>
     </div>
   );

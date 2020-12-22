@@ -9,6 +9,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import HeaderBtn from "../Studio/HeaderBtn";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import CropPage from "../Utils/CropPage";
+import { storage } from "../firebase";
+import { v4 as uuidv4 } from "uuid";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "15px",
@@ -40,7 +43,7 @@ const Home = ({ history }) => {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [fbimg, setfbimg] = useState();
-
+  const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date("December 10, 1815"));
   useEffect(() => {
@@ -80,48 +83,71 @@ const Home = ({ history }) => {
   };
   const CreatePack = (e) => {
     e.preventDefault();
-    console.log(Folder_name);
-    var sevendayPack = firebase.firestore().collection("/7-day-pack");
-    var sevendayPackPack = sevendayPack
-      .doc(`${user.uid}`)
-      .collection("giftshub");
-    sevendayPackPack
-      .add({
-        Folder_name: Folder_name,
-        fbimg: fbimg,
-        Bday_date: Bday_date,
-        From_name: From_name,
-        To_name: To_name,
-        url1: "",
-        url2: "",
-        url3: "",
-        url4: "",
-        url5: "",
-        url6: "",
-        url7: "",
-      })
-      .then(function (docRef) {
-        var LivelinkPack = firebase.firestore().collection("/Livelinks");
-        var LivelinkPackPack = LivelinkPack.doc(docRef.id).set({
-          Folder_name: Folder_name,
-          fbimg: fbimg,
-          From_name: From_name,
-          Bday_date: Bday_date,
-          To_name: To_name,
-          url1: "",
-          url2: "",
-          url3: "",
-          url4: "",
-          url5: "",
-          url6: "",
-          url7: "",
-        });
-        console.log("Tutorial created with ID: ", docRef.id);
-        history.push(`/ContinuePack/${docRef.id}`);
-      })
-      .catch(function (error) {
-        console.error("Error adding Tutorial: ", error);
-      });
+    var ud = uuidv4();
+    const uploadTask = storage
+      .ref(`/images/${imageAsFile.name}`)
+      .put(imageAsFile);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        var s = storage
+          .ref("images")
+          .child(ud)
+          .putString(image_url, "base64", { contentType: "image/jpg" })
+          .then((savedImage) => {
+            savedImage.ref.getDownloadURL().then((downUrl) => {
+              var sevendayPack = firebase.firestore().collection("/7-day-pack");
+              var sevendayPackPack = sevendayPack
+                .doc(`${user.uid}`)
+                .collection("giftshub");
+              sevendayPackPack
+                .add({
+                  Folder_name: Folder_name,
+                  fbimg: downUrl,
+                  Bday_date: Bday_date,
+                  From_name: From_name,
+                  To_name: To_name,
+                  url1: "",
+                  url2: "",
+                  url3: "",
+                  url4: "",
+                  url5: "",
+                  url6: "",
+                  url7: "",
+                })
+                .then(function (docRef) {
+                  var LivelinkPack = firebase
+                    .firestore()
+                    .collection("/Livelinks");
+                  var LivelinkPackPack = LivelinkPack.doc(docRef.id).set({
+                    Folder_name: Folder_name,
+                    fbimg: downUrl,
+                    From_name: From_name,
+                    Bday_date: Bday_date,
+                    To_name: To_name,
+                    url1: "",
+                    url2: "",
+                    url3: "",
+                    url4: "",
+                    url5: "",
+                    url6: "",
+                    url7: "",
+                  });
+
+                  history.push(`/ContinuePack/${docRef.id}`);
+                })
+                .catch(function (error) {
+                  console.error("Error adding Tutorial: ", error);
+                });
+            });
+          });
+      }
+    );
   };
   return (
     <>
@@ -180,6 +206,7 @@ const Home = ({ history }) => {
                           name="To_name"
                         />
                       </label>
+
                       <input
                         style={{ display: "none" }}
                         accept="image/* "

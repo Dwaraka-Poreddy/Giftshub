@@ -76,43 +76,55 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("SlidePuzzle");
-              const todo = {
-                url: downUrl,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink(
-                "http://localhost:3000/scheduledlive/slidepuzzle/" +
-                  newKey +
-                  "/" +
-                  slug
-              );
-              setpreviewlink(
-                "/scheduledlive/slidepuzzle/" + newKey + "/" + slug
-              );
+    if (edit.text != "" || !livelink) {
+      const todoRef = firebase.database().ref("SlidePuzzle");
+      const todo = {
+        url: fbimg,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/slidepuzzle/" + newKey + "/" + slug
+      );
+      setpreviewlink("/scheduledlive/slidepuzzle/" + newKey + "/" + slug);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("SlidePuzzle");
+                const todo = {
+                  url: downUrl,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink(
+                  "http://localhost:3000/scheduledlive/slidepuzzle/" +
+                    newKey +
+                    "/" +
+                    slug
+                );
+                setpreviewlink(
+                  "/scheduledlive/slidepuzzle/" + newKey + "/" + slug
+                );
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   async function EditPack() {
     await database

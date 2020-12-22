@@ -1,10 +1,8 @@
 .cubesrnav {
-  margin: 4.5%;
-  margin-top: 40vh;
+  margin-top: 150px;
 }
 @media screen and (min-width: 400px) {
   .cubesrnav {
-    margin: 4.5%;
   }
 }
 

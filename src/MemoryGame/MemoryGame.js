@@ -97,10 +97,6 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
   return (
     <div>
       <div className="text-center p-4 d-flex flex-column">
-        <center>
-          <h1 className="example">Happy Birthday !!!</h1>
-        </center>
-
         {list.length === 0 ? (
           <div>...Loading</div>
         ) : (

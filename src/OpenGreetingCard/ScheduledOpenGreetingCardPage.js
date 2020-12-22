@@ -85,50 +85,68 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
-
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (edit.text != "" || !livelink) {
+      const todoRef = firebase.database().ref("OpenGreetingCard");
+      const todo = {
+        url: fbimg,
+        text1: text1,
+        text2: text2,
+        maintext: maintext,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/opengreetingcard/" +
+          newKey +
+          "/" +
+          slug
+      );
+      setpreviewlink("/scheduledlive/opengreetingcard/" + newKey + "/" + slug);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("OpenGreetingCard");
-              const todo = {
-                url: downUrl,
-                text1: text1,
-                text2: text2,
-                maintext: maintext,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink(
-                "http://localhost:3000/scheduledlive/opengreetingcard/" +
-                  newKey +
-                  "/" +
-                  slug
-              );
-              setpreviewlink(
-                "/scheduledlive/opengreetingcard/" + newKey + "/" + slug
-              );
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("OpenGreetingCard");
+                const todo = {
+                  url: downUrl,
+                  text1: text1,
+                  text2: text2,
+                  maintext: maintext,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink(
+                  "http://localhost:3000/scheduledlive/opengreetingcard/" +
+                    newKey +
+                    "/" +
+                    slug
+                );
+                setpreviewlink(
+                  "/scheduledlive/opengreetingcard/" + newKey + "/" + slug
+                );
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   async function EditPack() {
     await database

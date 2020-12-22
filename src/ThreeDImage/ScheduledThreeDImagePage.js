@@ -88,44 +88,59 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (edit.text != "" || !livelink) {
+      const todoRef = firebase.database().ref("ThreeDImage");
+      const todo = {
+        url: fbimg,
+        firstcol: firstcol,
+        secondcol: secondcol,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/threedimage/" + newKey + "/" + slug
+      );
+      setpreviewlink("/scheduledlive/threedimage/" + newKey + "/" + slug);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("ThreeDImage");
-              const todo = {
-                url: downUrl,
-                firstcol: firstcol,
-                secondcol: secondcol,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink(
-                "http://localhost:3000/scheduledlive/threedimage/" +
-                  newKey +
-                  "/" +
-                  slug
-              );
-              setpreviewlink(
-                "/scheduledlive/threedimage/" + newKey + "/" + slug
-              );
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("ThreeDImage");
+                const todo = {
+                  url: downUrl,
+                  firstcol: firstcol,
+                  secondcol: secondcol,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink(
+                  "http://localhost:3000/scheduledlive/threedimage/" +
+                    newKey +
+                    "/" +
+                    slug
+                );
+                setpreviewlink(
+                  "/scheduledlive/threedimage/" + newKey + "/" + slug
+                );
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   async function EditPack() {
     await database
@@ -306,7 +321,7 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 type="color"
                 id="FirstColor"
                 initialValue={firstcol}
-                value={color.hex}
+                value={firstcol}
                 onChange={(e) => {
                   setfirstcol(e.target.value);
                 }}
@@ -321,13 +336,16 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 }}
               />
               <label htmlFor="FirstColor">
-                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient from " />
+                <HeaderBtn
+                  Icon={FormatColorFillIcon}
+                  title="Gradient Left Color "
+                />
               </label>
               <input
                 type="color"
                 id="ToColor"
                 initialValue={secondcol}
-                value={color.hex}
+                value={secondcol}
                 onChange={(e) => {
                   setsecondcol(e.target.value);
                 }}
@@ -342,7 +360,10 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 }}
               />
               <label htmlFor="ToColor">
-                <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
+                <HeaderBtn
+                  Icon={FormatColorFillIcon}
+                  title="Gradient Right Color"
+                />
               </label>
               <center>
                 {loading ? (

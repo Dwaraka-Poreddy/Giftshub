@@ -88,55 +88,75 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
   }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-    // console.log(send);
     setopencrop(true);
   };
+  function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return canvas.toDataURL("image/png");
+  }
 
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud = uuidv4();
-    console.log(ud);
 
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("NewsPaper");
-              const todo = {
-                url: downUrl,
-                head: head,
-                para: para,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink(
-                "http://localhost:3000/scheduledlive/newspaper/" +
-                  newKey +
-                  "/" +
-                  slug
-              );
-              setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("NewsPaper");
+      const todo = {
+        url: fbimg,
+        head: head,
+        para: para,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/newspaper/" + newKey + "/" + slug
+      );
+      setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("NewsPaper");
+                const todo = {
+                  url: downUrl,
+                  head: head,
+                  para: para,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink(
+                  "http://localhost:3000/scheduledlive/newspaper/" +
+                    newKey +
+                    "/" +
+                    slug
+                );
+                setpreviewlink(
+                  "/scheduledlive/newspaper/" + newKey + "/" + slug
+                );
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   async function EditPack() {

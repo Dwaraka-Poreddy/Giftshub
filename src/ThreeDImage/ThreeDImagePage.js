@@ -176,17 +176,17 @@ function OpenGreetingCardPage() {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div class="col-sm-8 ">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
             <ThreeDImage
               firstcol={firstcol}
               secondcol={secondcol}
               fbimg={fbimg}
             />
           </div>
-
+          <div class="col-lg-1"></div>
           <div
-            className="threedrnav col-sm-3"
+            className="threedrnav   col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -201,7 +201,6 @@ function OpenGreetingCardPage() {
                 style={{
                   justifyContent: "center",
                   padding: "20px 0 0 0 ",
-                  width: "40%",
                 }}
               >
                 {livelink ? null : (
@@ -217,7 +216,7 @@ function OpenGreetingCardPage() {
               </div>
             </center>
             <hr />
-            <div style={{ justifyContent: "center", padding: " 0 0 0 20px " }}>
+            <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
                   style={{ display: "none" }}
@@ -252,7 +251,7 @@ function OpenGreetingCardPage() {
                   type="color"
                   id="FirstColor"
                   initialValue={firstcol}
-                  value={color.hex}
+                  value={firstcol}
                   onChange={(e) => {
                     setfirstcol(e.target.value);
                   }}
@@ -269,14 +268,14 @@ function OpenGreetingCardPage() {
                 <label htmlFor="FirstColor">
                   <HeaderBtn
                     Icon={FormatColorFillIcon}
-                    title="Gradient from "
+                    title="Gradient Left Color"
                   />
                 </label>
                 <input
                   type="color"
                   id="ToColor"
                   initialValue={secondcol}
-                  value={color.hex}
+                  value={secondcol}
                   onChange={(e) => {
                     setsecondcol(e.target.value);
                   }}
@@ -291,12 +290,15 @@ function OpenGreetingCardPage() {
                   }}
                 />
                 <label htmlFor="ToColor">
-                  <HeaderBtn Icon={FormatColorFillIcon} title="Gradient to" />
+                  <HeaderBtn
+                    Icon={FormatColorFillIcon}
+                    title="Gradient Right Color"
+                  />
                 </label>
               </div>
 
               <center data-tut="reactour__generatelink">
-                <div style={{ width: "55%", marginTop: "20px" }}>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handleFireBaseUpload();
@@ -320,14 +322,14 @@ function OpenGreetingCardPage() {
                     <div>
                       <div
                         data-tut="reactour__copylink"
-                        style={{ width: "55%", marginTop: "20px" }}
+                        style={{ marginTop: "20px" }}
                       >
                         <Copy livelink={livelink} />
                       </div>
 
                       <div
                         data-tut="reactour__preview"
-                        style={{ width: "55%", marginTop: "20px" }}
+                        style={{ marginTop: "20px" }}
                       >
                         <Link class="logo" to={previewlink}>
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
@@ -337,7 +339,7 @@ function OpenGreetingCardPage() {
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
-                          style={{ width: "55%", marginTop: "20px" }}
+                          style={{ marginTop: "20px" }}
                         >
                           <HeaderBtn
                             handleClick={() => {

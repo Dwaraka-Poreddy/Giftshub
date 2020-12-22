@@ -179,8 +179,8 @@ function NewsPaperPage() {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div ref={docToPrint} id="newspaper" class="col-sm-8 ">
+          <div class="col-lg-1"></div>
+          <div ref={docToPrint} id="newspaper" class="  col-lg-7">
             <NewsPaper
               fbimg={fbimg}
               head={head}
@@ -188,9 +188,9 @@ function NewsPaperPage() {
               startDate={startDate}
             />
           </div>
-
+          <div class="col-lg-1"></div>
           <div
-            className="newspaperrnav col-sm-3"
+            className="newspaperrnav col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -231,7 +231,10 @@ function NewsPaperPage() {
 
               <center>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "10px" }}
+                  style={{
+                    width: "200px",
+                    marginTop: "10px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -248,7 +251,7 @@ function NewsPaperPage() {
                       color: "#068dc0",
                       margin: "0",
                       backgroundColor: "#ffffff",
-                      width: "100%",
+                      width: "200px",
                     }}
                     value={head}
                     onChange={(e) => {
@@ -257,7 +260,11 @@ function NewsPaperPage() {
                   />
                 </div>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  style={{
+                    width: "200px",
+
+                    marginTop: "20px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -274,7 +281,7 @@ function NewsPaperPage() {
                       color: "#068dc0",
                       margin: "0",
                       backgroundColor: "#ffffff",
-                      width: "100%",
+                      width: "200px",
                     }}
                     value={para}
                     onChange={(e) => {
@@ -283,7 +290,11 @@ function NewsPaperPage() {
                   />
                 </div>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  style={{
+                    width: "200px",
+
+                    marginTop: "20px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
                   <DatePicker
@@ -295,7 +306,9 @@ function NewsPaperPage() {
                     todayButton={"Today"}
                   />
                 </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
+              </center>
+              <center>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handleImageDownlod(this);
@@ -304,7 +317,7 @@ function NewsPaperPage() {
                     title="Download as image"
                   />
                 </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handlePdfDownlod(this);
@@ -313,7 +326,7 @@ function NewsPaperPage() {
                     title="Download as pdf"
                   />
                 </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handleFireBaseUpload();
@@ -329,24 +342,23 @@ function NewsPaperPage() {
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : (
                 <center>
                   {livelink ? (
                     <div>
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div style={{ width: "200px", marginTop: "20px" }}>
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div style={{ width: "200px", marginTop: "20px" }}>
                         <Link class="logo" to={previewlink}>
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ width: "55%", marginTop: "20px" }}>
+                        <div style={{ width: "200px", marginTop: "20px" }}>
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);

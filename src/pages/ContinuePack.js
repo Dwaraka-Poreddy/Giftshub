@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../firebase";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -18,7 +19,7 @@ import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
 import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
 import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
 import Loader from "react-loader-spinner";
-
+import Copy from "../Utils/Copy";
 function ContinuePack({ match }) {
   const database = firebase.firestore();
   let dispatch = useDispatch();
@@ -86,6 +87,10 @@ function ContinuePack({ match }) {
       setActiveStep(7);
     }
     console.log("getdocnew ended");
+    dispatch({
+      type: "EDIT_SCHEDULED",
+      payload: { text: "" },
+    });
   }
   async function getDoc() {
     console.log(loading, "1");
@@ -302,7 +307,7 @@ function ContinuePack({ match }) {
       {!loading ? (
         <div style={{ float: "right" }}>
           {!showshare ? (
-            <div style={{ width: "150px", marginTop: "20px" }}>
+            <div style={{ width: "100%", marginTop: "20px" }}>
               <HeaderBtn
                 handleClick={() => {
                   setshowshare(true);
@@ -312,7 +317,16 @@ function ContinuePack({ match }) {
               />
             </div>
           ) : (
-            <Share livelink={livelink} />
+            <div>
+              <Share
+                livelink={livelink}
+                to={data1.To_name}
+                from={data1.From_name}
+              />
+              <center style={{ width: "60%" }}>
+                <Copy livelink={livelink} />
+              </center>
+            </div>
           )}
         </div>
       ) : null}

@@ -129,95 +129,112 @@ function ScheduledCubesPage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url1);
-        storage
-          .ref("images")
-          .child(ud1)
-          .putString(image_url1, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl1) => {
-              storage
-                .ref("images")
-                .child(ud2)
-                .putString(image_url2, "base64", { contentType: "image/jpg" })
-                .then((savedImage) => {
-                  savedImage.ref.getDownloadURL().then((downUrl2) => {
-                    storage
-                      .ref("images")
-                      .child(ud3)
-                      .putString(image_url3, "base64", {
-                        contentType: "image/jpg",
-                      })
-                      .then((savedImage) => {
-                        savedImage.ref.getDownloadURL().then((downUrl3) => {
-                          storage
-                            .ref("images")
-                            .child(ud4)
-                            .putString(image_url4, "base64", {
-                              contentType: "image/jpg",
-                            })
-                            .then((savedImage) => {
-                              savedImage.ref
-                                .getDownloadURL()
-                                .then((downUrl4) => {
-                                  storage
-                                    .ref("images")
-                                    .child(ud5)
-                                    .putString(image_url5, "base64", {
-                                      contentType: "image/jpg",
-                                    })
-                                    .then((savedImage) => {
-                                      savedImage.ref
-                                        .getDownloadURL()
-                                        .then((downUrl5) => {
-                                          const todoRef = firebase
-                                            .database()
-                                            .ref("Cubes");
-                                          const todo = {
-                                            url1: downUrl1,
-                                            url2: downUrl2,
-                                            url3: downUrl3,
-                                            url4: downUrl4,
-                                            url5: downUrl5,
-                                          };
-                                          var newKey = todoRef
-                                            .push(todo)
-                                            .getKey();
-                                          setlivelink(
-                                            "http://localhost:3000/scheduledlive/cubes/" +
-                                              newKey +
-                                              "/" +
-                                              slug
-                                          );
-                                          console.log(livelink, "livelink");
-                                          setpreviewlink(
-                                            "/scheduledlive/cubes/" +
-                                              newKey +
-                                              "/" +
-                                              slug
-                                          );
-                                        });
-                                      setloading(false);
-                                    });
-                                });
-                            });
+    if (edit.text != "" || !livelink) {
+      const todoRef = firebase.database().ref("Cubes");
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink(
+        "http://localhost:3000/scheduledlive/cubes/" + newKey + "/" + slug
+      );
+      console.log(livelink, "livelink");
+      setpreviewlink("/scheduledlive/cubes/" + newKey + "/" + slug);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url1);
+          storage
+            .ref("images")
+            .child(ud1)
+            .putString(image_url1, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl1) => {
+                storage
+                  .ref("images")
+                  .child(ud2)
+                  .putString(image_url2, "base64", { contentType: "image/jpg" })
+                  .then((savedImage) => {
+                    savedImage.ref.getDownloadURL().then((downUrl2) => {
+                      storage
+                        .ref("images")
+                        .child(ud3)
+                        .putString(image_url3, "base64", {
+                          contentType: "image/jpg",
+                        })
+                        .then((savedImage) => {
+                          savedImage.ref.getDownloadURL().then((downUrl3) => {
+                            storage
+                              .ref("images")
+                              .child(ud4)
+                              .putString(image_url4, "base64", {
+                                contentType: "image/jpg",
+                              })
+                              .then((savedImage) => {
+                                savedImage.ref
+                                  .getDownloadURL()
+                                  .then((downUrl4) => {
+                                    storage
+                                      .ref("images")
+                                      .child(ud5)
+                                      .putString(image_url5, "base64", {
+                                        contentType: "image/jpg",
+                                      })
+                                      .then((savedImage) => {
+                                        savedImage.ref
+                                          .getDownloadURL()
+                                          .then((downUrl5) => {
+                                            const todoRef = firebase
+                                              .database()
+                                              .ref("Cubes");
+                                            const todo = {
+                                              url1: downUrl1,
+                                              url2: downUrl2,
+                                              url3: downUrl3,
+                                              url4: downUrl4,
+                                              url5: downUrl5,
+                                            };
+                                            var newKey = todoRef
+                                              .push(todo)
+                                              .getKey();
+                                            setlivelink(
+                                              "http://localhost:3000/scheduledlive/cubes/" +
+                                                newKey +
+                                                "/" +
+                                                slug
+                                            );
+                                            console.log(livelink, "livelink");
+                                            setpreviewlink(
+                                              "/scheduledlive/cubes/" +
+                                                newKey +
+                                                "/" +
+                                                slug
+                                            );
+                                          });
+                                        setloading(false);
+                                      });
+                                  });
+                              });
+                          });
                         });
-                      });
+                    });
                   });
-                });
+              });
             });
-          });
-      }
-    );
+        }
+      );
+    }
   };
   async function EditPack() {
     await database

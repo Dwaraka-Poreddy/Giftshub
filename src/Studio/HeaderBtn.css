@@ -6,6 +6,7 @@
   border-radius: 5px;
   margin-right: 5px;
   background-color: #70cff3;
+  width: 200px;
 }
 
 .HeaderBtn__icon {
@@ -30,4 +31,31 @@
 
 .HeaderBtn.selected {
   background-color: #70cff3;
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 20px !important;
+  }
+  .HeaderBtn__title {
+    font-size: 12px !important;
+  }
+  h2 {
+    font-size: 12px !important;
+  }
+  h3 {
+    font-size: 18px !important;
+  }
+  h5 {
+    font-size: 16px !important;
+  }
+  h6 {
+    font-size: 8px !important;
+  }
+  h8 {
+    font-size: 12px !important;
+  }
+  p {
+    font-size: 18px !important;
+  }
 }
