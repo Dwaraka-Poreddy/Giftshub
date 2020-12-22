@@ -107,7 +107,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "") {
+    if (edit.text != "" || !livelink) {
       const todoRef = firebase.database().ref("NewsPaper");
       const todo = {
         url: fbimg,
@@ -245,8 +245,8 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div ref={docToPrint} id="newspaper" class="col-sm-8 ">
+          <div class="col-lg-1 "></div>
+          <div ref={docToPrint} id="newspaper" class="col-lg-7 ">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -268,9 +268,9 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
               </div>
             )}
           </div>
-
+          <div class="col-lg-1"></div>
           <div
-            className="newspaperrnav col-sm-3"
+            className="newspaperrnav col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -311,7 +311,11 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
 
               <center>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "10px" }}
+                  style={{
+                    width: "200px",
+
+                    marginTop: "10px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -328,7 +332,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                       color: "#068dc0",
                       margin: "0",
                       backgroundColor: "#ffffff",
-                      width: "100%",
+                      width: "200px",
                     }}
                     value={head}
                     onChange={(e) => {
@@ -337,7 +341,11 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                   />
                 </div>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  style={{
+                    width: "200px",
+
+                    marginTop: "20px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -354,7 +362,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                       color: "#068dc0",
                       margin: "0",
                       backgroundColor: "#ffffff",
-                      width: "100%",
+                      width: "200px",
                     }}
                     value={para}
                     onChange={(e) => {
@@ -363,28 +371,46 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                   />
                 </div>
                 <div
-                  style={{ width: "80%", marginLeft: "10%", marginTop: "20px" }}
+                  style={{
+                    width: "200px",
+
+                    marginTop: "20px",
+                  }}
                   className="RightSideBar2__Btn"
                 >
-                  <DatePicker
-                    formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
-                    dateFormat=" MMMM dd, yyyy "
-                    selected={startDate}
-                    onChange={selectDateHandler}
-                    minDate={today}
-                    todayButton={"Today"}
-                  />
-                </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleImageDownlod(this);
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
                     }}
-                    Icon={LinkIcon}
-                    title="Download as image"
+                  />
+                  <input
+                    className="RightSideBar2__Btn"
+                    type="date"
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "150px",
+                    }}
+                    // value={para}
+                    // onChange={(e) => {
+                    //   setpara(e.target.value);
+                    // }}
                   />
                 </div>
-                <div style={{ width: "55%", marginTop: "20px" }}>
+
+                <div style={{ marginTop: "20px" }}>
+                  <HeaderBtn
+                    // handleClick={() => {
+                    //   handleImageDownlod(this);
+                    // }}
+                    Icon={LinkIcon}
+                    title="Date Picker"
+                  />
+                </div>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handlePdfDownlod(this);
@@ -401,7 +427,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                     width={100}
                   />
                 ) : (
-                  <div style={{ width: "55%", marginTop: "20px" }}>
+                  <div style={{ marginTop: "20px" }}>
                     <HeaderBtn
                       handleClick={() => {
                         handleFireBaseUpload();
@@ -416,16 +442,16 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
               <center>
                 {livelink ? (
                   <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <Link class="logo" to={previewlink}>
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <HeaderBtn
                         handleClick={() => {
                           EditPack();
@@ -435,7 +461,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                       />
                     </div>
                     {/* {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div style={{marginTop: "20px" }}>
                         <HeaderBtn
                           handleClick={() => {
                             setshowshare(true);

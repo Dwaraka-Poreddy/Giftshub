@@ -181,134 +181,116 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
       <br />
       <br />
       <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7", width: "70%" }}>
-          {Cloading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              <center>
-                <h1 className="example">Five days to go !!!</h1>
-              </center>
-              <center>
-                <h1 className="example">Three days to go !!!</h1>
-              </center>
-              <div style={{ display: "flex" }}>
-                <div style={{ flex: "0.3" }}>
-                  <SlidePuzzle fbimg={fbimg} />
-                </div>
-                <div style={{ flex: "0.05" }}></div>
-                <div style={{ flex: "0.3", marginTop: "5%" }}>
-                  <SlidePuzzleAnswer fbimg={fbimg} />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="col-lg-1 "></div>
+        <center class="  col-lg-8">
+          <h1 className="example">Four days to go !!!</h1>
+        </center>
+        <div class="row">
+          <div class="col-md-1 "></div>
 
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-              onClick={(event) => {
-                event.target.value = null;
-              }}
-            />
-            {opencrop ? (
-              <CropPage
-                send={send}
-                setfbimg={setfbimg}
-                setimage_url={setimage_url}
-                aspect_ratio={1 / 1}
-                opencrop={opencrop}
-                setopencrop={setopencrop}
+          <div class="col-md-6 col-xl-4">
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
               />
-            ) : null}
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-            </label>
+            ) : (
+              <SlidePuzzle fbimg={fbimg} />
+            )}
+          </div>
+          <div class="col-md-5 col-xl-4">
+            {Cloading ? null : <SlidePuzzleAnswer fbimg={fbimg} />}
+          </div>
 
-            <center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
+          <div
+            className="threedrnav col-xl-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <div style={{ padding: "20px 0 0 0 ", justifyContent: "center" }}>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput"
+                name="LocalfileInput"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
+              />
+              {opencrop ? (
+                <CropPage
+                  send={send}
+                  setfbimg={setfbimg}
+                  setimage_url={setimage_url}
+                  aspect_ratio={1 / 1}
+                  opencrop={opencrop}
+                  setopencrop={setopencrop}
                 />
-              ) : (
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
-                    }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
+              ) : null}
+              <label htmlFor="LocalfileInput">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+              </label>
+
+              <center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
                   />
-                </div>
-              )}
-            </center>
-
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
+                ) : (
+                  <div style={{ marginTop: "20px" }}>
                     <HeaderBtn
                       handleClick={() => {
-                        EditPack();
+                        handleFireBaseUpload();
                       }}
-                      Icon={ShareIcon}
-                      title="Add to Pack "
+                      Icon={LinkIcon}
+                      title="Generate Link"
                     />
                   </div>
-                  {/* {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                )}
+              </center>
+
+              <center>
+                {livelink ? (
+                  <center>
+                    <div style={{ marginTop: "20px", width: "200px" }}>
+                      <Copy livelink={livelink} />
+                    </div>
+
+                    <div style={{ marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+                    <div style={{ marginTop: "20px" }}>
                       <HeaderBtn
                         handleClick={() => {
-                          setshowshare(true);
+                          EditPack();
                         }}
                         Icon={ShareIcon}
-                        title="Share "
+                        title="Add to Pack "
                       />
                     </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )} */}
-                </div>
-              ) : null}
-            </center>
+                  </center>
+                ) : null}
+              </center>
+            </div>
           </div>
         </div>
       </div>

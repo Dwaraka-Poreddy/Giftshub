@@ -62,38 +62,51 @@ function OpenGreetingCardPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("ThreeDImage");
+      const todo = {
+        url: fbimg,
+        firstcol: firstcol,
+        secondcol: secondcol,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/threedimage/" + newKey);
+      setpreviewlink("/live/threedimage/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("ThreeDImage");
-              const todo = {
-                url: downUrl,
-                firstcol: firstcol,
-                secondcol: secondcol,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink("http://localhost:3000/live/threedimage/" + newKey);
-              setpreviewlink("/live/threedimage/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("ThreeDImage");
+                const todo = {
+                  url: downUrl,
+                  firstcol: firstcol,
+                  secondcol: secondcol,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink("http://localhost:3000/live/threedimage/" + newKey);
+                setpreviewlink("/live/threedimage/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   const tourConfig = [
     {
@@ -314,7 +327,6 @@ function OpenGreetingCardPage() {
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : (
                 <center>
@@ -322,7 +334,7 @@ function OpenGreetingCardPage() {
                     <div>
                       <div
                         data-tut="reactour__copylink"
-                        style={{ marginTop: "20px" }}
+                        style={{ marginTop: "20px", width: "200px" }}
                       >
                         <Copy livelink={livelink} />
                       </div>
@@ -361,9 +373,6 @@ function OpenGreetingCardPage() {
         </div>
       </div>
 
-      {/* <div style={{ display: "flex" }}>
-        
-      </div> */}
       <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
         <div className="container">
           <div className="row">

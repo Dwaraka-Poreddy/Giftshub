@@ -60,41 +60,55 @@ function OpenGreetingCardPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("OpenGreetingCard");
+      const todo = {
+        url: fbimg,
+        text1: text1,
+        text2: text2,
+        maintext: maintext,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/opengreetingcard/" + newKey);
+      setpreviewlink("/live/opengreetingcard/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("OpenGreetingCard");
-              const todo = {
-                url: downUrl,
-                text1: text1,
-                text2: text2,
-                maintext: maintext,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink(
-                "http://localhost:3000/live/opengreetingcard/" + newKey
-              );
-              setpreviewlink("/live/opengreetingcard/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("OpenGreetingCard");
+                const todo = {
+                  url: downUrl,
+                  text1: text1,
+                  text2: text2,
+                  maintext: maintext,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink(
+                  "http://localhost:3000/live/opengreetingcard/" + newKey
+                );
+                setpreviewlink("/live/opengreetingcard/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   return (
@@ -140,7 +154,7 @@ function OpenGreetingCardPage() {
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
-          <div id="newspaper" class="  col-lg-7">
+          <div class="  col-lg-7">
             <OpenGreetingCard
               fbimg={fbimg}
               text1={text1}
@@ -260,7 +274,7 @@ function OpenGreetingCardPage() {
                 </div>
               </center>
               <center>
-                <div style={{ width: "200px", marginTop: "20px" }}>
+                <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handleFireBaseUpload();
@@ -276,7 +290,6 @@ function OpenGreetingCardPage() {
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : (
                 <center>
@@ -286,14 +299,14 @@ function OpenGreetingCardPage() {
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ width: "200px", marginTop: "20px" }}>
+                      <div style={{ marginTop: "20px" }}>
                         <Link class="logo" to={previewlink}>
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ width: "200px", marginTop: "20px" }}>
+                        <div style={{ marginTop: "20px" }}>
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);

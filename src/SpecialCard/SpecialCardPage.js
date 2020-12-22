@@ -185,44 +185,58 @@ export default function SpecialCardPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("SpecialCard");
+      const todo = {
+        url: fbimg,
+        head1: head1,
+        head2: head2,
+        para: para,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/specialcard/" + newKey);
+      setpreviewlink("/live/specialcard/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("SpecialCard");
-              const todo = {
-                url: downUrl,
-                head1: head1,
-                head2: head2,
-                para: para,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink("http://localhost:3000/live/specialcard/" + newKey);
-              setpreviewlink("/live/specialcard/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("SpecialCard");
+                const todo = {
+                  url: downUrl,
+                  head1: head1,
+                  head2: head2,
+                  para: para,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink("http://localhost:3000/live/specialcard/" + newKey);
+                setpreviewlink("/live/specialcard/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   const onLoad = useCallback((img) => {

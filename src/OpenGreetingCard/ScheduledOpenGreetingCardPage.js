@@ -203,190 +203,185 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
       <br />
       <br />
       <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7", width: "70%" }}>
-          {Cloading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              <center>
-                <h1 className="example">Four days to go !!!</h1>
-              </center>
-              <OpenGreetingCard
-                fbimg={fbimg}
-                text1={text1}
-                text2={text2}
-                maintext={maintext}
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
               />
-            </div>
-          )}
-        </div>
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-              onClick={(event) => {
-                event.target.value = null;
-              }}
-            />
-            {opencrop ? (
-              <CropPage
-                send={send}
-                setfbimg={setfbimg}
-                setimage_url={setimage_url}
-                aspect_ratio={2 / 3}
-                opencrop={opencrop}
-                setopencrop={setopencrop}
-              />
-            ) : null}
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-            </label>
-
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={text1}
-                onChange={(e) => {
-                  settext1(e.target.value);
-                }}
-              />
-            </div>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={text2}
-                onChange={(e) => {
-                  settext2(e.target.value);
-                }}
-              />
-            </div>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={maintext}
-                onChange={(e) => {
-                  setmaintext(e.target.value);
-                }}
-              />
-            </div>
-            <center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
+            ) : (
+              <div>
+                <center>
+                  <h1 className="example">Four days to go !!!</h1>
+                </center>
+                <OpenGreetingCard
+                  fbimg={fbimg}
+                  text1={text1}
+                  text2={text2}
+                  maintext={maintext}
                 />
-              ) : (
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
+              </div>
+            )}
+          </div>
+          <div class="col-lg-1"></div>
+          <div
+            className=" col-lg-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <div style={{ padding: "20px 0", justifyContent: "center" }}>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput"
+                name="LocalfileInput"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
+              />
+              {opencrop ? (
+                <CropPage
+                  send={send}
+                  setfbimg={setfbimg}
+                  setimage_url={setimage_url}
+                  aspect_ratio={2 / 3}
+                  opencrop={opencrop}
+                  setopencrop={setopencrop}
+                />
+              ) : null}
+              <label htmlFor="LocalfileInput">
+                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+              </label>
+              <center>
+                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "200px",
+                    }}
+                    value={text1}
+                    onChange={(e) => {
+                      settext1(e.target.value);
+                    }}
                   />
                 </div>
-              )}
-            </center>
-
-            <center>
-              {livelink ? (
-                <div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Copy livelink={livelink} />
-                  </div>
-
-                  <div style={{ width: "55%", marginTop: "20px" }}>
-                    <Link class="logo" to={previewlink}>
-                      <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                    </Link>
-                  </div>
-                  <div style={{ width: "55%", marginTop: "20px" }}>
+                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "200px",
+                    }}
+                    value={text2}
+                    onChange={(e) => {
+                      settext2(e.target.value);
+                    }}
+                  />
+                </div>
+                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "200px",
+                    }}
+                    value={maintext}
+                    onChange={(e) => {
+                      setmaintext(e.target.value);
+                    }}
+                  />
+                </div>
+              </center>
+              <center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <div style={{ marginTop: "20px" }}>
                     <HeaderBtn
                       handleClick={() => {
-                        EditPack();
+                        handleFireBaseUpload();
                       }}
-                      Icon={ShareIcon}
-                      title="Add to Pack "
+                      Icon={LinkIcon}
+                      title="Generate Link"
                     />
                   </div>
-                  {/* {!showshare ? (
+                )}
+              </center>
+
+              <center>
+                {livelink ? (
+                  <div>
+                    <div style={{ width: "200px", marginTop: "20px" }}>
+                      <Copy livelink={livelink} />
+                    </div>
+
+                    <div style={{ marginTop: "20px" }}>
+                      <Link class="logo" to={previewlink}>
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+                    <div style={{ marginTop: "20px" }}>
+                      <HeaderBtn
+                        handleClick={() => {
+                          EditPack();
+                        }}
+                        Icon={ShareIcon}
+                        title="Add to Pack "
+                      />
+                    </div>
+                    {/* {!showshare ? (
                     <div style={{ width: "55%", marginTop: "20px" }}>
                       <HeaderBtn
                         handleClick={() => {
@@ -399,55 +394,56 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
                   ) : (
                     <Share livelink={livelink} />
                   )} */}
-                </div>
-              ) : null}
-            </center>
+                  </div>
+                ) : null}
+              </center>
+            </div>
           </div>
         </div>
+        <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-7 col-md-12 col-sm-12">
+                <p className="copyright">
+                  Copyright © 2020 Gift's Hub Company . Design:{" "}
+                  <a rel="nofollow" href="https://templatemo.com">
+                    Gift's Hub
+                  </a>
+                </p>
+              </div>
+              <div className="col-lg-5 col-md-12 col-sm-12">
+                <ul className="social">
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-facebook" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-twitter" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-linkedin" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-rss" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-dribbble" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

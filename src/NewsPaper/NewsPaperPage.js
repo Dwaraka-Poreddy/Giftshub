@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-import DatePicker from "react-datepicker";
+
 import { jsPDF } from "jspdf";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
@@ -24,7 +24,6 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 
-import "react-datepicker/dist/react-datepicker.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -48,12 +47,7 @@ function NewsPaperPage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-  const [startDate, setDate] = useState(new Date());
-  const today = new Date();
-  const selectDateHandler = (d) => {
-    setDate(d.toString);
-    console.log(startDate);
-  };
+  const [BDate, setBDate] = useState();
 
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
@@ -76,38 +70,51 @@ function NewsPaperPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("NewsPaper");
+      const todo = {
+        url: fbimg,
+        head: head,
+        para: para,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/newspaper/" + newKey);
+      setpreviewlink("/live/newspaper/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("NewsPaper");
-              const todo = {
-                url: downUrl,
-                head: head,
-                para: para,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink("http://localhost:3000/live/newspaper/" + newKey);
-              setpreviewlink("/live/newspaper/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("NewsPaper");
+                const todo = {
+                  url: downUrl,
+                  head: head,
+                  para: para,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink("http://localhost:3000/live/newspaper/" + newKey);
+                setpreviewlink("/live/newspaper/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   function handleImageDownlod(el) {
     const input = docToPrint.current;
@@ -185,7 +192,7 @@ function NewsPaperPage() {
               fbimg={fbimg}
               head={head}
               para={para}
-              startDate={startDate}
+              startDate={BDate}
             />
           </div>
           <div class="col-lg-1"></div>
@@ -297,13 +304,26 @@ function NewsPaperPage() {
                   }}
                   className="RightSideBar2__Btn"
                 >
-                  <DatePicker
-                    formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
-                    dateFormat=" MMMM dd, yyyy "
-                    selected={startDate}
-                    onChange={selectDateHandler}
-                    minDate={today}
-                    todayButton={"Today"}
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <input
+                    className="RightSideBar2__Btn"
+                    type="date"
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "150px",
+                    }}
+                    value={BDate}
+                    onChange={(e) => {
+                      setBDate(e.target.value);
+                    }}
                   />
                 </div>
               </center>

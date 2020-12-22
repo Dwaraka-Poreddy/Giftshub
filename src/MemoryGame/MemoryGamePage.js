@@ -129,106 +129,124 @@ function CubesPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("MemoryGame");
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+        url6: fbimg6,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/memorygame/" + newKey);
+      console.log(livelink, "livelink");
+      setpreviewlink("/live/memorygame/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url1);
-        storage
-          .ref("images")
-          .child(ud1)
-          .putString(image_url1, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl1) => {
-              storage
-                .ref("images")
-                .child(ud2)
-                .putString(image_url2, "base64", { contentType: "image/jpg" })
-                .then((savedImage) => {
-                  savedImage.ref.getDownloadURL().then((downUrl2) => {
-                    storage
-                      .ref("images")
-                      .child(ud3)
-                      .putString(image_url3, "base64", {
-                        contentType: "image/jpg",
-                      })
-                      .then((savedImage) => {
-                        savedImage.ref.getDownloadURL().then((downUrl3) => {
-                          storage
-                            .ref("images")
-                            .child(ud4)
-                            .putString(image_url4, "base64", {
-                              contentType: "image/jpg",
-                            })
-                            .then((savedImage) => {
-                              savedImage.ref
-                                .getDownloadURL()
-                                .then((downUrl4) => {
-                                  storage
-                                    .ref("images")
-                                    .child(ud5)
-                                    .putString(image_url5, "base64", {
-                                      contentType: "image/jpg",
-                                    })
-                                    .then((savedImage) => {
-                                      savedImage.ref
-                                        .getDownloadURL()
-                                        .then((downUrl5) => {
-                                          storage
-                                            .ref("images")
-                                            .child(ud6)
-                                            .putString(image_url6, "base64", {
-                                              contentType: "image/jpg",
-                                            })
-                                            .then((savedImage) => {
-                                              savedImage.ref
-                                                .getDownloadURL()
-                                                .then((downUrl6) => {
-                                                  const todoRef = firebase
-                                                    .database()
-                                                    .ref("MemoryGame");
-                                                  const todo = {
-                                                    url1: downUrl1,
-                                                    url2: downUrl2,
-                                                    url3: downUrl3,
-                                                    url4: downUrl4,
-                                                    url5: downUrl5,
-                                                    url6: downUrl6,
-                                                  };
-                                                  var newKey = todoRef
-                                                    .push(todo)
-                                                    .getKey();
-                                                  setlivelink(
-                                                    "http://localhost:3000/live/memorygame/" +
-                                                      newKey
-                                                  );
-                                                  console.log(
-                                                    livelink,
-                                                    "livelink"
-                                                  );
-                                                  setpreviewlink(
-                                                    "/live/memorygame/" + newKey
-                                                  );
-                                                });
-                                              setloading(false);
-                                            });
-                                        });
-                                    });
-                                });
-                            });
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url1);
+          storage
+            .ref("images")
+            .child(ud1)
+            .putString(image_url1, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl1) => {
+                storage
+                  .ref("images")
+                  .child(ud2)
+                  .putString(image_url2, "base64", { contentType: "image/jpg" })
+                  .then((savedImage) => {
+                    savedImage.ref.getDownloadURL().then((downUrl2) => {
+                      storage
+                        .ref("images")
+                        .child(ud3)
+                        .putString(image_url3, "base64", {
+                          contentType: "image/jpg",
+                        })
+                        .then((savedImage) => {
+                          savedImage.ref.getDownloadURL().then((downUrl3) => {
+                            storage
+                              .ref("images")
+                              .child(ud4)
+                              .putString(image_url4, "base64", {
+                                contentType: "image/jpg",
+                              })
+                              .then((savedImage) => {
+                                savedImage.ref
+                                  .getDownloadURL()
+                                  .then((downUrl4) => {
+                                    storage
+                                      .ref("images")
+                                      .child(ud5)
+                                      .putString(image_url5, "base64", {
+                                        contentType: "image/jpg",
+                                      })
+                                      .then((savedImage) => {
+                                        savedImage.ref
+                                          .getDownloadURL()
+                                          .then((downUrl5) => {
+                                            storage
+                                              .ref("images")
+                                              .child(ud6)
+                                              .putString(image_url6, "base64", {
+                                                contentType: "image/jpg",
+                                              })
+                                              .then((savedImage) => {
+                                                savedImage.ref
+                                                  .getDownloadURL()
+                                                  .then((downUrl6) => {
+                                                    const todoRef = firebase
+                                                      .database()
+                                                      .ref("MemoryGame");
+                                                    const todo = {
+                                                      url1: downUrl1,
+                                                      url2: downUrl2,
+                                                      url3: downUrl3,
+                                                      url4: downUrl4,
+                                                      url5: downUrl5,
+                                                      url6: downUrl6,
+                                                    };
+                                                    var newKey = todoRef
+                                                      .push(todo)
+                                                      .getKey();
+                                                    setlivelink(
+                                                      "http://localhost:3000/live/memorygame/" +
+                                                        newKey
+                                                    );
+                                                    console.log(
+                                                      livelink,
+                                                      "livelink"
+                                                    );
+                                                    setpreviewlink(
+                                                      "/live/memorygame/" +
+                                                        newKey
+                                                    );
+                                                  });
+                                                setloading(false);
+                                              });
+                                          });
+                                      });
+                                  });
+                              });
+                          });
                         });
-                      });
+                    });
                   });
-                });
+              });
             });
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   return (
@@ -273,7 +291,6 @@ function CubesPage() {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          {/* <div class="  col-lg-1"></div> */}
           <div class="  col-lg-8">{func()}</div>
 
           <div class="col-lg-1"></div>

@@ -150,7 +150,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
                 width={100}
               />
             ) : (
-              <div>
+              <div style={{ flex: "0.7" }}>
                 {timerComponents.length ? (
                   timerComponents
                 ) : (

@@ -235,8 +235,8 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div class="col-sm-8 ">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -257,9 +257,9 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
               </div>
             )}
           </div>
-
+          <div class="col-lg-1"></div>
           <div
-            className="threedrnav col-sm-3"
+            className="threedrnav  col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -274,7 +274,6 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 style={{
                   justifyContent: "center",
                   padding: "20px 0 0 0 ",
-                  width: "40%",
                 }}
               >
                 {livelink ? null : (
@@ -289,7 +288,8 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                 )}
               </div>
             </center>
-            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+            <hr />
+            <div style={{ justifyContent: "center" }}>
               <input
                 style={{ display: "none" }}
                 accept="image/* "
@@ -374,7 +374,7 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
                     width={100}
                   />
                 ) : (
-                  <div style={{ width: "55%", marginTop: "20px" }}>
+                  <div style={{ marginTop: "20px" }}>
                     <HeaderBtn
                       handleClick={() => {
                         handleFireBaseUpload();
@@ -389,16 +389,16 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
               <center>
                 {livelink ? (
                   <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ width: "200px", marginTop: "20px" }}>
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <Link class="logo" to={previewlink}>
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <HeaderBtn
                         handleClick={() => {
                           EditPack();

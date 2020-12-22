@@ -74,34 +74,20 @@ function LiveAnimatedFramePage({ match }) {
           />
         ) : (
           <div class="row">
-            <div class="col-sm-2"></div>
-            <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+            <div class="col-xl-2"></div>
+            <div style={{ paddingLeft: "5px" }} class="col-xl-4">
               {" "}
               <center>
                 <SlidePuzzle fbimg={fbimg} />
               </center>
             </div>
-            <div style={{ paddingLeft: "5px" }} class="col-sm-4">
+            <div style={{ paddingLeft: "5px" }} class="col-xl-4">
               <SlidePuzzleAnswer fbimg={fbimg} />
             </div>
-            <div class="col-sm-2"></div>
+            <div class="col-xl-2"></div>
           </div>
         )}
       </div>
-      {/* <br />
-      <br />
-      <div style={{ backgroundColor: "#70cff3" }}>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.2" }}></div>
-          <div style={{ flex: "0.3" }}>
-            <SlidePuzzle fbimg={fbimg} />
-          </div>
-          <div style={{ flex: "0.05" }}></div>
-          <div style={{ flex: "0.3", marginTop: "5%" }}>
-            <SlidePuzzleAnswer fbimg={fbimg} />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

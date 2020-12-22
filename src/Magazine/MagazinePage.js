@@ -60,38 +60,51 @@ function MagazinePage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("Magazine");
+      const todo = {
+        url: fbimg,
+        head1: head1,
+        head2,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/magazine/" + newKey);
+      setpreviewlink("/live/magazine/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("Magazine");
-              const todo = {
-                url: downUrl,
-                head1: head1,
-                head2,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink("http://localhost:3000/live/magazine/" + newKey);
-              setpreviewlink("/live/magazine/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("Magazine");
+                const todo = {
+                  url: downUrl,
+                  head1: head1,
+                  head2,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink("http://localhost:3000/live/magazine/" + newKey);
+                setpreviewlink("/live/magazine/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
   function handleMemeDownlod(el) {
     var canvas = document.getElementById("magazine");

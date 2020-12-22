@@ -104,7 +104,7 @@ function Share({ livelink, from, to }) {
           <HeaderBtn Icon={WhatsAppIcon} title="Whatsapp " />
         </WhatsappShareButton>
       </div>
-      <div>
+      <center>
         <HeaderBtn
           handleClick={() => {
             sendEmail();
@@ -112,7 +112,7 @@ function Share({ livelink, from, to }) {
           Icon={MailIcon}
           title="Email "
         />
-      </div>
+      </center>
     </div>
   );
 }

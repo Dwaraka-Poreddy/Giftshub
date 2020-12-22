@@ -1,15 +1,20 @@
 .Newshead {
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 480px) {
   .Newshead {
-    font-size: 25px !important;
+    font-size: 18px !important;
   }
 }
 
 @media screen and (min-width: 800px) {
   .Newshead {
-    font-size: 38px !important;
+    font-size: 25px !important;
+  }
+}
+@media screen and (min-width: 800px) {
+  .Newshead {
+    font-size: 24px !important;
   }
 }
 

@@ -5,15 +5,6 @@ function NewsPaper({ head, para, fbimg, startDate }) {
     <div>
       <div style={{ display: "flex" }}>
         <div style={{ backgroundColor: "#FFFFFF" }} id="newsPaper">
-          {/* <div>
-            <img
-              style={{
-                width: "100%",
-              }}
-              src={require("../src/Images/Heading.png")}
-              alt="Heading"
-            />
-          </div> */}
           <div>
             <img
               style={{
@@ -41,11 +32,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
                   // fontSize: "12px",
                 }}
               >
-                {" "}
-                Wednesday, December 12, 2020
-                {/* {new Date(startDate).toString()} */}
-                {/* {startDate.toString} */}
-                {/* <p style={{ fontSize: "15px" }}>{startDate}</p> */}
+                <p style={{ fontSize: "15px" }}>{startDate}</p>
               </div>
               <div>
                 <img
@@ -117,7 +104,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
             >
               <div>
                 <h1
-                  // className="Newshead"
+                  className="Newshead"
                   style={{
                     textAlign: "justify",
                     // fontSize: "38px",

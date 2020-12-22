@@ -293,8 +293,8 @@ function ScheduledCubesPage({ slug, getDoc }) {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div class="col-sm-8 " style={{ height: "70vh", marginTop: "-5vh" }}>
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7" style={{ height: "70vh" }}>
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -317,9 +317,9 @@ function ScheduledCubesPage({ slug, getDoc }) {
               </div>
             )}
           </div>
-
+          <div class="col-lg-1"></div>
           <div
-            className="cubesrnav col-sm-3"
+            className="cubesrnav col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -474,7 +474,7 @@ function ScheduledCubesPage({ slug, getDoc }) {
                     width={100}
                   />
                 ) : (
-                  <div style={{ width: "55%", marginTop: "20px" }}>
+                  <div style={{ marginTop: "20px" }}>
                     <HeaderBtn
                       handleClick={() => {
                         handleFireBaseUpload();
@@ -489,11 +489,11 @@ function ScheduledCubesPage({ slug, getDoc }) {
               <center>
                 {livelink ? (
                   <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ width: "200px", marginTop: "20px" }}>
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ width: "55%", marginTop: "20px" }}>
+                    <div style={{ marginTop: "20px" }}>
                       <Link class="logo" to={previewlink}>
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
@@ -505,19 +505,6 @@ function ScheduledCubesPage({ slug, getDoc }) {
                       Icon={ShareIcon}
                       title="Add to Pack "
                     />
-                    {/* {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )} */}
                   </div>
                 ) : null}
               </center>

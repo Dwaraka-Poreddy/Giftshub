@@ -1,0 +1,16 @@
+@media screen and (min-width: 750px) {
+  .Laptopstepper {
+    display: block !important;
+  }
+  .mobilestepper {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 749px) {
+  .Laptopstepper {
+    display: none !important;
+  }
+  .mobilestepper {
+    display: block !important;
+  }
+}

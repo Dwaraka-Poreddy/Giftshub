@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../firebase";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
@@ -20,7 +20,49 @@ import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
 import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
 import Loader from "react-loader-spinner";
 import Copy from "../Utils/Copy";
+import Paper from "@material-ui/core/Paper";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import "./ContinuePack.css";
 function ContinuePack({ match }) {
+  const theme = useTheme();
+
+  const maxSteps = 7;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+  const tutorialSteps = [
+    {
+      label: "3D Image",
+    },
+    {
+      label: "Newspaper",
+    },
+    {
+      label: "Bali, Indonesia",
+    },
+    {
+      label: "NeONBRAND Digital Marketing, Las Vegas, United States",
+    },
+    {
+      label: "Goč, Serbia",
+    },
+    {
+      label: "3D Image",
+    },
+    {
+      label: "Newspaper",
+    },
+    {
+      label: "Unknown",
+    },
+  ];
   const database = firebase.firestore();
   let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
@@ -115,7 +157,6 @@ function ContinuePack({ match }) {
     await getDocnew(data);
     console.log("finished getdocnew");
     setloading(false);
-    console.log(match.params.slug, "newslug");
   }
   useEffect(async () => {
     await getDoc();
@@ -257,43 +298,89 @@ function ContinuePack({ match }) {
 
   const horizontalStepper = () => {
     return (
-      <div className={Stepperclasses.root}>
-        {!loading ? (
-          <Stepper alternativeLabel nonLinear activeStep={activeStep}>
-            {steps.map((label, index) => (
-              <Step key={label}>
-                <StepButton
-                  onClick={handleStep(index)}
-                  completed={completed[index]}
-                >
-                  {label}
-                </StepButton>
-              </Step>
-            ))}
-          </Stepper>
-        ) : (
-          <Loader
-            type="BallTriangle"
-            color="#00BFFF"
-            height={100}
-            width={100}
-          />
-        )}
-        <div>
-          {allStepsCompleted() && !loading ? (
+      <div>
+        <div className={Stepperclasses.root}>
+          {!loading ? (
             <div>
-              <Typography className={Stepperclasses.instructions}>
-                All Componenets completed - you&apos;re finished
-                {!loading && getStepContent(activeStep)}
-              </Typography>
+              <div className="Laptopstepper">
+                <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+                  {steps.map((label, index) => (
+                    <Step key={label}>
+                      <StepButton
+                        onClick={handleStep(index)}
+                        completed={completed[index]}
+                      >
+                        {label}
+                      </StepButton>
+                    </Step>
+                  ))}
+                </Stepper>
+              </div>
+              <div className="mobilestepper">
+                <Paper square elevation={0}>
+                  <Typography>{tutorialSteps[activeStep].label}</Typography>
+                </Paper>
+                <MobileStepper
+                  steps={maxSteps}
+                  position="static"
+                  variant="text"
+                  activeStep={activeStep}
+                  nextButton={
+                    <Button
+                      size="small"
+                      onClick={handleNext}
+                      disabled={activeStep === maxSteps - 1}
+                    >
+                      Next
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowLeft />
+                      ) : (
+                        <KeyboardArrowRight />
+                      )}
+                    </Button>
+                  }
+                  backButton={
+                    <Button
+                      size="small"
+                      onClick={handleBack}
+                      disabled={activeStep === 0}
+                    >
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowRight />
+                      ) : (
+                        <KeyboardArrowLeft />
+                      )}
+                      Back
+                    </Button>
+                  }
+                />
+              </div>
             </div>
           ) : (
-            <div>
-              <Typography className={Stepperclasses.instructions}>
-                {!loading && getStepContent(activeStep)}
-              </Typography>
-            </div>
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
           )}
+
+          <div>
+            {allStepsCompleted() && !loading ? (
+              <div>
+                <Typography className={Stepperclasses.instructions}>
+                  All Componenets completed - you&apos;re finished
+                  {!loading && getStepContent(activeStep)}
+                </Typography>
+              </div>
+            ) : (
+              <div>
+                <Typography className={Stepperclasses.instructions}>
+                  {!loading && getStepContent(activeStep)}
+                </Typography>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -304,33 +391,54 @@ function ContinuePack({ match }) {
       <br />
       <br />
       <br />
-      {!loading ? (
-        <div style={{ float: "right" }}>
-          {!showshare ? (
-            <div style={{ width: "100%", marginTop: "20px" }}>
-              <HeaderBtn
-                handleClick={() => {
-                  setshowshare(true);
-                }}
-                Icon={ShareIcon}
-                title="Share "
+      <div style={{ backgroundColor: "#d3d3d3" }} class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <center>
+              {" "}
+              <img
+                style={{ width: "50%" }}
+                src="https://cdn.shopify.com/s/files/1/0255/9121/8229/files/shareLogo.png"
+                alt=""
               />
-            </div>
-          ) : (
-            <div>
-              <Share
-                livelink={livelink}
-                to={data1.To_name}
-                from={data1.From_name}
-              />
-              <center style={{ width: "60%" }}>
-                <Copy livelink={livelink} />
-              </center>
-            </div>
-          )}
-        </div>
-      ) : null}
+            </center>
+          </div>
 
+          <div class="col-sm-4 ">
+            <h2>Share</h2>
+            <h6>
+              This is a simple hero unit, a simple jumbotron-style component for
+              calling extra attention to featured content or information.
+            </h6>
+          </div>
+          <div class="col-sm-4">
+            <center>
+              {!showshare ? (
+                <div style={{ marginTop: "20px" }}>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setshowshare(true);
+                    }}
+                    Icon={ShareIcon}
+                    title="Share "
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Share
+                    livelink={livelink}
+                    to={data1.To_name}
+                    from={data1.From_name}
+                  />
+                  <center style={{ width: "200px" }}>
+                    <Copy livelink={livelink} />
+                  </center>
+                </div>
+              )}
+            </center>
+          </div>
+        </div>
+      </div>
       {horizontalStepper()}
     </div>
   );

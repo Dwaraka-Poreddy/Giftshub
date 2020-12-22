@@ -58,36 +58,47 @@ function OpenGreetingCardPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("SplitWall");
+      const todo = {
+        url: fbimg,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/splitwall/" + newKey);
+      setpreviewlink("/live/splitwall/" + newKey);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url);
-        var s = storage
-          .ref("images")
-          .child(ud)
-          .putString(image_url, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl) => {
-              console.log(downUrl);
-              setFireUrl(downUrl);
-              const todoRef = firebase.database().ref("SplitWall");
-              const todo = {
-                url: downUrl,
-              };
-              var newKey = todoRef.push(todo).getKey();
-              setlivelink("http://localhost:3000/live/splitwall/" + newKey);
-              setpreviewlink("/live/splitwall/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          console.log(image_url);
+          var s = storage
+            .ref("images")
+            .child(ud)
+            .putString(image_url, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl) => {
+                console.log(downUrl);
+                setFireUrl(downUrl);
+                const todoRef = firebase.database().ref("SplitWall");
+                const todo = {
+                  url: downUrl,
+                };
+                var newKey = todoRef.push(todo).getKey();
+                setlivelink("http://localhost:3000/live/splitwall/" + newKey);
+                setpreviewlink("/live/splitwall/" + newKey);
+              });
+              setloading(false);
             });
-            setloading(false);
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   return (
