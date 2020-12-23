@@ -28,7 +28,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledCubesPage({ slug, getDoc }) {
+function ScheduledCubesPage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
@@ -73,7 +73,7 @@ function ScheduledCubesPage({ slug, getDoc }) {
   const [image_url5, setimage_url5] = useState();
   const [opencrop5, setopencrop5] = useState(false);
   const [send5, setsend5] = useState();
-
+  const [daycounter, setdaycounter] = useState();
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
     setopencrop1(true);
@@ -94,6 +94,16 @@ function ScheduledCubesPage({ slug, getDoc }) {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
     setopencrop5(true);
   };
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -129,7 +139,22 @@ function ScheduledCubesPage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("Cubes/" + edit.text);
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/cubes/" + edit.text + "/" + slug
+      );
+      setpreviewlink("/scheduledlive/cubes/" + edit.text + "/" + slug);
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("Cubes");
       const todo = {
         url1: fbimg1,
@@ -142,7 +167,6 @@ function ScheduledCubesPage({ slug, getDoc }) {
       setlivelink(
         "http://localhost:3000/scheduledlive/cubes/" + newKey + "/" + slug
       );
-      console.log(livelink, "livelink");
       setpreviewlink("/scheduledlive/cubes/" + newKey + "/" + slug);
       setloading(false);
     } else {
@@ -214,7 +238,7 @@ function ScheduledCubesPage({ slug, getDoc }) {
                                                 "/" +
                                                 slug
                                             );
-                                            console.log(livelink, "livelink");
+
                                             setpreviewlink(
                                               "/scheduledlive/cubes/" +
                                                 newKey +
@@ -237,17 +261,32 @@ function ScheduledCubesPage({ slug, getDoc }) {
     }
   };
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url6: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url6: livelink,
-    });
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
     toast.success("3D cube successfully added to your pack");
     getDoc();
   }
@@ -305,7 +344,7 @@ function ScheduledCubesPage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">Two days to go !!!</h1>
+                  <h1 className="example">{daycounter} days to go !!!</h1>
                 </center>
                 <Cubes
                   fbimg1={fbimg1}

@@ -31,14 +31,13 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledThreeDImagePage({ slug, getDoc }) {
+function ScheduledThreeDImagePage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
-  const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [fireurl, setFireUrl] = useState("");
@@ -53,7 +52,19 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
   const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
-  const [color, setColor] = useState({});
+  const [daycounter, setdaycounter] = useState();
+
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
+
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -88,7 +99,26 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("ThreeDImage/" + edit.text);
+      const todo = {
+        url: fbimg,
+        firstcol: firstcol,
+        secondcol: secondcol,
+      };
+
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/threedimage/" +
+          edit.text +
+          "/" +
+          slug
+      );
+      console.log(livelink, "live");
+      setpreviewlink("/scheduledlive/threedimage/" + edit.text + "/" + slug);
+
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("ThreeDImage");
       const todo = {
         url: fbimg,
@@ -117,7 +147,6 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
             .putString(image_url, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
                 setFireUrl(downUrl);
                 const todoRef = firebase.database().ref("ThreeDImage");
                 const todo = {
@@ -152,7 +181,7 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
       .get();
     const data = snapshot.data().array_data;
     const newdata = data;
-    newdata[0].url = livelink;
+    newdata[step].url = livelink;
 
     await database
       .collection("n-day-pack")
@@ -265,7 +294,7 @@ function ScheduledThreeDImagePage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">Six days to go !!!</h1>
+                  <h1 className="example">n days to go !!!</h1>
                 </center>
                 <ThreeDImage
                   firstcol={firstcol}

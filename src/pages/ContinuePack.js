@@ -95,22 +95,30 @@ function ContinuePack({ match }) {
       type: "EDIT_SCHEDULED",
       payload: { text: "" },
     });
+    if (allStepsCompleted()) {
+      var splits = dataurl[activeStep].split("/");
+      dispatch({
+        type: "EDIT_SCHEDULED",
+        payload: { text: splits[5] },
+      });
+    }
   }
 
   async function getDoc() {
     setloading(true);
-
     const snapshot = await database
       .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(match.params.slug)
       .get();
+
     const data = await snapshot.data().array_data;
+
     data.map((item, index) => {
-      datacontent.push(item.content);
-      dataid.push(item.id);
-      dataurl.push(item.url);
+      datacontent[index] = item.content;
+      dataid[index] = item.id;
+      dataurl[index] = item.url;
     });
 
     await getDocnew();
@@ -124,6 +132,8 @@ function ContinuePack({ match }) {
     setloading(false);
   }
   useEffect(async () => {
+    console.log(match.params.slug, "test", slag, "slag");
+    console.log(activeStep, "activestep", dataurl[activeStep], "test");
     await getDoc();
     setloading(false);
   }, []);
@@ -150,25 +160,37 @@ function ContinuePack({ match }) {
 
   function getStepContent(step) {
     if (dataid[step] === "puzzle") {
-      return <ScheduledSlidePuzzlePage slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledSlidePuzzlePage step={step} slug={slag} getDoc={getDoc} />
+      );
     }
     if (dataid[step] === "memorygame") {
-      return <ScheduledMemoryGamePage slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledMemoryGamePage step={step} slug={slag} getDoc={getDoc} />
+      );
     }
     if (dataid[step] === "collage") {
-      return <ScheduledCollagePage slug={slag} getDoc={getDoc} />;
+      return <ScheduledCollagePage step={step} slug={slag} getDoc={getDoc} />;
     }
     if (dataid[step] === "cubes") {
-      return <ScheduledCubesPage slug={slag} getDoc={getDoc} />;
+      return <ScheduledCubesPage step={step} slug={slag} getDoc={getDoc} />;
     }
     if (dataid[step] === "newspaper") {
-      return <ScheduledNewsPaperPage slug={slag} getDoc={getDoc} />;
+      return <ScheduledNewsPaperPage step={step} slug={slag} getDoc={getDoc} />;
     }
     if (dataid[step] === "threedimage") {
-      return <ScheduledThreeDImagePage slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledThreeDImagePage step={step} slug={slag} getDoc={getDoc} />
+      );
     }
     if (dataid[step] === "greetingcard") {
-      return <ScheduledOpenGreetingCardPage slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledOpenGreetingCardPage
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
     }
   }
   const Stepperclasses = useStyles();

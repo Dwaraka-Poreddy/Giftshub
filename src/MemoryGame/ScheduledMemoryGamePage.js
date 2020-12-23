@@ -13,7 +13,6 @@ import MemoryGame from "./MemoryGame";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
@@ -29,7 +28,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledMemoryGamePage({ slug, getDoc }) {
+function ScheduledMemoryGamePage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
@@ -107,6 +106,18 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
     setsend6(window.URL.createObjectURL(e.target.files[0]));
     setopencrop6(true);
   };
+  const [daycounter, setdaycounter] = useState();
+
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -150,17 +161,32 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
     );
   };
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url5: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url5: livelink,
-    });
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
     toast.success("Memory Game successfully added to your pack");
     getDoc();
   }
@@ -175,7 +201,27 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("MemoryGame/" + edit.text);
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+        url6: fbimg6,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/memorygame/" +
+          edit.text +
+          "/" +
+          slug
+      );
+      console.log(livelink, "livelink");
+      setpreviewlink("/scheduledlive/memorygame/" + edit.text + "/" + slug);
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("MemoryGame");
       const todo = {
         url1: fbimg1,
@@ -189,7 +235,7 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
       setlivelink(
         "http://localhost:3000/scheduledlive/memorygame/" + newKey + "/" + slug
       );
-      console.log(livelink, "livelink");
+
       setpreviewlink("/scheduledlive/memorygame/" + newKey + "/" + slug);
       setloading(false);
     } else {
@@ -353,7 +399,7 @@ function ScheduledMemoryGamePage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">Six days to go !!!</h1>
+                  <h1 className="example">{daycounter} days to go !!!</h1>
                 </center>
                 {func()}
               </div>

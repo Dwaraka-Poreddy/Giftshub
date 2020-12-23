@@ -192,7 +192,7 @@ const Home = ({ history }) => {
                         <InputBase
                           className="RightSideBar2__Btn"
                           multiline
-                          placeholder="Your Name"
+                          placeholder="Folder Name"
                           style={{
                             color: "#068dc0",
                             margin: "0",

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import firebase from "../firebase";
 
+import firebase from "../firebase";
+import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveMainPage({ match }) {
   const database = firebase.firestore();
   const [FolderData, setFolderData] = useState("");
-
+  const [dataurl, setdataurl] = useState([]);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -13,7 +13,9 @@ function ScheduledLiveMainPage({ match }) {
       .doc(match.params.slug)
       .get();
     const data = snapshot.data();
-
+    data.array_data.map((item, index) => {
+      dataurl[index] = item.url;
+    });
     setFolderData(data);
   }
   useEffect(() => {
@@ -21,63 +23,7 @@ function ScheduledLiveMainPage({ match }) {
   }, []);
   return (
     <div>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <Link
-          class="navbar-brand"
-          to={`/scheduledlive/main/${match.params.slug}`}
-        >
-          {" "}
-          Main Page
-        </Link>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapsibleNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url1}>
-                Day 1
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url2}>
-                Day 2
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url3}>
-                Day 3
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url4}>
-                Day 4
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url5}>
-                Day 5
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url6}>
-                Day 6
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={FolderData.url7}>
-                Day 7
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <ScheduledLiveNav slug={match.params.slug} />
       <br />
       <br />
       <br />

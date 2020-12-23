@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function ScheduledLiveMemoryGame({ match }) {
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
@@ -13,6 +13,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
   const [fbimg5, setfbimg5] = useState("");
   const [fbimg6, setfbimg6] = useState("");
   const [loading, setloading] = useState(false);
+  const [dataurl, setdataurl] = useState([]);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -20,6 +21,9 @@ export default function ScheduledLiveMemoryGame({ match }) {
       .get();
     const data = snapshot.data();
     setLivelinks(data);
+    data.array_data.map((item, index) => {
+      dataurl[index] = item.url;
+    });
   }
   useEffect(() => {
     getDoc();
@@ -90,63 +94,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
 
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <Link
-          class="navbar-brand"
-          to={`/scheduledlive/main/${match.params.slug}`}
-        >
-          {" "}
-          Main Page
-        </Link>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapsibleNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url1}>
-                Day 1
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url2}>
-                Day 2
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url3}>
-                Day 3
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url4}>
-                Day 4
-              </a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href={Livelinks.url5}>
-                Day 5
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url6}>
-                Day 6
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href={Livelinks.url7}>
-                Day 7
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <ScheduledLiveNav slug={match.params.slug} />
       <br />
       <br />
       <div>

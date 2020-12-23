@@ -3,12 +3,11 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-import DatePicker from "react-datepicker";
+
 import { jsPDF } from "jspdf";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -36,7 +35,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledNewsPaperPage({ slug, getDoc }) {
+function ScheduledNewsPaperPage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const database = firebase.firestore();
@@ -53,20 +52,28 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
-  const [startDate, setDate] = useState(new Date());
-  const today = new Date();
-  const selectDateHandler = (d) => {
-    setDate(d.toString);
-    console.log(startDate);
-  };
 
+  const [BDate, setBDate] = useState();
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
   );
 
   const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
   const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
+  const [daycounter, setdaycounter] = useState();
+
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
   useEffect(() => {
+    console.log("0000000");
     setCLoading(true);
     if (edit.text != "") {
       const todoRef = firebase
@@ -107,7 +114,23 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("NewsPaper/" + edit.text);
+      const todo = {
+        url: fbimg,
+        head: head,
+        para: para,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/newspaper/" +
+          edit.text +
+          "/" +
+          slug
+      );
+      setpreviewlink("/scheduledlive/newspaper/" + edit.text + "/" + slug);
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("NewsPaper");
       const todo = {
         url: fbimg,
@@ -160,17 +183,32 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
   };
 
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url2: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url2: livelink,
-    });
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
     toast.success("NewsPaper successfully added to your pack");
     getDoc();
   }
@@ -185,7 +223,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
         format: [600, 400],
       });
       pdf.addImage(imgData, "JPEG", 0, 0);
-      // pdf.output("dataurlnewwindow");
+
       pdf.save("Up4-receipt.pdf");
     });
   }
@@ -243,6 +281,7 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
       <br />
       <br />
       <br />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1 "></div>
@@ -257,13 +296,13 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">Five days to go !!!</h1>
+                  <h1 className="example">{daycounter} days to go !!!</h1>
                 </center>
                 <NewsPaper
                   fbimg={fbimg}
                   head={head}
                   para={para}
-                  startDate={startDate}
+                  startDate={BDate}
                 />
               </div>
             )}
@@ -394,21 +433,15 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                       backgroundColor: "#ffffff",
                       width: "150px",
                     }}
-                    // value={para}
-                    // onChange={(e) => {
-                    //   setpara(e.target.value);
-                    // }}
+                    value={BDate}
+                    onChange={(e) => {
+                      setBDate(e.target.value);
+                    }}
                   />
                 </div>
 
                 <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    // handleClick={() => {
-                    //   handleImageDownlod(this);
-                    // }}
-                    Icon={LinkIcon}
-                    title="Date Picker"
-                  />
+                  <HeaderBtn Icon={LinkIcon} title="Date Picker" />
                 </div>
                 <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
@@ -442,9 +475,11 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
               <center>
                 {livelink ? (
                   <div>
-                    <div style={{ marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
+                    <center>
+                      <div style={{ marginTop: "20px", width: "200px" }}>
+                        <Copy livelink={livelink} />
+                      </div>
+                    </center>
 
                     <div style={{ marginTop: "20px" }}>
                       <Link class="logo" to={previewlink}>
@@ -460,19 +495,6 @@ function ScheduledNewsPaperPage({ slug, getDoc }) {
                         title="Add to Pack "
                       />
                     </div>
-                    {/* {!showshare ? (
-                      <div style={{marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={"livelink"} />
-                    )} */}
                   </div>
                 ) : null}
               </center>

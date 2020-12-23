@@ -26,7 +26,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledCollagePage({ slug, getDoc }) {
+function ScheduledCollagePage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [loading, setloading] = useState(false);
   const [Cloading, setCLoading] = useState(false);
@@ -43,7 +43,7 @@ function ScheduledCollagePage({ slug, getDoc }) {
   const [image_url1, setimage_url1] = useState();
   const [opencrop1, setopencrop1] = useState(false);
   const [send1, setsend1] = useState();
-
+  const [daycounter, setdaycounter] = useState();
   const [fbimg2, setfbimg2] = useState(
     "https://source.unsplash.com/Dm-qxdynoEc/800x799"
   );
@@ -136,6 +136,17 @@ function ScheduledCollagePage({ slug, getDoc }) {
     setsend9(window.URL.createObjectURL(e.target.files[0]));
     setopencrop9(true);
   };
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
+
   useEffect(() => {
     func();
     console.log("img changed");
@@ -203,7 +214,27 @@ function ScheduledCollagePage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("Collage/" + edit.text);
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+        url6: fbimg6,
+        url7: fbimg7,
+        url8: fbimg8,
+        url9: fbimg9,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/collage/" + edit.text + "/" + slug
+      );
+      console.log(livelink, "livelink");
+      setpreviewlink("scheduledlive/collage/" + edit.text + "/" + slug);
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("Collage");
       const todo = {
         url1: fbimg1,
@@ -371,10 +402,7 @@ function ScheduledCollagePage({ slug, getDoc }) {
                                                                                         "/" +
                                                                                         slug
                                                                                     );
-                                                                                    console.log(
-                                                                                      livelink,
-                                                                                      "livelink"
-                                                                                    );
+
                                                                                     setpreviewlink(
                                                                                       "scheduledlive/collage/" +
                                                                                         newKey +
@@ -411,18 +439,39 @@ function ScheduledCollagePage({ slug, getDoc }) {
     }
   };
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url7: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url7: livelink,
-    });
-    toast.success("Collage successfully added to your pack");
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
+    {
+      edit.text == ""
+        ? toast.success("Collage successfully added to your pack")
+        : toast.success("Collage successfully updated in the pack");
+    }
+
     getDoc();
   }
   return (
@@ -479,7 +528,7 @@ function ScheduledCollagePage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">One day to go !!!</h1>
+                  <h1 className="example">{daycounter} day to go !!!</h1>
                 </center>
                 {func()}
               </div>

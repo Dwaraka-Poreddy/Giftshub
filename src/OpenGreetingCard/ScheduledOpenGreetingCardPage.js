@@ -30,7 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
+function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
@@ -52,6 +52,18 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
   );
+  const [daycounter, setdaycounter] = useState();
+
+  // useEffect(async () => {
+  //   const snapshot = await database
+  //     .collection("n-day-pack")
+  //     .doc(`${user.uid}`)
+  //     .collection("giftshub")
+  //     .doc(slug)
+  //     .get();
+  //   const data = snapshot.data().array_data;
+  //   setdaycounter(data.length - step - 1);
+  // }, []);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -88,7 +100,27 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (edit.text != "" || !livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("OpenGreetingCard/" + edit.text);
+      const todo = {
+        url: fbimg,
+        text1: text1,
+        text2: text2,
+        maintext: maintext,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/opengreetingcard/" +
+          edit.text +
+          "/" +
+          slug
+      );
+      setpreviewlink(
+        "/scheduledlive/opengreetingcard/" + edit.text + "/" + slug
+      );
+
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("OpenGreetingCard");
       const todo = {
         url: fbimg,
@@ -111,7 +143,6 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
         "state_changed",
         (snapshot) => {},
         (err) => {
-          //catches the errors
           console.log(err);
         },
         () => {
@@ -122,7 +153,6 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
             .putString(image_url, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
                 setFireUrl(downUrl);
                 const todoRef = firebase.database().ref("OpenGreetingCard");
                 const todo = {
@@ -149,17 +179,32 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
     }
   };
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url3: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url3: livelink,
-    });
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
     toast.success("Greeting Card successfully added to your pack");
     getDoc();
   }
@@ -217,7 +262,7 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
             ) : (
               <div>
                 <center>
-                  <h1 className="example">Four days to go !!!</h1>
+                  <h1 className="example">{daycounter} days to go !!!</h1>
                 </center>
                 <OpenGreetingCard
                   fbimg={fbimg}
@@ -381,19 +426,6 @@ function ScheduledOpenGreetingCardPage({ slug, getDoc }) {
                         title="Add to Pack "
                       />
                     </div>
-                    {/* {!showshare ? (
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          setshowshare(true);
-                        }}
-                        Icon={ShareIcon}
-                        title="Share "
-                      />
-                    </div>
-                  ) : (
-                    <Share livelink={livelink} />
-                  )} */}
                   </div>
                 ) : null}
               </center>
