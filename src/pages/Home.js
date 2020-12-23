@@ -11,15 +11,16 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import CropPage from "../Utils/CropPage";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import InputBase from "@material-ui/core/InputBase";
+import CreateIcon from "@material-ui/icons/Create";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "15px",
     position: "absolute",
-
+    color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    backgroundColor: "#303030",
+    backgroundColor: "#009dd9",
     padding: theme.spacing(2, 4, 3),
   },
   DelBut: {
@@ -181,73 +182,170 @@ const Home = ({ history }) => {
                     <br />
                     <br />
                     <form onSubmit={CreatePack}>
-                      <label>
-                        FOLDER Name:
-                        <input
-                          onChange={(e) => setFolder_name(e.target.value)}
-                          type="text"
-                          name="Folder_name"
-                        />
-                      </label>
+                      <div
+                        style={{
+                          width: "200px",
 
-                      <label>
-                        From_name Name:
-                        <input
+                          marginTop: "20px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          placeholder="Your Name"
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={Folder_name}
+                          onChange={(e) => setFolder_name(e.target.value)}
+                        />
+                      </div>
+
+                      <div
+                        style={{
+                          width: "200px",
+
+                          marginTop: "20px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          placeholder="Your Name"
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={From_name}
                           onChange={(e) => setFrom_name(e.target.value)}
-                          type="text"
-                          name="From_name"
                         />
-                      </label>
-                      <label>
-                        To_name Name:
-                        <input
+                      </div>
+
+                      <div
+                        style={{
+                          width: "200px",
+
+                          marginTop: "20px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          placeholder="Receivers Name"
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={To_name}
                           onChange={(e) => setTo_name(e.target.value)}
-                          type="text"
-                          name="To_name"
                         />
-                      </label>
+                      </div>
+
+                      <div>
+                        <input
+                          style={{ display: "none" }}
+                          accept="image/* "
+                          // className={secclasses.input}
+                          id="ImageInput"
+                          name="ImageInput"
+                          // multiple
+                          type="file"
+                          accept="image/*"
+                          onChange={onSelectFile}
+                          onClick={(event) => {
+                            event.target.value = null;
+                          }}
+                        />
+                        {opencrop ? (
+                          <CropPage
+                            send={send}
+                            setfbimg={setfbimg}
+                            setimage_url={setimage_url}
+                            aspect_ratio={1 / 1}
+                            opencrop={opencrop}
+                            setopencrop={setopencrop}
+                          />
+                        ) : null}
+                        <label htmlFor="ImageInput">
+                          <HeaderBtn
+                            Icon={ViewModuleIcon}
+                            title="Add your  image "
+                          />
+                        </label>
+                      </div>
+
+                      <div
+                        style={{
+                          width: "200px",
+
+                          marginTop: "20px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <input
+                          className="RightSideBar2__Btn"
+                          type="date"
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "150px",
+                          }}
+                          value={Bday_date}
+                          onChange={(e) => setBday_date(e.target.value)}
+                        />
+                      </div>
 
                       <input
                         style={{ display: "none" }}
-                        accept="image/* "
-                        // className={secclasses.input}
-                        id="ImageInput"
-                        name="ImageInput"
-                        // multiple
-                        type="file"
-                        accept="image/*"
-                        onChange={onSelectFile}
-                        onClick={(event) => {
-                          event.target.value = null;
-                        }}
+                        id="submit"
+                        type="submit"
+                        value="Create 7 day pack"
                       />
-                      {opencrop ? (
-                        <CropPage
-                          send={send}
-                          setfbimg={setfbimg}
-                          setimage_url={setimage_url}
-                          aspect_ratio={1 / 1}
-                          opencrop={opencrop}
-                          setopencrop={setopencrop}
-                        />
-                      ) : null}
-                      <label htmlFor="ImageInput">
+                      <label htmlFor="submit">
                         <HeaderBtn
                           Icon={ViewModuleIcon}
-                          title="Change  image "
+                          title="Create 7 day pack "
                         />
                       </label>
-                      <label>
-                        Date:
-                        <input
-                          type="date"
-                          id="birthday"
-                          name="Bday_date"
-                          onChange={(e) => setBday_date(e.target.value)}
-                        />
-                      </label>
-
-                      <input type="submit" value="Create 7 day pack" />
                     </form>
                   </div>
                 </div>
