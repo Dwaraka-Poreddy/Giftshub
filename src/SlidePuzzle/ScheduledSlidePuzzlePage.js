@@ -127,17 +127,33 @@ function ScheduledSlidePuzzlePage({ slug, getDoc }) {
     }
   };
   async function EditPack() {
-    await database
-      .collection("7-day-pack")
+    const snapshot = await database
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(slug)
-      .update({
-        url4: livelink,
-      });
-    await database.collection("Livelinks").doc(slug).update({
-      url4: livelink,
-    });
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[1].url = livelink;
+
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
     toast.success("Slide Puzzle successfully added to your pack");
     getDoc();
   }

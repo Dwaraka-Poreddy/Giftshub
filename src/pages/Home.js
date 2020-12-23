@@ -13,6 +13,7 @@ import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
+import NpackSelect from "./NPackSelect";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "15px",
@@ -34,7 +35,7 @@ const Home = ({ history }) => {
   const classes = useStyles();
   const [openModal, setopenModal] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
-
+  const [npackorder, setnpackorder] = useState([]);
   const database = firebase.firestore();
   const [Folder_name, setFolder_name] = useState();
   const [From_name, setFrom_name] = useState();
@@ -49,15 +50,18 @@ const Home = ({ history }) => {
   const [Bday_date, setBday_date] = useState(new Date("December 10, 1815"));
   useEffect(() => {
     var user = firebase.auth().currentUser;
-    console.log(user);
+
     if (!user) {
       history.push("/login");
     }
     getPrevious();
   }, []);
+  const setpackfunc = (selected) => {
+    setnpackorder(selected);
+  };
   const getPrevious = () => {
     database
-      .collection("7-day-pack")
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .get()
@@ -102,7 +106,7 @@ const Home = ({ history }) => {
           .putString(image_url, "base64", { contentType: "image/jpg" })
           .then((savedImage) => {
             savedImage.ref.getDownloadURL().then((downUrl) => {
-              var sevendayPack = firebase.firestore().collection("/7-day-pack");
+              var sevendayPack = firebase.firestore().collection("/n-day-pack");
               var sevendayPackPack = sevendayPack
                 .doc(`${user.uid}`)
                 .collection("giftshub");
@@ -113,13 +117,7 @@ const Home = ({ history }) => {
                   Bday_date: Bday_date,
                   From_name: From_name,
                   To_name: To_name,
-                  url1: "",
-                  url2: "",
-                  url3: "",
-                  url4: "",
-                  url5: "",
-                  url6: "",
-                  url7: "",
+                  array_data: npackorder,
                 })
                 .then(function (docRef) {
                   var LivelinkPack = firebase
@@ -131,13 +129,7 @@ const Home = ({ history }) => {
                     From_name: From_name,
                     Bday_date: Bday_date,
                     To_name: To_name,
-                    url1: "",
-                    url2: "",
-                    url3: "",
-                    url4: "",
-                    url5: "",
-                    url6: "",
-                    url7: "",
+                    array_data: npackorder,
                   });
 
                   history.push(`/ContinuePack/${docRef.id}`);
@@ -350,7 +342,7 @@ const Home = ({ history }) => {
                   </div>
                 </div>
               </div>
-
+              <NpackSelect setpackfunc={setpackfunc} />
               <Fab
                 onClick={() => {
                   setopenModal(false);
@@ -366,7 +358,6 @@ const Home = ({ history }) => {
         }
       </Modal>
 
-      {/* <button onClick={getPrevious}>Get Previous</button> */}
       <div>
         {error ? <p>Ops, there is an error :(</p> : null}
         <ul>

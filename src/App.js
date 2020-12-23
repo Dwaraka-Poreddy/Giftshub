@@ -3,8 +3,6 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Header from "./Studio/Header";
 import MainPage from "./MainPage";
-import N_Day_Home from "./N_Day_pages/N_Day_Home";
-import N_Day_ContinuePack from "./N_Day_pages/N_Day_ContinuePack";
 import MagazinePage from "./Magazine/MagazinePage";
 import NewsPaperPage from "./NewsPaper/NewsPaperPage";
 import CollagePage from "./Collage/CollagePage";
@@ -76,8 +74,7 @@ export default function App() {
       <ToastContainer />
       <Switch>
         <Route exact path="/home" component={Home} />
-        <Route exact path="/ndaycontinuepack" component={N_Day_ContinuePack} />
-        <Route exact path="/ndayhome" component={N_Day_Home} />
+
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
         <Route exact path="/LiveLinksPage/:slug" component={LiveLinksPage} />
         <Route exact path="/login" component={Login} />

@@ -66,65 +66,29 @@ function ContinuePack({ match }) {
   const database = firebase.firestore();
   let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
-  const [FolderData, setFolderData] = useState("");
+
   const [loading, setloading] = useState(true);
   const [slag, setslag] = useState(match.params.slug);
   const [livelink, setlivelink] = useState();
   const [showshare, setshowshare] = useState(false);
   const [data1, setdata1] = useState();
 
-  async function getDocnew(data) {
-    if (data.url1 != "") {
-      const newCompleted = completed;
-      newCompleted[0] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url2 != "") {
-      const newCompleted = completed;
-      newCompleted[1] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url3 != "") {
-      const newCompleted = completed;
-      newCompleted[2] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url4 != "") {
-      const newCompleted = completed;
-      newCompleted[3] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url5 != "") {
-      const newCompleted = completed;
-      newCompleted[4] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url6 != "") {
-      const newCompleted = completed;
-      newCompleted[5] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url7 != "") {
-      const newCompleted = completed;
-      newCompleted[6] = true;
-      setCompleted(newCompleted);
-    }
-    if (data.url1 == "") {
-      setActiveStep(0);
-    } else if (data.url2 == "") {
-      setActiveStep(1);
-    } else if (data.url3 == "") {
-      setActiveStep(2);
-    } else if (data.url4 == "") {
-      setActiveStep(3);
-    } else if (data.url5 == "") {
-      setActiveStep(4);
-    } else if (data.url6 == "") {
-      setActiveStep(5);
-    } else if (data.url7 == "") {
-      setActiveStep(6);
-    } else {
-      setActiveStep(7);
+  const [datacontent, setdatacontent] = useState([]);
+  const [dataid, setdataid] = useState([]);
+  const [dataurl, setdataurl] = useState([]);
+  async function getDocnew() {
+    dataurl.map((item, index) => {
+      if (item != "") {
+        const newCompleted = completed;
+        newCompleted[index] = true;
+        setCompleted(newCompleted);
+      }
+    });
+    for (var i = 0; i < dataurl.length; i++) {
+      if (dataurl[i] == "") {
+        setActiveStep(i);
+        break;
+      }
     }
 
     dispatch({
@@ -132,23 +96,31 @@ function ContinuePack({ match }) {
       payload: { text: "" },
     });
   }
+
   async function getDoc() {
     setloading(true);
 
     const snapshot = await database
-      .collection("7-day-pack")
+      .collection("n-day-pack")
       .doc(`${user.uid}`)
       .collection("giftshub")
       .doc(match.params.slug)
       .get();
-    const data = snapshot.data();
-    setdata1(snapshot.data());
+    const data = await snapshot.data().array_data;
+    data.map((item, index) => {
+      datacontent.push(item.content);
+      dataid.push(item.id);
+      dataurl.push(item.url);
+    });
+
+    await getDocnew();
+    setloading(false);
 
     setlivelink(
       "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
     );
-    setFolderData(data);
-    await getDocnew(data);
+
+    await getDocnew();
     setloading(false);
   }
   useEffect(async () => {
@@ -173,36 +145,30 @@ function ContinuePack({ match }) {
   }));
 
   function getSteps() {
-    return [
-      "ThreeDImage",
-      "NewsPaper",
-      "Greeting Card",
-      "Slide Puzzle",
-      "Memory Game",
-      "Cubes in Heart",
-      "Collage",
-    ];
+    return datacontent;
   }
 
   function getStepContent(step) {
-    console.log("getstep");
-    switch (step) {
-      case 0:
-        return <ScheduledThreeDImagePage slug={slag} getDoc={getDoc} />;
-      case 1:
-        return <ScheduledNewsPaperPage slug={slag} getDoc={getDoc} />;
-      case 2:
-        return <ScheduledOpenGreetingCardPage slug={slag} getDoc={getDoc} />;
-      case 3:
-        return <ScheduledSlidePuzzlePage slug={slag} getDoc={getDoc} />;
-      case 4:
-        return <ScheduledMemoryGamePage slug={slag} getDoc={getDoc} />;
-      case 5:
-        return <ScheduledCubesPage slug={slag} getDoc={getDoc} />;
-      case 6:
-        return <ScheduledCollagePage slug={slag} getDoc={getDoc} />;
-      default:
-        return "Unknown step";
+    if (dataid[step] === "puzzle") {
+      return <ScheduledSlidePuzzlePage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "memorygame") {
+      return <ScheduledMemoryGamePage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "collage") {
+      return <ScheduledCollagePage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "cubes") {
+      return <ScheduledCubesPage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "newspaper") {
+      return <ScheduledNewsPaperPage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "threedimage") {
+      return <ScheduledThreeDImagePage slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "greetingcard") {
+      return <ScheduledOpenGreetingCardPage slug={slag} getDoc={getDoc} />;
     }
   }
   const Stepperclasses = useStyles();
@@ -229,63 +195,11 @@ function ContinuePack({ match }) {
       payload: { text: "" },
     });
     if (completed[step] == true) {
-      if (step == 0) {
-        var splits = data1.url1.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-
-      if (step == 1) {
-        var splits = data1.url2.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-      if (step == 2) {
-        var splits = data1.url3.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-      if (step == 3) {
-        var splits = data1.url4.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-      if (step == 4) {
-        var splits = data1.url5.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-      if (step == 5) {
-        var splits = data1.url6.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
-      if (step == 6) {
-        var splits = data1.url7.split("/");
-
-        dispatch({
-          type: "EDIT_SCHEDULED",
-          payload: { text: splits[5] },
-        });
-      }
+      var splits = dataurl[step].split("/");
+      dispatch({
+        type: "EDIT_SCHEDULED",
+        payload: { text: splits[5] },
+      });
     }
   };
 
