@@ -45,19 +45,19 @@ function ContinuePack({ match }) {
       label: "Newspaper",
     },
     {
-      label: "Bali, Indonesia",
+      label: "greetingcard",
     },
     {
-      label: "NeONBRAND Digital Marketing, Las Vegas, United States",
+      label: "puzzle",
     },
     {
-      label: "Goč, Serbia",
+      label: "memorygame",
     },
     {
-      label: "3D Image",
+      label: "cubes",
     },
     {
-      label: "Newspaper",
+      label: "collage",
     },
     {
       label: "Unknown",
@@ -74,7 +74,6 @@ function ContinuePack({ match }) {
   const [data1, setdata1] = useState();
 
   async function getDocnew(data) {
-    console.log("getdocnew started");
     if (data.url1 != "") {
       const newCompleted = completed;
       newCompleted[0] = true;
@@ -122,23 +121,20 @@ function ContinuePack({ match }) {
       setActiveStep(4);
     } else if (data.url6 == "") {
       setActiveStep(5);
-      console.log(data.url6, "cubes");
     } else if (data.url7 == "") {
       setActiveStep(6);
     } else {
       setActiveStep(7);
     }
-    console.log("getdocnew ended");
+
     dispatch({
       type: "EDIT_SCHEDULED",
       payload: { text: "" },
     });
   }
   async function getDoc() {
-    console.log(loading, "1");
     setloading(true);
-    console.log(loading, "2");
-    console.log("getdoc running");
+
     const snapshot = await database
       .collection("7-day-pack")
       .doc(`${user.uid}`)
@@ -151,11 +147,8 @@ function ContinuePack({ match }) {
     setlivelink(
       "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
     );
-    console.log(loading, "3");
     setFolderData(data);
-    console.log("calling getdocnew");
     await getDocnew(data);
-    console.log("finished getdocnew");
     setloading(false);
   }
   useEffect(async () => {
