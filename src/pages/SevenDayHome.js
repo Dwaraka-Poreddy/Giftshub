@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import firebase from "../firebase";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import firebase from "../firebase";
+import { storage } from "../firebase";
+import { v4 as uuidv4 } from "uuid";
+import NpackSelect from "./NPackSelect";
+import InputBase from "@material-ui/core/InputBase";
+import CreateIcon from "@material-ui/icons/Create";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
@@ -9,11 +14,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import HeaderBtn from "../Studio/HeaderBtn";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import CropPage from "../Utils/CropPage";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import InputBase from "@material-ui/core/InputBase";
-import CreateIcon from "@material-ui/icons/Create";
-import NpackSelect from "./NPackSelect";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -34,18 +34,25 @@ const useStyles = makeStyles((theme) => ({
     left: theme.spacing(250),
   },
 }));
-
-const Home = ({ history }) => {
+function SevenDayHome({ history }) {
   const classes = useStyles();
-  const [openModal, setopenModal] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
-  const [npackorder, setnpackorder] = useState([]);
+  const [npackorder, setnpackorder] = useState([
+    { id: "threedimage", content: "3D Image", url: "" },
+    { id: "newspaper", content: "NewsPaper", url: "" },
+    { id: "puzzle", content: "Slide Puzzle", url: "" },
+    { id: "memorygame", content: "Memory Game", url: "" },
+    { id: "cubes", content: "Cubes in 3D Heart", url: "" },
+    { id: "collage", content: "Collage", url: "" },
+    { id: "greetingcard", content: "Greeting Card", url: "" },
+  ]);
   const database = firebase.firestore();
   const [Folder_name, setFolder_name] = useState();
   const [From_name, setFrom_name] = useState();
   const [To_name, setTo_name] = useState();
   const [gifts, setGifts] = useState([]);
   const [error, setError] = useState();
+  const [openModal, setopenModal] = useState(false);
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [fbimg, setfbimg] = useState();
@@ -90,6 +97,7 @@ const Home = ({ history }) => {
 
     setopencrop(true);
   };
+
   const CreatePack = (e) => {
     e.preventDefault();
     var ud = uuidv4();
@@ -146,17 +154,20 @@ const Home = ({ history }) => {
       }
     );
   };
+
   return (
-    <>
-      <p>Home</p>
+    <div>
+      sevendaypack
+      <hr />
       <button
         className="main-button"
         onClick={() => {
           setopenModal(true);
         }}
       >
-        Create New Pack
+        Create Recommended Pack
       </button>
+      <hr />
       <Modal
         style={{
           display: "flex",
@@ -179,8 +190,8 @@ const Home = ({ history }) => {
                 style={{ backgroundColor: "#70cff3" }}
                 class="container-fluid pt-3"
               >
-                <div class="row">
-                  <div class="col-xl-4">
+                <div>
+                  <center>
                     <form onSubmit={CreatePack}>
                       <div
                         style={{
@@ -352,10 +363,10 @@ const Home = ({ history }) => {
                         </>
                       )}
                     </form>
-                  </div>
-                  <div class="col-xl-7">
+                  </center>
+                  {/* <div class="col-xl-7">
                     <NpackSelect setpackfunc={setpackfunc} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <Fab
@@ -372,7 +383,7 @@ const Home = ({ history }) => {
           </div>
         }
       </Modal>
-
+      <hr />
       <div>
         {error ? <p>Ops, there is an error :(</p> : null}
         <ul>
@@ -387,8 +398,8 @@ const Home = ({ history }) => {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
-};
+}
 
-export default Home;
+export default SevenDayHome;

@@ -61,9 +61,12 @@ export default function App() {
                   TemplateMo. Download, modify and use this for your business
                   website.
                 </p>
-                <a href="#about" class="main-button-slider">
-                  Find Out More
-                </a>
+                <Link to="/sevendayhome">
+                  <button className="main-button">Use recommended pack</button>
+                </Link>
+                {/* <a href="#about" class="main-button-slider">
+                  Use recommended pack
+                </a> */}
               </div>
               <div
                 class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
@@ -110,10 +113,7 @@ export default function App() {
                   euismod, mattis dui a, ultrices nisi.
                 </p>
                 <Link to="/home">
-                  <button className="main-button">7-Day Pack</button>
-                  {/* <a href="#about2" className="main-button">
-                    7-Day Pack
-                  </a> */}
+                  <button className="main-button">n-Day Pack</button>
                 </Link>
               </div>
             </div>

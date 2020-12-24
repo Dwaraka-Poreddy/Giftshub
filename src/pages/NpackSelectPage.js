@@ -8,9 +8,9 @@ function NpackSelectPage({ history }) {
   const database = firebase.firestore();
   useEffect(() => {
     var user = firebase.auth().currentUser;
-    if (!user) {
-      history.push("/login");
-    }
+    // if (!user) {
+    //   history.push("/login");
+    // }
   }, []);
   const setpackfunc = (selected) => {
     setnpackorder(selected);

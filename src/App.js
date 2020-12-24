@@ -11,7 +11,7 @@ import OpenGreetingCardPage from "./OpenGreetingCard/OpenGreetingCardPage";
 import LiveOpenGreetingCardPage from "./LivePages/LiveOpenGreetingCardPage";
 import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
-
+import NpackSelectPage from "./pages/NpackSelectPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
 import LiveSplitWall from "./LivePages/LiveSplitWall.js";
@@ -26,7 +26,7 @@ import LiveAnimatedFramePage from "./LivePages/LiveAnimatedFramePage";
 import LiveMagazinePage from "./LivePages/LiveMagazinePage";
 import LiveMemoryGamePage from "./LivePages/LiveMemoryGamePage";
 import LiveCollagePage from "./LivePages/LiveCollagePage";
-
+import SevenDayHome from "./pages/SevenDayHome";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
@@ -75,6 +75,8 @@ export default function App() {
       <Switch>
         <Route exact path="/home" component={Home} />
 
+        <Route exact path="/nselect" component={NpackSelectPage} />
+        <Route exact path="/sevendayhome" component={SevenDayHome} />
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
         <Route exact path="/LiveLinksPage/:slug" component={LiveLinksPage} />
         <Route exact path="/login" component={Login} />
