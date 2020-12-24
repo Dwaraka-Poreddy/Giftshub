@@ -441,7 +441,7 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
                     </div>
 
                     <div style={{ marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink}>
+                      <Link class="logo" to={previewlink} target="_blank">
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
