@@ -1,17 +1,13 @@
-/* body {
-    height: 100vh;
-    display: grid;
-    place-content: center;
-  } */
 .puzzleframe {
-  width: 300px;
-  height: 300px;
+  width: 345px;
+  height: 345px;
   background: transparent;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(12, 1fr);
 }
 .puzzleframe .cell {
+  margin: 0 !important;
   width: calc(100% + 0.5px);
   height: calc(100% + 0.5px);
   background-image: var(--img);

@@ -5,10 +5,10 @@ export default function PuzzleAnswer({ fbimg }) {
   return (
     <div
       style={{
-        width: "400px",
-        height: "400px",
+        width: "345px",
+        height: "345px",
         fontSize: "1.17em",
-        fontWeight: "old"
+        fontWeight: "old",
       }}
       className="App"
     >
@@ -17,7 +17,7 @@ export default function PuzzleAnswer({ fbimg }) {
           marginLeft: "-100px",
           marginBottom: "30px",
           boxSizing: "border-box",
-          display: "block"
+          display: "block",
         }}
       >
         Hover over me for image
@@ -465,7 +465,7 @@ export default function PuzzleAnswer({ fbimg }) {
             textDecoration: "none",
             fontSize: "25px",
             fontFamily: "Roboto, sans-serif",
-            color: "#337ab7"
+            color: "#337ab7",
           }}
           href="https://www.youtube.com/watch?v=EtXE08bOVZM"
         >

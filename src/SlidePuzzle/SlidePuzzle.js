@@ -7,7 +7,7 @@ function _defineProperty(obj, key, value) {
       value: value,
       enumerable: true,
       configurable: true,
-      writable: true
+      writable: true,
     });
   } else {
     obj[key] = value;
@@ -140,7 +140,7 @@ class GameState {
     return {
       board: self.board,
       moves: self.moves,
-      solved: self.isSolved()
+      solved: self.isSolved(),
     };
   }
 }
@@ -185,10 +185,10 @@ function useGameState() {
 }
 
 function Tile({ index, pos, onClick, fbimg }) {
-  const top = pos[0] * 100 + 5;
-  const left = pos[1] * 100 + 5;
-  const bgLeft = (index % 4) * 100 + 5;
-  const bgTop = Math.floor(index / 4) * 100 + 5;
+  const top = pos[0] * 85 + 5;
+  const left = pos[1] * 85 + 5;
+  const bgLeft = (index % 4) * 85 + 5;
+  const bgTop = Math.floor(index / 4) * 85 + 5;
   const [bgimg, setBgimg] = useState(fbimg);
 
   return React.createElement("div", {
@@ -198,8 +198,8 @@ function Tile({ index, pos, onClick, fbimg }) {
       backgroundImage: "url(" + fbimg + ")",
       top,
       left,
-      backgroundPosition: `-${bgLeft}px -${bgTop}px`
-    }
+      backgroundPosition: `-${bgLeft}px -${bgTop}px`,
+    },
   });
 }
 
@@ -230,7 +230,7 @@ function SlidePuzzle({ fbimg }) {
           fbimg: fbimg,
           index: index,
           pos: pos,
-          onClick: move(index)
+          onClick: move(index),
         })
       ),
 
