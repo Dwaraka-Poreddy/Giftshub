@@ -16,6 +16,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
   const [fbimg6, setfbimg6] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -25,6 +26,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "memorygame") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -63,7 +65,11 @@ export default function ScheduledLiveMemoryGame({ match }) {
   }, []);
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -119,7 +125,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
             ) : (
               <div>
                 {timerComponents.length ? (
-                  timerComponents
+                  <h5 className="example"> {timerComponents} to go !!! </h5>
                 ) : (
                   <div>
                     <MemoryGame

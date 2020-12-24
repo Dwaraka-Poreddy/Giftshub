@@ -68,8 +68,7 @@ export default function LiveMemoryGamePage({ match }) {
           </div>
         </div>
       </header>
-      <br />
-      <br />
+
       <div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>

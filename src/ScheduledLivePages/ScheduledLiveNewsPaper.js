@@ -15,6 +15,7 @@ function ScheduledLiveNewsPaper({ match }) {
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -24,6 +25,7 @@ function ScheduledLiveNewsPaper({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "newspaper") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -67,7 +69,11 @@ function ScheduledLiveNewsPaper({ match }) {
   }
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -107,29 +113,31 @@ function ScheduledLiveNewsPaper({ match }) {
   return (
     <div>
       <ScheduledLiveNav slug={match.params.slug} />
-      <br />
-      <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.7" }}>
-          {loading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              {timerComponents.length ? (
-                timerComponents
-              ) : (
-                <div>
-                  <NewsPaper fbimg={fbimg} head={head} para={para} />
-                </div>
-              )}
-            </div>
-          )}
+
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-2">
+        <div class="row">
+          <div class="col-sm-1 "></div>
+          <div class="col-sm-10 ">
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                {timerComponents.length ? (
+                  <h5 className="example"> {timerComponents} to go !!! </h5>
+                ) : (
+                  <div>
+                    <NewsPaper fbimg={fbimg} head={head} para={para} />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <div class="col-sm-1 "></div>
         </div>
       </div>
     </div>

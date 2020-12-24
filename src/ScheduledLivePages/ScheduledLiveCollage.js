@@ -19,6 +19,7 @@ export default function LiveCollagePage({ match }) {
   const [fbimg7, setfbimg7] = useState("");
   const [fbimg8, setfbimg8] = useState("");
   const [fbimg9, setfbimg9] = useState("");
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -28,6 +29,7 @@ export default function LiveCollagePage({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "collage") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -73,7 +75,11 @@ export default function LiveCollagePage({ match }) {
   }, []);
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -113,8 +119,6 @@ export default function LiveCollagePage({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <ScheduledLiveNav dataurl={dataurl} slug={match.params.slug} />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
@@ -129,7 +133,7 @@ export default function LiveCollagePage({ match }) {
             ) : (
               <div>
                 {timerComponents.length ? (
-                  timerComponents
+                  <h5 className="example"> {timerComponents} to go !!! </h5>
                 ) : (
                   <div>
                     <Collage

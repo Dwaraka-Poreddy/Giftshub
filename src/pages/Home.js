@@ -329,7 +329,9 @@ const Home = ({ history }) => {
                             width: "150px",
                           }}
                           value={Bday_date}
-                          onChange={(e) => setBday_date(e.target.value)}
+                          onChange={(e) =>
+                            setBday_date(e.target.value.toLocaleString())
+                          }
                         />
                       </div>
                       {npackorder.length == 0 ? null : (

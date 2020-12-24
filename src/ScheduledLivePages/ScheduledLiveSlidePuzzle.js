@@ -13,7 +13,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
-
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -23,6 +23,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "puzzle") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -48,7 +49,11 @@ function ScheduledLiveSlidePuzzle({ match }) {
   }, []);
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -67,9 +72,9 @@ function ScheduledLiveSlidePuzzle({ match }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   setTimeLeft(calculateTimeLeft());
-    // }, 1000);
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
   });
   const timerComponents = [];
 
@@ -90,40 +95,41 @@ function ScheduledLiveSlidePuzzle({ match }) {
       <ScheduledLiveNav slug={match.params.slug} />
 
       <div class="container-fluid">
-        <br />
-
-        <br />
-        <br />
         <div class="row">
-          <div class="col-sm-2"></div>
-          {loading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              {timerComponents.length ? (
-                timerComponents
-              ) : (
-                <div class="row">
-                  <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-                    {" "}
-                    <center>
-                      <SlidePuzzle fbimg={fbimg} />
-                    </center>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-10">
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                {timerComponents.length ? (
+                  <h5 className="example"> {timerComponents} to go !!! </h5>
+                ) : (
+                  <div class="row">
+                    <div style={{ paddingLeft: "5px" }} class="col-lg-6">
+                      {" "}
+                      <center>
+                        <SlidePuzzle fbimg={fbimg} />
+                      </center>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div style={{ paddingLeft: "5px" }} class="col-lg-5">
+                      <center>
+                        <SlidePuzzleAnswer fbimg={fbimg} />
+                      </center>
+                    </div>
                   </div>
-                  <div style={{ paddingLeft: "5px" }} class="col-sm-4">
-                    <SlidePuzzleAnswer fbimg={fbimg} />
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+                )}
+              </div>
+            )}
+          </div>
 
-          <div class="col-sm-2"></div>
+          <div class="col-lg-1"></div>
         </div>
       </div>
     </div>

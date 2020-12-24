@@ -14,6 +14,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -23,6 +24,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "greetingcard") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -57,7 +59,11 @@ function ScheduledLiveOpenGreetCard({ match }) {
   }, []);
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -97,11 +103,10 @@ function ScheduledLiveOpenGreetCard({ match }) {
   return (
     <div>
       <ScheduledLiveNav slug={match.params.slug} />
-      <br />
-      <br />
+
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.7" }}>
+        <div style={{ flex: "0.8" }}>
           {loading ? (
             <Loader
               type="BallTriangle"
@@ -112,7 +117,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
           ) : (
             <div>
               {timerComponents.length ? (
-                timerComponents
+                <h5 className="example"> {timerComponents} to go !!! </h5>
               ) : (
                 <div>
                   <OpenGreetingCard

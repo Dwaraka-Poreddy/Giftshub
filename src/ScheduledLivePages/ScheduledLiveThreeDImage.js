@@ -6,7 +6,9 @@ import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function ScheduledLiveThreeDImage({ match }) {
   const database = firebase.firestore();
+
   let dispatch = useDispatch();
+  const [today, settoday] = useState();
   const [fbimg, setfbimg] = useState("");
   const [firstcol, setfirstcol] = useState("");
   const [secondcol, setsecondcol] = useState("");
@@ -23,6 +25,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "threedimage") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -54,7 +57,11 @@ export default function ScheduledLiveThreeDImage({ match }) {
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -109,7 +116,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
             ) : (
               <div style={{ flex: "0.7" }}>
                 {timerComponents.length ? (
-                  timerComponents
+                  <h5 className="example"> {timerComponents} to go !!! </h5>
                 ) : (
                   <div>
                     <ThreeDImage

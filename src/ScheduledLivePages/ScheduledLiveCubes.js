@@ -15,6 +15,7 @@ export default function ScheduledLiveCubes({ match }) {
   const [fbimg5, setfbimg5] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+  const [today, settoday] = useState();
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -24,6 +25,7 @@ export default function ScheduledLiveCubes({ match }) {
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "cubes") {
+        settoday(index);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -59,7 +61,11 @@ export default function ScheduledLiveCubes({ match }) {
   }, []);
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 86400000;
+    var difference =
+      +new Date(Livelinks.Bday_date) -
+      +new Date() -
+      19800000 -
+      86400000 * today;
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -99,40 +105,36 @@ export default function ScheduledLiveCubes({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <ScheduledLiveNav slug={match.params.slug} />
-      <br />
-      <br />
-      <div>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : (
-              <div>
-                {timerComponents.length ? (
-                  timerComponents
-                ) : (
-                  <div>
-                    <Cubes
-                      fbimg1={fbimg1}
-                      fbimg2={fbimg2}
-                      fbimg3={fbimg3}
-                      fbimg4={fbimg4}
-                      fbimg5={fbimg5}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div style={{ flex: "0.15" }}></div>
+      <div style={{ display: "flex" }}>
+        <div style={{ flex: "0.1" }}></div>
+        <div style={{ flex: "0.8" }}>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              {timerComponents.length ? (
+                <h5 className="example"> {timerComponents} to go !!! </h5>
+              ) : (
+                <div>
+                  <Cubes
+                    fbimg1={fbimg1}
+                    fbimg2={fbimg2}
+                    fbimg3={fbimg3}
+                    fbimg4={fbimg4}
+                    fbimg5={fbimg5}
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
+
+        <div style={{ flex: "0.1" }}></div>
       </div>
     </div>
   );

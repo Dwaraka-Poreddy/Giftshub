@@ -59,7 +59,7 @@ function SchdeuledLiveNav({ slug }) {
           </ul>
         </div>
       </nav>
-      <center>
+      {/* <center>
         {" "}
         {dataurl.length - daystep.day == 0 ? (
           <h1 className="example">The Big day is here !!!</h1>
@@ -72,7 +72,7 @@ function SchdeuledLiveNav({ slug }) {
             {dataurl.length - daystep.day} days to go !!!
           </h1>
         )}
-      </center>
+      </center> */}
     </div>
   );
 }
