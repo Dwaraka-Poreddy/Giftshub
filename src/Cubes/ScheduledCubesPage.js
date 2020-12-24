@@ -73,7 +73,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
   const [image_url5, setimage_url5] = useState();
   const [opencrop5, setopencrop5] = useState(false);
   const [send5, setsend5] = useState();
-  const [daycounter, setdaycounter] = useState();
+
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
     setopencrop1(true);
@@ -94,16 +94,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
     setopencrop5(true);
   };
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
+
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -259,6 +250,10 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
         }
       );
     }
+    {
+      edit.text != "" &&
+        toast.success("Cubes in 3D Heart updated successfully");
+    }
   };
   async function EditPack() {
     const snapshot = await database
@@ -325,11 +320,6 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
           </div>
         </div>
       </header>
-
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
@@ -343,9 +333,6 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
               />
             ) : (
               <div>
-                <center>
-                  <h1 className="example">{daycounter} days to go !!!</h1>
-                </center>
                 <Cubes
                   fbimg1={fbimg1}
                   fbimg2={fbimg2}
@@ -519,7 +506,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -537,13 +524,17 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <HeaderBtn
-                      handleClick={() => {
-                        EditPack();
-                      }}
-                      Icon={ShareIcon}
-                      title="Add to Pack "
-                    />
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </center>

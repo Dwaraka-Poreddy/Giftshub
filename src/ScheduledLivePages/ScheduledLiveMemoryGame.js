@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function ScheduledLiveMemoryGame({ match }) {
   const database = firebase.firestore();
+  let dispatch = useDispatch();
   const [Livelinks, setLivelinks] = useState("");
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
@@ -22,6 +24,12 @@ export default function ScheduledLiveMemoryGame({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "memorygame") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
@@ -114,9 +122,6 @@ export default function ScheduledLiveMemoryGame({ match }) {
                   timerComponents
                 ) : (
                   <div>
-                    <center>
-                      <h1 className="example">Six days to go !!!</h1>
-                    </center>
                     <MemoryGame
                       fbimg1={fbimg1}
                       fbimg2={fbimg2}

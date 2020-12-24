@@ -60,18 +60,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
 
   const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
   const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
-  const [daycounter, setdaycounter] = useState();
 
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
   useEffect(() => {
     console.log("0000000");
     setCLoading(true);
@@ -180,6 +169,9 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
         }
       );
     }
+    {
+      edit.text != "" && toast.success("NewsPaper updated successfully");
+    }
   };
 
   async function EditPack() {
@@ -277,11 +269,6 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
         </div>
       </header>
 
-      <br />
-      <br />
-      <br />
-      <br />
-
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1 "></div>
@@ -295,9 +282,6 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
               />
             ) : (
               <div>
-                <center>
-                  <h1 className="example">{daycounter} days to go !!!</h1>
-                </center>
                 <NewsPaper
                   fbimg={fbimg}
                   head={head}
@@ -466,7 +450,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -486,15 +470,17 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          EditPack();
-                        }}
-                        Icon={ShareIcon}
-                        title="Add to Pack "
-                      />
-                    </div>
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </center>

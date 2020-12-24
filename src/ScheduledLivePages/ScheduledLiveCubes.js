@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Cubes from "../Cubes/Cubes";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function ScheduledLiveCubes({ match }) {
+  let dispatch = useDispatch();
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
   const [fbimg1, setfbimg1] = useState("");
@@ -21,6 +23,12 @@ export default function ScheduledLiveCubes({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "cubes") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
@@ -110,9 +118,6 @@ export default function ScheduledLiveCubes({ match }) {
                   timerComponents
                 ) : (
                   <div>
-                    <center>
-                      <h1 className="example">Two days to go !!!</h1>
-                    </center>
                     <Cubes
                       fbimg1={fbimg1}
                       fbimg2={fbimg2}

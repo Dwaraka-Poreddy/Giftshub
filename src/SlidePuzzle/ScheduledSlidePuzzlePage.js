@@ -46,18 +46,6 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
   );
-  const [daycounter, setdaycounter] = useState();
-
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
 
   useEffect(() => {
     setCLoading(true);
@@ -152,6 +140,9 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
         }
       );
     }
+    {
+      edit.text != "" && toast.success("Slide Puzzle updated successfully");
+    }
   };
   async function EditPack() {
     const snapshot = await database
@@ -219,16 +210,9 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
           </div>
         </div>
       </header>
-
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="col-lg-1 "></div>
-        <center class="  col-lg-8">
-          <h1 className="example">{daycounter} days to go !!!</h1>
-        </center>
+
         <div class="row">
           <div class="col-md-1 "></div>
 
@@ -303,7 +287,7 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -321,15 +305,17 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          EditPack();
-                        }}
-                        Icon={ShareIcon}
-                        title="Add to Pack "
-                      />
-                    </div>
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </center>
                 ) : null}
               </center>

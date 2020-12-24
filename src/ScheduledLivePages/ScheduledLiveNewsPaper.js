@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import NewsPaper from "../NewsPaper/NewsPaper";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
@@ -6,6 +7,7 @@ import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveNewsPaper({ match }) {
+  let dispatch = useDispatch();
   const database = firebase.firestore();
   const [fbimg, setfbimg] = useState("");
   const [head, sethead] = useState("");
@@ -21,6 +23,12 @@ function ScheduledLiveNewsPaper({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "newspaper") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
@@ -117,9 +125,6 @@ function ScheduledLiveNewsPaper({ match }) {
                 timerComponents
               ) : (
                 <div>
-                  <center>
-                    <h1 className="example">Five days to go !!!</h1>
-                  </center>
                   <NewsPaper fbimg={fbimg} head={head} para={para} />
                 </div>
               )}

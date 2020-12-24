@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from "react";
 import ThreeDImage from "../ThreeDImage/ThreeDImage";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function ScheduledLiveThreeDImage({ match }) {
   const database = firebase.firestore();
+  let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
   const [firstcol, setfirstcol] = useState("");
   const [secondcol, setsecondcol] = useState("");
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
       .doc(match.params.slug)
       .get();
-    const data = await snapshot.data();
+    const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "threedimage") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
-  useEffect(() => {
-    getDoc();
-    console.log(Livelinks, "liveData");
-    console.log(match.params.slug, "slug", match.params.id, "id");
+  useEffect(async () => {
+    await getDoc();
   }, []);
 
   useEffect(() => {
@@ -105,10 +112,6 @@ export default function ScheduledLiveThreeDImage({ match }) {
                   timerComponents
                 ) : (
                   <div>
-                    <center>
-                      <h1 className="example">Six days to go !!!</h1>
-                    </center>
-
                     <ThreeDImage
                       firstcol={firstcol}
                       secondcol={secondcol}

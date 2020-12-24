@@ -16,18 +16,22 @@ import CreateIcon from "@material-ui/icons/Create";
 import NpackSelect from "./NPackSelect";
 const useStyles = makeStyles((theme) => ({
   paper: {
-    borderRadius: "15px",
+    borderRadius: "5px",
+    width: "70vw",
+    height: "80vh",
+    minWidth: "280px",
     position: "absolute",
     color: "#ffffff",
     marginTop: "0vh",
     border: null,
     backgroundColor: "#009dd9",
-    padding: theme.spacing(2, 4, 3),
+    overflow: "auto",
+    padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
     position: "sticky",
     bottom: theme.spacing(142),
-    left: theme.spacing(200),
+    left: theme.spacing(250),
   },
 }));
 
@@ -167,12 +171,15 @@ const Home = ({ history }) => {
         {
           <div className={classes.paper}>
             <div>
-              <div>
-                <div>
-                  <div>
-                    <br />
-                    <br />
-                    <br />
+              <br />
+              <br />
+              <br />
+              <div
+                style={{ backgroundColor: "#70cff3" }}
+                class="container-fluid pt-3"
+              >
+                <div class="row">
+                  <div class="col-xl-4">
                     <form onSubmit={CreatePack}>
                       <div
                         style={{
@@ -325,24 +332,29 @@ const Home = ({ history }) => {
                           onChange={(e) => setBday_date(e.target.value)}
                         />
                       </div>
-
-                      <input
-                        style={{ display: "none" }}
-                        id="submit"
-                        type="submit"
-                        value="Create 7 day pack"
-                      />
-                      <label htmlFor="submit">
-                        <HeaderBtn
-                          Icon={ViewModuleIcon}
-                          title="Create 7 day pack "
-                        />
-                      </label>
+                      {npackorder.length == 0 ? null : (
+                        <>
+                          <input
+                            style={{ display: "none" }}
+                            id="submit"
+                            type="submit"
+                            value="Create 7 day pack"
+                          />
+                          <label htmlFor="submit">
+                            <HeaderBtn
+                              Icon={ViewModuleIcon}
+                              title="Create 7 day pack "
+                            />
+                          </label>
+                        </>
+                      )}
                     </form>
+                  </div>
+                  <div class="col-xl-7">
+                    <NpackSelect setpackfunc={setpackfunc} />
                   </div>
                 </div>
               </div>
-              <NpackSelect setpackfunc={setpackfunc} />
               <Fab
                 onClick={() => {
                   setopenModal(false);

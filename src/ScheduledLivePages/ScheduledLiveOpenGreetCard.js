@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveOpenGreetCard({ match }) {
+  let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
   const [text1, settext1] = useState("");
   const [text2, settext2] = useState("");
@@ -20,6 +22,12 @@ function ScheduledLiveOpenGreetCard({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "greetingcard") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
@@ -107,9 +115,6 @@ function ScheduledLiveOpenGreetCard({ match }) {
                 timerComponents
               ) : (
                 <div>
-                  <center>
-                    <h1 className="example">Four days to go !!!</h1>
-                  </center>
                   <OpenGreetingCard
                     fbimg={fbimg}
                     text1={text1}

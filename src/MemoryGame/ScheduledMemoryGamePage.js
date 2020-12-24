@@ -106,18 +106,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
     setsend6(window.URL.createObjectURL(e.target.files[0]));
     setopencrop6(true);
   };
-  const [daycounter, setdaycounter] = useState();
 
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -344,6 +333,9 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
         }
       );
     }
+    {
+      edit.text != "" && toast.success("Memory Game updated successfully");
+    }
   };
 
   return (
@@ -381,11 +373,6 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
           </div>
         </div>
       </header>
-
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-8">
@@ -397,12 +384,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 width={100}
               />
             ) : (
-              <div>
-                <center>
-                  <h1 className="example">{daycounter} days to go !!!</h1>
-                </center>
-                {func()}
-              </div>
+              <div>{func()}</div>
             )}
           </div>
           <div class="col-lg-1"></div>
@@ -595,7 +577,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -613,13 +595,17 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <HeaderBtn
-                      handleClick={() => {
-                        EditPack();
-                      }}
-                      Icon={ShareIcon}
-                      title="Add to Pack "
-                    />
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </center>

@@ -43,7 +43,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
   const [image_url1, setimage_url1] = useState();
   const [opencrop1, setopencrop1] = useState(false);
   const [send1, setsend1] = useState();
-  const [daycounter, setdaycounter] = useState();
+
   const [fbimg2, setfbimg2] = useState(
     "https://source.unsplash.com/Dm-qxdynoEc/800x799"
   );
@@ -136,16 +136,6 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
     setsend9(window.URL.createObjectURL(e.target.files[0]));
     setopencrop9(true);
   };
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
 
   useEffect(() => {
     func();
@@ -437,6 +427,9 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
         }
       );
     }
+    {
+      edit.text != "" && toast.success("Collagee updated successfully");
+    }
   };
   async function EditPack() {
     const snapshot = await database
@@ -466,11 +459,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
       },
       { merge: true }
     );
-    {
-      edit.text == ""
-        ? toast.success("Collage successfully added to your pack")
-        : toast.success("Collage successfully updated in the pack");
-    }
+    toast.success("Collage successfully added to your pack");
 
     getDoc();
   }
@@ -509,11 +498,6 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
           </div>
         </div>
       </header>
-
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class=" col-lg-1"></div>
@@ -526,12 +510,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
                 width={100}
               />
             ) : (
-              <div>
-                <center>
-                  <h1 className="example">{daycounter} day to go !!!</h1>
-                </center>
-                {func()}
-              </div>
+              <div>{func()}</div>
             )}
           </div>
           <div class="col-lg-1"></div>
@@ -807,7 +786,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -825,15 +804,17 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          EditPack();
-                        }}
-                        Icon={ShareIcon}
-                        title="Add to Pack "
-                      />
-                    </div>
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </center>

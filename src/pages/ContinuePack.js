@@ -72,7 +72,7 @@ function ContinuePack({ match }) {
   const [livelink, setlivelink] = useState();
   const [showshare, setshowshare] = useState(false);
   const [data1, setdata1] = useState();
-
+  const [daycounter, setdaycounter] = useState();
   const [datacontent, setdatacontent] = useState([]);
   const [dataid, setdataid] = useState([]);
   const [dataurl, setdataurl] = useState([]);
@@ -112,9 +112,10 @@ function ContinuePack({ match }) {
       .collection("giftshub")
       .doc(match.params.slug)
       .get();
-
+    const datanew = snapshot.data();
+    setdata1(datanew);
     const data = await snapshot.data().array_data;
-
+    setdaycounter(data.length - activeStep - 1);
     data.map((item, index) => {
       datacontent[index] = item.content;
       dataid[index] = item.id;
@@ -212,6 +213,7 @@ function ContinuePack({ match }) {
 
   const handleStep = (step) => () => {
     setActiveStep(step);
+    setdaycounter(dataurl.length - step - 1);
     dispatch({
       type: "EDIT_SCHEDULED",
       payload: { text: "" },
@@ -299,12 +301,32 @@ function ContinuePack({ match }) {
               <div>
                 <Typography className={Stepperclasses.instructions}>
                   All Componenets completed - you&apos;re finished
+                  <center>
+                    {" "}
+                    {daycounter == 0 ? (
+                      <h1 className="example">The Big day is here !!!</h1>
+                    ) : daycounter == 1 ? (
+                      <h1 className="example">{daycounter} day to go !!!</h1>
+                    ) : (
+                      <h1 className="example">{daycounter} days to go !!!</h1>
+                    )}
+                  </center>
                   {!loading && getStepContent(activeStep)}
                 </Typography>
               </div>
             ) : (
               <div>
                 <Typography className={Stepperclasses.instructions}>
+                  <center>
+                    {" "}
+                    {daycounter == 0 ? (
+                      <h1 className="example">The Big day is here !!!</h1>
+                    ) : daycounter == 1 ? (
+                      <h1 className="example">{daycounter} day to go !!!</h1>
+                    ) : (
+                      <h1 className="example">{daycounter} days to go !!!</h1>
+                    )}
+                  </center>
                   {!loading && getStepContent(activeStep)}
                 </Typography>
               </div>

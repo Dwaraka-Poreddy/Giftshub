@@ -52,18 +52,6 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
   const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
-  const [daycounter, setdaycounter] = useState();
-
-  // useEffect(async () => {
-  //   const snapshot = await database
-  //     .collection("n-day-pack")
-  //     .doc(`${user.uid}`)
-  //     .collection("giftshub")
-  //     .doc(slug)
-  //     .get();
-  //   const data = snapshot.data().array_data;
-  //   setdaycounter(data.length - step - 1);
-  // }, []);
 
   useEffect(() => {
     setCLoading(true);
@@ -169,6 +157,9 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
             });
         }
       );
+    }
+    {
+      edit.text != "" && toast.success("3D image updated successfully");
     }
   };
 
@@ -293,9 +284,6 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
               />
             ) : (
               <div>
-                <center>
-                  <h1 className="example">n days to go !!!</h1>
-                </center>
                 <ThreeDImage
                   firstcol={firstcol}
                   secondcol={secondcol}
@@ -427,7 +415,7 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
                         handleFireBaseUpload();
                       }}
                       Icon={LinkIcon}
-                      title="Generate Link"
+                      title={edit.text != "" ? "Update pack" : "Generate Link"}
                     />
                   </div>
                 )}
@@ -445,15 +433,17 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    <div style={{ marginTop: "20px" }}>
-                      <HeaderBtn
-                        handleClick={() => {
-                          EditPack();
-                        }}
-                        Icon={ShareIcon}
-                        title="Add to Pack "
-                      />
-                    </div>
+                    {edit.text != "" ? null : (
+                      <div style={{ marginTop: "20px" }}>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </center>

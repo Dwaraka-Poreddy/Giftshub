@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Collage from "../Collage/Collage";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function LiveCollagePage({ match }) {
+  let dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const [dataurl, setdataurl] = useState([]);
@@ -25,6 +27,12 @@ export default function LiveCollagePage({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "collage") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
@@ -124,9 +132,6 @@ export default function LiveCollagePage({ match }) {
                   timerComponents
                 ) : (
                   <div>
-                    <center>
-                      <h1 className="example">One day to go !!!</h1>
-                    </center>
                     <Collage
                       fbimg1={fbimg1}
                       fbimg2={fbimg2}

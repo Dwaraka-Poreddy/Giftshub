@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import SlidePuzzle from "../SlidePuzzle/SlidePuzzle";
 import SlidePuzzleAnswer from "../SlidePuzzle/SlidePuzzleAnswer";
 import firebase from "../firebase";
@@ -6,11 +7,13 @@ import "./ScheduledLiveSlidePuzzle.css";
 import Loader from "react-loader-spinner";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveSlidePuzzle({ match }) {
+  let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
+
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -19,13 +22,17 @@ function ScheduledLiveSlidePuzzle({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
+      if (item.id == "puzzle") {
+        dispatch({
+          type: "ACTIVE_STEP",
+          payload: { day: index + 1 },
+        });
+      }
       dataurl[index] = item.url;
     });
   }
   useEffect(() => {
     getDoc();
-    console.log(Livelinks, "liveData");
-    console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
   useEffect(() => {
     setloading(true);
@@ -85,9 +92,6 @@ function ScheduledLiveSlidePuzzle({ match }) {
       <div class="container-fluid">
         <br />
 
-        <center>
-          <h1 className="example">Three days to go !!!</h1>
-        </center>
         <br />
         <br />
         <div class="row">
