@@ -96,17 +96,14 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
 
   return (
     <div>
-      <div className="text-center p-4 d-flex flex-column">
+      <div className="text-center p-2 d-flex flex-column">
         {list.length === 0 ? (
           <div>...Loading</div>
         ) : (
           <div>
             <br />
             <br />
-            <div
-              style={{ width: "1000px", height: "750px" }}
-              className="container"
-            >
+            <div style={{ padding: "0" }} className="container">
               <div className="row no-gutters">
                 {list.map((item, index) => (
                   <div

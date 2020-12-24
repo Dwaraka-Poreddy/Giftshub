@@ -112,37 +112,32 @@ export default function ScheduledLiveMemoryGame({ match }) {
       <br />
       <br />
       <div>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : (
-              <div>
-                {timerComponents.length ? (
-                  <h5 className="example"> {timerComponents} to go !!! </h5>
-                ) : (
-                  <div>
-                    <MemoryGame
-                      fbimg1={fbimg1}
-                      fbimg2={fbimg2}
-                      fbimg3={fbimg3}
-                      fbimg4={fbimg4}
-                      fbimg5={fbimg5}
-                      fbimg6={fbimg6}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div style={{ flex: "0.15" }}></div>
+        <div>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              {timerComponents.length ? (
+                <h5 className="example"> {timerComponents} to go !!! </h5>
+              ) : (
+                <div>
+                  <MemoryGame
+                    fbimg1={fbimg1}
+                    fbimg2={fbimg2}
+                    fbimg3={fbimg3}
+                    fbimg4={fbimg4}
+                    fbimg5={fbimg5}
+                    fbimg6={fbimg6}
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

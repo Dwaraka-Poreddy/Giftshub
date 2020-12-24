@@ -2,22 +2,27 @@
   position: relative;
   background-color: #70cff3;
   border-radius: 5px;
-  width: 250px;
-  height: 250px;
+  /* width: 25vw;
+  height: 25vw; */
 }
+
 .card {
-  height: 250px;
+  background-color: #009dd9 !important;
   border-radius: 0;
+  width: 100%;
+  height: auto;
 }
 .card::before {
   background-color: #009dd9 !important;
-  height: 250px !important;
+  width: 100%;
+  height: auto;
+  /* height: 250px !important; */
 }
 .grid-card::after {
   content: "";
   background: -webkit-linear-gradient(59deg, #3a6073, #16222a);
-  width: 250px;
-  height: 250px;
+  /* width: 250px;
+  height: 250px; */
   position: absolute;
   top: 0;
   left: 0;
@@ -32,19 +37,26 @@
   transform: rotateY(180deg) perspective(100px);
   transition: 0.4s;
   backface-visibility: hidden;
-  padding: 4px;
+  padding: 1px;
   background-color: #70cff3;
   border-radius: 5px;
 }
+
+@media screen and (min-width: 400px) {
+  .grid-img {
+    padding: 4px;
+  }
+}
+
 .grid-card-show::after {
   transform: rotateY(180deg) perspective(100px);
-  width: 250px;
-  height: 250px;
+  /* width: 250px;
+  height: 250px; */
 }
 .grid-card-show .grid-img {
   transform: rotateY(0) perspective(100px);
-  width: 250px;
-  height: 250px;
+  /* width: 250px;
+  height: 250px; */
 }
 .grid-card-finished {
   opacity: 0.5;
