@@ -53,7 +53,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
       +new Date(Livelinks.Bday_date) -
       +new Date() -
       19800000 -
-      86400000 * today;
+      86400000 * (dataurl.length - today);
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -107,23 +107,46 @@ function ScheduledLiveSlidePuzzle({ match }) {
               />
             ) : (
               <div>
-                {timerComponents.length ? (
-                  <h5 className="example"> {timerComponents} to go !!! </h5>
+                {new Date(Livelinks.Bday_date) -
+                  +new Date() -
+                  19800000 -
+                  86400000 * (dataurl.length - today) >
+                0 ? (
+                  <h5 className="example">
+                    {" "}
+                    This Gift opens in {timerComponents}
+                  </h5>
                 ) : (
-                  <div class="row">
-                    <div style={{ paddingLeft: "5px" }} class="col-lg-6">
+                  <>
+                    <center>
                       {" "}
-                      <center>
-                        <SlidePuzzle fbimg={fbimg} />
-                      </center>
+                      {dataurl.length - today - 1 == 0 ? (
+                        <h1 className="example">The Big day is here !!!</h1>
+                      ) : dataurl.length - today - 1 == 1 ? (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} day to go !!!
+                        </h1>
+                      ) : (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} days to go !!!
+                        </h1>
+                      )}
+                    </center>
+                    <div class="row">
+                      <div style={{ paddingLeft: "5px" }} class="col-lg-6">
+                        {" "}
+                        <center>
+                          <SlidePuzzle fbimg={fbimg} />
+                        </center>
+                      </div>
+                      <div class="col-lg-1"></div>
+                      <div style={{ paddingLeft: "5px" }} class="col-lg-5">
+                        <center>
+                          <SlidePuzzleAnswer fbimg={fbimg} />
+                        </center>
+                      </div>
                     </div>
-                    <div class="col-lg-1"></div>
-                    <div style={{ paddingLeft: "5px" }} class="col-lg-5">
-                      <center>
-                        <SlidePuzzleAnswer fbimg={fbimg} />
-                      </center>
-                    </div>
-                  </div>
+                  </>
                 )}
               </div>
             )}

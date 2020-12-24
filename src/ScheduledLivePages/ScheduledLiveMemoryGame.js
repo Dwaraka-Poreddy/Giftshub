@@ -35,8 +35,8 @@ export default function ScheduledLiveMemoryGame({ match }) {
       dataurl[index] = item.url;
     });
   }
-  useEffect(() => {
-    getDoc();
+  useEffect(async () => {
+    await getDoc();
     console.log(Livelinks, "liveData");
     console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
@@ -69,7 +69,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
       +new Date(Livelinks.Bday_date) -
       +new Date() -
       19800000 -
-      86400000 * today;
+      86400000 * (dataurl.length - today);
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -107,37 +107,59 @@ export default function ScheduledLiveMemoryGame({ match }) {
   });
 
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+    <div style={{ backgroundColor: "#70cff3" }}>
       <ScheduledLiveNav slug={match.params.slug} />
-      <br />
-      <br />
-      <div>
-        <div>
-          {loading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              {timerComponents.length ? (
-                <h5 className="example"> {timerComponents} to go !!! </h5>
-              ) : (
-                <div>
-                  <MemoryGame
-                    fbimg1={fbimg1}
-                    fbimg2={fbimg2}
-                    fbimg3={fbimg3}
-                    fbimg4={fbimg4}
-                    fbimg5={fbimg5}
-                    fbimg6={fbimg6}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6">
+            {loading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                {new Date(Livelinks.Bday_date) -
+                  +new Date() -
+                  19800000 -
+                  86400000 * (dataurl.length - today) >
+                0 ? (
+                  <h5 className="example">
+                    {" "}
+                    This Gift opens in {timerComponents}
+                  </h5>
+                ) : (
+                  <div>
+                    <center>
+                      {" "}
+                      {dataurl.length - today - 1 == 0 ? (
+                        <h1 className="example">The Big day is here !!!</h1>
+                      ) : dataurl.length - today - 1 == 1 ? (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} day to go !!!
+                        </h1>
+                      ) : (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} days to go !!!
+                        </h1>
+                      )}
+                    </center>
+                    <MemoryGame
+                      fbimg1={fbimg1}
+                      fbimg2={fbimg2}
+                      fbimg3={fbimg3}
+                      fbimg4={fbimg4}
+                      fbimg5={fbimg5}
+                      fbimg6={fbimg6}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

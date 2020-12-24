@@ -379,7 +379,7 @@ const Home = ({ history }) => {
           {gifts.map((gift) => (
             <li key={gift.id}>
               <Link to={`/ContinuePack/${gift.id}`}>
-                <button>
+                <button className="main-button">
                   {gift.Folder_name}|{gift.id}
                 </button>
               </Link>

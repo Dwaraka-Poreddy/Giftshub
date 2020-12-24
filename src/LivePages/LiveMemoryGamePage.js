@@ -70,28 +70,30 @@ export default function LiveMemoryGamePage({ match }) {
       </header>
 
       <div>
-        <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : (
-              <MemoryGame
-                fbimg1={fbimg1}
-                fbimg2={fbimg2}
-                fbimg3={fbimg3}
-                fbimg4={fbimg4}
-                fbimg5={fbimg5}
-                fbimg6={fbimg6}
-              />
-            )}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                />
+              ) : (
+                <MemoryGame
+                  fbimg1={fbimg1}
+                  fbimg2={fbimg2}
+                  fbimg3={fbimg3}
+                  fbimg4={fbimg4}
+                  fbimg5={fbimg5}
+                  fbimg6={fbimg6}
+                />
+              )}
+            </div>
           </div>
-          <div style={{ flex: "0.15" }}></div>
+          <div class="col-lg-3"></div>
         </div>
       </div>
     </div>

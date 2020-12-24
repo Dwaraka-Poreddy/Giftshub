@@ -11,7 +11,6 @@ import OpenGreetingCardPage from "./OpenGreetingCard/OpenGreetingCardPage";
 import LiveOpenGreetingCardPage from "./LivePages/LiveOpenGreetingCardPage";
 import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
-import NpackSelectPage from "./pages/NpackSelectPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
 import LiveSplitWall from "./LivePages/LiveSplitWall.js";
@@ -34,7 +33,7 @@ import AuthHeader from "./components/nav/Header";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
-import LiveLinksPage from "./pages/LiveLinksPage";
+
 import ScheduledLiveCollage from "./ScheduledLivePages/ScheduledLiveCollage";
 import ScheduledLiveMemoryGame from "./ScheduledLivePages/ScheduledLiveMemoryGame";
 import ScheduledLiveSlidePuzzle from "./ScheduledLivePages/ScheduledLiveSlidePuzzle";
@@ -74,11 +73,8 @@ export default function App() {
       <ToastContainer />
       <Switch>
         <Route exact path="/home" component={Home} />
-
-        <Route exact path="/nselect" component={NpackSelectPage} />
         <Route exact path="/sevendayhome" component={SevenDayHome} />
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
-        <Route exact path="/LiveLinksPage/:slug" component={LiveLinksPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />

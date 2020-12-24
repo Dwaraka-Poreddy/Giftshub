@@ -17,6 +17,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
   const [dataurl, setdataurl] = useState([]);
 
   async function getDoc() {
+    setloading(true);
     const snapshot = await database
       .collection("Livelinks")
       .doc(match.params.slug)
@@ -36,6 +37,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
   }
   useEffect(async () => {
     await getDoc();
+    setloading(false);
   }, []);
 
   useEffect(() => {
@@ -61,7 +63,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
       +new Date(Livelinks.Bday_date) -
       +new Date() -
       19800000 -
-      86400000 * today;
+      86400000 * (dataurl.length - today);
     console.log(difference, "difference");
     let timeLeft = {};
 
@@ -115,10 +117,31 @@ export default function ScheduledLiveThreeDImage({ match }) {
               />
             ) : (
               <div style={{ flex: "0.7" }}>
-                {timerComponents.length ? (
-                  <h5 className="example"> {timerComponents} to go !!! </h5>
+                {new Date(Livelinks.Bday_date) -
+                  +new Date() -
+                  19800000 -
+                  86400000 * (dataurl.length - today) >
+                0 ? (
+                  <h5 className="example">
+                    {" "}
+                    This Gift opens in {timerComponents}
+                  </h5>
                 ) : (
                   <div>
+                    <center>
+                      {" "}
+                      {dataurl.length - today - 1 == 0 ? (
+                        <h1 className="example">The Big day is here !!!</h1>
+                      ) : dataurl.length - today - 1 == 1 ? (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} day to go !!!
+                        </h1>
+                      ) : (
+                        <h1 className="example">
+                          {dataurl.length - today - 1} days to go !!!
+                        </h1>
+                      )}
+                    </center>
                     <ThreeDImage
                       firstcol={firstcol}
                       secondcol={secondcol}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+
 export default function App() {
   return (
     <div className="App">
@@ -61,9 +62,9 @@ export default function App() {
                   TemplateMo. Download, modify and use this for your business
                   website.
                 </p>
-                <Link to="/sevendayhome">
-                  <button className="main-button">Use recommended pack</button>
-                </Link>
+                {/* <Link to="/home"> */}
+                <button className="main-button"> Know More</button>
+                {/* </Link> */}
                 {/* <a href="#about" class="main-button-slider">
                   Use recommended pack
                 </a> */}
@@ -82,7 +83,69 @@ export default function App() {
           </div>
         </div>
       </div>
-
+      <section class="section" id="about2">
+        <div class="container">
+          <div class="row">
+            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
+              <div class="left-heading">
+                <h5>Curabitur aliquam eget tellus id porta</h5>
+              </div>
+              <p>
+                Proin justo sapien, posuere suscipit tortor in, fermentum mattis
+                elit. Aenean in feugiat purus.
+              </p>
+              <ul>
+                <li>
+                  <img src="assets/images/about-icon-01.png" alt="" />
+                  <div class="text">
+                    <h6>Nulla ultricies risus quis risus</h6>
+                    <p>
+                      You can use this website template for commercial or
+                      non-commercial purposes.
+                    </p>
+                  </div>
+                </li>
+                {/* <li>
+                  <img src="assets/images/about-icon-02.png" alt="" />
+                  <div class="text">
+                    <h6>Donec consequat commodo purus</h6>
+                    <p>
+                      You have no right to re-distribute this template as a
+                      downloadable ZIP file on any website.
+                    </p>
+                  </div>
+                </li> */}
+                <li>
+                  <img src="assets/images/about-icon-03.png" alt="" />
+                  <div class="text">
+                    <h6>Sed placerat sollicitudin mauris</h6>
+                    <p>
+                      If you have any question or comment, please{" "}
+                      <a rel="nofollow" href="">
+                        contact
+                      </a>{" "}
+                      us on TemplateMo.
+                    </p>
+                  </div>
+                </li>
+                <Link to="/home">
+                  <button className="main-button">n-Day Pack</button>
+                </Link>
+              </ul>
+            </div>
+            <div
+              class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big"
+              data-scroll-reveal="enter right move 30px over 0.6s after 0.4s"
+            >
+              <img
+                src="assets/images/right-image.png"
+                class="rounded img-fluid d-block mx-auto"
+                alt="App"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="section" id="about">
         <div className="container">
           <div className="row">
@@ -112,8 +175,9 @@ export default function App() {
                   sapien sit amet, ultrices malesuada odio. Donec non quam
                   euismod, mattis dui a, ultrices nisi.
                 </p>
-                <Link to="/home">
-                  <button className="main-button">n-Day Pack</button>
+                <Link to="/sevendayhome">
+                  {" "}
+                  <button className="main-button">recommended pack</button>{" "}
                 </Link>
               </div>
             </div>
@@ -333,7 +397,177 @@ export default function App() {
           </div>
         </div>
       </section>
-
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 m-3">
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img
+              src="https://dummyimage.com/600x400/000/fff.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <footer>
         <div className="container">
           <div className="row">

@@ -6,11 +6,11 @@ function SchdeuledLiveNav({ slug }) {
   const { daystep } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
   const [dataurl, setdataurl] = useState([]);
-  const [daycounter, setdaycounter] = useState();
+
   async function getDoc() {
     const snapshot = await database.collection("Livelinks").doc(slug).get();
     const data = await snapshot.data().array_data;
-    // setdaycounter(data.length - daystep.day - 1);
+
     data.map((item, index) => {
       dataurl[index] = item.url;
     });
@@ -22,10 +22,9 @@ function SchdeuledLiveNav({ slug }) {
   return (
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <Link class="navbar-brand" to={`/scheduledlive/main/${slug}`}>
-          {" "}
+        <a class=" navbar-brand" href={`/scheduledlive/main/${slug}`}>
           Main Page
-        </Link>
+        </a>
         <button
           class="navbar-toggler"
           type="button"

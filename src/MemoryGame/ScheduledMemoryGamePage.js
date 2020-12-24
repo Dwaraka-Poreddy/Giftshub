@@ -41,42 +41,42 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
   const [imageAsFile, setImageAsFile] = useState("");
 
   const [fbimg1, setfbimg1] = useState(
-    "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw=&auto=format&fit=crop&w=1950&q=80"
+    "https://images.unsplash.com/photo-1549021179-127b81585b60?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8MSUyMDF8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url1, setimage_url1] = useState();
   const [opencrop1, setopencrop1] = useState(false);
   const [send1, setsend1] = useState();
 
   const [fbimg2, setfbimg2] = useState(
-    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1561113275-8c092fce13c3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8MSUyMDF8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url2, setimage_url2] = useState();
   const [opencrop2, setopencrop2] = useState(false);
   const [send2, setsend2] = useState();
 
   const [fbimg3, setfbimg3] = useState(
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60"
+    "https://images.unsplash.com/photo-1597489420377-e23d4a080346?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8MSUyMDF8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url3, setimage_url3] = useState();
   const [opencrop3, setopencrop3] = useState(false);
   const [send3, setsend3] = useState();
 
   const [fbimg4, setfbimg4] = useState(
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1597314040740-5836f612a030?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8MSUyMDF8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url4, setimage_url4] = useState();
   const [opencrop4, setopencrop4] = useState(false);
   const [send4, setsend4] = useState();
 
   const [fbimg5, setfbimg5] = useState(
-    "https://images.unsplash.com/photo-1473172707857-f9e276582ab6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1600433880575-c8eb9363bc9c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fDElMjAxfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url5, setimage_url5] = useState();
   const [opencrop5, setopencrop5] = useState(false);
   const [send5, setsend5] = useState();
 
   const [fbimg6, setfbimg6] = useState(
-    "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1588214479734-a256a12abb37?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8MSUzQTF8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
   const [image_url6, setimage_url6] = useState();
   const [opencrop6, setopencrop6] = useState(false);
@@ -375,7 +375,8 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
       </header>
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-8">
+          <div class="col-lg-1"></div>
+          <div class="  col-lg-6">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -389,7 +390,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
           </div>
           <div class="col-lg-1"></div>
           <div
-            className=" col-lg-3"
+            className=" col-lg-4"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

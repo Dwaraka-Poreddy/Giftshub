@@ -37,7 +37,7 @@ export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
                   <div class="gc_heart"></div>
                 </div>
 
-                <div>
+                <div style={{ overflow: "hidden" }}>
                   <p>{text1}</p>
                   <p> {text2}</p>
                 </div>
@@ -47,7 +47,7 @@ export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
               <div class="side gc_back red">
                 <img style={{ width: "100%" }} src={fbimg} alt="" />
               </div>
-              <div class="side gc_front">
+              <div style={{ overflow: "hidden" }} class="side gc_front">
                 <div>
                   <p>
                     {maintext} <span class="red">red</span>
