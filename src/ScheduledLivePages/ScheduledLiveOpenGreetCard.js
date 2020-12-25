@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
+import CircleTimer from "./CircleTimer";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveOpenGreetCard({ match }) {
   let dispatch = useDispatch();
@@ -121,10 +122,17 @@ function ScheduledLiveOpenGreetCard({ match }) {
                 19800000 -
                 86400000 * (dataurl.length - today) >
               0 ? (
-                <h5 className="example">
-                  {" "}
-                  This Gift opens in {timerComponents}
-                </h5>
+                <div>
+                  <h5 className="example"> This Gift opens in </h5>
+                  <CircleTimer
+                    Bday={
+                      +new Date(Livelinks.Bday_date) -
+                      +new Date() -
+                      19800000 -
+                      86400000 * (dataurl.length - today)
+                    }
+                  />
+                </div>
               ) : (
                 <div>
                   <center>

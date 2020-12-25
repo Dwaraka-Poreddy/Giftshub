@@ -1,14 +1,49 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
+import $ from "jquery";
 const allComp = [
-  { id: "puzzle", content: "Slide Puzzle", url: "" },
-  { id: "threedimage", content: "3D Image", url: "" },
-  { id: "greetingcard", content: "Greeting Card", url: "" },
-  { id: "cubes", content: "Cubes in 3D Heart", url: "" },
-  { id: "memorygame", content: "Memory Game", url: "" },
-  { id: "collage", content: "Collage", url: "" },
-  { id: "newspaper", content: "NewsPaper", url: "" },
+  {
+    id: "puzzle",
+    content: "Slide Puzzle",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "threedimage",
+    content: "3D Image",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "greetingcard",
+    content: "Greeting Card",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "cubes",
+    content: "Cubes in 3D Heart",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "memorygame",
+    content: "Memory Game",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "collage",
+    content: "Collage",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
+  {
+    id: "newspaper",
+    content: "NewsPaper",
+    url: "",
+    img: "https://picsum.photos/200",
+  },
 ];
 
 const selectComp = [];
@@ -38,13 +73,28 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
   return result;
 };
+$(document).ready(function () {
+  console.log("ready");
+  $(".card").hover(
+    function () {
+      console.log("ready shadow");
+      $(this).removeClass("shadow-none");
+      $(this).addClass("shadow").css("cursor", "pointer");
+    },
+    function () {
+      $(this).removeClass("shadow");
+      $(this).addClass("shadow-none");
+    }
+  );
 
+  // document ready
+});
 const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  padding: grid * 2,
+
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
@@ -56,7 +106,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getItemStyle1 = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  padding: grid * 2,
+
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
@@ -163,7 +213,27 @@ class N_Pack_Select extends Component {
                             provided.draggableProps.style
                           )}
                         >
-                          {item.content}
+                          <div class="card p-0 shadow-none">
+                            <div class="row no-gutters">
+                              <div class="col-3">
+                                <img
+                                  src={item.img}
+                                  class="card-img"
+                                  alt={index}
+                                />
+                              </div>
+                              <div class="col-9">
+                                <div
+                                  class="card-body "
+                                  style={{
+                                    padding: "1rem 1.25rem 0.25rem 1.25rem",
+                                  }}
+                                >
+                                  {item.content}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </Draggable>
@@ -175,6 +245,9 @@ class N_Pack_Select extends Component {
           </div>
 
           <div class="col-lg-6 pt-3 pb-3 ">
+            <center>
+              <h1 className="example">Your Pack</h1>
+            </center>
             <Droppable droppableId="droppable2">
               {(provided, snapshot) => (
                 <div
@@ -189,6 +262,10 @@ class N_Pack_Select extends Component {
                     >
                       {(provided, snapshot) => (
                         <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-evenly",
+                          }}
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
@@ -197,7 +274,27 @@ class N_Pack_Select extends Component {
                             provided.draggableProps.style
                           )}
                         >
-                          {item.content}
+                          <div class="card p-0 shadow-none">
+                            <div class="row no-gutters">
+                              <div class="col-3">
+                                <img
+                                  src={item.img}
+                                  class="card-img"
+                                  alt={index}
+                                />
+                              </div>
+                              <div class="col-9">
+                                <div
+                                  class="card-body "
+                                  style={{
+                                    padding: "1rem 1.25rem 0.25rem 1.25rem",
+                                  }}
+                                >
+                                  {item.content}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </Draggable>

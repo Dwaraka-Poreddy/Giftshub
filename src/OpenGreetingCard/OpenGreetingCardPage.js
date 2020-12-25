@@ -16,6 +16,8 @@ import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tour from "reactour";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -28,6 +30,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function OpenGreetingCardPage() {
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [accentColor, setaccentColor] = useState("#5cb7b7");
   const [loading, setloading] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -110,9 +114,57 @@ function OpenGreetingCardPage() {
       );
     }
   };
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Choose the image from you local device to be  printed onto the greeting card`,
+    },
+    {
+      selector: '[data-tut="reactour__from"]',
+      content: ` Enter your name
+      `,
+    },
+    {
+      selector: '[data-tut="reactour__to"]',
+      content: ` Enter the special person’s name `,
+    },
+    {
+      selector: '[data-tut="reactour__text"]',
+      content: `We all love short and cute messages, so pour your heart but pay attention to the word limit!`,
+    },
 
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `copies the generated live link to clipboard`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `previews the component  crerated`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `shares the live link of the component  crerated`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+          setlivelink("");
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
       <header
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
@@ -174,36 +226,69 @@ function OpenGreetingCardPage() {
               right: "0",
             }}
           >
-            <div style={{ padding: "20px 0", justifyContent: "center" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput"
-                name="LocalfileInput"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
+            <center>
+              <div
+                style={{
+                  justifyContent: "center",
+                  padding: "20px 0 0 0 ",
                 }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={2 / 3}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
+              >
+                {/* {livelink ? null : ( */}
+                <span style={{ color: "#ffffff" }}>
+                  {" "}
+                  Hello! Allow us to give you a small tour on how to generate
+                  this special gift. We are sure you wouldn't need one the next
+                  time you are back.
+                  <br /> P.S : Its that easy
+                </span>
+                <HeaderBtn
+                  handleClick={() => {
+                    setIsTourOpen(true);
+                    setlivelink("123");
+                  }}
+                  Icon={FlightTakeoffIcon}
+                  title=" Start Tour "
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-              </label>
+                {/* )} */}
+              </div>
+            </center>
+            <hr />
+            <div style={{ padding: "20px 0", justifyContent: "center" }}>
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
+                />
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={2 / 3}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                </label>
+              </div>
               <center>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__from"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -226,7 +311,11 @@ function OpenGreetingCardPage() {
                     }}
                   />
                 </div>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__to"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -249,7 +338,11 @@ function OpenGreetingCardPage() {
                     }}
                   />
                 </div>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__text"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -273,7 +366,7 @@ function OpenGreetingCardPage() {
                   />
                 </div>
               </center>
-              <center>
+              <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
@@ -295,18 +388,27 @@ function OpenGreetingCardPage() {
                 <center>
                   {livelink ? (
                     <div>
-                      <div style={{ width: "200px", marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ width: "200px", marginTop: "20px" }}
+                      >
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ marginTop: "20px" }}>
-                        <Link class="logo" to={previewlink}>
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ marginTop: "20px" }}>
+                        <div
+                          data-tut="reactour__sharelink"
+                          style={{ marginTop: "20px" }}
+                        >
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);

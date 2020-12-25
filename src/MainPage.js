@@ -1,11 +1,26 @@
 import React from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
-import OwlCarousel from "react-owl-carousel";
+
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-
+import $ from "jquery";
 export default function App() {
+  $(document).ready(function () {
+    $(".card").hover(
+      function () {
+        $(this).removeClass("shadow-none");
+        $(this).addClass("shadow").css("cursor", "pointer");
+      },
+      function () {
+        $(this).removeClass("shadow");
+        $(this).addClass("shadow-none");
+      }
+    );
+
+    // document ready
+  });
+
   return (
     <div className="App">
       {/* <div id="preloader">
@@ -146,7 +161,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section className="section" id="about">
+      <section style={{ color: "#ffffff" }} className="section" id="services">
         <div className="container">
           <div className="row">
             <div
@@ -161,15 +176,19 @@ export default function App() {
             </div>
             <div className="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
               <div className="left-heading">
-                <h5>Vivamus sodales nisi id ante molestie venenatis</h5>
+                <h5 style={{ color: "#ffffff" }}>
+                  Vivamus sodales nisi id ante molestie venenatis
+                </h5>
               </div>
               <div className="left-text">
-                <p>
+                <p style={{ color: "#ffffff" }}>
                   This template is{" "}
-                  <a href="#">last updated on 20 August 2019 </a>for main menu
-                  drop-down arrow and sub menu text color. Duis auctor dolor eu
-                  scelerisque vestibulum. Vestibulum lacinia, nisl sit amet
-                  tristique condimentum. <br />
+                  <a style={{ color: "#ffffff" }} href="#">
+                    last updated on 20 August 2019{" "}
+                  </a>
+                  for main menu drop-down arrow and sub menu text color. Duis
+                  auctor dolor eu scelerisque vestibulum. Vestibulum lacinia,
+                  nisl sit amet tristique condimentum. <br />
                   <br />
                   Sed a consequat velit. Morbi lectus sapien, vestibulum et
                   sapien sit amet, ultrices malesuada odio. Donec non quam
@@ -189,7 +208,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section className="section" id="services">
+      <section className="section" id="about">
         <h1
           style={{
             fontSize: "70px",
@@ -199,375 +218,185 @@ export default function App() {
             letterSpacing: "3px",
           }}
         >
-          Customize
+          Components
         </h1>
-        <div className="container">
-          <div className="row">
-            <OwlCarousel
-              className="owl-theme"
-              loop
-              margin={20}
-              // center
-              mergeFit
-              autoplayTimeout={3000}
-              nav
-              items={4}
-              responsive
-              autoplay
-              autoplayHoverPause
-            >
-              <Link className="productCard" to="/collagepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Collage</h1>
+        <div class=" container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  m-3">
+            <Link className="productCard" to="/threedimagepage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">3D Image</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/memorygamepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/right-image.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Memory Game</h1>
-                  </div>
-                </div>
-              </Link>
-              <Link className="productCard" to="/slidepuzzlepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/right-image.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Puzzles</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/newspaperpage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">News Papers</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/newspaperpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/newspaper_alit.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>News Papers</h1>
-                  </div>
-                </div>
-              </Link>
-              <Link className="productCard" to="/magazinepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Magazine Covers</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/cubespage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">3D Heart</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/greet">
-                <div
-                  className="productCardDiv"
-                  // style={{
-                  //   color: "#000",
-                  //   height: "500px",
-                  //   backgroundColor: "red",
-                  // }}
-                >
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="https://images-na.ssl-images-amazon.com/images/I/7110MeewakL._SL1500_.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Greeting Cards</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/slidepuzzlepage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Puzzles</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/cubespage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/newspaper_alit.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Cubes</h1>
-                  </div>
-                </div>
-              </Link>
-              <Link className="productCard" to="/animatedframepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Animation Frames</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/memorygamepage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Memory Game</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/opengreetingcardpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Greeting Card</h1>
-                  </div>
-                </div>
-              </Link>
-              <Link className="productCard" to="/specialcardpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Special Card</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/collagepage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Collage</button>
                   </div>
                 </div>
-              </Link>
-              <Link className="productCard" to="/splitwallimagePage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Split WallFrame</h1>
-                  </div>
-                </div>
-              </Link>
-
-              <Link className="productCard" to="/threedimagepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>3D Image Frame</h1>
+              </div>
+            </Link>
+            <Link className="productCard" to="/opengreetingcardpage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Greeting Card</button>
                   </div>
                 </div>
-              </Link>
-            </OwlCarousel>
-            {/* <div className="owl-carousel owl-theme"></div> */}
+              </div>
+            </Link>
+            <Link className="productCard" to="/animatedframePage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Animated Frame</button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link className="productCard" to="/specialcardpage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <button className="main-button">Special Card</button>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 m-3">
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="https://dummyimage.com/600x400/000/fff.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <footer>
         <div className="container">
           <div className="row">

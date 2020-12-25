@@ -7,6 +7,8 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import emailjs from "emailjs-com";
+import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import CreateIcon from "@material-ui/icons/Create";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Share({ livelink, from, to }) {
+  const [showform, setshowform] = useState(false);
   const classes = useStyles();
   const [receiverEmail, setreceiverEmail] = useState();
   const [giftshub, setgiftshub] = useState("https://www.google.com/");
@@ -60,19 +63,6 @@ function Share({ livelink, from, to }) {
 
   return (
     <div className="App">
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField
-          value={receiverEmail}
-          onChange={(e) => {
-            setreceiverEmail(e.target.value);
-          }}
-          required
-          id="filled-basic"
-          label="Receiver Email"
-          variant="filled"
-        />
-      </form>
-
       <FacebookShareButton
         windowWidth="500px"
         windowHeight="500px"
@@ -82,7 +72,6 @@ function Share({ livelink, from, to }) {
         <HeaderBtn Icon={FacebookIcon} title="Facebook " />
       </FacebookShareButton>
       <br />
-
       <TwitterShareButton
         windowWidth="500px"
         windowHeight="500px"
@@ -103,15 +92,57 @@ function Share({ livelink, from, to }) {
         >
           <HeaderBtn Icon={WhatsAppIcon} title="Whatsapp " />
         </WhatsappShareButton>
-      </div>
+      </div>{" "}
       <center>
-        <HeaderBtn
-          handleClick={() => {
-            sendEmail();
-          }}
-          Icon={MailIcon}
-          title="Email "
-        />
+        {showform ? (
+          <form
+            onSubmit={(e) => {
+              sendEmail();
+            }}
+            className={classes.root}
+          >
+            <div
+              style={{
+                width: "200px",
+
+                marginTop: "20px",
+              }}
+              className="RightSideBar2__Btn"
+            >
+              <CreateIcon
+                style={{
+                  margin: "0 10px 0 5px",
+                  color: "#ffffff",
+                  fontSize: "large",
+                }}
+              />
+              <input
+                required
+                style={{ width: "100%", color: "#000" }}
+                type="email"
+                id="email"
+                name="email"
+                onChange={(e) => setreceiverEmail(e.target.value)}
+              />
+            </div>
+            <input
+              style={{ display: "none" }}
+              id="receiverEmail"
+              type="submit"
+            />
+            <label htmlFor="receiverEmail">
+              <HeaderBtn Icon={ViewModuleIcon} title="Send Email " />
+            </label>
+          </form>
+        ) : (
+          <HeaderBtn
+            handleClick={() => {
+              setshowform(true);
+            }}
+            Icon={MailIcon}
+            title="Email "
+          />
+        )}
       </center>
     </div>
   );

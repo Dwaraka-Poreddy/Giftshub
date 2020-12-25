@@ -24,7 +24,32 @@ import Paper from "@material-ui/core/Paper";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+
+import Modal from "@material-ui/core/Modal";
+import Fab from "@material-ui/core/Fab";
+import CloseIcon from "@material-ui/icons/Close";
 import "./ContinuePack.css";
+const usemodStyles = makeStyles((theme) => ({
+  paper: {
+    borderRadius: "5px",
+    width: "70vw",
+    height: "80vh",
+    minWidth: "280px",
+    position: "absolute",
+    color: "#ffffff",
+    marginTop: "0vh",
+    border: null,
+    backgroundColor: "#009dd9",
+    overflow: "auto",
+    padding: theme.spacing(0, 0, 0),
+  },
+  DelBut: {
+    position: "sticky",
+    bottom: theme.spacing(142),
+    left: theme.spacing(250),
+  },
+}));
+
 function ContinuePack({ match }) {
   const theme = useTheme();
 
@@ -45,19 +70,19 @@ function ContinuePack({ match }) {
       label: "Newspaper",
     },
     {
-      label: "greetingcard",
+      label: "Greetingcard",
     },
     {
-      label: "puzzle",
+      label: "Puzzle",
     },
     {
-      label: "memorygame",
+      label: "Memory Game",
     },
     {
-      label: "cubes",
+      label: "3D Heart",
     },
     {
-      label: "collage",
+      label: "Collage",
     },
     {
       label: "Unknown",
@@ -66,7 +91,7 @@ function ContinuePack({ match }) {
   const database = firebase.firestore();
   let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
-
+  const modclasses = usemodStyles();
   const [loading, setloading] = useState(true);
   const [slag, setslag] = useState(match.params.slug);
   const [livelink, setlivelink] = useState();
@@ -76,6 +101,7 @@ function ContinuePack({ match }) {
   const [datacontent, setdatacontent] = useState([]);
   const [dataid, setdataid] = useState([]);
   const [dataurl, setdataurl] = useState([]);
+  const [openModal, setopenModal] = useState(false);
   async function getDocnew() {
     dataurl.map((item, index) => {
       if (item != "") {
@@ -365,26 +391,69 @@ function ContinuePack({ match }) {
           <div class="col-sm-4">
             <center>
               {!showshare ? (
-                <div style={{ marginTop: "20px" }}>
+                <div style={{ marginTop: "55px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       setshowshare(true);
+                      setopenModal(true);
                     }}
                     Icon={ShareIcon}
                     title="Share "
                   />
                 </div>
               ) : (
-                <div>
-                  <Share
-                    livelink={livelink}
-                    to={data1.To_name}
-                    from={data1.From_name}
-                  />
-                  <center style={{ width: "200px" }}>
-                    <Copy livelink={livelink} />
-                  </center>
-                </div>
+                <Modal
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginRight: "auto",
+                    overflow: "hidden",
+                    alignItems: "center",
+                  }}
+                  open={openModal}
+                  aria-labelledby="simple-modal-title"
+                  aria-describedby="simple-modal-description"
+                >
+                  {
+                    <div className={modclasses.paper}>
+                      <div>
+                        <br />
+                        <br />
+                        <br />
+                        <div
+                          style={{ backgroundColor: "#ffffff" }}
+                          class="container-fluid pt-3"
+                        >
+                          <div>
+                            <div>
+                              <center>
+                                <div style={{ width: "200px" }}>
+                                  <Copy livelink={livelink} />
+                                </div>
+                              </center>
+                              <Share
+                                livelink={livelink}
+                                to={data1.To_name}
+                                from={data1.From_name}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <Fab
+                          onClick={() => {
+                            setopenModal(false);
+                            setshowshare(false);
+                          }}
+                          className={modclasses.DelBut}
+                          color="primary"
+                          aria-label="add"
+                        >
+                          <CloseIcon />
+                        </Fab>
+                      </div>
+                    </div>
+                  }
+                </Modal>
               )}
             </center>
           </div>

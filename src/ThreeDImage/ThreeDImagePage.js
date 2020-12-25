@@ -111,15 +111,15 @@ function OpenGreetingCardPage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `changes the image`,
+      content: `Choose the image from you local device to be displayed on the 3D tiles`,
     },
     {
       selector: '[data-tut="reactour__gradient"]',
-      content: `choose gradient from and to colors`,
+      content: `Colors mean more to the eye than what it sees. Use these options to select the appropriate gradient range for the background`,
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `generates a live link for this component. Once the link is generated few other options are shown`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
     },
     {
       selector: '[data-tut="reactour__copylink"]',
@@ -216,16 +216,23 @@ function OpenGreetingCardPage() {
                   padding: "20px 0 0 0 ",
                 }}
               >
-                {livelink ? null : (
-                  <HeaderBtn
-                    handleClick={() => {
-                      setIsTourOpen(true);
-                      setlivelink("123");
-                    }}
-                    Icon={FlightTakeoffIcon}
-                    title=" Start Tour "
-                  />
-                )}
+                {/* {livelink ? null : ( */}
+                <span style={{ color: "#ffffff" }}>
+                  {" "}
+                  Hello! Allow us to give you a small tour on how to generate
+                  this special gift. We are sure you wouldn't need one the next
+                  time you are back.
+                  <br /> P.S : Its that easy
+                </span>
+                <HeaderBtn
+                  handleClick={() => {
+                    setIsTourOpen(true);
+                    setlivelink("123");
+                  }}
+                  Icon={FlightTakeoffIcon}
+                  title=" Start Tour "
+                />
+                {/* )} */}
               </div>
             </center>
             <hr />
@@ -338,16 +345,6 @@ function OpenGreetingCardPage() {
                       >
                         <Copy livelink={livelink} />
                       </div>
-
-                      <div
-                        data-tut="reactour__preview"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <Link class="logo" to={previewlink}>
-                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                        </Link>
-                      </div>
-
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
@@ -364,6 +361,14 @@ function OpenGreetingCardPage() {
                       ) : (
                         <Share livelink={livelink} />
                       )}
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
                     </div>
                   ) : null}
                 </center>

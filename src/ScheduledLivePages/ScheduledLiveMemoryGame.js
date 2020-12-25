@@ -4,6 +4,7 @@ import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
+import CircleTimer from "./CircleTimer";
 export default function ScheduledLiveMemoryGame({ match }) {
   const database = firebase.firestore();
   let dispatch = useDispatch();
@@ -70,7 +71,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
       +new Date() -
       19800000 -
       86400000 * (dataurl.length - today);
-    console.log(difference, "difference");
+    // console.log(difference, "difference");
     let timeLeft = {};
 
     if (difference > 0) {
@@ -109,6 +110,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <ScheduledLiveNav slug={match.params.slug} />
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3"></div>
@@ -127,10 +129,17 @@ export default function ScheduledLiveMemoryGame({ match }) {
                   19800000 -
                   86400000 * (dataurl.length - today) >
                 0 ? (
-                  <h5 className="example">
-                    {" "}
-                    This Gift opens in {timerComponents}
-                  </h5>
+                  <div>
+                    <h5 className="example"> This Gift opens in </h5>
+                    <CircleTimer
+                      Bday={
+                        +new Date(Livelinks.Bday_date) -
+                        +new Date() -
+                        19800000 -
+                        86400000 * (dataurl.length - today)
+                      }
+                    />
+                  </div>
                 ) : (
                   <div>
                     <center>

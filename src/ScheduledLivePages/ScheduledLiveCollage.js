@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Collage from "../Collage/Collage";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+import CircleTimer from "./CircleTimer";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 export default function LiveCollagePage({ match }) {
   let dispatch = useDispatch();
@@ -137,10 +138,17 @@ export default function LiveCollagePage({ match }) {
                   19800000 -
                   86400000 * (dataurl.length - today) >
                 0 ? (
-                  <h5 className="example">
-                    {" "}
-                    This Gift opens in {timerComponents}
-                  </h5>
+                  <div>
+                    <h5 className="example"> This Gift opens in </h5>
+                    <CircleTimer
+                      Bday={
+                        +new Date(Livelinks.Bday_date) -
+                        +new Date() -
+                        19800000 -
+                        86400000 * (dataurl.length - today)
+                      }
+                    />
+                  </div>
                 ) : (
                   <div>
                     <center>

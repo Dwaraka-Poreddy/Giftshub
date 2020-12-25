@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
+import CircleTimer from "./CircleTimer";
 export default function ScheduledLiveThreeDImage({ match }) {
   const database = firebase.firestore();
 
@@ -116,16 +117,23 @@ export default function ScheduledLiveThreeDImage({ match }) {
                 width={100}
               />
             ) : (
-              <div style={{ flex: "0.7" }}>
+              <div>
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
                   86400000 * (dataurl.length - today) >
                 0 ? (
-                  <h5 className="example">
-                    {" "}
-                    This Gift opens in {timerComponents}
-                  </h5>
+                  <div>
+                    <h5 className="example"> This Gift opens in </h5>
+                    <CircleTimer
+                      Bday={
+                        +new Date(Livelinks.Bday_date) -
+                        +new Date() -
+                        19800000 -
+                        86400000 * (dataurl.length - today)
+                      }
+                    />
+                  </div>
                 ) : (
                   <div>
                     <center>

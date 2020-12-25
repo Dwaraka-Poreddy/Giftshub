@@ -16,18 +16,23 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    borderRadius: "15px",
+    borderRadius: "5px",
+    width: "70vw",
+    height: "80vh",
+    minWidth: "280px",
+    maxWidth: "840px",
     position: "absolute",
-
+    color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    backgroundColor: "#303030",
-    padding: theme.spacing(2, 4, 3),
+    backgroundColor: "#009dd9",
+    overflow: "auto",
+    padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
     position: "sticky",
     bottom: theme.spacing(142),
-    left: theme.spacing(200),
+    left: theme.spacing(250),
   },
 }));
 
@@ -156,15 +161,16 @@ function CropPage({
                     <br />
                     <br />
                     <br />
-
-                    <ReactCrop
-                      imageStyle={{ maxWidth: "800px", maxHeight: "450px" }}
-                      src={upImg}
-                      onImageLoaded={onLoad}
-                      crop={crop}
-                      onChange={(c) => setCrop(c)}
-                      onComplete={(c) => setCompletedCrop(c)}
-                    />
+                    <center>
+                      <ReactCrop
+                        imageStyle={{ maxWidth: "800px", maxHeight: "450px" }}
+                        src={upImg}
+                        onImageLoaded={onLoad}
+                        crop={crop}
+                        onChange={(c) => setCrop(c)}
+                        onComplete={(c) => setCompletedCrop(c)}
+                      />
+                    </center>
                     <div style={{ display: "none" }}>
                       <canvas
                         ref={previewCanvasRef}
@@ -176,7 +182,7 @@ function CropPage({
                     </div>
                     <div>
                       <center>
-                        <div style={{ width: "40%" }}>
+                        <div>
                           {" "}
                           <HeaderBtn
                             handleClick={() => {

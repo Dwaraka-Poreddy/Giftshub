@@ -16,6 +16,8 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
+import Tour from "reactour";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -28,6 +30,8 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function CollagePage() {
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [accentColor, setaccentColor] = useState("#5cb7b7");
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -370,9 +374,45 @@ function CollagePage() {
       );
     }
   };
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Every picture has a story to tell and every collage is a storybook of all the times together. Select the images to make your own collage.
+      `,
+    },
 
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `copies the generated live link to clipboard`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `previews the component  crerated`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `shares the live link of the component  crerated`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+          setlivelink("");
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
       <header
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
@@ -427,251 +467,279 @@ function CollagePage() {
               right: "0",
             }}
           >
+            <center>
+              <div
+                style={{
+                  justifyContent: "center",
+                  padding: "20px 0 0 0 ",
+                }}
+              >
+                {/* {livelink ? null : ( */}
+                <span style={{ color: "#ffffff" }}>
+                  {" "}
+                  Hello! Allow us to give you a small tour on how to generate
+                  this special gift. We are sure you wouldn't need one the next
+                  time you are back.
+                  <br /> P.S : Its that easy
+                </span>
+                <HeaderBtn
+                  handleClick={() => {
+                    setIsTourOpen(true);
+                    setlivelink("123");
+                  }}
+                  Icon={FlightTakeoffIcon}
+                  title=" Start Tour "
+                />
+                {/* )} */}
+              </div>
+            </center>
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput1"
-                name="LocalfileInput1"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile1}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop1 ? (
-                <CropPage
-                  send={send1}
-                  setfbimg={setfbimg1}
-                  setimage_url={setimage_url1}
-                  opencrop={opencrop1}
-                  aspect_ratio={4 / 3}
-                  setopencrop={setopencrop1}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput1"
+                  name="LocalfileInput1"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile1}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput1">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput2"
-                name="LocalfileInput2"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile2}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop2 ? (
-                <CropPage
-                  send={send2}
-                  setfbimg={setfbimg2}
-                  setimage_url={setimage_url2}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop2}
-                  setopencrop={setopencrop2}
+                {opencrop1 ? (
+                  <CropPage
+                    send={send1}
+                    setfbimg={setfbimg1}
+                    setimage_url={setimage_url1}
+                    opencrop={opencrop1}
+                    aspect_ratio={4 / 3}
+                    setopencrop={setopencrop1}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput1">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput2"
+                  name="LocalfileInput2"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile2}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput2">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 2" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput3"
-                name="LocalfileInput3"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile3}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop3 ? (
-                <CropPage
-                  send={send3}
-                  setfbimg={setfbimg3}
-                  setimage_url={setimage_url3}
-                  aspect_ratio={3 / 4}
-                  opencrop={opencrop3}
-                  setopencrop={setopencrop3}
+                {opencrop2 ? (
+                  <CropPage
+                    send={send2}
+                    setfbimg={setfbimg2}
+                    setimage_url={setimage_url2}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop2}
+                    setopencrop={setopencrop2}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput2">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 2" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput3"
+                  name="LocalfileInput3"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile3}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput3">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 3" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput4"
-                name="LocalfileInput4"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile4}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop4 ? (
-                <CropPage
-                  send={send4}
-                  setfbimg={setfbimg4}
-                  setimage_url={setimage_url4}
-                  aspect_ratio={3 / 4}
-                  opencrop={opencrop4}
-                  setopencrop={setopencrop4}
+                {opencrop3 ? (
+                  <CropPage
+                    send={send3}
+                    setfbimg={setfbimg3}
+                    setimage_url={setimage_url3}
+                    aspect_ratio={3 / 4}
+                    opencrop={opencrop3}
+                    setopencrop={setopencrop3}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput3">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 3" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput4"
+                  name="LocalfileInput4"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile4}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput4">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 4" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput5"
-                name="LocalfileInput5"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile5}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop5 ? (
-                <CropPage
-                  send={send5}
-                  setfbimg={setfbimg5}
-                  setimage_url={setimage_url5}
-                  aspect_ratio={3 / 4}
-                  opencrop={opencrop5}
-                  setopencrop={setopencrop5}
+                {opencrop4 ? (
+                  <CropPage
+                    send={send4}
+                    setfbimg={setfbimg4}
+                    setimage_url={setimage_url4}
+                    aspect_ratio={3 / 4}
+                    opencrop={opencrop4}
+                    setopencrop={setopencrop4}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput4">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 4" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput5"
+                  name="LocalfileInput5"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile5}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput5">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 5" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput6"
-                name="LocalfileInput6"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile6}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop6 ? (
-                <CropPage
-                  send={send6}
-                  setfbimg={setfbimg6}
-                  setimage_url={setimage_url6}
-                  aspect_ratio={4 / 3}
-                  opencrop={opencrop6}
-                  setopencrop={setopencrop6}
+                {opencrop5 ? (
+                  <CropPage
+                    send={send5}
+                    setfbimg={setfbimg5}
+                    setimage_url={setimage_url5}
+                    aspect_ratio={3 / 4}
+                    opencrop={opencrop5}
+                    setopencrop={setopencrop5}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput5">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 5" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput6"
+                  name="LocalfileInput6"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile6}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput6">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 6" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput7"
-                name="LocalfileInput7"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile7}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop7 ? (
-                <CropPage
-                  send={send7}
-                  setfbimg={setfbimg7}
-                  setimage_url={setimage_url7}
-                  aspect_ratio={3 / 4}
-                  opencrop={opencrop7}
-                  setopencrop={setopencrop7}
+                {opencrop6 ? (
+                  <CropPage
+                    send={send6}
+                    setfbimg={setfbimg6}
+                    setimage_url={setimage_url6}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop6}
+                    setopencrop={setopencrop6}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput6">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 6" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput7"
+                  name="LocalfileInput7"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile7}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput7">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 7" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput8"
-                name="LocalfileInput8"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile8}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop8 ? (
-                <CropPage
-                  send={send8}
-                  setfbimg={setfbimg8}
-                  setimage_url={setimage_url8}
-                  aspect_ratio={4 / 3}
-                  opencrop={opencrop8}
-                  setopencrop={setopencrop8}
+                {opencrop7 ? (
+                  <CropPage
+                    send={send7}
+                    setfbimg={setfbimg7}
+                    setimage_url={setimage_url7}
+                    aspect_ratio={3 / 4}
+                    opencrop={opencrop7}
+                    setopencrop={setopencrop7}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput7">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 7" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput8"
+                  name="LocalfileInput8"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile8}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput8">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 8" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput9"
-                name="LocalfileInput9"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile9}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop9 ? (
-                <CropPage
-                  send={send9}
-                  setfbimg={setfbimg9}
-                  setimage_url={setimage_url9}
-                  aspect_ratio={4 / 3}
-                  opencrop={opencrop9}
-                  setopencrop={setopencrop9}
+                {opencrop8 ? (
+                  <CropPage
+                    send={send8}
+                    setfbimg={setfbimg8}
+                    setimage_url={setimage_url8}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop8}
+                    setopencrop={setopencrop8}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput8">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 8" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput9"
+                  name="LocalfileInput9"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile9}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput9">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 9" />
-              </label>
-              <center>
+                {opencrop9 ? (
+                  <CropPage
+                    send={send9}
+                    setfbimg={setfbimg9}
+                    setimage_url={setimage_url9}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop9}
+                    setopencrop={setopencrop9}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput9">
+                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image 9" />
+                </label>
+              </div>
+              <center data-tut="reactour__generatelink">
                 <HeaderBtn
                   handleClick={() => {
                     handleFireBaseUpload();
@@ -692,18 +760,27 @@ function CollagePage() {
                 <center>
                   {livelink ? (
                     <div>
-                      <div style={{ width: "200px", marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ width: "200px", marginTop: "20px" }}
+                      >
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ width: "200px", marginTop: "20px" }}>
-                        <Link class="logo" to={previewlink}>
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ width: "200px", marginTop: "20px" }}>
+                        <div
+                          data-tut="reactour__sharelink"
+                          style={{ width: "200px", marginTop: "20px" }}
+                        >
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);

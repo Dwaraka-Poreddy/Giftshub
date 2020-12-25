@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
+import CircleTimer from "./CircleTimer";
 function ScheduledLiveMainPage({ match }) {
   const database = firebase.firestore();
   const [FolderData, setFolderData] = useState("");
@@ -30,8 +31,7 @@ function ScheduledLiveMainPage({ match }) {
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    var difference =
-      +new Date(Livelinks.Bday_date) - +new Date() - 19800000 - 86400000;
+    var difference = +new Date(Livelinks.Bday_date) - +new Date() - 19800000;
 
     console.log(difference, "difference");
     let timeLeft = {};
@@ -73,12 +73,14 @@ function ScheduledLiveMainPage({ match }) {
     <div>
       <ScheduledLiveNav slug={match.params.slug} />
 
+      <CircleTimer
+        Bday={new Date(Livelinks.Bday_date) - +new Date() - 19800000}
+      />
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (
         <div>
-          {new Date(Livelinks.Bday_date) - +new Date() - 19800000 - 86400000 >
-          0 ? (
+          {new Date(Livelinks.Bday_date) - +new Date() - 19800000 > 0 ? (
             <center>
               {" "}
               <h1 className="example">The Big day is in {timerComponents}</h1>

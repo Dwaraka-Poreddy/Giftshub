@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import NpackSelect from "./NPackSelect";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,17 +16,19 @@ import CropPage from "../Utils/CropPage";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Loader from "react-loader-spinner";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
     width: "70vw",
     height: "80vh",
+    maxWidth: "840px",
     minWidth: "280px",
     position: "absolute",
     color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    backgroundColor: "#009dd9",
+    // backgroundColor: "#009dd9",
     overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
@@ -37,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
     left: theme.spacing(250),
   },
 }));
+
 function SevenDayHome({ history }) {
+  const [loading, setloading] = useState(false);
   const classes = useStyles();
   const { user } = useSelector((state) => ({ ...state }));
   const [npackorder, setnpackorder] = useState([
@@ -74,6 +77,7 @@ function SevenDayHome({ history }) {
     setnpackorder(selected);
   };
   const getPrevious = () => {
+    setloading(true);
     database
       .collection("n-day-pack")
       .doc(`${user.uid}`)
@@ -89,7 +93,7 @@ function SevenDayHome({ history }) {
           fetchedGifts.push(fetchedMovie);
         });
         setGifts(fetchedGifts);
-        console.log("gifts", gifts);
+        setloading(false);
       })
       .catch((error) => {
         setError(error);
@@ -102,6 +106,7 @@ function SevenDayHome({ history }) {
   };
 
   const CreatePack = (e) => {
+    setloading(true);
     e.preventDefault();
     var ud = uuidv4();
     const uploadTask = storage
@@ -148,6 +153,7 @@ function SevenDayHome({ history }) {
                   });
 
                   history.push(`/ContinuePack/${docRef.id}`);
+                  setloading(false);
                 })
                 .catch(function (error) {
                   console.error("Error adding Tutorial: ", error);
@@ -159,7 +165,13 @@ function SevenDayHome({ history }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background:
+          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
+        height: "80vh",
+      }}
+    >
       <section className="section" id="services">
         <h1
           style={{
@@ -314,239 +326,263 @@ function SevenDayHome({ history }) {
       >
         {
           <div className={classes.paper}>
-            <div>
-              <br />
-              <br />
-              <br />
-              <div
-                style={{ backgroundColor: "#70cff3" }}
-                class="container-fluid pt-3"
-              >
-                <div>
-                  <center>
-                    <form onSubmit={CreatePack}>
-                      <div
-                        style={{
-                          width: "200px",
-
-                          marginTop: "20px",
-                        }}
-                        className="RightSideBar2__Btn"
-                      >
-                        <CreateIcon
+            {loading ? (
+              <center>
+                {" "}
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={300}
+                  width={300}
+                />
+              </center>
+            ) : (
+              <div>
+                <Fab
+                  onClick={() => {
+                    setopenModal(false);
+                  }}
+                  className={classes.DelBut}
+                  color="primary"
+                  aria-label="add"
+                >
+                  <CloseIcon />
+                </Fab>
+                <br />
+                <br />
+                <br />
+                <div
+                  style={{ backgroundColor: "#ffffff" }}
+                  class="container-fluid pt-3"
+                >
+                  <div>
+                    <center>
+                      <form onSubmit={CreatePack}>
+                        <div
                           style={{
-                            margin: "0 10px 0 5px",
-                            color: "#ffffff",
-                            fontSize: "large",
-                          }}
-                        />
-                        <InputBase
-                          className="RightSideBar2__Btn"
-                          multiline
-                          placeholder="Folder Name"
-                          style={{
-                            color: "#068dc0",
-                            margin: "0",
-                            backgroundColor: "#ffffff",
                             width: "200px",
-                          }}
-                          value={Folder_name}
-                          onChange={(e) => setFolder_name(e.target.value)}
-                        />
-                      </div>
 
-                      <div
-                        style={{
-                          width: "200px",
-
-                          marginTop: "20px",
-                        }}
-                        className="RightSideBar2__Btn"
-                      >
-                        <CreateIcon
-                          style={{
-                            margin: "0 10px 0 5px",
-                            color: "#ffffff",
-                            fontSize: "large",
+                            marginTop: "20px",
                           }}
-                        />
-                        <InputBase
                           className="RightSideBar2__Btn"
-                          multiline
-                          placeholder="Your Name"
-                          style={{
-                            color: "#068dc0",
-                            margin: "0",
-                            backgroundColor: "#ffffff",
-                            width: "200px",
-                          }}
-                          value={From_name}
-                          onChange={(e) => setFrom_name(e.target.value)}
-                        />
-                      </div>
-
-                      <div
-                        style={{
-                          width: "200px",
-
-                          marginTop: "20px",
-                        }}
-                        className="RightSideBar2__Btn"
-                      >
-                        <CreateIcon
-                          style={{
-                            margin: "0 10px 0 5px",
-                            color: "#ffffff",
-                            fontSize: "large",
-                          }}
-                        />
-                        <InputBase
-                          className="RightSideBar2__Btn"
-                          multiline
-                          placeholder="Receivers Name"
-                          style={{
-                            color: "#068dc0",
-                            margin: "0",
-                            backgroundColor: "#ffffff",
-                            width: "200px",
-                          }}
-                          value={To_name}
-                          onChange={(e) => setTo_name(e.target.value)}
-                        />
-                      </div>
-
-                      <div>
-                        <input
-                          style={{ display: "none" }}
-                          accept="image/* "
-                          // className={secclasses.input}
-                          id="ImageInput"
-                          name="ImageInput"
-                          // multiple
-                          type="file"
-                          accept="image/*"
-                          onChange={onSelectFile}
-                          onClick={(event) => {
-                            event.target.value = null;
-                          }}
-                        />
-                        {opencrop ? (
-                          <CropPage
-                            send={send}
-                            setfbimg={setfbimg}
-                            setimage_url={setimage_url}
-                            aspect_ratio={1 / 1}
-                            opencrop={opencrop}
-                            setopencrop={setopencrop}
+                        >
+                          <CreateIcon
+                            style={{
+                              margin: "0 10px 0 5px",
+                              color: "#ffffff",
+                              fontSize: "large",
+                            }}
                           />
-                        ) : null}
-                        <label htmlFor="ImageInput">
-                          <HeaderBtn
-                            Icon={ViewModuleIcon}
-                            title="Add your  image "
+                          <InputBase
+                            required
+                            className="RightSideBar2__Btn"
+                            multiline
+                            placeholder="Folder Name"
+                            style={{
+                              color: "#068dc0",
+                              margin: "0",
+                              backgroundColor: "#ffffff",
+                              width: "200px",
+                            }}
+                            value={Folder_name}
+                            onChange={(e) => setFolder_name(e.target.value)}
                           />
-                        </label>
-                      </div>
+                        </div>
 
-                      <div
-                        style={{
-                          width: "200px",
-
-                          marginTop: "20px",
-                        }}
-                        className="RightSideBar2__Btn"
-                      >
-                        <CreateIcon
+                        <div
                           style={{
-                            margin: "0 10px 0 5px",
-                            color: "#ffffff",
-                            fontSize: "large",
+                            width: "200px",
+
+                            marginTop: "20px",
                           }}
-                        />
-                        <input
                           className="RightSideBar2__Btn"
-                          type="date"
+                        >
+                          <CreateIcon
+                            style={{
+                              margin: "0 10px 0 5px",
+                              color: "#ffffff",
+                              fontSize: "large",
+                            }}
+                          />
+                          <InputBase
+                            required
+                            className="RightSideBar2__Btn"
+                            multiline
+                            placeholder="Your Name"
+                            style={{
+                              color: "#068dc0",
+                              margin: "0",
+                              backgroundColor: "#ffffff",
+                              width: "200px",
+                            }}
+                            value={From_name}
+                            onChange={(e) => setFrom_name(e.target.value)}
+                          />
+                        </div>
+
+                        <div
                           style={{
-                            color: "#068dc0",
-                            margin: "0",
-                            backgroundColor: "#ffffff",
-                            width: "150px",
+                            width: "200px",
+
+                            marginTop: "20px",
                           }}
-                          value={Bday_date}
-                          onChange={(e) =>
-                            setBday_date(e.target.value.toLocaleString())
-                          }
-                        />
-                      </div>
-                      {npackorder.length == 0 ? null : (
-                        <>
+                          className="RightSideBar2__Btn"
+                        >
+                          <CreateIcon
+                            style={{
+                              margin: "0 10px 0 5px",
+                              color: "#ffffff",
+                              fontSize: "large",
+                            }}
+                          />
+                          <InputBase
+                            required
+                            className="RightSideBar2__Btn"
+                            multiline
+                            placeholder="Receivers Name"
+                            style={{
+                              color: "#068dc0",
+                              margin: "0",
+                              backgroundColor: "#ffffff",
+                              width: "200px",
+                            }}
+                            value={To_name}
+                            onChange={(e) => setTo_name(e.target.value)}
+                          />
+                        </div>
+
+                        <div>
                           <input
+                            required
                             style={{ display: "none" }}
-                            id="submit"
-                            type="submit"
-                            value="Create 7 day pack"
+                            accept="image/* "
+                            id="ImageInput"
+                            name="ImageInput"
+                            type="file"
+                            accept="image/*"
+                            onChange={onSelectFile}
+                            onClick={(event) => {
+                              event.target.value = null;
+                            }}
                           />
-                          <label htmlFor="submit">
+                          {opencrop ? (
+                            <CropPage
+                              send={send}
+                              setfbimg={setfbimg}
+                              setimage_url={setimage_url}
+                              aspect_ratio={1 / 1}
+                              opencrop={opencrop}
+                              setopencrop={setopencrop}
+                            />
+                          ) : null}
+                          <label htmlFor="ImageInput">
                             <HeaderBtn
                               Icon={ViewModuleIcon}
-                              title="Create 7 day pack "
+                              title="Add your  image "
                             />
                           </label>
-                        </>
-                      )}
-                    </form>
-                  </center>
-                  {/* <div class="col-xl-7">
+                        </div>
+
+                        <div
+                          style={{
+                            width: "200px",
+
+                            marginTop: "20px",
+                          }}
+                          className="RightSideBar2__Btn"
+                        >
+                          <CreateIcon
+                            style={{
+                              margin: "0 10px 0 5px",
+                              color: "#ffffff",
+                              fontSize: "large",
+                            }}
+                          />
+                          <input
+                            required
+                            className="RightSideBar2__Btn"
+                            type="date"
+                            style={{
+                              color: "#068dc0",
+                              margin: "0",
+                              backgroundColor: "#ffffff",
+                              width: "150px",
+                            }}
+                            value={Bday_date}
+                            onChange={(e) =>
+                              setBday_date(e.target.value.toLocaleString())
+                            }
+                          />
+                        </div>
+                        {npackorder.length == 0 ? null : (
+                          <>
+                            <input
+                              style={{ display: "none" }}
+                              id="submit"
+                              type="submit"
+                              value="Create 7 day pack"
+                            />
+                            <label htmlFor="submit">
+                              <HeaderBtn
+                                Icon={ViewModuleIcon}
+                                title="Create 7 day pack "
+                              />
+                            </label>
+                          </>
+                        )}
+                      </form>
+                    </center>
+                    {/* <div class="col-xl-7">
                     <NpackSelect setpackfunc={setpackfunc} />
                   </div> */}
+                  </div>
                 </div>
               </div>
-              <Fab
-                onClick={() => {
-                  setopenModal(false);
-                }}
-                className={classes.DelBut}
-                color="primary"
-                aria-label="add"
-              >
-                <CloseIcon />
-              </Fab>
-            </div>
+            )}
           </div>
         }
       </Modal>
       <hr />
       <center>
-        <div
-          style={{
-            width: "200px",
-          }}
-        >
-          {error ? <p>Ops, there is an error :(</p> : null}
-          <ul>
-            {gifts.map((gift) => (
-              <li key={gift.id}>
-                <Link to={`/ContinuePack/${gift.id}`}>
-                  <div>
-                    <div
-                      style={{
-                        height: "50px",
-                        borderRadius: "5px",
-                        marginTop: "5px",
-                        border: "0",
-                      }}
-                      className="productCardTextDiv"
-                    >
-                      <h1 style={{ padding: "0", marginBottom: "0" }}>
-                        {gift.Folder_name}
-                      </h1>
+        {loading ? (
+          <Loader
+            type="BallTriangle"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        ) : (
+          <div
+            style={{
+              width: "200px",
+            }}
+          >
+            {error ? <p>Ops, there is an error :(</p> : null}
+            <ul>
+              {gifts.map((gift) => (
+                <li key={gift.id}>
+                  <Link to={`/ContinuePack/${gift.id}`}>
+                    <div>
+                      <div
+                        style={{
+                          height: "50px",
+                          borderRadius: "5px",
+                          marginTop: "5px",
+                          border: "0",
+                        }}
+                        className="productCardTextDiv"
+                      >
+                        <h1 style={{ padding: "0", marginBottom: "0" }}>
+                          {gift.Folder_name}
+                        </h1>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </center>
     </div>
   );
