@@ -131,7 +131,7 @@ function ScheduledLiveNewsPaper({ match }) {
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
-                  86400000 * (dataurl.length - today) >
+                  86400000 * (dataurl.length - today - 1) >
                 0 ? (
                   <div>
                     <h5 className="example"> This Gift opens in </h5>
@@ -140,7 +140,7 @@ function ScheduledLiveNewsPaper({ match }) {
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today)
+                        86400000 * (dataurl.length - today - 1)
                       }
                     />
                   </div>

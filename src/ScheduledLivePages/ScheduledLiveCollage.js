@@ -136,16 +136,25 @@ export default function LiveCollagePage({ match }) {
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
-                  86400000 * (dataurl.length - today) >
+                  86400000 * (dataurl.length - today - 1) >
                 0 ? (
-                  <div>
+                  <div
+                    style={{
+                      margin: "auto",
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      MsTransform: "translateY(-50%) translateX(-50%)",
+                      transform: "translateY(-50%) translateX(-50%)",
+                    }}
+                  >
                     <h5 className="example"> This Gift opens in </h5>
                     <CircleTimer
                       Bday={
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today)
+                        86400000 * (dataurl.length - today - 1)
                       }
                     />
                   </div>

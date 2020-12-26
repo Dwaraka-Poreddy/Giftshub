@@ -8,7 +8,7 @@ import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
 import HeaderBtn from "../Studio/HeaderBtn";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import CropPage from "../Utils/CropPage";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -16,7 +16,7 @@ import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import NpackSelect from "./NPackSelect";
 import Loader from "react-loader-spinner";
-
+import DateRangeIcon from "@material-ui/icons/DateRange";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    // backgroundColor: "#009dd9",
+    backgroundColor: "#ffffff",
     overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
-  // DelBut: {
-  //   position: "sticky",
-  //   bottom: theme.spacing(142),
-  //   left: theme.spacing(250),
-  // },
+  DelBut: {
+    position: "sticky",
+    bottom: theme.spacing(142),
+    left: theme.spacing(250),
+  },
 }));
 
 const Home = ({ history }) => {
@@ -58,21 +58,22 @@ const Home = ({ history }) => {
   const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date());
   useEffect(() => {
-    var user = firebase.auth().currentUser;
-
-    if (!user) {
-      history.push("/");
-    }
-    getPrevious();
+    firebase.auth().onAuthStateChanged(async function (user) {
+      if (!user) {
+        history.push("/login");
+      } else {
+        await getPrevious(user.uid);
+      }
+    });
   }, []);
   const setpackfunc = (selected) => {
     setnpackorder(selected);
   };
-  const getPrevious = () => {
+  const getPrevious = async (useruid) => {
     setloading(true);
-    database
+    await database
       .collection("n-day-pack")
-      .doc(`${user.uid}`)
+      .doc(useruid)
       .collection("giftshub")
       .get()
       .then((response) => {
@@ -198,7 +199,7 @@ const Home = ({ history }) => {
               </center>
             ) : (
               <div>
-                <Fab
+                {/* <Fab
                   onClick={() => {
                     setopenModal(false);
                   }}
@@ -207,199 +208,193 @@ const Home = ({ history }) => {
                   aria-label="add"
                 >
                   <CloseIcon />
-                </Fab>
-                <br />
-                <br />
-                <br />
+                </Fab> */}
+
                 <div
                   style={{ backgroundColor: "#ffffff" }}
                   class="container-fluid pt-3"
                 >
                   <div class="row">
-                    <div class="col-xl-4">
-                      <form onSubmit={CreatePack}>
-                        <div
-                          style={{
-                            width: "200px",
-
-                            marginTop: "20px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
+                    <div class="col-xl-4 pt-3">
+                      <center style={{ marginTop: "50px" }}>
+                        <form onSubmit={CreatePack}>
+                          <div
                             style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
-                            className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Folder Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
                               width: "200px",
                             }}
-                            value={Folder_name}
-                            onChange={(e) => setFolder_name(e.target.value)}
-                          />
-                        </div>
-
-                        <div
-                          style={{
-                            width: "200px",
-
-                            marginTop: "20px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
                             className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Your Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "200px",
-                            }}
-                            value={From_name}
-                            onChange={(e) => setFrom_name(e.target.value)}
-                          />
-                        </div>
-
-                        <div
-                          style={{
-                            width: "200px",
-
-                            marginTop: "20px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
-                            className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Receivers Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "200px",
-                            }}
-                            value={To_name}
-                            onChange={(e) => setTo_name(e.target.value)}
-                          />
-                        </div>
-
-                        <div>
-                          <input
-                            required
-                            style={{ display: "none" }}
-                            accept="image/* "
-                            // className={secclasses.input}
-                            id="ImageInput"
-                            name="ImageInput"
-                            // multiple
-                            type="file"
-                            accept="image/*"
-                            onChange={onSelectFile}
-                            onClick={(event) => {
-                              event.target.value = null;
-                            }}
-                          />
-                          {opencrop ? (
-                            <CropPage
-                              send={send}
-                              setfbimg={setfbimg}
-                              setimage_url={setimage_url}
-                              aspect_ratio={1 / 1}
-                              opencrop={opencrop}
-                              setopencrop={setopencrop}
+                          >
+                            <CreateIcon
+                              style={{
+                                margin: "0 10px 0 5px",
+                                color: "#ffffff",
+                                fontSize: "large",
+                              }}
                             />
-                          ) : null}
-                          <label htmlFor="ImageInput">
-                            <HeaderBtn
-                              Icon={ViewModuleIcon}
-                              title="Add your  image "
+                            <InputBase
+                              required
+                              className="RightSideBar2__Btn"
+                              multiline
+                              placeholder="Folder Name"
+                              style={{
+                                color: "#068dc0",
+                                margin: "0",
+                                backgroundColor: "#ffffff",
+                                width: "200px",
+                              }}
+                              value={Folder_name}
+                              onChange={(e) => setFolder_name(e.target.value)}
                             />
-                          </label>
-                        </div>
+                          </div>
 
-                        <div
-                          style={{
-                            width: "200px",
-
-                            marginTop: "20px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
+                          <div
                             style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
+                              width: "200px",
                             }}
-                          />
-                          <input
-                            required
                             className="RightSideBar2__Btn"
-                            type="date"
+                          >
+                            <CreateIcon
+                              style={{
+                                margin: "0 10px 0 5px",
+                                color: "#ffffff",
+                                fontSize: "large",
+                              }}
+                            />
+                            <InputBase
+                              required
+                              className="RightSideBar2__Btn"
+                              multiline
+                              placeholder="Your Name"
+                              style={{
+                                color: "#068dc0",
+                                margin: "0",
+                                backgroundColor: "#ffffff",
+                                width: "200px",
+                              }}
+                              value={From_name}
+                              onChange={(e) => setFrom_name(e.target.value)}
+                            />
+                          </div>
+
+                          <div
                             style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "150px",
+                              width: "200px",
                             }}
-                            value={Bday_date}
-                            onChange={(e) =>
-                              setBday_date(e.target.value.toLocaleString())
-                            }
-                          />
-                        </div>
-                        {npackorder.length == 0 ? null : (
-                          <>
+                            className="RightSideBar2__Btn"
+                          >
+                            <CreateIcon
+                              style={{
+                                margin: "0 10px 0 5px",
+                                color: "#ffffff",
+                                fontSize: "large",
+                              }}
+                            />
+                            <InputBase
+                              required
+                              className="RightSideBar2__Btn"
+                              multiline
+                              placeholder="Receivers Name"
+                              style={{
+                                color: "#068dc0",
+                                margin: "0",
+                                backgroundColor: "#ffffff",
+                                width: "200px",
+                              }}
+                              value={To_name}
+                              onChange={(e) => setTo_name(e.target.value)}
+                            />
+                          </div>
+
+                          <div style={{ height: "45px" }}>
                             <input
+                              required
                               style={{ display: "none" }}
-                              id="submit"
-                              type="submit"
-                              value="Create 7 day pack"
+                              accept="image/* "
+                              // className={secclasses.input}
+                              id="ImageInput"
+                              name="ImageInput"
+                              // multiple
+                              type="file"
+                              accept="image/*"
+                              onChange={onSelectFile}
+                              onClick={(event) => {
+                                event.target.value = null;
+                              }}
                             />
-                            <label htmlFor="submit">
+                            {opencrop ? (
+                              <CropPage
+                                send={send}
+                                setfbimg={setfbimg}
+                                setimage_url={setimage_url}
+                                aspect_ratio={1 / 1}
+                                opencrop={opencrop}
+                                setopencrop={setopencrop}
+                              />
+                            ) : null}
+                            <label htmlFor="ImageInput">
                               <HeaderBtn
-                                Icon={ViewModuleIcon}
-                                title="Create 7 day pack "
+                                Icon={ImageIcon}
+                                title="Add your  image "
                               />
                             </label>
-                          </>
-                        )}
-                      </form>
+                          </div>
+
+                          <div
+                            style={{
+                              width: "200px",
+                            }}
+                            className="RightSideBar2__Btn"
+                          >
+                            <DateRangeIcon
+                              style={{
+                                margin: "0 10px 0 5px",
+                                color: "#ffffff",
+                                fontSize: "large",
+                              }}
+                            />
+                            <input
+                              required
+                              className="RightSideBar2__Btn"
+                              type="date"
+                              style={{
+                                color: "#068dc0",
+                                margin: "0",
+                                backgroundColor: "#ffffff",
+                                width: "150px",
+                              }}
+                              value={Bday_date}
+                              onChange={(e) =>
+                                setBday_date(e.target.value.toLocaleString())
+                              }
+                            />
+                          </div>
+                          {npackorder.length == 0 ? null : (
+                            <>
+                              <input
+                                style={{ display: "none" }}
+                                id="submit"
+                                type="submit"
+                                value="Create 7 day pack"
+                              />
+                              <label htmlFor="submit">
+                                <HeaderBtn
+                                  Icon={ImageIcon}
+                                  title="Create 7 day pack "
+                                />
+                              </label>
+                            </>
+                          )}
+                        </form>
+                      </center>
                     </div>
                     <div class="col-xl-7">
-                      <NpackSelect setpackfunc={setpackfunc} />
+                      <center>
+                        <NpackSelect setpackfunc={setpackfunc} />
+                      </center>
                     </div>
                   </div>
                 </div>
-                {/* <Fab
+                <Fab
                   onClick={() => {
                     setopenModal(false);
                   }}
@@ -408,7 +403,7 @@ const Home = ({ history }) => {
                   aria-label="add"
                 >
                   <CloseIcon />
-                </Fab> */}
+                </Fab>
               </div>
             )}
           </div>

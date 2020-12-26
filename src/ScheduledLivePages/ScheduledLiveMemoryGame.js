@@ -18,6 +18,23 @@ export default function ScheduledLiveMemoryGame({ match }) {
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
   const [today, settoday] = useState();
+  const [nscore, setnscore] = useState(0);
+  const [bestscore, setbestscore] = useState("");
+  const handleFireBaseScoreUpload = (n) => {
+    const todoRef = firebase.database().ref("MemoryGame/" + match.params.id);
+    const todo = {
+      score: n,
+    };
+    todoRef.update(todo);
+  };
+  const setnewscore = async (e) => {
+    setnscore(e);
+    if (nscore < bestscore) {
+      alert("you scored better than your previous one! keep playing");
+      setbestscore(nscore);
+      handleFireBaseScoreUpload(e);
+    }
+  };
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -61,6 +78,8 @@ export default function ScheduledLiveMemoryGame({ match }) {
         setfbimg5(img5);
         var img6 = snapshot.val().url6;
         setfbimg6(img6);
+        var scr = snapshot.val().score;
+        setbestscore(scr);
         setloading(false);
       });
   }, []);
@@ -127,7 +146,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
-                  86400000 * (dataurl.length - today) >
+                  86400000 * (dataurl.length - today - 1) >
                 0 ? (
                   <div>
                     <h5 className="example"> This Gift opens in </h5>
@@ -136,7 +155,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today)
+                        86400000 * (dataurl.length - today - 1)
                       }
                     />
                   </div>
@@ -163,6 +182,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
                       fbimg4={fbimg4}
                       fbimg5={fbimg5}
                       fbimg6={fbimg6}
+                      setnewscore={setnewscore}
                     />
                   </div>
                 )}

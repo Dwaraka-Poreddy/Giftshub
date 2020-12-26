@@ -72,38 +72,49 @@ function ScheduledLiveMainPage({ match }) {
   return (
     <div>
       <ScheduledLiveNav slug={match.params.slug} />
-
-      <CircleTimer
-        Bday={new Date(Livelinks.Bday_date) - +new Date() - 19800000}
-      />
-      {loading ? (
-        <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
-      ) : (
-        <div>
-          {new Date(Livelinks.Bday_date) - +new Date() - 19800000 > 0 ? (
-            <center>
-              {" "}
-              <h1 className="example">The Big day is in {timerComponents}</h1>
-            </center>
-          ) : (
-            <center>
-              {" "}
-              <h1 className="example">The Big day is here !!!</h1>
-            </center>
-          )}
-          <strong>
-            <p>Folder_name: {FolderData.Folder_name}</p>
-            <p>From_name: {FolderData.From_name}</p>
-            <p>To_name: {FolderData.To_name}</p>
-            <p>Bday_date: {FolderData.Bday_date}</p>
-            <img
-              style={{ width: "250px" }}
-              src={FolderData.fbimg}
-              alt="sender"
+      <div style={{ display: "flex" }}>
+        <div style={{ flex: "0.1" }}></div>
+        <div style={{ flex: "0.8" }}>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
             />
-          </strong>
+          ) : (
+            <div>
+              {new Date(Livelinks.Bday_date) - +new Date() - 19800000 > 0 ? (
+                <center>
+                  {" "}
+                  <h1 className="example">The Big day is in</h1>
+                  <CircleTimer
+                    Bday={
+                      new Date(Livelinks.Bday_date) - +new Date() - 19800000
+                    }
+                  />
+                </center>
+              ) : (
+                <center>
+                  {" "}
+                  <h1 className="example">The Big day is here !!!</h1>
+                </center>
+              )}
+              <strong>
+                <p>Folder_name: {FolderData.Folder_name}</p>
+                <p>From_name: {FolderData.From_name}</p>
+                <p>To_name: {FolderData.To_name}</p>
+                <p>Bday_date: {FolderData.Bday_date}</p>
+                <img
+                  style={{ width: "250px" }}
+                  src={FolderData.fbimg}
+                  alt="sender"
+                />
+              </strong>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

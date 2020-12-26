@@ -10,7 +10,7 @@ import Modal from "@material-ui/core/Modal";
 import { v4 as uuidv4 } from "uuid";
 import ReactCrop from "react-image-crop";
 import { makeStyles } from "@material-ui/core/styles";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -191,7 +191,7 @@ function CropPage({
                                 completedCrop
                               );
                             }}
-                            Icon={ViewModuleIcon}
+                            Icon={ImageIcon}
                             title=" Use cropped image"
                           />
                         </div>

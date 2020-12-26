@@ -15,6 +15,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
   const [today, settoday] = useState();
+  const [score, setscore] = useState(10);
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -25,6 +26,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
     data.array_data.map((item, index) => {
       if (item.id == "puzzle") {
         settoday(index);
+        setscore(item.score);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -72,11 +74,11 @@ function ScheduledLiveSlidePuzzle({ match }) {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setTimeLeft(calculateTimeLeft());
+  //   }, 1000);
+  // });
   const timerComponents = [];
 
   Object.keys(timeLeft).forEach((interval) => {
@@ -90,11 +92,14 @@ function ScheduledLiveSlidePuzzle({ match }) {
       </span>
     );
   });
-
+  const handlescore = (sr) => {
+    setscore(sr);
+  };
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
       <ScheduledLiveNav slug={match.params.slug} />
 
+      {JSON.stringify(score)}
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-1"></div>
@@ -111,7 +116,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
-                  86400000 * (dataurl.length - today) >
+                  86400000 * (dataurl.length - today - 1) >
                 0 ? (
                   <div>
                     <h5 className="example"> This Gift opens in </h5>
@@ -120,7 +125,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today)
+                        86400000 * (dataurl.length - today - 1)
                       }
                     />
                   </div>
@@ -144,7 +149,10 @@ function ScheduledLiveSlidePuzzle({ match }) {
                       <div style={{ paddingLeft: "5px" }} class="col-lg-6">
                         {" "}
                         <center>
-                          <SlidePuzzle fbimg={fbimg} />
+                          <SlidePuzzle
+                            handlescore={handlescore}
+                            fbimg={fbimg}
+                          />
                         </center>
                       </div>
                       <div class="col-lg-1"></div>

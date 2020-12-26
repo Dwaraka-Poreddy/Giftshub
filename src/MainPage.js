@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
-
+import ScrollAnimation from "react-animate-on-scroll";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import $ from "jquery";
@@ -73,9 +73,11 @@ export default function App() {
                   Gift's Hub is free <strong>for YOU</strong>
                 </h1>
                 <p>
-                  This template is available for 100% free of charge on
-                  TemplateMo. Download, modify and use this for your business
-                  website.
+                  Gifts manifest our emotions and transform them into meaningful
+                  forms of love! In a digital age of fast paced lifestyle, we at
+                  Gift’s Hub aim to stand apart in providing you the old-school
+                  way of wishing your loved ones in several ways and bringing
+                  you closer.
                 </p>
                 {/* <Link to="/home"> */}
                 <button className="main-button"> Know More</button>
@@ -98,6 +100,7 @@ export default function App() {
           </div>
         </div>
       </div>
+
       <section class="section" id="about2">
         <div class="container">
           <div class="row">
@@ -222,26 +225,34 @@ export default function App() {
         </h1>
         <div class=" container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  m-3">
-            <Link className="productCard" to="/threedimagepage">
-              <div class="col mb-4 ">
-                <div class="card shadow-none componentcards">
-                  <img
-                    src="https://dummyimage.com/600x400/000/fff.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body shadow-none componentcards">
-                    <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button className="main-button">3D Image</button>
+            <ScrollAnimation
+              duration={20}
+              animateIn="animate__lightSpeedInRight"
+            >
+              <Link className="productCard" to="/cubespage">
+                <div class="col mb-4 ">
+                  <div class="card shadow-none componentcards">
+                    <img
+                      src="https://dummyimage.com/600x400/000/fff.jpg"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body shadow-none componentcards">
+                      <p class="card-text ">
+                        The heart symbol is known to be the patent of love and
+                        affection for about 300+ years now. Discover this
+                        feature of a dynamic heart spinning about a point,
+                        around a cube with pictures on all its faces! Experience
+                        the compassion in the pictures fueling the heart to grow
+                        and spin forever.
+                      </p>
+                      <button className="main-button">3D Heart</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-            <Link className="productCard" to="/newspaperpage">
+              </Link>
+            </ScrollAnimation>
+            <Link className="productCard" to="/memorygamepage">
               <div class="col mb-4 ">
                 <div class="card shadow-none componentcards">
                   <img
@@ -251,30 +262,12 @@ export default function App() {
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      “We do not stop playing because we are old, we grow old
+                      because we stop playing” Get those grey cells to work and
+                      create a challenge to match all the like pictures within
+                      the lowest number of moves and bash the scoreboard!
                     </p>
-                    <button className="main-button">News Papers</button>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link className="productCard" to="/cubespage">
-              <div class="col mb-4 ">
-                <div class="card shadow-none componentcards">
-                  <img
-                    src="https://dummyimage.com/600x400/000/fff.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body shadow-none componentcards">
-                    <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button className="main-button">3D Heart</button>
+                    <button className="main-button">Memory Game</button>
                   </div>
                 </div>
               </div>
@@ -289,30 +282,55 @@ export default function App() {
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      Our research tells us that puzzle lovers are 1000%
+                      attractive, just like you! So if you and your special
+                      someone love puzzles too, what are you even waiting for?
+                      Go ahead and personalize your own 15-tile puzzle and
+                      record your best scores. Maybe the one with the highest
+                      can have the last slice of pizza!
                     </p>
-                    <button className="main-button">Puzzles</button>
+                    <button className="main-button">15 tile puzzle</button>
                   </div>
                 </div>
               </div>
-            </Link>
-            <Link className="productCard" to="/memorygamepage">
+            </Link>{" "}
+            <Link className="productCard" to="/threedimagepage">
               <div class="col mb-4 ">
                 <div class="card shadow-none componentcards">
                   <img
-                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2F3d.png?alt=media&token=2c5a87f5-5573-4e56-8d7d-79ecad846234"
                     class="card-img-top"
                     alt="..."
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      “Love is made up of three unconditional properties in
+                      equal measure : Acceptance, Understanding and
+                      Appreciation”. A symbolic component allowing you to
+                      project your favorite picture onto 3D tiles and bring life
+                      to the image.
                     </p>
-                    <button className="main-button">Memory Game</button>
+                    <button className="main-button">3D Photo Frame</button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link className="productCard" to="/newspaperpage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalised-rakhi-newspaper-9918857eg.jpg?alt=media&token=57382869-c91c-4043-95b0-77b05f17e871"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      What better way to express greetings than to announce it
+                      as the newspaper headlines! Simply select an image,
+                      customize a two liner message and behold the magic to be
+                      the news next day morning!
+                    </p>
+                    <button className="main-button">News Papers</button>
                   </div>
                 </div>
               </div>
@@ -327,30 +345,11 @@ export default function App() {
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      Photographs are the stories that we fail to put in words.
+                      Explore this feature to design a collage of pictures and
+                      write a story of your own!
                     </p>
                     <button className="main-button">Collage</button>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link className="productCard" to="/opengreetingcardpage">
-              <div class="col mb-4 ">
-                <div class="card shadow-none componentcards">
-                  <img
-                    src="https://dummyimage.com/600x400/000/fff.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body shadow-none componentcards">
-                    <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button className="main-button">Greeting Card</button>
                   </div>
                 </div>
               </div>
@@ -365,11 +364,31 @@ export default function App() {
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      Create an animated effect of two pictures with an
+                      underlying text which surprises you everytime you hover on
+                      it!
                     </p>
-                    <button className="main-button">Animated Frame</button>
+                    <button className="main-button">Animated Frames</button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link className="productCard" to="/opengreetingcardpage">
+              <div class="col mb-4 ">
+                <div class="card shadow-none componentcards">
+                  <img
+                    src="https://dummyimage.com/600x400/000/fff.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body shadow-none componentcards">
+                    <p class="card-text ">
+                      The cliche’ greeting cards never go out of style and is
+                      the classic form to express your feelings. Make a
+                      customized greeting card with a background music of your
+                      choice and win the hearts of your special person
+                    </p>
+                    <button className="main-button">Greeting Card</button>
                   </div>
                 </div>
               </div>
@@ -384,11 +403,11 @@ export default function App() {
                   />
                   <div class="card-body shadow-none componentcards">
                     <p class="card-text ">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      A pleasant surprise is always welcome and your special
+                      someone definitely deserves it more than anyone! Check out
+                      this feature to spread affection and delight******
                     </p>
-                    <button className="main-button">Special Card</button>
+                    <button className="main-button">Surprise card</button>
                   </div>
                 </div>
               </div>

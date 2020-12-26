@@ -9,7 +9,7 @@ import PublishIcon from "@material-ui/icons/Publish";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import SearchIcon from "@material-ui/icons/Search";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
 import SubtitlesIcon from "@material-ui/icons/Subtitles";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -317,7 +317,7 @@ function Header() {
               }}
             />
             <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />
+              <HeaderBtn Icon={ImageIcon} title="Background Image" />
             </label>
             <input
               accept="image/* "

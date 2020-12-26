@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AnimatedFrame from "./AnimatedFrame";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -204,7 +204,7 @@ export default function AnimatedFramePage() {
                 />
               ) : null}
               <label htmlFor="LocalfileInput1">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -231,7 +231,7 @@ export default function AnimatedFramePage() {
                 />
               ) : null}
               <label htmlFor="LocalfileInput2">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  Image 2" />
+                <HeaderBtn Icon={ImageIcon} title="Change  Image 2" />
               </label>
               <div
                 style={{ width: "80%", marginLeft: "10%" }}

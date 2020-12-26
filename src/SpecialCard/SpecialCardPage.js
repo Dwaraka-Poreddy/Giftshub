@@ -12,12 +12,17 @@ import "react-image-crop/dist/ReactCrop.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import HeaderBtn from "../Studio/HeaderBtn";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 
 import firebase from "../firebase";
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { storage } from "../firebase";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
@@ -28,9 +33,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Tour from "reactour";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import LinkIcon from "@material-ui/icons/Link";
 import Fab from "@material-ui/core/Fab";
 import Loader from "react-loader-spinner";
@@ -69,31 +73,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useSnackStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    "& > * + *": {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
 const useStylesBut = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
 }));
-
-const activeStyle = {
-  // borderColor: "#2196f3"
-};
-
-const acceptStyle = {
-  // borderColor: "#00e676"
-};
-
-const rejectStyle = {
-  // borderColor: "#ff1744"
-};
 
 const pixelRatio = 1;
 const secuseStyles = makeStyles((theme) => ({
@@ -113,13 +97,14 @@ export default function SpecialCardPage() {
   const classes = useStyles();
   const [imageAsFile, setImageAsFile] = useState("");
   const [progress, setProgress] = useState(0);
-
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [accentColor, setaccentColor] = useState("#5cb7b7");
   const classesBut = useStylesBut();
 
-  const [head1, sethead1] = useState("My Worst Friend");
-  const [head2, sethead2] = useState("Srinivas K");
+  const [head1, sethead1] = useState("My Best Friend");
+  const [head2, sethead2] = useState("Toph Beifong");
   const [para, setpara] = useState(
-    "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley"
+    " Thanks for being a great friend You are our special friend . You are my special friend, I have never met a person like you. You have such a great personality. You are just the best"
   );
   const [image_url, setimage_url] = useState("");
   const [cropmodal, setCropmodal] = useState(false);
@@ -286,10 +271,59 @@ export default function SpecialCardPage() {
     );
     setCropmodal(false);
   }
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `A pleasant surprise is always welcome and your special someone definitely deserves it more than anyone! Check out this feature to spread affection and delight******`,
+    },
+    {
+      selector: '[data-tut="reactour__head1"]',
+      content: ` Enter your name`,
+    },
+    {
+      selector: '[data-tut="reactour__head2"]',
+      content: `Enter the special person’s name`,
+    },
+    {
+      selector: '[data-tut="reactour__para"]',
+      content: `We all love short and cute messages, so pour your heart but pay attention to the word limit! `,
+    },
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `copies the generated live link to clipboard`,
+    },
 
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `previews the component  crerated`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `shares the live link of the component  crerated`,
+    },
+  ];
   return (
-    <div>
-      <header class="header-area header-sticky">
+    <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+          setlivelink("");
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
+      <header
+        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
+        class="header-area header-sticky"
+      >
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -319,247 +353,313 @@ export default function SpecialCardPage() {
           </div>
         </div>
       </header>
-      <div
-        style={{
-          display: "flex",
-          flex: "1",
-          backgroundColor: "#70cff3",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-        className="App"
-      >
-        <Modal
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginRight: "auto",
+      <br />
+      <br />
+      <br />
+      <br />
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
+            <SpecialCard
+              fbimg={fbimg}
+              head2={head2}
+              head1={head1}
+              para={para}
+            />
+          </div>
+          <div class="col-lg-1"></div>
+          <div
+            className="threedrnav   col-lg-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
+                  }}
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                      setlivelink("123");
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
+            <Modal
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginRight: "auto",
 
-            alignItems: "center",
-          }}
-          open={cropmodal}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          {
-            <div className={classes.paper}>
-              <div>
-                <div>
+                alignItems: "center",
+              }}
+              open={cropmodal}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            >
+              {
+                <div className={classes.paper}>
                   <div>
                     <div>
-                      <br />
-                      <br />
-                      <br />
-
-                      <ReactCrop
-                        src={upImg}
-                        onImageLoaded={onLoad}
-                        crop={crop}
-                        onChange={(c) => setCrop(c)}
-                        onComplete={(c) => setCompletedCrop(c)}
-                      />
-                      <div style={{ display: "none" }}>
-                        <canvas
-                          ref={previewCanvasRef}
-                          style={{
-                            width: Math.round(completedCrop?.width ?? 0),
-                            height: Math.round(completedCrop?.height ?? 0),
-                          }}
-                        />
-                      </div>
                       <div>
-                        <center>
-                          <div style={{ width: "40%" }}>
-                            {" "}
-                            <HeaderBtn
-                              handleClick={() => {
-                                generateDownload(
-                                  previewCanvasRef.current,
-                                  completedCrop
-                                );
+                        <div>
+                          <ReactCrop
+                            src={upImg}
+                            onImageLoaded={onLoad}
+                            crop={crop}
+                            onChange={(c) => setCrop(c)}
+                            onComplete={(c) => setCompletedCrop(c)}
+                          />
+                          <div style={{ display: "none" }}>
+                            <canvas
+                              ref={previewCanvasRef}
+                              style={{
+                                width: Math.round(completedCrop?.width ?? 0),
+                                height: Math.round(completedCrop?.height ?? 0),
                               }}
-                              Icon={ViewModuleIcon}
-                              title=" Use cropped image"
                             />
                           </div>
-                        </center>
+                          <div>
+                            <center>
+                              <div style={{ width: "40%" }}>
+                                {" "}
+                                <HeaderBtn
+                                  handleClick={() => {
+                                    generateDownload(
+                                      previewCanvasRef.current,
+                                      completedCrop
+                                    );
+                                  }}
+                                  Icon={ImageIcon}
+                                  title=" Use cropped image"
+                                />
+                              </div>
+                            </center>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    <Fab
+                      onClick={() => {
+                        setCropmodal(false);
+                      }}
+                      className={classes.DelBut}
+                      color="primary"
+                      aria-label="add"
+                    >
+                      <CloseIcon />
+                    </Fab>
                   </div>
                 </div>
+              }
+            </Modal>
 
-                <Fab
-                  onClick={() => {
-                    setCropmodal(false);
+            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+              {" "}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  // multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
                   }}
-                  className={classes.DelBut}
-                  color="primary"
-                  aria-label="add"
-                >
-                  <CloseIcon />
-                </Fab>
-              </div>
-            </div>
-          }
-        </Modal>
-
-        <SpecialCard fbimg={fbimg} head2={head2} head1={head1} para={para} />
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "100vh",
-          }}
-        >
-          <div style={{ marginTop: "50%", justifyContent: "center" }}>
-            {" "}
-            <input
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-              onClick={(event) => {
-                event.target.value = null;
-              }}
-            />
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Background Image" />
-            </label>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={head1}
-                onChange={(e) => {
-                  sethead1(e.target.value);
-                }}
-              />
-            </div>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={head2}
-                onChange={(e) => {
-                  sethead2(e.target.value);
-                }}
-              />
-            </div>
-            <div
-              style={{ width: "80%", marginLeft: "10%" }}
-              className="RightSideBar2__Btn"
-            >
-              <CreateIcon
-                style={{
-                  margin: "0 10px 0 5px",
-                  color: "#ffffff",
-                  fontSize: "large",
-                }}
-              />
-              <InputBase
-                className="RightSideBar2__Btn"
-                multiline
-                style={{
-                  color: "#068dc0",
-                  margin: "0",
-                  backgroundColor: "#ffffff",
-                  width: "100%",
-                }}
-                value={para}
-                onChange={(e) => {
-                  setpara(e.target.value);
-                }}
-              />
-            </div>
-            <center>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
                 />
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Background Image" />
+                </label>
               </div>
-            </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                // timeout={3000} //3 secs
-              />
-            ) : (
               <center>
-                {livelink ? (
-                  <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
-
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink}>
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
-                    </div>
-
-                    {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )}
+                <div data-tut="reactour__head1">
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "10px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={head1}
+                      onChange={(e) => {
+                        sethead1(e.target.value);
+                      }}
+                    />
                   </div>
-                ) : null}
+                </div>
+                <div data-tut="reactour__head2">
+                  <div
+                    style={{
+                      width: "200px",
+
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={head2}
+                      onChange={(e) => {
+                        sethead2(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div data-tut="reactour__para">
+                  <div
+                    style={{
+                      width: "200px",
+
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={para}
+                      onChange={(e) => {
+                        setpara(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
               </center>
-            )}
+              <center>
+                <div
+                  data-tut="reactour__generatelink"
+                  style={{ marginTop: "20px" }}
+                >
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleFireBaseUpload();
+                    }}
+                    Icon={LinkIcon}
+                    title="Generate Link"
+                  />
+                </div>
+              </center>
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  // timeout={3000} //3 secs
+                />
+              ) : (
+                <center>
+                  {livelink ? (
+                    <div>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ width: "200px", marginTop: "20px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
+
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
+
+                      {!showshare ? (
+                        <div
+                          data-tut="reactour__sharelink"
+                          style={{ marginTop: "20px" }}
+                        >
+                          <HeaderBtn
+                            handleClick={() => {
+                              setshowshare(true);
+                            }}
+                            Icon={ShareIcon}
+                            title="Share "
+                          />
+                        </div>
+                      ) : (
+                        <Share livelink={livelink} />
+                      )}
+                    </div>
+                  ) : null}
+                </center>
+              )}
+            </div>
           </div>
         </div>
       </div>

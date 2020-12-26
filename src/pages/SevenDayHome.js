@@ -11,12 +11,13 @@ import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
 import HeaderBtn from "../Studio/HeaderBtn";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import CropPage from "../Utils/CropPage";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
+import DateRangeIcon from "@material-ui/icons/DateRange";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -47,7 +48,12 @@ function SevenDayHome({ history }) {
     { id: "threedimage", content: "3D Image", url: "" },
     { id: "newspaper", content: "NewsPaper", url: "" },
     { id: "puzzle", content: "Slide Puzzle", url: "" },
-    { id: "memorygame", content: "Memory Game", url: "" },
+    {
+      id: "memorygame",
+      content: "Memory Game",
+      // score: Number.MAX_VALUE,
+      url: "",
+    },
     { id: "cubes", content: "Cubes in 3D Heart", url: "" },
     { id: "collage", content: "Collage", url: "" },
     { id: "greetingcard", content: "Greeting Card", url: "" },
@@ -66,21 +72,20 @@ function SevenDayHome({ history }) {
   const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date());
   useEffect(() => {
-    var user = firebase.auth().currentUser;
-
-    if (!user) {
-      history.push("/");
-    }
-    getPrevious();
+    firebase.auth().onAuthStateChanged(async function (user) {
+      if (!user) {
+        history.push("/login");
+      } else {
+        await getPrevious(user.uid);
+      }
+    });
   }, []);
-  const setpackfunc = (selected) => {
-    setnpackorder(selected);
-  };
-  const getPrevious = () => {
+
+  const getPrevious = async (useruid) => {
     setloading(true);
-    database
+    await database
       .collection("n-day-pack")
-      .doc(`${user.uid}`)
+      .doc(useruid)
       .collection("giftshub")
       .get()
       .then((response) => {
@@ -163,7 +168,17 @@ function SevenDayHome({ history }) {
       }
     );
   };
-
+  var responsive = {
+    0: {
+      items: 1,
+    },
+    600: {
+      items: 2,
+    },
+    1000: {
+      items: 4,
+    },
+  };
   return (
     <div
       style={{
@@ -195,7 +210,7 @@ function SevenDayHome({ history }) {
               autoplayTimeout={3000}
               nav
               items={4}
-              responsive
+              responsive={responsive}
               autoplay
               autoplayHoverPause
             >
@@ -298,6 +313,20 @@ function SevenDayHome({ history }) {
                   </div>
                 </div>
               </Link>
+              <Link className="productCard" to="/opengreetingcardpage">
+                <div className="productCardDiv">
+                  <div>
+                    <img
+                      className="productCardImg"
+                      src="assets/images/magazine.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="productCardTextDiv">
+                    <h1>Greeting Card</h1>
+                  </div>
+                </div>
+              </Link>
             </OwlCarousel>
           </div>
         </div>
@@ -338,31 +367,16 @@ function SevenDayHome({ history }) {
               </center>
             ) : (
               <div>
-                <Fab
-                  onClick={() => {
-                    setopenModal(false);
-                  }}
-                  className={classes.DelBut}
-                  color="primary"
-                  aria-label="add"
-                >
-                  <CloseIcon />
-                </Fab>
-                <br />
-                <br />
-                <br />
                 <div
                   style={{ backgroundColor: "#ffffff" }}
                   class="container-fluid pt-3"
                 >
-                  <div>
+                  <div class="p-3">
                     <center>
                       <form onSubmit={CreatePack}>
                         <div
                           style={{
                             width: "200px",
-
-                            marginTop: "20px",
                           }}
                           className="RightSideBar2__Btn"
                         >
@@ -392,8 +406,6 @@ function SevenDayHome({ history }) {
                         <div
                           style={{
                             width: "200px",
-
-                            marginTop: "20px",
                           }}
                           className="RightSideBar2__Btn"
                         >
@@ -423,8 +435,6 @@ function SevenDayHome({ history }) {
                         <div
                           style={{
                             width: "200px",
-
-                            marginTop: "20px",
                           }}
                           className="RightSideBar2__Btn"
                         >
@@ -451,7 +461,7 @@ function SevenDayHome({ history }) {
                           />
                         </div>
 
-                        <div>
+                        <div style={{ height: "45px" }}>
                           <input
                             required
                             style={{ display: "none" }}
@@ -477,7 +487,7 @@ function SevenDayHome({ history }) {
                           ) : null}
                           <label htmlFor="ImageInput">
                             <HeaderBtn
-                              Icon={ViewModuleIcon}
+                              Icon={ImageIcon}
                               title="Add your  image "
                             />
                           </label>
@@ -486,12 +496,10 @@ function SevenDayHome({ history }) {
                         <div
                           style={{
                             width: "200px",
-
-                            marginTop: "20px",
                           }}
                           className="RightSideBar2__Btn"
                         >
-                          <CreateIcon
+                          <DateRangeIcon
                             style={{
                               margin: "0 10px 0 5px",
                               color: "#ffffff",
@@ -524,7 +532,7 @@ function SevenDayHome({ history }) {
                             />
                             <label htmlFor="submit">
                               <HeaderBtn
-                                Icon={ViewModuleIcon}
+                                Icon={ImageIcon}
                                 title="Create 7 day pack "
                               />
                             </label>
@@ -532,11 +540,18 @@ function SevenDayHome({ history }) {
                         )}
                       </form>
                     </center>
-                    {/* <div class="col-xl-7">
-                    <NpackSelect setpackfunc={setpackfunc} />
-                  </div> */}
                   </div>
                 </div>
+                <Fab
+                  onClick={() => {
+                    setopenModal(false);
+                  }}
+                  className={classes.DelBut}
+                  color="primary"
+                  aria-label="add"
+                >
+                  <CloseIcon />
+                </Fab>
               </div>
             )}
           </div>

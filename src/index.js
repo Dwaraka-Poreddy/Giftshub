@@ -12,6 +12,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
 const store = createStore(rootReducer, composeWithDevTools());
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

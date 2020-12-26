@@ -3,12 +3,12 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-
+import DateRangeIcon from "@material-ui/icons/DateRange";
 import { jsPDF } from "jspdf";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -23,7 +23,8 @@ import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import "react-datepicker/dist/react-datepicker.css";
+import GetAppIcon from "@material-ui/icons/GetApp";
+
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -329,7 +330,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                <HeaderBtn Icon={ImageIcon} title="Change  image " />
               </label>
 
               <center>
@@ -401,7 +402,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                   }}
                   className="RightSideBar2__Btn"
                 >
-                  <CreateIcon
+                  <DateRangeIcon
                     style={{
                       margin: "0 10px 0 5px",
                       color: "#ffffff",
@@ -425,14 +426,20 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                 </div>
 
                 <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn Icon={LinkIcon} title="Date Picker" />
+                  <HeaderBtn
+                    handleClick={() => {
+                      handleImageDownlod(this);
+                    }}
+                    Icon={GetAppIcon}
+                    title="Download as image"
+                  />
                 </div>
                 <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handlePdfDownlod(this);
                     }}
-                    Icon={LinkIcon}
+                    Icon={GetAppIcon}
                     title="Download as pdf"
                   />
                 </div>

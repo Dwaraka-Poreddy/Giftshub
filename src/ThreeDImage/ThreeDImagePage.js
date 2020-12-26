@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ThreeDImage from "./ThreeDImage";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -15,9 +15,15 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
-import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
+import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -42,12 +48,13 @@ function OpenGreetingCardPage() {
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/spider.jpg?alt=media&token=adf38762-cc3f-4d12-8732-3eb807fb8355"
   );
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
   const [accentColor, setaccentColor] = useState("#5cb7b7");
+
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -137,18 +144,22 @@ function OpenGreetingCardPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <Tour
-        onRequestClose={() => {
-          setIsTourOpen(false);
-          setlivelink("");
-        }}
-        steps={tourConfig}
-        isOpen={isTourOpen}
-        maskClassName="mask"
-        className="helper"
-        rounded={5}
-        accentColor={accentColor}
-      />
+      <div>
+        {" "}
+        <Tour
+          onRequestClose={() => {
+            setIsTourOpen(false);
+            setlivelink("");
+          }}
+          steps={tourConfig}
+          isOpen={isTourOpen}
+          maskClassName="mask"
+          className="helper"
+          rounded={5}
+          accentColor={accentColor}
+        />
+      </div>
+
       <header
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
@@ -209,33 +220,36 @@ function OpenGreetingCardPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
-            <hr />
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                      setlivelink("123");
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
+
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -263,7 +277,7 @@ function OpenGreetingCardPage() {
                   />
                 ) : null}
                 <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
                 </label>
               </div>
               <div data-tut="reactour__gradient">
@@ -286,10 +300,7 @@ function OpenGreetingCardPage() {
                   }}
                 />
                 <label htmlFor="FirstColor">
-                  <HeaderBtn
-                    Icon={FormatColorFillIcon}
-                    title="Gradient Left Color"
-                  />
+                  <HeaderBtn Icon={GradientIcon} title="Gradient Left Color" />
                 </label>
                 <input
                   type="color"
@@ -310,10 +321,7 @@ function OpenGreetingCardPage() {
                   }}
                 />
                 <label htmlFor="ToColor">
-                  <HeaderBtn
-                    Icon={FormatColorFillIcon}
-                    title="Gradient Right Color"
-                  />
+                  <HeaderBtn Icon={GradientIcon} title="Gradient Right Color" />
                 </label>
               </div>
 

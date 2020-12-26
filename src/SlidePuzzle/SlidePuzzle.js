@@ -203,7 +203,8 @@ function Tile({ index, pos, onClick, fbimg }) {
   });
 }
 
-function SlidePuzzle({ fbimg }) {
+function SlidePuzzle({ fbimg, handlescore }) {
+  // handlescore(25);
   const [board, moves, solved, newGame, undo, move] = useGameState();
   console.log(fbimg, "qwerty");
   return React.createElement(

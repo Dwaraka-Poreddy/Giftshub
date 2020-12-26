@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -81,7 +81,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
   const [image_url6, setimage_url6] = useState();
   const [opencrop6, setopencrop6] = useState(false);
   const [send6, setsend6] = useState();
-
+  const [score, setscore] = useState(Number.MAX_VALUE);
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
     setopencrop1(true);
@@ -199,6 +199,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
+        score: score,
       };
       todoRef.update(todo);
       setlivelink(
@@ -219,6 +220,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
+        score: score,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -297,6 +299,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                                                       url4: downUrl4,
                                                       url5: downUrl5,
                                                       url6: downUrl6,
+                                                      score: score,
                                                     };
                                                     var newKey = todoRef
                                                       .push(todo)
@@ -426,7 +429,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput1">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -453,7 +456,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput2">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 2" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -480,7 +483,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput3">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 3" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -507,7 +510,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput4">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 4" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -534,7 +537,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput5">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 5" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -561,7 +564,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput6">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 6" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
               </label>
               <center>
                 {loading ? (

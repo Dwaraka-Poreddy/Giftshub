@@ -34,12 +34,13 @@ const usemodStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     width: "70vw",
     height: "80vh",
+    maxWidth: "840px",
     minWidth: "280px",
     position: "absolute",
     color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    backgroundColor: "#009dd9",
+    // backgroundColor: "#009dd9",
     overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
@@ -50,7 +51,7 @@ const usemodStyles = makeStyles((theme) => ({
   },
 }));
 
-function ContinuePack({ match }) {
+function ContinuePack({ match, history }) {
   const theme = useTheme();
 
   const maxSteps = 7;
@@ -102,6 +103,19 @@ function ContinuePack({ match }) {
   const [dataid, setdataid] = useState([]);
   const [dataurl, setdataurl] = useState([]);
   const [openModal, setopenModal] = useState(false);
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(async function (user) {
+      if (!user) {
+        history.push("/login");
+      } else {
+        await getDoc(user.uid);
+
+        setloading(false);
+      }
+    });
+  }, []);
+
   async function getDocnew() {
     dataurl.map((item, index) => {
       if (item != "") {
@@ -130,11 +144,15 @@ function ContinuePack({ match }) {
     }
   }
 
-  async function getDoc() {
+  async function getDoc(useruid) {
     setloading(true);
+    if (!useruid) {
+      useruid = user.uid;
+    }
+    console.log(useruid, "useridif");
     const snapshot = await database
       .collection("n-day-pack")
-      .doc(`${user.uid}`)
+      .doc(useruid)
       .collection("giftshub")
       .doc(match.params.slug)
       .get();
@@ -158,13 +176,9 @@ function ContinuePack({ match }) {
     await getDocnew();
     setloading(false);
   }
-  useEffect(async () => {
-    console.log(match.params.slug, "test", slag, "slag");
-    console.log(activeStep, "activestep", dataurl[activeStep], "test");
-    await getDoc();
-    setloading(false);
-  }, []);
-
+  const setTourOpend = (e) => {
+    setIsTourOpen(e);
+  };
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -207,7 +221,13 @@ function ContinuePack({ match }) {
     }
     if (dataid[step] === "threedimage") {
       return (
-        <ScheduledThreeDImagePage step={step} slug={slag} getDoc={getDoc} />
+        <ScheduledThreeDImagePage
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+        />
       );
     }
     if (dataid[step] === "greetingcard") {
@@ -370,92 +390,120 @@ function ContinuePack({ match }) {
       <br />
       <div style={{ backgroundColor: "#d3d3d3" }} class="container-fluid">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <center>
-              {" "}
               <img
-                style={{ width: "50%" }}
+                className=" bannerimg"
+                onClick={() => {
+                  setshowshare(true);
+                  setopenModal(true);
+                }}
                 src="https://cdn.shopify.com/s/files/1/0255/9121/8229/files/shareLogo.png"
                 alt=""
               />
             </center>
           </div>
 
-          <div class="col-sm-4 ">
-            <h2>Share</h2>
-            <h6>
+          <div class="col-sm-3 ">
+            {/* <h2>Share</h2> */}
+            <p>
               This is a simple hero unit, a simple jumbotron-style component for
-              calling extra attention to featured content or information.
-            </h6>
+              calling extra attention to featured content or information. <br />{" "}
+              only one link for all components
+            </p>
           </div>
-          <div class="col-sm-4">
-            <center>
-              {!showshare ? (
-                <div style={{ marginTop: "55px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      setshowshare(true);
-                      setopenModal(true);
-                    }}
-                    Icon={ShareIcon}
-                    title="Share "
-                  />
-                </div>
-              ) : (
-                <Modal
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginRight: "auto",
-                    overflow: "hidden",
-                    alignItems: "center",
-                  }}
-                  open={openModal}
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
-                >
-                  {
-                    <div className={modclasses.paper}>
-                      <div>
-                        <br />
-                        <br />
-                        <br />
-                        <div
-                          style={{ backgroundColor: "#ffffff" }}
-                          class="container-fluid pt-3"
-                        >
+          <div class="col-sm-3">
+            {!showshare ? null : (
+              // <div
+              //   style={{
+              //     margin: "auto",
+              //     // position: "absolute",
+              //     // top: "50%",
+              //     // left: "50%",
+              //     // MsTransform: "translateY(-50%) translateX(-50%)",
+              //     // transform: "translateY(-50%) translateX(-50%)",
+              //   }}
+              // >
+              //   <HeaderBtn
+              //     handleClick={() => {
+              //       setshowshare(true);
+              //       setopenModal(true);
+              //     }}
+              //     Icon={ShareIcon}
+              //     title="Share "
+              //   />
+              // </div>
+              <Modal
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginRight: "auto",
+                  overflow: "hidden",
+                  alignItems: "center",
+                }}
+                open={openModal}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                {
+                  <div className={modclasses.paper}>
+                    <div>
+                      <div
+                        style={{ backgroundColor: "#ffffff" }}
+                        class="container-fluid p-4"
+                      >
+                        <div>
                           <div>
-                            <div>
-                              <center>
-                                <div style={{ width: "200px" }}>
-                                  <Copy livelink={livelink} />
-                                </div>
-                              </center>
-                              <Share
-                                livelink={livelink}
-                                to={data1.To_name}
-                                from={data1.From_name}
-                              />
-                            </div>
+                            <center>
+                              <div style={{ width: "200px" }}>
+                                <Copy livelink={livelink} />
+                              </div>
+                            </center>
+                            <Share
+                              livelink={livelink}
+                              to={data1.To_name}
+                              from={data1.From_name}
+                            />
                           </div>
                         </div>
-                        <Fab
-                          onClick={() => {
-                            setopenModal(false);
-                            setshowshare(false);
-                          }}
-                          className={modclasses.DelBut}
-                          color="primary"
-                          aria-label="add"
-                        >
-                          <CloseIcon />
-                        </Fab>
                       </div>
+                      <Fab
+                        onClick={() => {
+                          setopenModal(false);
+                          setshowshare(false);
+                        }}
+                        className={modclasses.DelBut}
+                        color="primary"
+                        aria-label="add"
+                      >
+                        <CloseIcon />
+                      </Fab>
                     </div>
-                  }
-                </Modal>
-              )}
+                  </div>
+                }
+              </Modal>
+            )}
+            <center>
+              <img
+                className=" bannerimg"
+                style={{ height: "150px" }}
+                onClick={() => {
+                  setIsTourOpen(true);
+                }}
+                src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftravel1-removebg-preview.png?alt=media&token=0d8e9f6c-943a-4afa-9515-bc1c14d87226"
+                alt=""
+              />
             </center>
+          </div>
+          <div class="col-md-3">
+            {" "}
+            <p>
+              {" "}
+              Hello! Allow us to give you a small tour on how to generate this
+              special gift. We are sure you wouldn't need one the next time you
+              are back.
+              <br /> P.S : Its that easy
+            </p>
           </div>
         </div>
       </div>

@@ -5,10 +5,12 @@ import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
-  const [text1, settext1] = useState("");
-  const [text2, settext2] = useState("");
-  const [maintext, setmaintext] = useState("e");
+  const [message, setmessage] = useState("");
+  const [occassion, setoccassion] = useState("");
+  const [totext, settotext] = useState("");
+  const [fromtext, setfromtext] = useState("");
   const [loading, setloading] = useState(false);
+
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
@@ -19,12 +21,14 @@ function LiveAnimatedFramePage({ match }) {
         var img = snapshot.val().url;
         setfbimg(img);
 
-        var title1 = snapshot.val().text1;
-        settext1(title1);
-        var title2 = snapshot.val().text2;
-        settext2(title2);
-        var MainTitle = snapshot.val().maintext;
-        setmaintext(MainTitle);
+        var msg = snapshot.val().message;
+        setmessage(msg);
+        var occn = snapshot.val().occassion;
+        setoccassion(occn);
+        var to_nam = snapshot.val().totext;
+        settotext(to_nam);
+        var from_nam = snapshot.val().fromtext;
+        setfromtext(from_nam);
       });
     setloading(false);
   }, []);
@@ -71,9 +75,10 @@ function LiveAnimatedFramePage({ match }) {
       ) : (
         <OpenGreetingCard
           fbimg={fbimg}
-          text1={text1}
-          text2={text2}
-          maintext={maintext}
+          message={message}
+          occassion={occassion}
+          totext={totext}
+          fromtext={fromtext}
         />
       )}
     </div>

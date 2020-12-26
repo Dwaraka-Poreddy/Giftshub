@@ -3,13 +3,18 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { jsPDF } from "jspdf";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -25,6 +30,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import DateRangeIcon from "@material-ui/icons/DateRange";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -259,33 +266,35 @@ function NewsPaperPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
-            <hr />
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                      setlivelink("123");
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -313,7 +322,7 @@ function NewsPaperPage() {
                   />
                 ) : null}
                 <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
                 </label>
               </div>
               <center>
@@ -389,7 +398,7 @@ function NewsPaperPage() {
                     }}
                     className="RightSideBar2__Btn"
                   >
-                    <CreateIcon
+                    <DateRangeIcon
                       style={{
                         margin: "0 10px 0 5px",
                         color: "#ffffff",
@@ -419,7 +428,7 @@ function NewsPaperPage() {
                     handleClick={() => {
                       handleImageDownlod(this);
                     }}
-                    Icon={LinkIcon}
+                    Icon={GetAppIcon}
                     title="Download as image"
                   />
                 </div>
@@ -428,7 +437,7 @@ function NewsPaperPage() {
                     handleClick={() => {
                       handlePdfDownlod(this);
                     }}
-                    Icon={LinkIcon}
+                    Icon={GetAppIcon}
                     title="Download as pdf"
                   />
                 </div>

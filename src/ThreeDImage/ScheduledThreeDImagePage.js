@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ThreeDImage from "./ThreeDImage";
 
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -17,9 +17,9 @@ import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
-import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
+import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -31,9 +31,15 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledThreeDImagePage({ step, slug, getDoc }) {
+function ScheduledThreeDImagePage({
+  step,
+  slug,
+  getDoc,
+  isTourOpen,
+  setTourOpend,
+}) {
   let { edit } = useSelector((state) => ({ ...state }));
-  const [isTourOpen, setIsTourOpen] = useState(false);
+  // const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
@@ -47,7 +53,7 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2Fmain.jpg?alt=media&token=2cb59a10-237a-450f-995d-d52f52188e22"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/spider.jpg?alt=media&token=adf38762-cc3f-4d12-8732-3eb807fb8355"
   );
   const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#302015");
@@ -210,25 +216,32 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
       content: `generates a live link for this component. Once the link is generated few other options are shown`,
     },
     {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `updates this component with the changes you made in the n-day pack you created`,
+    },
+    {
       selector: '[data-tut="reactour__copylink"]',
       content: `copies the generated live link to clipboard`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `previews the component  created`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `shares the live link of the component  created`,
     },
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <Tour
         onRequestClose={() => {
-          setIsTourOpen(false);
-          setlivelink("");
+          setTourOpend(false);
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -304,102 +317,91 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
               right: "0",
             }}
           >
-            <center>
+            {/* <center>
               <div
                 style={{
                   justifyContent: "center",
                   padding: "20px 0 0 0 ",
                 }}
               >
-                {livelink ? null : (
-                  <HeaderBtn
-                    handleClick={() => {
-                      setIsTourOpen(true);
-                      setlivelink("123");
-                    }}
-                    Icon={FlightTakeoffIcon}
-                    title=" Start Tour "
-                  />
-                )}
+                
               </div>
             </center>
-            <hr />
+            <hr /> */}
             <div style={{ justifyContent: "center" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput"
-                name="LocalfileInput"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={4 / 3}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
-              </label>
-              <input
-                type="color"
-                id="FirstColor"
-                initialValue={firstcol}
-                value={firstcol}
-                onChange={(e) => {
-                  setfirstcol(e.target.value);
-                }}
-                placement="right"
-                autoAdjust="true"
-                style={{
-                  margin: "auto",
-                  visibility: "hidden",
-                  position: "relative",
-                  display: "flex",
-                  height: "5px",
-                }}
-              />
-              <label htmlFor="FirstColor">
-                <HeaderBtn
-                  Icon={FormatColorFillIcon}
-                  title="Gradient Left Color "
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                </label>
+              </div>
+              <div data-tut="reactour__gradient">
+                <input
+                  type="color"
+                  id="FirstColor"
+                  initialValue={firstcol}
+                  value={firstcol}
+                  onChange={(e) => {
+                    setfirstcol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
                 />
-              </label>
-              <input
-                type="color"
-                id="ToColor"
-                initialValue={secondcol}
-                value={secondcol}
-                onChange={(e) => {
-                  setsecondcol(e.target.value);
-                }}
-                placement="right"
-                autoAdjust="true"
-                style={{
-                  margin: "auto",
-                  visibility: "hidden",
-                  position: "relative",
-                  display: "flex",
-                  height: "5px",
-                }}
-              />
-              <label htmlFor="ToColor">
-                <HeaderBtn
-                  Icon={FormatColorFillIcon}
-                  title="Gradient Right Color"
+                <label htmlFor="FirstColor">
+                  <HeaderBtn Icon={GradientIcon} title="Gradient Left Color " />
+                </label>
+                <input
+                  type="color"
+                  id="ToColor"
+                  initialValue={secondcol}
+                  value={secondcol}
+                  onChange={(e) => {
+                    setsecondcol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
                 />
-              </label>
+                <label htmlFor="ToColor">
+                  <HeaderBtn Icon={GradientIcon} title="Gradient Right Color" />
+                </label>
+              </div>
               <center>
                 {loading ? (
                   <Loader
@@ -410,13 +412,29 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        handleFireBaseUpload();
-                      }}
-                      Icon={LinkIcon}
-                      title={edit.text != "" ? "Update pack" : "Generate Link"}
-                    />
+                    {edit.text != "" ? (
+                      <div data-tut="reactour__updatepack">
+                        {" "}
+                        <HeaderBtn
+                          handleClick={() => {
+                            handleFireBaseUpload();
+                          }}
+                          Icon={LinkIcon}
+                          title="Update pack"
+                        />
+                      </div>
+                    ) : (
+                      <div data-tut="reactour__generatelink">
+                        {" "}
+                        <HeaderBtn
+                          handleClick={() => {
+                            handleFireBaseUpload();
+                          }}
+                          Icon={LinkIcon}
+                          title="Generate Link"
+                        />
+                      </div>
+                    )}
                   </div>
                 )}
               </center>
@@ -424,17 +442,26 @@ function ScheduledThreeDImagePage({ step, slug, getDoc }) {
               <center>
                 {livelink ? (
                   <div>
-                    <div style={{ width: "200px", marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__preview"
+                      style={{ marginTop: "20px" }}
+                    >
                       <Link class="logo" to={previewlink} target="_blank">
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
                     {edit.text != "" ? null : (
-                      <div style={{ marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__addtopack"
+                        style={{ marginTop: "20px" }}
+                      >
                         <HeaderBtn
                           handleClick={() => {
                             EditPack();

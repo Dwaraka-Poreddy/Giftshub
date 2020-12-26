@@ -7,7 +7,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import emailjs from "emailjs-com";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import CreateIcon from "@material-ui/icons/Create";
 import {
   FacebookShareButton,
@@ -131,7 +131,7 @@ function Share({ livelink, from, to }) {
               type="submit"
             />
             <label htmlFor="receiverEmail">
-              <HeaderBtn Icon={ViewModuleIcon} title="Send Email " />
+              <HeaderBtn Icon={ImageIcon} title="Send Email " />
             </label>
           </form>
         ) : (

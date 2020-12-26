@@ -25,14 +25,11 @@ function NewsPaper({ head, para, fbimg, startDate }) {
               />
             </div>
             <div style={{ display: "block" }}>
-              <div
-                style={{
-                  fontFamily: "Roboto Slab', serif",
-                  fontWeight: "600",
-                  // fontSize: "12px",
-                }}
-              >
-                <p style={{ fontSize: "15px" }}>{startDate}</p>
+              <div>
+                <p className="Newsdate">
+                  {/* {startDate} */}
+                  {new Date().toDateString()}
+                </p>
               </div>
               <div>
                 <img
@@ -88,7 +85,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
                 alt="Heading"
               />
             </div>
-          </div>
+          </div>{" "}
           <div style={{ display: "flex" }}>
             <img
               style={{ width: "15%" }}
@@ -103,18 +100,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
               }}
             >
               <div>
-                <h1
-                  className="Newshead"
-                  style={{
-                    textAlign: "justify",
-                    // fontSize: "38px",
-                    fontFamily: "oxford",
-                    fontWeight: "500",
-                    margin: "5px",
-                  }}
-                >
-                  {head}
-                </h1>
+                <h1 className="Newshead">{head}</h1>
 
                 <img
                   style={{
@@ -125,17 +111,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
                   alt="MainImage"
                 />
 
-                <h1
-                  className="Newspara"
-                  style={{
-                    // fontSize: "28px",
-                    fontFamily: "oxford",
-                    fontWeight: "400",
-                    margin: "10px 5px",
-                  }}
-                >
-                  {para}
-                </h1>
+                <h2 className="Newspara">{para}</h2>
 
                 <img
                   style={{ width: "100%" }}

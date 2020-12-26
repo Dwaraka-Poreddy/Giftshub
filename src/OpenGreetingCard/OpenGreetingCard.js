@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./OpenGreetingCard.css";
 
-export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
+export default function OpenGreetingCard({
+  fbimg,
+  message,
+  occassion,
+  totext,
+  fromtext,
+}) {
   const [openCard, setOpenCard] = useState("gc_carrd ");
 
   const timer = () => {
@@ -35,25 +41,60 @@ export default function OpenGreetingCard({ fbimg, text1, text2, maintext }) {
                   <div class="gc_heart"></div>
                   <div class="gc_heart"></div>
                   <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
                 </div>
 
                 <div style={{ overflow: "hidden" }}>
-                  <p>{text1}</p>
-                  <p> {text2}</p>
+                  <p>{message}</p>
+                  <p> {occassion}</p>
                 </div>
               </div>
             </div>
             <div class="gc_page gc_front">
-              <div class="side gc_back red">
-                <img style={{ width: "100%" }} src={fbimg} alt="" />
+              <div
+                style={{
+                  backgroundImage: "url(" + fbimg + ")",
+                  opacity: "0.9",
+                  // backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  overflow: "hidden",
+                  boxShadow: "0px 0px 0px 15px #dfccaf inset",
+                  // border: "2px solid red"
+                }}
+                class="side gc_back red"
+              >
+                {/* <img style={{ width: "100%" }} src={fbimg} alt="" /> */}
+                <div class="gc_hearts">
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                  <div class="gc_heart"></div>
+                </div>
               </div>
               <div style={{ overflow: "hidden" }} class="side gc_front">
                 <div>
                   <p>
-                    {maintext} <span class="red">red</span>
+                    To <br /> <span class="red"> {totext}</span>
                   </p>
                   <p>
-                    Violets are <span class="blue">blue</span>
+                    From <br /> <span class="blue">{fromtext}</span>
                   </p>
                 </div>
               </div>

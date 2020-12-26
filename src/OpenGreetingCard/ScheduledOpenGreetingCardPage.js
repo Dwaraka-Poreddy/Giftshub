@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import OpenGreetingCard from "./OpenGreetingCard";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -46,11 +46,14 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
 
-  const [text1, settext1] = useState("Here are some CSS");
-  const [text2, settext2] = useState("hearts for you");
-  const [maintext, setmaintext] = useState("Roses are");
+  const [message, setmessage] = useState(
+    "Sending you love for every moment of your big day"
+  );
+  const [occassion, setoccassion] = useState("Happy Birthday !!!.");
+  const [totext, settotext] = useState("Katara");
+  const [fromtext, setfromtext] = useState("Aang & Zuko");
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/toph%20bei%20fong.jpg?alt=media&token=3cbca783-e7ec-4533-9f3d-95a883e70237"
   );
 
   useEffect(() => {
@@ -64,12 +67,14 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
           var img = snapshot.val().url;
           setfbimg(img);
 
-          var title1 = snapshot.val().text1;
-          settext1(title1);
-          var title2 = snapshot.val().text2;
-          settext2(title2);
-          var MainTitle = snapshot.val().maintext;
-          setmaintext(MainTitle);
+          var msg = snapshot.val().message;
+          setmessage(msg);
+          var occn = snapshot.val().occassion;
+          setoccassion(occn);
+          var to_nam = snapshot.val().totext;
+          settotext(to_nam);
+          var from_nam = snapshot.val().fromtext;
+          setfromtext(from_nam);
           setCLoading(false);
         });
     } else {
@@ -93,9 +98,10 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
       const todoRef = firebase.database().ref("OpenGreetingCard/" + edit.text);
       const todo = {
         url: fbimg,
-        text1: text1,
-        text2: text2,
-        maintext: maintext,
+        message: message,
+        occassion: occassion,
+        totext: totext,
+        fromtext: fromtext,
       };
       todoRef.update(todo);
       setlivelink(
@@ -113,9 +119,10 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
       const todoRef = firebase.database().ref("OpenGreetingCard");
       const todo = {
         url: fbimg,
-        text1: text1,
-        text2: text2,
-        maintext: maintext,
+        message: message,
+        occassion: occassion,
+        totext: totext,
+        fromtext: fromtext,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -146,9 +153,10 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                 const todoRef = firebase.database().ref("OpenGreetingCard");
                 const todo = {
                   url: downUrl,
-                  text1: text1,
-                  text2: text2,
-                  maintext: maintext,
+                  message: message,
+                  occassion: occassion,
+                  totext: totext,
+                  fromtext: fromtext,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
@@ -250,9 +258,10 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
               <div>
                 <OpenGreetingCard
                   fbimg={fbimg}
-                  text1={text1}
-                  text2={text2}
-                  maintext={maintext}
+                  message={message}
+                  occassion={occassion}
+                  totext={totext}
+                  fromtext={fromtext}
                 />
               </div>
             )}
@@ -295,7 +304,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                <HeaderBtn Icon={ImageIcon} title="Change  image " />
               </label>
               <center>
                 <div style={{ width: "200px" }} className="RightSideBar2__Btn">
@@ -315,9 +324,9 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                       backgroundColor: "#ffffff",
                       width: "200px",
                     }}
-                    value={text1}
+                    value={totext}
                     onChange={(e) => {
-                      settext1(e.target.value);
+                      settotext(e.target.value);
                     }}
                   />
                 </div>
@@ -338,9 +347,9 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                       backgroundColor: "#ffffff",
                       width: "200px",
                     }}
-                    value={text2}
+                    value={fromtext}
                     onChange={(e) => {
-                      settext2(e.target.value);
+                      setfromtext(e.target.value);
                     }}
                   />
                 </div>
@@ -361,9 +370,32 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                       backgroundColor: "#ffffff",
                       width: "200px",
                     }}
-                    value={maintext}
+                    value={message}
                     onChange={(e) => {
-                      setmaintext(e.target.value);
+                      setmessage(e.target.value);
+                    }}
+                  />
+                </div>
+                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "200px",
+                    }}
+                    value={occassion}
+                    onChange={(e) => {
+                      setoccassion(e.target.value);
                     }}
                   />
                 </div>

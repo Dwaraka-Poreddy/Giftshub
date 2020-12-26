@@ -21,7 +21,15 @@ const useInterval = (callback, delay, duration) => {
   return durationIntervalRef;
 };
 
-function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
+function MemoryGame({
+  fbimg1,
+  fbimg2,
+  fbimg3,
+  fbimg4,
+  fbimg5,
+  fbimg6,
+  setnewscore,
+}) {
   const [newGame, setNewGame] = useState(false);
 
   const [list, setList] = useState([
@@ -89,6 +97,9 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
 
   useEffect(() => {
     if (finishedItems.length > 0 && finishedItems.length === list.length) {
+      {
+        setnewscore(duration);
+      }
       setWinner(true);
       clearInterval(durationIntervalRef.current);
     }

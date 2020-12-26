@@ -8,16 +8,20 @@ const daySeconds = 86400;
 
 const timerProps = {
   isPlaying: true,
-  size: 220,
-  strokeWidth: 13,
+  size: 270,
+  strokeWidth: 4,
 };
 
 const timerProps1 = {
   isPlaying: true,
-  size: 120,
-  strokeWidth: 6,
+  size: 150,
+  strokeWidth: 4,
 };
-
+const timerProps4 = {
+  isPlaying: true,
+  size: 180,
+  strokeWidth: 4,
+};
 const renderTime = (dimension, time) => {
   return (
     <div className="time-wrapper">
@@ -52,7 +56,10 @@ export default function CircleTimer({ Bday }) {
   return (
     <div>
       {remainingTime > 0 ? (
-        <div style={{ display: "flex" }} className="App">
+        <div
+          style={{ display: "flex", justifyContent: "space-evenly" }}
+          className="App"
+        >
           <CountdownCircleTimer
             {...timerProps}
             colors={[["#7E2E84"]]}
@@ -65,7 +72,7 @@ export default function CircleTimer({ Bday }) {
           </CountdownCircleTimer>
           <CountdownCircleTimer
             {...timerProps1}
-            colors={[["#D14081"]]}
+            colors={[["#00b4c6"]]}
             duration={daySeconds}
             initialRemainingTime={remainingTime % daySeconds}
             onComplete={(totalElapsedTime) => [
@@ -93,7 +100,7 @@ export default function CircleTimer({ Bday }) {
             }
           </CountdownCircleTimer>
           <CountdownCircleTimer
-            {...timerProps}
+            {...timerProps4}
             colors={[["#218380"]]}
             duration={minuteSeconds}
             initialRemainingTime={remainingTime % minuteSeconds}

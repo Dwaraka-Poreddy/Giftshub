@@ -6,43 +6,50 @@ const allComp = [
     id: "puzzle",
     content: "Slide Puzzle",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fsqpuz.PNG?alt=media&token=4effacbd-c53b-4d32-9376-6e74caa8a491",
   },
   {
     id: "threedimage",
     content: "3D Image",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2F3dsqr.png?alt=media&token=1f1a6ebc-f70f-4bb9-bd88-217610ab2373",
   },
   {
     id: "greetingcard",
     content: "Greeting Card",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fgreeting.PNG?alt=media&token=8a7a1015-4440-40e9-a001-a5643609c058",
   },
   {
     id: "cubes",
     content: "Cubes in 3D Heart",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FCubessqare.PNG?alt=media&token=5d65ad64-985a-4335-9274-da1fdc115f5e",
   },
   {
     id: "memorygame",
     content: "Memory Game",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemo.PNG?alt=media&token=beeb8d64-7501-4051-91e9-d15ba8977de4",
   },
   {
     id: "collage",
     content: "Collage",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FcollagePNG.PNG?alt=media&token=145fccf1-8bc0-4615-9ebf-8dc87fdfcae0",
   },
   {
     id: "newspaper",
     content: "NewsPaper",
     url: "",
-    img: "https://picsum.photos/200",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalisednewspapersq-9918857eg.jpg?alt=media&token=48bf0687-fa71-471d-acc3-207f346dd1b9",
   },
 ];
 
@@ -191,6 +198,9 @@ class N_Pack_Select extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div class="row">
           <div class="col-lg-6 pt-3 ">
+            <center>
+              <h1> Pack</h1>
+            </center>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div
@@ -217,6 +227,7 @@ class N_Pack_Select extends Component {
                             <div class="row no-gutters">
                               <div class="col-3">
                                 <img
+                                  style={{ height: "100%" }}
                                   src={item.img}
                                   class="card-img"
                                   alt={index}
@@ -226,7 +237,7 @@ class N_Pack_Select extends Component {
                                 <div
                                   class="card-body "
                                   style={{
-                                    padding: "1rem 1.25rem 0.25rem 1.25rem",
+                                    padding: "1rem 1.25rem ",
                                   }}
                                 >
                                   {item.content}
@@ -246,7 +257,7 @@ class N_Pack_Select extends Component {
 
           <div class="col-lg-6 pt-3 pb-3 ">
             <center>
-              <h1 className="example">Your Pack</h1>
+              <h1>Your Pack</h1>
             </center>
             <Droppable droppableId="droppable2">
               {(provided, snapshot) => (
@@ -278,6 +289,7 @@ class N_Pack_Select extends Component {
                             <div class="row no-gutters">
                               <div class="col-3">
                                 <img
+                                  style={{ height: "100%" }}
                                   src={item.img}
                                   class="card-img"
                                   alt={index}
@@ -287,7 +299,7 @@ class N_Pack_Select extends Component {
                                 <div
                                   class="card-body "
                                   style={{
-                                    padding: "1rem 1.25rem 0.25rem 1.25rem",
+                                    padding: "1rem 1.25rem ",
                                   }}
                                 >
                                   {item.content}

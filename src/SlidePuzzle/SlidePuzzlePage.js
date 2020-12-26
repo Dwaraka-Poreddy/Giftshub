@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import SlidePuzzle from "./SlidePuzzle";
 import SlidePuzzleAnswer from "./SlidePuzzleAnswer";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -260,7 +260,7 @@ function OpenGreetingCardPage() {
                   />
                 ) : null}
                 <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
                 </label>
               </div>
               <center data-tut="reactour__generatelink">

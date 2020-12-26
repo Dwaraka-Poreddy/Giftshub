@@ -3,7 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Cubes from "./Cubes";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -381,7 +381,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput1">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 1" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -408,7 +408,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput2">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 2" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -435,7 +435,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput3">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 3" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -462,7 +462,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput4">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 4" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
               </label>
               <input
                 style={{ display: "none" }}
@@ -489,7 +489,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                 />
               ) : null}
               <label htmlFor="LocalfileInput5">
-                <HeaderBtn Icon={ViewModuleIcon} title="Change  image 5" />
+                <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
               </label>
               <center>
                 {loading ? (

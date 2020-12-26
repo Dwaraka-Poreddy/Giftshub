@@ -6,7 +6,7 @@ import Magazine from "./Magazine";
 import Loader from "react-loader-spinner";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
@@ -203,7 +203,7 @@ function MagazinePage() {
               />
             ) : null}
             <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ViewModuleIcon} title="Change  image " />
+              <HeaderBtn Icon={ImageIcon} title="Change  image " />
             </label>
 
             <center>
