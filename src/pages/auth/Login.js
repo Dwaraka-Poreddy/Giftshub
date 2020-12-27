@@ -34,6 +34,7 @@ const Login = ({ history }) => {
           email: user.email,
           token: idTokenResult.token,
           uid: user.uid,
+          profilepic: user.photoURL,
         },
       });
       setLoading(true); // waste to write
@@ -57,6 +58,8 @@ const Login = ({ history }) => {
             email: user.email,
             token: idTokenResult.token,
             uid: user.uid,
+            profilepic:
+              "https://lh6.googleusercontent.com/-4cD2vPOGOjI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmSeccLnh8-uFmen5qC_Fd_oovJJg/s96-c/photo.jpg",
           },
         });
         history.push("/home");

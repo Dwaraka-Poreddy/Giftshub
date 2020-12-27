@@ -23,43 +23,9 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* <div id="preloader">
-        <div class="jumper">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div> */}
-      <header class="header-area header-sticky">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
+      <br />
+      <br />
+      <br />
 
       <div class="welcome-area" id="welcome">
         <div class="header-text">

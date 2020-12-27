@@ -33,7 +33,7 @@ import AuthHeader from "./components/nav/Header";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
-
+import SoundRecorder from "./SoundRecorder";
 import ScheduledLiveCollage from "./ScheduledLivePages/ScheduledLiveCollage";
 import ScheduledLiveMemoryGame from "./ScheduledLivePages/ScheduledLiveMemoryGame";
 import ScheduledLiveSlidePuzzle from "./ScheduledLivePages/ScheduledLiveSlidePuzzle";
@@ -72,6 +72,7 @@ export default function App() {
       <AuthHeader />
       <ToastContainer />
       <Switch>
+        <Route exact path="/sound" component={SoundRecorder} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/sevendayhome" component={SevenDayHome} />
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />

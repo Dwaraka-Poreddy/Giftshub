@@ -24,7 +24,8 @@ const Header = () => {
   let history = useHistory();
   // spread operater
   let { user } = useSelector((state) => ({ ...state }));
-
+  console.log(user, "user");
+  // console.log(user.profilepic, "pic");
   const handleClick = (e) => {
     setCurrent(e.key);
   };
@@ -39,37 +40,92 @@ const Header = () => {
   };
 
   return (
-    <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-      <Item key="home" icon={<AppstoreOutlined />}>
-        <Link to="/">Home</Link>
-      </Item>
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+      <div class="container">
+        <a class=" navbar-brand text-primary" href={`/`}>
+          Gifts Hub Page
+        </a>
 
-      {!user && (
-        <Item key="login" icon={<UserOutlined />} className="float-right">
-          <Link to="/login">Login</Link>
-        </Item>
-      )}
-
-      {!user && (
-        <Item key="register" icon={<UserAddOutlined />} className="float-right">
-          <Link to="/register">Register</Link>
-        </Item>
-      )}
-
-      {user && (
-        <SubMenu
-          icon={<SettingOutlined />}
-          title={user.email && user.email.split("@")[0]}
-          className="float-right"
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
         >
-          <Item key="setting:1">Option 1</Item>
-          <Item key="setting:2">Option 2</Item>
-          <Item icon={<LogoutOutlined />} onClick={logout}>
-            Logout
-          </Item>
-        </SubMenu>
-      )}
-    </Menu>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item avatar dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                id="navbarDropdownMenuLink-5"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {!user ? (
+                  <img
+                    width="45"
+                    src="https://thebodylifeclinic.ie/wp-content/uploads/2020/11/416-4161690_empty-profile-picture-blank-avatar-image-circle.jpg"
+                    class="md-avatar rounded-circle"
+                    alt="avatar image"
+                  />
+                ) : (
+                  <>
+                    {user.email && user.email.split("@")[0]}
+                    <img
+                      width="45"
+                      src={user.profilepic}
+                      class="md-avatar rounded-circle ml-3"
+                      alt="avatar image"
+                    />
+                  </>
+                )}
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right dropdown-secondary"
+                aria-labelledby="navbarDropdownMenuLink-5"
+              >
+                <li class="nav-item">
+                  {!user && (
+                    <a class="nav-link" href={`/login`}>
+                      login
+                    </a>
+                  )}
+                </li>
+                <li class="nav-item">
+                  {!user && (
+                    <a class="nav-link" href={`/register`}>
+                      Register
+                    </a>
+                  )}
+                </li>
+                <li class="nav-item ">
+                  {user && (
+                    <a onClick={logout} class="nav-link" href={`/login`}>
+                      Logout
+                    </a>
+                  )}
+                </li>
+                <li class="nav-item ">
+                  {user && (
+                    <a class="nav-link" href={`/home`}>
+                      Previous Packs
+                    </a>
+                  )}
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="">
+                    Your Profile
+                  </a>
+                </li>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 

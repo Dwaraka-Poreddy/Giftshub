@@ -31,7 +31,7 @@ function MemoryGame({
   setnewscore,
 }) {
   const [newGame, setNewGame] = useState(false);
-
+  const [isstarted, setisstarted] = useState(false);
   const [list, setList] = useState([
     fbimg1,
     fbimg4,
@@ -107,84 +107,92 @@ function MemoryGame({
 
   return (
     <div>
-      <div className="text-center p-2 d-flex flex-column">
-        {list.length === 0 ? (
-          <div>...Loading</div>
-        ) : (
-          <div>
-            <br />
-            <br />
-            <div style={{ padding: "0" }} className="container">
-              <div className="row no-gutters">
-                {list.map((item, index) => (
-                  <div
-                    className={`col-3 card ${
-                      visibleItems.includes(index) ? "grid-card-show" : ""
-                    } ${
-                      finishedItems.includes(index)
-                        ? "grid-card-show grid-card-finished"
-                        : ""
-                    }`}
-                    key={item.id}
-                    onClick={() => {
-                      if (!finishedItems.includes(index)) {
-                        switch (visibleItems.length) {
-                          case 0:
-                            setVisibleItems([index]);
-                            break;
-                          case 1:
-                            if (visibleItems[0] !== index) {
-                              setVisibleItems(visibleItems.concat(index));
-                              checkItems(visibleItems[0], index);
-                            }
-                            break;
-                          case 2:
-                            setVisibleItems([index]);
-                            break;
-                          default:
-                            setVisibleItems([]);
+      {" "}
+      {isstarted ? (
+        <div className="text-center p-2 d-flex flex-column">
+          {list.length === 0 ? (
+            <div>...Loading</div>
+          ) : (
+            <div>
+              <br />
+              <br />
+
+              <div style={{ padding: "0" }} className="container">
+                <div className="row no-gutters">
+                  {list.map((item, index) => (
+                    <div
+                      className={`col-3 card ${
+                        visibleItems.includes(index) ? "grid-card-show" : ""
+                      } ${
+                        finishedItems.includes(index)
+                          ? "grid-card-show grid-card-finished"
+                          : ""
+                      }`}
+                      key={item.id}
+                      onClick={() => {
+                        if (!finishedItems.includes(index)) {
+                          switch (visibleItems.length) {
+                            case 0:
+                              setVisibleItems([index]);
+                              break;
+                            case 1:
+                              if (visibleItems[0] !== index) {
+                                setVisibleItems(visibleItems.concat(index));
+                                checkItems(visibleItems[0], index);
+                              }
+                              break;
+                            case 2:
+                              setVisibleItems([index]);
+                              break;
+                            default:
+                              setVisibleItems([]);
+                          }
                         }
-                      }
-                    }}
-                  >
-                    <img
-                      className={`img-thumbnail img-fluid grid-img`}
-                      src={item}
-                      alt={item.description}
-                    />
-                  </div>
-                ))}
+                      }}
+                    >
+                      <img
+                        className={`img-thumbnail img-fluid grid-img`}
+                        src={item}
+                        alt={item.description}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {winner && (
+                <div>
+                  You Win !
+                  <br />
+                  Finished in {duration} seconds
+                </div>
+              )}
             </div>
-            {winner && (
-              <div>
-                You Win !
-                <br />
-                Finished in {duration} seconds
-              </div>
-            )}
-          </div>
-        )}
-        <br />
-        <br />
+          )}
+          <br />
+          <br />
+          <button
+            className="main-button"
+            onClick={() => {
+              setNewGame(!newGame);
+              setVisibleItems([]);
+              setFinishedItems([]);
+              setWinner(false);
+            }}
+          >
+            New Game
+          </button>
+        </div>
+      ) : (
         <button
-          style={{
-            color: "#f8d3d3",
-            width: "125px",
-            margin: "-10px auto 0",
-            background: "-webkit-linear-gradient(59deg, #3a6073, #16222a)",
-          }}
+          className="main-button"
           onClick={() => {
-            setNewGame(!newGame);
-            setVisibleItems([]);
-            setFinishedItems([]);
-            setWinner(false);
+            setisstarted(true);
           }}
-          className="btn  mb-4"
         >
-          New Game
+          Start game
         </button>
-      </div>
+      )}
     </div>
   );
 }

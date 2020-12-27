@@ -21,8 +21,11 @@ function SchdeuledLiveNav({ slug }) {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class=" navbar-brand" href={`/scheduledlive/main/${slug}`}>
+      <nav class="navbar navbar-expand-md bg-light navbar-light ">
+        <a class=" navbar-brand text-primary" href={`/`}>
+          Gifts Hub
+        </a>
+        <a class=" navbar-brand " href={`/scheduledlive/main/${slug}`}>
           Main Page
         </a>
         <button
@@ -34,7 +37,7 @@ function SchdeuledLiveNav({ slug }) {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
+          <ul class="nav navbar-nav navbar-centre.">
             {dataurl.map((item, index) => {
               if (item != "") {
                 if (index == daystep.day - 1) {
