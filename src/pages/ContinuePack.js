@@ -24,7 +24,7 @@ import Paper from "@material-ui/core/Paper";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-
+import AuthHeader from "../components/nav/Header";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
@@ -295,7 +295,7 @@ function ContinuePack({ match, history }) {
               </div>
               <div className="mobilestepper">
                 <Paper square elevation={0}>
-                  <Typography>{tutorialSteps[activeStep].label}</Typography>
+                  <Typography>{datacontent[activeStep]}</Typography>
                 </Paper>
                 <MobileStepper
                   steps={maxSteps}
@@ -385,117 +385,93 @@ function ContinuePack({ match, history }) {
 
   return (
     <div>
-      <br />
-      <br />
-      <br />
-      <div style={{ backgroundColor: "#d3d3d3" }} class="container-fluid">
+      <AuthHeader />
+      <div
+        style={{ backgroundColor: "#d3d3d3", textAlign: "justify" }}
+        class="container"
+      >
         <div class="row">
-          <div class="col-sm-3">
-            <center>
-              <img
-                className=" bannerimg"
-                onClick={() => {
-                  setshowshare(true);
-                  setopenModal(true);
-                }}
-                src="https://cdn.shopify.com/s/files/1/0255/9121/8229/files/shareLogo.png"
-                alt=""
-              />
-            </center>
-          </div>
-
-          <div class="col-sm-3 ">
-            {/* <h2>Share</h2> */}
+          <div class="col-lg-6 ">
             <p>
               This is a simple hero unit, a simple jumbotron-style component for
               calling extra attention to featured content or information. <br />{" "}
               only one link for all components
             </p>
-          </div>
-          <div class="col-sm-3">
-            {!showshare ? null : (
-              // <div
-              //   style={{
-              //     margin: "auto",
-              //     // position: "absolute",
-              //     // top: "50%",
-              //     // left: "50%",
-              //     // MsTransform: "translateY(-50%) translateX(-50%)",
-              //     // transform: "translateY(-50%) translateX(-50%)",
-              //   }}
-              // >
-              //   <HeaderBtn
-              //     handleClick={() => {
-              //       setshowshare(true);
-              //       setopenModal(true);
-              //     }}
-              //     Icon={ShareIcon}
-              //     title="Share "
-              //   />
-              // </div>
-              <Modal
+            <center>
+              <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginRight: "auto",
-                  overflow: "hidden",
-                  alignItems: "center",
+                  margin: "auto",
+                  // position: "absolute",
+                  // top: "50%",
+                  // left: "50%",
+                  // MsTransform: "translateY(-50%) translateX(-50%)",
+                  // transform: "translateY(-50%) translateX(-50%)",
                 }}
-                open={openModal}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
               >
-                {
-                  <div className={modclasses.paper}>
-                    <div>
-                      <div
-                        style={{ backgroundColor: "#ffffff" }}
-                        class="container-fluid p-4"
-                      >
+                <HeaderBtn
+                  handleClick={() => {
+                    setshowshare(true);
+                    setopenModal(true);
+                  }}
+                  Icon={ShareIcon}
+                  title="Share "
+                />{" "}
+                {!showshare ? null : (
+                  <Modal
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginRight: "auto",
+                      overflow: "hidden",
+                      alignItems: "center",
+                    }}
+                    open={openModal}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    {
+                      <div className={modclasses.paper}>
                         <div>
-                          <div>
-                            <center>
-                              <div style={{ width: "200px" }}>
-                                <Copy livelink={livelink} />
+                          <div
+                            style={{ backgroundColor: "#ffffff" }}
+                            class="container-fluid p-4"
+                          >
+                            <div>
+                              <div>
+                                <center>
+                                  <div style={{ width: "200px" }}>
+                                    <Copy livelink={livelink} />
+                                  </div>
+                                </center>
+                                <Share
+                                  livelink={livelink}
+                                  to={data1.To_name}
+                                  from={data1.From_name}
+                                />
                               </div>
-                            </center>
-                            <Share
-                              livelink={livelink}
-                              to={data1.To_name}
-                              from={data1.From_name}
-                            />
+                            </div>
                           </div>
+                          <Fab
+                            onClick={() => {
+                              setopenModal(false);
+                              setshowshare(false);
+                            }}
+                            className={modclasses.DelBut}
+                            color="primary"
+                            aria-label="add"
+                          >
+                            <CloseIcon />
+                          </Fab>
                         </div>
                       </div>
-                      <Fab
-                        onClick={() => {
-                          setopenModal(false);
-                          setshowshare(false);
-                        }}
-                        className={modclasses.DelBut}
-                        color="primary"
-                        aria-label="add"
-                      >
-                        <CloseIcon />
-                      </Fab>
-                    </div>
-                  </div>
-                }
-              </Modal>
-            )}
-            <center>
-              <img
-                className=" bannerimg"
-                style={{ height: "150px" }}
-                onClick={() => {
-                  setIsTourOpen(true);
-                }}
-                src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftravel1-removebg-preview.png?alt=media&token=0d8e9f6c-943a-4afa-9515-bc1c14d87226"
-                alt=""
-              />
+                    }
+                  </Modal>
+                )}
+              </div>
             </center>
+            <br />
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-6">
             {" "}
             <p>
               {" "}
@@ -504,10 +480,74 @@ function ContinuePack({ match, history }) {
               are back.
               <br /> P.S : Its that easy
             </p>
+            <center>
+              <div
+                style={{
+                  margin: "auto",
+                  // position: "absolute",
+                  // top: "50%",
+                  // left: "50%",
+                  // MsTransform: "translateY(-50%) translateX(-50%)",
+                  // transform: "translateY(-50%) translateX(-50%)",
+                }}
+              >
+                <HeaderBtn
+                  handleClick={() => {
+                    setIsTourOpen(true);
+                  }}
+                  Icon={ShareIcon}
+                  title="Start Tour "
+                />
+              </div>
+            </center>
           </div>
         </div>
       </div>
+
       {horizontalStepper()}
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 col-sm-12">
+              <p className="copyright">
+                Copyright © 2020 Gift's Hub Company . Design:{" "}
+                <a rel="nofollow" href="/">
+                  Gift's Hub
+                </a>
+              </p>
+            </div>
+            <div className="col-lg-5 col-md-12 col-sm-12">
+              <ul className="social">
+                <li>
+                  <a href="#">
+                    <i className="fa fa-facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-rss" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-dribbble" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

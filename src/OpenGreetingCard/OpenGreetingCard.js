@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "./OpenGreetingCard.css";
-
+import { BrowserView, MobileView, TabletView } from "react-device-detect";
 export default function OpenGreetingCard({
   fbimg,
   message,
   occassion,
   totext,
   fromtext,
+  location,
 }) {
   const [openCard, setOpenCard] = useState("gc_carrd ");
 
+  const audioTune = new Audio(
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Faudio.mp3?alt=media&token=75a5f730-ebc1-4b2f-a4d5-06432c85fcd8"
+  );
+  useEffect(() => {
+    audioTune.load();
+  }, []);
+  const playSound = () => {
+    audioTune.play();
+  };
+
+  // // pause audio sound
+  // const pauseSound = () => {
+  //   audioTune.pause();
+  // };
+
+  // stop audio sound
+  const stopSound = () => {
+    audioTune.pause();
+    audioTune.currentTime = 0;
+  };
   const timer = () => {
     setTimeout(() => {
       setOpenCard("gc_carrd open");
+      playSound();
 
       setTimeout(() => {
         setOpenCard("gc_carrd");
@@ -23,7 +45,11 @@ export default function OpenGreetingCard({
 
   useEffect(() => {
     timer();
-  }, []);
+  });
+
+  useEffect(() => {
+    console.log("New path:", document.URL);
+  }, [document.URL]);
 
   return (
     <div>
@@ -49,7 +75,6 @@ export default function OpenGreetingCard({
                   <div class="gc_heart"></div>
                   <div class="gc_heart"></div>
                 </div>
-
                 <div style={{ overflow: "hidden" }}>
                   <p>{message}</p>
                   <p> {occassion}</p>
@@ -70,23 +95,42 @@ export default function OpenGreetingCard({
                 }}
                 class="side gc_back red"
               >
-                {/* <img style={{ width: "100%" }} src={fbimg} alt="" /> */}
+                {/* <img style={{ width: "100%" }} src={fbimg} alt="" /> */}{" "}
                 <div class="gc_hearts">
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                  <div class="gc_heart"></div>
-                </div>
+                  {" "}
+                  <BrowserView>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>{" "}
+                  </BrowserView>
+                  <TabletView>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>
+                    <div class="gc_heart"></div>{" "}
+                  </TabletView>
+                </div>{" "}
               </div>
               <div style={{ overflow: "hidden" }} class="side gc_front">
                 <div>

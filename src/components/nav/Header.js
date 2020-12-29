@@ -56,72 +56,62 @@ const Header = () => {
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item avatar dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarDropdownMenuLink-5"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {!user ? (
-                  <img
-                    width="45"
-                    src="https://thebodylifeclinic.ie/wp-content/uploads/2020/11/416-4161690_empty-profile-picture-blank-avatar-image-circle.jpg"
-                    class="md-avatar rounded-circle"
-                    alt="avatar image"
-                  />
-                ) : (
-                  <>
-                    {user.email && user.email.split("@")[0]}
+            {!user ? (
+              <>
+                <a class="nav-link" href={`/login`}>
+                  login
+                </a>
+
+                <a class="nav-link" href={`/register`}>
+                  Register
+                </a>
+              </>
+            ) : (
+              <li class="nav-item avatar dropdown">
+                <>
+                  <a
+                    class="nav-link dropdown-toggle"
+                    id="navbarDropdownMenuLink-5"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {user.email.split("@")[0]}
                     <img
                       width="45"
                       src={user.profilepic}
                       class="md-avatar rounded-circle ml-3"
                       alt="avatar image"
-                    />
-                  </>
-                )}
-              </a>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-secondary"
-                aria-labelledby="navbarDropdownMenuLink-5"
-              >
-                <li class="nav-item">
-                  {!user && (
-                    <a class="nav-link" href={`/login`}>
-                      login
-                    </a>
-                  )}
-                </li>
-                <li class="nav-item">
-                  {!user && (
-                    <a class="nav-link" href={`/register`}>
-                      Register
-                    </a>
-                  )}
-                </li>
-                <li class="nav-item ">
-                  {user && (
-                    <a onClick={logout} class="nav-link" href={`/login`}>
-                      Logout
-                    </a>
-                  )}
-                </li>
-                <li class="nav-item ">
-                  {user && (
-                    <a class="nav-link" href={`/home`}>
-                      Previous Packs
-                    </a>
-                  )}
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="">
-                    Your Profile
+                    />{" "}
                   </a>
-                </li>
-              </div>
-            </li>
+                </>
+
+                <div
+                  class="dropdown-menu dropdown-menu-right dropdown-secondary"
+                  aria-labelledby="navbarDropdownMenuLink-5"
+                >
+                  <li class="nav-item ">
+                    <a class="nav-link" href="">
+                      Your Profile
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    {user && (
+                      <a class="nav-link" href={`/home`}>
+                        Previous Packs
+                      </a>
+                    )}
+                  </li>
+                  <li class="nav-item ">
+                    {user && (
+                      <a onClick={logout} class="nav-link" href={`/login`}>
+                        Logout
+                      </a>
+                    )}
+                  </li>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </div>

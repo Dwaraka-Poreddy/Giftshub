@@ -53,7 +53,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
   const [totext, settotext] = useState("Katara");
   const [fromtext, setfromtext] = useState("Aang & Zuko");
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/toph%20bei%20fong.jpg?alt=media&token=3cbca783-e7ec-4533-9f3d-95a883e70237"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fwp2664416.jpg?alt=media&token=d7660787-7a2d-4835-bab7-d171a8f7c6a4"
   );
 
   useEffect(() => {
@@ -210,39 +210,6 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
   }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>

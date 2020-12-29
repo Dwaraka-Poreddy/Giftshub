@@ -86,7 +86,7 @@ $(document).ready(function () {
     function () {
       console.log("ready shadow");
       $(this).removeClass("shadow-none");
-      $(this).addClass("shadow").css("cursor", "pointer");
+      $(this).addClass("shadow");
     },
     function () {
       $(this).removeClass("shadow");

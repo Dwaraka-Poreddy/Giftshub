@@ -29,7 +29,7 @@ import SevenDayHome from "./pages/SevenDayHome";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
-import AuthHeader from "./components/nav/Header";
+
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
@@ -60,6 +60,7 @@ export default function App() {
             email: user.email,
             token: idTokenResult.token,
             uid: user.uid,
+            profilepic: user.photoURL,
           },
         });
       }
@@ -69,7 +70,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <AuthHeader />
       <ToastContainer />
       <Switch>
         <Route exact path="/sound" component={SoundRecorder} />

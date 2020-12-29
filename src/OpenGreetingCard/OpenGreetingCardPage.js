@@ -17,6 +17,7 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
+import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,7 @@ function OpenGreetingCardPage() {
   const [totext, settotext] = useState("Katara");
   const [fromtext, setfromtext] = useState("Aang & Zuko");
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/toph%20bei%20fong.jpg?alt=media&token=3cbca783-e7ec-4533-9f3d-95a883e70237"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fwp2664416.jpg?alt=media&token=d7660787-7a2d-4835-bab7-d171a8f7c6a4"
   );
 
   const onSelectFile = (e) => {
@@ -156,8 +157,10 @@ function OpenGreetingCardPage() {
       content: `shares the live link of the component  crerated`,
     },
   ];
+
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <AuthHeader />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -170,39 +173,6 @@ function OpenGreetingCardPage() {
         rounded={5}
         accentColor={accentColor}
       />
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <br />
       <br />

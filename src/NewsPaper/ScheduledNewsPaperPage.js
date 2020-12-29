@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import { jsPDF } from "jspdf";
+
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
@@ -54,7 +54,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
 
-  const [BDate, setBDate] = useState();
+  const [BDate, setBDate] = useState(new Date());
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
   );
@@ -63,7 +63,6 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
   const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
 
   useEffect(() => {
-    console.log("0000000");
     setCLoading(true);
     if (edit.text != "") {
       const todoRef = firebase
@@ -83,6 +82,20 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
       setCLoading(false);
     }
   }, []);
+
+  useEffect(async () => {
+    const snapshot = await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .get();
+    var dummydate = snapshot.data().Bday_date;
+    console.log(snapshot.data().Bday_date, "dummy0");
+    console.log(dummydate, "dummy");
+    setBDate(dummydate);
+  }, []);
+
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
     setopencrop(true);
@@ -207,69 +220,20 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
   }
 
   function handleImageDownlod(el) {
-    const input = docToPrint.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "px",
-        format: [600, 400],
-      });
-      pdf.addImage(imgData, "JPEG", 0, 0);
+    var canvas = document.getElementById("newspaper");
+    html2canvas(canvas).then(function (canvas) {
+      domtoimage
+        .toBlob(document.getElementById("newspaper"))
 
-      pdf.save("Up4-receipt.pdf");
+        .then(function (base64image) {
+          console.log();
+          window.saveAs(base64image, "NewsPaper");
+        });
     });
   }
-  function handlePdfDownlod(e) {
-    htmlToImage
-      .toPng(document.getElementById("newspaper"), { quality: 1.0 })
-      .then(function (dataUrl) {
-        var link = document.createElement("a");
-        link.download = "my-image-name.jpeg";
-        const pdf = new jsPDF();
-        const imgProps = pdf.getImageProperties(dataUrl);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("download1.pdf");
-      });
-  }
+
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1 "></div>
@@ -293,6 +257,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
             )}
           </div>
           <div class="col-lg-1"></div>
+
           <div
             className="newspaperrnav col-lg-3"
             style={{
@@ -304,6 +269,11 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
               right: "0",
             }}
           >
+            {" "}
+            <p style={{ color: "#ffffff" }}>
+              {" "}
+              date will be displayed based on the scheduled event date
+            </p>
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <input
                 style={{ display: "none" }}
@@ -394,36 +364,6 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                     }}
                   />
                 </div>
-                <div
-                  style={{
-                    width: "200px",
-
-                    marginTop: "20px",
-                  }}
-                  className="RightSideBar2__Btn"
-                >
-                  <DateRangeIcon
-                    style={{
-                      margin: "0 10px 0 5px",
-                      color: "#ffffff",
-                      fontSize: "large",
-                    }}
-                  />
-                  <input
-                    className="RightSideBar2__Btn"
-                    type="date"
-                    style={{
-                      color: "#068dc0",
-                      margin: "0",
-                      backgroundColor: "#ffffff",
-                      width: "150px",
-                    }}
-                    value={BDate}
-                    onChange={(e) => {
-                      setBDate(e.target.value);
-                    }}
-                  />
-                </div>
 
                 <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
@@ -434,15 +374,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                     title="Download as image"
                   />
                 </div>
-                <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handlePdfDownlod(this);
-                    }}
-                    Icon={GetAppIcon}
-                    title="Download as pdf"
-                  />
-                </div>
+
                 {loading ? (
                   <Loader
                     type="BallTriangle"

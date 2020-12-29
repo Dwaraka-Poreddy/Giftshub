@@ -17,6 +17,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
+import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import {
   BrowserView,
@@ -53,7 +54,7 @@ function OpenGreetingCardPage() {
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#C28484");
 
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
@@ -144,6 +145,7 @@ function OpenGreetingCardPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <AuthHeader />
       <div>
         {" "}
         <Tour
@@ -159,40 +161,6 @@ function OpenGreetingCardPage() {
           accentColor={accentColor}
         />
       </div>
-
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <br />
       <br />

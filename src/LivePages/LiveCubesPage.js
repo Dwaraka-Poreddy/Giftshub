@@ -9,6 +9,7 @@ export default function LiveCubesPage({ match }) {
   const [fbimg3, setfbimg3] = useState("");
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
+  const [fbimg6, setfbimg6] = useState("");
   const [loading, setloading] = useState(false);
   useEffect(async () => {
     setloading(true);
@@ -27,44 +28,13 @@ export default function LiveCubesPage({ match }) {
         setfbimg4(img4);
         var img5 = snapshot.val().url5;
         setfbimg5(img5);
+        var img6 = snapshot.val().url6;
+        setfbimg6(img6);
       });
     setloading(false);
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
       <br />
       <br />
       <div>
@@ -85,6 +55,7 @@ export default function LiveCubesPage({ match }) {
                 fbimg3={fbimg3}
                 fbimg4={fbimg4}
                 fbimg5={fbimg5}
+                fbimg6={fbimg6}
               />
             )}
           </div>

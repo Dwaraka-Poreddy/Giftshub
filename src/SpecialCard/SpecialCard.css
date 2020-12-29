@@ -92,3 +92,9 @@
     font-size: 30px;
   }
 }
+.specialcontent h2 {
+  font-size: 1.8rem !important;
+}
+.specialcontent h4 {
+  font-size: 1.2rem !important;
+}

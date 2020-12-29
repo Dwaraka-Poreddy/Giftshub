@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./Cubes.css";
 
-export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
+export default function Cubes({
+  fbimg1,
+  fbimg2,
+  fbimg3,
+  fbimg4,
+  fbimg5,
+  fbimg6,
+  t1,
+  t2,
+  t3,
+  t4,
+  t5,
+  t6,
+}) {
   const min = 1;
   const max = 24;
   const cube = document.getElementById("cube");
 
-  const [img6, setImg6] = useState(
-    "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  );
+  // const [img6, setImg6] = useState(
+  //   "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+  // );
 
   function handleClick() {
     const min = 1;
@@ -23,7 +36,7 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
   }
 
   return (
-    <div className="App">
+    <div style={{ color: "#ffffff" }}>
       <section class="cubecontainer">
         <div
           onClick={() => {
@@ -46,7 +59,9 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="front bob"
-              ></div>
+              >
+                {t1}
+              </div>
               <div
                 style={{
                   opacity: "0.85",
@@ -60,7 +75,9 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="back bob"
-              ></div>
+              >
+                {t2}
+              </div>
               <div
                 style={{
                   opacity: "0.85",
@@ -74,7 +91,9 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="right bob"
-              ></div>
+              >
+                {t3}
+              </div>
               <div
                 style={{
                   opacity: "0.85",
@@ -88,11 +107,13 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="left  bob"
-              ></div>
+              >
+                {t4}
+              </div>
               <div
                 style={{
                   opacity: "0.85",
-                  backgroundImage: "url(" + img6 + ")",
+                  backgroundImage: "url(" + fbimg6 + ")",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
@@ -102,7 +123,9 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="top bob"
-              ></div>
+              >
+                {t6}
+              </div>
               <div
                 style={{
                   opacity: "0.85",
@@ -116,7 +139,9 @@ export default function Cubes({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5 }) {
                   borderRadius: "10px",
                 }}
                 class="bottom bob"
-              ></div>
+              >
+                {t5}
+              </div>
             </div>
             <div class="rib1"></div>
             <div class="rib2"></div>

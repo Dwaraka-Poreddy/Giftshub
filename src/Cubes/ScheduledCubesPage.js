@@ -73,7 +73,12 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
   const [image_url5, setimage_url5] = useState();
   const [opencrop5, setopencrop5] = useState(false);
   const [send5, setsend5] = useState();
-
+  const [fbimg6, setfbimg6] = useState(
+    "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+  );
+  const [image_url6, setimage_url6] = useState();
+  const [opencrop6, setopencrop6] = useState(false);
+  const [send6, setsend6] = useState();
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
     setopencrop1(true);
@@ -94,7 +99,10 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
     setopencrop5(true);
   };
-
+  const onSelectFile6 = (e) => {
+    setsend6(window.URL.createObjectURL(e.target.files[0]));
+    setopencrop6(true);
+  };
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -113,6 +121,8 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
           setfbimg4(img4);
           var img5 = snapshot.val().url5;
           setfbimg5(img5);
+          var img6 = snapshot.val().url6;
+          setfbimg6(img6);
           setCLoading(false);
         });
     } else {
@@ -126,7 +136,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
     var ud3 = uuidv4();
     var ud4 = uuidv4();
     var ud5 = uuidv4();
-
+    var ud6 = uuidv4();
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
@@ -138,6 +148,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
         url3: fbimg3,
         url4: fbimg4,
         url5: fbimg5,
+        url6: fbimg6,
       };
       todoRef.update(todo);
       setlivelink(
@@ -153,6 +164,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
         url3: fbimg3,
         url4: fbimg4,
         url5: fbimg5,
+        url6: fbimg6,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -210,32 +222,45 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                                         savedImage.ref
                                           .getDownloadURL()
                                           .then((downUrl5) => {
-                                            const todoRef = firebase
-                                              .database()
-                                              .ref("Cubes");
-                                            const todo = {
-                                              url1: downUrl1,
-                                              url2: downUrl2,
-                                              url3: downUrl3,
-                                              url4: downUrl4,
-                                              url5: downUrl5,
-                                            };
-                                            var newKey = todoRef
-                                              .push(todo)
-                                              .getKey();
-                                            setlivelink(
-                                              "http://localhost:3000/scheduledlive/cubes/" +
-                                                newKey +
-                                                "/" +
-                                                slug
-                                            );
+                                            storage
+                                              .ref("images")
+                                              .child(ud6)
+                                              .putString(image_url6, "base64", {
+                                                contentType: "image/jpg",
+                                              })
+                                              .then((savedImage) => {
+                                                savedImage.ref
+                                                  .getDownloadURL()
+                                                  .then((downUrl6) => {
+                                                    const todoRef = firebase
+                                                      .database()
+                                                      .ref("Cubes");
+                                                    const todo = {
+                                                      url1: downUrl1,
+                                                      url2: downUrl2,
+                                                      url3: downUrl3,
+                                                      url4: downUrl4,
+                                                      url5: downUrl5,
+                                                      url6: downUrl6,
+                                                    };
+                                                    var newKey = todoRef
+                                                      .push(todo)
+                                                      .getKey();
+                                                    setlivelink(
+                                                      "http://localhost:3000/scheduledlive/cubes/" +
+                                                        newKey +
+                                                        "/" +
+                                                        slug
+                                                    );
 
-                                            setpreviewlink(
-                                              "/scheduledlive/cubes/" +
-                                                newKey +
-                                                "/" +
-                                                slug
-                                            );
+                                                    setpreviewlink(
+                                                      "/scheduledlive/cubes/" +
+                                                        newKey +
+                                                        "/" +
+                                                        slug
+                                                    );
+                                                  });
+                                              });
                                           });
                                         setloading(false);
                                       });
@@ -255,6 +280,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
         toast.success("Cubes in 3D Heart updated successfully");
     }
   };
+
   async function EditPack() {
     const snapshot = await database
       .collection("n-day-pack")
@@ -282,44 +308,11 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
       },
       { merge: true }
     );
-    toast.success("3D cube successfully added to your pack");
+    toast.success("Cubes in 3D Heart successfully added to your pack");
     getDoc();
   }
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
@@ -339,6 +332,13 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                   fbimg3={fbimg3}
                   fbimg4={fbimg4}
                   fbimg5={fbimg5}
+                  fbimg6={fbimg6}
+                  t1="1"
+                  t2="2"
+                  t3="3"
+                  t4="4"
+                  t5="5"
+                  t6="6"
                 />
               </div>
             )}
@@ -490,6 +490,33 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
               ) : null}
               <label htmlFor="LocalfileInput5">
                 <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
+              </label>
+              <input
+                style={{ display: "none" }}
+                accept="image/* "
+                className={secclasses.input}
+                id="LocalfileInput6"
+                name="LocalfileInput6"
+                multiple
+                type="file"
+                accept="image/*"
+                onChange={onSelectFile6}
+                onClick={(event) => {
+                  event.target.value = null;
+                }}
+              />
+              {opencrop6 ? (
+                <CropPage
+                  send={send6}
+                  setfbimg={setfbimg6}
+                  setimage_url={setimage_url6}
+                  aspect_ratio={1 / 1}
+                  opencrop={opencrop6}
+                  setopencrop={setopencrop6}
+                />
+              ) : null}
+              <label htmlFor="LocalfileInput6">
+                <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
               </label>
               <center>
                 {loading ? (

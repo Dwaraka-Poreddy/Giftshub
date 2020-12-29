@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import "./NewsPaper.css";
 function NewsPaper({ head, para, fbimg, startDate }) {
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  // console.log(startDate, "startdate");
+  // console.log(
+  //   new Date(startDate).toLocaleDateString("en-US", options),
+  //   "startdatetolocalestring"
+  // );
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -27,8 +38,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
             <div style={{ display: "block" }}>
               <div>
                 <p className="Newsdate">
-                  {/* {startDate} */}
-                  {new Date().toDateString()}
+                  {new Date(startDate).toLocaleDateString("en-US", options)}
                 </p>
               </div>
               <div>

@@ -9,11 +9,11 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import { jsPDF } from "jspdf";
+
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -29,6 +29,7 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
+import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
@@ -57,7 +58,7 @@ function NewsPaperPage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-  const [BDate, setBDate] = useState();
+  const [BDate, setBDate] = useState("2020-12-10");
 
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
@@ -126,33 +127,18 @@ function NewsPaperPage() {
       );
     }
   };
+
   function handleImageDownlod(el) {
-    const input = docToPrint.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "px",
-        format: [600, 400],
-      });
-      pdf.addImage(imgData, "JPEG", 0, 0);
-      // pdf.output("dataurlnewwindow");
-      pdf.save("Up4-receipt.pdf");
+    var canvas = document.getElementById("newspaper");
+    html2canvas(canvas).then(function (canvas) {
+      domtoimage
+        .toBlob(document.getElementById("newspaper"))
+
+        .then(function (base64image) {
+          console.log();
+          window.saveAs(base64image, "NewsPaper");
+        });
     });
-  }
-  function handlePdfDownlod(e) {
-    htmlToImage
-      .toPng(document.getElementById("newspaper"), { quality: 1.0 })
-      .then(function (dataUrl) {
-        var link = document.createElement("a");
-        link.download = "my-image-name.jpeg";
-        const pdf = new jsPDF();
-        const imgProps = pdf.getImageProperties(dataUrl);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("download1.pdf");
-      });
   }
 
   const tourConfig = [
@@ -193,6 +179,7 @@ function NewsPaperPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <AuthHeader />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -205,44 +192,6 @@ function NewsPaperPage() {
         rounded={5}
         accentColor={accentColor}
       />
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1"></div>
@@ -432,15 +381,7 @@ function NewsPaperPage() {
                     title="Download as image"
                   />
                 </div>
-                <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handlePdfDownlod(this);
-                    }}
-                    Icon={GetAppIcon}
-                    title="Download as pdf"
-                  />
-                </div>
+
                 <div
                   data-tut="reactour__generatelink"
                   style={{ marginTop: "20px" }}

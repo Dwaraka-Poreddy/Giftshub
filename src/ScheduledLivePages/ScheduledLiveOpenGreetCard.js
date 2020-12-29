@@ -164,6 +164,49 @@ function ScheduledLiveOpenGreetCard({ match }) {
           )}
         </div>
       </div>
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 col-sm-12">
+              <p className="copyright">
+                Copyright © 2020 Gift's Hub Company . Design:{" "}
+                <a rel="nofollow" href="/">
+                  Gift's Hub
+                </a>
+              </p>
+            </div>
+            <div className="col-lg-5 col-md-12 col-sm-12">
+              <ul className="social">
+                <li>
+                  <a href="#">
+                    <i className="fa fa-facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-rss" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-dribbble" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

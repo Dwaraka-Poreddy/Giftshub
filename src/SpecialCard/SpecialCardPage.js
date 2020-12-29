@@ -15,7 +15,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import ImageIcon from "@material-ui/icons/Image";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-
+import AuthHeader from "../components/nav/Header";
 import firebase from "../firebase";
 import {
   BrowserView,
@@ -110,7 +110,9 @@ export default function SpecialCardPage() {
   const [cropmodal, setCropmodal] = useState(false);
   const [showshare, setshowshare] = useState(false);
   const [previewlink, setpreviewlink] = useState("");
-  const [fbimg, setfbimg] = useState("https://picsum.photos/360/360?image=0");
+  const [fbimg, setfbimg] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fwwoman.jpg?alt=media&token=6c7031d9-6519-45c5-8256-44a52a4c1b20"
+  );
 
   const [livelink, setlivelink] = useState();
   const [fireurl, setFireUrl] = useState("");
@@ -308,6 +310,7 @@ export default function SpecialCardPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <AuthHeader />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -320,39 +323,7 @@ export default function SpecialCardPage() {
         rounded={5}
         accentColor={accentColor}
       />
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
 
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
       <br />
       <br />
       <br />
@@ -663,6 +634,49 @@ export default function SpecialCardPage() {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 col-sm-12">
+              <p className="copyright">
+                Copyright © 2020 Gift's Hub Company . Design:{" "}
+                <a rel="nofollow" href="/">
+                  Gift's Hub
+                </a>
+              </p>
+            </div>
+            <div className="col-lg-5 col-md-12 col-sm-12">
+              <ul className="social">
+                <li>
+                  <a href="#">
+                    <i className="fa fa-facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-rss" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-dribbble" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

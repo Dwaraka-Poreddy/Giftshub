@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import NpackSelect from "./NPackSelect";
+import AuthHeader from "../components/nav/Header";
 import Loader from "react-loader-spinner";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 const useStyles = makeStyles((theme) => ({
@@ -99,7 +100,7 @@ const Home = ({ history }) => {
   };
   const CreatePack = (e) => {
     setloading(true);
-    e.preventDefault();
+
     var ud = uuidv4();
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
@@ -155,6 +156,35 @@ const Home = ({ history }) => {
       }
     );
   };
+  const handleDelete = (id) => {
+    setGifts((prevgifts) => {
+      return prevgifts.filter((giftitem) => {
+        return giftitem.id !== id;
+      });
+    });
+    database
+      .collection("n-day-pack")
+      .doc(user.uid)
+      .collection("giftshub")
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted from ndaypack!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+    database
+      .collection("Livelinks")
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted friom libe!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+  };
   return (
     <div
       style={{
@@ -163,6 +193,7 @@ const Home = ({ history }) => {
         height: "80vh",
       }}
     >
+      <AuthHeader />
       <p>Home</p>
       <button
         className="main-button"
@@ -217,7 +248,7 @@ const Home = ({ history }) => {
                   <div class="row">
                     <div class="col-xl-4 pt-3">
                       <center style={{ marginTop: "50px" }}>
-                        <form onSubmit={CreatePack}>
+                        <form>
                           <div
                             style={{
                               width: "200px",
@@ -368,22 +399,6 @@ const Home = ({ history }) => {
                               }
                             />
                           </div>
-                          {npackorder.length == 0 ? null : (
-                            <>
-                              <input
-                                style={{ display: "none" }}
-                                id="submit"
-                                type="submit"
-                                value="Create 7 day pack"
-                              />
-                              <label htmlFor="submit">
-                                <HeaderBtn
-                                  Icon={ImageIcon}
-                                  title="Create 7 day pack "
-                                />
-                              </label>
-                            </>
-                          )}
                         </form>
                       </center>
                     </div>
@@ -393,7 +408,52 @@ const Home = ({ history }) => {
                       </center>
                     </div>
                   </div>
+                  <br />
+                  <center>
+                    {npackorder.length == 0 ? (
+                      <>
+                        <input
+                          disabled
+                          style={{ display: "none" }}
+                          id="submit"
+                          type="submit"
+                          value="Create 7 day pack"
+                        />
+                        <label style={{ opacity: "0.4" }} htmlFor="submit">
+                          <button
+                            disabled
+                            style={{ cursor: "default" }}
+                            className="main-button"
+                          >
+                            {" "}
+                            Create 7 day pack
+                          </button>
+                        </label>
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          style={{ display: "none" }}
+                          id="submit"
+                          type="submit"
+                          value="Create 7 day pack"
+                        />
+                        <label htmlFor="submit">
+                          <button
+                            className="main-button"
+                            onClick={() => {
+                              CreatePack();
+                            }}
+                          >
+                            {" "}
+                            Create 7 day pack
+                          </button>
+                        </label>
+                      </>
+                    )}{" "}
+                  </center>
                 </div>
+
                 <Fab
                   onClick={() => {
                     setopenModal(false);
@@ -415,18 +475,69 @@ const Home = ({ history }) => {
         <div>
           {error ? <p>Ops, there is an error :(</p> : null}
           <ul>
-            {gifts.map((gift) => (
+            {gifts.map((gift, index) => (
               <li key={gift.id}>
                 <Link to={`/ContinuePack/${gift.id}`}>
                   <button className="main-button">
                     {gift.Folder_name}|{gift.id}
                   </button>
                 </Link>
+                <button
+                  onClick={() => {
+                    handleDelete(gift.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <br />
               </li>
             ))}
           </ul>
         </div>
       )}
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 col-sm-12">
+              <p className="copyright">
+                Copyright © 2020 Gift's Hub Company . Design:{" "}
+                <a rel="nofollow" href="/">
+                  Gift's Hub
+                </a>
+              </p>
+            </div>
+            <div className="col-lg-5 col-md-12 col-sm-12">
+              <ul className="social">
+                <li>
+                  <a href="#">
+                    <i className="fa fa-facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-rss" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-dribbble" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

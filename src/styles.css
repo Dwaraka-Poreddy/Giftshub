@@ -22,8 +22,26 @@
   margin: 0 auto;
   background: none;
 }
+.mainpgcardtxt {
+  color: #fff !important;
+  background-color: #0092e0;
+  height: 80px;
+  border: 10px solid #fff;
+  margin-bottom: -20px !important;
+  align-items: center;
+  vertical-align: middle;
+  font-family: Noto Sans JP;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.mainpgcardtxt h1 {
+  color: #fff !important;
+}
 .productCardTextDiv {
-  color: #fff;
+  color: #fff !important;
   background-color: #0092e0;
   height: 80px;
   border: 10px solid #fff;
@@ -37,29 +55,10 @@
   text-align: center;
   justify-content: center;
 }
-@media only screen and (max-width: 480px) {
-  h1 {
-    font-size: 20px !important;
-  }
-  h2 {
-    font-size: 22px !important;
-  }
-  h3 {
-    font-size: 18px !important;
-  }
-  h5 {
-    font-size: 16px !important;
-  }
-  h6 {
-    font-size: 8px !important;
-  }
-  h8 {
-    font-size: 12px !important;
-  }
-  p {
-    font-size: 18px !important;
-  }
+.productCardTextDiv h1 {
+  color: #fff !important;
 }
+
 a:link {
   text-decoration: none;
 }

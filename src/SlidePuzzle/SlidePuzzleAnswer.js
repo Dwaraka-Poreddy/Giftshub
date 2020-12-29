@@ -8,20 +8,21 @@ export default function PuzzleAnswer({ fbimg }) {
         width: "345px",
         height: "345px",
         fontSize: "1.17em",
-        fontWeight: "old",
+        fontWeight: "bold",
       }}
       className="App"
     >
-      <h3
+      {/* <h3
         style={{
-          marginLeft: "-100px",
+          // marginLeft: "-100px",
           marginBottom: "30px",
           boxSizing: "border-box",
           display: "block",
+          fontSize: "30px",
         }}
       >
         Hover over me for image
-      </h3>
+      </h3> */}
       {/* <img src={fbimg} alt="0" /> */}
       <div class="puzzleframe">
         <div

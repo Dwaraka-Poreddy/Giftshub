@@ -18,6 +18,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import AuthHeader from "../components/nav/Header";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -179,6 +180,35 @@ function SevenDayHome({ history }) {
       items: 4,
     },
   };
+  const handleDelete = (id) => {
+    setGifts((prevgifts) => {
+      return prevgifts.filter((giftitem) => {
+        return giftitem.id !== id;
+      });
+    });
+    database
+      .collection("n-day-pack")
+      .doc(user.uid)
+      .collection("giftshub")
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted from ndaypack!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+    database
+      .collection("Livelinks")
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted friom libe!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+  };
   return (
     <div
       style={{
@@ -187,6 +217,7 @@ function SevenDayHome({ history }) {
         height: "80vh",
       }}
     >
+      <AuthHeader />
       <section className="section" id="services">
         <h1
           style={{
@@ -215,118 +246,90 @@ function SevenDayHome({ history }) {
               autoplayHoverPause
             >
               {" "}
-              <Link className="productCard" to="/threedimagepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>3D Image </h1>
-                  </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/magazine.png"
+                    alt=""
+                  />
                 </div>
-              </Link>
-              <Link className="productCard" to="/newspaperpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/newspaper_alit.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>News Papers</h1>
-                  </div>
+                <div className="productCardTextDiv">
+                  <h1>3D Image </h1>
                 </div>
-              </Link>
-              <Link className="productCard" to="/slidepuzzlepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/right-image.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Puzzles</h1>
-                  </div>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/newspaper_alit.png"
+                    alt=""
+                  />
                 </div>
-              </Link>
-              <Link className="productCard" to="/memorygamepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/right-image.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Memory Game</h1>
-                  </div>
+                <div className="productCardTextDiv">
+                  <h1>News Papers</h1>
                 </div>
-              </Link>
-              <Link className="productCard" to="/cubespage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/newspaper_alit.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Cubes</h1>
-                  </div>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/right-image.png"
+                    alt=""
+                  />
                 </div>
-              </Link>
-              <Link className="productCard" to="/collagepage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Collage</h1>
-                  </div>
+                <div className="productCardTextDiv">
+                  <h1>Puzzles</h1>
                 </div>
-              </Link>
-              <Link className="productCard" to="/opengreetingcardpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Greeting Card</h1>
-                  </div>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/right-image.png"
+                    alt=""
+                  />
                 </div>
-              </Link>
-              <Link className="productCard" to="/opengreetingcardpage">
-                <div className="productCardDiv">
-                  <div>
-                    <img
-                      className="productCardImg"
-                      src="assets/images/magazine.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="productCardTextDiv">
-                    <h1>Greeting Card</h1>
-                  </div>
+                <div className="productCardTextDiv">
+                  <h1>Memory Game</h1>
                 </div>
-              </Link>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/newspaper_alit.png"
+                    alt=""
+                  />
+                </div>
+                <div className="productCardTextDiv">
+                  <h1>Cubes</h1>
+                </div>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/magazine.png"
+                    alt=""
+                  />
+                </div>
+                <div className="productCardTextDiv">
+                  <h1>Collage</h1>
+                </div>
+              </div>
+              <div className="productCardDiv">
+                <div>
+                  <img
+                    className="productCardImg"
+                    src="assets/images/magazine.png"
+                    alt=""
+                  />
+                </div>
+                <div className="productCardTextDiv">
+                  <h1>Greeting Card</h1>
+                </div>
+              </div>
             </OwlCarousel>
           </div>
         </div>
@@ -522,22 +525,20 @@ function SevenDayHome({ history }) {
                             }
                           />
                         </div>
-                        {npackorder.length == 0 ? null : (
-                          <>
-                            <input
-                              style={{ display: "none" }}
-                              id="submit"
-                              type="submit"
-                              value="Create 7 day pack"
-                            />
-                            <label htmlFor="submit">
-                              <HeaderBtn
-                                Icon={ImageIcon}
-                                title="Create 7 day pack "
-                              />
-                            </label>
-                          </>
-                        )}
+                        <br />
+
+                        <input
+                          style={{ display: "none" }}
+                          id="submit"
+                          type="submit"
+                          value="Create 7 day pack"
+                        />
+                        <label htmlFor="submit">
+                          <button className="main-button">
+                            {" "}
+                            Create 7 day pack
+                          </button>
+                        </label>
                       </form>
                     </center>
                   </div>
@@ -577,28 +578,67 @@ function SevenDayHome({ history }) {
               {gifts.map((gift) => (
                 <li key={gift.id}>
                   <Link to={`/ContinuePack/${gift.id}`}>
-                    <div>
-                      <div
-                        style={{
-                          height: "50px",
-                          borderRadius: "5px",
-                          marginTop: "5px",
-                          border: "0",
-                        }}
-                        className="productCardTextDiv"
-                      >
-                        <h1 style={{ padding: "0", marginBottom: "0" }}>
-                          {gift.Folder_name}
-                        </h1>
-                      </div>
-                    </div>
+                    <button className="main-button">
+                      {gift.Folder_name}|{gift.id}
+                    </button>
                   </Link>
+                  <button
+                    onClick={() => {
+                      handleDelete(gift.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <br />
                 </li>
               ))}
             </ul>
           </div>
         )}
       </center>
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7 col-md-12 col-sm-12">
+              <p className="copyright">
+                Copyright © 2020 Gift's Hub Company . Design:{" "}
+                <a rel="nofollow" href="/">
+                  Gift's Hub
+                </a>
+              </p>
+            </div>
+            <div className="col-lg-5 col-md-12 col-sm-12">
+              <ul className="social">
+                <li>
+                  <a href="#">
+                    <i className="fa fa-facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-rss" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-dribbble" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

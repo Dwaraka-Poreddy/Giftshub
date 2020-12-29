@@ -58,7 +58,7 @@ function ScheduledThreeDImagePage({
   const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#302015");
   const [secondcol, setsecondcol] = useState("#1c1008");
-
+  const [showoptions, setshowoptions] = useState(false);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -81,7 +81,7 @@ function ScheduledThreeDImagePage({
   }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
+    setshowoptions(false);
     setopencrop(true);
   };
 
@@ -250,39 +250,6 @@ function ScheduledThreeDImagePage({
         rounded={5}
         accentColor={accentColor}
       />
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
@@ -317,17 +284,10 @@ function ScheduledThreeDImagePage({
               right: "0",
             }}
           >
-            {/* <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                
-              </div>
-            </center>
-            <hr /> */}
+            {JSON.stringify(livelink)}
+            <hr />
+            {JSON.stringify(showoptions)}
+
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -366,6 +326,7 @@ function ScheduledThreeDImagePage({
                   value={firstcol}
                   onChange={(e) => {
                     setfirstcol(e.target.value);
+                    setshowoptions(false);
                   }}
                   placement="right"
                   autoAdjust="true"
@@ -387,6 +348,7 @@ function ScheduledThreeDImagePage({
                   value={secondcol}
                   onChange={(e) => {
                     setsecondcol(e.target.value);
+                    setshowoptions(false);
                   }}
                   placement="right"
                   autoAdjust="true"
@@ -418,6 +380,7 @@ function ScheduledThreeDImagePage({
                         <HeaderBtn
                           handleClick={() => {
                             handleFireBaseUpload();
+                            setshowoptions(true);
                           }}
                           Icon={LinkIcon}
                           title="Update pack"
@@ -429,6 +392,7 @@ function ScheduledThreeDImagePage({
                         <HeaderBtn
                           handleClick={() => {
                             handleFireBaseUpload();
+                            setshowoptions(true);
                           }}
                           Icon={LinkIcon}
                           title="Generate Link"
@@ -440,7 +404,7 @@ function ScheduledThreeDImagePage({
               </center>
 
               <center>
-                {livelink ? (
+                {livelink && showoptions && !loading ? (
                   <div>
                     <div
                       data-tut="reactour__copylink"
