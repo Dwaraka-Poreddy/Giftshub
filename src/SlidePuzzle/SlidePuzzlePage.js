@@ -30,6 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function OpenGreetingCardPage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   const secclasses = secuseStyles();
@@ -234,13 +235,16 @@ function OpenGreetingCardPage() {
               </div>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
+                  <button
+                    onClick={() => {
                       handleFireBaseUpload();
+                      setshowoptions(true);
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
                 </div>
               </center>
               {loading ? (

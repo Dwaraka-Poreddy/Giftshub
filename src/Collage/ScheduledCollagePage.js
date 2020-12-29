@@ -27,6 +27,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledCollagePage({ step, slug, getDoc }) {
+  const [showoptions, setshowoptions] = useState(false);
   let { edit } = useSelector((state) => ({ ...state }));
   const [loading, setloading] = useState(false);
   const [Cloading, setCLoading] = useState(false);
@@ -744,35 +745,59 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
                     color="#00BFFF"
                     height={100}
                     width={100}
-                    // timeout={3000} //3 secs
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        handleFireBaseUpload();
-                      }}
-                      Icon={LinkIcon}
-                      title={edit.text != "" ? "Update pack" : "Generate Link"}
-                    />
+                    {edit.text != "" ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        className="main-button"
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    )}
                   </div>
                 )}
               </center>
 
               <center>
-                {livelink ? (
+                {livelink && showoptions && !loading ? (
                   <div>
-                    <div style={{ width: "200px", marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__preview"
+                      style={{ marginTop: "20px" }}
+                    >
                       <Link class="logo" to={previewlink} target="_blank">
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
                     {edit.text != "" ? null : (
-                      <div style={{ marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__addtopack"
+                        style={{ marginTop: "20px" }}
+                      >
                         <HeaderBtn
                           handleClick={() => {
                             EditPack();

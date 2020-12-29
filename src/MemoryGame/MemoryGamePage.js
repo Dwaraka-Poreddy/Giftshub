@@ -30,6 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function CubesPage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   const [loading, setloading] = useState(false);
@@ -504,15 +505,16 @@ function CubesPage() {
                   <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
                 </label>
               </div>
-              <center data-tut="reactour__generatelink">
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
-                />
-              </center>
+              <button
+                onClick={() => {
+                  handleFireBaseUpload();
+                  setshowoptions(true);
+                }}
+                className="main-button"
+                data-tut="reactour__generatelink"
+              >
+                Generate Link
+              </button>
               {loading ? (
                 <Loader
                   type="BallTriangle"

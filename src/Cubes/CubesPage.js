@@ -39,7 +39,7 @@ function CubesPage() {
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [imageAsFile, setImageAsFile] = useState("");
-
+  const [showoptions, setshowoptions] = useState(false);
   const [fbimg1, setfbimg1] = useState(
     "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw=&auto=format&fit=crop&w=1950&q=80"
   );
@@ -505,13 +505,16 @@ function CubesPage() {
               </div>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
+                  <button
+                    onClick={() => {
                       handleFireBaseUpload();
+                      setshowoptions(true);
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
                 </div>
               </center>
               {loading ? (

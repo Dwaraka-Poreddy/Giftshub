@@ -284,9 +284,9 @@ function ScheduledThreeDImagePage({
               right: "0",
             }}
           >
-            {JSON.stringify(livelink)}
+            {/* {JSON.stringify(livelink)}
             <hr />
-            {JSON.stringify(showoptions)}
+            {JSON.stringify(showoptions)} */}
 
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
@@ -375,29 +375,27 @@ function ScheduledThreeDImagePage({
                 ) : (
                   <div style={{ marginTop: "20px" }}>
                     {edit.text != "" ? (
-                      <div data-tut="reactour__updatepack">
-                        {" "}
-                        <HeaderBtn
-                          handleClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          Icon={LinkIcon}
-                          title="Update pack"
-                        />
-                      </div>
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
                     ) : (
-                      <div data-tut="reactour__generatelink">
-                        {" "}
-                        <HeaderBtn
-                          handleClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          Icon={LinkIcon}
-                          title="Generate Link"
-                        />
-                      </div>
+                      <button
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        className="main-button"
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
                     )}
                   </div>
                 )}

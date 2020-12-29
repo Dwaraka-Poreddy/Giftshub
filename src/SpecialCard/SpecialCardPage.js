@@ -91,6 +91,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 export default function SpecialCardPage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [loading, setloading] = useState(false);
   const [Snackopen, setSnackopen] = React.useState(false);
   const [infoSnackopen, setinfoSnackopen] = React.useState(false);
@@ -573,13 +574,16 @@ export default function SpecialCardPage() {
                   data-tut="reactour__generatelink"
                   style={{ marginTop: "20px" }}
                 >
-                  <HeaderBtn
-                    handleClick={() => {
+                  <button
+                    onClick={() => {
                       handleFireBaseUpload();
+                      setshowoptions(true);
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
                 </div>
               </center>
               {loading ? (

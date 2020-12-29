@@ -408,14 +408,24 @@ function ContinuePack({ match, history }) {
                   // transform: "translateY(-50%) translateX(-50%)",
                 }}
               >
-                <HeaderBtn
+                <button
+                  onClick={() => {
+                    setshowshare(true);
+                    setopenModal(true);
+                  }}
+                  className="main-button"
+                  data-tut="reactour__generatelink"
+                >
+                  Share
+                </button>
+                {/* <HeaderBtn
                   handleClick={() => {
                     setshowshare(true);
                     setopenModal(true);
                   }}
                   Icon={ShareIcon}
                   title="Share "
-                />{" "}
+                />{" "} */}
                 {!showshare ? null : (
                   <Modal
                     style={{
@@ -491,13 +501,15 @@ function ContinuePack({ match, history }) {
                   // transform: "translateY(-50%) translateX(-50%)",
                 }}
               >
-                <HeaderBtn
-                  handleClick={() => {
+                <button
+                  onClick={() => {
                     setIsTourOpen(true);
                   }}
-                  Icon={ShareIcon}
-                  title="Start Tour "
-                />
+                  className="main-button"
+                  data-tut="reactour__generatelink"
+                >
+                  Start Tour
+                </button>
               </div>
             </center>
           </div>

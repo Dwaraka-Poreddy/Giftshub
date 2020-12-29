@@ -55,7 +55,7 @@ function OpenGreetingCardPage() {
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
   const [accentColor, setaccentColor] = useState("#C28484");
-
+  const [showoptions, setshowoptions] = useState(false);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -295,13 +295,16 @@ function OpenGreetingCardPage() {
 
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
+                  <button
+                    onClick={() => {
                       handleFireBaseUpload();
+                      setshowoptions(true);
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
                 </div>
               </center>
               {loading ? (

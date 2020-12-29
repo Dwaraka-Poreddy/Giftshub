@@ -29,6 +29,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
+  const [showoptions, setshowoptions] = useState(false);
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
@@ -249,13 +250,29 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        handleFireBaseUpload();
-                      }}
-                      Icon={LinkIcon}
-                      title={edit.text != "" ? "Update pack" : "Generate Link"}
-                    />
+                    {edit.text != "" ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        className="main-button"
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    )}
                   </div>
                 )}
               </center>

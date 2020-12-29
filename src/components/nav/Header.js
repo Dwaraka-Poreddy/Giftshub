@@ -78,7 +78,7 @@ const Header = () => {
                   >
                     {user.email.split("@")[0]}
                     <img
-                      width="45"
+                      width="40"
                       src={user.profilepic}
                       class="md-avatar rounded-circle ml-3"
                       alt="avatar image"

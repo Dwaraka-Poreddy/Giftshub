@@ -30,6 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function CollagePage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   const secclasses = secuseStyles();
@@ -707,15 +708,16 @@ function CollagePage() {
                   <HeaderBtn Icon={ImageIcon} title="Change  image 9" />
                 </label>
               </div>
-              <center data-tut="reactour__generatelink">
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
-                />
-              </center>
+              <button
+                onClick={() => {
+                  handleFireBaseUpload();
+                  setshowoptions(true);
+                }}
+                className="main-button"
+                data-tut="reactour__generatelink"
+              >
+                Generate Link
+              </button>
               {loading ? (
                 <Loader
                   type="BallTriangle"

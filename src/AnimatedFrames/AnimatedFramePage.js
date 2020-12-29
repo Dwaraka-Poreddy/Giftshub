@@ -30,6 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 export default function AnimatedFramePage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -224,15 +225,16 @@ export default function AnimatedFramePage() {
                 />
               </div>
               <center>
-                <div style={{ width: "55%", marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleFireBaseUpload();
-                    }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
-                </div>
+                <button
+                  onClick={() => {
+                    handleFireBaseUpload();
+                    setshowoptions(true);
+                  }}
+                  className="main-button"
+                  data-tut="reactour__generatelink"
+                >
+                  Generate Link
+                </button>
               </center>
               {loading ? (
                 <Loader

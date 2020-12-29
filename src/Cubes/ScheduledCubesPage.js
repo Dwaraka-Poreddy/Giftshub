@@ -38,7 +38,7 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [imageAsFile, setImageAsFile] = useState("");
-
+  const [showoptions, setshowoptions] = useState(false);
   const [fbimg1, setfbimg1] = useState(
     "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw=&auto=format&fit=crop&w=1950&q=80"
   );
@@ -528,31 +528,56 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    <HeaderBtn
-                      handleClick={() => {
-                        handleFireBaseUpload();
-                      }}
-                      Icon={LinkIcon}
-                      title={edit.text != "" ? "Update pack" : "Generate Link"}
-                    />
+                    {edit.text != "" ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        className="main-button"
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    )}
                   </div>
                 )}
               </center>
 
               <center>
-                {livelink ? (
+                {livelink && showoptions && !loading ? (
                   <div>
-                    <div style={{ width: "200px", marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
                       <Copy livelink={livelink} />
                     </div>
 
-                    <div style={{ marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__preview"
+                      style={{ marginTop: "20px" }}
+                    >
                       <Link class="logo" to={previewlink} target="_blank">
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
                     {edit.text != "" ? null : (
-                      <div style={{ marginTop: "20px" }}>
+                      <div
+                        data-tut="reactour__addtopack"
+                        style={{ marginTop: "20px" }}
+                      >
                         <HeaderBtn
                           handleClick={() => {
                             EditPack();

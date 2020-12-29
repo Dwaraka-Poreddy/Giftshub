@@ -45,6 +45,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function NewsPaperPage() {
+  const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#5cb7b7");
   let docToPrint = React.createRef();
@@ -386,13 +387,16 @@ function NewsPaperPage() {
                   data-tut="reactour__generatelink"
                   style={{ marginTop: "20px" }}
                 >
-                  <HeaderBtn
-                    handleClick={() => {
+                  <button
+                    onClick={() => {
                       handleFireBaseUpload();
+                      setshowoptions(true);
                     }}
-                    Icon={LinkIcon}
-                    title="Generate Link"
-                  />
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
                 </div>
               </center>
               {loading ? (

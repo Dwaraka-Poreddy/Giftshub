@@ -194,7 +194,7 @@ const Home = ({ history }) => {
       }}
     >
       <AuthHeader />
-      <p>Home</p>
+      <br />
       <button
         className="main-button"
         onClick={() => {

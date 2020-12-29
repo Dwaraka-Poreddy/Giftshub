@@ -347,7 +347,7 @@ export default function App() {
             <div class="col mb-4 ">
               <div class="card shadow-none componentcards">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fanimatedframesgif.gif?alt=media&token=18df85da-9f43-4ffb-bc0e-43012e11cfc9"
+                  src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fanimatedframegif.gif?alt=media&token=bafa0360-c449-4c4b-8d5e-d6bcd747d61d"
                   class="card-img-top"
                   alt="..."
                 />
