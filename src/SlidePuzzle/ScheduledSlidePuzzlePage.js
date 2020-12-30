@@ -45,7 +45,7 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/images%2F1b8f3a18-4680-4580-aca0-c87651df6faf?alt=media&token=4c5d9aae-7acc-40bc-beb8-7292c893f7a4"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531"
   );
 
   useEffect(() => {

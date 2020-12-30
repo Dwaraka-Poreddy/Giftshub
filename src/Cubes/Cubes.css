@@ -39,6 +39,7 @@
   height: 100%;
   top: 300px;
   left: -100px;
+  top: 250px;
   position: absolute;
 
   transform-style: preserve-3d;

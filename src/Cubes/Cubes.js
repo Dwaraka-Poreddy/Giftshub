@@ -19,10 +19,6 @@ export default function Cubes({
   const max = 24;
   const cube = document.getElementById("cube");
 
-  // const [img6, setImg6] = useState(
-  //   "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  // );
-
   function handleClick() {
     const min = 1;
     const max = 24;

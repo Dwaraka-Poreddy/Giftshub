@@ -273,17 +273,10 @@ function CubesPage() {
         accentColor={accentColor}
       />
 
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
-          <div
-            class="  col-lg-7"
-            style={{ height: "70vh", marginTop: "-150px" }}
-          >
+          <div class="  col-lg-7" style={{ height: "70vh", marginTop: "50px" }}>
             <Cubes
               fbimg1={fbimg1}
               fbimg2={fbimg2}

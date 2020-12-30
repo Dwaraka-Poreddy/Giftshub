@@ -3,6 +3,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import AuthHeader from "./components/nav/Header";
 import Aos from "aos";
+import Loader from "react-loader-spinner";
 import "aos/dist/aos.css";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -27,8 +28,19 @@ export default function App() {
   return (
     <div className="App">
       <AuthHeader />
+      {/* <Loader type="Audio" color="#00BFFF" height={80} width={80} />
+      <Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />
+      <Loader type="Bars" color="#00BFFF" height={80} width={80} />
+      <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+      <Loader type="Grid" color="#00BFFF" height={80} width={80} />
+      <Loader type="Hearts" color="#00BFFF" height={80} width={80} />
+      <Loader type="Oval" color="#00BFFF" height={80} width={80} />
+      <Loader type="Puff" color="#00BFFF" height={80} width={80} />
+      <Loader type="Rings" color="#00BFFF" height={80} width={80} />
+      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+      <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} /> */}
 
-      <div class="welcome-area" id="welcome">
+      <div class="welcome-area" id="welcome" data-aos="fade-down">
         <div class="header-text">
           <div class="container">
             <div class="row">
@@ -68,7 +80,7 @@ export default function App() {
         </div>
       </div>
 
-      <section class="section" id="about2">
+      <section class="section" id="about2" data-aos="fade-down">
         <div class="container">
           <div class="row">
             <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
@@ -123,7 +135,7 @@ export default function App() {
         </div>
       </section>
       <section
-        data-aos="fade-right"
+        data-aos="fade-down"
         style={{ color: "#ffffff" }}
         className="section"
         id="services"
@@ -188,7 +200,7 @@ export default function App() {
         </h1>
         <div class=" container">
           <div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 m-3">
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-right">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a"
@@ -238,7 +250,7 @@ export default function App() {
               </div>
             </div>
 
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-left">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344"
@@ -264,7 +276,7 @@ export default function App() {
               </div>
             </div>
 
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-right">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeD.PNG?alt=media&token=3ef0492e-9919-4c5d-a441-d6f1b0d8e817"
@@ -312,7 +324,7 @@ export default function App() {
               </div>
             </div>
 
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-left">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022"
@@ -335,7 +347,7 @@ export default function App() {
               </div>
             </div>
 
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-right">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fanimatedframegif.gif?alt=media&token=bafa0360-c449-4c4b-8d5e-d6bcd747d61d"
@@ -381,7 +393,7 @@ export default function App() {
               </div>
             </div>
 
-            <div class="col mb-4 ">
+            <div class="col mb-4 " data-aos="fade-up-left">
               <div class="card shadow-none componentcards">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspecialcaardgif.gif?alt=media&token=e004265d-6a48-425b-808b-46fc68ebc4ea"

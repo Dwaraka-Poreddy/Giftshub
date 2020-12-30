@@ -21,25 +21,20 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import AuthHeader from "../components/nav/Header";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    // margin: theme.spacing(1),
-  },
+  margin: {},
   paper: {
     borderRadius: "5px",
-    width: "70vw",
-    // height: "80vh",
-    maxWidth: "840px",
+    width: "100%",
+    maxWidth: "700px",
     minWidth: "280px",
     position: "absolute",
     color: "#ffffff",
     marginTop: "0vh",
     border: null,
-    // backgroundColor: "#009dd9",
-    overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
@@ -63,7 +58,7 @@ function SevenDayHome({ history }) {
       // score: Number.MAX_VALUE,
       url: "",
     },
-    { id: "cubes", content: "Cubes in 3D Heart", url: "" },
+    { id: "cubes", content: " 3D Heart", url: "" },
     { id: "collage", content: "Collage", url: "" },
     { id: "greetingcard", content: "Greeting Card", url: "" },
   ]);
@@ -357,8 +352,7 @@ function SevenDayHome({ history }) {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginRight: "auto",
-          overflow: "hidden",
+          overflowY: "auto",
           alignItems: "center",
         }}
         open={openModal}
@@ -391,14 +385,14 @@ function SevenDayHome({ history }) {
                             container
                             spacing={1}
                             alignItems="flex-end"
-                            style={{ width: "35%", minWidth: "240px" }}
+                            style={{ width: "250px" }}
                           >
                             <Grid item>
                               <FolderSharedOutlinedIcon
                                 style={{ fill: "#0196de" }}
                               />
                             </Grid>
-                            <Grid item>
+                            <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "#0196de" },
@@ -417,14 +411,14 @@ function SevenDayHome({ history }) {
                             container
                             spacing={1}
                             alignItems="flex-end"
-                            style={{ width: "35%", minWidth: "240px" }}
+                            style={{ width: "250px" }}
                           >
                             <Grid item>
-                              <FolderSharedOutlinedIcon
+                              <AccountCircleOutlinedIcon
                                 style={{ fill: "#0196de" }}
                               />
                             </Grid>
-                            <Grid item>
+                            <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "#0196de" },
@@ -443,14 +437,14 @@ function SevenDayHome({ history }) {
                             container
                             spacing={1}
                             alignItems="flex-end"
-                            style={{ width: "35%", minWidth: "240px" }}
+                            style={{ width: "250px" }}
                           >
                             <Grid item>
-                              <FolderSharedOutlinedIcon
+                              <AccountCircleOutlinedIcon
                                 style={{ fill: "#0196de" }}
                               />
                             </Grid>
-                            <Grid item>
+                            <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "#0196de" },
@@ -492,12 +486,15 @@ function SevenDayHome({ history }) {
                           <label htmlFor="ImageInput">
                             <div
                               style={{
+                                height: "45px",
+                                width: "250px",
                                 display: "flex",
                                 alignItems: "center",
-                                marginLeft: "-80px",
                               }}
                             >
-                              <ImageOutlinedIcon style={{ fill: "#0196de" }} />
+                              <ImageOutlinedIcon
+                                style={{ fill: "#0196de", marginLeft: "7px" }}
+                              />
                               <h2
                                 style={{
                                   fontSize: "18px",
@@ -512,7 +509,7 @@ function SevenDayHome({ history }) {
                         </div>
                         <br />
                         <TextField
-                          style={{ marginLeft: "-50px" }}
+                          style={{}}
                           id="date"
                           label="Birthday"
                           type="date"

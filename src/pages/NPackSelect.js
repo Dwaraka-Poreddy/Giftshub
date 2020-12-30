@@ -7,25 +7,25 @@ const allComp = [
     content: "Slide Puzzle",
     url: "",
     img:
-      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fsqpuz.PNG?alt=media&token=4effacbd-c53b-4d32-9376-6e74caa8a491",
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531",
   },
   {
     id: "threedimage",
     content: "3D Image",
     url: "",
     img:
-      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2F3dsqr.png?alt=media&token=1f1a6ebc-f70f-4bb9-bd88-217610ab2373",
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeDsqr.PNG?alt=media&token=89f9386d-931d-4642-a744-761ef2b97f2d",
   },
   {
     id: "greetingcard",
     content: "Greeting Card",
     url: "",
     img:
-      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fgreeting.PNG?alt=media&token=8a7a1015-4440-40e9-a001-a5643609c058",
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FGreeting.PNG?alt=media&token=6ee929be-de78-4b21-a046-ed716c52b8da",
   },
   {
     id: "cubes",
-    content: "Cubes in 3D Heart",
+    content: " 3D Heart",
     url: "",
     img:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FCubessqare.PNG?alt=media&token=5d65ad64-985a-4335-9274-da1fdc115f5e",
@@ -140,11 +140,6 @@ class N_Pack_Select extends Component {
     selected: selectComp,
   };
 
-  /**
-   * A semi-generic way to handle multiple lists. Matches
-   * the IDs of the droppable container to the names of the
-   * source arrays stored in the state.
-   */
   id2List = {
     droppable: "items",
     droppable2: "selected",
@@ -197,7 +192,7 @@ class N_Pack_Select extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div class="row">
-          <div class="col-lg-6 pt-3 ">
+          <div class="col-lg-6 p-0 pt-3 ">
             <center>
               <h1> Pack</h1>
             </center>
@@ -223,7 +218,10 @@ class N_Pack_Select extends Component {
                             provided.draggableProps.style
                           )}
                         >
-                          <div class="card p-0 shadow-none">
+                          <div
+                            class="card p-0 shadow-none"
+                            style={{ color: "red" }}
+                          >
                             <div class="row no-gutters">
                               <div class="col-3">
                                 <img
@@ -255,7 +253,7 @@ class N_Pack_Select extends Component {
             </Droppable>
           </div>
 
-          <div class="col-lg-6 pt-3 pb-3 ">
+          <div class="col-lg-6 p-0 pt-3 pb-3 ">
             <center>
               <h1>Your Pack</h1>
             </center>

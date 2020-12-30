@@ -18,11 +18,20 @@ import NpackSelect from "./NPackSelect";
 import AuthHeader from "../components/nav/Header";
 import Loader from "react-loader-spinner";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import Grid from "@material-ui/core/Grid";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import TextField from "@material-ui/core/TextField";
+import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
+import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
+import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
+import CheckCircleOutlineOutlinedIcon from "@material-ui/icons/CheckCircleOutlineOutlined";
+import AvTimerIcon from "@material-ui/icons/AvTimer";
 const useStyles = makeStyles((theme) => ({
+  margin: {},
   paper: {
     borderRadius: "5px",
-    width: "70vw",
-    height: "80vh",
+    width: "100%",
+    height: "70vh",
     minWidth: "280px",
     maxWidth: "900px",
     position: "absolute",
@@ -30,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0vh",
     border: null,
     backgroundColor: "#ffffff",
-    overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
@@ -58,6 +66,14 @@ const Home = ({ history }) => {
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date());
+  const [arr, setarr] = useState([
+    "MemoryGame",
+    "3Dcube",
+    "SlidePuzzle",
+    "GreetingCArd",
+    "#DFrame",
+    "AnimatedFramed",
+  ]);
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (!user) {
@@ -203,13 +219,13 @@ const Home = ({ history }) => {
       >
         Create New Pack
       </button>
-
+      <br />
+      <br />
       <Modal
         style={{
           display: "flex",
           justifyContent: "center",
-          marginRight: "auto",
-          overflow: "hidden",
+          overflowY: "auto",
           alignItems: "center",
         }}
         open={openModal}
@@ -230,233 +246,250 @@ const Home = ({ history }) => {
               </center>
             ) : (
               <div>
-                {/* <Fab
-                  onClick={() => {
-                    setopenModal(false);
-                  }}
-                  // className={classes.DelBut}
-                  color="primary"
-                  aria-label="add"
-                >
-                  <CloseIcon />
-                </Fab> */}
-
                 <div
                   style={{ backgroundColor: "#ffffff" }}
                   class="container-fluid pt-3"
                 >
-                  <div class="row">
-                    <div class="col-xl-4 pt-3">
-                      <center style={{ marginTop: "50px" }}>
-                        <form>
-                          <div
-                            style={{
-                              width: "200px",
-                            }}
-                            className="RightSideBar2__Btn"
-                          >
-                            <CreateIcon
-                              style={{
-                                margin: "0 10px 0 5px",
-                                color: "#ffffff",
-                                fontSize: "large",
-                              }}
-                            />
-                            <InputBase
-                              required
-                              className="RightSideBar2__Btn"
-                              multiline
-                              placeholder="Folder Name"
-                              style={{
-                                color: "#068dc0",
-                                margin: "0",
-                                backgroundColor: "#ffffff",
-                                width: "200px",
-                              }}
-                              value={Folder_name}
-                              onChange={(e) => setFolder_name(e.target.value)}
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              width: "200px",
-                            }}
-                            className="RightSideBar2__Btn"
-                          >
-                            <CreateIcon
-                              style={{
-                                margin: "0 10px 0 5px",
-                                color: "#ffffff",
-                                fontSize: "large",
-                              }}
-                            />
-                            <InputBase
-                              required
-                              className="RightSideBar2__Btn"
-                              multiline
-                              placeholder="Your Name"
-                              style={{
-                                color: "#068dc0",
-                                margin: "0",
-                                backgroundColor: "#ffffff",
-                                width: "200px",
-                              }}
-                              value={From_name}
-                              onChange={(e) => setFrom_name(e.target.value)}
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              width: "200px",
-                            }}
-                            className="RightSideBar2__Btn"
-                          >
-                            <CreateIcon
-                              style={{
-                                margin: "0 10px 0 5px",
-                                color: "#ffffff",
-                                fontSize: "large",
-                              }}
-                            />
-                            <InputBase
-                              required
-                              className="RightSideBar2__Btn"
-                              multiline
-                              placeholder="Receivers Name"
-                              style={{
-                                color: "#068dc0",
-                                margin: "0",
-                                backgroundColor: "#ffffff",
-                                width: "200px",
-                              }}
-                              value={To_name}
-                              onChange={(e) => setTo_name(e.target.value)}
-                            />
-                          </div>
-
-                          <div style={{ height: "45px" }}>
-                            <input
-                              required
-                              style={{ display: "none" }}
-                              accept="image/* "
-                              // className={secclasses.input}
-                              id="ImageInput"
-                              name="ImageInput"
-                              // multiple
-                              type="file"
-                              accept="image/*"
-                              onChange={onSelectFile}
-                              onClick={(event) => {
-                                event.target.value = null;
-                              }}
-                            />
-                            {opencrop ? (
-                              <CropPage
-                                send={send}
-                                setfbimg={setfbimg}
-                                setimage_url={setimage_url}
-                                aspect_ratio={1 / 1}
-                                opencrop={opencrop}
-                                setopencrop={setopencrop}
-                              />
-                            ) : null}
-                            <label htmlFor="ImageInput">
-                              <HeaderBtn
-                                Icon={ImageIcon}
-                                title="Add your  image "
-                              />
-                            </label>
-                          </div>
-
-                          <div
-                            style={{
-                              width: "200px",
-                            }}
-                            className="RightSideBar2__Btn"
-                          >
-                            <DateRangeIcon
-                              style={{
-                                margin: "0 10px 0 5px",
-                                color: "#ffffff",
-                                fontSize: "large",
-                              }}
-                            />
-                            <input
-                              required
-                              className="RightSideBar2__Btn"
+                  <div>
+                    <center>
+                      <form onSubmit={CreatePack}>
+                        {" "}
+                        <div class="row">
+                          <div class="col-xl-4  p-0 pt-3">
+                            <div className={classes.margin}>
+                              <Grid
+                                container
+                                spacing={1}
+                                alignItems="flex-end"
+                                style={{ width: "250px" }}
+                              >
+                                <Grid item>
+                                  <FolderSharedOutlinedIcon
+                                    style={{ fill: "#0196de" }}
+                                  />
+                                </Grid>
+                                <Grid style={{ width: "210px" }} item>
+                                  <TextField
+                                    required
+                                    InputLabelProps={{
+                                      style: { color: "#0196de" },
+                                    }}
+                                    id="input-with-icon-grid"
+                                    label="Folder Name"
+                                    value={Folder_name}
+                                    onChange={(e) =>
+                                      setFolder_name(e.target.value)
+                                    }
+                                  />
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <br />
+                            <div className={classes.margin}>
+                              <Grid
+                                container
+                                spacing={1}
+                                alignItems="flex-end"
+                                style={{ width: "250px" }}
+                              >
+                                <Grid item>
+                                  <AccountCircleOutlinedIcon
+                                    style={{ fill: "#0196de" }}
+                                  />
+                                </Grid>
+                                <Grid style={{ width: "210px" }} item>
+                                  <TextField
+                                    InputLabelProps={{
+                                      style: { color: "#0196de" },
+                                    }}
+                                    id="input-with-icon-grid"
+                                    label="Your Name"
+                                    value={From_name}
+                                    onChange={(e) =>
+                                      setFrom_name(e.target.value)
+                                    }
+                                    required
+                                  />
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <br />
+                            <div className={classes.margin}>
+                              <Grid
+                                container
+                                spacing={1}
+                                alignItems="flex-end"
+                                style={{ width: "250px" }}
+                              >
+                                <Grid item>
+                                  <AccountCircleOutlinedIcon
+                                    style={{ fill: "#0196de" }}
+                                  />
+                                </Grid>
+                                <Grid style={{ width: "210px" }} item>
+                                  <TextField
+                                    InputLabelProps={{
+                                      style: { color: "#0196de" },
+                                    }}
+                                    id="input-with-icon-grid"
+                                    label="Receivers Name"
+                                    value={To_name}
+                                    onChange={(e) => setTo_name(e.target.value)}
+                                    required
+                                  />
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <br />
+                            <center>
+                              <div>
+                                <input
+                                  required
+                                  style={{ display: "none" }}
+                                  accept="image/* "
+                                  // className={secclasses.input}
+                                  id="ImageInput"
+                                  name="ImageInput"
+                                  // multiple
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={onSelectFile}
+                                  onClick={(event) => {
+                                    event.target.value = null;
+                                  }}
+                                />
+                                {opencrop ? (
+                                  <CropPage
+                                    send={send}
+                                    setfbimg={setfbimg}
+                                    setimage_url={setimage_url}
+                                    aspect_ratio={1 / 1}
+                                    opencrop={opencrop}
+                                    setopencrop={setopencrop}
+                                  />
+                                ) : null}
+                                <label htmlFor="ImageInput">
+                                  <div
+                                    style={{
+                                      height: "45px",
+                                      width: "250px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      border: "1px solid #0196de",
+                                      cursor: "pointer",
+                                      borderRadius: "5px",
+                                    }}
+                                  >
+                                    {send ? (
+                                      <CheckBoxOutlinedIcon
+                                        style={{
+                                          fill: "#0196de",
+                                          marginLeft: "7px",
+                                        }}
+                                      />
+                                    ) : (
+                                      <ImageOutlinedIcon
+                                        style={{
+                                          fill: "#0196de",
+                                          marginLeft: "7px",
+                                        }}
+                                      />
+                                    )}
+                                    <h2
+                                      style={{
+                                        fontSize: "18px",
+                                        color: "#0196de",
+                                        marginLeft: "8px",
+                                        marginBottom: "0",
+                                      }}
+                                    >
+                                      {send
+                                        ? "Image added"
+                                        : "Add your image *"}{" "}
+                                    </h2>{" "}
+                                  </div>
+                                </label>
+                              </div>
+                            </center>
+                            <br />
+                            <TextField
+                              style={{}}
+                              id="date"
+                              label="Event Date"
                               type="date"
-                              style={{
-                                color: "#068dc0",
-                                margin: "0",
-                                backgroundColor: "#ffffff",
-                                width: "150px",
-                              }}
                               value={Bday_date}
+                              defaultValue={Bday_date}
+                              className={classes.textField}
                               onChange={(e) =>
                                 setBday_date(e.target.value.toLocaleString())
                               }
-                            />
+                              InputLabelProps={{
+                                shrink: true,
+                                style: { color: "#0196de" },
+                              }}
+                            />{" "}
+                            <br />
+                            <br />
                           </div>
-                        </form>
-                      </center>
-                    </div>
-                    <div class="col-xl-7">
-                      <center>
-                        <NpackSelect setpackfunc={setpackfunc} />
-                      </center>
-                    </div>
+                          <div class="col-xl-7 ml-0 mr-0">
+                            <center>
+                              <NpackSelect setpackfunc={setpackfunc} />
+                            </center>
+                          </div>
+                        </div>
+                        <br />
+                        <center>
+                          {npackorder.length == 0 ? (
+                            <>
+                              <input
+                                disabled
+                                style={{ display: "none" }}
+                                id="submit"
+                                type="submit"
+                                value="Create 7 day pack"
+                              />
+                              <label
+                                style={{ opacity: "0.4" }}
+                                htmlFor="submit"
+                              >
+                                <button
+                                  disabled
+                                  style={{ cursor: "default" }}
+                                  className="main-button"
+                                >
+                                  {" "}
+                                  Create 7 day pack
+                                </button>
+                              </label>
+                            </>
+                          ) : (
+                            <>
+                              <input
+                                style={{ display: "none" }}
+                                id="submit"
+                                type="submit"
+                                value="Create 7 day pack"
+                              />
+                              <label htmlFor="submit">
+                                <button className="main-button">
+                                  {" "}
+                                  Create 7 day pack
+                                </button>
+                              </label>
+                            </>
+                          )}{" "}
+                        </center>
+                      </form>
+                    </center>
                   </div>
+
                   <br />
-                  <center>
-                    {npackorder.length == 0 ? (
-                      <>
-                        <input
-                          disabled
-                          style={{ display: "none" }}
-                          id="submit"
-                          type="submit"
-                          value="Create 7 day pack"
-                        />
-                        <label style={{ opacity: "0.4" }} htmlFor="submit">
-                          <button
-                            disabled
-                            style={{ cursor: "default" }}
-                            className="main-button"
-                          >
-                            {" "}
-                            Create 7 day pack
-                          </button>
-                        </label>
-                      </>
-                    ) : (
-                      <>
-                        <input
-                          style={{ display: "none" }}
-                          id="submit"
-                          type="submit"
-                          value="Create 7 day pack"
-                        />
-                        <label htmlFor="submit">
-                          <button
-                            className="main-button"
-                            onClick={() => {
-                              CreatePack();
-                            }}
-                          >
-                            {" "}
-                            Create 7 day pack
-                          </button>
-                        </label>
-                      </>
-                    )}{" "}
-                  </center>
                 </div>
 
                 <Fab
                   onClick={() => {
                     setopenModal(false);
+                    setsend(false);
                   }}
                   className={classes.DelBut}
                   color="primary"
@@ -469,28 +502,98 @@ const Home = ({ history }) => {
           </div>
         }
       </Modal>
+
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (
         <div>
           {error ? <p>Ops, there is an error :(</p> : null}
+
           <ul>
             {gifts.map((gift, index) => (
-              <li key={gift.id}>
-                <Link to={`/ContinuePack/${gift.id}`}>
-                  <button className="main-button">
-                    {gift.Folder_name}|{gift.id}
-                  </button>
-                </Link>
-                <button
-                  onClick={() => {
-                    handleDelete(gift.id);
-                  }}
-                >
-                  Delete
-                </button>
+              <div>
+                <div class="container">
+                  <div class="card">
+                    <h5 class="card-header ">{gift.Folder_name}</h5>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-6 col-md-12 card">
+                                {gift.To_name}
+                              </div>
+                              <div class="col-6 col-md-12 card">
+                                {gift.Bday_date.toLocaleString()}
+                              </div>
+                              <div class="col-6 col-md-12">
+                                {" "}
+                                <Link
+                                  class="logo"
+                                  to={`/scheduledlive/main/${gift.id}`}
+                                  target="_blank"
+                                >
+                                  Preview{" "}
+                                </Link>
+                              </div>
+
+                              <div
+                                class="col-6 col-md-12"
+                                onClick={() => {
+                                  handleDelete(gift.id);
+                                }}
+                              >
+                                Delete
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-7">
+                          {" "}
+                          <div class="container-fluid">
+                            <div class="row">
+                              {gift.array_data.map((c) => (
+                                <div class="col-6 col-md-4 card">
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      textAlign: "justify",
+                                    }}
+                                  >
+                                    {c.url ? (
+                                      <CheckCircleOutlineOutlinedIcon />
+                                    ) : (
+                                      <AvTimerIcon />
+                                    )}
+                                    {c.content}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          {" "}
+                          <div>
+                            <center>
+                              <br />
+                              <Link to={`/ContinuePack/${gift.id}`}>
+                                <button
+                                  style={{ height: "100%", margin: "auto" }}
+                                  class="main-button"
+                                >
+                                  Proceed
+                                </button>
+                              </Link>{" "}
+                            </center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <br />
-              </li>
+              </div>
             ))}
           </ul>
         </div>

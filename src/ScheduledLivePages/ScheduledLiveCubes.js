@@ -111,7 +111,7 @@ export default function ScheduledLiveCubes({ match }) {
       <ScheduledLiveNav slug={match.params.slug} />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.8" }}>
+        <div style={{ flex: "0.8", height: "70vh" }}>
           {loading ? (
             <Loader
               type="BallTriangle"
@@ -169,7 +169,7 @@ export default function ScheduledLiveCubes({ match }) {
 
         <div style={{ flex: "0.1" }}></div>
       </div>
-      <footer>
+      <footer style={{ padding: "30px 0", marginTop: "150px" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12 col-sm-12">

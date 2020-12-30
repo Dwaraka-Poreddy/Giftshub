@@ -56,7 +56,7 @@ function ScheduledThreeDImagePage({
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/spider.jpg?alt=media&token=adf38762-cc3f-4d12-8732-3eb807fb8355"
   );
   const [Cloading, setCLoading] = useState(false);
-  const [firstcol, setfirstcol] = useState("#302015");
+  const [firstcol, setfirstcol] = useState("#b07877");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [showoptions, setshowoptions] = useState(false);
   useEffect(() => {
