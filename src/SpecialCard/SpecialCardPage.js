@@ -168,7 +168,6 @@ export default function SpecialCardPage() {
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud = uuidv4();
-    console.log(ud);
 
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
@@ -200,8 +199,7 @@ export default function SpecialCardPage() {
           console.log(err);
         },
         () => {
-          console.log(image_url);
-          var s = storage
+          storage
             .ref("images")
             .child(ud)
             .putString(image_url, "base64", { contentType: "image/jpg" })
@@ -325,10 +323,6 @@ export default function SpecialCardPage() {
         accentColor={accentColor}
       />
 
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>

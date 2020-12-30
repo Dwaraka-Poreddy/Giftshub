@@ -69,58 +69,68 @@ export default function AnimatedFramePage() {
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud1 = uuidv4();
-    console.log(ud1);
     var ud2 = uuidv4();
-    console.log(ud2);
 
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        console.log(image_url1);
-        storage
-          .ref("images")
-          .child(ud1)
-          .putString(image_url1, "base64", { contentType: "image/jpg" })
-          .then((savedImage) => {
-            savedImage.ref.getDownloadURL().then((downUrl1) => {
-              console.log(downUrl1);
-              setFireUrl(downUrl1);
-              storage
-                .ref("images")
-                .child(ud2)
-                .putString(image_url2, "base64", { contentType: "image/jpg" })
-                .then((savedImage) => {
-                  savedImage.ref.getDownloadURL().then((downUrl2) => {
-                    console.log(downUrl2);
-                    setFireUrl(downUrl2);
-                    const todoRef = firebase.database().ref("AnimatedFrame");
-                    const todo = {
-                      url1: downUrl1,
-                      url2: downUrl2,
-                      title: title,
-                    };
-                    var newKey = todoRef.push(todo).getKey();
-                    setlivelink(
-                      "http://localhost:3000/live/animatedframe/" + newKey
-                    );
-                    console.log(livelink);
-                    setpreviewlink("/live/animatedframe/" + newKey);
+    if (!livelink) {
+      const todoRef = firebase.database().ref("AnimatedFrame");
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        title: title,
+      };
+      var newKey = todoRef.push(todo).getKey();
+      setlivelink("http://localhost:3000/live/animatedframe/" + newKey);
+      console.log(livelink, "livelink");
+      setpreviewlink("/live/animatedframe/" + newKey);
+      setloading(false);
+    } else {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(ud1)
+            .putString(image_url1, "base64", { contentType: "image/jpg" })
+            .then((savedImage) => {
+              savedImage.ref.getDownloadURL().then((downUrl1) => {
+                console.log(downUrl1);
+                setFireUrl(downUrl1);
+                storage
+                  .ref("images")
+                  .child(ud2)
+                  .putString(image_url2, "base64", { contentType: "image/jpg" })
+                  .then((savedImage) => {
+                    savedImage.ref.getDownloadURL().then((downUrl2) => {
+                      console.log(downUrl2);
+                      setFireUrl(downUrl2);
+                      const todoRef = firebase.database().ref("AnimatedFrame");
+                      const todo = {
+                        url1: downUrl1,
+                        url2: downUrl2,
+                        title: title,
+                      };
+                      var newKey = todoRef.push(todo).getKey();
+                      setlivelink(
+                        "http://localhost:3000/live/animatedframe/" + newKey
+                      );
+                      console.log(livelink);
+                      setpreviewlink("/live/animatedframe/" + newKey);
+                    });
+                    setloading(false);
                   });
-                  setloading(false);
-                });
+              });
             });
-          });
-      }
-    );
+        }
+      );
+    }
   };
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
@@ -198,32 +208,32 @@ export default function AnimatedFramePage() {
               <label htmlFor="LocalfileInput2">
                 <HeaderBtn Icon={ImageIcon} title="Change  Image 2" />
               </label>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <CreateIcon
-                  style={{
-                    margin: "0 10px 0 5px",
-                    color: "#ffffff",
-                    fontSize: "large",
-                  }}
-                />
-                <InputBase
-                  className="RightSideBar2__Btn"
-                  multiline
-                  style={{
-                    color: "#068dc0",
-                    margin: "0",
-                    backgroundColor: "#ffffff",
-                    width: "100%",
-                  }}
-                  value={title}
-                  onChange={(e) => {
-                    settitle(e.target.value);
-                  }}
-                />
-              </div>
+              <center>
+                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                  <CreateIcon
+                    style={{
+                      margin: "0 10px 0 5px",
+                      color: "#ffffff",
+                      fontSize: "large",
+                    }}
+                  />
+                  <InputBase
+                    className="RightSideBar2__Btn"
+                    multiline
+                    style={{
+                      color: "#068dc0",
+                      margin: "0",
+                      backgroundColor: "#ffffff",
+                      width: "200px",
+                    }}
+                    value={title}
+                    onChange={(e) => {
+                      settitle(e.target.value);
+                    }}
+                  />
+                </div>
+              </center>
+
               <center>
                 <button
                   onClick={() => {
@@ -248,18 +258,18 @@ export default function AnimatedFramePage() {
                 <center>
                   {livelink ? (
                     <div>
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div style={{ width: "200px", marginTop: "20px" }}>
                         <Copy livelink={livelink} />
                       </div>
 
-                      <div style={{ width: "55%", marginTop: "20px" }}>
+                      <div style={{ width: "200px", marginTop: "20px" }}>
                         <Link class="logo" to={previewlink} target="_blank">
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
 
                       {!showshare ? (
-                        <div style={{ width: "55%", marginTop: "20px" }}>
+                        <div style={{ marginTop: "20px" }}>
                           <HeaderBtn
                             handleClick={() => {
                               setshowshare(true);
@@ -279,50 +289,6 @@ export default function AnimatedFramePage() {
           </div>
         </div>
       </div>
-
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

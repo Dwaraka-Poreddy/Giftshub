@@ -58,18 +58,7 @@ function ScheduledLiveNewsPaper({ match }) {
         setloading(false);
       });
   }, []);
-  function handleMemeDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
 
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
-    });
-  }
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
     var difference =

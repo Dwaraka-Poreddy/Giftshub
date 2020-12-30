@@ -10,6 +10,20 @@ const allComp = [
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531",
   },
   {
+    id: "specialcard",
+    content: "Special Card",
+    url: "",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FSpecialCard.PNG?alt=media&token=1fdfb6d2-3bcd-42e7-b10c-4537a10b914a",
+  },
+  {
+    id: "animatedframe",
+    content: "Animated Frame ",
+    url: "",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFrames.PNG?alt=media&token=349119f7-5722-4887-8bd7-c4586f916f94",
+  },
+  {
     id: "threedimage",
     content: "3D Image",
     url: "",
@@ -129,7 +143,7 @@ const getListStyle = (isDraggingOver) => ({
   minHeight: 150,
 });
 const getListStyle1 = (isDraggingOver) => ({
-  background: isDraggingOver ? "green" : "lightgreen",
+  background: isDraggingOver ? "lightgreen" : "#70cff3",
   padding: grid,
   width: 250,
   minHeight: 150,
@@ -283,7 +297,10 @@ class N_Pack_Select extends Component {
                             provided.draggableProps.style
                           )}
                         >
-                          <div class="card p-0 shadow-none">
+                          <div
+                            class="card p-0 shadow-none"
+                            style={{ color: "red" }}
+                          >
                             <div class="row no-gutters">
                               <div class="col-3">
                                 <img

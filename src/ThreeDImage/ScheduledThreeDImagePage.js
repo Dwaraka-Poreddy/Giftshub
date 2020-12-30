@@ -53,7 +53,7 @@ function ScheduledThreeDImagePage({
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/spider.jpg?alt=media&token=adf38762-cc3f-4d12-8732-3eb807fb8355"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
   );
   const [Cloading, setCLoading] = useState(false);
   const [firstcol, setfirstcol] = useState("#b07877");

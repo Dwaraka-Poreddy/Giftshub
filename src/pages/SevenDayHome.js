@@ -23,7 +23,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
-
+import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
+import CheckCircle from "@material-ui/icons/CheckCircle";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -406,6 +407,7 @@ function SevenDayHome({ history }) {
                             </Grid>
                           </Grid>
                         </div>
+                        <br />
                         <div className={classes.margin}>
                           <Grid
                             container
@@ -432,6 +434,7 @@ function SevenDayHome({ history }) {
                             </Grid>
                           </Grid>
                         </div>
+                        <br />
                         <div className={classes.margin}>
                           <Grid
                             container
@@ -490,19 +493,35 @@ function SevenDayHome({ history }) {
                                 width: "250px",
                                 display: "flex",
                                 alignItems: "center",
+                                border: "1px solid #0196de",
+                                cursor: "pointer",
+                                borderRadius: "5px",
                               }}
                             >
-                              <ImageOutlinedIcon
-                                style={{ fill: "#0196de", marginLeft: "7px" }}
-                              />
+                              {send ? (
+                                <CheckBoxOutlinedIcon
+                                  style={{
+                                    fill: "#0196de",
+                                    marginLeft: "7px",
+                                  }}
+                                />
+                              ) : (
+                                <ImageOutlinedIcon
+                                  style={{
+                                    fill: "#0196de",
+                                    marginLeft: "7px",
+                                  }}
+                                />
+                              )}
                               <h2
                                 style={{
                                   fontSize: "18px",
                                   color: "#0196de",
                                   marginLeft: "8px",
+                                  marginBottom: "0",
                                 }}
                               >
-                                Add your image *{" "}
+                                {send ? "Image added" : "Add your image *"}{" "}
                               </h2>{" "}
                             </div>
                           </label>
@@ -558,43 +577,203 @@ function SevenDayHome({ history }) {
         }
       </Modal>
       <hr />
-      <center>
-        {loading ? (
-          <Loader
-            type="BallTriangle"
-            color="#00BFFF"
-            height={100}
-            width={100}
-          />
-        ) : (
-          <div
-            style={{
-              width: "200px",
-            }}
-          >
-            {error ? <p>Ops, there is an error :(</p> : null}
-            <ul>
-              {gifts.map((gift) => (
-                <li key={gift.id}>
-                  <Link to={`/ContinuePack/${gift.id}`}>
-                    <button className="main-button">
-                      {gift.Folder_name}|{gift.id}
-                    </button>
-                  </Link>
-                  <button
-                    onClick={() => {
-                      handleDelete(gift.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <br />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </center>
+
+      {loading ? (
+        <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
+      ) : (
+        <div>
+          {error ? <p>Ops, there is an error :(</p> : null}
+          <ul>
+            {gifts.map((gift, index) => (
+              <div>
+                <div class="container">
+                  <div class="card">
+                    <h5
+                      class="card-header "
+                      style={{ justifyContent: "space-between" }}
+                    >
+                      {" "}
+                      <div class="row">
+                        <div class="col-6">{gift.Folder_name}</div>{" "}
+                        <div class="col-6">
+                          {gift.Bday_date.toLocaleString()}
+                        </div>{" "}
+                      </div>
+                    </h5>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-3 p-0 ">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div
+                                style={{
+                                  height: "38.5px",
+                                  alignItems: "center",
+                                  border: "none",
+                                }}
+                                class="col-12  card"
+                              >
+                                <h2
+                                  style={{
+                                    fontSize: "18px",
+                                    color: "#0196de",
+                                    marginLeft: "8px",
+                                    marginTop: "10px",
+                                    marginBottom: "0",
+                                  }}
+                                >
+                                  {gift.To_name}
+                                </h2>
+                              </div>
+                              <div class="col-6 col-md-12">
+                                <div
+                                  style={{
+                                    height: "38.5px",
+                                    alignItems: "center",
+                                    border: "1px solid #0196de",
+                                    cursor: "pointer",
+                                    borderRadius: "5px",
+                                  }}
+                                  class="col-12"
+                                >
+                                  <Link
+                                    class="logo"
+                                    to={`/scheduledlive/main/${gift.id}`}
+                                    target="_blank"
+                                  >
+                                    <h2
+                                      style={{
+                                        fontSize: "18px",
+                                        color: "#0196de",
+                                        marginLeft: "8px",
+                                        marginTop: "10px",
+                                        marginBottom: "0",
+                                      }}
+                                    >
+                                      {" "}
+                                      Preview{" "}
+                                    </h2>
+                                  </Link>
+                                </div>
+                              </div>
+
+                              <div class="col-6 col-md-12">
+                                <div
+                                  onClick={() => {
+                                    handleDelete(gift.id);
+                                  }}
+                                  class="col-12"
+                                  style={{
+                                    height: "38.5px",
+                                    // width: "242.63px",
+                                    alignItems: "center",
+                                    border: "1px solid #0196de",
+                                    cursor: "pointer",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <h2
+                                    style={{
+                                      fontSize: "18px",
+                                      color: "#0196de",
+                                      marginLeft: "8px",
+                                      marginTop: "10px",
+                                      marginBottom: "0",
+                                    }}
+                                  >
+                                    Delete
+                                  </h2>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-7 p-0 ">
+                          {" "}
+                          <div class="container-fluid">
+                            <div class="row">
+                              {gift.array_data.map((c) => (
+                                <div
+                                  style={{
+                                    border: "none",
+                                  }}
+                                  class="col-6 col-md-4 card p-0 m-0 "
+                                >
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      textAlign: "justify",
+                                    }}
+                                  >
+                                    {c.url ? (
+                                      <CheckCircle
+                                        style={{
+                                          fill: "#0196de",
+                                          margin: "5px 7px",
+                                        }}
+                                      />
+                                    ) : (
+                                      <img
+                                        style={{
+                                          width: "23.5px",
+                                          height: "23.5px",
+                                          margin: "5px 11px 0 8px",
+                                        }}
+                                        src="assets/images/icon.png"
+                                        alt=""
+                                      />
+                                      // <AvTimerIcon
+                                      //   style={{
+                                      //     fill: "#0196de",
+                                      //     margin: "5px 7px",
+                                      //   }}
+                                      // />
+                                    )}
+                                    <h2
+                                      style={{
+                                        fontSize: "18px",
+                                        color: "#0196de",
+                                        marginLeft: "8px",
+                                        marginTop: "10px",
+                                        marginBottom: "3px",
+                                      }}
+                                    >
+                                      {" "}
+                                      {c.content}
+                                    </h2>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          {" "}
+                          <div>
+                            <center>
+                              <br />
+                              <Link to={`/ContinuePack/${gift.id}`}>
+                                <button
+                                  style={{ height: "100%", margin: "auto" }}
+                                  class="main-button"
+                                >
+                                  Proceed
+                                </button>
+                              </Link>{" "}
+                            </center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+              </div>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <footer>
         <div className="container">
           <div className="row">

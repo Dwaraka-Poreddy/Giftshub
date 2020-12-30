@@ -29,11 +29,12 @@ import SevenDayHome from "./pages/SevenDayHome";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
-
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import SoundRecorder from "./SoundRecorder";
+import ScheduledLiveAnimatedFrame from "./ScheduledLivePages/ScheduledLiveAnimatedFrame";
+import ScheduledLiveSpecialCard from "./ScheduledLivePages/ScheduledLiveSpecialCard";
 import ScheduledLiveCollage from "./ScheduledLivePages/ScheduledLiveCollage";
 import ScheduledLiveMemoryGame from "./ScheduledLivePages/ScheduledLiveMemoryGame";
 import ScheduledLiveSlidePuzzle from "./ScheduledLivePages/ScheduledLiveSlidePuzzle";
@@ -124,6 +125,16 @@ export default function App() {
           exact
           path="/scheduledlive/threedimage/:id/:slug"
           component={ScheduledLiveThreeDImagePage}
+        />
+        <Route
+          exact
+          path="/scheduledlive/animatedframe/:id/:slug"
+          component={ScheduledLiveAnimatedFrame}
+        />
+        <Route
+          exact
+          path="/scheduledlive/specialcard/:id/:slug"
+          component={ScheduledLiveSpecialCard}
         />
         <Route
           exact

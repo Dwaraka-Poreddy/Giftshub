@@ -187,7 +187,6 @@ function ScheduledCubesPage({ step, slug, getDoc }) {
           console.log(err);
         },
         () => {
-          console.log(image_url1);
           storage
             .ref("images")
             .child(ud1)

@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
 import HeaderBtn from "../Studio/HeaderBtn";
 import ShareIcon from "@material-ui/icons/Share";
+import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
+import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
 import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
 import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
 import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
@@ -63,32 +65,7 @@ function ContinuePack({ match, history }) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const tutorialSteps = [
-    {
-      label: "3D Image",
-    },
-    {
-      label: "Newspaper",
-    },
-    {
-      label: "Greetingcard",
-    },
-    {
-      label: "Puzzle",
-    },
-    {
-      label: "Memory Game",
-    },
-    {
-      label: "3D Heart",
-    },
-    {
-      label: "Collage",
-    },
-    {
-      label: "Unknown",
-    },
-  ];
+
   const database = firebase.firestore();
   let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
@@ -203,6 +180,14 @@ function ContinuePack({ match, history }) {
     if (dataid[step] === "puzzle") {
       return (
         <ScheduledSlidePuzzlePage step={step} slug={slag} getDoc={getDoc} />
+      );
+    }
+    if (dataid[step] === "animatedframe") {
+      return <ScheduledAnimatedFrame step={step} slug={slag} getDoc={getDoc} />;
+    }
+    if (dataid[step] === "specialcard") {
+      return (
+        <ScheduledSpecialCardPage step={step} slug={slag} getDoc={getDoc} />
       );
     }
     if (dataid[step] === "memorygame") {

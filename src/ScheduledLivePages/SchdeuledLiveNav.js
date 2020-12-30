@@ -25,7 +25,7 @@ function SchdeuledLiveNav({ slug }) {
         <a class=" navbar-brand text-primary" href={`/`}>
           Gifts Hub
         </a>
-        <a class=" navbar-brand " href={`/scheduledlive/main/${slug}`}>
+        <a class=" navbar-item" href={`/scheduledlive/main/${slug}`}>
           Main Page
         </a>
         <button
@@ -61,20 +61,6 @@ function SchdeuledLiveNav({ slug }) {
           </ul>
         </div>
       </nav>
-      {/* <center>
-        {" "}
-        {dataurl.length - daystep.day == 0 ? (
-          <h1 className="example">The Big day is here !!!</h1>
-        ) : dataurl.length - daystep.day == 1 ? (
-          <h1 className="example">
-            {dataurl.length - daystep.day} day to go !!!
-          </h1>
-        ) : (
-          <h1 className="example">
-            {dataurl.length - daystep.day} days to go !!!
-          </h1>
-        )}
-      </center> */}
     </div>
   );
 }
