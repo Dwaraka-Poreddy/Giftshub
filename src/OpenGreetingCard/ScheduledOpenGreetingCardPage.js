@@ -83,7 +83,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
   }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
+    setshowoptions(false);
     setopencrop(true);
   };
 
@@ -294,6 +294,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     value={totext}
                     onChange={(e) => {
                       settotext(e.target.value);
+                      setshowoptions(false);
                     }}
                   />
                 </div>
@@ -317,6 +318,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     value={fromtext}
                     onChange={(e) => {
                       setfromtext(e.target.value);
+                      setshowoptions(false);
                     }}
                   />
                 </div>
@@ -340,6 +342,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     value={message}
                     onChange={(e) => {
                       setmessage(e.target.value);
+                      setshowoptions(false);
                     }}
                   />
                 </div>
@@ -363,6 +366,7 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     value={occassion}
                     onChange={(e) => {
                       setoccassion(e.target.value);
+                      setshowoptions(false);
                     }}
                   />
                 </div>

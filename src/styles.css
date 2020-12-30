@@ -4,7 +4,7 @@
   text-align: center;
 }
 .productCardDiv {
-  height: 500px;
+  /* height: 500px; */
   background-color: #fff;
 }
 .card-text {
@@ -16,8 +16,8 @@
 } */
 .productCardImg {
   /* border-bottom: 10px solid #000; */
-  max-width: 80%;
-  height: 400px;
+  /* max-width: 80%; */
+  /* height: 400px; */
   padding-top: 20px;
   margin: 0 auto;
   background: none;

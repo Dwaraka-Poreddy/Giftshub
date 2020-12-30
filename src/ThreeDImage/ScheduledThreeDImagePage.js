@@ -94,6 +94,7 @@ function ScheduledThreeDImagePage({
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
+      console.log("in if bbb");
       const todoRef = firebase.database().ref("ThreeDImage/" + edit.text);
       const todo = {
         url: fbimg,
@@ -113,6 +114,7 @@ function ScheduledThreeDImagePage({
 
       setloading(false);
     } else if (!livelink) {
+      console.log("in elseif bbb");
       const todoRef = firebase.database().ref("ThreeDImage");
       const todo = {
         url: fbimg,
@@ -127,6 +129,7 @@ function ScheduledThreeDImagePage({
 
       setloading(false);
     } else {
+      console.log("in else bbb");
       uploadTask.on(
         "state_changed",
         (snapshot) => {},

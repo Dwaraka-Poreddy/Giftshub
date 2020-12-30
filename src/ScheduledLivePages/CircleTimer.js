@@ -17,7 +17,11 @@ const timerProps1 = {
   size: 80,
   strokeWidth: 3,
 };
-
+const timerProps2 = {
+  isPlaying: true,
+  size: 150,
+  strokeWidth: 4,
+};
 const renderTime = (dimension, time) => {
   return (
     <div className="time-wrapper">
@@ -124,7 +128,7 @@ export default function CircleTimer({ Bday }) {
         }}
       >
         <CountdownCircleTimer
-          {...timerProps}
+          {...timerProps2}
           colors={[["#7E2E84"]]}
           duration={daysDuration}
           initialRemainingTime={remainingTime}

@@ -99,6 +99,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
 
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop(true);
   };
   function getBase64Image(img) {
@@ -331,6 +332,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                     }}
                     value={head}
                     onChange={(e) => {
+                      setshowoptions(false);
                       sethead(e.target.value);
                     }}
                   />
@@ -361,6 +363,7 @@ function ScheduledNewsPaperPage({ step, slug, getDoc }) {
                     }}
                     value={para}
                     onChange={(e) => {
+                      setshowoptions(false);
                       setpara(e.target.value);
                     }}
                   />

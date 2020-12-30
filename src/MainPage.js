@@ -90,16 +90,7 @@ export default function App() {
                     </p>
                   </div>
                 </li>
-                {/* <li>
-                  <img src="assets/images/about-icon-02.png" alt="" />
-                  <div class="text">
-                    <h6>Donec consequat commodo purus</h6>
-                    <p>
-                      You have no right to re-distribute this template as a
-                      downloadable ZIP file on any website.
-                    </p>
-                  </div>
-                </li> */}
+
                 <li>
                   <img src="assets/images/about-icon-03.png" alt="" />
                   <div class="text">
@@ -196,7 +187,7 @@ export default function App() {
           Components
         </h1>
         <div class=" container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  m-3">
+          <div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 m-3">
             <div class="col mb-4 ">
               <div class="card shadow-none componentcards">
                 <img

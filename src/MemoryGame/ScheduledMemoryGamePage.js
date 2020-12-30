@@ -85,26 +85,32 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
   const [score, setscore] = useState(Number.MAX_VALUE);
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop1(true);
   };
   const onSelectFile2 = (e) => {
     setsend2(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop2(true);
   };
   const onSelectFile3 = (e) => {
     setsend3(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop3(true);
   };
   const onSelectFile4 = (e) => {
     setsend4(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop4(true);
   };
   const onSelectFile5 = (e) => {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop5(true);
   };
   const onSelectFile6 = (e) => {
     setsend6(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop6(true);
   };
 

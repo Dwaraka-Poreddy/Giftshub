@@ -66,7 +66,7 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
   }, []);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
+    setshowoptions(false);
     setopencrop(true);
   };
 
@@ -278,7 +278,7 @@ function ScheduledSlidePuzzlePage({ step, slug, getDoc }) {
               </center>
 
               <center>
-                {livelink ? (
+                {livelink && showoptions && !loading ? (
                   <center>
                     <div style={{ marginTop: "20px", width: "200px" }}>
                       <Copy livelink={livelink} />

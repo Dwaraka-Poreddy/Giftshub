@@ -103,38 +103,48 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
 
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
+
     setopencrop1(true);
   };
   const onSelectFile2 = (e) => {
     setsend2(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop2(true);
   };
   const onSelectFile3 = (e) => {
     setsend3(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop3(true);
   };
   const onSelectFile4 = (e) => {
     setsend4(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop4(true);
   };
   const onSelectFile5 = (e) => {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop5(true);
   };
   const onSelectFile6 = (e) => {
     setsend6(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop6(true);
   };
   const onSelectFile7 = (e) => {
     setsend7(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop7(true);
   };
   const onSelectFile8 = (e) => {
     setsend8(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop8(true);
   };
   const onSelectFile9 = (e) => {
     setsend9(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop9(true);
   };
 
@@ -206,6 +216,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
+      console.log("in if bbb");
       const todoRef = firebase.database().ref("Collage/" + edit.text);
       const todo = {
         url1: fbimg1,
@@ -226,7 +237,9 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
       setpreviewlink("scheduledlive/collage/" + edit.text + "/" + slug);
       setloading(false);
     } else if (!livelink) {
+      console.log("in elseif bbb");
       const todoRef = firebase.database().ref("Collage");
+      console.log("second case");
       const todo = {
         url1: fbimg1,
         url2: fbimg2,
@@ -246,6 +259,7 @@ function ScheduledCollagePage({ step, slug, getDoc }) {
       setpreviewlink("scheduledlive/collage/" + newKey + "/" + slug);
       setloading(false);
     } else {
+      console.log("in else bbb");
       uploadTask.on(
         "state_changed",
         (snapshot) => {},

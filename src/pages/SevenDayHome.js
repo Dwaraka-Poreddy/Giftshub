@@ -11,7 +11,7 @@ import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
 import HeaderBtn from "../Studio/HeaderBtn";
-import ImageIcon from "@material-ui/icons/Image";
+import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import CropPage from "../Utils/CropPage";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -19,11 +19,19 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import AuthHeader from "../components/nav/Header";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
+
 const useStyles = makeStyles((theme) => ({
+  margin: {
+    // margin: theme.spacing(1),
+  },
   paper: {
     borderRadius: "5px",
     width: "70vw",
-    height: "80vh",
+    // height: "80vh",
     maxWidth: "840px",
     minWidth: "280px",
     position: "absolute",
@@ -218,6 +226,7 @@ function SevenDayHome({ history }) {
       }}
     >
       <AuthHeader />
+
       <section className="section" id="services">
         <h1
           style={{
@@ -250,7 +259,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/magazine.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a"
                     alt=""
                   />
                 </div>
@@ -262,7 +271,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/newspaper_alit.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalised-rakhi-newspaper-9918857eg.jpg?alt=media&token=57382869-c91c-4043-95b0-77b05f17e871"
                     alt=""
                   />
                 </div>
@@ -274,7 +283,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/right-image.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344"
                     alt=""
                   />
                 </div>
@@ -286,7 +295,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/right-image.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemorygif.gif?alt=media&token=03233413-7ce2-4da3-93f9-cdb430c2db89"
                     alt=""
                   />
                 </div>
@@ -298,7 +307,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/newspaper_alit.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a"
                     alt=""
                   />
                 </div>
@@ -310,7 +319,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/magazine.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022"
                     alt=""
                   />
                 </div>
@@ -322,7 +331,7 @@ function SevenDayHome({ history }) {
                 <div>
                   <img
                     className="productCardImg"
-                    src="assets/images/magazine.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FgreetingCardgif.gif?alt=media&token=a0cf3864-72b8-4a18-a1da-3425fd480810"
                     alt=""
                   />
                 </div>
@@ -377,93 +386,85 @@ function SevenDayHome({ history }) {
                   <div class="p-3">
                     <center>
                       <form onSubmit={CreatePack}>
-                        <div
-                          style={{
-                            width: "200px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
-                            className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Folder Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "200px",
-                            }}
-                            value={Folder_name}
-                            onChange={(e) => setFolder_name(e.target.value)}
-                          />
+                        <div className={classes.margin}>
+                          <Grid
+                            container
+                            spacing={1}
+                            alignItems="flex-end"
+                            style={{ width: "35%", minWidth: "240px" }}
+                          >
+                            <Grid item>
+                              <FolderSharedOutlinedIcon
+                                style={{ fill: "#0196de" }}
+                              />
+                            </Grid>
+                            <Grid item>
+                              <TextField
+                                InputLabelProps={{
+                                  style: { color: "#0196de" },
+                                }}
+                                id="input-with-icon-grid"
+                                label="Folder Name"
+                                value={Folder_name}
+                                onChange={(e) => setFolder_name(e.target.value)}
+                                required
+                              />
+                            </Grid>
+                          </Grid>
                         </div>
-
-                        <div
-                          style={{
-                            width: "200px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
-                            className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Your Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "200px",
-                            }}
-                            value={From_name}
-                            onChange={(e) => setFrom_name(e.target.value)}
-                          />
+                        <div className={classes.margin}>
+                          <Grid
+                            container
+                            spacing={1}
+                            alignItems="flex-end"
+                            style={{ width: "35%", minWidth: "240px" }}
+                          >
+                            <Grid item>
+                              <FolderSharedOutlinedIcon
+                                style={{ fill: "#0196de" }}
+                              />
+                            </Grid>
+                            <Grid item>
+                              <TextField
+                                InputLabelProps={{
+                                  style: { color: "#0196de" },
+                                }}
+                                id="input-with-icon-grid"
+                                label="Your Name"
+                                value={From_name}
+                                onChange={(e) => setFrom_name(e.target.value)}
+                                required
+                              />
+                            </Grid>
+                          </Grid>
                         </div>
-
-                        <div
-                          style={{
-                            width: "200px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <CreateIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <InputBase
-                            required
-                            className="RightSideBar2__Btn"
-                            multiline
-                            placeholder="Receivers Name"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "200px",
-                            }}
-                            value={To_name}
-                            onChange={(e) => setTo_name(e.target.value)}
-                          />
+                        <div className={classes.margin}>
+                          <Grid
+                            container
+                            spacing={1}
+                            alignItems="flex-end"
+                            style={{ width: "35%", minWidth: "240px" }}
+                          >
+                            <Grid item>
+                              <FolderSharedOutlinedIcon
+                                style={{ fill: "#0196de" }}
+                              />
+                            </Grid>
+                            <Grid item>
+                              <TextField
+                                InputLabelProps={{
+                                  style: { color: "#0196de" },
+                                }}
+                                id="input-with-icon-grid"
+                                label="Receivers Name"
+                                value={To_name}
+                                onChange={(e) => setTo_name(e.target.value)}
+                                required
+                              />
+                            </Grid>
+                          </Grid>
                         </div>
-
+                        <br />
                         <div style={{ height: "45px" }}>
                           <input
                             required
@@ -489,44 +490,45 @@ function SevenDayHome({ history }) {
                             />
                           ) : null}
                           <label htmlFor="ImageInput">
-                            <HeaderBtn
-                              Icon={ImageIcon}
-                              title="Add your  image "
-                            />
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                marginLeft: "-80px",
+                              }}
+                            >
+                              <ImageOutlinedIcon style={{ fill: "#0196de" }} />
+                              <h2
+                                style={{
+                                  fontSize: "18px",
+                                  color: "#0196de",
+                                  marginLeft: "8px",
+                                }}
+                              >
+                                Add your image *{" "}
+                              </h2>{" "}
+                            </div>
                           </label>
                         </div>
-
-                        <div
-                          style={{
-                            width: "200px",
-                          }}
-                          className="RightSideBar2__Btn"
-                        >
-                          <DateRangeIcon
-                            style={{
-                              margin: "0 10px 0 5px",
-                              color: "#ffffff",
-                              fontSize: "large",
-                            }}
-                          />
-                          <input
-                            required
-                            className="RightSideBar2__Btn"
-                            type="date"
-                            style={{
-                              color: "#068dc0",
-                              margin: "0",
-                              backgroundColor: "#ffffff",
-                              width: "150px",
-                            }}
-                            value={Bday_date}
-                            onChange={(e) =>
-                              setBday_date(e.target.value.toLocaleString())
-                            }
-                          />
-                        </div>
                         <br />
-
+                        <TextField
+                          style={{ marginLeft: "-50px" }}
+                          id="date"
+                          label="Birthday"
+                          type="date"
+                          value={Bday_date}
+                          defaultValue={Bday_date}
+                          className={classes.textField}
+                          onChange={(e) =>
+                            setBday_date(e.target.value.toLocaleString())
+                          }
+                          InputLabelProps={{
+                            shrink: true,
+                            style: { color: "#0196de" },
+                          }}
+                        />{" "}
+                        <br />
+                        <br />
                         <input
                           style={{ display: "none" }}
                           id="submit"
