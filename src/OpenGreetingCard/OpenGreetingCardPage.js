@@ -19,6 +19,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -33,7 +34,7 @@ const secuseStyles = makeStyles((theme) => ({
 function OpenGreetingCardPage() {
   const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [loading, setloading] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -126,36 +127,41 @@ function OpenGreetingCardPage() {
       selector: '[data-tut="reactour__changeImage"]',
       content: `Choose the image from you local device to be  printed onto the greeting card`,
     },
+
+    {
+      selector: '[data-tut="reactour__to"]',
+      content: ` Enter the special person’s name `,
+    },
     {
       selector: '[data-tut="reactour__from"]',
       content: ` Enter your name
       `,
     },
     {
-      selector: '[data-tut="reactour__to"]',
-      content: ` Enter the special person’s name `,
-    },
-    {
       selector: '[data-tut="reactour__message"]',
       content: `We all love short and cute messages, so pour your heart but pay attention to the word limit!`,
+    },
+    {
+      selector: '[data-tut="reactour__occasion"]',
+      content: `Wishings for the special occasion`,
     },
 
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
 
@@ -165,7 +171,6 @@ function OpenGreetingCardPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -175,10 +180,6 @@ function OpenGreetingCardPage() {
         accentColor={accentColor}
       />
 
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
@@ -203,33 +204,35 @@ function OpenGreetingCardPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
-            <hr />
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
+
             <div style={{ padding: "0 0 20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -343,7 +346,7 @@ function OpenGreetingCardPage() {
                   />
                 </div>
                 <div
-                  data-tut="reactour__to"
+                  data-tut="reactour__occasion"
                   style={{ width: "200px" }}
                   className="RightSideBar2__Btn"
                 >
@@ -393,15 +396,8 @@ function OpenGreetingCardPage() {
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ width: "200px", marginTop: "20px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
@@ -410,7 +406,12 @@ function OpenGreetingCardPage() {
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
@@ -440,7 +441,7 @@ function OpenGreetingCardPage() {
               <div className="col-lg-7 col-md-12 col-sm-12">
                 <p className="copyright">
                   Copyright © 2020 Gift's Hub Company . Design:{" "}
-                  <a rel="nofollow" href="https://templatemo.com">
+                  <a rel="nofollow" href="/">
                     Gift's Hub
                   </a>
                 </p>

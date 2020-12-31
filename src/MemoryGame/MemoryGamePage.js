@@ -18,6 +18,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -32,7 +33,7 @@ const secuseStyles = makeStyles((theme) => ({
 function CubesPage() {
   const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [loading, setloading] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -264,20 +265,20 @@ function CubesPage() {
 
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -286,7 +287,6 @@ function CubesPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -314,32 +314,34 @@ function CubesPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -505,35 +507,31 @@ function CubesPage() {
                   <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
                 </label>
               </div>
-              <button
-                onClick={() => {
-                  handleFireBaseUpload();
-                  setshowoptions(true);
-                }}
-                className="main-button"
-                data-tut="reactour__generatelink"
-              >
-                Generate Link
-              </button>
+              <center data-tut="reactour__generatelink">
+                <div style={{ marginTop: "20px" }}>
+                  <button
+                    onClick={() => {
+                      handleFireBaseUpload();
+                      setshowoptions(true);
+                    }}
+                    className="main-button"
+                    data-tut="reactour__generatelink"
+                  >
+                    Generate Link
+                  </button>
+                </div>
+              </center>
               {loading ? (
                 <Loader
                   type="BallTriangle"
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ width: "200px", marginTop: "20px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
@@ -542,11 +540,16 @@ function CubesPage() {
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
-                          style={{ width: "200px", marginTop: "20px" }}
+                          style={{ marginTop: "20px" }}
                         >
                           <HeaderBtn
                             handleClick={() => {

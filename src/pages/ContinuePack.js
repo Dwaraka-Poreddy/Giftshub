@@ -179,30 +179,80 @@ function ContinuePack({ match, history }) {
   function getStepContent(step) {
     if (dataid[step] === "puzzle") {
       return (
-        <ScheduledSlidePuzzlePage step={step} slug={slag} getDoc={getDoc} />
+        <ScheduledSlidePuzzlePage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
       );
     }
     if (dataid[step] === "animatedframe") {
-      return <ScheduledAnimatedFrame step={step} slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledAnimatedFrame
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
     }
     if (dataid[step] === "specialcard") {
       return (
-        <ScheduledSpecialCardPage step={step} slug={slag} getDoc={getDoc} />
+        <ScheduledSpecialCardPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
       );
     }
     if (dataid[step] === "memorygame") {
       return (
-        <ScheduledMemoryGamePage step={step} slug={slag} getDoc={getDoc} />
+        <ScheduledMemoryGamePage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
       );
     }
     if (dataid[step] === "collage") {
-      return <ScheduledCollagePage step={step} slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledCollagePage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
     }
     if (dataid[step] === "cubes") {
-      return <ScheduledCubesPage step={step} slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledCubesPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
     }
     if (dataid[step] === "newspaper") {
-      return <ScheduledNewsPaperPage step={step} slug={slag} getDoc={getDoc} />;
+      return (
+        <ScheduledNewsPaperPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
     }
     if (dataid[step] === "threedimage") {
       return (
@@ -218,6 +268,8 @@ function ContinuePack({ match, history }) {
     if (dataid[step] === "greetingcard") {
       return (
         <ScheduledOpenGreetingCardPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
           step={step}
           slug={slag}
           getDoc={getDoc}
@@ -399,7 +451,7 @@ function ContinuePack({ match, history }) {
                     setopenModal(true);
                   }}
                   className="main-button"
-                  data-tut="reactour__generatelink"
+                  data-tut="reactour__sharelink"
                 >
                   Share
                 </button>
@@ -491,7 +543,6 @@ function ContinuePack({ match, history }) {
                     setIsTourOpen(true);
                   }}
                   className="main-button"
-                  data-tut="reactour__generatelink"
                 >
                   Start Tour
                 </button>

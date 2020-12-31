@@ -19,6 +19,7 @@ import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import Header from "../Studio/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -32,7 +33,7 @@ const secuseStyles = makeStyles((theme) => ({
 
 function CubesPage() {
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
@@ -238,23 +239,23 @@ function CubesPage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `Choose the image from you local device to be  printed onto the newspaper`,
+      content: `Pictures capture the true moment of any occasion and sure deserve a place in this heart. Select the 6 images : `,
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
     {
       selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -263,7 +264,6 @@ function CubesPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -304,32 +304,34 @@ function CubesPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
             <hr />
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
@@ -516,26 +518,25 @@ function CubesPage() {
                   color="#00BFFF"
                   height={100}
                   width={100}
-                  // timeout={3000} //3 secs
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <center data-tut="reactour__copylink">
-                        <div style={{ marginTop: "20px", width: "200px" }}>
-                          <Copy livelink={livelink} />
-                        </div>
-                      </center>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
                       >
-                        <Link class="logo" to={previewlink}>
+                        <Link class="logo" to={previewlink} target="_blank">
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"

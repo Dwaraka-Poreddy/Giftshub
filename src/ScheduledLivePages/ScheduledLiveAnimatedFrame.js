@@ -25,7 +25,7 @@ function ScheduledLiveAnimatedFrame({ match }) {
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
-      if (item.id == "AnimatedFrame") {
+      if (item.id == "animatedframe") {
         settoday(index);
         dispatch({
           type: "ACTIVE_STEP",

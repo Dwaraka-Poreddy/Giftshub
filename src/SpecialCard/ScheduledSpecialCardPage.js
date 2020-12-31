@@ -18,7 +18,7 @@ import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import GetAppIcon from "@material-ui/icons/GetApp";
-
+import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -30,7 +30,13 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledSpecialCardPage({ step, slug, getDoc }) {
+function ScheduledSpecialCardPage({
+  step,
+  slug,
+  getDoc,
+  isTourOpen,
+  setTourOpend,
+}) {
   const [showoptions, setshowoptions] = useState(false);
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
@@ -38,7 +44,7 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
   let docToPrint = React.createRef();
   const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
-
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -198,9 +204,64 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
     toast.success("Special Card successfully added to your pack");
     getDoc();
   }
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Choose an image from you local device to be displayed on the Special Card.`,
+    },
+    {
+      selector: '[data-tut="reactour__head1"]',
+      content: `How are you and this special someone related?`,
+    },
+    {
+      selector: '[data-tut="reactour__head2"]',
+      // content: `Enter the special person’s name.`,
+      content: `An optional one-liner to make this person giggle maybe?`,
+    },
+    {
+      selector: '[data-tut="reactour__para"]',
+      content: `Words have the power to transform the deepest thoughts into a beautiful poem. Type away your heartfelt message and tell them how much they mean to you.`,
+    },
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
+    },
 
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+
+    {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `Adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `Updates this component with the changes you made in the n-day pack.`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setTourOpend(false);
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1 "></div>
@@ -226,7 +287,7 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
           <div class="col-lg-1"></div>
 
           <div
-            className="newspaperrnav col-lg-3"
+            className=" col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -238,36 +299,38 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
           >
             {" "}
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput"
-                name="LocalfileInput"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ImageIcon} title="Change  image " />
-              </label>
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                </label>
+              </div>
 
               <center>
-                <div>
+                <div data-tut="reactour__head1">
                   <div
                     style={{
                       width: "200px",
@@ -300,7 +363,7 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
                     />
                   </div>
                 </div>
-                <div>
+                <div data-tut="reactour__head2">
                   <div
                     style={{
                       width: "200px",
@@ -334,6 +397,7 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
                   </div>
                 </div>
                 <div
+                  data-tut="reactour__para"
                   style={{
                     width: "200px",
 
@@ -374,7 +438,19 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    {edit.text != "" ? (
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
                       <button
                         className="main-button"
                         onClick={() => {
@@ -385,38 +461,33 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
                       >
                         Update pack
                       </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        className="main-button"
-                        data-tut="reactour__generatelink"
-                      >
-                        Generate Link
-                      </button>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </center>
 
               <center>
-                {livelink ? (
+                {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>
-                    <center>
-                      <div style={{ marginTop: "20px", width: "200px" }}>
-                        <Copy livelink={livelink} />
-                      </div>
-                    </center>
-
-                    <div style={{ marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__preview"
+                      style={{ marginTop: "20px" }}
+                    >
                       <Link class="logo" to={previewlink} target="_blank">
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    {edit.text != "" ? null : (
-                      <div style={{ marginTop: "20px" }}>
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
+                      <Copy livelink={livelink} />
+                    </div>
+                    {edit.text == "" || isTourOpen ? (
+                      <div
+                        data-tut="reactour__addtopack"
+                        style={{ marginTop: "20px" }}
+                      >
                         <HeaderBtn
                           handleClick={() => {
                             EditPack();
@@ -425,7 +496,7 @@ function ScheduledSpecialCardPage({ step, slug, getDoc }) {
                           title="Add to Pack "
                         />
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : null}
               </center>

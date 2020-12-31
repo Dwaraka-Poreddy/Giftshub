@@ -39,8 +39,7 @@ function ScheduledThreeDImagePage({
   setTourOpend,
 }) {
   let { edit } = useSelector((state) => ({ ...state }));
-  // const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [loading, setloading] = useState(false);
   const database = firebase.firestore();
   const secclasses = secuseStyles();
@@ -56,7 +55,7 @@ function ScheduledThreeDImagePage({
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
   );
   const [Cloading, setCLoading] = useState(false);
-  const [firstcol, setfirstcol] = useState("#b07877");
+  const [firstcol, setfirstcol] = useState("#C28484");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [showoptions, setshowoptions] = useState(false);
   useEffect(() => {
@@ -208,36 +207,36 @@ function ScheduledThreeDImagePage({
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `changes the image`,
+      content: `Choose an image from you local device to be displayed on the 3D tiles.`,
     },
     {
       selector: '[data-tut="reactour__gradient"]',
-      content: `choose gradient from and to colors`,
+      content: `Colors mean more to the eye than what it sees. Use these options to select the appropriate gradient range for the background.`,
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `generates a live link for this component. Once the link is generated few other options are shown`,
-    },
-    {
-      selector: '[data-tut="reactour__addtopack"]',
-      content: `adds this component to the n-day pack you created`,
-    },
-    {
-      selector: '[data-tut="reactour__updatepack"]',
-      content: `updates this component with the changes you made in the n-day pack you created`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  created`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+    {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `Adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `Updates this component with the changes you made in the n-day pack.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  created`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -287,10 +286,6 @@ function ScheduledThreeDImagePage({
               right: "0",
             }}
           >
-            {/* {JSON.stringify(livelink)}
-            <hr />
-            {JSON.stringify(showoptions)} */}
-
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -377,7 +372,19 @@ function ScheduledThreeDImagePage({
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    {edit.text != "" ? (
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
                       <button
                         className="main-button"
                         onClick={() => {
@@ -388,32 +395,13 @@ function ScheduledThreeDImagePage({
                       >
                         Update pack
                       </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        className="main-button"
-                        data-tut="reactour__generatelink"
-                      >
-                        Generate Link
-                      </button>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </center>
-
               <center>
-                {livelink && showoptions && !loading ? (
+                {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>
-                    <div
-                      data-tut="reactour__copylink"
-                      style={{ width: "200px", marginTop: "20px" }}
-                    >
-                      <Copy livelink={livelink} />
-                    </div>
-
                     <div
                       data-tut="reactour__preview"
                       style={{ marginTop: "20px" }}
@@ -422,7 +410,13 @@ function ScheduledThreeDImagePage({
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    {edit.text != "" ? null : (
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
+                      <Copy livelink={livelink} />
+                    </div>
+                    {edit.text == "" || isTourOpen ? (
                       <div
                         data-tut="reactour__addtopack"
                         style={{ marginTop: "20px" }}
@@ -435,7 +429,7 @@ function ScheduledThreeDImagePage({
                           title="Add to Pack "
                         />
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : null}
               </center>
@@ -443,53 +437,6 @@ function ScheduledThreeDImagePage({
           </div>
         </div>
       </div>
-
-      {/* <div style={{ display: "flex" }}>
-        
-      </div> */}
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="0">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

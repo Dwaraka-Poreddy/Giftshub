@@ -113,7 +113,7 @@ function MemoryGame({
   });
   return (
     <div>
-      {timer}
+      {/* {timer} */}
       {isstarted ? (
         <div className="text-center p-2 d-flex flex-column">
           {list.length === 0 ? (

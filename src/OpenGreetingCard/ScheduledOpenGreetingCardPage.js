@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -30,7 +31,14 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
+function ScheduledOpenGreetingCardPage({
+  step,
+  slug,
+  getDoc,
+  isTourOpen,
+  setTourOpend,
+}) {
+  const [accentColor, setaccentColor] = useState("#70cff3");
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
   const [loading, setloading] = useState(false);
@@ -208,8 +216,72 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
     toast.success("Greeting Card successfully added to your pack");
     getDoc();
   }
+
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Choose the image from you local device to be  printed onto the greeting card`,
+    },
+
+    {
+      selector: '[data-tut="reactour__to"]',
+      content: ` Enter the special person’s name `,
+    },
+    {
+      selector: '[data-tut="reactour__from"]',
+      content: ` Enter your name
+      `,
+    },
+    {
+      selector: '[data-tut="reactour__message"]',
+      content: `We all love short and cute messages, so pour your heart but pay attention to the word limit!`,
+    },
+    {
+      selector: '[data-tut="reactour__occasion"]',
+      content: `Wishings for the special occasion`,
+    },
+
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+    {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `Adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `Updates this component with the changes you made in the n-day pack.`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
+    },
+  ];
+
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setTourOpend(false);
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
@@ -246,35 +318,41 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
             }}
           >
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput"
-                name="LocalfileInput"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={2 / 3}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput">
-                <HeaderBtn Icon={ImageIcon} title="Change  image " />
-              </label>
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={2 / 3}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                </label>
+              </div>
               <center>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__to"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -298,7 +376,11 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     }}
                   />
                 </div>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__from"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -322,7 +404,11 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     }}
                   />
                 </div>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__message"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -346,7 +432,11 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                     }}
                   />
                 </div>
-                <div style={{ width: "200px" }} className="RightSideBar2__Btn">
+                <div
+                  data-tut="reactour__occasion"
+                  style={{ width: "200px" }}
+                  className="RightSideBar2__Btn"
+                >
                   <CreateIcon
                     style={{
                       margin: "0 10px 0 5px",
@@ -381,7 +471,19 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    {edit.text != "" ? (
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
                       <button
                         className="main-button"
                         onClick={() => {
@@ -392,32 +494,13 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                       >
                         Update pack
                       </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        className="main-button"
-                        data-tut="reactour__generatelink"
-                      >
-                        Generate Link
-                      </button>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </center>
-
               <center>
-                {livelink && showoptions && !loading ? (
+                {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>
-                    <div
-                      data-tut="reactour__copylink"
-                      style={{ width: "200px", marginTop: "20px" }}
-                    >
-                      <Copy livelink={livelink} />
-                    </div>
-
                     <div
                       data-tut="reactour__preview"
                       style={{ marginTop: "20px" }}
@@ -426,7 +509,13 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    {edit.text != "" ? null : (
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
+                      <Copy livelink={livelink} />
+                    </div>
+                    {edit.text == "" || isTourOpen ? (
                       <div
                         data-tut="reactour__addtopack"
                         style={{ marginTop: "20px" }}
@@ -439,56 +528,13 @@ function ScheduledOpenGreetingCardPage({ step, slug, getDoc }) {
                           title="Add to Pack "
                         />
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : null}
               </center>
             </div>
           </div>
         </div>
-        <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-7 col-md-12 col-sm-12">
-                <p className="copyright">
-                  Copyright © 2020 Gift's Hub Company . Design:{" "}
-                  <a rel="nofollow" href="https://templatemo.com">
-                    Gift's Hub
-                  </a>
-                </p>
-              </div>
-              <div className="col-lg-5 col-md-12 col-sm-12">
-                <ul className="social">
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-facebook" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-twitter" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-linkedin" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-rss" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-dribbble" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

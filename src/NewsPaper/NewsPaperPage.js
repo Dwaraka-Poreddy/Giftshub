@@ -3,12 +3,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
+import { BrowserView } from "react-device-detect";
 
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
@@ -31,6 +26,7 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 const secuseStyles = makeStyles((theme) => ({
@@ -47,7 +43,7 @@ const secuseStyles = makeStyles((theme) => ({
 function NewsPaperPage() {
   const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   let docToPrint = React.createRef();
   const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
@@ -145,7 +141,7 @@ function NewsPaperPage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `Choose the image from you local device to be  printed onto the newspaper`,
+      content: `Choose the image from you local device to be  printed onto the newspaper.`,
     },
     {
       selector: '[data-tut="reactour__head"]',
@@ -153,7 +149,7 @@ function NewsPaperPage() {
     },
     {
       selector: '[data-tut="reactour__para"]',
-      content: `Woah! This big news sure deserves some subtext too, continue to input this text as well`,
+      content: `Woah! This big news sure deserves some subtext too, continue to input this text as well.`,
     },
     {
       selector: '[data-tut="reactour__date"]',
@@ -162,20 +158,21 @@ function NewsPaperPage() {
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
     },
     {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+
+    {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -184,7 +181,6 @@ function NewsPaperPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -224,7 +220,6 @@ function NewsPaperPage() {
                     padding: "20px 0 0 0 ",
                   }}
                 >
-                  {/* {livelink ? null : ( */}
                   <span style={{ color: "#ffffff" }}>
                     {" "}
                     Hello! Allow us to give you a small tour on how to generate
@@ -235,12 +230,10 @@ function NewsPaperPage() {
                   <HeaderBtn
                     handleClick={() => {
                       setIsTourOpen(true);
-                      setlivelink("123");
                     }}
                     Icon={FlightTakeoffIcon}
                     title=" Start Tour "
                   />
-                  {/* )} */}
                 </div>
               </center>
               <hr />
@@ -373,7 +366,7 @@ function NewsPaperPage() {
                 </div>
               </center>
               <center>
-                <div style={{ marginTop: "20px" }}>
+                {/* <div style={{ marginTop: "20px" }}>
                   <HeaderBtn
                     handleClick={() => {
                       handleImageDownlod(this);
@@ -381,23 +374,22 @@ function NewsPaperPage() {
                     Icon={GetAppIcon}
                     title="Download as image"
                   />
-                </div>
+                </div> */}
 
-                <div
-                  data-tut="reactour__generatelink"
-                  style={{ marginTop: "20px" }}
-                >
-                  <button
-                    onClick={() => {
-                      handleFireBaseUpload();
-                      setshowoptions(true);
-                    }}
-                    className="main-button"
-                    data-tut="reactour__generatelink"
-                  >
-                    Generate Link
-                  </button>
-                </div>
+                <center data-tut="reactour__generatelink">
+                  <div style={{ marginTop: "20px" }}>
+                    <button
+                      onClick={() => {
+                        handleFireBaseUpload();
+                        setshowoptions(true);
+                      }}
+                      className="main-button"
+                      data-tut="reactour__generatelink"
+                    >
+                      Generate Link
+                    </button>
+                  </div>
+                </center>
               </center>
               {loading ? (
                 <Loader
@@ -408,15 +400,8 @@ function NewsPaperPage() {
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ width: "200px", marginTop: "20px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
@@ -425,7 +410,12 @@ function NewsPaperPage() {
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
@@ -457,7 +447,7 @@ function NewsPaperPage() {
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
+                <a rel="nofollow" href="/">
                   Gift's Hub
                 </a>
               </p>

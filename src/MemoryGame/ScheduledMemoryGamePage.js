@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
+import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -28,7 +29,14 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledMemoryGamePage({ step, slug, getDoc }) {
+function ScheduledMemoryGamePage({
+  step,
+  slug,
+  getDoc,
+  isTourOpen,
+  setTourOpend,
+}) {
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [showoptions, setshowoptions] = useState(false);
   let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
@@ -347,9 +355,54 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
       edit.text != "" && toast.success("Memory Game updated successfully");
     }
   };
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Often, the solution turns out to be more beautiful than the challenge itself. Select the 6 images you want the memory game to be composed of :
+      `,
+    },
+
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+    {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `Adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `Updates this component with the changes you made in the n-day pack.`,
+    },
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
+    },
+  ];
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
+      <Tour
+        onRequestClose={() => {
+          setTourOpend(false);
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1"></div>
@@ -378,168 +431,170 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
             }}
           >
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput1"
-                name="LocalfileInput1"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile1}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop1 ? (
-                <CropPage
-                  send={send1}
-                  setfbimg={setfbimg1}
-                  setimage_url={setimage_url1}
-                  opencrop={opencrop1}
-                  aspect_ratio={1 / 1}
-                  setopencrop={setopencrop1}
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput1"
+                  name="LocalfileInput1"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile1}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput1">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput2"
-                name="LocalfileInput2"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile2}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop2 ? (
-                <CropPage
-                  send={send2}
-                  setfbimg={setfbimg2}
-                  setimage_url={setimage_url2}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop2}
-                  setopencrop={setopencrop2}
+                {opencrop1 ? (
+                  <CropPage
+                    send={send1}
+                    setfbimg={setfbimg1}
+                    setimage_url={setimage_url1}
+                    opencrop={opencrop1}
+                    aspect_ratio={1 / 1}
+                    setopencrop={setopencrop1}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput1">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput2"
+                  name="LocalfileInput2"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile2}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput2">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput3"
-                name="LocalfileInput3"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile3}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop3 ? (
-                <CropPage
-                  send={send3}
-                  setfbimg={setfbimg3}
-                  setimage_url={setimage_url3}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop3}
-                  setopencrop={setopencrop3}
+                {opencrop2 ? (
+                  <CropPage
+                    send={send2}
+                    setfbimg={setfbimg2}
+                    setimage_url={setimage_url2}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop2}
+                    setopencrop={setopencrop2}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput2">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput3"
+                  name="LocalfileInput3"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile3}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput3">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput4"
-                name="LocalfileInput4"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile4}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop4 ? (
-                <CropPage
-                  send={send4}
-                  setfbimg={setfbimg4}
-                  setimage_url={setimage_url4}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop4}
-                  setopencrop={setopencrop4}
+                {opencrop3 ? (
+                  <CropPage
+                    send={send3}
+                    setfbimg={setfbimg3}
+                    setimage_url={setimage_url3}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop3}
+                    setopencrop={setopencrop3}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput3">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput4"
+                  name="LocalfileInput4"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile4}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput4">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput5"
-                name="LocalfileInput5"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile5}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop5 ? (
-                <CropPage
-                  send={send5}
-                  setfbimg={setfbimg5}
-                  setimage_url={setimage_url5}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop5}
-                  setopencrop={setopencrop5}
+                {opencrop4 ? (
+                  <CropPage
+                    send={send4}
+                    setfbimg={setfbimg4}
+                    setimage_url={setimage_url4}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop4}
+                    setopencrop={setopencrop4}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput4">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput5"
+                  name="LocalfileInput5"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile5}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput5">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
-              </label>
-              <input
-                style={{ display: "none" }}
-                accept="image/* "
-                className={secclasses.input}
-                id="LocalfileInput6"
-                name="LocalfileInput6"
-                multiple
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile6}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop6 ? (
-                <CropPage
-                  send={send6}
-                  setfbimg={setfbimg6}
-                  setimage_url={setimage_url6}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop6}
-                  setopencrop={setopencrop6}
+                {opencrop5 ? (
+                  <CropPage
+                    send={send5}
+                    setfbimg={setfbimg5}
+                    setimage_url={setimage_url5}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop5}
+                    setopencrop={setopencrop5}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput5">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput6"
+                  name="LocalfileInput6"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile6}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
                 />
-              ) : null}
-              <label htmlFor="LocalfileInput6">
-                <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
-              </label>
+                {opencrop6 ? (
+                  <CropPage
+                    send={send6}
+                    setfbimg={setfbimg6}
+                    setimage_url={setimage_url6}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop6}
+                    setopencrop={setopencrop6}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput6">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
+                </label>
+              </div>
               <center>
                 {loading ? (
                   <Loader
@@ -550,7 +605,19 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                   />
                 ) : (
                   <div style={{ marginTop: "20px" }}>
-                    {edit.text != "" ? (
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
                       <button
                         className="main-button"
                         onClick={() => {
@@ -561,31 +628,13 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                       >
                         Update pack
                       </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        className="main-button"
-                        data-tut="reactour__generatelink"
-                      >
-                        Generate Link
-                      </button>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </center>
               <center>
-                {livelink && showoptions && !loading ? (
+                {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>
-                    <div
-                      data-tut="reactour__copylink"
-                      style={{ width: "200px", marginTop: "20px" }}
-                    >
-                      <Copy livelink={livelink} />
-                    </div>
-
                     <div
                       data-tut="reactour__preview"
                       style={{ marginTop: "20px" }}
@@ -594,7 +643,13 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                         <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                       </Link>
                     </div>
-                    {edit.text != "" ? null : (
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
+                      <Copy livelink={livelink} />
+                    </div>
+                    {edit.text == "" || isTourOpen ? (
                       <div
                         data-tut="reactour__addtopack"
                         style={{ marginTop: "20px" }}
@@ -607,7 +662,7 @@ function ScheduledMemoryGamePage({ step, slug, getDoc }) {
                           title="Add to Pack "
                         />
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ) : null}
               </center>

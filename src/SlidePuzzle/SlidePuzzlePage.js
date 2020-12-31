@@ -18,6 +18,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -32,7 +33,7 @@ const secuseStyles = makeStyles((theme) => ({
 function OpenGreetingCardPage() {
   const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#5cb7b7");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
@@ -56,7 +57,6 @@ function OpenGreetingCardPage() {
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud = uuidv4();
-    console.log(ud);
 
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
@@ -113,20 +113,20 @@ function OpenGreetingCardPage() {
 
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -135,7 +135,6 @@ function OpenGreetingCardPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -176,33 +175,35 @@ function OpenGreetingCardPage() {
               right: "0",
             }}
           >
-            <center>
-              <div
-                style={{
-                  justifyContent: "center",
-                  padding: "20px 0 0 0 ",
-                }}
-              >
-                {/* {livelink ? null : ( */}
-                <span style={{ color: "#ffffff" }}>
-                  {" "}
-                  Hello! Allow us to give you a small tour on how to generate
-                  this special gift. We are sure you wouldn't need one the next
-                  time you are back.
-                  <br /> P.S : Its that easy
-                </span>
-                <HeaderBtn
-                  handleClick={() => {
-                    setIsTourOpen(true);
-                    setlivelink("123");
+            <BrowserView>
+              <center>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
                   }}
-                  Icon={FlightTakeoffIcon}
-                  title=" Start Tour "
-                />
-                {/* )} */}
-              </div>
-            </center>
-            <hr />
+                >
+                  {/* {livelink ? null : ( */}
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                  {/* )} */}
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
+
             <div style={{ padding: "20px 0 0 0 ", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
@@ -256,15 +257,8 @@ function OpenGreetingCardPage() {
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ marginTop: "20px", width: "200px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
@@ -273,7 +267,12 @@ function OpenGreetingCardPage() {
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"

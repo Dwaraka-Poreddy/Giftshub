@@ -19,12 +19,8 @@ import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
+import { BrowserView } from "react-device-detect";
+
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -51,10 +47,10 @@ function OpenGreetingCardPage() {
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
   );
-  const [firstcol, setfirstcol] = useState("#b07877");
+  const [firstcol, setfirstcol] = useState("#C28484");
   const [secondcol, setsecondcol] = useState("#1c1008");
   const [color, setColor] = useState({});
-  const [accentColor, setaccentColor] = useState("#C28484");
+  const [accentColor, setaccentColor] = useState("#70cff3");
   const [showoptions, setshowoptions] = useState(false);
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
@@ -119,28 +115,28 @@ function OpenGreetingCardPage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `Choose the image from you local device to be displayed on the 3D tiles`,
+      content: `Choose an image from you local device to be displayed on the 3D tiles.`,
     },
     {
       selector: '[data-tut="reactour__gradient"]',
-      content: `Colors mean more to the eye than what it sees. Use these options to select the appropriate gradient range for the background`,
+      content: `Colors mean more to the eye than what it sees. Use these options to select the appropriate gradient range for the background.`,
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -151,7 +147,6 @@ function OpenGreetingCardPage() {
         <Tour
           onRequestClose={() => {
             setIsTourOpen(false);
-            setlivelink("");
           }}
           steps={tourConfig}
           isOpen={isTourOpen}
@@ -163,9 +158,7 @@ function OpenGreetingCardPage() {
       </div>
 
       <br />
-      <br />
 
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
@@ -196,7 +189,6 @@ function OpenGreetingCardPage() {
                     padding: "20px 0 0 0 ",
                   }}
                 >
-                  {/* {livelink ? null : ( */}
                   <span style={{ color: "#ffffff" }}>
                     {" "}
                     Hello! Allow us to give you a small tour on how to generate
@@ -207,12 +199,10 @@ function OpenGreetingCardPage() {
                   <HeaderBtn
                     handleClick={() => {
                       setIsTourOpen(true);
-                      setlivelink("123");
                     }}
                     Icon={FlightTakeoffIcon}
                     title=" Start Tour "
                   />
-                  {/* )} */}
                 </div>
               </center>
               <hr />
@@ -316,8 +306,16 @@ function OpenGreetingCardPage() {
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
                       <div
                         data-tut="reactour__copylink"
                         style={{ marginTop: "20px", width: "200px" }}
@@ -340,14 +338,6 @@ function OpenGreetingCardPage() {
                       ) : (
                         <Share livelink={livelink} />
                       )}
-                      <div
-                        data-tut="reactour__preview"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <Link class="logo" to={previewlink} target="_blank">
-                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                        </Link>
-                      </div>
                     </div>
                   ) : null}
                 </center>
@@ -363,7 +353,7 @@ function OpenGreetingCardPage() {
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="0">
+                <a rel="nofollow" href="/">
                   Gift's Hub
                 </a>
               </p>

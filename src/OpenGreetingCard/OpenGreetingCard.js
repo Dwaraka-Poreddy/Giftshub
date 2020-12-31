@@ -14,12 +14,12 @@ export default function OpenGreetingCard({
   const audioTune = new Audio(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Faudio.mp3?alt=media&token=75a5f730-ebc1-4b2f-a4d5-06432c85fcd8"
   );
-  useEffect(() => {
-    audioTune.load();
-  }, []);
-  const playSound = () => {
-    audioTune.play();
-  };
+  // useEffect(() => {
+  //   audioTune.load();
+  // }, []);
+  // const playSound = () => {
+  //   audioTune.play();
+  // };
 
   // // pause audio sound
   // const pauseSound = () => {
@@ -34,7 +34,7 @@ export default function OpenGreetingCard({
   const timer = () => {
     setTimeout(() => {
       setOpenCard("gc_carrd open");
-      playSound();
+      // playSound();
 
       setTimeout(() => {
         setOpenCard("gc_carrd");

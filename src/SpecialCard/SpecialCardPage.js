@@ -17,12 +17,6 @@ import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import AuthHeader from "../components/nav/Header";
 import firebase from "../firebase";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
 import { storage } from "../firebase";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
@@ -35,6 +29,7 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { BrowserView } from "react-device-detect";
 import LinkIcon from "@material-ui/icons/Link";
 import Fab from "@material-ui/core/Fab";
 import Loader from "react-loader-spinner";
@@ -275,36 +270,37 @@ export default function SpecialCardPage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `A pleasant surprise is always welcome and your special someone definitely deserves it more than anyone! Check out this feature to spread affection and delight******`,
+      content: `Choose an image from you local device to be displayed on the Special Card.`,
     },
     {
       selector: '[data-tut="reactour__head1"]',
-      content: ` Enter your name`,
+      content: `How are you and this special someone related?`,
     },
     {
       selector: '[data-tut="reactour__head2"]',
-      content: `Enter the special person’s name`,
+      // content: `Enter the special person’s name.`,
+      content: `An optional one-liner to make this person giggle maybe?`,
     },
     {
       selector: '[data-tut="reactour__para"]',
-      content: `We all love short and cute messages, so pour your heart but pay attention to the word limit! `,
+      content: `Words have the power to transform the deepest thoughts into a beautiful poem. Type away your heartfelt message and tell them how much they mean to you.`,
     },
     {
       selector: '[data-tut="reactour__generatelink"]',
-      content: `Tada! Almost done, do generate the link for enabling the various sharing options`,
-    },
-    {
-      selector: '[data-tut="reactour__copylink"]',
-      content: `copies the generated live link to clipboard`,
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
 
     {
       selector: '[data-tut="reactour__preview"]',
-      content: `previews the component  crerated`,
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
     },
     {
       selector: '[data-tut="reactour__sharelink"]',
-      content: `shares the live link of the component  crerated`,
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
@@ -313,7 +309,6 @@ export default function SpecialCardPage() {
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
-          setlivelink("");
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -354,7 +349,6 @@ export default function SpecialCardPage() {
                     padding: "20px 0 0 0 ",
                   }}
                 >
-                  {/* {livelink ? null : ( */}
                   <span style={{ color: "#ffffff" }}>
                     {" "}
                     Hello! Allow us to give you a small tour on how to generate
@@ -365,12 +359,10 @@ export default function SpecialCardPage() {
                   <HeaderBtn
                     handleClick={() => {
                       setIsTourOpen(true);
-                      setlivelink("123");
                     }}
                     Icon={FlightTakeoffIcon}
                     title=" Start Tour "
                   />
-                  {/* )} */}
                 </div>
               </center>
               <hr />
@@ -590,15 +582,8 @@ export default function SpecialCardPage() {
                 />
               ) : (
                 <center>
-                  {livelink ? (
+                  {livelink || isTourOpen ? (
                     <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ width: "200px", marginTop: "20px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-
                       <div
                         data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
@@ -607,7 +592,12 @@ export default function SpecialCardPage() {
                           <HeaderBtn Icon={VisibilityIcon} title="Preview " />
                         </Link>
                       </div>
-
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
                       {!showshare ? (
                         <div
                           data-tut="reactour__sharelink"
