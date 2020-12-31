@@ -26,7 +26,7 @@ function SchdeuledLiveNav({ slug }) {
           Gifts Hub
         </a>
         <a class=" navbar-item" href={`/scheduledlive/main/${slug}`}>
-          Main Page
+          Home
         </a>
         <button
           class="navbar-toggler"

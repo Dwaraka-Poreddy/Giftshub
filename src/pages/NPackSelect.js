@@ -208,7 +208,7 @@ class N_Pack_Select extends Component {
         <div class="row">
           <div class="col-lg-6 p-0 pt-3 ">
             <center>
-              <h1> Pack</h1>
+              <h3>All Components</h3>
             </center>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
@@ -317,7 +317,7 @@ class N_Pack_Select extends Component {
                                     padding: "1rem 1.25rem ",
                                   }}
                                 >
-                                  {item.content}
+                                  {item.content}-Day {index}
                                 </div>
                               </div>
                             </div>

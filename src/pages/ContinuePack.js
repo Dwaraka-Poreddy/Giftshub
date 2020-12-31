@@ -56,8 +56,6 @@ const usemodStyles = makeStyles((theme) => ({
 function ContinuePack({ match, history }) {
   const theme = useTheme();
 
-  const maxSteps = 7;
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -65,7 +63,7 @@ function ContinuePack({ match, history }) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
+  const [maxSteps, setmaxSteps] = useState();
   const database = firebase.firestore();
   let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
@@ -137,6 +135,7 @@ function ContinuePack({ match, history }) {
     setdata1(datanew);
     const data = await snapshot.data().array_data;
     setdaycounter(data.length - activeStep - 1);
+    setmaxSteps(data.length);
     data.map((item, index) => {
       datacontent[index] = item.content;
       dataid[index] = item.id;

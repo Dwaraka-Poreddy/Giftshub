@@ -3,12 +3,12 @@ import "./SpecialCard.css";
 function SpecialCard({ fbimg, head1, para, head2 }) {
   return (
     <div style={{ flex: "0.8", alignItems: "center" }}>
-      <center>
-        <h1 className="example">Hover the card below !!!</h1>
-      </center>
       <br />
       <br />
       <div class="container">
+        <center>
+          <h1>Hover the card below !!!</h1>
+        </center>
         <div class="row">
           <div class="col "></div>
           <div style={{ paddingLeft: "25px" }} class="col ">

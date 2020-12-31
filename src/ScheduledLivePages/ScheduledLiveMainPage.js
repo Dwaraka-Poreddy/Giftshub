@@ -70,7 +70,11 @@ function ScheduledLiveMainPage({ match }) {
   });
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url("https://wallpapercave.com/wp/wp3284839.gif")`,
+      }}
+    >
       <ScheduledLiveNav slug={match.params.slug} />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>

@@ -639,12 +639,6 @@ const Home = ({ history }) => {
                                         src="assets/images/icon.png"
                                         alt=""
                                       />
-                                      // <AvTimerIcon
-                                      //   style={{
-                                      //     fill: "#0196de",
-                                      //     margin: "5px 7px",
-                                      //   }}
-                                      // />
                                     )}
                                     <h2
                                       style={{
