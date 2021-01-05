@@ -361,38 +361,6 @@ function Header() {
           >
             Trending
           </h2>
-          <CustomScroll>
-            {data.items.map((item, index) => (
-              <div
-                className="scrollArea"
-                style={{
-                  display: "flex",
-                  margin: "auto",
-                  marginTop: "10px",
-                  maxWidth: "700px",
-                  borderRight: "8px solid #252935",
-                  cursor: "pointer",
-                }}
-              >
-                <img
-                  onClick={() => {
-                    setActiveImage(item.src);
-                  }}
-                  style={{
-                    objectFit: "contain",
-                    width: "200px",
-                    padding: "3px",
-                    // height: "158px",
-                    margin: "auto",
-                    border: "2px solid #5a5d68",
-                  }}
-                  src={item.src}
-                  alt=""
-                />
-                {JSON.stringify(Math.random)}
-              </div>
-            ))}
-          </CustomScroll>
         </div>
         <div className="WorkSpace">
           <React.Fragment>

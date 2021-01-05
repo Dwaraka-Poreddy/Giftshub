@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import Studio from "./Studio/Studio.js";
 import Header from "./Studio/Header";
 import MainPage from "./MainPage";
 import MagazinePage from "./Magazine/MagazinePage";
@@ -9,6 +10,7 @@ import CollagePage from "./Collage/CollagePage";
 import CubesPage from "./Cubes/CubesPage";
 import OpenGreetingCardPage from "./OpenGreetingCard/OpenGreetingCardPage";
 import LiveOpenGreetingCardPage from "./LivePages/LiveOpenGreetingCardPage";
+import AnimatedFrame from "./AnimatedFrames/AnimatedFrame";
 import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
@@ -74,7 +76,9 @@ export default function App() {
       <ToastContainer />
       <Switch>
         <Route exact path="/sound" component={SoundRecorder} />
+        <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/home" component={Home} />
+        <Route exact path="/studio" component={Studio} />
         <Route exact path="/sevendayhome" component={SevenDayHome} />
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
         <Route exact path="/login" component={Login} />

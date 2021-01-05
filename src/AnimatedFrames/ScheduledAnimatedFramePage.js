@@ -326,7 +326,7 @@ function ScheduledAnimatedFramesPage({
                     send={send1}
                     setfbimg={setfbimg1}
                     setimage_url={setimage_url1}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={2 / 1}
                     opencrop={opencrop1}
                     setopencrop={setopencrop1}
                   />
@@ -355,7 +355,7 @@ function ScheduledAnimatedFramesPage({
                     send={send2}
                     setfbimg={setfbimg2}
                     setimage_url={setimage_url2}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={2 / 1}
                     opencrop={opencrop2}
                     setopencrop={setopencrop2}
                   />

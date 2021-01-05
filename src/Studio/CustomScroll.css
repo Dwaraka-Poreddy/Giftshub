@@ -22,7 +22,7 @@
   position: absolute;
   border-radius: 7px;
   bottom: 0px;
-  background-color: #252935;
+  background-color: #0092e0;
 }
 
 .scroll-thumb {
@@ -33,5 +33,6 @@
   border-radius: 7px;
   opacity: 1;
   top: 0;
-  background-color: #c1c1c1;
+  background-color: #ffffff;
+  z-index: 1000;
 }

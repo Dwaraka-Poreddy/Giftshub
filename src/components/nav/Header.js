@@ -43,7 +43,7 @@ const Header = () => {
     <nav class="navbar navbar-expand-md bg-light navbar-light">
       <div class="container">
         <a class=" navbar-brand text-primary" href={`/`}>
-          Gifts Hub Page
+          Gifts Hub
         </a>
 
         <button

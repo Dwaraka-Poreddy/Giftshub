@@ -57,7 +57,7 @@ export default function AnimatedFramePage() {
     "https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400"
   );
   const [fbimg1, setfbimg1] = useState(
-    "http://unsplash.imgix.net/reserve/de9uL9L7RSmzV4SAoAO5_Lauren%20and%20Winona%20Under%20a%20pass-1.jpg?fit=crop&fm=jpg&h=1500&q=75&w=2400"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFramesImg1.jpg?alt=media&token=557aba90-f822-42de-b552-8e5299a9f102"
   );
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
@@ -187,8 +187,7 @@ export default function AnimatedFramePage() {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-1 "></div>
-          <div class="col-sm-8 ">
+          <div class="col-sm-9 ">
             <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
           </div>
 
