@@ -622,7 +622,7 @@ services
 }
 
 .owl-carousel .owl-dots {
-  margin-top: 60px;
+  margin-top: 0px;
   text-align: center;
   align-self: center;
 }

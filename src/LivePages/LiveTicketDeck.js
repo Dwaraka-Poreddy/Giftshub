@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import ThreeDImage from "../ThreeDImage/ThreeDImage";
+import TicketDeck from "../TicketDeck/TicketDeck";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-export default function LiveThreeDImage({ match }) {
+
+export default function LiveTicketDeck({ match }) {
   const [fbimg, setfbimg] = useState("");
-  const [firstcol, setfirstcol] = useState("");
-  const [secondcol, setsecondcol] = useState("");
+  const [name, setname] = useState("");
+
   const [loading, setloading] = useState(false);
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
       .database()
-      .ref("/ThreeDImage/" + match.params.slug)
+      .ref("/TicketDeck/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
-        var col1 = snapshot.val().firstcol;
-        setfirstcol(col1);
-        var col2 = snapshot.val().secondcol;
-        setsecondcol(col2);
+        var name = snapshot.val().name;
+        setname(name);
+
         setloading(false);
       });
   }, []);
@@ -39,11 +39,7 @@ export default function LiveThreeDImage({ match }) {
                 width={100}
               />
             ) : (
-              <ThreeDImage
-                firstcol={firstcol}
-                secondcol={secondcol}
-                fbimg={fbimg}
-              />
+              <TicketDeck name={name} fbimg={fbimg} />
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>

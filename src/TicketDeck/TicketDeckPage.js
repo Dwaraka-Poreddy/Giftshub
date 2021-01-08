@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import ThreeDImage from "./ThreeDImage";
+import TicketDeck from "./TicketDeck";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./ThreeDImagePage.css";
+
+// import "./ThreeDImagePage.css";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
@@ -20,7 +21,8 @@ import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
-
+import InputBase from "@material-ui/core/InputBase";
+import CreateIcon from "@material-ui/icons/Create";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -32,7 +34,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ThreeDImagePage() {
+function TicketDeckPage() {
   const [isTourOpen, setIsTourOpen] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -44,6 +46,9 @@ function ThreeDImagePage() {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
+  const [toname, settoname] = useState("udhistir");
+  const [dummytoname, setdummytoname] = useState("udhistir");
+  const [editname, seteditname] = useState(false);
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
   );
@@ -67,15 +72,14 @@ function ThreeDImagePage() {
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (!livelink) {
-      const todoRef = firebase.database().ref("ThreeDImage");
+      const todoRef = firebase.database().ref("TicketDeck");
       const todo = {
         url: fbimg,
-        firstcol: firstcol,
-        secondcol: secondcol,
+        name: toname,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/threedimage/" + newKey);
-      setpreviewlink("/live/threedimage/" + newKey);
+      setlivelink("http://localhost:3000/live/ticketdeck/" + newKey);
+      setpreviewlink("/live/ticketdeck/" + newKey);
 
       setloading(false);
     } else {
@@ -96,15 +100,14 @@ function ThreeDImagePage() {
               savedImage.ref.getDownloadURL().then((downUrl) => {
                 console.log(downUrl);
                 setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("ThreeDImage");
+                const todoRef = firebase.database().ref("TicketDeck");
                 const todo = {
                   url: downUrl,
-                  firstcol: firstcol,
-                  secondcol: secondcol,
+                  name: toname,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/threedimage/" + newKey);
-                setpreviewlink("/live/threedimage/" + newKey);
+                setlivelink("http://localhost:3000/live/ticketdeck/" + newKey);
+                setpreviewlink("/live/ticketdeck/" + newKey);
               });
               setloading(false);
             });
@@ -115,7 +118,7 @@ function ThreeDImagePage() {
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `Choose an image from you local device to be displayed on the 3D tiles.`,
+      content: `Choose an image from you local device to be displayed on the main Ticket`,
     },
     {
       selector: '[data-tut="reactour__gradient"]',
@@ -139,6 +142,15 @@ function ThreeDImagePage() {
       content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
+
+  const func = () => {
+    return <TicketDeck name={toname} />;
+  };
+  useEffect(() => {
+    console.log("inside func useeffect");
+    func();
+  }, [toname]);
+
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <AuthHeader />
@@ -161,15 +173,8 @@ function ThreeDImagePage() {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
-            <ThreeDImage
-              firstcol={firstcol}
-              secondcol={secondcol}
-              fbimg={fbimg}
-            />
-          </div>
-          <div class="col-lg-1"></div>
+          <div class="  col-lg-9">{func()}</div>
+          {/* <div class="col-lg-1"></div> */}
           <div
             className="threedrnav   col-lg-3"
             style={{
@@ -209,80 +214,53 @@ function ThreeDImagePage() {
             </BrowserView>
 
             <div style={{ justifyContent: "center" }}>
-              <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  // multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={4 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
-              </div>
-              <div data-tut="reactour__gradient">
-                <input
-                  type="color"
-                  id="FirstColor"
-                  initialValue={firstcol}
-                  value={firstcol}
-                  onChange={(e) => {
-                    setfirstcol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="FirstColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Left Color" />
-                </label>
-                <input
-                  type="color"
-                  id="ToColor"
-                  initialValue={secondcol}
-                  value={secondcol}
-                  onChange={(e) => {
-                    setsecondcol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="ToColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Right Color" />
-                </label>
-              </div>
-
+              <center>
+                <div data-tut="reactour__head">
+                  {editname ? (
+                    <div
+                      style={{
+                        width: "200px",
+                        marginTop: "10px",
+                      }}
+                      className="RightSideBar2__Btn"
+                    >
+                      <CreateIcon
+                        onClick={() => {
+                          seteditname(false);
+                          settoname(dummytoname);
+                        }}
+                        style={{
+                          margin: "0 10px 0 5px",
+                          color: "#ffffff",
+                          fontSize: "large",
+                        }}
+                      />
+                      <InputBase
+                        className="RightSideBar2__Btn"
+                        multiline
+                        style={{
+                          color: "#068dc0",
+                          margin: "0",
+                          backgroundColor: "#ffffff",
+                          width: "200px",
+                        }}
+                        value={dummytoname}
+                        onChange={(e) => {
+                          setdummytoname(e.target.value);
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <HeaderBtn
+                      handleClick={() => {
+                        seteditname(true);
+                      }}
+                      Icon={CreateIcon}
+                      title="Change  Name"
+                    />
+                  )}
+                </div>
+              </center>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
                   <button
@@ -394,4 +372,4 @@ function ThreeDImagePage() {
   );
 }
 
-export default ThreeDImagePage;
+export default TicketDeckPage;

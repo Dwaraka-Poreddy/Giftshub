@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import TicketDeckPage from "./TicketDeck/TicketDeckPage";
+import LandingPage from "./LandingPage";
 import Studio from "./Studio/Studio.js";
 import Header from "./Studio/Header";
 import MainPage from "./MainPage";
@@ -15,6 +17,7 @@ import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
+import LiveTicketDeck from "./LivePages/LiveTicketDeck";
 import LiveSplitWall from "./LivePages/LiveSplitWall.js";
 import LiveThreeDImage from "./LivePages/LiveThreeDImage";
 import LiveSlidePuzzle from "./LivePages/LiveSlidePuzzle";
@@ -75,6 +78,8 @@ export default function App() {
     <div className="App">
       <ToastContainer />
       <Switch>
+        <Route exact path="/ticketdeckpage" component={TicketDeckPage} />
+        <Route exact path="/landingpage" component={LandingPage} />
         <Route exact path="/sound" component={SoundRecorder} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/home" component={Home} />
@@ -109,6 +114,7 @@ export default function App() {
         <Route exact path="/threedimagepage" component={ThreeDImagePage} />
         <Route exact path="/animatedframePage" component={AnimatedFramePage} />
 
+        <Route exact path="/live/ticketdeck/:slug" component={LiveTicketDeck} />
         <Route exact path="/live/splitwall/:slug" component={LiveSplitWall} />
         <Route
           exact

@@ -1,0 +1,33 @@
+[class*="ticket"] {
+  width: 150px;
+  height: 420px;
+  position: absolute;
+  transform-origin: 25% 90%;
+  top: 100px;
+  left: 42%;
+  transition: all 0.5s linear;
+  border-radius: 5px;
+  box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.2),
+    12px 12px 20px rgba(0, 0, 0, 0.6), inset 2px 2px 0 rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  text-align: center;
+  font-size: 3.5em;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Verdana;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: linear-gradient(135deg, #dddddd 0%, #58535e 48%, #889396 100%);
+  position: relative;
+  top: 235px;
+  left: 0px;
+}
+#ticket12 {
+  background-color: #000;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fdark_leather.jpg?alt=media&token=4b9dcd4a-5ccc-40d0-8b01-3683722cb985");
+}
