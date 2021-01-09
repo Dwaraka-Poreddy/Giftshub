@@ -6,7 +6,7 @@ export default function LiveCalandar({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [firstcol, setfirstcol] = useState("");
   const [secondcol, setsecondcol] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
@@ -29,8 +29,7 @@ export default function LiveCalandar({ match }) {
       <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
+          <div style={{ flex: "1" }}>
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -42,7 +41,6 @@ export default function LiveCalandar({ match }) {
               <Calandar fbimg={fbimg} />
             )}
           </div>
-          <div style={{ flex: "0.15" }}></div>
         </div>
       </div>
     </div>

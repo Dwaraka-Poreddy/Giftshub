@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-// import TurningBook from "./TurningBook/TurningBook";
+
 import { Switch, Route } from "react-router-dom";
 import AboutQuizPage from "./AboutQuiz/AboutQuizPage";
 import Journey from "./Journey/Journey";
@@ -86,7 +86,6 @@ export default function App() {
     <div className="App">
       <ToastContainer />
       <Switch>
-        {/* <Route exact path="/turningbook" component={TurningBook} /> */}
         <Route exact path="/aboutquizpage" component={AboutQuizPage} />
         <Route exact path="/journey" component={Journey} />
         <Route exact path="/journeypage" component={JourneyPage} />
