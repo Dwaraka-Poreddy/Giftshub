@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ThreeDImage from "../ThreeDImage/ThreeDImage";
+import Calandar from "../Calandar/Calandar";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-export default function LiveThreeDImage({ match }) {
+export default function LiveCalandar({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [firstcol, setfirstcol] = useState("");
   const [secondcol, setsecondcol] = useState("");
@@ -11,7 +11,7 @@ export default function LiveThreeDImage({ match }) {
     setloading(true);
     const todoRef = await firebase
       .database()
-      .ref("/ThreeDImage/" + match.params.slug)
+      .ref("/Calandar/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img = snapshot.val().url;
@@ -25,6 +25,8 @@ export default function LiveThreeDImage({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
@@ -37,11 +39,7 @@ export default function LiveThreeDImage({ match }) {
                 width={100}
               />
             ) : (
-              <ThreeDImage
-                firstcol={firstcol}
-                secondcol={secondcol}
-                fbimg={fbimg}
-              />
+              <Calandar fbimg={fbimg} />
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>

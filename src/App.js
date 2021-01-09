@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import "./App.css";
+// import TurningBook from "./TurningBook/TurningBook";
 import { Switch, Route } from "react-router-dom";
+import AboutQuizPage from "./AboutQuiz/AboutQuizPage";
+import Journey from "./Journey/Journey";
+import JourneyPage from "./Journey/JourneyPage";
 import TicketDeckPage from "./TicketDeck/TicketDeckPage";
+import CalandarPage from "./Calandar/CalandarPage";
 import LandingPage from "./LandingPage";
 import Studio from "./Studio/Studio.js";
 import Header from "./Studio/Header";
@@ -16,7 +21,10 @@ import AnimatedFrame from "./AnimatedFrames/AnimatedFrame";
 import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
+import LiveCalandar from "./LivePages/LiveCalandar";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
+import LiveJourney from "./LivePages/LiveJourney";
+import LiveAboutQuiz from "./LivePages/LiveAboutQuiz";
 import LiveTicketDeck from "./LivePages/LiveTicketDeck";
 import LiveSplitWall from "./LivePages/LiveSplitWall.js";
 import LiveThreeDImage from "./LivePages/LiveThreeDImage";
@@ -78,6 +86,11 @@ export default function App() {
     <div className="App">
       <ToastContainer />
       <Switch>
+        {/* <Route exact path="/turningbook" component={TurningBook} /> */}
+        <Route exact path="/aboutquizpage" component={AboutQuizPage} />
+        <Route exact path="/journey" component={Journey} />
+        <Route exact path="/journeypage" component={JourneyPage} />
+        <Route exact path="/calandarpage" component={CalandarPage} />
         <Route exact path="/ticketdeckpage" component={TicketDeckPage} />
         <Route exact path="/landingpage" component={LandingPage} />
         <Route exact path="/sound" component={SoundRecorder} />
@@ -114,6 +127,9 @@ export default function App() {
         <Route exact path="/threedimagepage" component={ThreeDImagePage} />
         <Route exact path="/animatedframePage" component={AnimatedFramePage} />
 
+        <Route exact path="/live/aboutquiz/:slug" component={LiveAboutQuiz} />
+        <Route exact path="/live/journey/:slug" component={LiveJourney} />
+        <Route exact path="/live/calandar/:slug" component={LiveCalandar} />
         <Route exact path="/live/ticketdeck/:slug" component={LiveTicketDeck} />
         <Route exact path="/live/splitwall/:slug" component={LiveSplitWall} />
         <Route

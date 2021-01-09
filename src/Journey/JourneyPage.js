@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Cubes from "./Cubes";
+import Journey from "./Journey";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./CubesPage.css";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -17,9 +15,10 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
-import Header from "../Studio/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
+import InputBase from "@material-ui/core/InputBase";
+import CreateIcon from "@material-ui/icons/Create";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -31,7 +30,13 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function CubesPage() {
+function JourneyPage() {
+  const [t1, sett1] = useState("We met");
+  const [t2, sett2] = useState("We talked");
+  const [t3, sett3] = useState("We flirted");
+  const [t4, sett4] = useState("We fell in love");
+  const [t5, sett5] = useState("The end");
+  const [heading, setheading] = useState("Our Journey");
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#70cff3");
   const secclasses = secuseStyles();
@@ -42,35 +47,35 @@ function CubesPage() {
   const [imageAsFile, setImageAsFile] = useState("");
   const [showoptions, setshowoptions] = useState(false);
   const [fbimg1, setfbimg1] = useState(
-    "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw=&auto=format&fit=crop&w=1950&q=80"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FmeetingOutline.png?alt=media&token=c3ad518d-fa7d-43b2-ae4d-596334c10dc1"
   );
   const [image_url1, setimage_url1] = useState();
   const [opencrop1, setopencrop1] = useState(false);
   const [send1, setsend1] = useState();
 
   const [fbimg2, setfbimg2] = useState(
-    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://cdn3.iconfinder.com/data/icons/other-icons/48/creative_draw-512.png"
   );
   const [image_url2, setimage_url2] = useState();
   const [opencrop2, setopencrop2] = useState(false);
   const [send2, setsend2] = useState();
 
   const [fbimg3, setfbimg3] = useState(
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60"
+    "https://cdn3.iconfinder.com/data/icons/other-icons/48/app_window-512.png"
   );
   const [image_url3, setimage_url3] = useState();
   const [opencrop3, setopencrop3] = useState(false);
   const [send3, setsend3] = useState();
 
   const [fbimg4, setfbimg4] = useState(
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fheartoutline.png?alt=media&token=136a4faa-4059-474b-8253-7c5b4bac6442"
   );
   const [image_url4, setimage_url4] = useState();
   const [opencrop4, setopencrop4] = useState(false);
   const [send4, setsend4] = useState();
 
   const [fbimg5, setfbimg5] = useState(
-    "https://images.unsplash.com/photo-1473172707857-f9e276582ab6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpairoutline.png?alt=media&token=e9611c83-dcbd-4a34-9716-85ff7e312a54"
   );
   const [image_url5, setimage_url5] = useState();
   const [opencrop5, setopencrop5] = useState(false);
@@ -118,7 +123,7 @@ function CubesPage() {
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (!livelink) {
-      const todoRef = firebase.database().ref("Cubes");
+      const todoRef = firebase.database().ref("Journey");
       const todo = {
         url1: fbimg1,
         url2: fbimg2,
@@ -126,11 +131,16 @@ function CubesPage() {
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
+        t1: t1,
+        t2: t2,
+        t3: t3,
+        t4: t4,
+        t5: t5,
+        heading: heading,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/cubes/" + newKey);
-      console.log(livelink, "livelink");
-      setpreviewlink("/live/cubes/" + newKey);
+      setlivelink("http://localhost:3000/live/journey/" + newKey);
+      setpreviewlink("/live/journey/" + newKey);
 
       setloading(false);
     } else {
@@ -195,7 +205,7 @@ function CubesPage() {
                                                   .then((downUrl6) => {
                                                     const todoRef = firebase
                                                       .database()
-                                                      .ref("Cubes");
+                                                      .ref("Journey");
                                                     const todo = {
                                                       url1: downUrl1,
                                                       url2: downUrl2,
@@ -203,12 +213,18 @@ function CubesPage() {
                                                       url4: downUrl4,
                                                       url5: downUrl5,
                                                       url6: downUrl6,
+                                                      t1: t1,
+                                                      t2: t2,
+                                                      t3: t3,
+                                                      t4: t4,
+                                                      t5: t5,
+                                                      heading: heading,
                                                     };
                                                     var newKey = todoRef
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/cubes/" +
+                                                      "http://localhost:3000/live/journey/" +
                                                         newKey
                                                     );
                                                     console.log(
@@ -216,7 +232,7 @@ function CubesPage() {
                                                       "livelink"
                                                     );
                                                     setpreviewlink(
-                                                      "/live/cubes/" + newKey
+                                                      "/live/journey/" + newKey
                                                     );
                                                   });
                                               });
@@ -275,24 +291,23 @@ function CubesPage() {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7" style={{ height: "70vh", marginTop: "50px" }}>
-            <Cubes
+          <div class="  col-lg-9">
+            <Journey
               fbimg1={fbimg1}
               fbimg2={fbimg2}
               fbimg3={fbimg3}
               fbimg4={fbimg4}
               fbimg5={fbimg5}
               fbimg6={fbimg6}
-              t1="1"
-              t2="2"
-              t3="3"
-              t4="4"
-              t5="5"
-              t6="6"
+              t1={t1}
+              t2={t2}
+              t3={t3}
+              t4={t4}
+              t5={t5}
+              heading={heading}
             />
           </div>
-          <div class="col-lg-1"></div>
+
           <div
             className="cubesrnav col-lg-3"
             style={{
@@ -354,7 +369,7 @@ function CubesPage() {
                     send={send1}
                     setfbimg={setfbimg1}
                     setimage_url={setimage_url1}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop1}
                     setopencrop={setopencrop1}
                   />
@@ -381,7 +396,7 @@ function CubesPage() {
                     send={send2}
                     setfbimg={setfbimg2}
                     setimage_url={setimage_url2}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop2}
                     setopencrop={setopencrop2}
                   />
@@ -408,7 +423,7 @@ function CubesPage() {
                     send={send3}
                     setfbimg={setfbimg3}
                     setimage_url={setimage_url3}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop3}
                     setopencrop={setopencrop3}
                   />
@@ -435,7 +450,7 @@ function CubesPage() {
                     send={send4}
                     setfbimg={setfbimg4}
                     setimage_url={setimage_url4}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop4}
                     setopencrop={setopencrop4}
                   />
@@ -462,7 +477,7 @@ function CubesPage() {
                     send={send5}
                     setfbimg={setfbimg5}
                     setimage_url={setimage_url5}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop5}
                     setopencrop={setopencrop5}
                   />
@@ -489,7 +504,7 @@ function CubesPage() {
                     send={send6}
                     setfbimg={setfbimg6}
                     setimage_url={setimage_url6}
-                    aspect_ratio={1 / 1}
+                    aspect_ratio={4 / 3}
                     opencrop={opencrop6}
                     setopencrop={setopencrop6}
                   />
@@ -498,6 +513,184 @@ function CubesPage() {
                   <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
                 </label>
               </div>
+              <center>
+                <div data-tut="reactour__para">
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={heading}
+                      onChange={(e) => {
+                        setheading(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={t1}
+                      onChange={(e) => {
+                        sett1(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={t2}
+                      onChange={(e) => {
+                        sett2(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={t3}
+                      onChange={(e) => {
+                        sett3(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={t4}
+                      onChange={(e) => {
+                        sett4(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={t5}
+                      onChange={(e) => {
+                        sett5(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+              </center>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
                   <button
@@ -609,4 +802,4 @@ function CubesPage() {
   );
 }
 
-export default CubesPage;
+export default JourneyPage;

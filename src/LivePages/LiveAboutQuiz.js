@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import ThreeDImage from "../ThreeDImage/ThreeDImage";
+import LiveQuestionCard from "../AboutQuiz/LiveQuestionCard";
+import items from "../AboutQuiz/questions";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 export default function LiveThreeDImage({ match }) {
   const [fbimg, setfbimg] = useState("");
-  const [firstcol, setfirstcol] = useState("");
-  const [secondcol, setsecondcol] = useState("");
-  const [loading, setloading] = useState(false);
+  const [quesArray, setquesArray] = useState([]);
+  const [answersArray, setanswersArray] = useState([]);
+  const [loading, setloading] = useState(true);
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
       .database()
-      .ref("/ThreeDImage/" + match.params.slug)
+      .ref("/AboutQuiz/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
-        var col1 = snapshot.val().firstcol;
-        setfirstcol(col1);
-        var col2 = snapshot.val().secondcol;
-        setsecondcol(col2);
-        setloading(false);
+        var quesArray = snapshot.val().quesArray;
+        setquesArray(quesArray);
+        var answersArray = snapshot.val().answersArray;
+        setanswersArray(answersArray);
       });
+    setloading(false);
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
@@ -37,11 +38,13 @@ export default function LiveThreeDImage({ match }) {
                 width={100}
               />
             ) : (
-              <ThreeDImage
-                firstcol={firstcol}
-                secondcol={secondcol}
-                fbimg={fbimg}
-              />
+              <>
+                {console.log(items[quesArray[0]].question, "livepage ofnum")}
+                <LiveQuestionCard
+                  quesArray={quesArray}
+                  answersArray={answersArray}
+                />
+              </>
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>
