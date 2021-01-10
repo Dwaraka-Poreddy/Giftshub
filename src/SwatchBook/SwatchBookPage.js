@@ -2,22 +2,18 @@ import React, { useEffect, useState } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import TicketDeck from "./TicketDeck";
-import ImageIcon from "@material-ui/icons/Image";
+import SwatchBook from "./SwatchBook";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
-// import "./ThreeDImagePage.css";
-import LinkIcon from "@material-ui/icons/Link";
-import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
-import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
+import CropPage from "../Utils/CropPage";
+import ImageIcon from "@material-ui/icons/Image";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
@@ -46,15 +42,13 @@ function TicketDeckPage() {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
-  const [toname, settoname] = useState("udhistir");
-  const [dummytoname, setdummytoname] = useState("udhistir");
+  const [toname, settoname] = useState("yudhistir");
+  const [dummytoname, setdummytoname] = useState("yudhistir");
   const [editname, seteditname] = useState(false);
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
   );
-  const [firstcol, setfirstcol] = useState("#C28484");
-  const [secondcol, setsecondcol] = useState("#1c1008");
-  const [color, setColor] = useState({});
+
   const [accentColor, setaccentColor] = useState("#70cff3");
   const [showoptions, setshowoptions] = useState(false);
   const onSelectFile = (e) => {
@@ -72,14 +66,14 @@ function TicketDeckPage() {
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (!livelink) {
-      const todoRef = firebase.database().ref("TicketDeck");
+      const todoRef = firebase.database().ref("SwatchBook");
       const todo = {
         url: fbimg,
         name: toname,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/ticketdeck/" + newKey);
-      setpreviewlink("/live/ticketdeck/" + newKey);
+      setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
+      setpreviewlink("/live/swatchbook/" + newKey);
 
       setloading(false);
     } else {
@@ -100,14 +94,14 @@ function TicketDeckPage() {
               savedImage.ref.getDownloadURL().then((downUrl) => {
                 console.log(downUrl);
                 setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("TicketDeck");
+                const todoRef = firebase.database().ref("SwatchBook");
                 const todo = {
                   url: downUrl,
                   name: toname,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/ticketdeck/" + newKey);
-                setpreviewlink("/live/ticketdeck/" + newKey);
+                setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
+                setpreviewlink("/live/swatchbook/" + newKey);
               });
               setloading(false);
             });
@@ -144,7 +138,7 @@ function TicketDeckPage() {
   ];
 
   const func = () => {
-    return <TicketDeck name={toname} />;
+    return <SwatchBook name={toname} />;
   };
   useEffect(() => {
     console.log("inside func useeffect");
@@ -214,6 +208,35 @@ function TicketDeckPage() {
             </BrowserView>
 
             <div style={{ justifyContent: "center" }}>
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
+                  }}
+                />
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={4 / 3}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                </label>
+              </div>
               <center>
                 <div data-tut="reactour__head">
                   {editname ? (

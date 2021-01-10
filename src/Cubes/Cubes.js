@@ -15,10 +15,6 @@ export default function Cubes({
   t5,
   t6,
 }) {
-  const min = 1;
-  const max = 24;
-  const cube = document.getElementById("cube");
-
   function handleClick() {
     const min = 1;
     const max = 24;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TicketDeck.css";
+import "./SwatchBook.css";
 
 export default function TicketDeck({ name }) {
   const [tickets, settickets] = useState([]);
@@ -36,7 +36,16 @@ export default function TicketDeck({ name }) {
     ["Kind Hearted ", "Keen"],
     ["Laughing", "Likable", "Lucky", "Loyal", "Lovable", "Lively"],
     ["Magnificent", "Miraculous", "Magnificent", "Marvellous"],
-    ["Neat", "Neavenly", "Numorous", "Nilarious", "Nappy", "Nelpful"],
+    [
+      "Neat",
+      "Noble",
+      "Nourishing",
+      "Nutritive",
+      "Noteworthy",
+      "Nonaggressive",
+      "Nice",
+      "Naughty",
+    ],
 
     ["Original", "Outstanding", "Open Minded"],
     ["Perfect", "Ppppp", "pp", "pop"],
@@ -62,6 +71,9 @@ export default function TicketDeck({ name }) {
     ["Ultimate", "Unconditional", "Understanding"],
     ["Valuable", "Versatile", "Vibrant"],
     ["Wise", "Wonderful", "Worthy", "Wholehearted"],
+    ["xenophobic", "xenodochial", "xenial"],
+    ["yeasty", "yokelish", "yucky", "young", "youthful"],
+    ["zany", "zealous", "zestful", "zesty", "zippy"],
   ]);
   const [colors, setcolors] = useState([
     "#ea2a29",
@@ -83,7 +95,6 @@ export default function TicketDeck({ name }) {
   }, [name]);
 
   const startClick = () => {
-    // setisopen(!isopen);
     let rot = -15 * anglesarray.length > -90 ? -15 * anglesarray.length : -90;
     if (isopen) {
       console.log("inside newif");

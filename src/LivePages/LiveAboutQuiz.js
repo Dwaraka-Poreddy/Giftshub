@@ -43,6 +43,7 @@ export default function LiveThreeDImage({ match }) {
                 <LiveQuestionCard
                   quesArray={quesArray}
                   answersArray={answersArray}
+                  fbimg={fbimg}
                 />
               </>
             )}

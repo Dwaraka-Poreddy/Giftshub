@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Journey from "../Journey/Journey";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-import { Link } from "react-router-dom";
 export default function LiveCubesPage({ match }) {
   const [t1, sett1] = useState("");
   const [t2, sett2] = useState("");

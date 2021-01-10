@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../firebase";
-import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -9,8 +8,8 @@ import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
-import HeaderBtn from "../Studio/HeaderBtn";
-import ShareIcon from "@material-ui/icons/Share";
+import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
+import ScheduledSwatchBook from "../SwatchBook/ScheduledSwatchBook";
 import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
 import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
 import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
@@ -176,6 +175,28 @@ function ContinuePack({ match, history }) {
   }
 
   function getStepContent(step) {
+    if (dataid[step] === "journey") {
+      return (
+        <ScheduledJourneyPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
+    if (dataid[step] === "swatchbook") {
+      return (
+        <ScheduledSwatchBook
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
     if (dataid[step] === "puzzle") {
       return (
         <ScheduledSlidePuzzlePage

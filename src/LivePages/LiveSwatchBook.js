@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TicketDeck from "../TicketDeck/TicketDeck";
+import SwatchBook from "../SwatchBook/SwatchBook";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 
@@ -12,7 +12,7 @@ export default function LiveTicketDeck({ match }) {
     setloading(true);
     const todoRef = await firebase
       .database()
-      .ref("/TicketDeck/" + match.params.slug)
+      .ref("/SwatchBook/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img = snapshot.val().url;
@@ -39,7 +39,7 @@ export default function LiveTicketDeck({ match }) {
                 width={100}
               />
             ) : (
-              <TicketDeck name={name} fbimg={fbimg} />
+              <SwatchBook name={name} fbimg={fbimg} />
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>

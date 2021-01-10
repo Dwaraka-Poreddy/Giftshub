@@ -3,6 +3,20 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import $ from "jquery";
 const allComp = [
   {
+    id: "journey",
+    content: "Journey",
+    url: "",
+    img:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz4nl3tuB44qN7Y6k4Kl-N4bf2M9ZX7CPUg&usqp=CAU",
+  },
+  {
+    id: "swatchbook",
+    content: "Swatch Book",
+    url: "",
+    img:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz4nl3tuB44qN7Y6k4Kl-N4bf2M9ZX7CPUg&usqp=CAU",
+  },
+  {
     id: "puzzle",
     content: "Slide Puzzle",
     url: "",

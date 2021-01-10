@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
+import ThreeDCarouselPage from "./ThreeDCarousel/ThreeDCarouselPage";
 import AboutQuizPage from "./AboutQuiz/AboutQuizPage";
-import Journey from "./Journey/Journey";
 import JourneyPage from "./Journey/JourneyPage";
-import TicketDeckPage from "./TicketDeck/TicketDeckPage";
+import SwatchBookPage from "./SwatchBook/SwatchBookPage";
 import CalandarPage from "./Calandar/CalandarPage";
 import LandingPage from "./LandingPage";
 import Studio from "./Studio/Studio.js";
@@ -25,7 +25,7 @@ import LiveCalandar from "./LivePages/LiveCalandar";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
 import LiveJourney from "./LivePages/LiveJourney";
 import LiveAboutQuiz from "./LivePages/LiveAboutQuiz";
-import LiveTicketDeck from "./LivePages/LiveTicketDeck";
+import LiveSwatchBook from "./LivePages/LiveSwatchBook";
 import LiveSplitWall from "./LivePages/LiveSplitWall.js";
 import LiveThreeDImage from "./LivePages/LiveThreeDImage";
 import LiveSlidePuzzle from "./LivePages/LiveSlidePuzzle";
@@ -46,6 +46,8 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import SoundRecorder from "./SoundRecorder";
+import ScheduledLiveJourney from "./ScheduledLivePages/ScheduledLiveJourney";
+import ScheduledLiveSwatchBook from "./ScheduledLivePages/ScheduledLiveSwatchBook";
 import ScheduledLiveAnimatedFrame from "./ScheduledLivePages/ScheduledLiveAnimatedFrame";
 import ScheduledLiveSpecialCard from "./ScheduledLivePages/ScheduledLiveSpecialCard";
 import ScheduledLiveCollage from "./ScheduledLivePages/ScheduledLiveCollage";
@@ -86,11 +88,16 @@ export default function App() {
     <div className="App">
       <ToastContainer />
       <Switch>
+        <Route
+          exact
+          path="/threedcarouselpage"
+          component={ThreeDCarouselPage}
+        />
+
         <Route exact path="/aboutquizpage" component={AboutQuizPage} />
-        <Route exact path="/journey" component={Journey} />
         <Route exact path="/journeypage" component={JourneyPage} />
         <Route exact path="/calandarpage" component={CalandarPage} />
-        <Route exact path="/ticketdeckpage" component={TicketDeckPage} />
+        <Route exact path="/swatchbookpage" component={SwatchBookPage} />
         <Route exact path="/landingpage" component={LandingPage} />
         <Route exact path="/sound" component={SoundRecorder} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
@@ -129,7 +136,7 @@ export default function App() {
         <Route exact path="/live/aboutquiz/:slug" component={LiveAboutQuiz} />
         <Route exact path="/live/journey/:slug" component={LiveJourney} />
         <Route exact path="/live/calandar/:slug" component={LiveCalandar} />
-        <Route exact path="/live/ticketdeck/:slug" component={LiveTicketDeck} />
+        <Route exact path="/live/swatchbook/:slug" component={LiveSwatchBook} />
         <Route exact path="/live/splitwall/:slug" component={LiveSplitWall} />
         <Route
           exact
@@ -148,6 +155,29 @@ export default function App() {
         />
         <Route
           exact
+          path="/live/newspaper/:slug"
+          component={LiveNewsPaperPage}
+        />
+        <Route
+          exact
+          path="/live/opengreetingcard/:slug"
+          component={LiveOpenGreetingCardPage}
+        />
+        <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
+        <Route
+          exact
+          path="/live/memorygame/:slug"
+          component={LiveMemoryGamePage}
+        />
+        <Route exact path="/live/collage/:slug" component={LiveCollagePage} />
+        <Route
+          exact
+          path="/live/animatedframe/:slug"
+          component={LiveAnimatedFramePage}
+        />
+        <Route exact path="/live/magazine/:slug" component={LiveMagazinePage} />
+        <Route
+          exact
           path="/scheduledlive/threedimage/:id/:slug"
           component={ScheduledLiveThreeDImagePage}
         />
@@ -160,6 +190,16 @@ export default function App() {
           exact
           path="/scheduledlive/specialcard/:id/:slug"
           component={ScheduledLiveSpecialCard}
+        />
+        <Route
+          exact
+          path="/scheduledlive/swatchbook/:id/:slug"
+          component={ScheduledLiveSwatchBook}
+        />
+        <Route
+          exact
+          path="/scheduledlive/journey/:id/:slug"
+          component={ScheduledLiveJourney}
         />
         <Route
           exact
@@ -196,29 +236,6 @@ export default function App() {
           path="/scheduledlive/collage/:id/:slug"
           component={ScheduledLiveCollage}
         />
-        <Route
-          exact
-          path="/live/newspaper/:slug"
-          component={LiveNewsPaperPage}
-        />
-        <Route
-          exact
-          path="/live/opengreetingcard/:slug"
-          component={LiveOpenGreetingCardPage}
-        />
-        <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
-        <Route
-          exact
-          path="/live/memorygame/:slug"
-          component={LiveMemoryGamePage}
-        />
-        <Route exact path="/live/collage/:slug" component={LiveCollagePage} />
-        <Route
-          exact
-          path="/live/animatedframe/:slug"
-          component={LiveAnimatedFramePage}
-        />
-        <Route exact path="/live/magazine/:slug" component={LiveMagazinePage} />
       </Switch>
     </div>
   );
