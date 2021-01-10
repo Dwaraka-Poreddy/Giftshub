@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Cubes from "../Cubes/Cubes";
+import ThreeDCarousel from "../ThreeDCarousel/ThreeDCarousel";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-export default function LiveCubesPage({ match }) {
+export default function LiveThreeDCarousel({ match }) {
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
   const [fbimg3, setfbimg3] = useState("");
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
   const [fbimg6, setfbimg6] = useState("");
-  const [loading, setloading] = useState(false);
+  const [text, settext] = useState("");
+  const [loading, setloading] = useState(true);
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
       .database()
-      .ref("/Cubes/" + match.params.slug)
+      .ref("/ThreeDCarousel/" + match.params.slug)
       .once("value")
       .then((snapshot) => {
         var img1 = snapshot.val().url1;
@@ -29,6 +30,8 @@ export default function LiveCubesPage({ match }) {
         setfbimg5(img5);
         var img6 = snapshot.val().url6;
         setfbimg6(img6);
+        var text = snapshot.val().text;
+        settext(text);
       });
     setloading(false);
   }, []);
@@ -55,13 +58,14 @@ export default function LiveCubesPage({ match }) {
                 width={100}
               />
             ) : (
-              <Cubes
+              <ThreeDCarousel
                 fbimg1={fbimg1}
                 fbimg2={fbimg2}
                 fbimg3={fbimg3}
                 fbimg4={fbimg4}
                 fbimg5={fbimg5}
                 fbimg6={fbimg6}
+                text={text}
               />
             )}
           </div>

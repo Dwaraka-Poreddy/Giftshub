@@ -1,16 +1,5 @@
-/* * {
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-
-  touch-action: none;
-} */
-
-/* body {
+.ThreeDCarouseldiv {
+  height: 700px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,7 +9,7 @@ body {
   perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-} */
+}
 
 #drag-container,
 #spin-container {
@@ -37,6 +26,7 @@ body {
 #spin-container {
   animation: spinRevert 60s infinite linear;
 }
+
 #drag-container img,
 #drag-container video {
   -webkit-transform-style: preserve-3d;

@@ -21,8 +21,9 @@ import AnimatedFrame from "./AnimatedFrames/AnimatedFrame";
 import AnimatedFramePage from "./AnimatedFrames/AnimatedFramePage";
 import SpecialCardPage from "./SpecialCard/SpecialCardPage";
 import MemoryGamePage from "./MemoryGame/MemoryGamePage";
-import LiveCalandar from "./LivePages/LiveCalandar";
 import SplitWallImagePage from "./SplitWallImage/SplitWallImagePage.js";
+import LiveCalandar from "./LivePages/LiveCalandar";
+import LiveThreeDCarousel from "./LivePages/LiveThreeDCarousel";
 import LiveJourney from "./LivePages/LiveJourney";
 import LiveAboutQuiz from "./LivePages/LiveAboutQuiz";
 import LiveSwatchBook from "./LivePages/LiveSwatchBook";
@@ -46,6 +47,7 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import SoundRecorder from "./SoundRecorder";
+import ScheduledLiveThreeDCarousel from "./ScheduledLivePages/ScheduledLiveThreeDCarousel";
 import ScheduledLiveJourney from "./ScheduledLivePages/ScheduledLiveJourney";
 import ScheduledLiveSwatchBook from "./ScheduledLivePages/ScheduledLiveSwatchBook";
 import ScheduledLiveAnimatedFrame from "./ScheduledLivePages/ScheduledLiveAnimatedFrame";
@@ -132,7 +134,11 @@ export default function App() {
         />
         <Route exact path="/threedimagepage" component={ThreeDImagePage} />
         <Route exact path="/animatedframePage" component={AnimatedFramePage} />
-
+        <Route
+          exact
+          path="/live/threedcarousel/:slug"
+          component={LiveThreeDCarousel}
+        />
         <Route exact path="/live/aboutquiz/:slug" component={LiveAboutQuiz} />
         <Route exact path="/live/journey/:slug" component={LiveJourney} />
         <Route exact path="/live/calandar/:slug" component={LiveCalandar} />
@@ -176,6 +182,11 @@ export default function App() {
           component={LiveAnimatedFramePage}
         />
         <Route exact path="/live/magazine/:slug" component={LiveMagazinePage} />
+        <Route
+          exact
+          path="/scheduledlive/threedcarousel/:id/:slug"
+          component={ScheduledLiveThreeDCarousel}
+        />
         <Route
           exact
           path="/scheduledlive/threedimage/:id/:slug"

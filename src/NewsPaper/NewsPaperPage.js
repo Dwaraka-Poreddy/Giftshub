@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./NewsPaperPage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
+
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";

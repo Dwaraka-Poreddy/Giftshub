@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./LandingPage.css";
 import "./Swiper.css";
-import "./Swiper2.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -26,7 +25,6 @@ export default function LandingPage() {
   return (
     <div className="App">
       <body id="page-top">
-        {/* <div class="hiro-loader"></div> */}
         <nav
           class={
             !navstate

@@ -3,6 +3,13 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import $ from "jquery";
 const allComp = [
   {
+    id: "threedcarousel",
+    content: "3D Carousel",
+    url: "",
+    img:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS60_0gL8ZRN3M91p7rKmcrV8mU_hL3bbejKA&usqp=CAU",
+  },
+  {
     id: "journey",
     content: "Journey",
     url: "",
@@ -109,10 +116,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 $(document).ready(function () {
-  console.log("ready");
   $(".card").hover(
     function () {
-      console.log("ready shadow");
       $(this).removeClass("shadow-none");
       $(this).addClass("shadow");
     },

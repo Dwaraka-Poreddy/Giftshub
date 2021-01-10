@@ -8,17 +8,27 @@ export default function ThreeDCarousel({
   fbimg4,
   fbimg5,
   fbimg6,
+  text,
 }) {
-  const [radius, setradius] = useState(240);
-  const [ospinanimation, setospinanimation] = useState();
-  var autoRotate = true; // auto rotate or not
-  var rotateSpeed = -60; // unit: seconds/360 degrees
+  const [odrag, setodrag] = useState();
+  const [ospin, setospin] = useState();
+  const [aImg, setaImg] = useState([]);
+  // You can change global variables here:
+  var radius = 240; // how big of the radius
+
+  useEffect(() => {
+    setodrag(document.getElementById("drag-container"));
+    setospin(document.getElementById("spin-container"));
+    setaImg(document.getElementsByTagName("img"));
+  }, []);
   setTimeout(init, 100);
 
-  var odrag = document.getElementById("drag-container");
-  var ospin = document.getElementById("spin-container");
-  var aImg = document.getElementsByClassName("imgcls");
-  var aEle = [...aImg];
+  var aEle = [...aImg]; // combine 2 arrays
+
+  // // Size of ground - depend on radius
+  // var ground = document.getElementById("ground");
+  // ground.style.width = radius * 3 + "px";
+  // ground.style.height = radius * 3 + "px";
 
   function init(delayTime) {
     for (var i = 0; i < aEle.length; i++) {
@@ -46,7 +56,11 @@ export default function ThreeDCarousel({
     ospin.style.animationPlayState = yes ? "running" : "paused";
   }
 
-  var desX = 0,
+  var sX,
+    sY,
+    nX,
+    nY,
+    desX = 0,
     desY = 0,
     tX = 0,
     tY = 10;
@@ -93,30 +107,21 @@ export default function ThreeDCarousel({
   document.onmousewheel = function (e) {
     e = e || window.event;
     var d = e.wheelDelta / 20 || -e.detail;
-    setradius(radius + d);
+    radius += d;
     init(1);
   };
-
   return (
-    <div className="App">
+    <div className="ThreeDCarouseldiv">
       <div id="drag-container">
-        <div style={{ width: "120px", height: "170px" }} id="spin-container">
-          <img className="imgcls" src={fbimg1} alt="" />
-          <img className="imgcls" src={fbimg2} alt="" />
-          <img className="imgcls" src={fbimg3} alt="" />
-          <img className="imgcls" src={fbimg4} alt="" />
-          <img className="imgcls" src={fbimg5} alt="" />
-          <img className="imgcls" src={fbimg6} alt="" />
-
-          <img
-            className="imgcls"
-            src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            alt=""
-          />
-
-          <p>3D Tiktok Carousel</p>
+        <div style={{ height: "170px", width: "120px" }} id="spin-container">
+          <img src={fbimg1} alt="" />
+          <img src={fbimg2} alt="" />
+          <img src={fbimg3} alt="" />
+          <img src={fbimg4} alt="" />
+          <img src={fbimg5} alt="" />
+          <img src={fbimg6} alt="" />
+          <p>{text}</p>
         </div>
-
         <div
           style={{ height: radius * 3 + "px", width: radius * 3 + "px" }}
           id="ground"

@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import ThreeDCarousel from "./ThreeDCarousel";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
+import CreateIcon from "@material-ui/icons/Create";
+import InputBase from "@material-ui/core/InputBase";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
+
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import { BrowserView } from "react-device-detect";
-import InputBase from "@material-ui/core/InputBase";
-import CreateIcon from "@material-ui/icons/Create";
-import ThreeDCarousel from "./ThreeDCarousel";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -30,11 +29,20 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ThreeDCarouselPage() {
-  const [isTourOpen, setIsTourOpen] = useState(false);
-  const [accentColor, setaccentColor] = useState("#70cff3");
-  const secclasses = secuseStyles();
+function ScheduledThreeDCarouselPage({
+  step,
+  slug,
+  getDoc,
+  isTourOpen,
+  setTourOpend,
+}) {
   const [loading, setloading] = useState(false);
+  const [accentColor, setaccentColor] = useState("#70cff3");
+  let { edit } = useSelector((state) => ({ ...state }));
+  const [Cloading, setCLoading] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
+  const database = firebase.firestore();
+  const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -84,28 +92,62 @@ function ThreeDCarouselPage() {
   const [send6, setsend6] = useState();
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop1(true);
   };
   const onSelectFile2 = (e) => {
     setsend2(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop2(true);
   };
   const onSelectFile3 = (e) => {
     setsend3(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop3(true);
   };
   const onSelectFile4 = (e) => {
     setsend4(window.URL.createObjectURL(e.target.files[0]));
     setopencrop4(true);
+    setshowoptions(false);
   };
   const onSelectFile5 = (e) => {
     setsend5(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop5(true);
   };
   const onSelectFile6 = (e) => {
     setsend6(window.URL.createObjectURL(e.target.files[0]));
+    setshowoptions(false);
     setopencrop6(true);
   };
+  useEffect(() => {
+    setCLoading(true);
+    if (edit.text != "") {
+      const todoRef = firebase
+        .database()
+        .ref("/ThreeDCarousel/" + edit.text)
+        .once("value")
+        .then((snapshot) => {
+          var img1 = snapshot.val().url1;
+          setfbimg1(img1);
+          var img2 = snapshot.val().url2;
+          setfbimg2(img2);
+          var img3 = snapshot.val().url3;
+          setfbimg3(img3);
+          var img4 = snapshot.val().url4;
+          setfbimg4(img4);
+          var img5 = snapshot.val().url5;
+          setfbimg5(img5);
+          var img6 = snapshot.val().url6;
+          setfbimg6(img6);
+          var text = snapshot.val().text;
+          settext(text);
+          setCLoading(false);
+        });
+    } else {
+      setCLoading(false);
+    }
+  }, []);
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud1 = uuidv4();
@@ -117,7 +159,27 @@ function ThreeDCarouselPage() {
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    if (!livelink) {
+    if (edit.text != "") {
+      const todoRef = firebase.database().ref("ThreeDCarousel/" + edit.text);
+      const todo = {
+        url1: fbimg1,
+        url2: fbimg2,
+        url3: fbimg3,
+        url4: fbimg4,
+        url5: fbimg5,
+        url6: fbimg6,
+        text: text,
+      };
+      todoRef.update(todo);
+      setlivelink(
+        "http://localhost:3000/scheduledlive/threedcarousel/" +
+          edit.text +
+          "/" +
+          slug
+      );
+      setpreviewlink("/scheduledlive/threedcarousel/" + edit.text + "/" + slug);
+      setloading(false);
+    } else if (!livelink) {
       const todoRef = firebase.database().ref("ThreeDCarousel");
       const todo = {
         url1: fbimg1,
@@ -129,10 +191,13 @@ function ThreeDCarouselPage() {
         text: text,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/threedcarousel/" + newKey);
-      console.log(livelink, "livelink");
-      setpreviewlink("/live/threedcarousel/" + newKey);
-
+      setlivelink(
+        "http://localhost:3000/scheduledlive/threedcarousel/" +
+          newKey +
+          "/" +
+          slug
+      );
+      setpreviewlink("/scheduledlive/threedcarousel/" + newKey + "/" + slug);
       setloading(false);
     } else {
       uploadTask.on(
@@ -143,7 +208,6 @@ function ThreeDCarouselPage() {
           console.log(err);
         },
         () => {
-          console.log(image_url1);
           storage
             .ref("images")
             .child(ud1)
@@ -210,16 +274,17 @@ function ThreeDCarouselPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/threedcarousel/" +
-                                                        newKey
+                                                      "http://localhost:3000/scheduledlive/threedcarousel/" +
+                                                        newKey +
+                                                        "/" +
+                                                        slug
                                                     );
-                                                    console.log(
-                                                      livelink,
-                                                      "livelink"
-                                                    );
+
                                                     setpreviewlink(
-                                                      "/live/threedcarousel/" +
-                                                        newKey
+                                                      "/scheduledlive/threedcarousel/" +
+                                                        newKey +
+                                                        "/" +
+                                                        slug
                                                     );
                                                   });
                                               });
@@ -237,8 +302,41 @@ function ThreeDCarouselPage() {
         }
       );
     }
+    {
+      edit.text != "" && toast.success(" 3D Carousel updated successfully");
+    }
   };
 
+  async function EditPack() {
+    const snapshot = await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .get();
+    const data = snapshot.data().array_data;
+    const newdata = data;
+    newdata[step].url = livelink;
+    await database
+      .collection("n-day-pack")
+      .doc(`${user.uid}`)
+      .collection("giftshub")
+      .doc(slug)
+      .update(
+        {
+          array_data: newdata,
+        },
+        { merge: true }
+      );
+    await database.collection("Livelinks").doc(slug).update(
+      {
+        array_data: newdata,
+      },
+      { merge: true }
+    );
+    toast.success(" 3D Carousel successfully added to your pack");
+    getDoc();
+  }
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
@@ -257,16 +355,23 @@ function ThreeDCarouselPage() {
       content: `Previews the component  created in a new page.`,
     },
     {
+      selector: '[data-tut="reactour__addtopack"]',
+      content: `Adds this component to the n-day pack you created`,
+    },
+    {
+      selector: '[data-tut="reactour__updatepack"]',
+      content: `Updates this component with the changes you made in the n-day pack.`,
+    },
+    {
       selector: '[data-tut="reactour__sharelink"]',
       content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
       <Tour
         onRequestClose={() => {
-          setIsTourOpen(false);
+          setTourOpend(false);
         }}
         steps={tourConfig}
         isOpen={isTourOpen}
@@ -275,20 +380,30 @@ function ThreeDCarouselPage() {
         rounded={5}
         accentColor={accentColor}
       />
-
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
           <div class="  col-lg-7" style={{ height: "70vh", marginTop: "50px" }}>
-            <ThreeDCarousel
-              fbimg1={fbimg1}
-              fbimg2={fbimg2}
-              fbimg3={fbimg3}
-              fbimg4={fbimg4}
-              fbimg5={fbimg5}
-              fbimg6={fbimg6}
-              text={text}
-            />
+            {Cloading ? (
+              <Loader
+                type="BallTriangle"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div>
+                <ThreeDCarousel
+                  fbimg1={fbimg1}
+                  fbimg2={fbimg2}
+                  fbimg3={fbimg3}
+                  fbimg4={fbimg4}
+                  fbimg5={fbimg5}
+                  fbimg6={fbimg6}
+                  text={text}
+                />
+              </div>
+            )}
           </div>
           <div class="col-lg-1"></div>
           <div
@@ -302,35 +417,6 @@ function ThreeDCarouselPage() {
               right: "0",
             }}
           >
-            <BrowserView>
-              <center>
-                <div
-                  style={{
-                    justifyContent: "center",
-                    padding: "20px 0 0 0 ",
-                  }}
-                >
-                  {/* {livelink ? null : ( */}
-                  <span style={{ color: "#ffffff" }}>
-                    {" "}
-                    Hello! Allow us to give you a small tour on how to generate
-                    this special gift. We are sure you wouldn't need one the
-                    next time you are back.
-                    <br /> P.S : Its that easy
-                  </span>
-                  <HeaderBtn
-                    handleClick={() => {
-                      setIsTourOpen(true);
-                    }}
-                    Icon={FlightTakeoffIcon}
-                    title=" Start Tour "
-                  />
-                  {/* )} */}
-                </div>
-              </center>
-              <hr />
-            </BrowserView>
-
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <center>
                 <div data-tut="reactour__text">
@@ -529,116 +615,83 @@ function ThreeDCarouselPage() {
                   <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
                 </label>
               </div>
-
-              <center data-tut="reactour__generatelink">
-                <div style={{ marginTop: "20px" }}>
-                  <button
-                    onClick={() => {
-                      handleFireBaseUpload();
-                      setshowoptions(true);
-                    }}
-                    className="main-button"
-                    data-tut="reactour__generatelink"
-                  >
-                    Generate Link
-                  </button>
-                </div>
-              </center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : (
-                <center>
-                  {livelink || isTourOpen ? (
-                    <div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ marginTop: "20px", width: "200px" }}
+              <center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <div style={{ marginTop: "20px" }}>
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
                       >
-                        <Copy livelink={livelink} />
-                      </div>
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : null}
+                  </div>
+                )}
+              </center>
+              <center>
+                {(livelink && showoptions && !loading) || isTourOpen ? (
+                  <div>
+                    <div
+                      data-tut="reactour__preview"
+                      style={{ marginTop: "20px" }}
+                    >
+                      <Link class="logo" to={previewlink} target="_blank">
+                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                      </Link>
+                    </div>
+                    <div
+                      data-tut="reactour__copylink"
+                      style={{ width: "200px", marginTop: "20px" }}
+                    >
+                      <Copy livelink={livelink} />
+                    </div>
+                    {edit.text == "" || isTourOpen ? (
                       <div
-                        data-tut="reactour__preview"
+                        data-tut="reactour__addtopack"
                         style={{ marginTop: "20px" }}
                       >
-                        <Link class="logo" to={previewlink} target="_blank">
-                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                        </Link>
+                        <HeaderBtn
+                          handleClick={() => {
+                            EditPack();
+                          }}
+                          Icon={ShareIcon}
+                          title="Add to Pack "
+                        />
                       </div>
-                      {!showshare ? (
-                        <div
-                          data-tut="reactour__sharelink"
-                          style={{ marginTop: "20px" }}
-                        >
-                          <HeaderBtn
-                            handleClick={() => {
-                              setshowshare(true);
-                            }}
-                            Icon={ShareIcon}
-                            title="Share "
-                          />
-                        </div>
-                      ) : (
-                        <Share livelink={livelink} />
-                      )}
-                    </div>
-                  ) : null}
-                </center>
-              )}
+                    ) : null}
+                  </div>
+                ) : null}
+              </center>
             </div>
           </div>
         </div>
       </div>
-
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
 
-export default ThreeDCarouselPage;
+export default ScheduledThreeDCarouselPage;
