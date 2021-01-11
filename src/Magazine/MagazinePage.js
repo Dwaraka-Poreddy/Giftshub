@@ -3,24 +3,31 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Magazine from "./Magazine";
-import Loader from "react-loader-spinner";
+import { BrowserView } from "react-device-detect";
+
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
+import * as htmlToImage from "html-to-image";
+
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
+
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-import AuthHeader from "../components/nav/Header";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
+import Tour from "reactour";
+import AuthHeader from "../components/nav/Header";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+
 import GetAppIcon from "@material-ui/icons/GetApp";
+import DateRangeIcon from "@material-ui/icons/DateRange";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -33,6 +40,10 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function MagazinePage() {
+  const [showoptions, setshowoptions] = useState(false);
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [accentColor, setaccentColor] = useState("#70cff3");
+  let docToPrint = React.createRef();
   const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
   const [showshare, setshowshare] = useState(false);
@@ -43,13 +54,16 @@ function MagazinePage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-  const [head1, sethead1] = useState("THE");
-  const [head2, sethead2] = useState("UNSTOPPABLE");
+  const [BDate, setBDate] = useState("2020-12-10");
 
-  const [fbimg, setfbimg] = useState(require("../Images/Magazine.png"));
+  const [text, settext] = useState("BEST EVER CAPTAIN");
+  const [name, setname] = useState("M S Dhoni");
+  const [fbimg, setfbimg] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FMagazine.jpg?alt=media&token=cb5e38c6-9f9d-4a4f-b338-a70a707e6091"
+  );
+
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-    console.log(send);
     setopencrop(true);
   };
 
@@ -65,8 +79,8 @@ function MagazinePage() {
       const todoRef = firebase.database().ref("Magazine");
       const todo = {
         url: fbimg,
-        head1: head1,
-        head2,
+        name: name,
+        text: text,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink("http://localhost:3000/live/magazine/" + newKey);
@@ -89,13 +103,12 @@ function MagazinePage() {
             .putString(image_url, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
                 setFireUrl(downUrl);
                 const todoRef = firebase.database().ref("Magazine");
                 const todo = {
                   url: downUrl,
-                  head1: head1,
-                  head2,
+                  name: name,
+                  text: text,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink("http://localhost:3000/live/magazine/" + newKey);
@@ -107,7 +120,8 @@ function MagazinePage() {
       );
     }
   };
-  function handleMemeDownlod(el) {
+
+  function handleMagazineDownlod(el) {
     var canvas = document.getElementById("magazine");
     html2canvas(canvas).then(function (canvas) {
       domtoimage
@@ -120,181 +134,309 @@ function MagazinePage() {
     });
   }
 
+  const tourConfig = [
+    {
+      selector: '[data-tut="reactour__changeImage"]',
+      content: `Choose the image from you local device to be  printed onto the Magazine.`,
+    },
+    {
+      selector: '[data-tut="reactour__head"]',
+      content: ` Input the text that is going to make headlines!`,
+    },
+    {
+      selector: '[data-tut="reactour__para"]',
+      content: `Woah! This big news sure deserves some subtext too, continue to input this text as well.`,
+    },
+    {
+      selector: '[data-tut="reactour__date"]',
+      content: `We do believe this great headline is ageless, but a date would give this newspaper an identity too! So select it right away!
+      `,
+    },
+    {
+      selector: '[data-tut="reactour__generatelink"]',
+      content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
+    },
+
+    {
+      selector: '[data-tut="reactour__preview"]',
+      content: `Previews the component  created in a new page.`,
+    },
+    {
+      selector: '[data-tut="reactour__copylink"]',
+      content: `Copies the generated live link to clipboard.`,
+    },
+
+    {
+      selector: '[data-tut="reactour__sharelink"]',
+      content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
+    },
+  ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <AuthHeader />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.05" }}></div>
-        <div style={{ flex: "0.7" }}>
-          <div id="magazine">
-            <Magazine fbimg={fbimg} head1={head1} head2={head2} />
+      <Tour
+        onRequestClose={() => {
+          setIsTourOpen(false);
+        }}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+      />
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+        <div class="row">
+          <div class="col-lg-1"></div>
+          <div id="magazine" ref={docToPrint} class="  col-lg-7">
+            <Magazine fbimg={fbimg} text={text} name={name} />
           </div>
-        </div>
-
-        <div style={{ flex: "0.05" }}></div>
-        <div
-          style={{
-            backgroundColor: "#009dd9",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "0.2",
-            height: "80vh",
-          }}
-        >
-          <div style={{ marginTop: "20%", justifyContent: "center" }}>
-            <input
-              style={{ display: "none" }}
-              accept="image/* "
-              className={secclasses.input}
-              id="LocalfileInput"
-              name="LocalfileInput"
-              multiple
-              type="file"
-              accept="image/*"
-              onChange={onSelectFile}
-              onClick={(event) => {
-                event.target.value = null;
-              }}
-            />
-            {opencrop ? (
-              <CropPage
-                send={send}
-                setfbimg={setfbimg}
-                setimage_url={setimage_url}
-                aspect_ratio={5 / 8}
-                opencrop={opencrop}
-                setopencrop={setopencrop}
-              />
-            ) : null}
-            <label htmlFor="LocalfileInput">
-              <HeaderBtn Icon={ImageIcon} title="Change  image " />
-            </label>
-
-            <center>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <CreateIcon
+          <div class="col-lg-1"></div>
+          <div
+            className="newspaperrnav col-lg-3"
+            style={{
+              backgroundColor: "#009dd9",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              right: "0",
+            }}
+          >
+            <BrowserView>
+              <center>
+                <div
                   style={{
-                    margin: "0 10px 0 5px",
-                    color: "#ffffff",
-                    fontSize: "large",
+                    justifyContent: "center",
+                    padding: "20px 0 0 0 ",
+                  }}
+                >
+                  <span style={{ color: "#ffffff" }}>
+                    {" "}
+                    Hello! Allow us to give you a small tour on how to generate
+                    this special gift. We are sure you wouldn't need one the
+                    next time you are back.
+                    <br /> P.S : Its that easy
+                  </span>
+                  <HeaderBtn
+                    handleClick={() => {
+                      setIsTourOpen(true);
+                    }}
+                    Icon={FlightTakeoffIcon}
+                    title=" Start Tour "
+                  />
+                </div>
+              </center>
+              <hr />
+            </BrowserView>
+            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+              <div data-tut="reactour__changeImage">
+                <input
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  className={secclasses.input}
+                  id="LocalfileInput"
+                  name="LocalfileInput"
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
                   }}
                 />
-                <InputBase
-                  className="RightSideBar2__Btn"
-                  multiline
-                  style={{
-                    color: "#068dc0",
-                    margin: "0",
-                    backgroundColor: "#ffffff",
-                    width: "100%",
-                  }}
-                  value={head1}
-                  onChange={(e) => {
-                    sethead1(e.target.value);
-                  }}
-                />
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={3 / 4}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="LocalfileInput">
+                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                </label>
               </div>
-              <div
-                style={{ width: "80%", marginLeft: "10%" }}
-                className="RightSideBar2__Btn"
-              >
-                <CreateIcon
-                  style={{
-                    margin: "0 10px 0 5px",
-                    color: "#ffffff",
-                    fontSize: "large",
-                  }}
-                />
-                <InputBase
-                  className="RightSideBar2__Btn"
-                  multiline
-                  style={{
-                    color: "#068dc0",
-                    margin: "0",
-                    backgroundColor: "#ffffff",
-                    width: "100%",
-                  }}
-                  value={head2}
-                  onChange={(e) => {
-                    sethead2(e.target.value);
-                  }}
-                />
-              </div>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
+              <center>
+                <div data-tut="reactour__head">
+                  <div
+                    style={{
+                      width: "200px",
+                      marginTop: "10px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={text}
+                      onChange={(e) => {
+                        settext(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div data-tut="reactour__para">
+                  <div
+                    style={{
+                      width: "200px",
+
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={name}
+                      onChange={(e) => {
+                        setname(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div data-tut="reactour__date">
+                  <div
+                    style={{
+                      width: "200px",
+
+                      marginTop: "20px",
+                    }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <DateRangeIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <input
+                      className="RightSideBar2__Btn"
+                      type="date"
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "150px",
+                      }}
+                      value={BDate}
+                      onChange={(e) => {
+                        setBDate(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+              </center>
+              <center>
+                {/* <HeaderBtn
                   handleClick={() => {
-                    handleMemeDownlod(this);
+                    handleMagazineDownlod(this);
                   }}
                   Icon={GetAppIcon}
                   title="Download image"
-                />
-              </div>
-              <div style={{ width: "55%", marginTop: "20px" }}>
-                <HeaderBtn
-                  handleClick={() => {
-                    handleFireBaseUpload();
-                  }}
-                  Icon={LinkIcon}
-                  title="Generate Link"
-                />
-              </div>
-            </center>
-            {loading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                // timeout={3000} //3 secs
-              />
-            ) : (
-              <center>
-                {livelink ? (
-                  <div>
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Copy livelink={livelink} />
-                    </div>
+                /> */}
 
-                    <div style={{ width: "55%", marginTop: "20px" }}>
-                      <Link class="logo" to={previewlink} target="_blank">
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
-                    </div>
-
-                    {!showshare ? (
-                      <div style={{ width: "55%", marginTop: "20px" }}>
-                        <HeaderBtn
-                          handleClick={() => {
-                            setshowshare(true);
-                          }}
-                          Icon={ShareIcon}
-                          title="Share "
-                        />
-                      </div>
-                    ) : (
-                      <Share livelink={livelink} />
-                    )}
+                <center data-tut="reactour__generatelink">
+                  <div style={{ marginTop: "20px" }}>
+                    <button
+                      onClick={() => {
+                        handleFireBaseUpload();
+                        setshowoptions(true);
+                      }}
+                      className="main-button"
+                      data-tut="reactour__generatelink"
+                    >
+                      Generate Link
+                    </button>
                   </div>
-                ) : null}
+                </center>
               </center>
-            )}
+              {loading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                />
+              ) : (
+                <center>
+                  {livelink || isTourOpen ? (
+                    <div>
+                      <div
+                        data-tut="reactour__preview"
+                        style={{ marginTop: "20px" }}
+                      >
+                        <Link class="logo" to={previewlink} target="_blank">
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
+                      </div>
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ marginTop: "20px", width: "200px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
+                      {!showshare ? (
+                        <div
+                          data-tut="reactour__sharelink"
+                          style={{ marginTop: "20px" }}
+                        >
+                          <HeaderBtn
+                            handleClick={() => {
+                              setshowshare(true);
+                            }}
+                            Icon={ShareIcon}
+                            title="Share "
+                          />
+                        </div>
+                      ) : (
+                        <Share livelink={livelink} />
+                      )}
+                    </div>
+                  ) : null}
+                </center>
+              )}
+            </div>
           </div>
         </div>
       </div>
+
       <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12 col-sm-12">
               <p className="copyright">
                 Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
+                <a rel="nofollow" href="/">
                   Gift's Hub
                 </a>
               </p>

@@ -7,10 +7,10 @@ import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import Loader from "react-loader-spinner";
-function LiveMagazinePage({ match }) {
+function LiveMagazine({ match }) {
   const [fbimg, setfbimg] = useState("");
-  const [head1, sethead1] = useState("");
-  const [head2, sethead2] = useState("");
+  const [text, settext] = useState("");
+  const [name, setname] = useState("");
   const [loading, setloading] = useState(false);
   useEffect(async () => {
     setloading(true);
@@ -21,10 +21,10 @@ function LiveMagazinePage({ match }) {
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
-        var head1 = snapshot.val().head1;
-        sethead1(head1);
-        var head2 = snapshot.val().head2;
-        sethead2(head2);
+        var text = snapshot.val().text;
+        settext(text);
+        var name = snapshot.val().name;
+        setname(name);
       });
     setloading(false);
   }, []);
@@ -107,7 +107,7 @@ function LiveMagazinePage({ match }) {
               width={100}
             />
           ) : (
-            <Magazine fbimg={fbimg} head1={head1} head2={head2} />
+            <Magazine fbimg={fbimg} text={text} name={name} />
           )}
         </div>
       </div>
@@ -115,4 +115,4 @@ function LiveMagazinePage({ match }) {
   );
 }
 
-export default LiveMagazinePage;
+export default LiveMagazine;

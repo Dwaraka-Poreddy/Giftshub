@@ -2,28 +2,23 @@ import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import NewsPaper from "./NewsPaper";
-import DateRangeIcon from "@material-ui/icons/DateRange";
-
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
-import * as htmlToImage from "html-to-image";
+import Magazine from "./Magazine";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./NewsPaperPage.css";
+
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
+import Share from "../Utils/Share";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -36,22 +31,19 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function ScheduledNewsPaperPage({
+function ScheduledMagazinePage({
   step,
   slug,
   getDoc,
   isTourOpen,
   setTourOpend,
 }) {
-  const [showoptions, setshowoptions] = useState(false);
-  let { edit } = useSelector((state) => ({ ...state }));
   const [accentColor, setaccentColor] = useState("#70cff3");
+  let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
-  const database = firebase.firestore();
-  let docToPrint = React.createRef();
-  const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
-
+  const database = firebase.firestore();
+  const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
@@ -62,97 +54,73 @@ function ScheduledNewsPaperPage({
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
 
-  const [BDate, setBDate] = useState(new Date());
-  const [head, sethead] = useState(
-    "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
+  const [text, settext] = useState("BEST EVER CAPTAIN");
+  const [name, setname] = useState("M S Dhoni");
+  const [fbimg, setfbimg] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FMagazine.jpg?alt=media&token=cb5e38c6-9f9d-4a4f-b338-a70a707e6091"
   );
 
-  const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
-  const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
-
+  const [showoptions, setshowoptions] = useState(false);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
       const todoRef = firebase
         .database()
-        .ref("/NewsPaper/" + edit.text)
+        .ref("/Magazine/" + edit.text)
         .once("value")
         .then((snapshot) => {
           var img = snapshot.val().url;
           setfbimg(img);
-          var head = snapshot.val().head;
-          sethead(head);
-          var para = snapshot.val().para;
-          setpara(para);
+          var text = snapshot.val().text;
+          settext(text);
+          var name = snapshot.val().name;
+          setname(name);
           setCLoading(false);
         });
     } else {
       setCLoading(false);
     }
   }, []);
-
-  useEffect(async () => {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    var dummydate = snapshot.data().Bday_date;
-
-    setBDate(dummydate);
-  }, []);
-
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
     setshowoptions(false);
     setopencrop(true);
   };
-  function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    return canvas.toDataURL("image/png");
-  }
 
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud = uuidv4();
-
+    console.log(ud);
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
-      const todoRef = firebase.database().ref("NewsPaper/" + edit.text);
+      const todoRef = firebase.database().ref("Magazine/" + edit.text);
       const todo = {
         url: fbimg,
-        head: head,
-        para: para,
+        name: name,
+        text: text,
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/newspaper/" +
-          edit.text +
-          "/" +
-          slug
+        "http://localhost:3000/scheduledlive/magazine/" + edit.text + "/" + slug
       );
-      setpreviewlink("/scheduledlive/newspaper/" + edit.text + "/" + slug);
+      setpreviewlink("/scheduledlive/magazine/" + edit.text + "/" + slug);
+
       setloading(false);
     } else if (!livelink) {
-      const todoRef = firebase.database().ref("NewsPaper");
+      const todoRef = firebase.database().ref("Magazine");
       const todo = {
         url: fbimg,
-        head: head,
-        para: para,
+        name: name,
+        text: text,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/newspaper/" + newKey + "/" + slug
+        "http://localhost:3000/scheduledlive/magazine/" + newKey + "/" + slug
       );
-      setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
+      setpreviewlink("/scheduledlive/magazine/" + newKey + "/" + slug);
+
       setloading(false);
     } else {
       uploadTask.on(
@@ -162,6 +130,7 @@ function ScheduledNewsPaperPage({
           console.log(err);
         },
         () => {
+          console.log(image_url);
           var s = storage
             .ref("images")
             .child(ud)
@@ -169,21 +138,21 @@ function ScheduledNewsPaperPage({
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
                 setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("NewsPaper");
+                const todoRef = firebase.database().ref("Magazine");
                 const todo = {
-                  url: downUrl,
-                  head: head,
-                  para: para,
+                  url: fbimg,
+                  name: name,
+                  text: text,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/newspaper/" +
+                  "http://localhost:3000/scheduledlive/magazine/" +
                     newKey +
                     "/" +
                     slug
                 );
                 setpreviewlink(
-                  "/scheduledlive/newspaper/" + newKey + "/" + slug
+                  "/scheduledlive/magazine/" + newKey + "/" + slug
                 );
               });
               setloading(false);
@@ -192,10 +161,9 @@ function ScheduledNewsPaperPage({
       );
     }
     {
-      edit.text != "" && toast.success("NewsPaper updated successfully");
+      edit.text != "" && toast.success("Greeting Card updated successfully");
     }
   };
-
   async function EditPack() {
     const snapshot = await database
       .collection("n-day-pack")
@@ -223,41 +191,39 @@ function ScheduledNewsPaperPage({
       },
       { merge: true }
     );
-    toast.success("NewsPaper successfully added to your pack");
+    toast.success("Magazine successfully added to your pack");
     getDoc();
-  }
-
-  function handleImageDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
-    });
   }
 
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
-      content: `Choose the image from you local device to be  printed onto the newspaper.`,
+      content: `Choose the image from you local device to be  printed onto the magazine`,
+    },
+
+    {
+      selector: '[data-tut="reactour__to"]',
+      content: ` Enter the special person’s name `,
     },
     {
-      selector: '[data-tut="reactour__head"]',
-      content: ` Input the text that is going to make headlines!`,
+      selector: '[data-tut="reactour__from"]',
+      content: ` Enter your name
+      `,
     },
     {
-      selector: '[data-tut="reactour__para"]',
-      content: `Woah! This big news sure deserves some subtext too, continue to input this text as well.`,
+      selector: '[data-tut="reactour__message"]',
+      content: `We all love short and cute messages, so pour your heart but pay attention to the word limit!`,
+    },
+    {
+      selector: '[data-tut="reactour__occasion"]',
+      content: `Wishings for the special occasion`,
     },
 
     {
       selector: '[data-tut="reactour__generatelink"]',
       content: `Tada! Almost done, do generate the link for enabling the various sharing options.`,
     },
+
     {
       selector: '[data-tut="reactour__preview"]',
       content: `Previews the component  created in a new page.`,
@@ -293,10 +259,11 @@ function ScheduledNewsPaperPage({
         rounded={5}
         accentColor={accentColor}
       />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-lg-1 "></div>
-          <div ref={docToPrint} id="newspaper" class="col-lg-7 ">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -306,19 +273,13 @@ function ScheduledNewsPaperPage({
               />
             ) : (
               <div>
-                <NewsPaper
-                  fbimg={fbimg}
-                  head={head}
-                  para={para}
-                  startDate={BDate}
-                />
+                <Magazine fbimg={fbimg} text={text} name={name} />
               </div>
             )}
           </div>
           <div class="col-lg-1"></div>
-
           <div
-            className="newspaperrnav col-lg-3"
+            className=" col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -328,12 +289,7 @@ function ScheduledNewsPaperPage({
               right: "0",
             }}
           >
-            {" "}
-            <p style={{ color: "#ffffff" }}>
-              {" "}
-              date will be displayed based on the scheduled event date
-            </p>
-            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+            <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
                   style={{ display: "none" }}
@@ -354,7 +310,7 @@ function ScheduledNewsPaperPage({
                     send={send}
                     setfbimg={setfbimg}
                     setimage_url={setimage_url}
-                    aspect_ratio={16 / 9}
+                    aspect_ratio={2 / 3}
                     opencrop={opencrop}
                     setopencrop={setopencrop}
                   />
@@ -363,14 +319,10 @@ function ScheduledNewsPaperPage({
                   <HeaderBtn Icon={ImageIcon} title="Change  image " />
                 </label>
               </div>
-
               <center>
                 <div
-                  data-tut="reactour__head"
-                  style={{
-                    width: "200px",
-                    marginTop: "10px",
-                  }}
+                  data-tut="reactour__to"
+                  style={{ width: "200px" }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -389,20 +341,16 @@ function ScheduledNewsPaperPage({
                       backgroundColor: "#ffffff",
                       width: "200px",
                     }}
-                    value={head}
+                    value={name}
                     onChange={(e) => {
+                      setname(e.target.value);
                       setshowoptions(false);
-                      sethead(e.target.value);
                     }}
                   />
                 </div>
                 <div
-                  data-tut="reactour__para"
-                  style={{
-                    width: "200px",
-
-                    marginTop: "20px",
-                  }}
+                  data-tut="reactour__from"
+                  style={{ width: "200px" }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -421,63 +369,51 @@ function ScheduledNewsPaperPage({
                       backgroundColor: "#ffffff",
                       width: "200px",
                     }}
-                    value={para}
+                    value={text}
                     onChange={(e) => {
+                      settext(e.target.value);
                       setshowoptions(false);
-                      setpara(e.target.value);
                     }}
                   />
                 </div>
-                {/* 
-                <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleImageDownlod(this);
-                    }}
-                    Icon={GetAppIcon}
-                    title="Download as image"
-                  />
-                </div> */}
-
-                <center>
-                  {loading ? (
-                    <Loader
-                      type="BallTriangle"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                    />
-                  ) : (
-                    <div style={{ marginTop: "20px" }}>
-                      {edit.text == "" || isTourOpen ? (
-                        <button
-                          className="main-button"
-                          onClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          data-tut="reactour__generatelink"
-                        >
-                          Generate Link
-                        </button>
-                      ) : null}
-                      {edit.text != "" || isTourOpen ? (
-                        <button
-                          className="main-button"
-                          onClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          data-tut="reactour__updatepack"
-                        >
-                          Update pack
-                        </button>
-                      ) : null}
-                    </div>
-                  )}
-                </center>
               </center>
-
+              <center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <div style={{ marginTop: "20px" }}>
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : null}
+                  </div>
+                )}
+              </center>
               <center>
                 {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>
@@ -520,4 +456,4 @@ function ScheduledNewsPaperPage({
   );
 }
 
-export default ScheduledNewsPaperPage;
+export default ScheduledMagazinePage;

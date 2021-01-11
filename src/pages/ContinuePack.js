@@ -8,6 +8,7 @@ import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
+import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
 import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
 import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
 import ScheduledSwatchBook from "../SwatchBook/ScheduledSwatchBook";
@@ -176,6 +177,17 @@ function ContinuePack({ match, history }) {
   }
 
   function getStepContent(step) {
+    if (dataid[step] === "magazine") {
+      return (
+        <ScheduledMagazinePage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
     if (dataid[step] === "threedcarousel") {
       return (
         <ScheduledThreeDCarouselPage

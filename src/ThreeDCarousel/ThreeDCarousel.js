@@ -33,11 +33,7 @@ export default function ThreeDCarousel({
   function init(delayTime) {
     for (var i = 0; i < aEle.length; i++) {
       aEle[i].style.transform =
-        "rotateY(" +
-        i * (360 / aEle.length) +
-        "deg) translateZ(" +
-        radius +
-        "px)";
+        "rotateY(" + i * 60 + "deg) translateZ(" + radius + "px)";
       aEle[i].style.transition = "transform 1s";
       aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
     }
@@ -111,7 +107,7 @@ export default function ThreeDCarousel({
     init(1);
   };
   return (
-    <div className="ThreeDCarouseldiv">
+    <div id="ThreeDCarouseldiv">
       <div id="drag-container">
         <div style={{ height: "170px", width: "120px" }} id="spin-container">
           <img src={fbimg1} alt="" />

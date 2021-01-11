@@ -34,9 +34,9 @@ import LiveSpecialCard from "./LivePages/LiveSpecialCard";
 import SlidePuzzlePage from "./SlidePuzzle/SlidePuzzlePage";
 import ThreeDImagePage from "./ThreeDImage/ThreeDImagePage";
 import LiveCubesPage from "./LivePages/LiveCubesPage";
-import LiveNewsPaperPage from "./LivePages/LiveNewsPaperPage";
+import LiveNewsPaper from "./LivePages/LiveNewsPaper";
 import LiveAnimatedFramePage from "./LivePages/LiveAnimatedFramePage";
-import LiveMagazinePage from "./LivePages/LiveMagazinePage";
+import LiveMagazine from "./LivePages/LiveMagazine";
 import LiveMemoryGamePage from "./LivePages/LiveMemoryGamePage";
 import LiveCollagePage from "./LivePages/LiveCollagePage";
 import SevenDayHome from "./pages/SevenDayHome";
@@ -47,6 +47,7 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ContinuePack from "./pages/ContinuePack";
 import SoundRecorder from "./SoundRecorder";
+import ScheduledLiveMagazine from "./ScheduledLivePages/ScheduledLiveMagazine";
 import ScheduledLiveThreeDCarousel from "./ScheduledLivePages/ScheduledLiveThreeDCarousel";
 import ScheduledLiveJourney from "./ScheduledLivePages/ScheduledLiveJourney";
 import ScheduledLiveSwatchBook from "./ScheduledLivePages/ScheduledLiveSwatchBook";
@@ -159,11 +160,7 @@ export default function App() {
           path="/live/threedimage/:slug"
           component={LiveThreeDImage}
         />
-        <Route
-          exact
-          path="/live/newspaper/:slug"
-          component={LiveNewsPaperPage}
-        />
+        <Route exact path="/live/newspaper/:slug" component={LiveNewsPaper} />
         <Route
           exact
           path="/live/opengreetingcard/:slug"
@@ -181,7 +178,12 @@ export default function App() {
           path="/live/animatedframe/:slug"
           component={LiveAnimatedFramePage}
         />
-        <Route exact path="/live/magazine/:slug" component={LiveMagazinePage} />
+        <Route exact path="/live/magazine/:slug" component={LiveMagazine} />
+        <Route
+          exact
+          path="/scheduledlive/magazine/:id/:slug"
+          component={ScheduledLiveMagazine}
+        />
         <Route
           exact
           path="/scheduledlive/threedcarousel/:id/:slug"

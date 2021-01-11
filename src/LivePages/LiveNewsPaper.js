@@ -7,7 +7,7 @@ import html2canvas from "html2canvas";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
-function LiveNewsPaperPage({ match }) {
+function LiveNewsPaper({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head, sethead] = useState("");
   const [para, setpara] = useState("");
@@ -115,4 +115,4 @@ function LiveNewsPaperPage({ match }) {
   );
 }
 
-export default LiveNewsPaperPage;
+export default LiveNewsPaper;

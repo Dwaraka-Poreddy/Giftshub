@@ -3,6 +3,13 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import $ from "jquery";
 const allComp = [
   {
+    id: "magazine",
+    content: "Magazine",
+    url: "",
+    img:
+      "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
+  },
+  {
     id: "threedcarousel",
     content: "3D Carousel",
     url: "",
