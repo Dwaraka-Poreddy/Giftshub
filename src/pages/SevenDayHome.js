@@ -50,18 +50,24 @@ function SevenDayHome({ history }) {
   const classes = useStyles();
   const { user } = useSelector((state) => ({ ...state }));
   const [npackorder, setnpackorder] = useState([
-    { id: "threedimage", content: "3D Image", url: "" },
-    { id: "newspaper", content: "NewsPaper", url: "" },
-    { id: "puzzle", content: "Slide Puzzle", url: "" },
+    { id: "threedimage", ismailsent: false, content: "3D Image", url: "" },
+    { id: "newspaper", ismailsent: false, content: "NewsPaper", url: "" },
+    { id: "puzzle", ismailsent: false, content: "Slide Puzzle", url: "" },
     {
       id: "memorygame",
+      ismailsent: false,
       content: "Memory Game",
       // score: Number.MAX_VALUE,
       url: "",
     },
-    { id: "cubes", content: " 3D Heart", url: "" },
-    { id: "collage", content: "Collage", url: "" },
-    { id: "greetingcard", content: "Greeting Card", url: "" },
+    { id: "cubes", ismailsent: false, content: " 3D Heart", url: "" },
+    { id: "collage", ismailsent: false, content: "Collage", url: "" },
+    {
+      id: "greetingcard",
+      ismailsent: false,
+      content: "Greeting Card",
+      url: "",
+    },
   ]);
   const database = firebase.firestore();
   const [Folder_name, setFolder_name] = useState();
@@ -213,6 +219,7 @@ function SevenDayHome({ history }) {
         console.error("Error removing document: ", error);
       });
   };
+
   return (
     <div
       style={{

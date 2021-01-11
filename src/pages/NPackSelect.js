@@ -4,6 +4,7 @@ import $ from "jquery";
 const allComp = [
   {
     id: "magazine",
+    ismailsent: false,
     content: "Magazine",
     url: "",
     img:
@@ -11,6 +12,7 @@ const allComp = [
   },
   {
     id: "threedcarousel",
+    ismailsent: false,
     content: "3D Carousel",
     url: "",
     img:
@@ -18,6 +20,7 @@ const allComp = [
   },
   {
     id: "journey",
+    ismailsent: false,
     content: "Journey",
     url: "",
     img:
@@ -25,6 +28,7 @@ const allComp = [
   },
   {
     id: "swatchbook",
+    ismailsent: false,
     content: "Swatch Book",
     url: "",
     img:
@@ -32,6 +36,7 @@ const allComp = [
   },
   {
     id: "puzzle",
+    ismailsent: false,
     content: "Slide Puzzle",
     url: "",
     img:
@@ -39,6 +44,7 @@ const allComp = [
   },
   {
     id: "specialcard",
+    ismailsent: false,
     content: "Special Card",
     url: "",
     img:
@@ -46,6 +52,7 @@ const allComp = [
   },
   {
     id: "animatedframe",
+    ismailsent: false,
     content: "Animated Frame ",
     url: "",
     img:
@@ -53,6 +60,7 @@ const allComp = [
   },
   {
     id: "threedimage",
+    ismailsent: false,
     content: "3D Image",
     url: "",
     img:
@@ -60,6 +68,7 @@ const allComp = [
   },
   {
     id: "greetingcard",
+    ismailsent: false,
     content: "Greeting Card",
     url: "",
     img:
@@ -67,6 +76,7 @@ const allComp = [
   },
   {
     id: "cubes",
+    ismailsent: false,
     content: " 3D Heart",
     url: "",
     img:
@@ -74,6 +84,7 @@ const allComp = [
   },
   {
     id: "memorygame",
+    ismailsent: false,
     content: "Memory Game",
     url: "",
     img:
@@ -81,6 +92,7 @@ const allComp = [
   },
   {
     id: "collage",
+    ismailsent: false,
     content: "Collage",
     url: "",
     img:
@@ -88,6 +100,7 @@ const allComp = [
   },
   {
     id: "newspaper",
+    ismailsent: false,
     content: "NewsPaper",
     url: "",
     img:

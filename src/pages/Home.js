@@ -194,6 +194,7 @@ const Home = ({ history }) => {
         console.error("Error removing document: ", error);
       });
   };
+
   return (
     <div
       style={{
@@ -204,6 +205,7 @@ const Home = ({ history }) => {
     >
       <AuthHeader />
       <br />
+
       <button
         className="main-button"
         onClick={() => {
