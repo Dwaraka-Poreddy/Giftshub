@@ -6,6 +6,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
   const [showplayAgain, setshowPlayagain] = useState(false);
   const [correct, setcorrect] = useState(0);
   const [quesnumber, setquesnumber] = useState(0);
+  const [divheight, setdivheight] = useState(600 / quesArray.length + "px");
   const [bgcolrs, setbgcolrs] = useState([
     "red",
     "blue",
@@ -15,17 +16,12 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
     "purple",
   ]);
 
-  useEffect(() => {
-    for (var i = 0; i <= correct; i++) {
-      var sheeps = bgcolrs;
-      sheeps[i] = "transparent";
-      setbgcolrs(sheeps);
-    }
-  }, [correct]);
   const handleoptionclick = (index) => {
-    console.log(answersArray[quesnumber], "success", index, "success");
     if (answersArray[quesnumber] == index) {
       setcorrect(correct + 1);
+      var sheeps = bgcolrs;
+      sheeps[quesnumber] = "transparent";
+      setbgcolrs(sheeps);
     }
     if (quesnumber + 1 == quesArray.length) {
       setshowPlayagain(true);
@@ -36,16 +32,22 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
   };
   return (
     <div className="App">
-      <div className="container-fluid">
+      {JSON.stringify(answersArray)}
+      {JSON.stringify(bgcolrs)}
+      <div className="container">
         <div className="row">
-          <div className="col-lg-5">
+          <div className="col-lg-6">
             <div
               style={{
                 backgroundImage: "url(" + fbimg + ")",
-                height: "300px",
-                width: "300px",
+
+                // height: calc(width / 2),
+                width: "100%",
+                // height: "75vh",
+                // maxHeight: "600px",
+                maxwidth: "450px",
                 margin: "auto",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
               }}
               src={fbimg}
               alt=""
@@ -56,7 +58,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                     style={{
                       width: "100%",
                       backgroundColor: bgcolrs[index],
-                      height: "150px",
+                      height: divheight,
                       opacity: "0.8",
                     }}
                   ></div>
@@ -64,7 +66,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
               })}
             </div>
           </div>
-          <div className="col-lg-7">
+          <div className="col-lg-6">
             {!showplayAgain ? (
               <div class="container">
                 <div class="card p-3">
@@ -134,6 +136,14 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                     setshowPlayagain(false);
                     setcorrect(0);
                     setquesnumber(0);
+                    setbgcolrs([
+                      "red",
+                      "blue",
+                      "orange",
+                      "green",
+                      "yellow",
+                      "purple",
+                    ]);
                   }}
                 >
                   Play Again

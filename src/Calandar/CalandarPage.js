@@ -154,16 +154,14 @@ function CalandarPage() {
         />
       </div>
 
-      <br />
-
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-9">
+          <div class="  col-lg-10">
             <Calandar fbimg={fbimg} />
           </div>
 
           <div
-            className="threedrnav   col-lg-3"
+            className="threedrnav   col-lg-2"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -221,7 +219,7 @@ function CalandarPage() {
                     send={send}
                     setfbimg={setfbimg}
                     setimage_url={setimage_url}
-                    aspect_ratio={620 / 520}
+                    aspect_ratio={2 / 1}
                     opencrop={opencrop}
                     setopencrop={setopencrop}
                   />

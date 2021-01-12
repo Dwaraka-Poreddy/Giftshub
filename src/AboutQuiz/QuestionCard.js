@@ -22,16 +22,17 @@ export default function AboutQuiz({
     <div className="App">
       <div className="contaier-fluid">
         <div className="row">
-          {/* <div className="col-lg-5">
-            <img src="" alt="" />
-          </div> */}
+          {JSON.stringify(quesArray)}
+          {JSON.stringify(answersArray)}
           <div className="col-lg-10">
             {!isselectcomplete ? (
               <div class="container">
                 <div class="card p-3">
-                  <h4>Question {quesArray.length + 1} of 10</h4>
+                  {quesArray.length ? (
+                    <h4> {quesArray.length} Questions Selected. </h4>
+                  ) : null}
                   <button
-                    style={{ margin: "auto", width: "200px" }}
+                    style={{ margin: "auto", width: "300px" }}
                     type="button"
                     class="btn btn-primary "
                     onClick={() => {
@@ -80,20 +81,45 @@ export default function AboutQuiz({
                         );
                       })}
                     </div>
+                    <button
+                      style={{ margin: "auto", width: "200px" }}
+                      type="button"
+                      class="btn btn-primary "
+                      onClick={() => {
+                        setisselectcomplete(true);
+                      }}
+                    >
+                      Complete Selection
+                    </button>
                   </center>
                 </div>
               </div>
             ) : (
-              <h4
-                style={{
-                  color: "#3e6ef3",
-                  fontSize: "1.5rem",
-                  fontWeight: "500",
-                  lineHeight: "1.2",
-                }}
-              >
-                Questions selection completed!
-              </h4>
+              <>
+                <h4
+                  style={{
+                    color: "#3e6ef3",
+                    fontSize: "1.5rem",
+                    fontWeight: "500",
+                    lineHeight: "1.2",
+                  }}
+                >
+                  {quesArray.length} Questions selected successfully!
+                </h4>
+                <button
+                  style={{ margin: "auto", width: "200px" }}
+                  type="button"
+                  class="btn btn-primary "
+                  onClick={() => {
+                    setisselectcomplete(false);
+                    setquesArray([]);
+                    setanswersArray([]);
+                    setquesnumber(0);
+                  }}
+                >
+                  Select Again
+                </button>
+              </>
             )}
           </div>
         </div>
