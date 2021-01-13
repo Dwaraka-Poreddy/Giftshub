@@ -163,29 +163,8 @@ export default function TicketDeck({ name }) {
         className="ticket"
         style={{ backgroundColor: color, transform: `rotate(${angle}deg)` }}
       >
-        <h3
-          style={{
-            fontFamily: "Goldman",
-            fontSize: "150%",
-            marginTop: "0",
-            marginBottom: "0",
-            fontWeight: "bold",
-          }}
-        >
-          {letter}
-        </h3>{" "}
-        <h4
-          style={{
-            fontSize: "15px",
-            padding: "10px",
-            color: "#ffffff",
-            background: "rgba(0,0,0,0.2)",
-            boxShadow: "0 1px 1px rgba(255, 255, 255, 0.1)",
-            fontWeight: "bold",
-          }}
-        >
-          {text}
-        </h4>
+        <h3 className="swatchH3">{letter}</h3>{" "}
+        <h4 className="swatchH4">{text}</h4>
       </div>
     );
   };
@@ -222,34 +201,9 @@ export default function TicketDeck({ name }) {
           startClick();
         }}
       >
-        <h4
-          style={{
-            fontSize: "15px",
-            padding: "10px",
-            color: "#ffffff",
-            background: "rgba(0,0,0,0.2)",
-            boxShadow: "0 1px 1px rgba(255, 255, 255, 0.1)",
-            fontWeight: "bold",
-          }}
-        >
-          {name}
-        </h4>
-        <h6 style={{ fontSize: "10px", fontWeight: "bold" }}>
-          CLICK TO OPEN/CLOSE
-        </h6>
-        <h2
-          style={{
-            fontSize: "35px",
-            transform: "rotate(-90deg)",
-            width: "300px",
-            position: "relative",
-            top: "170px",
-            right: "40px",
-            fontWeight: "bold",
-          }}
-        >
-          WE ♥ COLOR
-        </h2>
+        <h4 className="swatchH4">{name}</h4>
+        <h6 className="swatchH6">CLICK TO OPEN/CLOSE</h6>
+        <h2 className="swatchH2">WE ♥ COLOR</h2>
         <div className="circle" />
       </div>
     </div>

@@ -35,7 +35,7 @@ export default function Journey({
           class="journeycenter"
         >
           <div class="journeyexplainer">
-            <span style={{ fontSize: "2rem" }}>{heading}</span>
+            <span class="journeyexplainer">{heading}</span>
           </div>
           <div class="journeytext">{t3}</div>
         </div>

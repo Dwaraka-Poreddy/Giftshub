@@ -62,6 +62,80 @@
   cursor: pointer;
   background-blend-mode: color-burn;
 }
+@media only screen and (max-width: 600px) {
+  .journeyleft,
+  .journeycenter,
+  .journeyright,
+  .journeylefter,
+  .journeyrighter {
+    width: 60px;
+    height: 45px;
+  }
+  .journeyall:hover {
+    perspective: 350px;
+    transition: all 1.3s ease-in;
+    transform: perspective(350px) rotateX(0deg);
+  }
+  .journeytext {
+    font-size: 7px;
+    transform: translateY(12px) !important;
+  }
+  .journeyexplainer {
+    font-size: 0.8rem !important;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .journeyleft,
+  .journeycenter,
+  .journeyright,
+  .journeylefter,
+  .journeyrighter {
+    width: 120px;
+    height: 90px;
+  }
+  .journeyall:hover {
+    perspective: 600px;
+    transition: all 1.3s ease-in;
+    transform: perspective(350px) rotateX(0deg);
+  }
+  .journeytext {
+    font-size: 10px;
+    transform: translateY(17px) !important;
+  }
+  .journeyexplainer {
+    font-size: 1.2rem !important;
+  }
+}
+.journeyleft:hover,
+.journeycenter:hover,
+.journeyright:hover,
+.journeylefter:hover,
+.journeyrighter:hover {
+  box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
+  background-color: #ccf;
+}
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+  .journeyleft,
+  .journeycenter,
+  .journeyright,
+  .journeylefter,
+  .journeyrighter {
+    width: 160px;
+    height: 120px;
+  }
+  .journeyall:hover {
+    perspective: 800px;
+    transition: all 1.3s ease-in;
+    transform: perspective(350px) rotateX(0deg);
+  }
+  .journeytext {
+    font-size: 12px;
+    transform: translateY(20px) !important;
+  }
+  .journeyexplainer {
+    font-size: 1.6rem !important;
+  }
+}
 .journeyleft:hover,
 .journeycenter:hover,
 .journeyright:hover,
