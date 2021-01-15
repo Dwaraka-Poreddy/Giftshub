@@ -84,6 +84,7 @@ function NewsPaperPage() {
         url: fbimg,
         head: head,
         para: para,
+        eventDate: BDate,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink("http://localhost:3000/live/newspaper/" + newKey);
@@ -113,6 +114,7 @@ function NewsPaperPage() {
                   url: downUrl,
                   head: head,
                   para: para,
+                  eventDate: BDate,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink("http://localhost:3000/live/newspaper/" + newKey);

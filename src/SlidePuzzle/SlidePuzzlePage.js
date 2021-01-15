@@ -44,10 +44,15 @@ function OpenGreetingCardPage() {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
+
+  // const [puzzlescore, setpuzzlescore] = useState(0);
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531"
   );
-
+  // const handlepuzzlescore = (e) => {
+  //   console.log("inside page", e, "puzz", puzzlescore);
+  //   setpuzzlescore(e);
+  // };
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -65,6 +70,7 @@ function OpenGreetingCardPage() {
       const todoRef = firebase.database().ref("SlidePuzzle");
       const todo = {
         url: fbimg,
+        best_score: 100000,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink("http://localhost:3000/live/slidepuzzle/" + newKey);
@@ -92,6 +98,7 @@ function OpenGreetingCardPage() {
                 const todoRef = firebase.database().ref("SlidePuzzle");
                 const todo = {
                   url: downUrl,
+                  best_score: 100000,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink("http://localhost:3000/live/slidepuzzle/" + newKey);
@@ -150,7 +157,10 @@ function OpenGreetingCardPage() {
           <div class="col-lg-6 col-xl-4 mb-5 mt-5 ">
             {" "}
             <center>
-              <SlidePuzzle fbimg={fbimg} />{" "}
+              <SlidePuzzle
+                fbimg={fbimg}
+                // handlepuzzlescore={handlepuzzlescore}
+              />{" "}
             </center>
           </div>
           <div class="col-lg-5 col-xl-4  ">

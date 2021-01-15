@@ -51,10 +51,12 @@ class GameState {
         return false;
     }
     window.CP.exitedLoop(0);
+    this.finalscore = this.moves;
     return true;
   }
 
   startNewGame() {
+    this.finalscore = 0;
     this.moves = 0;
     this.board = GameState.getNewBoard();
     this.stack = [];
@@ -97,8 +99,11 @@ class GameState {
 
     if (!this.shuffling) this.stack.push(this.board);
     this.board = boardAfterMove;
-    if (!this.shuffling) this.moves += 1;
-
+    if (!this.shuffling) {
+      this.moves += 1;
+      this.finalscore += 1;
+      console.log("updated final score", this.finalscore);
+    }
     return true;
   }
 
@@ -141,6 +146,7 @@ class GameState {
       board: self.board,
       moves: self.moves,
       solved: self.isSolved(),
+      finalscore: self.finalscore,
     };
   }
 }
@@ -150,7 +156,7 @@ _defineProperty(GameState, "instance", null);
 function useGameState() {
   const gameState = GameState.getInstance();
   const [state, setState] = React.useState(gameState.getState());
-
+  const [finalscore, setfinalscore] = React.useState(0);
   function newGame() {
     gameState.startNewGame();
     setState(gameState.getState());
@@ -181,7 +187,15 @@ function useGameState() {
     return () => console.log("");
   }, [gameState]);
 
-  return [state.board, state.moves, state.solved, newGame, undo, move];
+  return [
+    state.board,
+    state.moves,
+    state.solved,
+    newGame,
+    undo,
+    move,
+    state.finalscore,
+  ];
 }
 
 function Tile({ index, pos, onClick, fbimg }) {
@@ -189,7 +203,6 @@ function Tile({ index, pos, onClick, fbimg }) {
   const left = pos[1] * 100 + 5;
   const bgLeft = (index % 4) * 100 + 5;
   const bgTop = Math.floor(index / 4) * 100 + 5;
-  const [bgimg, setBgimg] = useState(fbimg);
 
   return React.createElement("div", {
     className: "slidetile",
@@ -203,9 +216,20 @@ function Tile({ index, pos, onClick, fbimg }) {
   });
 }
 
-function SlidePuzzle({ fbimg }) {
-  const [board, moves, solved, newGame, undo, move] = useGameState();
-  console.log(fbimg, "qwerty");
+function SlidePuzzle({ fbimg, handlepuzzlescore }) {
+  const [
+    board,
+    moves,
+    solved,
+    newGame,
+    undo,
+    move,
+    finalscore,
+  ] = useGameState();
+  if (solved) {
+    handlepuzzlescore(finalscore);
+  }
+  console.log(fbimg, "qwerty", moves, "finalscore", finalscore);
   return React.createElement(
     "div",
     { className: "game-container scaled", id: "scaled" },

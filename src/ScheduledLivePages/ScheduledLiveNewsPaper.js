@@ -18,17 +18,29 @@ function ScheduledLiveNewsPaper({ match }) {
   const [dataurl, setdataurl] = useState([]);
   const [today, settoday] = useState();
   const [BDate, setBDate] = useState();
+
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
       .doc(match.params.slug)
       .get();
-    setBDate(snapshot.data().Bday_date);
+    console.log(today, "snapshot.data() today");
+    console.log(snapshot.data().array_data, "snapshot.data().array_data");
+    console.log(
+      snapshot.data().array_data.length,
+      "snapshot.data().array_data.length"
+    );
+
     const data = snapshot.data();
     setLivelinks(data);
     data.array_data.map((item, index) => {
       if (item.id == "newspaper") {
         settoday(index);
+        setBDate(
+          Date.parse(snapshot.data().Bday_date.toLocaleString()) -
+            19800000 -
+            86400000 * (snapshot.data().array_data.length - index - 1)
+        );
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -39,8 +51,6 @@ function ScheduledLiveNewsPaper({ match }) {
   }
   useEffect(() => {
     getDoc();
-    console.log(Livelinks, "liveData");
-    console.log(match.params.slug, "slug", match.params.id, "id");
   }, []);
   useEffect(() => {
     setloading(true);

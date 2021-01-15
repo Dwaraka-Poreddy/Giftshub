@@ -17,16 +17,17 @@ import CloseIcon from "@material-ui/icons/Close";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
-    width: "70vw",
-    height: "80vh",
-    minWidth: "280px",
+    width: "80vw",
+    height: "auto",
+    minWidth: "320px",
     maxWidth: "840px",
     position: "absolute",
     color: "#ffffff",
     marginTop: "0vh",
+    marginBottom: "0vh",
     border: null,
     backgroundColor: "#009dd9",
-    overflow: "auto",
+    // overflow: "auto",
     padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
@@ -145,7 +146,7 @@ function CropPage({
           display: "flex",
           justifyContent: "center",
           marginRight: "auto",
-          overflow: "hidden",
+          // overflow: "hidden",
           alignItems: "center",
         }}
         open={opencrop}
@@ -155,63 +156,62 @@ function CropPage({
         {
           <div className={classes.paper}>
             <div>
-              <div>
-                <div>
-                  <div>
-                    <br />
-                    <br />
-                    <br />
-                    <center>
-                      <ReactCrop
-                        imageStyle={{ maxWidth: "800px", maxHeight: "450px" }}
-                        src={upImg}
-                        onImageLoaded={onLoad}
-                        crop={crop}
-                        onChange={(c) => setCrop(c)}
-                        onComplete={(c) => setCompletedCrop(c)}
-                      />
-                    </center>
-                    <div style={{ display: "none" }}>
-                      <canvas
-                        ref={previewCanvasRef}
-                        style={{
-                          width: Math.round(completedCrop?.width ?? 0),
-                          height: Math.round(completedCrop?.height ?? 0),
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <center>
-                        <div>
-                          {" "}
-                          <HeaderBtn
-                            handleClick={() => {
-                              generateDownload(
-                                previewCanvasRef.current,
-                                completedCrop
-                              );
-                            }}
-                            Icon={ImageIcon}
-                            title=" Use cropped image"
-                          />
-                        </div>
-                      </center>
-                    </div>
-                  </div>
-                </div>
+              <br />
+              <br />
+              <br />
+              <center>
+                <ReactCrop
+                  imageStyle={{
+                    minWidth: "290px",
+                    maxWidth: "800px",
+                    maxHeight: "450px",
+                    width: "100%",
+                  }}
+                  src={upImg}
+                  onImageLoaded={onLoad}
+                  crop={crop}
+                  onChange={(c) => setCrop(c)}
+                  onComplete={(c) => setCompletedCrop(c)}
+                />
+              </center>
+              <div style={{ display: "none" }}>
+                <canvas
+                  ref={previewCanvasRef}
+                  style={{
+                    width: Math.round(completedCrop?.width ?? 0),
+                    height: Math.round(completedCrop?.height ?? 0),
+                  }}
+                />
               </div>
-
-              <Fab
-                onClick={() => {
-                  setopencrop(false);
-                }}
-                className={classes.DelBut}
-                color="primary"
-                aria-label="add"
-              >
-                <CloseIcon />
-              </Fab>
+              <div>
+                <center>
+                  <div>
+                    {" "}
+                    <HeaderBtn
+                      handleClick={() => {
+                        generateDownload(
+                          previewCanvasRef.current,
+                          completedCrop
+                        );
+                      }}
+                      Icon={ImageIcon}
+                      title=" Use cropped image"
+                    />
+                  </div>
+                </center>
+              </div>
             </div>
+
+            <Fab
+              onClick={() => {
+                setopencrop(false);
+              }}
+              className={classes.DelBut}
+              color="primary"
+              aria-label="add"
+            >
+              <CloseIcon />
+            </Fab>
           </div>
         }
       </Modal>

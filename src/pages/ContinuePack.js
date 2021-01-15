@@ -86,7 +86,6 @@ function ContinuePack({ match, history }) {
         history.push("/login");
       } else {
         await getDoc(user.uid);
-
         setloading(false);
       }
     });
@@ -463,29 +462,11 @@ function ContinuePack({ match, history }) {
       </div>
     );
   };
-  const handlemailsend = () => {
-    database
-      .collection("mail")
-      .add({
-        to: "dwarakaporeddy124@gmail.com",
-        message: {
-          subject: "Hello from Dwaraka!",
-          text: "This is the plaintext section of the email body.",
-          html: "This is the <code>HTML</code> section of the email body.",
-        },
-      })
-      .then(() => console.log("Queued email for delivery!"));
-  };
+
   return (
     <div>
       <AuthHeader />
-      <button
-        onClick={() => {
-          handlemailsend();
-        }}
-      >
-        Doc Ad EMail
-      </button>
+
       <div
         style={{ backgroundColor: "#d3d3d3", textAlign: "justify" }}
         class="container"

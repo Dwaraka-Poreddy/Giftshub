@@ -7,7 +7,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
     month: "long",
     day: "numeric",
   };
-  // console.log(startDate, "startdate");
+  console.log(startDate, "startdate");
   // console.log(
   //   new Date(startDate).toLocaleDateString("en-US", options),
   //   "startdatetolocalestring"

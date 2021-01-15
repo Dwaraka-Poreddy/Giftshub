@@ -3,11 +3,6 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
-import DateRangeIcon from "@material-ui/icons/DateRange";
-
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
-import * as htmlToImage from "html-to-image";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -19,11 +14,11 @@ import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
+import Share from "../Utils/Share";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -43,16 +38,13 @@ function ScheduledNewsPaperPage({
   isTourOpen,
   setTourOpend,
 }) {
-  const [showoptions, setshowoptions] = useState(false);
-  let { edit } = useSelector((state) => ({ ...state }));
   const [accentColor, setaccentColor] = useState("#70cff3");
+  let { edit } = useSelector((state) => ({ ...state }));
   const [Cloading, setCLoading] = useState(false);
-  const database = firebase.firestore();
-  let docToPrint = React.createRef();
-  const secclasses = secuseStyles();
   const [loading, setloading] = useState(false);
+  const database = firebase.firestore();
+  const secclasses = secuseStyles();
 
-  const [showshare, setshowshare] = useState(false);
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [fireurl, setFireUrl] = useState("");
@@ -61,15 +53,14 @@ function ScheduledNewsPaperPage({
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
-
-  const [BDate, setBDate] = useState(new Date());
+  const [eventDate, setEventDate] = useState(new Date());
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
   );
-
   const [para, setpara] = useState("It's getting closer, 5 days to go !!!");
   const [fbimg, setfbimg] = useState(require("../Images/MainImage.png"));
 
+  const [showoptions, setshowoptions] = useState(false);
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -80,6 +71,7 @@ function ScheduledNewsPaperPage({
         .then((snapshot) => {
           var img = snapshot.val().url;
           setfbimg(img);
+
           var head = snapshot.val().head;
           sethead(head);
           var para = snapshot.val().para;
@@ -90,38 +82,16 @@ function ScheduledNewsPaperPage({
       setCLoading(false);
     }
   }, []);
-
-  useEffect(async () => {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    var dummydate = snapshot.data().Bday_date;
-
-    setBDate(dummydate);
-  }, []);
-
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
     setshowoptions(false);
     setopencrop(true);
   };
-  function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    return canvas.toDataURL("image/png");
-  }
 
   const handleFireBaseUpload = () => {
     setloading(true);
     var ud = uuidv4();
-
+    console.log(ud);
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
@@ -140,6 +110,7 @@ function ScheduledNewsPaperPage({
           slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + edit.text + "/" + slug);
+
       setloading(false);
     } else if (!livelink) {
       const todoRef = firebase.database().ref("NewsPaper");
@@ -153,6 +124,7 @@ function ScheduledNewsPaperPage({
         "http://localhost:3000/scheduledlive/newspaper/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
+
       setloading(false);
     } else {
       uploadTask.on(
@@ -162,6 +134,7 @@ function ScheduledNewsPaperPage({
           console.log(err);
         },
         () => {
+          console.log(image_url);
           var s = storage
             .ref("images")
             .child(ud)
@@ -195,7 +168,6 @@ function ScheduledNewsPaperPage({
       edit.text != "" && toast.success("NewsPaper updated successfully");
     }
   };
-
   async function EditPack() {
     const snapshot = await database
       .collection("n-day-pack")
@@ -225,19 +197,6 @@ function ScheduledNewsPaperPage({
     );
     toast.success("NewsPaper successfully added to your pack");
     getDoc();
-  }
-
-  function handleImageDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
-    });
   }
 
   const tourConfig = [
@@ -293,10 +252,11 @@ function ScheduledNewsPaperPage({
         rounded={5}
         accentColor={accentColor}
       />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-lg-1 "></div>
-          <div ref={docToPrint} id="newspaper" class="col-lg-7 ">
+          <div class="  col-lg-1"></div>
+          <div class="  col-lg-7">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -310,15 +270,14 @@ function ScheduledNewsPaperPage({
                   fbimg={fbimg}
                   head={head}
                   para={para}
-                  startDate={BDate}
+                  startDate={eventDate}
                 />
               </div>
             )}
           </div>
           <div class="col-lg-1"></div>
-
           <div
-            className="newspaperrnav col-lg-3"
+            className=" col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -328,12 +287,11 @@ function ScheduledNewsPaperPage({
               right: "0",
             }}
           >
-            {" "}
             <p style={{ color: "#ffffff" }}>
               {" "}
               date will be displayed based on the scheduled event date
             </p>
-            <div style={{ justifyContent: "center", padding: "20px 0" }}>
+            <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <input
                   style={{ display: "none" }}
@@ -363,14 +321,10 @@ function ScheduledNewsPaperPage({
                   <HeaderBtn Icon={ImageIcon} title="Change  image " />
                 </label>
               </div>
-
               <center>
                 <div
                   data-tut="reactour__head"
-                  style={{
-                    width: "200px",
-                    marginTop: "10px",
-                  }}
+                  style={{ width: "200px" }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -398,11 +352,7 @@ function ScheduledNewsPaperPage({
                 </div>
                 <div
                   data-tut="reactour__para"
-                  style={{
-                    width: "200px",
-
-                    marginTop: "20px",
-                  }}
+                  style={{ width: "200px" }}
                   className="RightSideBar2__Btn"
                 >
                   <CreateIcon
@@ -428,56 +378,44 @@ function ScheduledNewsPaperPage({
                     }}
                   />
                 </div>
-                {/* 
-                <div style={{ marginTop: "20px" }}>
-                  <HeaderBtn
-                    handleClick={() => {
-                      handleImageDownlod(this);
-                    }}
-                    Icon={GetAppIcon}
-                    title="Download as image"
-                  />
-                </div> */}
-
-                <center>
-                  {loading ? (
-                    <Loader
-                      type="BallTriangle"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                    />
-                  ) : (
-                    <div style={{ marginTop: "20px" }}>
-                      {edit.text == "" || isTourOpen ? (
-                        <button
-                          className="main-button"
-                          onClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          data-tut="reactour__generatelink"
-                        >
-                          Generate Link
-                        </button>
-                      ) : null}
-                      {edit.text != "" || isTourOpen ? (
-                        <button
-                          className="main-button"
-                          onClick={() => {
-                            handleFireBaseUpload();
-                            setshowoptions(true);
-                          }}
-                          data-tut="reactour__updatepack"
-                        >
-                          Update pack
-                        </button>
-                      ) : null}
-                    </div>
-                  )}
-                </center>
               </center>
-
+              <center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <div style={{ marginTop: "20px" }}>
+                    {edit.text == "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__generatelink"
+                      >
+                        Generate Link
+                      </button>
+                    ) : null}
+                    {edit.text != "" || isTourOpen ? (
+                      <button
+                        className="main-button"
+                        onClick={() => {
+                          handleFireBaseUpload();
+                          setshowoptions(true);
+                        }}
+                        data-tut="reactour__updatepack"
+                      >
+                        Update pack
+                      </button>
+                    ) : null}
+                  </div>
+                )}
+              </center>
               <center>
                 {(livelink && showoptions && !loading) || isTourOpen ? (
                   <div>

@@ -12,6 +12,7 @@ function LiveNewsPaper({ match }) {
   const [head, sethead] = useState("");
   const [para, setpara] = useState("");
   const [loading, setloading] = useState(false);
+  const [BDate, setBDate] = useState();
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
@@ -25,6 +26,8 @@ function LiveNewsPaper({ match }) {
         sethead(head);
         var para = snapshot.val().para;
         setpara(para);
+        var Bdate = snapshot.val().eventDate;
+        setBDate(Bdate);
       });
     setloading(false);
   }, []);
@@ -107,7 +110,12 @@ function LiveNewsPaper({ match }) {
               width={100}
             />
           ) : (
-            <NewsPaper fbimg={fbimg} head={head} para={para} />
+            <NewsPaper
+              fbimg={fbimg}
+              head={head}
+              para={para}
+              startDate={BDate}
+            />
           )}
         </div>
       </div>

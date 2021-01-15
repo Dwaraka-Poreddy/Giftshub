@@ -10,9 +10,9 @@ exports.scheduledFunctionCrontab = functions.pubsub
     const giftsRef = db.collection("Livelinks");
     const snapshot = await giftsRef.get();
     snapshot.forEach(async (doc) => {
-      if (Date.parse(doc.data().Bday_date) >= Date.now()) {
+      if (Date.parse(doc.data().Bday_date) >= Date.now() - 19800000) {
         var diff = Math.ceil(
-          (Date.parse(doc.data().Bday_date) - Date.now()) / 86400000
+          (Date.parse(doc.data().Bday_date) - Date.now() - 19800000) / 86400000
         );
         var arr = doc.data().array_data;
 
