@@ -20,6 +20,11 @@ export default function TicketDeck({ name }) {
       "Energetic",
       "Ethical",
       "Enjoyable",
+      "Eager",
+      "Ecstatic",
+      "Efficient",
+      "Empowered",
+      "Entertaining",
     ],
     ["Flexible", "Fabulous", "Fantastic", "Favourite", "Friendly", "Faithful"],
     ["Generous", "Glorious", "Grateful", "Genuine", "Gorgeous"],
@@ -88,7 +93,12 @@ export default function TicketDeck({ name }) {
     "#764394",
     "#ca0d86",
   ]);
-
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   useEffect(() => {
     handleClick();
     console.log("inside useeffect handleclick");
@@ -146,10 +156,16 @@ export default function TicketDeck({ name }) {
     setanglesarray(new Array(name.length + 1).fill(0));
     setchararray(arr);
     arr.map((item, index) => {
-      const n = item.charCodeAt(0) - 97;
-      const random = Math.floor(Math.random() * words[n].length);
-      const el = words[n].splice(random, 1)[0];
-      selected_words.push(el);
+      if (item.charCodeAt(0) > 90 || item.charCodeAt(0) < 65) {
+        selected_words.push(Date.now().toLocaleDateString("en-US", options));
+        console.log("space ♥");
+      } else {
+        const n = item.charCodeAt(0) - 65;
+        const random = Math.floor(Math.random() * words[n].length);
+        const el = words[n].splice(random, 1)[0];
+        selected_words.push(el);
+      }
+
       return null;
     });
   };
@@ -180,14 +196,23 @@ export default function TicketDeck({ name }) {
     >
       <div>
         {chararray.map((item, index) => {
-          JSON.stringify(item);
-          return LetterCard(
-            item,
-            colors[index],
-            selected_words[index],
-            anglesarray[index],
-            index
-          );
+          if (item.charCodeAt(0) > 90 || item.charCodeAt(0) < 65) {
+            return LetterCard(
+              "❤️",
+              colors[index],
+              selected_words[index],
+              anglesarray[index],
+              index
+            );
+          } else {
+            return LetterCard(
+              item,
+              colors[index],
+              selected_words[index],
+              anglesarray[index],
+              index
+            );
+          }
         })}
       </div>
       <div
@@ -203,7 +228,7 @@ export default function TicketDeck({ name }) {
       >
         <h4 className="swatchH4">{name}</h4>
         <h6 className="swatchH6">CLICK TO OPEN/CLOSE</h6>
-        <h2 className="swatchH2">WE ♥ COLOR</h2>
+        <h2 className="swatchH2">GIFTS HUB</h2>
         <div className="circle" />
       </div>
     </div>

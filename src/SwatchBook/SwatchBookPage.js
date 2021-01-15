@@ -138,7 +138,7 @@ function TicketDeckPage() {
   ];
 
   const func = () => {
-    return <SwatchBook name={toname} />;
+    return <SwatchBook name={toname.toUpperCase()} />;
   };
   useEffect(() => {
     console.log("inside func useeffect");
