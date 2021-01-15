@@ -144,19 +144,16 @@ function OpenGreetingCardPage() {
         accentColor={accentColor}
       />
 
-      <br />
-      <br />
-      <br />
-      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-md-1 "></div>
-          <div class="col-md-6 col-xl-4 p-0">
+          <div class="col-lg-6 col-xl-4 mb-5 mt-5 ">
+            {" "}
             <center>
-              <SlidePuzzle fbimg={fbimg} />
+              <SlidePuzzle fbimg={fbimg} />{" "}
             </center>
           </div>
-          <div class="col-md-6 col-xl-4  p-0">
+          <div class="col-lg-5 col-xl-4  ">
             <div>
               <center>
                 <SlidePuzzleAnswer fbimg={fbimg} />

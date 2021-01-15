@@ -401,7 +401,7 @@ export default function App() {
                   alt="..."
                 />
                 <div className="mainpgcardtxt">
-                  <h1>Surprise card</h1>
+                  <h1>Special card</h1>
                 </div>
                 <div class="card-body shadow-none componentcards">
                   <p class="card-text ">

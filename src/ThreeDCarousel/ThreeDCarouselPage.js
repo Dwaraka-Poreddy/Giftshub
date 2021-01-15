@@ -18,7 +18,7 @@ import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import ThreeDCarousel from "./ThreeDCarousel";
+import ThreeDCarousel from "./ThreeDCarouselDummy";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {

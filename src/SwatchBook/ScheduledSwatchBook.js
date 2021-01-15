@@ -330,6 +330,7 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
                       />
                       <InputBase
                         className="RightSideBar2__Btn"
+                        inputProps={{ maxLength: 11 }}
                         multiline
                         style={{
                           color: "#068dc0",

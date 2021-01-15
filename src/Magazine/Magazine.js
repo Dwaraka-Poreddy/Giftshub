@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./Magazine.css";
 export default function App({ text, name, fbimg }) {
   var today = new Date();
   var date =
@@ -10,30 +10,14 @@ export default function App({ text, name, fbimg }) {
       <div>
         <center>
           <div
+            className="magazineMaindiv"
             style={{
-              width: "600px",
-              height: "800px",
-              display: "block",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
               backgroundImage: "url(" + fbimg + ")",
-              border: "20px solid #e90606",
-              boxShadow: "inset 0 0 0 2px #ffffff",
-              marginBottom: "20px",
             }}
           >
             <div style={{ textAlign: "right" }}>
               {" "}
-              <p
-                style={{
-                  color: "#000",
-                  marginTop: "-20px",
-                  fontWeight: "bold",
-                }}
-              >
-                {date}
-              </p>
+              <p className="magazineDate">{date}</p>
             </div>
 
             <img
@@ -60,76 +44,19 @@ export default function App({ text, name, fbimg }) {
                 }}
               >
                 <h1
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "2.2rem",
-                    fontFamily: "Times New Roman",
-                    fontWeight: "500",
-                    marginBottom: "0",
-                    lineHeight: "1",
-                  }}
+                  className="magazineText"
+                  style={{ borderBottom: "0", paddingBottom: "0" }}
                 >
                   THE
                 </h1>
-                <h1
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "2.2rem",
-                    fontFamily: "Times New Roman",
-                    fontWeight: "500",
-                    lineHeight: "1",
-                    borderBottom: "2px solid ",
-                    paddingBottom: "10px",
-                    marginBottom: "2px",
-                  }}
-                >
-                  {text}
-                </h1>
-                <h1
-                  style={{
-                    color: "#e9e77e",
-                    fontSize: "2.2rem",
-                    fontFamily: "Times New Roman",
-                    fontWeight: "500",
-                    lineHeight: "1",
-                    borderTop: "2px solid #ffffff",
-                  }}
-                >
-                  {name}
-                </h1>
+                <h1 className="magazineText">{text}</h1>
+                <h1 className="magazineName">{name}</h1>
               </div>
               <div style={{ float: "right", textAlign: "right" }}>
-                <h1
-                  style={{
-                    color: "#e9e77e",
-                    fontSize: "2rem",
-                    fontFamily: "Roboto Slab",
-                    fontWeight: "500",
-                    marginBottom: "5px",
-                    transform: "scale(1,1.5)",
-                  }}
-                >
-                  HOT
-                </h1>
-                <h1
-                  style={{
-                    color: "#e90606",
-                    fontSize: "3rem",
-                    fontFamily: "Roboto Slab",
-                    fontWeight: "500",
-                    marginBottom: "10px",
-                    transform: "scale(1,1.4)",
-                    WebkitTextStroke: "1px #ffffff",
-                  }}
-                >
-                  BUZZ
-                </h1>
+                <h1 className="magazineHot">HOT</h1>
+                <h1 className="magazineBuzz">BUZZ</h1>
                 <img
-                  style={{
-                    marginTop: "2%",
-                    width: "80px",
-                    backgroundColor: "#ffffff",
-                  }}
+                  className="magazineBarcode"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/UPC-A-036000291452.svg/1200px-UPC-A-036000291452.svg.png"
                   alt="time"
                 />

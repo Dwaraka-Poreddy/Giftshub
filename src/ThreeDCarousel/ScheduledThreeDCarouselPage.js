@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import ThreeDCarousel from "./ThreeDCarousel";
+import ThreeDCarousel from "./ThreeDCarouselDummy";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";

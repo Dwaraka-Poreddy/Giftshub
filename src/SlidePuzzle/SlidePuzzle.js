@@ -185,10 +185,10 @@ function useGameState() {
 }
 
 function Tile({ index, pos, onClick, fbimg }) {
-  const top = pos[0] * 85 + 5;
-  const left = pos[1] * 85 + 5;
-  const bgLeft = (index % 4) * 85 + 5;
-  const bgTop = Math.floor(index / 4) * 85 + 5;
+  const top = pos[0] * 100 + 5;
+  const left = pos[1] * 100 + 5;
+  const bgLeft = (index % 4) * 100 + 5;
+  const bgTop = Math.floor(index / 4) * 100 + 5;
   const [bgimg, setBgimg] = useState(fbimg);
 
   return React.createElement("div", {
@@ -203,13 +203,12 @@ function Tile({ index, pos, onClick, fbimg }) {
   });
 }
 
-function SlidePuzzle({ fbimg, handlescore }) {
-  // handlescore(25);
+function SlidePuzzle({ fbimg }) {
   const [board, moves, solved, newGame, undo, move] = useGameState();
   console.log(fbimg, "qwerty");
   return React.createElement(
     "div",
-    { className: "game-container" },
+    { className: "game-container scaled", id: "scaled" },
     React.createElement(
       "div",
       { className: "game-header" },
