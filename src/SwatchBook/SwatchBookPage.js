@@ -19,6 +19,7 @@ import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
+import GradientIcon from "@material-ui/icons/Gradient";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -31,6 +32,7 @@ const secuseStyles = makeStyles((theme) => ({
 }));
 
 function TicketDeckPage() {
+  const [handscol, sethandscol] = useState("#000");
   const [isTourOpen, setIsTourOpen] = useState(false);
   const secclasses = secuseStyles();
   const [showshare, setshowshare] = useState(false);
@@ -46,7 +48,7 @@ function TicketDeckPage() {
   const [dummytoname, setdummytoname] = useState("yudhistir");
   const [editname, seteditname] = useState(false);
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
   );
 
   const [accentColor, setaccentColor] = useState("#70cff3");
@@ -70,6 +72,7 @@ function TicketDeckPage() {
       const todo = {
         url: fbimg,
         name: toname,
+        handscol: handscol,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
@@ -98,6 +101,7 @@ function TicketDeckPage() {
                 const todo = {
                   url: downUrl,
                   name: toname,
+                  handscol: handscol,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
@@ -138,7 +142,13 @@ function TicketDeckPage() {
   ];
 
   const func = () => {
-    return <SwatchBook name={toname.toUpperCase()} />;
+    return (
+      <SwatchBook
+        name={toname.toUpperCase()}
+        fbimg={fbimg}
+        handscol={handscol}
+      />
+    );
   };
   useEffect(() => {
     console.log("inside func useeffect");
@@ -228,7 +238,7 @@ function TicketDeckPage() {
                     send={send}
                     setfbimg={setfbimg}
                     setimage_url={setimage_url}
-                    aspect_ratio={4 / 3}
+                    aspect_ratio={1 / 1}
                     opencrop={opencrop}
                     setopencrop={setopencrop}
                   />
@@ -284,6 +294,29 @@ function TicketDeckPage() {
                   )}
                 </div>
               </center>
+              <div data-tut="reactour__handcol">
+                <input
+                  type="color"
+                  id="handcol"
+                  initialValue={handscol}
+                  value={handscol}
+                  onChange={(e) => {
+                    sethandscol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
+                />
+                <label htmlFor="handcol">
+                  <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
+                </label>
+              </div>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
                   <button

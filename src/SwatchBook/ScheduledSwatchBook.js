@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import TicketDeck from "./SwatchBook";
+import SwatchBook from "./SwatchBook";
 
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
@@ -18,6 +18,7 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
+import GradientIcon from "@material-ui/icons/Gradient";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -43,11 +44,12 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const { user } = useSelector((state) => ({ ...state }));
+  const [handscol, sethandscol] = useState("#000");
   const [toname, settoname] = useState("yudhistir");
   const [dummytoname, setdummytoname] = useState("yudhistir");
   const [editname, seteditname] = useState(false);
   const [fbimg, setfbimg] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspiderfor3D.jpg?alt=media&token=82409f17-8360-41e0-ac89-086bee0297bc"
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
   );
   const [Cloading, setCLoading] = useState(false);
   const [showoptions, setshowoptions] = useState(false);
@@ -63,6 +65,7 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
           setfbimg(img);
           var toname = snapshot.val().name;
           settoname(toname);
+          setdummytoname(toname);
           setCLoading(false);
         });
     } else {
@@ -89,6 +92,7 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       const todo = {
         url: fbimg,
         name: toname,
+        handscol: handscol,
       };
 
       todoRef.update(todo);
@@ -108,6 +112,7 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       const todo = {
         url: fbimg,
         name: toname,
+        handscol: handscol,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -137,6 +142,7 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
                 const todo = {
                   url: downUrl,
                   name: toname,
+                  handscol: handscol,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
@@ -229,7 +235,13 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
   ];
 
   const func = () => {
-    return <TicketDeck name={toname} />;
+    return (
+      <SwatchBook
+        name={toname.toUpperCase()}
+        fbimg={fbimg}
+        handscol={handscol}
+      />
+    );
   };
   useEffect(() => {
     console.log("inside func useeffect");
@@ -355,6 +367,29 @@ function ScheduledSwatchBook({ step, slug, getDoc, isTourOpen, setTourOpend }) {
                   )}
                 </div>
               </center>
+              <div data-tut="reactour__handcol">
+                <input
+                  type="color"
+                  id="handcol"
+                  initialValue={handscol}
+                  value={handscol}
+                  onChange={(e) => {
+                    sethandscol(e.target.value);
+                  }}
+                  placement="right"
+                  autoAdjust="true"
+                  style={{
+                    margin: "auto",
+                    visibility: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    height: "5px",
+                  }}
+                />
+                <label htmlFor="handcol">
+                  <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
+                </label>
+              </div>
               <center>
                 {loading ? (
                   <Loader

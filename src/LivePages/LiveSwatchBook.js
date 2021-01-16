@@ -6,7 +6,7 @@ import firebase from "../firebase";
 export default function LiveTicketDeck({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [name, setname] = useState("");
-
+  const [handscol, sethandscol] = useState("");
   const [loading, setloading] = useState(false);
   useEffect(async () => {
     setloading(true);
@@ -19,8 +19,8 @@ export default function LiveTicketDeck({ match }) {
         setfbimg(img);
         var name = snapshot.val().name;
         setname(name);
-
-        setloading(false);
+        var handscol = snapshot.val().handscol;
+        sethandscol(handscol);
       });
   }, []);
   return (
@@ -39,7 +39,11 @@ export default function LiveTicketDeck({ match }) {
                 width={100}
               />
             ) : (
-              <SwatchBook name={name} fbimg={fbimg} />
+              <SwatchBook
+                name={name.toUpperCase()}
+                fbimg={fbimg}
+                handscol={handscol}
+              />
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>

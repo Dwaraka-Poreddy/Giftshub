@@ -15,7 +15,7 @@ export default function ScheduledLiveSwatchBook({ match }) {
   const [Livelinks, setLivelinks] = useState("");
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
-
+  const [handscol, sethandscol] = useState("");
   async function getDoc() {
     setloading(true);
     const snapshot = await database
@@ -51,6 +51,8 @@ export default function ScheduledLiveSwatchBook({ match }) {
         setfbimg(img);
         var name = snapshot.val().name;
         setname(name);
+        var handscol = snapshot.val().handscol;
+        sethandscol(handscol);
         setloading(false);
       });
   }, []);
@@ -147,7 +149,11 @@ export default function ScheduledLiveSwatchBook({ match }) {
                         </h1>
                       )}
                     </center>
-                    <SwatchBook name={name} fbimg={fbimg} />
+                    <SwatchBook
+                      name={name.toUpperCase()}
+                      fbimg={fbimg}
+                      handscol={handscol}
+                    />
                   </div>
                 )}
               </div>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./SwatchBook.css";
-
-export default function TicketDeck({ name }) {
+import AnalogClock from "./AnalogClock";
+export default function TicketDeck({ name, fbimg, handscol }) {
   const [tickets, settickets] = useState([]);
   const [selected_words, setselected_words] = useState([]);
   const [anglesarray, setanglesarray] = useState([]);
   const [chararray, setchararray] = useState(name.split(""));
   const [isopen, setisopen] = useState(false);
+  const [today, settoday] = useState(new Date());
   const [words, setwords] = useState([
     ["Active", "Admirable", "Amazing", "Awesome", "Adorable", "Adventurous"],
     ["Beautiful", "Bright", "Bubbly", "Best", "Brilliant"],
@@ -94,10 +95,8 @@ export default function TicketDeck({ name }) {
     "#ca0d86",
   ]);
   var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
     day: "numeric",
+    month: "long",
   };
   useEffect(() => {
     handleClick();
@@ -157,7 +156,7 @@ export default function TicketDeck({ name }) {
     setchararray(arr);
     arr.map((item, index) => {
       if (item.charCodeAt(0) > 90 || item.charCodeAt(0) < 65) {
-        selected_words.push(Date.now().toLocaleDateString("en-US", options));
+        selected_words.push(today.toLocaleDateString("en-US", options));
         console.log("space ♥");
       } else {
         const n = item.charCodeAt(0) - 65;
@@ -222,11 +221,22 @@ export default function TicketDeck({ name }) {
         id="ticket12"
         className="ticket"
         onClick={() => {
-          // setisopen(!isopen);
           startClick();
         }}
       >
         <h4 className="swatchH4">{name}</h4>
+        <div
+          style={{
+            width: "100%",
+            position: "absolute",
+            top: "21%",
+          }}
+        >
+          <center>
+            {" "}
+            <AnalogClock fbimg={fbimg} name={name} handscol={handscol} />
+          </center>
+        </div>{" "}
         <h6 className="swatchH6">CLICK TO OPEN/CLOSE</h6>
         <h2 className="swatchH2">GIFTS HUB</h2>
         <div className="circle" />

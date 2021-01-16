@@ -9,6 +9,8 @@ import "aos/dist/aos.css";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import LandingPageCard from "./LandingPageCard";
+import LandingPageCardsData from "./landingPageCardsData";
 export default function LandingPage() {
   const [navstate, setnavstate] = useState(false);
   useEffect(() => {
@@ -457,6 +459,26 @@ export default function LandingPage() {
 
         {/* <!-- End Process ====
       ======================================= --> */}
+
+        <section id="team" class="pb-5">
+          <div class="container">
+            <div className="row">
+              {LandingPageCardsData.map((item, index) => {
+                return (
+                  <LandingPageCard
+                    img={item.img}
+                    gif={item.gif}
+                    link={item.link}
+                    title={item.title}
+                    badge1={item.badge1}
+                    badge2={item.badge2}
+                    text={item.text}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </section>
       </body>
     </div>
   );
