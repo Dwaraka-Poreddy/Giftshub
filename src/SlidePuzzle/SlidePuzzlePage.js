@@ -53,6 +53,9 @@ function OpenGreetingCardPage() {
   //   console.log("inside page", e, "puzz", puzzlescore);
   //   setpuzzlescore(e);
   // };
+  const handlepuzzlescore = (e) => {
+    console.log("Yoooo");
+  };
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
 
@@ -166,7 +169,10 @@ function OpenGreetingCardPage() {
           <div class="col-lg-5 col-xl-4  ">
             <div>
               <center>
-                <SlidePuzzleAnswer fbimg={fbimg} />
+                <SlidePuzzleAnswer
+                  handlepuzzlescore={handlepuzzlescore}
+                  fbimg={fbimg}
+                />
               </center>
             </div>
           </div>

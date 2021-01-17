@@ -3,7 +3,6 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import AuthHeader from "./components/nav/Header";
 import Aos from "aos";
-import Loader from "react-loader-spinner";
 import "aos/dist/aos.css";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -28,7 +27,7 @@ export default function App() {
   });
 
   return (
-    <div style={{ background: "darkblue" }} className="App">
+    <div className="App">
       <AuthHeader />
       {/* <Loader type="Audio" color="#00BFFF" height={80} width={80} />
       <Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />
@@ -41,35 +40,7 @@ export default function App() {
       <Loader type="Rings" color="#00BFFF" height={80} width={80} />
       <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
       <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} /> */}
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          zIndex: "1",
-        }}
-      >
-        <Particles
-          params={{
-            particles: {
-              number: {
-                value: 100,
-              },
-              size: {
-                value: 3,
-              },
-            },
-            interactivity: {
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-            },
-          }}
-        />
-      </div>
+
       <img
         style={{ width: "100%", height: "100%" }}
         src="https://media.emailonacid.com/wp-content/uploads/2019/03/2019-GifsInEmail.gif"

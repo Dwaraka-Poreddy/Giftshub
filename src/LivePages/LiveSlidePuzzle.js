@@ -50,7 +50,7 @@ function LiveAnimatedFramePage({ match }) {
         <br />
         <center>
           <h1 className="example">
-            {bestscore != 1000 && <h2>Best Score: {bestscore}</h2>}
+            {bestscore != 100000 && <h2>Best Score: {bestscore}</h2>}
           </h1>
         </center>
         <br />

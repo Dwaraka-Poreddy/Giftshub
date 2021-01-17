@@ -6,6 +6,7 @@ import firebase from "../firebase";
 import "./ScheduledLiveSlidePuzzle.css";
 import Loader from "react-loader-spinner";
 import CircleTimer from "./CircleTimer";
+import { toast } from "react-toastify";
 import ScheduledLiveNav from "./SchdeuledLiveNav";
 function ScheduledLiveSlidePuzzle({ match }) {
   let dispatch = useDispatch();
@@ -15,7 +16,24 @@ function ScheduledLiveSlidePuzzle({ match }) {
   const [loading, setloading] = useState(false);
   const [dataurl, setdataurl] = useState([]);
   const [today, settoday] = useState();
-  const [score, setscore] = useState(10);
+  const [bestscore, setbestscore] = useState();
+  const [puzzlescore, setpuzzlescore] = useState(0);
+  const handlepuzzlescore = (e) => {
+    setpuzzlescore(e);
+    if (e < bestscore) {
+      const todoRef = firebase
+        .database()
+        .ref("SlidePuzzle")
+        .child(match.params.id);
+      const todo = {
+        url: fbimg,
+        best_score: e,
+      };
+      var newKey = todoRef.update(todo);
+      setbestscore(e);
+      toast.success("You bet your previous best score, Keep playing!");
+    }
+  };
   async function getDoc() {
     const snapshot = await database
       .collection("Livelinks")
@@ -26,7 +44,6 @@ function ScheduledLiveSlidePuzzle({ match }) {
     data.array_data.map((item, index) => {
       if (item.id == "puzzle") {
         settoday(index);
-        setscore(item.score);
         dispatch({
           type: "ACTIVE_STEP",
           payload: { day: index + 1 },
@@ -47,6 +64,8 @@ function ScheduledLiveSlidePuzzle({ match }) {
       .then((snapshot) => {
         var img = snapshot.val().url;
         setfbimg(img);
+        var bestscore = snapshot.val().best_score;
+        setbestscore(bestscore);
         setloading(false);
       });
   }, []);
@@ -92,15 +111,16 @@ function ScheduledLiveSlidePuzzle({ match }) {
       </span>
     );
   });
-  const handlescore = (sr) => {
-    setscore(sr);
-  };
+
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
       <ScheduledLiveNav slug={match.params.slug} />
 
-      {JSON.stringify(score)}
       <div class="container-fluid">
+        <br />
+
+        <br />
+        <br />
         <div class="row">
           <div class="col-lg-1"></div>
           <div class="col-lg-10">
@@ -116,7 +136,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                 {new Date(Livelinks.Bday_date) -
                   +new Date() -
                   19800000 -
-                  86400000 * (dataurl.length - today - 1) >
+                  86400000 * (dataurl.length - today) >
                 0 ? (
                   <div>
                     <h5 className="example"> This Gift opens in </h5>
@@ -125,7 +145,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today - 1)
+                        86400000 * (dataurl.length - today)
                       }
                     />
                   </div>
@@ -145,12 +165,19 @@ function ScheduledLiveSlidePuzzle({ match }) {
                         </h1>
                       )}
                     </center>
+                    <center>
+                      <h1>
+                        {bestscore != 100000 && (
+                          <h2>Best Score: {bestscore}</h2>
+                        )}
+                      </h1>
+                    </center>
                     <div class="row">
                       <div style={{ paddingLeft: "5px" }} class="col-lg-6">
                         {" "}
                         <center>
                           <SlidePuzzle
-                            handlescore={handlescore}
+                            handlepuzzlescore={handlepuzzlescore}
                             fbimg={fbimg}
                           />
                         </center>
@@ -171,49 +198,6 @@ function ScheduledLiveSlidePuzzle({ match }) {
           <div class="col-lg-1"></div>
         </div>
       </div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

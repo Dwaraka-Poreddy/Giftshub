@@ -205,7 +205,7 @@ a:hover {
   transition: all 0.4s;
   cursor: pointer;
   outline: none !important;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .butn span {
   position: relative;

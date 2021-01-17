@@ -56,13 +56,34 @@ const usemodStyles = makeStyles((theme) => ({
 
 function ContinuePack({ match, history }) {
   const theme = useTheme();
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    dispatch({
+      type: "EDIT_SCHEDULED",
+      payload: { text: "" },
+    });
+    if (completed[activeStep + 1] == true) {
+      var splits = dataurl[activeStep + 1].split("/");
+      dispatch({
+        type: "EDIT_SCHEDULED",
+        payload: { text: splits[5] },
+      });
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    dispatch({
+      type: "EDIT_SCHEDULED",
+      payload: { text: "" },
+    });
+    if (completed[activeStep - 1] == true) {
+      var splits = dataurl[activeStep - 1].split("/");
+      dispatch({
+        type: "EDIT_SCHEDULED",
+        payload: { text: splits[5] },
+      });
+    }
   };
   const [maxSteps, setmaxSteps] = useState();
   const database = firebase.firestore();
@@ -375,7 +396,10 @@ function ContinuePack({ match, history }) {
               </div>
               <div className="mobilestepper">
                 <Paper square elevation={0}>
-                  <Typography>{datacontent[activeStep]}</Typography>
+                  <Typography>
+                    {datacontent[activeStep]}
+                    {completed[activeStep] && <CloseIcon />}
+                  </Typography>
                 </Paper>
                 <MobileStepper
                   steps={maxSteps}

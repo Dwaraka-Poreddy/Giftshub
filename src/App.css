@@ -309,7 +309,7 @@ welcome
 --------------------------------------------- 
 */
 #welcome {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   display: flex;
   align-items: center;

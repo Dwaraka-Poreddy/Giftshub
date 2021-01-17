@@ -55,7 +55,9 @@ function ScheduledSlidePuzzlePage({
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531"
   );
-
+  const handlepuzzlescore = (e) => {
+    console.log("Yoooo");
+  };
   useEffect(() => {
     setCLoading(true);
     if (edit.text != "") {
@@ -90,6 +92,7 @@ function ScheduledSlidePuzzlePage({
       const todoRef = firebase.database().ref("SlidePuzzle/" + edit.text);
       const todo = {
         url: fbimg,
+        best_score: 100000,
       };
       todoRef.update(todo);
       setlivelink(
@@ -104,6 +107,7 @@ function ScheduledSlidePuzzlePage({
       const todoRef = firebase.database().ref("SlidePuzzle");
       const todo = {
         url: fbimg,
+        best_score: 100000,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -132,6 +136,7 @@ function ScheduledSlidePuzzlePage({
                 const todoRef = firebase.database().ref("SlidePuzzle");
                 const todo = {
                   url: downUrl,
+                  best_score: 100000,
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
@@ -248,7 +253,10 @@ function ScheduledSlidePuzzlePage({
                 width={100}
               />
             ) : (
-              <SlidePuzzle fbimg={fbimg} />
+              <SlidePuzzle
+                fbimg={fbimg}
+                handlepuzzlescore={handlepuzzlescore}
+              />
             )}
           </div>
           <div class="col-md-5 col-xl-4">
