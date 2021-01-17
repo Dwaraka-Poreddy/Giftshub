@@ -4,20 +4,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import InputBase from "@material-ui/core/InputBase";
-import CreateIcon from "@material-ui/icons/Create";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
-import HeaderBtn from "../Studio/HeaderBtn";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import CropPage from "../Utils/CropPage";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
-import DateRangeIcon from "@material-ui/icons/DateRange";
 import AuthHeader from "../components/nav/Header";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -25,6 +21,7 @@ import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined"
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import CheckCircle from "@material-ui/icons/CheckCircle";
+import { useDispatch } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -46,10 +43,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SevenDayHome({ history }) {
+  const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const classes = useStyles();
   const { user } = useSelector((state) => ({ ...state }));
-  const [npackorder, setnpackorder] = useState([
+  const { days_page } = useSelector((state) => ({ ...state }));
+  const [sevenpackorder, setsevenpackorder] = useState([
     { id: "threedimage", ismailsent: false, content: "3D Image", url: "" },
     { id: "newspaper", ismailsent: false, content: "NewsPaper", url: "" },
     { id: "puzzle", ismailsent: false, content: "Slide Puzzle", url: "" },
@@ -57,7 +56,6 @@ function SevenDayHome({ history }) {
       id: "memorygame",
       ismailsent: false,
       content: "Memory Game",
-      // score: Number.MAX_VALUE,
       url: "",
     },
     { id: "cubes", ismailsent: false, content: " 3D Heart", url: "" },
@@ -68,6 +66,27 @@ function SevenDayHome({ history }) {
       content: "Greeting Card",
       url: "",
     },
+  ]);
+  const [fivepackorder, setfivepackorder] = useState([
+    { id: "threedimage", ismailsent: false, content: "3D Image", url: "" },
+    { id: "newspaper", ismailsent: false, content: "NewsPaper", url: "" },
+    { id: "puzzle", ismailsent: false, content: "Slide Puzzle", url: "" },
+    {
+      id: "memorygame",
+      ismailsent: false,
+      content: "Memory Game",
+      url: "",
+    },
+    { id: "cubes", ismailsent: false, content: " 3D Heart", url: "" },
+  ]);
+  const [threepackorder, setthreepackorder] = useState([
+    { id: "threedimage", ismailsent: false, content: "3D Image", url: "" },
+    { id: "newspaper", ismailsent: false, content: "NewsPaper", url: "" },
+    { id: "puzzle", ismailsent: false, content: "Slide Puzzle", url: "" },
+  ]);
+  const [twopackorder, settwopackorder] = useState([
+    { id: "threedimage", ismailsent: false, content: "3D Image", url: "" },
+    { id: "newspaper", ismailsent: false, content: "NewsPaper", url: "" },
   ]);
   const database = firebase.firestore();
   const [Folder_name, setFolder_name] = useState();
@@ -136,6 +155,16 @@ function SevenDayHome({ history }) {
         console.log(err);
       },
       () => {
+        var selectedpackorder = [];
+        if (days_page.days_redirect === "2") {
+          selectedpackorder = [...twopackorder];
+        } else if (days_page.days_redirect === "3") {
+          selectedpackorder = [...threepackorder];
+        } else if (days_page.days_redirect === "5") {
+          selectedpackorder = [...fivepackorder];
+        } else if (days_page.days_redirect === "7") {
+          selectedpackorder = [...sevenpackorder];
+        }
         var s = storage
           .ref("images")
           .child(ud)
@@ -153,7 +182,7 @@ function SevenDayHome({ history }) {
                   Bday_date: Bday_date,
                   From_name: From_name,
                   To_name: To_name,
-                  array_data: npackorder,
+                  array_data: selectedpackorder,
                 })
                 .then(function (docRef) {
                   var LivelinkPack = firebase
@@ -165,7 +194,7 @@ function SevenDayHome({ history }) {
                     From_name: From_name,
                     Bday_date: Bday_date,
                     To_name: To_name,
-                    array_data: npackorder,
+                    array_data: selectedpackorder,
                   });
 
                   history.push(`/ContinuePack/${docRef.id}`);
@@ -229,7 +258,6 @@ function SevenDayHome({ history }) {
       }}
     >
       <AuthHeader />
-
       <section className="section" id="services">
         <h1
           style={{
@@ -346,15 +374,62 @@ function SevenDayHome({ history }) {
           </div>
         </div>
       </section>
-      <hr />
       <button
-        className="main-button"
         onClick={() => {
           setopenModal(true);
+          dispatch({
+            type: "REDIRECT_USER",
+            payload: {
+              days_redirect: "2",
+            },
+          });
         }}
+        className="main-button"
       >
-        Create Recommended Pack
-      </button>
+        2-Day recommended pack
+      </button>{" "}
+      <button
+        onClick={() => {
+          setopenModal(true);
+          dispatch({
+            type: "REDIRECT_USER",
+            payload: {
+              days_redirect: "3",
+            },
+          });
+        }}
+        className="main-button"
+      >
+        3-Day recommended pack
+      </button>{" "}
+      <button
+        onClick={() => {
+          setopenModal(true);
+          dispatch({
+            type: "REDIRECT_USER",
+            payload: {
+              days_redirect: "5",
+            },
+          });
+        }}
+        className="main-button"
+      >
+        5-Day recommended pack
+      </button>{" "}
+      <button
+        onClick={() => {
+          setopenModal(true);
+          dispatch({
+            type: "REDIRECT_USER",
+            payload: {
+              days_redirect: "7",
+            },
+          });
+        }}
+        className="main-button"
+      >
+        7-Day recommended pack
+      </button>{" "}
       <hr />
       <Modal
         style={{
@@ -572,7 +647,7 @@ function SevenDayHome({ history }) {
                                   className="main-button"
                                 >
                                   {" "}
-                                  Create 7 day pack
+                                  Create {days_page.days_redirect} day pack
                                 </button>
                               </label>
                             </>
@@ -587,7 +662,7 @@ function SevenDayHome({ history }) {
                               <label htmlFor="submit">
                                 <button className="main-button">
                                   {" "}
-                                  Create 7 day pack
+                                  Create {days_page.days_redirect} day pack
                                 </button>
                               </label>
                             </>
@@ -613,7 +688,6 @@ function SevenDayHome({ history }) {
         }
       </Modal>
       <hr />
-
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (
@@ -809,7 +883,6 @@ function SevenDayHome({ history }) {
           </ul>
         </div>
       )}
-
       <footer>
         <div className="container">
           <div className="row">

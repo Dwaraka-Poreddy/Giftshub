@@ -45,7 +45,13 @@ const Header = () => {
         <a class=" navbar-brand text-primary" href={`/`}>
           Gifts Hub
         </a>
-
+        <li class="nav-item ">
+          {user && (
+            <a onClick={logout} class="nav-link" href={`/login`}>
+              Logout
+            </a>
+          )}
+        </li>
         <button
           class="navbar-toggler"
           type="button"

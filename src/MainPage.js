@@ -178,7 +178,7 @@ export default function App() {
                   <br />
                   <br />
                 </p>
-                <Link to="/sevendayhome">
+                <Link to="/recommendedhome">
                   {" "}
                   <button className="main-button">recommended pack</button>{" "}
                 </Link>

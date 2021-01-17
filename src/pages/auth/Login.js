@@ -14,10 +14,14 @@ const Login = ({ history }) => {
   let dispatch = useDispatch();
 
   const { user } = useSelector((state) => ({ ...state }));
-
+  const { days_page } = useSelector((state) => ({ ...state }));
   useEffect(() => {
     if (user && user.token) {
-      history.push("/home");
+      if (days_page.days_redirect === "n") {
+        history.push("/home");
+      } else if (days_page.days_redirect === "r") {
+        history.push("/recommendedhome");
+      }
     }
   }, [user]);
 
@@ -37,7 +41,7 @@ const Login = ({ history }) => {
         },
       });
       setLoading(true); // waste to write
-      history.push("/home");
+      history.push("/");
     } catch (error) {
       toast.error(error.message);
       setLoading(false);
@@ -60,7 +64,7 @@ const Login = ({ history }) => {
             profilepic: user.photoURL,
           },
         });
-        history.push("/home");
+        history.push("/");
       })
       .catch((err) => toast.error(err.message));
   };

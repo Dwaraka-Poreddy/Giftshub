@@ -11,7 +11,7 @@ const Register = ({ history }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      history.push("/home");
+      history.push("/");
     }
   }, [user]);
 

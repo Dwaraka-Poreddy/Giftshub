@@ -37,11 +37,11 @@ const RegisterComplete = ({ history }) => {
         let user = auth.currentUser;
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
-        console.log(idTokenResult);
+
         // redux store
 
         // redirect
-        history.push("/home");
+        history.push("/");
       }
     } catch (error) {
       toast.error(error.message);

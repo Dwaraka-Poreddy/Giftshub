@@ -13,7 +13,10 @@ import LandingPageCard from "./LandingPageCard";
 import LandingPageCardsData from "./landingPageCardsData";
 import Particles from "react-particles-js";
 import { isMobileOnly, isTablet } from "react-device-detect";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 export default function LandingPage() {
+  const dispatch = useDispatch();
   const [navstate, setnavstate] = useState(false);
   useEffect(() => {
     Aos.init({ disable: "mobile" });
@@ -525,6 +528,36 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        <Link to="/home">
+          <button
+            onClick={() => {
+              dispatch({
+                type: "REDIRECT_USER",
+                payload: {
+                  days_redirect: "n",
+                },
+              });
+            }}
+            className="main-button"
+          >
+            n-Day Pack
+          </button>
+        </Link>
+        <Link to="/recommendedhome">
+          <button
+            onClick={() => {
+              dispatch({
+                type: "REDIRECT_USER",
+                payload: {
+                  days_redirect: "r",
+                },
+              });
+            }}
+            className="main-button"
+          >
+            Recommended pack
+          </button>{" "}
+        </Link>
       </body>
     </div>
   );
