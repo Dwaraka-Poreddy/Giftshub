@@ -4,7 +4,7 @@ import "./LandingPageCard.css";
 import { Link } from "react-router-dom";
 function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
   return (
-    <div class="col-xs-12 col-sm-6 col-md-3">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
       <Link to={link}>
         <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
           <div class="mainflip">

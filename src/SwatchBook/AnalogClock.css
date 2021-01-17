@@ -1,11 +1,7 @@
 .AnalogClock_maindiv {
-  width: 150px;
-  height: 150px;
   background: transparent;
 }
 .AnalogClock_section {
-  width: 80%;
-  height: 80%;
   margin: auto;
 
   background-position: center;
@@ -122,58 +118,26 @@
   top: -2.25%;
 }
 
-.AnalogClock_hour12,
-.AnalogClock_hour1,
-.AnalogClock_hour2,
-.AnalogClock_hour3,
-.AnalogClock_hour4,
-.AnalogClock_hour5 {
-  height: 1%;
-  width: 70%;
-  background: transparent;
-  border-left: 7% solid #000;
-  border-right: 7% solid #000;
-  transform: translate(-50%, -50%);
-  /*     transform-origin: right bottom; */
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-
-.AnalogClock_hour3 {
-  transform: rotate(90deg) translate(0, 34%);
-}
-
-.AnalogClock_hour1 {
-  transform: rotate(120deg) translate(25%, 30%);
-}
-
-.AnalogClock_hour2 {
-  transform: rotate(150deg) translate(45%, 18%);
-}
-
-.AnalogClock_hour4 {
-  transform: rotate(210deg) translate(45%, -17%);
-}
-
-.AnalogClock_hour5 {
-  transform: rotate(240deg) translate(25%, -30%);
-}
-
 @media only screen and (max-width: 600px) {
-  .AnalogClock_maindiv {
-    width: 65px;
-    height: 65px;
+  .AnalogClock_section {
+    width: 52px;
+    height: 52px;
   }
 }
 @media only screen and (min-width: 600px) and (max-width: 800px) {
-  .AnalogClock_maindiv {
-    width: 90px;
-    height: 90px;
+  .AnalogClock_section {
+    width: 72px;
+    height: 72px;
   }
 }
 @media only screen and (min-width: 800px) and (max-width: 1000px) {
-  .AnalogClock_maindiv {
+  .AnalogClock_section {
+    width: 96px;
+    height: 96px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .AnalogClock_section {
     width: 120px;
     height: 120px;
   }

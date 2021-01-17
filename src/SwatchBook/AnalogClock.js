@@ -29,32 +29,18 @@ export default function AnalogClock({ fbimg, name, handscol }) {
   }
   setInterval(setClockWithCurrentTime, 1000);
   return (
-    <div className="AnalogClock_maindiv">
-      <section
-        style={{
-          backgroundImage: "url(" + fbimg + ")",
-        }}
-        className="AnalogClock_section"
-      >
-        {/* <div style={{ color: "#ffffff" }} class="AnalogClock_label">
+    <div
+      style={{
+        backgroundImage: "url(" + fbimg + ")",
+      }}
+      className="AnalogClock_section"
+    >
+      {/* <div style={{ color: "#ffffff" }} class="AnalogClock_label">
           {name}
         </div> */}
-        <div style={{ background: handscol }} id="AnalogClock_hour-hand"></div>
-        <div
-          style={{ background: handscol }}
-          id="AnalogClock_second-hand"
-        ></div>
-        <div
-          style={{ background: handscol }}
-          id="AnalogClock_minute-hand"
-        ></div>
-        <div class="AnalogClock_hour12"></div>
-        <div class="AnalogClock_hour1"></div>
-        <div class="AnalogClock_hour2"></div>
-        <div class="AnalogClock_hour3"></div>
-        <div class="AnalogClock_hour4"></div>
-        <div class="AnalogClock_hour5"></div>
-      </section>
+      <div style={{ background: handscol }} id="AnalogClock_hour-hand"></div>
+      <div style={{ background: handscol }} id="AnalogClock_second-hand"></div>
+      <div style={{ background: handscol }} id="AnalogClock_minute-hand"></div>
     </div>
   );
 }

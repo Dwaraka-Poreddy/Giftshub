@@ -230,12 +230,11 @@ export default function TicketDeck({ name, fbimg, handscol }) {
             width: "100%",
             position: "absolute",
             top: "21%",
+            left: "0",
           }}
         >
-          <center>
-            {" "}
-            <AnalogClock fbimg={fbimg} name={name} handscol={handscol} />
-          </center>
+          {" "}
+          <AnalogClock fbimg={fbimg} name={name} handscol={handscol} />
         </div>{" "}
         <h6 className="swatchH6">CLICK TO OPEN/CLOSE</h6>
         <h2 className="swatchH2">GIFTS HUB</h2>
