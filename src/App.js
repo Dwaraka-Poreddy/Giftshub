@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-
+import UserPacksPage from "./UserPages/UserPacksPage";
 import { Switch, Route } from "react-router-dom";
 import ThreeDCarouselPage from "./ThreeDCarousel/ThreeDCarouselPage";
 import AboutQuizPage from "./AboutQuiz/AboutQuizPage";
@@ -104,9 +104,11 @@ export default function App() {
         <Route exact path="/landingpage" component={LandingPage} />
         <Route exact path="/sound" component={SoundRecorder} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
+        <Route exact path="/userpackspage" component={UserPacksPage} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/studio" component={Studio} />
         <Route exact path="/recommendedhome" component={SevenDayHome} />
+
         <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />

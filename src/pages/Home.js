@@ -140,6 +140,7 @@ const Home = ({ history }) => {
                   From_name: From_name,
                   To_name: To_name,
                   array_data: npackorder,
+                  timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 })
                 .then(function (docRef) {
                   var LivelinkPack = firebase
@@ -152,6 +153,7 @@ const Home = ({ history }) => {
                     Bday_date: Bday_date,
                     To_name: To_name,
                     array_data: npackorder,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                   });
 
                   history.push(`/ContinuePack/${docRef.id}`);

@@ -40,7 +40,7 @@ function CubesPage() {
   const [livelink, setlivelink] = useState();
   const [previewlink, setpreviewlink] = useState("");
   const [imageAsFile, setImageAsFile] = useState("");
-  const [score, setscore] = useState(Number.MAX_VALUE);
+
   const [fbimg1, setfbimg1] = useState(
     "https://images.unsplash.com/photo-1549021179-127b81585b60?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8MSUyMDF8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   );
@@ -145,7 +145,6 @@ function CubesPage() {
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
-        score: score,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink("http://localhost:3000/live/memorygame/" + newKey);

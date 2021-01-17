@@ -6,7 +6,6 @@ export default function AnalogClock({ fbimg, name, handscol }) {
     var hourDegrees = hours * 30 + minutes * 0.5;
     var minuteDegrees = minutes * 6;
     var secondDegrees = seconds * 6;
-    console.log(hourDegrees, minuteDegrees, secondDegrees);
     $("#AnalogClock_hour-hand").css({
       transform: `rotate(${hourDegrees - 90}deg)`,
     });
@@ -20,7 +19,6 @@ export default function AnalogClock({ fbimg, name, handscol }) {
   setClockWithCurrentTime();
   function setClockWithCurrentTime() {
     var date = new Date();
-
     var hours = ((date.getHours() + 11) % 12) + 1;
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();

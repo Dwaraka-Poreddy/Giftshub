@@ -90,7 +90,7 @@ function ScheduledMemoryGamePage({
   const [image_url6, setimage_url6] = useState();
   const [opencrop6, setopencrop6] = useState(false);
   const [send6, setsend6] = useState();
-  const [score, setscore] = useState(Number.MAX_VALUE);
+
   const onSelectFile1 = (e) => {
     setsend1(window.URL.createObjectURL(e.target.files[0]));
     setshowoptions(false);
@@ -214,7 +214,6 @@ function ScheduledMemoryGamePage({
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
-        score: score,
       };
       todoRef.update(todo);
       setlivelink(
@@ -235,7 +234,6 @@ function ScheduledMemoryGamePage({
         url4: fbimg4,
         url5: fbimg5,
         url6: fbimg6,
-        score: score,
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
@@ -314,7 +312,6 @@ function ScheduledMemoryGamePage({
                                                       url4: downUrl4,
                                                       url5: downUrl5,
                                                       url6: downUrl6,
-                                                      score: score,
                                                     };
                                                     var newKey = todoRef
                                                       .push(todo)

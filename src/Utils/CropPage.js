@@ -125,7 +125,7 @@ function CropPage({
 
     var base64Img = base64Image.replace("data:image/jpeg;base64,", "");
     setimage_url(base64Img);
-    // console.log(base64Img);
+
     canvas.toBlob(
       (blob) => {
         const previewUrl = window.URL.createObjectURL(blob);

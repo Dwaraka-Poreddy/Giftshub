@@ -29,7 +29,17 @@ export default function LandingPage() {
     }
   };
   window.addEventListener("scroll", changeBackground);
-
+  var responsive = {
+    0: {
+      items: 3,
+    },
+    600: {
+      items: 4,
+    },
+    1000: {
+      items: 5,
+    },
+  };
   const browview = () => {
     return (
       <div
@@ -146,7 +156,7 @@ export default function LandingPage() {
         <section class="partners mt-n5">
           <div class="container py-0">
             <div class="card shadow-lg">
-              <div class="card-body p-4">
+              <div class="card-body p-3">
                 <div class="swiper-container">
                   <OwlCarousel
                     style={{ zIndex: "5" }}
@@ -159,9 +169,9 @@ export default function LandingPage() {
                     autoplayTimeout={4000}
                     // nav
                     items={5}
-                    //   responsive={responsive}
+                    responsive={responsive}
                     autoplay
-                    // autoplayHoverPause
+                    autoplayHoverPause
                   >
                     <div class="swiper-wrapper align-items-center">
                       <div class="swiper-slide">

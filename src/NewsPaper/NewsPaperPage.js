@@ -26,9 +26,9 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+var base64Img = require("base64-img");
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -71,6 +71,9 @@ function NewsPaperPage() {
   };
 
   const handleFireBaseUpload = () => {
+    base64Img.base64Sync("../Images/MainImage.png", function (err, data) {
+      console.log(err, "err", data, "console data");
+    });
     setloading(true);
     var ud = uuidv4();
     console.log(ud);

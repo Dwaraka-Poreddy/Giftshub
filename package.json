@@ -13,6 +13,7 @@
     "aos": "^2.3.4",
     "array-move": "^3.0.1",
     "base-64": "^1.0.0",
+    "base64-img": "^1.0.4",
     "body-scroll-lock": "^2.6.4",
     "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
@@ -33,6 +34,7 @@
     "react-bootstrap": "^1.4.3",
     "react-canvas-js": "1.0.1",
     "react-copy-to-clipboard": "^5.0.2",
+    "react-countdown": "^2.3.1",
     "react-countdown-circle-timer": "^2.1.0",
     "react-date-countdown-timer": "^1.0.9",
     "react-datepicker": "^3.3.0",
@@ -62,7 +64,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "styled-components": "5.2.1",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "vanta": "^0.5.21"
   },
   "devDependencies": {
     "typescript": "3.8.3"

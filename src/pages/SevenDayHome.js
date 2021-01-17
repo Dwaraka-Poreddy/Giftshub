@@ -183,6 +183,7 @@ function SevenDayHome({ history }) {
                   From_name: From_name,
                   To_name: To_name,
                   array_data: selectedpackorder,
+                  timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 })
                 .then(function (docRef) {
                   var LivelinkPack = firebase
@@ -195,6 +196,7 @@ function SevenDayHome({ history }) {
                     Bday_date: Bday_date,
                     To_name: To_name,
                     array_data: selectedpackorder,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                   });
 
                   history.push(`/ContinuePack/${docRef.id}`);

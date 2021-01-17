@@ -1,22 +1,7 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AppstoreOutlined,
-  SettingOutlined,
-  UserOutlined,
-  UserAddOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
-
 import firebase from "firebase";
-
-// use Dispatch for sending data to global state
-// use selector for getting data from the state
 import { useHistory } from "react-router-dom";
-
-const { SubMenu, Item } = Menu; // Its destructing IMP
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
@@ -25,7 +10,6 @@ const Header = () => {
   // spread operater
   let { user } = useSelector((state) => ({ ...state }));
   console.log(user, "user");
-  // console.log(user.profilepic, "pic");
   const handleClick = (e) => {
     setCurrent(e.key);
   };
@@ -45,13 +29,6 @@ const Header = () => {
         <a class=" navbar-brand text-primary" href={`/`}>
           Gifts Hub
         </a>
-        <li class="nav-item ">
-          {user && (
-            <a onClick={logout} class="nav-link" href={`/login`}>
-              Logout
-            </a>
-          )}
-        </li>
         <button
           class="navbar-toggler"
           type="button"
@@ -83,12 +60,21 @@ const Header = () => {
                     aria-expanded="false"
                   >
                     {user.email.split("@")[0]}
-                    <img
-                      width="40"
-                      src={user.profilepic}
-                      class="md-avatar rounded-circle ml-3"
-                      alt="avatar image"
-                    />{" "}
+                    {user.profilepic ? (
+                      <img
+                        width="40"
+                        src={user.profilepic}
+                        class="md-avatar rounded-circle ml-3"
+                        alt="avatar image"
+                      />
+                    ) : (
+                      <img
+                        width="40"
+                        src="https://banner2.cleanpng.com/20180327/ssq/kisspng-computer-icons-user-profile-avatar-profile-5ab9e3b05772c0.6947928615221318883582.jpg"
+                        class="md-avatar rounded-circle ml-3"
+                        alt="avatar image"
+                      />
+                    )}{" "}
                   </a>
                 </>
 
@@ -103,8 +89,8 @@ const Header = () => {
                   </li>
                   <li class="nav-item ">
                     {user && (
-                      <a class="nav-link" href={`/home`}>
-                        Previous Packs
+                      <a class="nav-link" href={`/userpackspage`}>
+                        My Packs
                       </a>
                     )}
                   </li>

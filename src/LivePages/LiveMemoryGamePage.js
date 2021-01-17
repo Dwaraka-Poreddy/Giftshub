@@ -10,26 +10,8 @@ export default function LiveMemoryGamePage({ match }) {
   const [fbimg4, setfbimg4] = useState("");
   const [fbimg5, setfbimg5] = useState("");
   const [fbimg6, setfbimg6] = useState("");
-  const [bestscore, setbestscore] = useState("");
   const [loading, setloading] = useState(false);
-  const [nscore, setnscore] = useState(0);
 
-  const handleFireBaseUpload = (n) => {
-    const todoRef = firebase.database().ref("MemoryGame/" + match.params.slug);
-    const todo = {
-      score: n,
-    };
-    todoRef.update(todo);
-  };
-
-  const setnewscore = async (e) => {
-    setnscore(e);
-    if (nscore < bestscore) {
-      alert("you scored better than your previous one! keep playing");
-      setbestscore(nscore);
-      handleFireBaseUpload(e);
-    }
-  };
   useEffect(async () => {
     setloading(true);
     const todoRef = await firebase
@@ -49,8 +31,6 @@ export default function LiveMemoryGamePage({ match }) {
         setfbimg5(img5);
         var img6 = snapshot.val().url6;
         setfbimg6(img6);
-        var scr = snapshot.val().score;
-        setbestscore(scr);
       });
     setloading(false);
   }, []);
@@ -60,8 +40,6 @@ export default function LiveMemoryGamePage({ match }) {
         style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
         class="header-area header-sticky"
       >
-        {/* {JSON.stringify(nscore)}
-        {JSON.stringify(bestscore)} */}
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -112,7 +90,6 @@ export default function LiveMemoryGamePage({ match }) {
                   fbimg4={fbimg4}
                   fbimg5={fbimg5}
                   fbimg6={fbimg6}
-                  setnewscore={setnewscore}
                 />
               )}
             </div>

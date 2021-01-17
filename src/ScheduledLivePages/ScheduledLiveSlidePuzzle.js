@@ -93,11 +93,11 @@ function ScheduledLiveSlidePuzzle({ match }) {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setTimeLeft(calculateTimeLeft());
-  //   }, 1000);
-  // });
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+  });
   const timerComponents = [];
 
   Object.keys(timeLeft).forEach((interval) => {
@@ -145,7 +145,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
                         +new Date(Livelinks.Bday_date) -
                         +new Date() -
                         19800000 -
-                        86400000 * (dataurl.length - today)
+                        86400000 * (dataurl.length - today - 1)
                       }
                     />
                   </div>

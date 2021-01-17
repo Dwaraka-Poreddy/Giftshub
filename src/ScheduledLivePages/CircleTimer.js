@@ -246,7 +246,7 @@ export default function CircleTimer({ Bday }) {
     );
   };
   return (
-    <div>
+    <div style={{ paddingTop: "10vh", paddingBottom: "20vh" }}>
       {remainingTime > 0 ? (
         <div>
           {isMobileOnly ? mobview() : isTablet ? tabview() : browview()}

@@ -104,17 +104,35 @@ function ScheduledLiveMainPage({ match }) {
                   <h1 className="example">The Big day is here !!!</h1>
                 </center>
               )}
-              <strong>
-                <p>Folder_name: {FolderData.Folder_name}</p>
-                <p>From_name: {FolderData.From_name}</p>
-                <p>To_name: {FolderData.To_name}</p>
-                <p>Bday_date: {FolderData.Bday_date}</p>
-                <img
-                  style={{ width: "250px" }}
-                  src={FolderData.fbimg}
-                  alt="sender"
-                />
-              </strong>
+              <div style={{ marginTop: "-10vh" }} className="container">
+                <div className="row">
+                  <div className="col-md-6">
+                    <center>
+                      <strong style={{ textAlign: "justify" }}>
+                        <p style={{ color: "#ffffff" }}>
+                          Folder_name: {FolderData.Folder_name}
+                        </p>
+                        <p style={{ color: "#ffffff" }}>
+                          From_name: {FolderData.From_name}
+                        </p>
+                        <p style={{ color: "#ffffff" }}>
+                          To_name: {FolderData.To_name}
+                        </p>
+                        <p style={{ color: "#ffffff" }}>
+                          Bday_date: {FolderData.Bday_date}
+                        </p>{" "}
+                      </strong>
+                    </center>
+                  </div>
+                  <div className="col-md-6">
+                    <img
+                      style={{ width: "250px" }}
+                      src={FolderData.fbimg}
+                      alt="sender"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

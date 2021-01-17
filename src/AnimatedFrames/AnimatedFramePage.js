@@ -105,16 +105,14 @@ export default function AnimatedFramePage() {
             .child(ud1)
             .putString(image_url1, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl1) => {
-                console.log(downUrl1);
+              savedImage.ref.getDownloadURL().then(async (downUrl1) => {
                 setFireUrl(downUrl1);
-                storage
+                await storage
                   .ref("images")
                   .child(ud2)
                   .putString(image_url2, "base64", { contentType: "image/jpg" })
                   .then((savedImage) => {
                     savedImage.ref.getDownloadURL().then((downUrl2) => {
-                      console.log(downUrl2);
                       setFireUrl(downUrl2);
                       const todoRef = firebase.database().ref("AnimatedFrame");
                       const todo = {
