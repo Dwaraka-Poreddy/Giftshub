@@ -3,7 +3,7 @@ import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { Button } from "antd";
 import { useSelector } from "react-redux";
-
+import AuthHeader from "../../components/nav/Header";
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
 
@@ -59,11 +59,21 @@ const Register = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <h4>Register</h4>
-          {registerForm()}
+    <div
+      style={{
+        background:
+          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
+        height: "80vh",
+      }}
+    >
+      {" "}
+      <AuthHeader />
+      <div className="container p-5">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <h4>Register</h4>
+            {registerForm()}
+          </div>
         </div>
       </div>
     </div>

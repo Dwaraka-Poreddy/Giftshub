@@ -31,7 +31,10 @@ import AuthHeader from "../components/nav/Header";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import { isMobileOnly, isTablet } from "react-device-detect";
 import "./ContinuePack.css";
+
 const usemodStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -191,7 +194,41 @@ function ContinuePack({ match, history }) {
       marginBottom: theme.spacing(1),
     },
   }));
-
+  const mobview = () => {
+    return (
+      <div class="col-lg-6">
+        {" "}
+        <p>
+          {" "}
+          Hello! Allow us to give you a small tour on how to generate this
+          special gift. We are sure you wouldn't need one the next time you are
+          back.
+          <br /> P.S : Its that easy
+        </p>
+        <center>
+          <div
+            style={{
+              margin: "auto",
+              // position: "absolute",
+              // top: "50%",
+              // left: "50%",
+              // MsTransform: "translateY(-50%) translateX(-50%)",
+              // transform: "translateY(-50%) translateX(-50%)",
+            }}
+          >
+            <button
+              onClick={() => {
+                setIsTourOpen(true);
+              }}
+              className="main-button"
+            >
+              Start Tour
+            </button>
+          </div>
+        </center>
+      </div>
+    );
+  };
   function getSteps() {
     return datacontent;
   }
@@ -398,7 +435,9 @@ function ContinuePack({ match, history }) {
                 <Paper square elevation={0}>
                   <Typography>
                     {datacontent[activeStep]}
-                    {completed[activeStep] && <CloseIcon />}
+                    {completed[activeStep] && (
+                      <CheckCircleIcon style={{ color: "green" }} />
+                    )}
                   </Typography>
                 </Paper>
                 <MobileStepper
@@ -586,37 +625,7 @@ function ContinuePack({ match, history }) {
             </center>
             <br />
           </div>
-          <div class="col-lg-6">
-            {" "}
-            <p>
-              {" "}
-              Hello! Allow us to give you a small tour on how to generate this
-              special gift. We are sure you wouldn't need one the next time you
-              are back.
-              <br /> P.S : Its that easy
-            </p>
-            <center>
-              <div
-                style={{
-                  margin: "auto",
-                  // position: "absolute",
-                  // top: "50%",
-                  // left: "50%",
-                  // MsTransform: "translateY(-50%) translateX(-50%)",
-                  // transform: "translateY(-50%) translateX(-50%)",
-                }}
-              >
-                <button
-                  onClick={() => {
-                    setIsTourOpen(true);
-                  }}
-                  className="main-button"
-                >
-                  Start Tour
-                </button>
-              </div>
-            </center>
-          </div>
+          {isMobileOnly ? null : isTablet ? null : mobview()}
         </div>
       </div>
 

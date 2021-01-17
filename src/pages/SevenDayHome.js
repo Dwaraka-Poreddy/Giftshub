@@ -81,7 +81,7 @@ function SevenDayHome({ history }) {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
-  const [Bday_date, setBday_date] = useState(new Date());
+  const [Bday_date, setBday_date] = useState();
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (!user) {
@@ -552,18 +552,47 @@ function SevenDayHome({ history }) {
                         />{" "}
                         <br />
                         <br />
-                        <input
-                          style={{ display: "none" }}
-                          id="submit"
-                          type="submit"
-                          value="Create 7 day pack"
-                        />
-                        <label htmlFor="submit">
-                          <button className="main-button">
-                            {" "}
-                            Create 7 day pack
-                          </button>
-                        </label>
+                        <center>
+                          {!Bday_date ? (
+                            <>
+                              <input
+                                disabled
+                                style={{ display: "none" }}
+                                id="submit"
+                                type="submit"
+                                value="Create 7 day pack"
+                              />
+                              <label
+                                style={{ opacity: "0.4" }}
+                                htmlFor="submit"
+                              >
+                                <button
+                                  disabled
+                                  style={{ cursor: "default" }}
+                                  className="main-button"
+                                >
+                                  {" "}
+                                  Create 7 day pack
+                                </button>
+                              </label>
+                            </>
+                          ) : (
+                            <>
+                              <input
+                                style={{ display: "none" }}
+                                id="submit"
+                                type="submit"
+                                value="Create 7 day pack"
+                              />
+                              <label htmlFor="submit">
+                                <button className="main-button">
+                                  {" "}
+                                  Create 7 day pack
+                                </button>
+                              </label>
+                            </>
+                          )}{" "}
+                        </center>
                       </form>
                     </center>
                   </div>

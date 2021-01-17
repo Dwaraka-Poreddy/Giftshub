@@ -65,7 +65,7 @@ const Home = ({ history }) => {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
-  const [Bday_date, setBday_date] = useState(new Date());
+  const [Bday_date, setBday_date] = useState();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {
@@ -432,7 +432,7 @@ const Home = ({ history }) => {
                         </div>
                         <br />
                         <center>
-                          {npackorder.length == 0 ? (
+                          {npackorder.length == 0 || !Bday_date ? (
                             <>
                               <input
                                 disabled
@@ -451,7 +451,7 @@ const Home = ({ history }) => {
                                   className="main-button"
                                 >
                                   {" "}
-                                  Create 7 day pack
+                                  Create {npackorder.length} day pack
                                 </button>
                               </label>
                             </>
@@ -466,7 +466,7 @@ const Home = ({ history }) => {
                               <label htmlFor="submit">
                                 <button className="main-button">
                                   {" "}
-                                  Create 7 day pack
+                                  Create {npackorder.length} day pack
                                 </button>
                               </label>
                             </>

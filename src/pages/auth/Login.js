@@ -6,7 +6,7 @@ import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import AuthHeader from "../../components/nav/Header";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("ajachintu@gmail.com");
   const [password, setPassword] = useState("srinivas1");
@@ -103,29 +103,39 @@ const Login = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          {loading ? (
-            <h4 className="text-danger"> Loading.. </h4>
-          ) : (
-            <h4>Login</h4>
-          )}
-          {loginForm()}
-          <Button
-            onClick={handleGoogleLogin}
-            type="danger"
-            block
-            shape="round"
-            icon={<GoogleOutlined />}
-            size="large"
-            className="mb-3"
-          >
-            Login with Google
-          </Button>
-          <Link to="/forgot/password" className="float-right text-danger">
-            Forgot Password
-          </Link>
+    <div
+      style={{
+        background:
+          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
+        height: "80vh",
+      }}
+    >
+      {" "}
+      <AuthHeader />
+      <div className="container p-5">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            {loading ? (
+              <h4 className="text-danger"> Loading.. </h4>
+            ) : (
+              <h4>Login</h4>
+            )}
+            {loginForm()}
+            <Button
+              onClick={handleGoogleLogin}
+              type="danger"
+              block
+              shape="round"
+              icon={<GoogleOutlined />}
+              size="large"
+              className="mb-3"
+            >
+              Login with Google
+            </Button>
+            <Link to="/forgot/password" className="float-right text-danger">
+              Forgot Password
+            </Link>
+          </div>
         </div>
       </div>
     </div>

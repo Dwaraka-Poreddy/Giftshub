@@ -19,7 +19,13 @@ export default function Journey({
     <>
       <div class="journey">
         <div class="journeyall">
-          <div class="heart-shape"></div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg1 + ")" }}
+            class="heart-shape"
+          >
+            {" "}
+            <div class="journeytext">{t1}</div>
+          </div>
           <div
             style={{ backgroundImage: "url(" + fbimg1 + ")" }}
             class="journeylefter"

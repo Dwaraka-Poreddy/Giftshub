@@ -44,7 +44,8 @@
 .journeycenter,
 .journeyright,
 .journeylefter,
-.journeyrighter {
+.journeyrighter,
+.heart-shape {
   width: 200px;
   height: 150px;
   transform-style: preserve-3d;
@@ -67,7 +68,9 @@
   .journeycenter,
   .journeyright,
   .journeylefter,
-  .journeyrighter {
+  .journeyrighter,
+  .heart-shape,
+  .heart-shape {
     width: 60px;
     height: 45px;
   }
@@ -89,7 +92,7 @@
   .journeycenter,
   .journeyright,
   .journeylefter,
-  .journeyrighter {
+  .journeyrighter .heart-shape {
     width: 120px;
     height: 90px;
   }
@@ -110,7 +113,7 @@
 .journeycenter:hover,
 .journeyright:hover,
 .journeylefter:hover,
-.journeyrighter:hover {
+.journeyrighter:hover .heart-shape:hover {
   box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
   background-color: #ccf;
 }
@@ -119,7 +122,7 @@
   .journeycenter,
   .journeyright,
   .journeylefter,
-  .journeyrighter {
+  .journeyrighter .heart-shape {
     width: 160px;
     height: 120px;
   }
@@ -140,7 +143,7 @@
 .journeycenter:hover,
 .journeyright:hover,
 .journeylefter:hover,
-.journeyrighter:hover {
+.journeyrighter:hover .heart-shape:hover {
   box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
   background-color: #ccf;
 }
@@ -177,7 +180,9 @@
 .journeyrighter {
   transform: translateX(60px) translateZ(-50px) rotateY(10deg);
 }
-
+.heart-shape {
+  transform: translateX(90px) translateZ(-75px) rotateY(15deg);
+}
 .journeyexplainer {
   font-weight: 300;
   font-size: 2rem;
@@ -215,18 +220,6 @@
   width: 150px;
   height: 150px;
   /* opacity: 0; */
-  transform-style: preserve-3d;
-  border: 1px solid #fff;
-  box-shadow: 0 0 20px 5px rgba(100, 100, 255, 0.4);
-  transition: all 0.3s ease;
-  transition-delay: 1s;
-  position: relative;
-  border-radius: 10px;
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: #58d;
-  cursor: pointer;
   background-blend-mode: color-burn;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -241,14 +234,10 @@
   height: 150px;
   content: "";
   transform-style: preserve-3d;
-  /* border: 1px solid #fff; */
-  /* box-shadow: 0 0 20px 5px rgba(100, 100, 255, 0.4); */
+
   transition: all 0.3s ease;
   transition-delay: 1s;
-  /* position: relative;
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat; */
+
   background-color: #58d;
   cursor: pointer;
   background-blend-mode: color-burn;

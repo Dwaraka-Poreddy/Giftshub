@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Loader from "react-loader-spinner";
 import { isMobileOnly, isTablet } from "react-device-detect";
-import { BrowserView, MobileView, TabletView } from "react-device-detect";
 const minuteSeconds = 60;
 const hourSeconds = 3600;
 const daySeconds = 86400;
