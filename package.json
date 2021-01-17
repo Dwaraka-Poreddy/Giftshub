@@ -45,6 +45,7 @@
     "react-loader-spinner": "^3.1.14",
     "react-mic": "^12.4.6",
     "react-owl-carousel": "2.3.1",
+    "react-particles-js": "^3.4.1",
     "react-photo-gallery": "^8.0.0",
     "react-redux": "^7.2.1",
     "react-resizable-rotatable-draggable": "0.2.0",

@@ -210,3 +210,58 @@
 .ref::first-letter {
   font-size: 12px;
 }
+.heart-shape {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  /* opacity: 0; */
+  transform-style: preserve-3d;
+  border: 1px solid #fff;
+  box-shadow: 0 0 20px 5px rgba(100, 100, 255, 0.4);
+  transition: all 0.3s ease;
+  transition-delay: 1s;
+  position: relative;
+  border-radius: 10px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #58d;
+  cursor: pointer;
+  background-blend-mode: color-burn;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.heart-shape:before,
+.heart-shape:after {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  content: "";
+  transform-style: preserve-3d;
+  /* border: 1px solid #fff; */
+  /* box-shadow: 0 0 20px 5px rgba(100, 100, 255, 0.4); */
+  transition: all 0.3s ease;
+  transition-delay: 1s;
+  /* position: relative;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat; */
+  background-color: #58d;
+  cursor: pointer;
+  background-blend-mode: color-burn;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+.heart-shape:before {
+  bottom: 0px;
+  left: -100px;
+}
+.heart-shape:after {
+  top: -100px;
+  right: 0px;
+}

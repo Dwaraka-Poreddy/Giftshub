@@ -62,7 +62,7 @@ export default function TicketDeck({ name, fbimg, handscol }) {
       "Spectacular",
       "Successful",
       "Simple",
-      "Straightforward",
+      "Straight forward",
       "Smiling",
       "Supportive",
     ],
@@ -175,7 +175,7 @@ export default function TicketDeck({ name, fbimg, handscol }) {
         onClick={() => {
           hadleitemclick(index);
         }}
-        className="ticket"
+        className="swatchticket"
         style={{ backgroundColor: color, transform: `rotate(${angle}deg)` }}
       >
         <h3 className="swatchH3">{letter}</h3>{" "}
@@ -185,14 +185,7 @@ export default function TicketDeck({ name, fbimg, handscol }) {
   };
 
   return (
-    <div
-      style={{
-        margin: "0",
-        overflow: "hidden",
-        height: "850px",
-        backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fegg_shell.jpg?alt=media&token=c32757c0-9119-4740-beb5-ea90c327aec9")`,
-      }}
-    >
+    <div className="swatchmaindiv">
       <div>
         {chararray.map((item, index) => {
           if (item.charCodeAt(0) > 90 || item.charCodeAt(0) < 65) {
@@ -218,8 +211,8 @@ export default function TicketDeck({ name, fbimg, handscol }) {
         style={{
           transform: `rotate(${anglesarray[anglesarray.length - 1]}deg)`,
         }}
-        id="ticket12"
-        className="ticket"
+        id="swatchticket12"
+        className="swatchticket"
         onClick={() => {
           startClick();
         }}
@@ -238,7 +231,7 @@ export default function TicketDeck({ name, fbimg, handscol }) {
         </div>{" "}
         <h6 className="swatchH6">CLICK TO OPEN/CLOSE</h6>
         <h2 className="swatchH2">GIFTS HUB</h2>
-        <div className="circle" />
+        <div className="swatchcircle" />
       </div>
     </div>
   );

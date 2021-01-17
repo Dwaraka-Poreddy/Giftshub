@@ -1,7 +1,7 @@
 const items = [
   {
     id: "1",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a",
     link: "/cubespage",
@@ -13,7 +13,7 @@ const items = [
   },
   {
     id: "2",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344",
     link: "/slidepuzzlepage",
@@ -25,7 +25,7 @@ const items = [
   },
   {
     id: "3",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeD.PNG?alt=media&token=3ef0492e-9919-4c5d-a441-d6f1b0d8e817",
     link: "/threedimagepage",
@@ -50,7 +50,7 @@ const items = [
   },
   {
     id: "5",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
     link: "/collagepage",
@@ -61,7 +61,7 @@ const items = [
   },
   {
     id: "6",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fanimatedframegif.gif?alt=media&token=bafa0360-c449-4c4b-8d5e-d6bcd747d61d",
     link: "/animatedframePage",
@@ -73,7 +73,7 @@ const items = [
   },
   {
     id: "7",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FgreetingCardgif.gif?alt=media&token=a0cf3864-72b8-4a18-a1da-3425fd480810",
     link: "/opengreetingcardpage",
@@ -85,7 +85,7 @@ const items = [
   },
   {
     id: "8",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspecialcaardgif.gif?alt=media&token=e004265d-6a48-425b-808b-46fc68ebc4ea",
     text:

@@ -11,6 +11,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import LandingPageCard from "./LandingPageCard";
 import LandingPageCardsData from "./landingPageCardsData";
+import Particles from "react-particles-js";
+import { isMobileOnly, isTablet } from "react-device-detect";
 export default function LandingPage() {
   const [navstate, setnavstate] = useState(false);
   useEffect(() => {
@@ -24,8 +26,43 @@ export default function LandingPage() {
     }
   };
   window.addEventListener("scroll", changeBackground);
+
+  const browview = () => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "50%",
+          zIndex: "5",
+        }}
+      >
+        <Particles
+          params={{
+            particles: {
+              number: {
+                value: 100,
+              },
+              size: {
+                value: 3,
+              },
+            },
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+              },
+            },
+          }}
+        />
+      </div>
+    );
+  };
   return (
     <div className="App">
+      {isMobileOnly ? null : isTablet ? null : browview()}
       <body id="page-top">
         <nav
           class={
@@ -85,14 +122,22 @@ export default function LandingPage() {
         {/* <!-- Masthead--> */}
         <header class="masthead" data-aos="zoom-in">
           <div class="container">
-            <div class="masthead-subheading">Welcome To Our Studio!</div>
-            <div class="masthead-heading text-uppercase">
-              It's Nice To Meet You
+            <div class="masthead-subheading">
+              {/* Welcome To Our Studio! */}
             </div>
-
-            <a href="#1services" class="butn butn-light mt-30">
-              <span>Tell Me More</span>
-            </a>
+            <div class="masthead-heading text-uppercase">
+              {/* It's Nice To Meet You */}
+            </div>
+            {/* 
+            <a
+              style={{ zIndex: "50" }}
+              href="#1services"
+              class="butn butn-light mt-30"
+            >
+              <span>
+                Tell Me More
+                </span>
+            </a> */}
           </div>
         </header>
         <section class="partners mt-n5">
@@ -101,13 +146,14 @@ export default function LandingPage() {
               <div class="card-body p-4">
                 <div class="swiper-container">
                   <OwlCarousel
+                    style={{ zIndex: "5" }}
                     // className="owl-theme"
                     dots={false}
                     loop
                     // margin={20}
                     // center
                     // mergeFit
-                    autoplayTimeout={1000}
+                    autoplayTimeout={4000}
                     // nav
                     items={5}
                     //   responsive={responsive}
@@ -177,7 +223,7 @@ export default function LandingPage() {
               id="hiroHeaderCarousel"
               class="hiro-header-carousel carousel slide"
               data-ride="carousel"
-              data-interval="500"
+              data-interval="4000"
             >
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
@@ -462,7 +508,7 @@ export default function LandingPage() {
 
         <section id="team" class="pb-5">
           <div class="container">
-            <div className="row">
+            <div className="row equal">
               {LandingPageCardsData.map((item, index) => {
                 return (
                   <LandingPageCard

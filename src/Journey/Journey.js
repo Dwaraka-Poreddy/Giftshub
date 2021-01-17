@@ -16,42 +16,45 @@ export default function Journey({
   heading,
 }) {
   return (
-    <div class="journey">
-      <div class="journeyall">
-        <div
-          style={{ backgroundImage: "url(" + fbimg1 + ")" }}
-          class="journeylefter"
-        >
-          <div class="journeytext">{t1}</div>
-        </div>
-        <div
-          style={{ backgroundImage: "url(" + fbimg2 + ")" }}
-          class="journeyleft"
-        >
-          <div class="journeytext">{t2}</div>
-        </div>
-        <div
-          style={{ backgroundImage: "url(" + fbimg3 + ")" }}
-          class="journeycenter"
-        >
-          <div class="journeyexplainer">
-            <span class="journeyexplainer">{heading}</span>
+    <>
+      <div class="journey">
+        <div class="journeyall">
+          <div class="heart-shape"></div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg1 + ")" }}
+            class="journeylefter"
+          >
+            <div class="journeytext">{t1}</div>
           </div>
-          <div class="journeytext">{t3}</div>
-        </div>
-        <div
-          style={{ backgroundImage: "url(" + fbimg4 + ")" }}
-          class="journeyright"
-        >
-          <div class="journeytext">{t4}</div>
-        </div>
-        <div
-          style={{ backgroundImage: "url(" + fbimg5 + ")" }}
-          class="journeyrighter"
-        >
-          <div class="journeytext">{t5}</div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg2 + ")" }}
+            class="journeyleft"
+          >
+            <div class="journeytext">{t2}</div>
+          </div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg3 + ")" }}
+            class="journeycenter"
+          >
+            <div class="journeyexplainer">
+              <span class="journeyexplainer">{heading}</span>
+            </div>
+            <div class="journeytext">{t3}</div>
+          </div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg4 + ")" }}
+            class="journeyright"
+          >
+            <div class="journeytext">{t4}</div>
+          </div>
+          <div
+            style={{ backgroundImage: "url(" + fbimg5 + ")" }}
+            class="journeyrighter"
+          >
+            <div class="journeytext">{t5}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
