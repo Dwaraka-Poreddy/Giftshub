@@ -15,6 +15,8 @@ import Particles from "react-particles-js";
 import { isMobileOnly, isTablet } from "react-device-detect";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import sample from "./Images/bgvideo.mp4";
+
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [navstate, setnavstate] = useState(false);
@@ -46,7 +48,7 @@ export default function LandingPage() {
         style={{
           position: "absolute",
           width: "100%",
-          height: "50%",
+          height: "20%",
           zIndex: "5",
         }}
       >
@@ -134,28 +136,20 @@ export default function LandingPage() {
         </nav>
         {/* <!-- Masthead--> */}
         <header class="masthead" data-aos="zoom-in">
-          <div class="container">
-            <div class="masthead-subheading">
-              {/* Welcome To Our Studio! */}
-            </div>
-            <div class="masthead-heading text-uppercase">
-              {/* It's Nice To Meet You */}
-            </div>
-            {/* 
-            <a
-              style={{ zIndex: "50" }}
-              href="#1services"
-              class="butn butn-light mt-30"
-            >
-              <span>
-                Tell Me More
-                </span>
-            </a> */}
-          </div>
+          <video
+            style={{ width: "100%", height: "auto" }}
+            className="videoTag"
+            autoPlay
+            loop
+            muted
+          >
+            <source src={sample} type="video/mp4" />
+          </video>
         </header>
+
         <section class="partners mt-n5">
           <div class="container py-0">
-            <div class="card shadow-lg">
+            <div class="card shadow-lg ">
               <div class="card-body p-3">
                 <div class="swiper-container">
                   <OwlCarousel
@@ -163,11 +157,8 @@ export default function LandingPage() {
                     // className="owl-theme"
                     dots={false}
                     loop
-                    // margin={20}
-                    // center
-                    // mergeFit
+                    margin={0}
                     autoplayTimeout={4000}
-                    // nav
                     items={5}
                     responsive={responsive}
                     autoplay
@@ -176,51 +167,94 @@ export default function LandingPage() {
                     <div class="swiper-wrapper align-items-center">
                       <div class="swiper-slide">
                         <img
-                          src={require("./Images/logos/1.png")}
-                          class="img-responsive"
+                          src={require("./Images/logos/animatedframes.png")}
                           alt=""
-                          style={{ maxHeight: "60px" }}
+                          // style={{ maxHeight: "60px" }}
                         />
                       </div>
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src={require("./Images/logos/2.png")}
-                        class="img-responsive"
+                        src={require("./Images/logos/journey.png")}
                         alt=""
-                        style={{ maxHeight: "60px" }}
+                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src={require("./Images/logos/3.png")}
-                        class="img-responsive"
+                        src={require("./Images/logos/memorygame.png")}
                         alt=""
-                        style={{ maxHeight: "60px" }}
+                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src={require("./Images/logos/4.png")}
-                        class="img-responsive"
+                        src={require("./Images/logos/newspaper.png")}
                         alt=""
-                        style={{ maxHeight: "60px" }}
+                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src={require("./Images/logos/5.png")}
-                        class="img-responsive"
+                        src={require("./Images/logos/collage.png")}
                         alt=""
-                        style={{ maxHeight: "60px" }}
+                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
-                        src={require("./Images/logos/6.png")}
-                        class="img-responsive"
+                        src={require("./Images/logos/threedcarousel.png")}
                         alt=""
-                        style={{ maxHeight: "60px" }}
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/calender.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/threedheart.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/slidepuzzle.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/greetingcard.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/magazine.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/surprisecard.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src={require("./Images/logos/threedframe.png")}
+                        alt=""
+                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     {/* </div> */}
@@ -230,6 +264,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
         <header class="hiro-header home-header" id="1services">
           <div class="container wow fadeInUp">
             <div
@@ -241,7 +276,11 @@ export default function LandingPage() {
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div
+                      class="col-md-6 "
+                      data-aos="fade-up"
+                      data-aos-duration="3000"
+                    >
                       <h1
                         class="carousel-item-title"
                         data-animation="animated fadeInRight"

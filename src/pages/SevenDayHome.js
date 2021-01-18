@@ -100,7 +100,7 @@ function SevenDayHome({ history }) {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
-  const [Bday_date, setBday_date] = useState();
+  const [Bday_date, setBday_date] = useState(new Date());
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (!user) {
@@ -260,6 +260,27 @@ function SevenDayHome({ history }) {
       }}
     >
       <AuthHeader />
+      <br />
+      <br />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8 col-lg-9"></div>
+        </div>
+      </div>
       <section className="section" id="services">
         <h1
           style={{
@@ -617,11 +638,12 @@ function SevenDayHome({ history }) {
                           label="Birthday"
                           type="date"
                           value={Bday_date}
-                          defaultValue={Bday_date}
+                          // defaultValue={Bday_date}
                           className={classes.textField}
-                          onChange={(e) =>
-                            setBday_date(e.target.value.toLocaleString())
-                          }
+                          onChange={(e) => {
+                            console.log(Bday_date, "birthday", e.target.value);
+                            setBday_date(e.target.value.toLocaleString());
+                          }}
                           InputLabelProps={{
                             shrink: true,
                             style: { color: "#0196de" },
@@ -693,197 +715,7 @@ function SevenDayHome({ history }) {
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (
-        <div>
-          {error ? <p>Ops, there is an error :(</p> : null}
-          <ul>
-            {gifts.map((gift, index) => (
-              <div>
-                <div class="container">
-                  <div class="card">
-                    <h5
-                      class="card-header "
-                      style={{ justifyContent: "space-between" }}
-                    >
-                      {" "}
-                      <div class="row">
-                        <div class="col-6">{gift.Folder_name}</div>{" "}
-                        <div class="col-6">
-                          {gift.Bday_date.toLocaleString()}
-                        </div>{" "}
-                      </div>
-                    </h5>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-3 p-0 ">
-                          <div class="container-fluid">
-                            <div class="row">
-                              <div
-                                style={{
-                                  height: "38.5px",
-                                  alignItems: "center",
-                                  border: "none",
-                                }}
-                                class="col-12  card"
-                              >
-                                <h2
-                                  style={{
-                                    fontSize: "18px",
-                                    color: "#0196de",
-                                    marginLeft: "8px",
-                                    marginTop: "10px",
-                                    marginBottom: "0",
-                                  }}
-                                >
-                                  {gift.To_name}
-                                </h2>
-                              </div>
-                              <div class="col-6 col-md-12">
-                                <div
-                                  style={{
-                                    height: "38.5px",
-                                    alignItems: "center",
-                                    border: "1px solid #0196de",
-                                    cursor: "pointer",
-                                    borderRadius: "5px",
-                                  }}
-                                  class="col-12"
-                                >
-                                  <Link
-                                    class="logo"
-                                    to={`/scheduledlive/main/${gift.id}`}
-                                    target="_blank"
-                                  >
-                                    <h2
-                                      style={{
-                                        fontSize: "18px",
-                                        color: "#0196de",
-                                        marginLeft: "8px",
-                                        marginTop: "10px",
-                                        marginBottom: "0",
-                                      }}
-                                    >
-                                      {" "}
-                                      Preview{" "}
-                                    </h2>
-                                  </Link>
-                                </div>
-                              </div>
-
-                              <div class="col-6 col-md-12">
-                                <div
-                                  onClick={() => {
-                                    handleDelete(gift.id);
-                                  }}
-                                  class="col-12"
-                                  style={{
-                                    height: "38.5px",
-                                    // width: "242.63px",
-                                    alignItems: "center",
-                                    border: "1px solid #0196de",
-                                    cursor: "pointer",
-                                    borderRadius: "5px",
-                                  }}
-                                >
-                                  <h2
-                                    style={{
-                                      fontSize: "18px",
-                                      color: "#0196de",
-                                      marginLeft: "8px",
-                                      marginTop: "10px",
-                                      marginBottom: "0",
-                                    }}
-                                  >
-                                    Delete
-                                  </h2>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-7 p-0 ">
-                          {" "}
-                          <div class="container-fluid">
-                            <div class="row">
-                              {gift.array_data.map((c) => (
-                                <div
-                                  style={{
-                                    border: "none",
-                                  }}
-                                  class="col-6 col-md-4 card p-0 m-0 "
-                                >
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      textAlign: "justify",
-                                    }}
-                                  >
-                                    {c.url ? (
-                                      <CheckCircle
-                                        style={{
-                                          fill: "#0196de",
-                                          margin: "5px 7px",
-                                        }}
-                                      />
-                                    ) : (
-                                      <img
-                                        style={{
-                                          width: "23.5px",
-                                          height: "23.5px",
-                                          margin: "5px 11px 0 8px",
-                                        }}
-                                        src="assets/images/icon.png"
-                                        alt=""
-                                      />
-                                      // <AvTimerIcon
-                                      //   style={{
-                                      //     fill: "#0196de",
-                                      //     margin: "5px 7px",
-                                      //   }}
-                                      // />
-                                    )}
-                                    <h2
-                                      style={{
-                                        fontSize: "18px",
-                                        color: "#0196de",
-                                        marginLeft: "8px",
-                                        marginTop: "10px",
-                                        marginBottom: "3px",
-                                      }}
-                                    >
-                                      {" "}
-                                      {c.content}
-                                    </h2>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          {" "}
-                          <div>
-                            <center>
-                              <br />
-                              <Link to={`/ContinuePack/${gift.id}`}>
-                                <button
-                                  style={{ height: "100%", margin: "auto" }}
-                                  class="main-button"
-                                >
-                                  Proceed
-                                </button>
-                              </Link>{" "}
-                            </center>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <br />
-              </div>
-            ))}
-          </ul>
-        </div>
+        <div>{error ? <p>Ops, there is an error :(</p> : null}</div>
       )}
       <footer>
         <div className="container">

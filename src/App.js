@@ -101,7 +101,7 @@ export default function App() {
         <Route exact path="/journeypage" component={JourneyPage} />
         <Route exact path="/calandarpage" component={CalandarPage} />
         <Route exact path="/swatchbookpage" component={SwatchBookPage} />
-        <Route exact path="/landingpage" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/sound" component={SoundRecorder} />
         <Route exact path="/animatedframe" component={AnimatedFrame} />
         <Route exact path="/userpackspage" component={UserPacksPage} />
@@ -115,7 +115,7 @@ export default function App() {
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
 
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/mainpage" component={MainPage} />
         <Route exact path="/memorygamepage" component={MemoryGamePage} />
         <Route exact path="/collagepage" component={CollagePage} />
         <Route exact path="/newspaperpage" component={NewsPaperPage} />

@@ -437,11 +437,11 @@ a:hover {
   }
 }
 header.masthead {
-  padding-top: 10.5rem;
-  padding-bottom: 6rem;
+  /* padding-top: 10.5rem;
+  padding-bottom: 6rem; */
   text-align: center;
   color: #fff;
-  background-image: url("https://i.pinimg.com/originals/fd/3c/cd/fd3ccd7b49e366b4206f5ac7f8fa8dac.gif");
+  /* background-image: url("https://i.pinimg.com/originals/fd/3c/cd/fd3ccd7b49e366b4206f5ac7f8fa8dac.gif"); */
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -468,8 +468,8 @@ header.masthead .masthead-heading {
 
 @media (min-width: 768px) {
   header.masthead {
-    padding-top: 17rem;
-    padding-bottom: 12.5rem;
+    /* padding-top: 17rem;
+    padding-bottom: 12.5rem; */
   }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
