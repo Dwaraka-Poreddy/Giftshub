@@ -87,7 +87,7 @@ export default function CircleTimer({ Bday }) {
         </CountdownCircleTimer>
         <CountdownCircleTimer
           {...timerProps1}
-          colors={[["#EF798A"]]}
+          colors={[["#fc9700"]]}
           duration={hourSeconds}
           initialRemainingTime={remainingTime % hourSeconds}
           onComplete={(totalElapsedTime) => [
@@ -151,7 +151,7 @@ export default function CircleTimer({ Bday }) {
         </CountdownCircleTimer>
         <CountdownCircleTimer
           {...timerProps}
-          colors={[["#EF798A"]]}
+          colors={[["#fc9700"]]}
           duration={hourSeconds}
           initialRemainingTime={remainingTime % hourSeconds}
           onComplete={(totalElapsedTime) => [
@@ -187,7 +187,7 @@ export default function CircleTimer({ Bday }) {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          fontSize: "24px",
+          fontSize: "35px",
         }}
       >
         <CountdownCircleTimer
@@ -215,7 +215,7 @@ export default function CircleTimer({ Bday }) {
         </CountdownCircleTimer>
         <CountdownCircleTimer
           {...timerProps}
-          colors={[["#EF798A"]]}
+          colors={[["#fc9700"]]}
           duration={hourSeconds}
           initialRemainingTime={remainingTime % hourSeconds}
           onComplete={(totalElapsedTime) => [
@@ -246,7 +246,7 @@ export default function CircleTimer({ Bday }) {
     );
   };
   return (
-    <div style={{ paddingTop: "10vh", paddingBottom: "20vh" }}>
+    <div style={{ paddingTop: "20vh", paddingBottom: "20vh" }}>
       {remainingTime > 0 ? (
         <div>
           {isMobileOnly ? mobview() : isTablet ? tabview() : browview()}

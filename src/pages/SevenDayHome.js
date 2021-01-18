@@ -242,82 +242,6 @@ function SevenDayHome({ history }) {
                 alt="Card image cap"
               />
               <div class="card-body">
-                {/* <p class="card-text">Some quick example text to build</p> */}
-                <button
-                  onClick={() => {
-                    setopenModal(true);
-                    dispatch({
-                      type: "REDIRECT_USER",
-                      payload: {
-                        days_redirect: "2",
-                      },
-                    });
-                  }}
-                  className="main-button"
-                >
-                  2-Day Pack
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-8 col-lg-9 ">
-            <section
-              class="partners "
-              style={{
-                position: "relative",
-                top: "50%",
-                transform: "translate(0,-50%)",
-              }}
-            >
-              <div class="container ">
-                <div class="card shadow-lg ">
-                  <div class="card-body p-5">
-                    <div class="swiper-container">
-                      <OwlCarousel
-                        style={{ zIndex: "5" }}
-                        dots={false}
-                        loop
-                        margin={0}
-                        autoplayTimeout={3000}
-                        items={5}
-                        // responsive={responsive1}
-                        autoplay
-                        autoplayHoverPause
-                      >
-                        <div class="swiper-wrapper align-items-center">
-                          <div class="swiper-slide">
-                            <img
-                              src={require("../Images/logos/animatedframes.png")}
-                              alt=""
-                              // style={{ height: "150px" }}
-                            />
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <img
-                            src={require("../Images/logos/journey.png")}
-                            alt=""
-                            // style={{ height: "150px" }}
-                          />
-                        </div>
-                      </OwlCarousel>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>{" "}
-        <br />
-        <div className="row">
-          <div className="col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
                 <button
                   onClick={() => {
                     setopenModal(true);
@@ -347,7 +271,7 @@ function SevenDayHome({ history }) {
             >
               <div class="container ">
                 <div class="card shadow-lg ">
-                  <div class="card-body p-5">
+                  <div class="card-body p-2">
                     <div class="swiper-container">
                       <OwlCarousel
                         style={{ zIndex: "5" }}
@@ -355,8 +279,7 @@ function SevenDayHome({ history }) {
                         loop
                         margin={0}
                         autoplayTimeout={3000}
-                        items={5}
-                        // responsive={responsive1}
+                        items={3}
                         autoplay
                         autoplayHoverPause
                       >
@@ -438,8 +361,7 @@ function SevenDayHome({ history }) {
                         loop
                         margin={0}
                         autoplayTimeout={3000}
-                        items={5}
-                        responsive={responsive5}
+                        items={3}
                         autoplay
                         autoplayHoverPause
                       >
@@ -535,8 +457,7 @@ function SevenDayHome({ history }) {
                         loop
                         margin={0}
                         autoplayTimeout={3000}
-                        items={5}
-                        responsive={responsive5}
+                        items={3}
                         autoplay
                         autoplayHoverPause
                       >
