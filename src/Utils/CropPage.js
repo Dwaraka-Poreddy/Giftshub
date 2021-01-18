@@ -7,13 +7,13 @@ import React, {
 } from "react";
 import HeaderBtn from "../Studio/HeaderBtn";
 import Modal from "@material-ui/core/Modal";
-import { v4 as uuidv4 } from "uuid";
 import ReactCrop from "react-image-crop";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageIcon from "@material-ui/icons/Image";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-image-crop/dist/ReactCrop.css";
 const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",

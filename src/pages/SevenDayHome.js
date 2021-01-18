@@ -21,6 +21,9 @@ import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined"
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import { useDispatch } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../Swiper.css";
+import $ from "jquery";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -100,6 +103,20 @@ function SevenDayHome({ history }) {
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
   const [Bday_date, setBday_date] = useState(new Date());
+
+  $(document).ready(function () {
+    $(".card").hover(
+      function () {
+        $(this).removeClass("shadow-none");
+        $(this).addClass("shadow");
+      },
+      function () {
+        $(this).removeClass("shadow");
+        $(this).addClass("shadow-none");
+      }
+    );
+  });
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (!user) {
@@ -171,7 +188,6 @@ function SevenDayHome({ history }) {
                     array_data: selectedpackorder,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                   });
-
                   history.push(`/ContinuePack/${docRef.id}`);
                   setloading(false);
                 })

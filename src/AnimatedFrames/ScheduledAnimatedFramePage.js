@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import GetAppIcon from "@material-ui/icons/GetApp";
+import "../Buttons.css";
 import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {

@@ -10,6 +10,11 @@ export default function AboutQuiz({
 }) {
   const [quesnumber, setquesnumber] = useState(0);
   const [isselectcomplete, setisselectcomplete] = useState(false);
+  const [name, setname] = useState("srinivas");
+  const setQuestion = (e) => {
+    var res = e.replace("$_$", name);
+    return <h1>{res}</h1>;
+  };
   const handleoptionclick = (index) => {
     setquesArray([...quesArray, quesnumber]);
     setanswersArray([...answersArray, index]);
@@ -41,7 +46,7 @@ export default function AboutQuiz({
                   >
                     SKIP THIS QUESTION
                   </button>
-                  <h4
+                  <div
                     style={{
                       color: "#3e6ef3",
                       fontSize: "1.5rem",
@@ -49,8 +54,8 @@ export default function AboutQuiz({
                       lineHeight: "1.2",
                     }}
                   >
-                    {items[quesnumber].question}
-                  </h4>
+                    {setQuestion(items[quesnumber].question)}
+                  </div>
 
                   <center>
                     <div

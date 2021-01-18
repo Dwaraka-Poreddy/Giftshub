@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./LandingPageCard.css";
 import { Link } from "react-router-dom";
@@ -23,7 +23,6 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
             <div class="backside">
               <div class="card">
                 <div class="card-body text-center mt-4">
-                  {/* <img style={{ width: "100%" }} src={gif} alt="" /> */}
                   <video
                     style={{ width: "100%", height: "auto" }}
                     className="videoTag"

@@ -1,0 +1,34 @@
+.RightSideBar2__Btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: #70cff3;
+}
+
+.RightSideBar2__Btn__icon {
+  color: #ffffff;
+  font-size: large !important;
+}
+
+.RightSideBar2__Btn__title {
+  flex: 1;
+  margin-left: 5px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.RightSideBar2__Btn:hover {
+  background-color: #068dc0;
+  cursor: pointer;
+}
+
+.RightSideBar2__Text {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #5a5d68;
+  font-weight: 700;
+  font-size: 15px;
+}

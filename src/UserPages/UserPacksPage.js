@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import AuthHeader from "../components/nav/Header";
+import $ from "jquery";
+import "bootstrap/dist/css/bootstrap.min.css";
 function UserPacksPage({ history }) {
   const { user } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
@@ -72,6 +74,18 @@ function UserPacksPage({ history }) {
         console.error("Error removing document: ", error);
       });
   };
+  $(document).ready(function () {
+    $(".card").hover(
+      function () {
+        $(this).removeClass("shadow-none");
+        $(this).addClass("shadow");
+      },
+      function () {
+        $(this).removeClass("shadow");
+        $(this).addClass("shadow-none");
+      }
+    );
+  });
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <AuthHeader />
@@ -102,7 +116,7 @@ function UserPacksPage({ history }) {
                               alignItems: "center",
                               border: "none",
                             }}
-                            class="col-12  card"
+                            class="col-12  "
                           >
                             <h2
                               style={{
@@ -188,7 +202,7 @@ function UserPacksPage({ history }) {
                               style={{
                                 border: "none",
                               }}
-                              class="col-6 col-md-4 card p-0 m-0 "
+                              class="col-6 col-md-4  p-0 m-0 "
                             >
                               <div
                                 style={{

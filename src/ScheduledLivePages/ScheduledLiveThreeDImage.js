@@ -3,7 +3,7 @@ import ThreeDImage from "../ThreeDImage/ThreeDImage";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 export default function ScheduledLiveThreeDImage({ match }) {
   const database = firebase.firestore();
@@ -103,7 +103,7 @@ export default function ScheduledLiveThreeDImage({ match }) {
 
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <ScheduledLiveNav slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} />
 
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>

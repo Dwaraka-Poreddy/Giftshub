@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function SchdeuledLiveNav({ slug }) {
   const { daystep } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();

@@ -15,10 +15,26 @@ import Particles from "react-particles-js";
 import { isMobileOnly, isTablet } from "react-device-detect";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import $ from "jquery";
+import NavBar from "./NavBars/NavBar";
+import firebase from "./firebase";
+const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [navstate, setnavstate] = useState(false);
+  $(document).ready(function () {
+    $(".card").hover(
+      function () {
+        $(this).removeClass("shadow-none");
+        $(this).addClass("shadow");
+      },
+      function () {
+        $(this).removeClass("shadow");
+        $(this).addClass("shadow-none");
+      }
+    );
+  });
+
   useEffect(() => {
     Aos.init({ disable: "mobile" });
   }, []);
@@ -78,72 +94,35 @@ export default function LandingPage() {
     <div className="App">
       {isMobileOnly ? null : isTablet ? null : browview()}
       <body id="page-top">
-        <nav
-          class={
-            !navstate
-              ? "navbar navbar-expand-lg navbar-dark fixed-top"
-              : "navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink"
-          }
-          id="mainNav"
+        <NavBar />
+
+        {/* <header class="masthead" data-aos="zoom-in"> */}
+        <div
+          style={{ overflow: "hidden" }}
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-ride="carousel"
         >
-          <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-              <img src={require("./Images/navbar-logo.svg")} alt="" />
-            </a>
-            <button
-              class="navbar-toggler navbar-toggler-right"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              Menu
-              <i class="fas fa-bars ml-1"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#1services">
-                    Services
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#Process">
-                    Process
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#about">
-                    About
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#team">
-                    Team
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#contact">
-                    Contact
-                  </a>
-                </li>
-              </ul>
+          <div class="carousel-inner zoomcarousel">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                // src="http://jeremyspottery.themerex.net/wp-content/uploads/2016/08/bg4.jpg?id=233"
+                src={require("./Images/zoomcarousel.jpg")}
+                alt="First slide"
+              />
+            </div>
+            <div class="carousel-item zoomcarousel">
+              <img
+                class="d-block w-100"
+                // src="http://jeremyspottery.themerex.net/wp-content/uploads/2016/08/home1_slide3.jpg"
+                src={require("./Images/zoomcarousel4.png")}
+                alt="Second slide"
+              />
             </div>
           </div>
-        </nav>
-        {/* <!-- Masthead--> */}
-        <header class="masthead" data-aos="zoom-in">
-          <div class="crossfade">
-            <figure></figure>
-            <figure></figure>
-            <figure></figure>
-            <figure></figure>
-            <figure></figure>
-          </div>
-        </header>
-
+        </div>
+        {/* </header> */}
         <section class="partners mt-n5">
           <div class="container py-0">
             <div class="card shadow-lg ">
@@ -604,6 +583,14 @@ export default function LandingPage() {
           </button>{" "}
         </Link>
       </body>
+      <button
+        onClick={() => {
+          analytics.logEvent("goal_completion", { name: "lever_puzzle" });
+          console.log("startuser");
+        }}
+      >
+        Click
+      </button>
     </div>
   );
 }

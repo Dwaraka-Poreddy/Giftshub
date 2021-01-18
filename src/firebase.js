@@ -1,8 +1,9 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
+import "firebase/firestore";
 import "firebase/database";
-
+import "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyDtLkVsVzRuNO4Vrpq96UaVk6vghIAbj38",
   authDomain: "update-image.firebaseapp.com",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 }
 
 const storage = firebase.storage();

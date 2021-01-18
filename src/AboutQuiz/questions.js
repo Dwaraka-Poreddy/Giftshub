@@ -1,7 +1,7 @@
 const items = [
   {
     id: "1",
-    question: "What do you like to eat for breakfast?",
+    question: "Who is $_$ favourite bollywood actor?",
     options: ["yes", "no", "true", "false"],
     images: [
       "https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg",
@@ -12,7 +12,7 @@ const items = [
   },
   {
     id: "2",
-    question: "Banana",
+    question: "Ba $_$ nana",
     options: ["yes", "no", "true", "false"],
     images: [
       "https://www.dudequiz.com/static/img/imgquiz/q31_1.jpg?v=2020",
@@ -23,7 +23,7 @@ const items = [
   },
   {
     id: "3",
-    question: "calliflower",
+    question: "call $_$ iflower",
     options: ["qqqqqq", "srini", "dwa", "false"],
     images: [
       "https://picsum.photos/seed/picsum/200/300",
@@ -34,7 +34,7 @@ const items = [
   },
   {
     id: "4",
-    question: "Density",
+    question: "Den $_$ sity",
     options: ["yes", "no", "true", "false"],
     images: [
       "https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg",
@@ -45,7 +45,7 @@ const items = [
   },
   {
     id: "5",
-    question: "EsternTemple",
+    question: "Estern $_$ Temple",
     options: ["harish", "no", "true", "false"],
     images: [
       "https://picsum.photos/id/237/200/300",
@@ -56,7 +56,7 @@ const items = [
   },
   {
     id: "6",
-    question: "Favourite",
+    question: "Favo $_$ urite",
     options: ["yes", "no", "true", "false"],
     images: [
       "https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AnimatedFrame.css";
-
+import "../Buttons.css";
 export default function AnimatedFrame({ fbimg1, fbimg2, title }) {
   return (
     <div className="AnimatedApp" style={{ backgroundColor: "#70cff3" }}>

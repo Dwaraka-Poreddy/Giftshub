@@ -33,6 +33,7 @@ import { BrowserView } from "react-device-detect";
 import LinkIcon from "@material-ui/icons/Link";
 import Fab from "@material-ui/core/Fab";
 import Loader from "react-loader-spinner";
+import "../Buttons.css";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }

@@ -8,7 +8,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import $ from "jquery";
 import Particles from "react-particles-js";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 export default function App() {
   useEffect(() => {
     Aos.init({ disable: "mobile" });

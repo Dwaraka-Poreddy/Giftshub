@@ -25,7 +25,7 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import AuthHeader from "../components/nav/Header";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-
+import "../Buttons.css";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 const secuseStyles = makeStyles((theme) => ({
