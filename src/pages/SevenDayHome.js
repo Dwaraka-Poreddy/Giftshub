@@ -20,7 +20,6 @@ import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
-import CheckCircle from "@material-ui/icons/CheckCircle";
 import { useDispatch } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   margin: {},
@@ -105,38 +104,12 @@ function SevenDayHome({ history }) {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (!user) {
         history.push("/login");
-      } else {
-        await getPrevious(user.uid);
       }
     });
   }, []);
 
-  const getPrevious = async (useruid) => {
-    setloading(true);
-    await database
-      .collection("n-day-pack")
-      .doc(useruid)
-      .collection("giftshub")
-      .get()
-      .then((response) => {
-        const fetchedGifts = [];
-        response.forEach((document) => {
-          const fetchedMovie = {
-            id: document.id,
-            ...document.data(),
-          };
-          fetchedGifts.push(fetchedMovie);
-        });
-        setGifts(fetchedGifts);
-        setloading(false);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  };
   const onSelectFile = (e) => {
     setsend(window.URL.createObjectURL(e.target.files[0]));
-
     setopencrop(true);
   };
 
@@ -221,44 +194,41 @@ function SevenDayHome({ history }) {
       items: 4,
     },
   };
-  const handleDelete = (id) => {
-    setGifts((prevgifts) => {
-      return prevgifts.filter((giftitem) => {
-        return giftitem.id !== id;
-      });
-    });
-    database
-      .collection("n-day-pack")
-      .doc(user.uid)
-      .collection("giftshub")
-      .doc(id)
-      .delete()
-      .then(function () {
-        console.log("Document successfully deleted from ndaypack!");
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
-    database
-      .collection("Livelinks")
-      .doc(id)
-      .delete()
-      .then(function () {
-        console.log("Document successfully deleted friom libe!");
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
+  var responsive5 = {
+    0: {
+      items: 3,
+    },
+    600: {
+      items: 4,
+    },
+    1000: {
+      items: 5,
+    },
   };
-
+  var responsive3 = {
+    0: {
+      items: 3,
+    },
+    600: {
+      items: 4,
+    },
+    1000: {
+      items: 5,
+    },
+  };
+  var responsive2 = {
+    0: {
+      items: 3,
+    },
+    600: {
+      items: 4,
+    },
+    1000: {
+      items: 5,
+    },
+  };
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
-        height: "80vh",
-      }}
-    >
+    <div>
       <AuthHeader />
       <br />
       <br />
@@ -272,188 +242,351 @@ function SevenDayHome({ history }) {
                 alt="Card image cap"
               />
               <div class="card-body">
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                </p>
+                {/* <p class="card-text">Some quick example text to build</p> */}
+                <button
+                  onClick={() => {
+                    setopenModal(true);
+                    dispatch({
+                      type: "REDIRECT_USER",
+                      payload: {
+                        days_redirect: "2",
+                      },
+                    });
+                  }}
+                  className="main-button"
+                >
+                  2-Day Pack
+                </button>
               </div>
             </div>
           </div>
-          <div className="col-md-8 col-lg-9"></div>
-        </div>
-      </div>
-      <section className="section" id="services">
-        <h1
-          style={{
-            fontSize: "70px",
-            marginTop: "-25px",
-            color: "#ffd353",
-            fontFamily: "Merriweather",
-            letterSpacing: "3px",
-          }}
-        >
-          Customize
-        </h1>
-        <div className="container">
-          <div className="row">
-            <OwlCarousel
-              className="owl-theme"
-              loop
-              margin={20}
-              // center
-              mergeFit
-              autoplayTimeout={3000}
-              nav
-              items={4}
-              responsive={responsive}
-              autoplay
-              autoplayHoverPause
+          <div className="col-md-8 col-lg-9 ">
+            <section
+              class="partners "
+              style={{
+                position: "relative",
+                top: "50%",
+                transform: "translate(0,-50%)",
+              }}
             >
-              {" "}
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>3D Image </h1>
-                </div>
-              </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalised-rakhi-newspaper-9918857eg.jpg?alt=media&token=57382869-c91c-4043-95b0-77b05f17e871"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>News Papers</h1>
-                </div>
-              </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>Puzzles</h1>
-                </div>
-              </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemorygif.gif?alt=media&token=03233413-7ce2-4da3-93f9-cdb430c2db89"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>Memory Game</h1>
+              <div class="container ">
+                <div class="card shadow-lg ">
+                  <div class="card-body p-5">
+                    <div class="swiper-container">
+                      <OwlCarousel
+                        style={{ zIndex: "5" }}
+                        dots={false}
+                        loop
+                        margin={0}
+                        autoplayTimeout={3000}
+                        items={5}
+                        // responsive={responsive1}
+                        autoplay
+                        autoplayHoverPause
+                      >
+                        <div class="swiper-wrapper align-items-center">
+                          <div class="swiper-slide">
+                            <img
+                              src={require("../Images/logos/animatedframes.png")}
+                              alt=""
+                              // style={{ height: "150px" }}
+                            />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/journey.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                      </OwlCarousel>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>Cubes</h1>
+            </section>
+          </div>
+        </div>{" "}
+        <br />
+        <div className="row">
+          <div className="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <button
+                  onClick={() => {
+                    setopenModal(true);
+                    dispatch({
+                      type: "REDIRECT_USER",
+                      payload: {
+                        days_redirect: "3",
+                      },
+                    });
+                  }}
+                  className="main-button"
+                >
+                  3-Day Pack
+                </button>
+                {/* <p class="card-text">Some quick example text to build</p> */}
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8 col-lg-9 ">
+            <section
+              class="partners "
+              style={{
+                position: "relative",
+                top: "50%",
+                transform: "translate(0,-50%)",
+              }}
+            >
+              <div class="container ">
+                <div class="card shadow-lg ">
+                  <div class="card-body p-5">
+                    <div class="swiper-container">
+                      <OwlCarousel
+                        style={{ zIndex: "5" }}
+                        dots={false}
+                        loop
+                        margin={0}
+                        autoplayTimeout={3000}
+                        items={5}
+                        // responsive={responsive1}
+                        autoplay
+                        autoplayHoverPause
+                      >
+                        <div class="swiper-wrapper align-items-center">
+                          <div class="swiper-slide">
+                            <img
+                              src={require("../Images/logos/animatedframes.png")}
+                              alt=""
+                              // style={{ height: "150px" }}
+                            />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/journey.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/memorygame.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                      </OwlCarousel>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>Collage</h1>
+            </section>
+          </div>
+        </div>{" "}
+        <br />
+        <div className="row">
+          <div className="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                {/* <p class="card-text">Some quick example text to build</p> */}
+                <button
+                  onClick={() => {
+                    setopenModal(true);
+                    dispatch({
+                      type: "REDIRECT_USER",
+                      payload: {
+                        days_redirect: "5",
+                      },
+                    });
+                  }}
+                  className="main-button"
+                >
+                  5-Day Pack
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8 col-lg-9 ">
+            <section
+              class="partners "
+              style={{
+                position: "relative",
+                top: "50%",
+                transform: "translate(0,-50%)",
+              }}
+            >
+              <div class="container ">
+                <div class="card shadow-lg ">
+                  <div class="card-body p-5">
+                    <div class="swiper-container">
+                      <OwlCarousel
+                        style={{ zIndex: "5" }}
+                        dots={false}
+                        loop
+                        margin={0}
+                        autoplayTimeout={3000}
+                        items={5}
+                        responsive={responsive5}
+                        autoplay
+                        autoplayHoverPause
+                      >
+                        <div class="swiper-wrapper align-items-center">
+                          <div class="swiper-slide">
+                            <img
+                              src={require("../Images/logos/animatedframes.png")}
+                              alt=""
+                              // style={{ height: "150px" }}
+                            />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/journey.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/memorygame.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/newspaper.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/collage.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                      </OwlCarousel>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="productCardDiv">
-                <div>
-                  <img
-                    className="productCardImg"
-                    src="https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FgreetingCardgif.gif?alt=media&token=a0cf3864-72b8-4a18-a1da-3425fd480810"
-                    alt=""
-                  />
-                </div>
-                <div className="productCardTextDiv">
-                  <h1>Greeting Card</h1>
-                </div>
-              </div>
-            </OwlCarousel>
+            </section>
           </div>
         </div>
-      </section>
-      <button
-        onClick={() => {
-          setopenModal(true);
-          dispatch({
-            type: "REDIRECT_USER",
-            payload: {
-              days_redirect: "2",
-            },
-          });
-        }}
-        className="main-button"
-      >
-        2-Day recommended pack
-      </button>{" "}
-      <button
-        onClick={() => {
-          setopenModal(true);
-          dispatch({
-            type: "REDIRECT_USER",
-            payload: {
-              days_redirect: "3",
-            },
-          });
-        }}
-        className="main-button"
-      >
-        3-Day recommended pack
-      </button>{" "}
-      <button
-        onClick={() => {
-          setopenModal(true);
-          dispatch({
-            type: "REDIRECT_USER",
-            payload: {
-              days_redirect: "5",
-            },
-          });
-        }}
-        className="main-button"
-      >
-        5-Day recommended pack
-      </button>{" "}
-      <button
-        onClick={() => {
-          setopenModal(true);
-          dispatch({
-            type: "REDIRECT_USER",
-            payload: {
-              days_redirect: "7",
-            },
-          });
-        }}
-        className="main-button"
-      >
-        7-Day recommended pack
-      </button>{" "}
-      <hr />
+        <br />
+        <div className="row">
+          <div className="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                {/* <p class="card-text">Some quick example text to build</p> */}
+                <button
+                  onClick={() => {
+                    setopenModal(true);
+                    dispatch({
+                      type: "REDIRECT_USER",
+                      payload: {
+                        days_redirect: "7",
+                      },
+                    });
+                  }}
+                  className="main-button"
+                >
+                  7-Day Pack
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8 col-lg-9 ">
+            <section
+              class="partners "
+              style={{
+                position: "relative",
+                top: "50%",
+                transform: "translate(0,-50%)",
+              }}
+            >
+              <div class="container ">
+                <div class="card shadow-lg ">
+                  <div class="card-body p-5">
+                    <div class="swiper-container">
+                      <OwlCarousel
+                        style={{ zIndex: "5" }}
+                        dots={false}
+                        loop
+                        margin={0}
+                        autoplayTimeout={3000}
+                        items={5}
+                        responsive={responsive5}
+                        autoplay
+                        autoplayHoverPause
+                      >
+                        <div class="swiper-wrapper align-items-center">
+                          <div class="swiper-slide">
+                            <img
+                              src={require("../Images/logos/animatedframes.png")}
+                              alt=""
+                              // style={{ height: "150px" }}
+                            />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/journey.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/memorygame.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/newspaper.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src={require("../Images/logos/collage.png")}
+                            alt=""
+                            // style={{ height: "150px" }}
+                          />
+                        </div>
+                      </OwlCarousel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <br />
+      </div>
       <Modal
         style={{
           display: "flex",
@@ -711,7 +844,7 @@ function SevenDayHome({ history }) {
           </div>
         }
       </Modal>
-      <hr />
+
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (

@@ -15,7 +15,6 @@ import Particles from "react-particles-js";
 import { isMobileOnly, isTablet } from "react-device-detect";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import sample from "./Images/bgvideo.mp4";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -136,15 +135,13 @@ export default function LandingPage() {
         </nav>
         {/* <!-- Masthead--> */}
         <header class="masthead" data-aos="zoom-in">
-          <video
-            style={{ width: "100%", height: "auto" }}
-            className="videoTag"
-            autoPlay
-            loop
-            muted
-          >
-            <source src={sample} type="video/mp4" />
-          </video>
+          <div class="crossfade">
+            <figure></figure>
+            <figure></figure>
+            <figure></figure>
+            <figure></figure>
+            <figure></figure>
+          </div>
         </header>
 
         <section class="partners mt-n5">
@@ -154,15 +151,14 @@ export default function LandingPage() {
                 <div class="swiper-container">
                   <OwlCarousel
                     style={{ zIndex: "5" }}
-                    // className="owl-theme"
                     dots={false}
                     loop
                     margin={0}
-                    autoplayTimeout={4000}
+                    autoplayTimeout={3000}
                     items={5}
                     responsive={responsive}
                     autoplay
-                    autoplayHoverPause
+                    // autoplayHoverPause
                   >
                     <div class="swiper-wrapper align-items-center">
                       <div class="swiper-slide">

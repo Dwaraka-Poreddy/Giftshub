@@ -9,7 +9,7 @@ const items = [
       " The heart symbol is known to be the patent of love and affection for about 300+ years now",
     title: "3D Heart",
     badge1: "Valantine",
-    badge2: "",
+    badge2: "Laptop",
   },
   {
     id: "2",
@@ -56,8 +56,8 @@ const items = [
     link: "/collagepage",
     text: " Photographs are the stories that we fail to put in words.",
     title: "Collage",
-    badge1: "",
-    badge2: "Laptop",
+    badge1: "Laptop",
+    badge2: "",
   },
   {
     id: "6",
@@ -68,8 +68,8 @@ const items = [
     text:
       " Create an animated effect of two pictures with an underlying text which surprises you everytime you hover on it!",
     title: "Animated Frames",
-    badge1: "",
-    badge2: "Laptop",
+    badge1: "Laptop",
+    badge2: "",
   },
   {
     id: "7",
