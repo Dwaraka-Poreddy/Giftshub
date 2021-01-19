@@ -98,17 +98,18 @@ function NavBar() {
                       {user.email.split("@")[0]}
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href={`/aboutus`}>
-                      ABOUT US
-                    </a>
-                  </li>
+
                   <li class="nav-item">
                     <a
                       class="nav-link js-scroll-trigger"
                       href={`/userpackspage`}
                     >
                       MY PACKS
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href={`/aboutus`}>
+                      ABOUT US
                     </a>
                   </li>
                   <li class="nav-item">

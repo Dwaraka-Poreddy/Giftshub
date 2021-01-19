@@ -14,12 +14,13 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import CropPage from "../Utils/CropPage";
 import ImageIcon from "@material-ui/icons/Image";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import GradientIcon from "@material-ui/icons/Gradient";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -44,8 +45,8 @@ function TicketDeckPage() {
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
-  const [toname, settoname] = useState("Lannister");
-  const [dummytoname, setdummytoname] = useState("Lannister");
+  const [toname, settoname] = useState("Lannister l");
+  const [dummytoname, setdummytoname] = useState("Lannister l");
   const [editname, seteditname] = useState(false);
   const [fbimg, setfbimg] = useState(
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -157,7 +158,7 @@ function TicketDeckPage() {
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <div>
         {" "}
         <Tour
@@ -172,15 +173,15 @@ function TicketDeckPage() {
           accentColor={accentColor}
         />
       </div>
-
       <br />
-
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-9">{func()}</div>
           {/* <div class="col-lg-1"></div> */}
           <div
-            className="threedrnav   col-lg-3"
+            className="   col-lg-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -217,36 +218,40 @@ function TicketDeckPage() {
               <hr />
             </BrowserView>
 
-            <div style={{ justifyContent: "center" }}>
-              <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+            <div>
+              {" "}
+              <center>
+                <div data-tut="reactour__changeImage">
+                  {" "}
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
-              </div>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </div>{" "}
+              </center>
               <center>
                 <div data-tut="reactour__head">
                   {editname ? (

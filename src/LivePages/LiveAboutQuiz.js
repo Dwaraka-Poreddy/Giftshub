@@ -3,6 +3,7 @@ import LiveQuestionCard from "../AboutQuiz/LiveQuestionCard";
 import items from "../AboutQuiz/questions";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveThreeDImage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [quesArray, setquesArray] = useState([]);
@@ -26,6 +27,7 @@ export default function LiveThreeDImage({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+      <LiveNavBar />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div>
           {loading ? (

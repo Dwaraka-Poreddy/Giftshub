@@ -14,7 +14,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
@@ -245,9 +245,12 @@ function SevenDayHome({ history }) {
   };
   return (
     <div>
-      <AuthHeader />
+      <NavBar />
       <br />
       <br />
+      <br />
+      <br />
+
       <div className="container">
         <div className="row">
           <div className="col-md-4 col-lg-3">

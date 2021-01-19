@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Journey from "../Journey/Journey";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveCubesPage({ match }) {
   const [t1, sett1] = useState("");
   const [t2, sett2] = useState("");
@@ -52,13 +53,7 @@ export default function LiveCubesPage({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <nav class="navbar navbar-expand-md bg-light navbar-light">
-        <div class="container">
-          <a class=" navbar-brand text-primary" href={`/`}>
-            Gifts Hub Page
-          </a>
-        </div>
-      </nav>
+      <LiveNavBar />
       <br />
       <br />
       <div>

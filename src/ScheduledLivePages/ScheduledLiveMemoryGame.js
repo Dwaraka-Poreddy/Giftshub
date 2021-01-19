@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 export default function ScheduledLiveMemoryGame({ match }) {
   const database = firebase.firestore();
@@ -128,7 +128,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <ScheduledLiveNav slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} />
 
       <div class="container-fluid">
         <div class="row">

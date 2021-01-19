@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 import "./ScheduledLiveMainPage.css";
 import bgvideo from "../Images/mainpagebg.mp4";
@@ -86,7 +86,7 @@ function ScheduledLiveMainPage({ match }) {
     <div>
       {" "}
       <body id="page-top">
-        {/* <ScheduledLiveNav slug={match.params.slug} /> */}
+        {/* <ScheduledLiveNavBar slug={match.params.slug} /> */}
         <nav
           class={
             !navstate

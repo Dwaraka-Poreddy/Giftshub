@@ -5,7 +5,7 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
-import GetAppIcon from "@material-ui/icons/GetApp";
+import LiveNavBar from "../NavBars/LiveNavBar";
 import Loader from "react-loader-spinner";
 function LiveMagazine({ match }) {
   const [fbimg, setfbimg] = useState("");
@@ -44,61 +44,13 @@ function LiveMagazine({ match }) {
 
   return (
     <div>
-      <header
-        style={{ backgroundColor: "#70cff3", color: "#ffffff" }}
-        class="header-area header-sticky"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <nav class="main-nav">
-                <Link class="logo" to="/">
-                  Gifts Hub
-                </Link>
-
-                <ul class="nav">
-                  <li class="scroll-to-section">
-                    <a href="#welcome" class="active">
-                      Home
-                    </a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#about">Combo</a>
-                  </li>
-                  <li class="scroll-to-section">
-                    <a href="#services">Services</a>
-                  </li>
-                </ul>
-                <a href="#menu" class="menu-trigger">
-                  <span>Menu</span>
-                </a>
-                {/* <li>
-                  <center>
-                    <div
-                      style={{
-                        width: "200px",
-                      }}
-                    >
-                      <HeaderBtn
-                        handleClick={() => {
-                          handleMemeDownlod(this);
-                        }}
-                        Icon={GetAppIcon}
-                        title="Download image"
-                      />
-                    </div>
-                  </center>
-                </li> */}
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
+      <LiveNavBar />
+      <br />
+      <br />
       <br />
       <br />
       <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.8" }}>
+        <div className="mb-3" style={{ flex: "0.8", margin: "auto" }}>
           {loading ? (
             <Loader
               type="BallTriangle"

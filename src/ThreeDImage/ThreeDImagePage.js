@@ -9,7 +9,6 @@ import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import "./ThreeDImagePage.css";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -17,7 +16,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 
@@ -141,7 +140,7 @@ function ThreeDImagePage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <div>
         {" "}
         <Tour
@@ -156,13 +155,14 @@ function ThreeDImagePage() {
           accentColor={accentColor}
         />
       </div>
-
+      <br />
+      <br />
       <br />
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+          <div class="  col-lg-7  mb-5">
             <ThreeDImage
               firstcol={firstcol}
               secondcol={secondcol}
@@ -346,50 +346,6 @@ function ThreeDImagePage() {
           </div>
         </div>
       </div>
-
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

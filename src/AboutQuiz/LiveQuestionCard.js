@@ -14,13 +14,32 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
     "green",
     "yellow",
     "purple",
+    "red",
+    "blue",
+    "orange",
+    "green",
+    "yellow",
+    "purple",
+    "red",
+    "blue",
+    "orange",
+    "green",
+    "yellow",
+    "purple",
   ]);
-
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
   const handleoptionclick = (index) => {
     if (answersArray[quesnumber] == index) {
       setcorrect(correct + 1);
       var sheeps = bgcolrs;
-      sheeps[quesnumber] = "transparent";
+      var num = getRandomInt(quesArray.length);
+      while (sheeps[num] == "transparent") {
+        num = getRandomInt(quesArray.length);
+        console.log(num);
+      }
+      sheeps[num] = "transparent";
       setbgcolrs(sheeps);
     }
     if (quesnumber + 1 == quesArray.length) {
@@ -32,8 +51,6 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
   };
   return (
     <div className="App">
-      {JSON.stringify(answersArray)}
-      {JSON.stringify(bgcolrs)}
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
@@ -84,7 +101,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                       lineHeight: "1.2",
                     }}
                   >
-                    {items[quesArray[quesnumber]].question}
+                    {items[quesArray[quesnumber]].question2_live}
                   </h4>
                   <center>
                     <div
@@ -103,9 +120,11 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                               >
                                 <img
                                   style={{ width: "100%" }}
-                                  src={
-                                    items[quesArray[quesnumber]].images[index]
-                                  }
+                                  src={require("./imgquiz/" +
+                                    items[quesArray[quesnumber]].images[index])}
+                                  // src={
+                                  //   items[quesArray[quesnumber]].images[index]
+                                  // }
                                   alt=""
                                 />
                                 {item}
@@ -137,6 +156,18 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                     setcorrect(0);
                     setquesnumber(0);
                     setbgcolrs([
+                      "red",
+                      "blue",
+                      "orange",
+                      "green",
+                      "yellow",
+                      "purple",
+                      "red",
+                      "blue",
+                      "orange",
+                      "green",
+                      "yellow",
+                      "purple",
                       "red",
                       "blue",
                       "orange",

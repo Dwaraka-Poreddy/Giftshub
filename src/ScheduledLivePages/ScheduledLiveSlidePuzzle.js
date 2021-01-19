@@ -7,7 +7,7 @@ import "./ScheduledLiveSlidePuzzle.css";
 import Loader from "react-loader-spinner";
 import CircleTimer from "./CircleTimer";
 import { toast } from "react-toastify";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 function ScheduledLiveSlidePuzzle({ match }) {
   let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
@@ -93,11 +93,11 @@ function ScheduledLiveSlidePuzzle({ match }) {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setTimeLeft(calculateTimeLeft());
+  //   }, 1000);
+  // });
   const timerComponents = [];
 
   Object.keys(timeLeft).forEach((interval) => {
@@ -114,7 +114,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
 
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
-      <ScheduledLiveNav slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} />
 
       <div class="container-fluid">
         <br />

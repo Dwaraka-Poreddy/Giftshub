@@ -218,14 +218,7 @@ export default function TicketDeck({ name, fbimg, handscol }) {
         }}
       >
         <h4 className="swatchH4">{name}</h4>
-        <div
-          style={{
-            width: "100%",
-            position: "absolute",
-            top: "21%",
-            left: "0",
-          }}
-        >
+        <div className="swatchAnalogClock">
           {" "}
           <AnalogClock fbimg={fbimg} name={name} handscol={handscol} />
         </div>{" "}

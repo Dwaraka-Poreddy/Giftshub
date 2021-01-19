@@ -5,7 +5,7 @@ import firebase from "../firebase";
 import { toast } from "react-toastify";
 import "./LiveSlidePuzzle.css";
 import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [loading, setloading] = useState(false);
@@ -45,7 +45,7 @@ function LiveAnimatedFramePage({ match }) {
 
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
-      {/*  */}
+      <LiveNavBar />
       <div class="container-fluid">
         <br />
         <center>

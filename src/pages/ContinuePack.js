@@ -11,7 +11,7 @@ import Share from "../Utils/Share";
 import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
 import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
 import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
-import ScheduledSwatchBook from "../SwatchBook/ScheduledSwatchBook";
+import ScheduledSwatchBookPage from "../SwatchBook/ScheduledSwatchBookPage";
 import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
 import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
 import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
@@ -27,14 +27,14 @@ import Paper from "@material-ui/core/Paper";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { isMobileOnly, isTablet } from "react-device-detect";
 import "./ContinuePack.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 const usemodStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -194,7 +194,7 @@ function ContinuePack({ match, history }) {
       marginBottom: theme.spacing(1),
     },
   }));
-  const mobview = () => {
+  const Browview = () => {
     return (
       <div class="col-lg-6">
         {" "}
@@ -269,7 +269,7 @@ function ContinuePack({ match, history }) {
     }
     if (dataid[step] === "swatchbook") {
       return (
-        <ScheduledSwatchBook
+        <ScheduledSwatchBookPage
           isTourOpen={isTourOpen}
           setTourOpend={setTourOpend}
           step={step}
@@ -527,13 +527,13 @@ function ContinuePack({ match, history }) {
   };
 
   return (
-    <div>
-      <AuthHeader />
-
-      <div
-        style={{ backgroundColor: "#d3d3d3", textAlign: "justify" }}
-        class="container"
-      >
+    <div style={{ backgroundColor: "#70cff3", textAlign: "justify" }}>
+      <NavBar />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div style={{ backgroundColor: "#d3d3d3" }} class="container">
         <div class="row">
           <div class="col-lg-6 ">
             <p>
@@ -545,11 +545,6 @@ function ContinuePack({ match, history }) {
               <div
                 style={{
                   margin: "auto",
-                  // position: "absolute",
-                  // top: "50%",
-                  // left: "50%",
-                  // MsTransform: "translateY(-50%) translateX(-50%)",
-                  // transform: "translateY(-50%) translateX(-50%)",
                 }}
               >
                 <button
@@ -562,14 +557,7 @@ function ContinuePack({ match, history }) {
                 >
                   Share
                 </button>
-                {/* <HeaderBtn
-                  handleClick={() => {
-                    setshowshare(true);
-                    setopenModal(true);
-                  }}
-                  Icon={ShareIcon}
-                  title="Share "
-                />{" "} */}
+
                 {!showshare ? null : (
                   <Modal
                     style={{
@@ -625,54 +613,11 @@ function ContinuePack({ match, history }) {
             </center>
             <br />
           </div>
-          {isMobileOnly ? null : isTablet ? null : mobview()}
+          {isMobileOnly ? null : isTablet ? null : Browview()}
         </div>
       </div>
 
       {horizontalStepper()}
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

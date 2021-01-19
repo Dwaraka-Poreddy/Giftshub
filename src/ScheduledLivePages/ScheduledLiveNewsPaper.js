@@ -6,7 +6,7 @@ import Loader from "react-loader-spinner";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import CircleTimer from "./CircleTimer";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 function ScheduledLiveNewsPaper({ match }) {
   let dispatch = useDispatch();
   const database = firebase.firestore();
@@ -114,7 +114,7 @@ function ScheduledLiveNewsPaper({ match }) {
 
   return (
     <div>
-      <ScheduledLiveNav slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} />
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-2">
         <div class="row">

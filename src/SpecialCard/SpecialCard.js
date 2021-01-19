@@ -8,7 +8,6 @@ function SpecialCard({ fbimg, head1, para, head2 }) {
           <h1 className="specialcardHoverText">Hover the card below !!!</h1>
         </center>
         <div class="row">
-          <div class="col "></div>
           <div class="col p-0">
             <div
               style={{
@@ -16,7 +15,7 @@ function SpecialCard({ fbimg, head1, para, head2 }) {
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-
+                margin: "auto",
                 overflow: "hidden",
               }}
               class="specialcard"
@@ -37,10 +36,8 @@ function SpecialCard({ fbimg, head1, para, head2 }) {
               </div>
             </div>
           </div>
-          <div class="col "></div>
         </div>
       </div>
-      ;
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AnimatedFrame from "../AnimatedFrames/AnimatedFrame";
 import firebase from "../firebase";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 import Loader from "react-loader-spinner";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg1, setfbimg1] = useState("");
@@ -27,6 +27,7 @@ function LiveAnimatedFramePage({ match }) {
 
   return (
     <div>
+      <LiveNavBar />
       <br />
       <br />
       {loading ? (

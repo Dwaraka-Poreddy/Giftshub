@@ -10,7 +10,6 @@ import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import "./ThreeDImagePage.css";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import { useSelector } from "react-redux";
@@ -256,7 +255,7 @@ function ScheduledThreeDImagePage({
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+          <div class="  col-lg-7 mb-3">
             {Cloading ? (
               <Loader
                 type="BallTriangle"

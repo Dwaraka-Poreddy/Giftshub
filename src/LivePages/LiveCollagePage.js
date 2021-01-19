@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Collage from "../Collage/Collage";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveCollagePage({ match }) {
   const [loading, setloading] = useState(false);
   const [fbimg1, setfbimg1] = useState("");
@@ -45,17 +45,21 @@ export default function LiveCollagePage({ match }) {
   }, []);
   const func = () => {
     return (
-      <Collage
-        fbimg1={fbimg1}
-        fbimg2={fbimg2}
-        fbimg3={fbimg3}
-        fbimg4={fbimg4}
-        fbimg5={fbimg5}
-        fbimg6={fbimg6}
-        fbimg7={fbimg7}
-        fbimg8={fbimg8}
-        fbimg9={fbimg9}
-      />
+      <div>
+        {" "}
+        <LiveNavBar />
+        <Collage
+          fbimg1={fbimg1}
+          fbimg2={fbimg2}
+          fbimg3={fbimg3}
+          fbimg4={fbimg4}
+          fbimg5={fbimg5}
+          fbimg6={fbimg6}
+          fbimg7={fbimg7}
+          fbimg8={fbimg8}
+          fbimg9={fbimg9}
+        />
+      </div>
     );
   };
   return (

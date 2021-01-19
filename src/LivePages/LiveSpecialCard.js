@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SpecialCard from "../SpecialCard/SpecialCard";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 export default function LiveSpecialCard({ match }) {
@@ -30,12 +30,15 @@ export default function LiveSpecialCard({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+      <LiveNavBar />
+      <br />
+      <br />
       <br />
       <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
+          <div className="mb-3" style={{ flex: "0.7" }}>
             {loading ? (
               <Loader
                 type="BallTriangle"

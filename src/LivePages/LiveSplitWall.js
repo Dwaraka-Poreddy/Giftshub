@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SplitWallImage from "../SplitWallImage/SplitWallImage";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 
 export default function LiveSplitWall({ match }) {
   const [fbimg, setfbimg] = useState("");
@@ -20,6 +20,7 @@ export default function LiveSplitWall({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+      <LiveNavBar />
       <br />
       <br />
       <div style={{ backgroundColor: "#70cff3" }}>

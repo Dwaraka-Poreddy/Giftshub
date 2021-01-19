@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import LiveNavBar from "../NavBars/LiveNavBar";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [message, setmessage] = useState("");
@@ -35,6 +35,7 @@ function LiveAnimatedFramePage({ match }) {
 
   return (
     <div>
+      <LiveNavBar />
       <br />
       <br />
       {loading ? (

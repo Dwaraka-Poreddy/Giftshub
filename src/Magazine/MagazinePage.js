@@ -23,7 +23,7 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import "../Buttons.css";
 import GetAppIcon from "@material-ui/icons/GetApp";
@@ -173,7 +173,10 @@ function MagazinePage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
+      <br />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -429,50 +432,6 @@ function MagazinePage() {
           </div>
         </div>
       </div>
-
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

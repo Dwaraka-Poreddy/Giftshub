@@ -4,7 +4,7 @@ import Collage from "../Collage/Collage";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import CircleTimer from "./CircleTimer";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 export default function LiveCollagePage({ match }) {
   let dispatch = useDispatch();
   const [loading, setloading] = useState(false);
@@ -119,7 +119,7 @@ export default function LiveCollagePage({ match }) {
 
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <ScheduledLiveNav dataurl={dataurl} slug={match.params.slug} />
+      <ScheduledLiveNavBar dataurl={dataurl} slug={match.params.slug} />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.15" }}></div>

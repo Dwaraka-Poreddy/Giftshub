@@ -15,25 +15,22 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import ImageIcon from "@material-ui/icons/Image";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import firebase from "../firebase";
 import { storage } from "../firebase";
 import Modal from "@material-ui/core/Modal";
-import Button from "@material-ui/core/Button";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import MuiAlert from "@material-ui/lab/Alert";
 import ShareIcon from "@material-ui/icons/Share";
 import CloseIcon from "@material-ui/icons/Close";
-import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import { BrowserView } from "react-device-detect";
-import LinkIcon from "@material-ui/icons/Link";
 import Fab from "@material-ui/core/Fab";
 import Loader from "react-loader-spinner";
 import "../Buttons.css";
+import { isMobileOnly, isTablet } from "react-device-detect";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -304,9 +301,42 @@ export default function SpecialCardPage() {
       content: `Displays options to share the live link on Facebook, WhatsApp, Twitter and Email.`,
     },
   ];
+  const Browview = () => {
+    return (
+      <>
+        <center>
+          <div
+            style={{
+              justifyContent: "center",
+              padding: "20px 0 0 0 ",
+            }}
+          >
+            <span style={{ color: "#ffffff" }}>
+              {" "}
+              Hello! Allow us to give you a small tour on how to generate this
+              special gift. We are sure you wouldn't need one the next time you
+              are back.
+              <br /> P.S : Its that easy
+            </span>
+            <HeaderBtn
+              handleClick={() => {
+                setIsTourOpen(true);
+              }}
+              Icon={FlightTakeoffIcon}
+              title=" Start Tour "
+            />
+          </div>
+        </center>
+        <hr />
+      </>
+    );
+  };
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
+      <br />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -318,11 +348,10 @@ export default function SpecialCardPage() {
         rounded={5}
         accentColor={accentColor}
       />
-
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+          <div class="  col-lg-7 d-flex justify-content-center mb-3">
             <SpecialCard
               fbimg={fbimg}
               head2={head2}
@@ -342,32 +371,8 @@ export default function SpecialCardPage() {
               right: "0",
             }}
           >
-            <BrowserView>
-              <center>
-                <div
-                  style={{
-                    justifyContent: "center",
-                    padding: "20px 0 0 0 ",
-                  }}
-                >
-                  <span style={{ color: "#ffffff" }}>
-                    {" "}
-                    Hello! Allow us to give you a small tour on how to generate
-                    this special gift. We are sure you wouldn't need one the
-                    next time you are back.
-                    <br /> P.S : Its that easy
-                  </span>
-                  <HeaderBtn
-                    handleClick={() => {
-                      setIsTourOpen(true);
-                    }}
-                    Icon={FlightTakeoffIcon}
-                    title=" Start Tour "
-                  />
-                </div>
-              </center>
-              <hr />
-            </BrowserView>
+            {" "}
+            {isMobileOnly ? null : isTablet ? null : Browview()}
             <Modal
               style={{
                 display: "flex",
@@ -437,7 +442,6 @@ export default function SpecialCardPage() {
                 </div>
               }
             </Modal>
-
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               {" "}
               <div data-tut="reactour__changeImage">
@@ -623,49 +627,6 @@ export default function SpecialCardPage() {
           </div>
         </div>
       </div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

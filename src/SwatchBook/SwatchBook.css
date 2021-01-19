@@ -24,7 +24,7 @@
   background-image: url(https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fegg_shell.jpg?alt=media&token=c32757c0-9119-4740-beb5-ea90c327aec9);
 }
 .swatchH4 {
-  font-size: 15px;
+  font-size: 14px;
   padding: 10px;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.2);
@@ -42,7 +42,7 @@
   font-weight: bold;
 }
 .swatchH2 {
-  font-size: 32px;
+  font-size: 26px;
   transform: rotate(-90deg);
   width: 300px;
   position: relative;
@@ -57,15 +57,19 @@
   border-radius: 100%;
   background: linear-gradient(135deg, #dddddd 0%, #58535e 48%, #889396 100%);
   position: relative;
-  /* top: 235px; */
-  bottom: -58%;
+  bottom: -62.5%;
   left: 0px;
 }
 #swatchticket12 {
   background-color: #000;
   background-image: url("https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fdark_leather.jpg?alt=media&token=4b9dcd4a-5ccc-40d0-8b01-3683722cb985");
 }
-
+.swatchAnalogClock {
+  width: 100%;
+  position: absolute;
+  top: 24%;
+  left: 0;
+}
 @media only screen and (max-width: 600px) {
   .swatchticket {
     width: 65px;
@@ -82,7 +86,7 @@
     height: 390px;
   }
   .swatchH4 {
-    font-size: 8px;
+    font-size: 5px;
     padding: 5px;
   }
   .swatchH3 {
@@ -92,14 +96,17 @@
     font-size: 5px;
   }
   .swatchH2 {
-    font-size: 16px;
-    bottom: -50%;
+    font-size: 12px;
+    bottom: -43%;
     right: 100px;
   }
   .swatchcircle {
     width: 10px;
     height: 10px;
-    /* top: 93px; */
+    bottom: -50%;
+  }
+  .swatchAnalogClock {
+    top: 27.5%;
   }
 }
 @media only screen and (min-width: 600px) and (max-width: 800px) {
@@ -119,7 +126,7 @@
     height: 540px;
   }
   .swatchH4 {
-    font-size: 10px;
+    font-size: 8px;
     padding: 6.55px;
   }
 
@@ -132,14 +139,14 @@
   }
 
   .swatchH2 {
-    font-size: 19px;
-    /* top: 105px; */
+    font-size: 17px;
+    bottom: -46%;
     right: 82px;
   }
   .swatchcircle {
     width: 13px;
     height: 13px;
-    /* top: 142px; */
+    bottom: -58%;
   }
 }
 @media only screen and (min-width: 800px) and (max-width: 1000px) {
@@ -159,7 +166,7 @@
     height: 720px;
   }
   .swatchH4 {
-    font-size: 13px;
+    font-size: 11px;
     padding: 8px;
   }
 
@@ -168,17 +175,17 @@
   }
 
   .swatchH6 {
-    font-size: 7px;
+    font-size: 10px;
   }
 
   .swatchH2 {
-    font-size: 28px;
-    /* top: 150px; */
-    right: 58px;
+    font-size: 22px;
+    bottom: -54%;
+    right: 50px;
   }
   .swatchcircle {
     width: 17px;
     height: 17px;
-    /* top: 200px; */
+    bottom: -60%;
   }
 }

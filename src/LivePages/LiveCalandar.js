@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Calandar from "../Calandar/Calandar";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveCalandar({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [firstcol, setfirstcol] = useState("");
@@ -25,6 +26,7 @@ export default function LiveCalandar({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+      <LiveNavBar />
       <br />
       <br />
       <div style={{ backgroundColor: "#70cff3" }}>

@@ -4,7 +4,7 @@ import OpenGreetingCard from "../OpenGreetingCard/OpenGreetingCard";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 import CircleTimer from "./CircleTimer";
-import ScheduledLiveNav from "./SchdeuledLiveNav";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 function ScheduledLiveOpenGreetCard({ match }) {
   let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
@@ -105,7 +105,7 @@ function ScheduledLiveOpenGreetCard({ match }) {
 
   return (
     <div>
-      <ScheduledLiveNav slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} />
 
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ThreeDCarousel from "../ThreeDCarousel/ThreeDCarousel";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveThreeDCarousel({ match }) {
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
@@ -37,13 +38,7 @@ export default function LiveThreeDCarousel({ match }) {
   }, []);
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <nav class="navbar navbar-expand-md bg-light navbar-light">
-        <div class="container">
-          <a class=" navbar-brand text-primary" href={`/`}>
-            Gifts Hub Page
-          </a>
-        </div>
-      </nav>
+      <LiveNavBar />
       <br />
       <br />
       <div>

@@ -9,7 +9,7 @@ import CropPage from "../Utils/CropPage";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import NpackSelect from "./NPackSelect";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import Loader from "react-loader-spinner";
 import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
@@ -144,7 +144,10 @@ const Home = ({ history }) => {
         height: "80vh",
       }}
     >
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
+      <br />
       <br />
 
       <button

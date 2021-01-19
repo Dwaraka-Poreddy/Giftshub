@@ -10,11 +10,11 @@ export default function AboutQuiz({
 }) {
   const [quesnumber, setquesnumber] = useState(0);
   const [isselectcomplete, setisselectcomplete] = useState(false);
-  const [name, setname] = useState("srinivas");
-  const setQuestion = (e) => {
-    var res = e.replace("$_$", name);
-    return <h1>{res}</h1>;
-  };
+
+  // const setQuestion = (e) => {
+  //   var res = e.replace("$_$", name);
+  //   return <h1>{res}</h1>;
+  // };
   const handleoptionclick = (index) => {
     setquesArray([...quesArray, quesnumber]);
     setanswersArray([...answersArray, index]);
@@ -54,7 +54,8 @@ export default function AboutQuiz({
                       lineHeight: "1.2",
                     }}
                   >
-                    {setQuestion(items[quesnumber].question)}
+                    {items[quesnumber].question_set}
+                    {/* {setQuestion(items[quesnumber].question)} */}
                   </div>
 
                   <center>
@@ -77,7 +78,8 @@ export default function AboutQuiz({
                             >
                               <img
                                 style={{ width: "100%" }}
-                                src={items[quesnumber].images[index]}
+                                src={require("./imgquiz/" +
+                                  items[quesnumber].images[index])}
                                 alt=""
                               />
                               {item}
