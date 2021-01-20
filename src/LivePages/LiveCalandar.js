@@ -28,7 +28,7 @@ export default function LiveCalandar({ match }) {
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <LiveNavBar />
       <br />
-      <br />
+      <br /> <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "1" }}>

@@ -11,6 +11,14 @@ const allComp = [
       "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
   },
   {
+    id: "calandar",
+    ismailsent: false,
+    content: "Calander",
+    url: "",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeDsqr.PNG?alt=media&token=89f9386d-931d-4642-a744-761ef2b97f2d",
+  },
+  {
     id: "threedcarousel",
     ismailsent: false,
     content: "3D Carousel",

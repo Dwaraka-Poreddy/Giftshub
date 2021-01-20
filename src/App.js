@@ -5,7 +5,7 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AnimatedFrames from "./AnimatedFrames/AnimatedFrame";
+import { Helmet } from "react-helmet";
 const UserPacksPage = lazy(() => import("./UserPages/UserPacksPage"));
 const ThreeDCarouselPage = lazy(() =>
   import("./ThreeDCarousel/ThreeDCarouselPage")
@@ -75,6 +75,9 @@ const ScheduledLiveHexagonalAnim = lazy(() =>
 const ScheduledLiveMagazine = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveMagazine")
 );
+const ScheduledLiveCalandar = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveCalandar")
+);
 const ScheduledLiveThreeDCarousel = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveThreeDCarousel")
 );
@@ -138,6 +141,20 @@ export default function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Free Personalized Virtual Gifting</title>
+        <meta
+          name="description"
+          content="Send flowers online @399 from best flower shop. Order flowers to India with Ferns N Petals & get midnight, same day flower delivery with free."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content=" personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <Suspense
         fallback={
           <div className="col text-center p-5">
@@ -153,8 +170,6 @@ export default function App() {
             path="/threedcarouselpage"
             component={ThreeDCarouselPage}
           />
-
-          <Route exact path="/animatedframes" component={AnimatedFrames} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/aboutquizpage" component={AboutQuizPage} />
           <Route exact path="/journeypage" component={JourneyPage} />
@@ -333,6 +348,11 @@ export default function App() {
             exact
             path="/scheduledlive/collage/:id/:slug"
             component={ScheduledLiveCollage}
+          />
+          <Route
+            exact
+            path="/scheduledlive/calandar/:id/:slug"
+            component={ScheduledLiveCalandar}
           />
         </Switch>
       </Suspense>

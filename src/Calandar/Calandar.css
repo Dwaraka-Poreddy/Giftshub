@@ -1,16 +1,3 @@
-/* body,
-h1,
-h2,
-h3,
-td,
-th,
-tr,
-a,
-p,
-table {
-  margin: 0;
-  padding: 0;
-} */
 body {
   background: #ccc;
 }
@@ -31,9 +18,6 @@ table {
   width: 100%;
   height: 100%;
 
-  /* background: #ebebeb; */
-
-  /* border-collapse: collapse; */
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);

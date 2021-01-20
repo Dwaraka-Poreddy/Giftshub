@@ -59,8 +59,8 @@ export default function Calandar({ fbimg }) {
           </div>
         </center>
         <br />
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
+        <div className="row">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -228,7 +228,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -395,7 +395,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -562,7 +562,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -729,9 +729,8 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
+
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -898,7 +897,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1065,7 +1064,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1232,7 +1231,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1399,9 +1398,8 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
+
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1568,7 +1566,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1735,7 +1733,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -1902,7 +1900,7 @@ export default function Calandar({ fbimg }) {
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-xl-3 col-sm-6">
             <div
               style={{
                 margin: "auto",
@@ -2070,7 +2068,7 @@ export default function Calandar({ fbimg }) {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 
@@ -138,7 +138,10 @@ function CalandarPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
+      <br />
       <div>
         {" "}
         <Tour
@@ -156,12 +159,11 @@ function CalandarPage() {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class=" col-lg-9 p-0">
+          <div class=" col-xl-10 p-0 mb-3">
             <Calandar fbimg={fbimg} />
           </div>
-
           <div
-            className="threedrnav   col-lg-3"
+            className="   col-xl-2 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
