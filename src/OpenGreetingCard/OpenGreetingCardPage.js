@@ -17,7 +17,8 @@ import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import "../Buttons.css";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
@@ -167,7 +168,7 @@ function OpenGreetingCardPage() {
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -179,11 +180,12 @@ function OpenGreetingCardPage() {
         rounded={5}
         accentColor={accentColor}
       />
-
+      <br />
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+          <div class="  col-lg-9 px-0 mb-3">
             <OpenGreetingCard
               fbimg={fbimg}
               message={message}
@@ -192,9 +194,9 @@ function OpenGreetingCardPage() {
               fromtext={fromtext}
             />
           </div>
-          <div class="col-lg-1"></div>
+
           <div
-            className=" col-lg-3"
+            className=" col-lg-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

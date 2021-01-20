@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Magazine.css";
-export default function App({ text, name, fbimg }) {
+export default function App({ text, name, fbimg, BDate }) {
   var today = new Date();
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -17,7 +17,9 @@ export default function App({ text, name, fbimg }) {
           >
             <div style={{ textAlign: "right" }}>
               {" "}
-              <p className="magazineDate">{date}</p>
+              <p className="magazineDate">
+                {new Date(BDate).toLocaleDateString("en-US")}
+              </p>
             </div>
 
             <img

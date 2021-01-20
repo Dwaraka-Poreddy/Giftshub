@@ -93,7 +93,7 @@ function ThreeDImagePage() {
             .putString(image_url, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
+                console.log(downUrl, "downurl");
                 setFireUrl(downUrl);
                 const todoRef = firebase.database().ref("ThreeDImage");
                 const todo = {

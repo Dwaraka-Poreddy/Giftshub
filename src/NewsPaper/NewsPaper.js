@@ -14,7 +14,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
   // );
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <div style={{ backgroundColor: "#FFFFFF" }} id="newsPaper">
           <div>
             <img
@@ -25,7 +25,7 @@ function NewsPaper({ head, para, fbimg, startDate }) {
               alt="Heading"
             />
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "space-evenly" }}>
             <div>
               <img
                 style={{
@@ -37,20 +37,23 @@ function NewsPaper({ head, para, fbimg, startDate }) {
             </div>
             <div style={{ display: "block" }}>
               <div>
-                <p className="Newsdate">
-                  {new Date(startDate).toLocaleDateString("en-US", options)}
-                </p>
-              </div>
-              <div>
-                <img
-                  style={{
-                    width: "80%",
-                    marginLeft: "10px",
-                    marginRight: "px",
-                  }}
-                  src={require("../Images/logo1.png")}
-                  alt="Heading"
-                />
+                <center>
+                  <div>
+                    <p className="Newsdate">
+                      {new Date(startDate).toLocaleDateString("en-US", options)}
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      style={{
+                        width: "90%",
+                        marginRight: "px",
+                      }}
+                      src={require("../Images/logo1.png")}
+                      alt="Heading"
+                    />
+                  </div>
+                </center>
               </div>
             </div>
             <div>
@@ -63,26 +66,27 @@ function NewsPaper({ head, para, fbimg, startDate }) {
               />
             </div>
           </div>
-          <div style={{ display: "flex" }}>
-            <div>
-              <img
-                style={{
-                  width: "100%",
-                }}
-                src={require("../Images/tileLeft.png")}
-                alt="Heading"
-              />
-            </div>
-            <div>
-              <img
-                style={{
-                  width: "90%",
-                  marginLeft: "-40px",
-                  marginTop: "1.65px",
-                }}
-                src={require("../Images/tileRight1.png")}
-                alt="Heading"
-              />
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-9 px-0">
+                <img
+                  style={{
+                    width: "100%",
+                  }}
+                  src={require("../Images/tileLeft.png")}
+                  alt="Heading"
+                />
+              </div>
+              <div className="col-3 pl-0">
+                <img
+                  style={{
+                    width: "100%",
+                    marginTop: "1.65px",
+                  }}
+                  src={require("../Images/tileRight1.png")}
+                  alt="Heading"
+                />
+              </div>
             </div>
           </div>
           <div style={{ display: "flex" }}>

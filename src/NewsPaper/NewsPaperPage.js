@@ -8,7 +8,7 @@ import { BrowserView } from "react-device-detect";
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
-
+import "../Buttons.css";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -24,10 +24,11 @@ import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import "../Buttons.css";
 var base64Img = require("base64-img");
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +56,7 @@ function NewsPaperPage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-  const [BDate, setBDate] = useState("2020-12-10");
+  const [BDate, setBDate] = useState(Date.now());
 
   const [head, sethead] = useState(
     "Ms. Super Girl wins the coolest  friend of the year award 2020 !!!"
@@ -71,9 +72,6 @@ function NewsPaperPage() {
   };
 
   const handleFireBaseUpload = () => {
-    base64Img.base64Sync("../Images/MainImage.png", function (err, data) {
-      console.log(err, "err", data, "console data");
-    });
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
@@ -110,7 +108,7 @@ function NewsPaperPage() {
             .putString(image_url, "base64", { contentType: "image/jpg" })
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
+                console.log(downUrl, "downurl");
                 setFireUrl(downUrl);
                 const todoRef = firebase.database().ref("NewsPaper");
                 const todo = {
@@ -182,7 +180,7 @@ function NewsPaperPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -193,11 +191,14 @@ function NewsPaperPage() {
         className="helper"
         rounded={5}
         accentColor={accentColor}
-      />
+      />{" "}
+      <br />
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
           <div class="col-lg-1"></div>
-          <div ref={docToPrint} id="newspaper" class="  col-lg-7">
+          <div ref={docToPrint} id="newspaper" class="  col-lg-7 mb-3">
             <NewsPaper
               fbimg={fbimg}
               head={head}
@@ -445,50 +446,6 @@ function NewsPaperPage() {
           </div>
         </div>
       </div>
-
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

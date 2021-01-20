@@ -115,11 +115,13 @@ function ScheduledLiveNewsPaper({ match }) {
   return (
     <div>
       <ScheduledLiveNavBar slug={match.params.slug} />
-
+      <br />
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-2">
         <div class="row">
           <div class="col-sm-1 "></div>
-          <div class="col-sm-10 ">
+          <div class="col-sm-10 mb-3">
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -175,49 +177,6 @@ function ScheduledLiveNewsPaper({ match }) {
           <div class="col-sm-1 "></div>
         </div>
       </div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

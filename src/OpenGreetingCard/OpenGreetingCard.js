@@ -11,30 +11,9 @@ export default function OpenGreetingCard({
 }) {
   const [openCard, setOpenCard] = useState("gc_carrd ");
 
-  const audioTune = new Audio(
-    "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Faudio.mp3?alt=media&token=75a5f730-ebc1-4b2f-a4d5-06432c85fcd8"
-  );
-  // useEffect(() => {
-  //   audioTune.load();
-  // }, []);
-  // const playSound = () => {
-  //   audioTune.play();
-  // };
-
-  // // pause audio sound
-  // const pauseSound = () => {
-  //   audioTune.pause();
-  // };
-
-  // stop audio sound
-  const stopSound = () => {
-    audioTune.pause();
-    audioTune.currentTime = 0;
-  };
   const timer = () => {
     setTimeout(() => {
       setOpenCard("gc_carrd open");
-      // playSound();
 
       setTimeout(() => {
         setOpenCard("gc_carrd");
@@ -52,7 +31,7 @@ export default function OpenGreetingCard({
   }, [document.URL]);
 
   return (
-    <div>
+    <div className="opengreetingcardmaindiv">
       <div className="gc_mainCard">
         <section class="gc_containerr">
           <div className={openCard} id="theCard">
@@ -86,16 +65,13 @@ export default function OpenGreetingCard({
                 style={{
                   backgroundImage: "url(" + fbimg + ")",
                   opacity: "0.9",
-                  // backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   overflow: "hidden",
                   boxShadow: "0px 0px 0px 15px #dfccaf inset",
-                  // border: "2px solid red"
                 }}
                 class="side gc_back red"
               >
-                {/* <img style={{ width: "100%" }} src={fbimg} alt="" /> */}{" "}
                 <div class="gc_hearts">
                   {" "}
                   <BrowserView>

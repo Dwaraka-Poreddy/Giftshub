@@ -33,7 +33,6 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
                     <source src={sample} type="video/mp4" />
                   </video>{" "}
                   <br />
-                  <br />
                   <h5>
                     {badge1 && (
                       <p>

@@ -25,8 +25,8 @@ const CubesPage = lazy(() => import("./Cubes/CubesPage"));
 const OpenGreetingCardPage = lazy(() =>
   import("./OpenGreetingCard/OpenGreetingCardPage")
 );
-const LiveOpenGreetingCardPage = lazy(() =>
-  import("./LivePages/LiveOpenGreetingCardPage")
+const LiveOpenGreetingCard = lazy(() =>
+  import("./LivePages/LiveOpenGreetingCard")
 );
 const AnimatedFrame = lazy(() => import("./AnimatedFrames/AnimatedFrame"));
 const AnimatedFramePage = lazy(() =>
@@ -223,7 +223,7 @@ export default function App() {
           <Route
             exact
             path="/live/opengreetingcard/:slug"
-            component={LiveOpenGreetingCardPage}
+            component={LiveOpenGreetingCard}
           />
           <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
           <Route

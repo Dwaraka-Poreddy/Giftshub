@@ -57,7 +57,7 @@ const Home = ({ history }) => {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
-  const [Bday_date, setBday_date] = useState();
+  const [Bday_date, setBday_date] = useState(Date.now());
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user) {

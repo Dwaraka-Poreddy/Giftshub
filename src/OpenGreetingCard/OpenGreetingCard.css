@@ -181,3 +181,25 @@
 .side {
   background: url("https://i.ibb.co/WDnSY9v/cbimage.png");
 }
+
+@media only screen and (max-width: 600px) {
+  .gc_containerr {
+    transform: scale(0.9);
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+  .gc_containerr,
+  .opengreetingcardmaindiv {
+    transform: scale(1.2);
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .gc_containerr {
+    transform: scale(1.1);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .gc_containerr {
+    transform: scale(1.3);
+  }
+}

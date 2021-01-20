@@ -38,6 +38,8 @@ function LiveAnimatedFramePage({ match }) {
       <LiveNavBar />
       <br />
       <br />
+      <br />
+      <br />
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (

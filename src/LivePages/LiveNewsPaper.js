@@ -52,7 +52,7 @@ function LiveNewsPaper({ match }) {
       <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
-        <div id="newspaper" style={{ flex: "0.8" }}>
+        <div id="newspaper" className="mb-3" style={{ flex: "0.8" }}>
           {loading ? (
             <Loader
               type="BallTriangle"

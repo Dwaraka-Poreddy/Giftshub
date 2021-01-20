@@ -284,8 +284,7 @@ function ScheduledOpenGreetingCardPage({
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+          <div class="  col-lg-9 px-0 mb-3">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -305,9 +304,9 @@ function ScheduledOpenGreetingCardPage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
+
           <div
-            className=" col-lg-3"
+            className=" col-lg-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

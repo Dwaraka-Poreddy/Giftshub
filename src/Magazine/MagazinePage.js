@@ -54,7 +54,7 @@ function MagazinePage() {
   const [image_url, setimage_url] = useState();
   const [opencrop, setopencrop] = useState(false);
   const [send, setsend] = useState();
-  const [BDate, setBDate] = useState("2020-12-10");
+  const [BDate, setBDate] = useState(Date.now());
 
   const [text, settext] = useState("BEST EVER CAPTAIN");
   const [name, setname] = useState("M S Dhoni");
@@ -192,7 +192,7 @@ function MagazinePage() {
         <div class="row">
           <div class="col-lg-1"></div>
           <div id="magazine" ref={docToPrint} class="  col-lg-7">
-            <Magazine fbimg={fbimg} text={text} name={name} />
+            <Magazine fbimg={fbimg} text={text} name={name} BDate={BDate} />
           </div>
           <div class="col-lg-1"></div>
           <div

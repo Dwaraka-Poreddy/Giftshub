@@ -93,10 +93,10 @@ section .section-title {
   transform-style: preserve-3d;
 }
 
-/* .frontside .card,
+.frontside .card,
 .backside .card {
-  min-height: 312px;
-} */
+  min-height: 300px;
+}
 
 .backside .card a {
   font-size: 18px;

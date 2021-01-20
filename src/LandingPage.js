@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import $ from "jquery";
 import NavBar from "./NavBars/NavBar";
 import firebase from "./firebase";
+
 const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -90,13 +91,11 @@ export default function LandingPage() {
       </div>
     );
   };
-  return (
-    <div className="App">
-      {isMobileOnly ? null : isTablet ? null : browview()}
-      <body id="page-top">
-        <NavBar />
+  const mobviewMainCarousel = () => {
+    return (
+      <>
+        <br />
 
-        {/* <header class="masthead" data-aos="zoom-in"> */}
         <div
           style={{ overflow: "hidden" }}
           id="carouselExampleControls"
@@ -107,22 +106,79 @@ export default function LandingPage() {
             <div class="carousel-item active">
               <img
                 class="d-block w-100"
-                // src="http://jeremyspottery.themerex.net/wp-content/uploads/2016/08/bg4.jpg?id=233"
-                src={require("./Images/zoomcarousel.jpg")}
+                src={require("./Images/zoomcarouselsquare.jpg")}
                 alt="First slide"
               />
             </div>
             <div class="carousel-item zoomcarousel">
               <img
                 class="d-block w-100"
-                // src="http://jeremyspottery.themerex.net/wp-content/uploads/2016/08/home1_slide3.jpg"
-                src={require("./Images/zoomcarousel4.png")}
+                src={require("./Images/zoomcarousel0square.jpg")}
+                jpg
+                alt="Second slide"
+              />
+            </div>
+            <div class="carousel-item zoomcarousel">
+              <img
+                class="d-block w-100"
+                src={require("./Images/zoomcarousel2square.jpg")}
+                jpg
                 alt="Second slide"
               />
             </div>
           </div>
         </div>
-        {/* </header> */}
+      </>
+    );
+  };
+  const browviewMainCarousel = () => {
+    return (
+      <div
+        style={{ overflow: "hidden" }}
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner zoomcarousel">
+          <div class="carousel-item active">
+            <img
+              class="d-block w-100"
+              src={require("./Images/zoomcarousel.jpg")}
+              alt="First slide"
+            />
+          </div>
+          <div class="carousel-item zoomcarousel">
+            <img
+              class="d-block w-100"
+              src={require("./Images/zoomcarousel0.jpg")}
+              jpg
+              alt="Second slide"
+            />
+          </div>
+          <div class="carousel-item zoomcarousel">
+            <img
+              class="d-block w-100"
+              src={require("./Images/zoomcarousel2.jpg")}
+              jpg
+              alt="Second slide"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+  return (
+    <div className="App">
+      {isMobileOnly ? null : isTablet ? null : browview()}
+      <body id="page-top">
+        <NavBar />
+
+        {isMobileOnly
+          ? mobviewMainCarousel()
+          : isTablet
+          ? browviewMainCarousel()
+          : browviewMainCarousel()}
+
         <section class="partners mt-n5">
           <div class="container py-0">
             <div class="card shadow-lg ">

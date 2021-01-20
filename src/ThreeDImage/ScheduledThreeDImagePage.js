@@ -143,6 +143,7 @@ function ScheduledThreeDImagePage({
             .then((savedImage) => {
               savedImage.ref.getDownloadURL().then((downUrl) => {
                 setFireUrl(downUrl);
+                console.log(downUrl, "downurl");
                 const todoRef = firebase.database().ref("ThreeDImage");
                 const todo = {
                   url: downUrl,
