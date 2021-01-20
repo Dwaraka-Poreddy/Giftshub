@@ -8,10 +8,8 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./AnimatedFramePage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -184,15 +182,15 @@ export default function AnimatedFramePage() {
       <br />
       <br />
       <br />
-
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+      <br />
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid ">
         <div class="row">
-          <div class="col-sm-9 mb-3">
+          <div class="col-lg-9 px-0 mb-3" style={{ margin: "auto" }}>
             <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
           </div>
 
           <div
-            className="animatedrnav col-sm-3 mb-3"
+            className=" col-lg-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

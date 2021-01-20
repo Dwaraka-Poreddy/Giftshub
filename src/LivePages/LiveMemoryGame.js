@@ -35,34 +35,34 @@ export default function LiveMemoryGamePage({ match }) {
     setloading(false);
   }, []);
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+    <div style={{ backgroundColor: "#70cff3" }}>
       <LiveNavBar />
-
-      <div>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : (
-                <MemoryGame
-                  fbimg1={fbimg1}
-                  fbimg2={fbimg2}
-                  fbimg3={fbimg3}
-                  fbimg4={fbimg4}
-                  fbimg5={fbimg5}
-                  fbimg6={fbimg6}
-                />
-              )}
+      <br />
+      <br />
+      <br />
+      <br />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ flex: "0.1" }}></div>
+        <div className="mb-3" style={{ flex: "0.8" }}>
+          {loading ? (
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <div>
+              <MemoryGame
+                fbimg1={fbimg1}
+                fbimg2={fbimg2}
+                fbimg3={fbimg3}
+                fbimg4={fbimg4}
+                fbimg5={fbimg5}
+                fbimg6={fbimg6}
+              />
             </div>
-          </div>
-          <div class="col-lg-3"></div>
+          )}
         </div>
       </div>
     </div>

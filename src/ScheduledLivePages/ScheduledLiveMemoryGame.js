@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import MemoryGame from "../MemoryGame/MemoryGame";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
@@ -129,11 +129,14 @@ export default function ScheduledLiveMemoryGame({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
       <ScheduledLiveNavBar slug={match.params.slug} />
-
-      <div class="container-fluid">
+      <br />
+      <br />
+      <br />
+      <br />
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-2">
         <div class="row">
-          <div class="col-lg-3"></div>
-          <div class="col-lg-6">
+          <div class="col-sm-1 "></div>
+          <div class="col-sm-10 mb-3">
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -188,52 +191,10 @@ export default function ScheduledLiveMemoryGame({ match }) {
                 )}
               </div>
             )}
-          </div>
+          </div>{" "}
+          <div class="col-sm-1 "></div>
         </div>
       </div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

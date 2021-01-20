@@ -118,11 +118,15 @@ export default function LiveCollagePage({ match }) {
   });
 
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+    <div style={{ backgroundColor: "#70cff3" }}>
       <ScheduledLiveNavBar dataurl={dataurl} slug={match.params.slug} />
+      <br />
+      <br />
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
+          <div style={{ flex: "0.1" }}></div>
           <div style={{ flex: "0.7" }}>
             {loading ? (
               <Loader
@@ -191,52 +195,9 @@ export default function LiveCollagePage({ match }) {
             )}
           </div>
 
-          <div style={{ flex: "0.15" }}></div>
+          <div style={{ flex: "0.1" }}></div>
         </div>
       </div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

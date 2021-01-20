@@ -48,6 +48,7 @@ export default function LiveCollagePage({ match }) {
       <div>
         {" "}
         <LiveNavBar />
+        <br /> <br /> <br /> <br />
         <Collage
           fbimg1={fbimg1}
           fbimg2={fbimg2}
@@ -63,13 +64,11 @@ export default function LiveCollagePage({ match }) {
     );
   };
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <br />
-      <br />
+    <div style={{ backgroundColor: "#70cff3" }}>
       <div>
         <div style={{ display: "flex" }}>
-          <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7" }}>
+          <div style={{ flex: "0.1" }}></div>
+          <div style={{ flex: "0.8" }}>
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -81,7 +80,7 @@ export default function LiveCollagePage({ match }) {
               func()
             )}
           </div>
-          <div style={{ flex: "0.15" }}></div>
+          <div style={{ flex: "0.1" }}></div>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AnimatedFrames from "./AnimatedFrames/AnimatedFrame";
 const UserPacksPage = lazy(() => import("./UserPages/UserPacksPage"));
 const ThreeDCarouselPage = lazy(() =>
   import("./ThreeDCarousel/ThreeDCarouselPage")
@@ -58,8 +59,8 @@ const LiveAnimatedFramePage = lazy(() =>
   import("./LivePages/LiveAnimatedFramePage")
 );
 const LiveMagazine = lazy(() => import("./LivePages/LiveMagazine"));
-const LiveMemoryGamePage = lazy(() => import("./LivePages/LiveMemoryGamePage"));
-const LiveCollagePage = lazy(() => import("./LivePages/LiveCollagePage"));
+const LiveMemoryGame = lazy(() => import("./LivePages/LiveMemoryGame"));
+const LiveCollage = lazy(() => import("./LivePages/LiveCollage"));
 const SevenDayHome = lazy(() => import("./pages/SevenDayHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
@@ -152,6 +153,8 @@ export default function App() {
             path="/threedcarouselpage"
             component={ThreeDCarouselPage}
           />
+
+          <Route exact path="/animatedframes" component={AnimatedFrames} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/aboutquizpage" component={AboutQuizPage} />
           <Route exact path="/journeypage" component={JourneyPage} />
@@ -246,9 +249,9 @@ export default function App() {
           <Route
             exact
             path="/live/memorygame/:slug"
-            component={LiveMemoryGamePage}
+            component={LiveMemoryGame}
           />
-          <Route exact path="/live/collage/:slug" component={LiveCollagePage} />
+          <Route exact path="/live/collage/:slug" component={LiveCollage} />
           <Route
             exact
             path="/live/animatedframe/:slug"
