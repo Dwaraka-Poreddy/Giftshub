@@ -47,6 +47,7 @@ const LiveThreeDImage = lazy(() => import("./LivePages/LiveThreeDImage"));
 const LiveSlidePuzzle = lazy(() => import("./LivePages/LiveSlidePuzzle"));
 const LiveSpecialCard = lazy(() => import("./LivePages/LiveSpecialCard"));
 const SlidePuzzlePage = lazy(() => import("./SlidePuzzle/SlidePuzzlePage"));
+const SlidePuzzleAnswer = lazy(() => import("./SlidePuzzle/SlidePuzzleAnswer"));
 const ThreeDImagePage = lazy(() => import("./ThreeDImage/ThreeDImagePage"));
 const LiveCubesPage = lazy(() => import("./LivePages/LiveCubesPage"));
 const LiveNewsPaper = lazy(() => import("./LivePages/LiveNewsPaper"));
@@ -170,6 +171,11 @@ export default function App() {
           <Route exact path="/newspaperpage" component={NewsPaperPage} />
           <Route exact path="/cubespage" component={CubesPage} />
           <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
+          <Route
+            exact
+            path="/slidepuzzleanswer"
+            component={SlidePuzzleAnswer}
+          />
           <Route exact path="/magazinepage" component={MagazinePage} />
           <Route exact path="/greet" component={Header} />
 

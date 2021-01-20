@@ -276,7 +276,6 @@ export default function SpecialCardPage() {
     },
     {
       selector: '[data-tut="reactour__head2"]',
-      // content: `Enter the special person’s name.`,
       content: `An optional one-liner to make this person giggle maybe?`,
     },
     {
@@ -350,8 +349,7 @@ export default function SpecialCardPage() {
       />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7 d-flex justify-content-center mb-3">
+          <div class="  col-lg-9 d-flex justify-content-center mb-3">
             <SpecialCard
               fbimg={fbimg}
               head2={head2}
@@ -359,9 +357,9 @@ export default function SpecialCardPage() {
               para={para}
             />
           </div>
-          <div class="col-lg-1"></div>
+
           <div
-            className="threedrnav   col-lg-3"
+            className="threedrnav   col-lg-3  mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -445,23 +443,25 @@ export default function SpecialCardPage() {
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               {" "}
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  // multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Background Image" />
-                </label>
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    // multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
+                  />
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Background Image" />
+                  </label>
+                </center>
               </div>
               <center>
                 <div data-tut="reactour__head1">

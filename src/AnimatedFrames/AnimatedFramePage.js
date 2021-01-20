@@ -15,7 +15,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
@@ -166,7 +166,7 @@ export default function AnimatedFramePage() {
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <div>
         {" "}
         <Tour
@@ -181,16 +181,18 @@ export default function AnimatedFramePage() {
           accentColor={accentColor}
         />
       </div>
-
       <br />
+      <br />
+      <br />
+
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-sm-9 ">
+          <div class="col-sm-9 mb-3">
             <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
           </div>
 
           <div
-            className="animatedrnav col-sm-3"
+            className="animatedrnav col-sm-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -229,60 +231,62 @@ export default function AnimatedFramePage() {
 
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput1"
-                  name="LocalfileInput1"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile1}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop1 ? (
-                  <CropPage
-                    send={send1}
-                    setfbimg={setfbimg1}
-                    setimage_url={setimage_url1}
-                    aspect_ratio={2 / 1}
-                    opencrop={opencrop1}
-                    setopencrop={setopencrop1}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput1"
+                    name="LocalfileInput1"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile1}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput1">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput2"
-                  name="LocalfileInput2"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile2}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop2 ? (
-                  <CropPage
-                    send={send2}
-                    setfbimg={setfbimg2}
-                    setimage_url={setimage_url2}
-                    aspect_ratio={2 / 1}
-                    opencrop={opencrop2}
-                    setopencrop={setopencrop2}
+                  {opencrop1 ? (
+                    <CropPage
+                      send={send1}
+                      setfbimg={setfbimg1}
+                      setimage_url={setimage_url1}
+                      aspect_ratio={2 / 1}
+                      opencrop={opencrop1}
+                      setopencrop={setopencrop1}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput1">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput2"
+                    name="LocalfileInput2"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile2}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput2">
-                  <HeaderBtn Icon={ImageIcon} title="Change  Image 2" />
-                </label>
+                  {opencrop2 ? (
+                    <CropPage
+                      send={send2}
+                      setfbimg={setfbimg2}
+                      setimage_url={setimage_url2}
+                      aspect_ratio={2 / 1}
+                      opencrop={opencrop2}
+                      setopencrop={setopencrop2}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput2">
+                    <HeaderBtn Icon={ImageIcon} title="Change  Image 2" />
+                  </label>
+                </center>
               </div>
               <center>
                 <div

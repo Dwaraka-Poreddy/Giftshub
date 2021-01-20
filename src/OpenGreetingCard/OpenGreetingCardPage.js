@@ -237,33 +237,35 @@ function OpenGreetingCardPage() {
 
             <div style={{ padding: "0 0 20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={2 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={2 / 3}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center>
                 <div
@@ -437,49 +439,6 @@ function OpenGreetingCardPage() {
             </div>
           </div>
         </div>
-        <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-7 col-md-12 col-sm-12">
-                <p className="copyright">
-                  Copyright © 2020 Gift's Hub Company . Design:{" "}
-                  <a rel="nofollow" href="/">
-                    Gift's Hub
-                  </a>
-                </p>
-              </div>
-              <div className="col-lg-5 col-md-12 col-sm-12">
-                <ul className="social">
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-facebook" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-twitter" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-linkedin" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-rss" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-dribbble" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

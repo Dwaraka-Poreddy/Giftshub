@@ -10,13 +10,13 @@ import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "react-loader-spinner";
-import LinkIcon from "@material-ui/icons/Link";
+import NavBar from "../NavBars/NavBar";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
-import AuthHeader from "../components/nav/Header";
+import "../Buttons.css";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
@@ -30,7 +30,7 @@ const secuseStyles = makeStyles((theme) => ({
   },
 }));
 
-function OpenGreetingCardPage() {
+function SlidePuzzlePage() {
   const [showoptions, setshowoptions] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [accentColor, setaccentColor] = useState("#70cff3");
@@ -45,7 +45,6 @@ function OpenGreetingCardPage() {
   const [send, setsend] = useState();
   const [loading, setloading] = useState(false);
 
-  // const [puzzlescore, setpuzzlescore] = useState(0);
   const [fbimg, setfbimg] = useState(
     "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531"
   );
@@ -141,7 +140,7 @@ function OpenGreetingCardPage() {
   ];
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <Tour
         onRequestClose={() => {
           setIsTourOpen(false);
@@ -153,32 +152,41 @@ function OpenGreetingCardPage() {
         rounded={5}
         accentColor={accentColor}
       />
-
+      <br />
+      <br />
+      <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="col-md-1 "></div>
-          <div class="col-lg-6 col-xl-4 mb-5 mt-5 ">
+          <div class="col-lg-7 col-xl-5 mb-xs-0 mb-sm-5 mt-5 p-0">
             {" "}
-            <center>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "auto",
+              }}
+            >
               <SlidePuzzle
                 fbimg={fbimg}
-                // handlepuzzlescore={handlepuzzlescore}
+                handlepuzzlescore={handlepuzzlescore}
               />{" "}
-            </center>
+            </div>
           </div>
-          <div class="col-lg-5 col-xl-4  ">
-            <div>
-              <center>
-                <SlidePuzzleAnswer
-                  handlepuzzlescore={handlepuzzlescore}
-                  fbimg={fbimg}
-                />
-              </center>
+          <div
+            class="col-lg-5 col-xl-4  mb-5 mb-xl-3 mt-0 mt-sm-3 mt-md-0"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div class=" mb-5">
+              <SlidePuzzleAnswer fbimg={fbimg} />
             </div>
           </div>
 
           <div
-            className="threedrnav col-xl-3"
+            className="threedrnav col-xl-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -196,7 +204,6 @@ function OpenGreetingCardPage() {
                     padding: "20px 0 0 0 ",
                   }}
                 >
-                  {/* {livelink ? null : ( */}
                   <span style={{ color: "#ffffff" }}>
                     {" "}
                     Hello! Allow us to give you a small tour on how to generate
@@ -211,7 +218,6 @@ function OpenGreetingCardPage() {
                     Icon={FlightTakeoffIcon}
                     title=" Start Tour "
                   />
-                  {/* )} */}
                 </div>
               </center>
               <hr />
@@ -219,33 +225,35 @@ function OpenGreetingCardPage() {
 
             <div style={{ padding: "20px 0 0 0 ", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>
@@ -310,51 +318,8 @@ function OpenGreetingCardPage() {
           </div>
         </div>
       </div>
-      <footer style={{ backgroundColor: "#70cff3", color: "#ffffff" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="https://templatemo.com">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
 
-export default OpenGreetingCardPage;
+export default SlidePuzzlePage;

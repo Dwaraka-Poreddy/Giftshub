@@ -8,7 +8,7 @@ import Loader from "react-loader-spinner";
 import LiveNavBar from "../NavBars/LiveNavBar";
 function LiveAnimatedFramePage({ match }) {
   const [fbimg, setfbimg] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
   const [bestscore, setbestscore] = useState();
   const [puzzlescore, setpuzzlescore] = useState(0);
   const handlepuzzlescore = (e) => {
@@ -46,16 +46,10 @@ function LiveAnimatedFramePage({ match }) {
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
       <LiveNavBar />
-      <div class="container-fluid">
-        <br />
-        <center>
-          <h1 className="example">
-            {bestscore != 100000 && <h2>Best Score: {bestscore}</h2>}
-          </h1>
-        </center>
-        <br />
-        <br />
-
+      <br />
+      <br />
+      <br />
+      <div class="container-fluid pt-3">
         {loading ? (
           <Loader
             type="BallTriangle"
@@ -64,25 +58,43 @@ function LiveAnimatedFramePage({ match }) {
             width={100}
           />
         ) : (
-          <div>
-            <center> </center>
+          <center>
+            {bestscore != 100000 && (
+              <center>
+                <h2>Best Score: {bestscore}</h2>
+              </center>
+            )}
             <div class="row">
-              <div class="col-xl-2"></div>
-              <div style={{ paddingLeft: "5px" }} class="col-xl-4">
+              <div class="col-lg-6 mb-xs-0 mb-sm-5 mt-5">
                 {" "}
-                <center>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "auto",
+                  }}
+                >
                   <SlidePuzzle
                     handlepuzzlescore={handlepuzzlescore}
                     fbimg={fbimg}
                   />
-                </center>
+                </div>
               </div>
-              <div style={{ paddingLeft: "5px" }} class="col-xl-4">
-                <SlidePuzzleAnswer fbimg={fbimg} />
+              <div
+                class="col-lg-6 mb-5 mb-xl-3 mt-0 mt-sm-3 mt-md-0"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {" "}
+                <div>
+                  <SlidePuzzleAnswer fbimg={fbimg} />
+                </div>
               </div>
-              <div class="col-xl-2"></div>
             </div>
-          </div>
+          </center>
         )}
       </div>
     </div>

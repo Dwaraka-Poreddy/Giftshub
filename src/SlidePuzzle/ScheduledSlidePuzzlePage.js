@@ -239,32 +239,46 @@ function ScheduledSlidePuzzlePage({
         accentColor={accentColor}
       />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="col-lg-1 "></div>
-
         <div class="row">
-          <div class="col-md-1 "></div>
-
-          <div class="col-md-6 col-xl-4">
-            {Cloading ? (
-              <Loader
-                type="BallTriangle"
-                color="#00BFFF"
-                height={100}
-                width={100}
-              />
-            ) : (
-              <SlidePuzzle
-                fbimg={fbimg}
-                handlepuzzlescore={handlepuzzlescore}
-              />
-            )}
+          <div class="col-lg-7 col-xl-5 mb-xs-0 mb-sm-5 mt-5 p-0">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "auto",
+              }}
+            >
+              {Cloading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                />
+              ) : (
+                <SlidePuzzle
+                  fbimg={fbimg}
+                  handlepuzzlescore={handlepuzzlescore}
+                />
+              )}
+            </div>
           </div>
-          <div class="col-md-5 col-xl-4">
-            {Cloading ? null : <SlidePuzzleAnswer fbimg={fbimg} />}
+          <div
+            class="col-md-5 col-xl-4 mb-5 mb-lg-0 mt-0 mt-sm-3 mt-md-0 "
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            {" "}
+            <div>{Cloading ? null : <SlidePuzzleAnswer fbimg={fbimg} />}</div>
           </div>
 
           <div
-            className="threedrnav col-xl-3"
+            className="threedrnav col-xl-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -276,33 +290,35 @@ function ScheduledSlidePuzzlePage({
           >
             <div style={{ padding: "20px 0 0 0 ", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center>
                 {loading ? (

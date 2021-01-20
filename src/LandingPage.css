@@ -474,7 +474,6 @@ header.masthead {
   }
 }
 .zoomcarousel {
-  width: 70%;
   animation: ease-in 6s linear infinite 0s;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;

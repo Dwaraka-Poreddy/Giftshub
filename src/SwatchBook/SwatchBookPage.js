@@ -178,10 +178,9 @@ function TicketDeckPage() {
       <br />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-9">{func()}</div>
-          {/* <div class="col-lg-1"></div> */}
+          <div class="  col-lg-9 mb-3">{func()}</div>
           <div
-            className="   col-lg-3"
+            className="   col-lg-3 mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

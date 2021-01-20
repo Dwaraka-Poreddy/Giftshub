@@ -161,17 +161,16 @@ function ThreeDImagePage() {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7  mb-5">
+          <div class="  col-lg-9  mb-3">
             <ThreeDImage
               firstcol={firstcol}
               secondcol={secondcol}
               fbimg={fbimg}
             />
           </div>
-          <div class="col-lg-1"></div>
+
           <div
-            className="threedrnav   col-lg-3"
+            className="threedrnav   col-lg-3   mb-3"
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",
@@ -209,139 +208,146 @@ function ThreeDImagePage() {
             </BrowserView>
 
             <div style={{ justifyContent: "center" }}>
-              <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  // multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={4 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
-              </div>
-              <div data-tut="reactour__gradient">
-                <input
-                  type="color"
-                  id="FirstColor"
-                  initialValue={firstcol}
-                  value={firstcol}
-                  onChange={(e) => {
-                    setfirstcol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="FirstColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Left Color" />
-                </label>
-                <input
-                  type="color"
-                  id="ToColor"
-                  initialValue={secondcol}
-                  value={secondcol}
-                  onChange={(e) => {
-                    setsecondcol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="ToColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Right Color" />
-                </label>
-              </div>
-
-              <center data-tut="reactour__generatelink">
-                <div style={{ marginTop: "20px" }}>
-                  <button
-                    onClick={() => {
-                      handleFireBaseUpload();
-                      setshowoptions(true);
+              <center>
+                <div data-tut="reactour__changeImage">
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
                     }}
-                    className="main-button"
-                    data-tut="reactour__generatelink"
-                  >
-                    Generate Link
-                  </button>
+                  />
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={4 / 3}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
                 </div>
-              </center>
-              {loading ? (
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                />
-              ) : (
-                <center>
-                  {livelink || isTourOpen ? (
-                    <div>
-                      <div
-                        data-tut="reactour__preview"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <Link class="logo" to={previewlink} target="_blank">
-                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                        </Link>
-                      </div>
-                      <div
-                        data-tut="reactour__copylink"
-                        style={{ marginTop: "20px", width: "200px" }}
-                      >
-                        <Copy livelink={livelink} />
-                      </div>
-                      {!showshare ? (
+                <div data-tut="reactour__gradient">
+                  <input
+                    type="color"
+                    id="FirstColor"
+                    initialValue={firstcol}
+                    value={firstcol}
+                    onChange={(e) => {
+                      setfirstcol(e.target.value);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="FirstColor">
+                    <HeaderBtn
+                      Icon={GradientIcon}
+                      title="Gradient Left Color"
+                    />
+                  </label>
+                  <input
+                    type="color"
+                    id="ToColor"
+                    initialValue={secondcol}
+                    value={secondcol}
+                    onChange={(e) => {
+                      setsecondcol(e.target.value);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="ToColor">
+                    <HeaderBtn
+                      Icon={GradientIcon}
+                      title="Gradient Right Color"
+                    />
+                  </label>
+                </div>
+
+                <center data-tut="reactour__generatelink">
+                  <div style={{ marginTop: "20px" }}>
+                    <button
+                      onClick={() => {
+                        handleFireBaseUpload();
+                        setshowoptions(true);
+                      }}
+                      className="main-button"
+                      data-tut="reactour__generatelink"
+                    >
+                      Generate Link
+                    </button>
+                  </div>
+                </center>
+                {loading ? (
+                  <Loader
+                    type="BallTriangle"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <center>
+                    {livelink || isTourOpen ? (
+                      <div>
                         <div
-                          data-tut="reactour__sharelink"
+                          data-tut="reactour__preview"
                           style={{ marginTop: "20px" }}
                         >
-                          <HeaderBtn
-                            handleClick={() => {
-                              setshowshare(true);
-                            }}
-                            Icon={ShareIcon}
-                            title="Share "
-                          />
+                          <Link class="logo" to={previewlink} target="_blank">
+                            <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                          </Link>
                         </div>
-                      ) : (
-                        <Share livelink={livelink} />
-                      )}
-                    </div>
-                  ) : null}
-                </center>
-              )}
+                        <div
+                          data-tut="reactour__copylink"
+                          style={{ marginTop: "20px", width: "200px" }}
+                        >
+                          <Copy livelink={livelink} />
+                        </div>
+                        {!showshare ? (
+                          <div
+                            data-tut="reactour__sharelink"
+                            style={{ marginTop: "20px" }}
+                          >
+                            <HeaderBtn
+                              handleClick={() => {
+                                setshowshare(true);
+                              }}
+                              Icon={ShareIcon}
+                              title="Share "
+                            />
+                          </div>
+                        ) : (
+                          <Share livelink={livelink} />
+                        )}
+                      </div>
+                    ) : null}
+                  </center>
+                )}
+              </center>
             </div>
           </div>
         </div>

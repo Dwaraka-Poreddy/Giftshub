@@ -3,7 +3,7 @@ import firebase from "../firebase";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckCircle from "@material-ui/icons/CheckCircle";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 function UserPacksPage({ history }) {
@@ -88,7 +88,9 @@ function UserPacksPage({ history }) {
   });
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
       <br />
       <ul>
         {gifts.map((gift, index) => (

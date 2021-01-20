@@ -116,14 +116,12 @@ function ScheduledLiveSlidePuzzle({ match }) {
     <div style={{ backgroundColor: "#ffffff" }}>
       <ScheduledLiveNavBar slug={match.params.slug} />
 
-      <div class="container-fluid">
+      <div class="container-fluid pt-3">
         <br />
-
         <br />
         <br />
         <div class="row">
-          <div class="col-lg-1"></div>
-          <div class="col-lg-10">
+          <div class="col-lg-12">
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -166,27 +164,40 @@ function ScheduledLiveSlidePuzzle({ match }) {
                       )}
                     </center>
                     <center>
-                      <h1>
-                        {bestscore != 100000 && (
+                      {bestscore != 100000 && (
+                        <center>
                           <h2>Best Score: {bestscore}</h2>
-                        )}
-                      </h1>
+                        </center>
+                      )}
                     </center>
                     <div class="row">
-                      <div style={{ paddingLeft: "5px" }} class="col-lg-6">
+                      <div class="col-lg-6 mb-xs-0 mb-sm-5 mt-5">
                         {" "}
-                        <center>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "auto",
+                          }}
+                        >
                           <SlidePuzzle
                             handlepuzzlescore={handlepuzzlescore}
                             fbimg={fbimg}
                           />
-                        </center>
+                        </div>
                       </div>
-                      <div class="col-lg-1"></div>
-                      <div style={{ paddingLeft: "5px" }} class="col-lg-5">
-                        <center>
+                      <div
+                        class="col-lg-6  mb-5 mb-xl-3 mt-0 mt-sm-3 mt-md-0"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {" "}
+                        <div>
                           <SlidePuzzleAnswer fbimg={fbimg} />
-                        </center>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -194,8 +205,6 @@ function ScheduledLiveSlidePuzzle({ match }) {
               </div>
             )}
           </div>
-
-          <div class="col-lg-1"></div>
         </div>
       </div>
     </div>

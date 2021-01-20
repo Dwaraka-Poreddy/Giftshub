@@ -10,21 +10,9 @@ export default function PuzzleAnswer({ fbimg }) {
         fontSize: "1.17em",
         fontWeight: "bold",
       }}
-      className="App"
+      className="slidepuzzleanswer"
     >
-      {/* <h3
-        style={{
-          // marginLeft: "-100px",
-          marginBottom: "30px",
-          boxSizing: "border-box",
-          display: "block",
-          fontSize: "30px",
-        }}
-      >
-        Hover over me for image
-      </h3> */}
-      {/* <img src={fbimg} alt="0" /> */}
-      <div class="puzzleframe">
+      <div class="slidepuzzleframe">
         <div
           style={{ backgroundImage: "url(" + fbimg + ")" }}
           class="cell"
