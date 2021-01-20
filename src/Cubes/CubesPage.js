@@ -277,10 +277,8 @@ function CubesPage() {
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div
-            class="  col-lg-9  mb-3"
-            style={{ height: "70vh", marginTop: "50px" }}
-          >
+          <div class="  col-lg-9 mt-0 mt-lg-5">
+            <br />
             <Cubes
               fbimg1={fbimg1}
               fbimg2={fbimg2}
@@ -298,7 +296,7 @@ function CubesPage() {
           </div>
 
           <div
-            className="cubesrnav col-lg-3  mb-3"
+            className="cubesrnav col-lg-3  "
             style={{
               backgroundColor: "#009dd9",
               justifyContent: "center",

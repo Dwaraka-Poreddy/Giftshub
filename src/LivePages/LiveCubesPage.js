@@ -38,10 +38,18 @@ export default function LiveCubesPage({ match }) {
       <LiveNavBar />
       <br />
       <br />
+      <br />
+
       <div>
-        <div style={{ display: "flex" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div style={{ flex: "0.15" }}></div>
-          <div style={{ flex: "0.7", height: "70vh", marginTop: "50px" }}>
+          <div>
             {loading ? (
               <Loader
                 type="BallTriangle"
@@ -50,62 +58,23 @@ export default function LiveCubesPage({ match }) {
                 width={100}
               />
             ) : (
-              <Cubes
-                fbimg1={fbimg1}
-                fbimg2={fbimg2}
-                fbimg3={fbimg3}
-                fbimg4={fbimg4}
-                fbimg5={fbimg5}
-                fbimg6={fbimg6}
-              />
+              <>
+                <br />
+                <br />
+                <Cubes
+                  fbimg1={fbimg1}
+                  fbimg2={fbimg2}
+                  fbimg3={fbimg3}
+                  fbimg4={fbimg4}
+                  fbimg5={fbimg5}
+                  fbimg6={fbimg6}
+                />
+              </>
             )}
           </div>
           <div style={{ flex: "0.15" }}></div>
         </div>
       </div>
-      <footer style={{ marginTop: "100px", padding: "30px 0" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

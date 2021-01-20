@@ -108,7 +108,9 @@ export default function ScheduledLiveCubes({ match }) {
 
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <ScheduledLiveNavBar slug={match.params.slug} />
+      <ScheduledLiveNavBar slug={match.params.slug} /> <br />
+      <br />
+      <br />
       <div style={{ display: "flex" }}>
         <div style={{ flex: "0.1" }}></div>
         <div style={{ flex: "0.8", height: "70vh" }}>

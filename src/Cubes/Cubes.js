@@ -28,7 +28,7 @@ export default function Cubes({
   }
 
   return (
-    <div style={{ color: "#ffffff" }}>
+    <div id="threeDcubemaindiv">
       <section class="cubecontainer">
         <div
           onClick={() => {
