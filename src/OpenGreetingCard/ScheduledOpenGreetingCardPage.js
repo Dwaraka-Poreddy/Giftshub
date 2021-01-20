@@ -317,219 +317,221 @@ function ScheduledOpenGreetingCardPage({
             }}
           >
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
-              <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={2 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
-              </div>
               <center>
-                <div
-                  data-tut="reactour__to"
-                  style={{ width: "200px" }}
-                  className="RightSideBar2__Btn"
-                >
-                  <CreateIcon
-                    style={{
-                      margin: "0 10px 0 5px",
-                      color: "#ffffff",
-                      fontSize: "large",
+                <div data-tut="reactour__changeImage">
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
                     }}
                   />
-                  <InputBase
-                    className="RightSideBar2__Btn"
-                    multiline
-                    style={{
-                      color: "#068dc0",
-                      margin: "0",
-                      backgroundColor: "#ffffff",
-                      width: "200px",
-                    }}
-                    value={totext}
-                    onChange={(e) => {
-                      settotext(e.target.value);
-                      setshowoptions(false);
-                    }}
-                  />
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={2 / 3}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
                 </div>
-                <div
-                  data-tut="reactour__from"
-                  style={{ width: "200px" }}
-                  className="RightSideBar2__Btn"
-                >
-                  <CreateIcon
-                    style={{
-                      margin: "0 10px 0 5px",
-                      color: "#ffffff",
-                      fontSize: "large",
-                    }}
-                  />
-                  <InputBase
+                <center>
+                  <div
+                    data-tut="reactour__to"
+                    style={{ width: "200px" }}
                     className="RightSideBar2__Btn"
-                    multiline
-                    style={{
-                      color: "#068dc0",
-                      margin: "0",
-                      backgroundColor: "#ffffff",
-                      width: "200px",
-                    }}
-                    value={fromtext}
-                    onChange={(e) => {
-                      setfromtext(e.target.value);
-                      setshowoptions(false);
-                    }}
-                  />
-                </div>
-                <div
-                  data-tut="reactour__message"
-                  style={{ width: "200px" }}
-                  className="RightSideBar2__Btn"
-                >
-                  <CreateIcon
-                    style={{
-                      margin: "0 10px 0 5px",
-                      color: "#ffffff",
-                      fontSize: "large",
-                    }}
-                  />
-                  <InputBase
-                    className="RightSideBar2__Btn"
-                    multiline
-                    style={{
-                      color: "#068dc0",
-                      margin: "0",
-                      backgroundColor: "#ffffff",
-                      width: "200px",
-                    }}
-                    value={message}
-                    onChange={(e) => {
-                      setmessage(e.target.value);
-                      setshowoptions(false);
-                    }}
-                  />
-                </div>
-                <div
-                  data-tut="reactour__occasion"
-                  style={{ width: "200px" }}
-                  className="RightSideBar2__Btn"
-                >
-                  <CreateIcon
-                    style={{
-                      margin: "0 10px 0 5px",
-                      color: "#ffffff",
-                      fontSize: "large",
-                    }}
-                  />
-                  <InputBase
-                    className="RightSideBar2__Btn"
-                    multiline
-                    style={{
-                      color: "#068dc0",
-                      margin: "0",
-                      backgroundColor: "#ffffff",
-                      width: "200px",
-                    }}
-                    value={occassion}
-                    onChange={(e) => {
-                      setoccassion(e.target.value);
-                      setshowoptions(false);
-                    }}
-                  />
-                </div>
-              </center>
-              <center>
-                {loading ? (
-                  <Loader
-                    type="BallTriangle"
-                    color="#00BFFF"
-                    height={100}
-                    width={100}
-                  />
-                ) : (
-                  <div style={{ marginTop: "20px" }}>
-                    {edit.text == "" || isTourOpen ? (
-                      <button
-                        className="main-button"
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        data-tut="reactour__generatelink"
-                      >
-                        Generate Link
-                      </button>
-                    ) : null}
-                    {edit.text != "" || isTourOpen ? (
-                      <button
-                        className="main-button"
-                        onClick={() => {
-                          handleFireBaseUpload();
-                          setshowoptions(true);
-                        }}
-                        data-tut="reactour__updatepack"
-                      >
-                        Update pack
-                      </button>
-                    ) : null}
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={totext}
+                      onChange={(e) => {
+                        settotext(e.target.value);
+                        setshowoptions(false);
+                      }}
+                    />
                   </div>
-                )}
-              </center>
-              <center>
-                {(livelink && showoptions && !loading) || isTourOpen ? (
-                  <div>
-                    <div
-                      data-tut="reactour__preview"
-                      style={{ marginTop: "20px" }}
-                    >
-                      <Link class="logo" to={previewlink} target="_blank">
-                        <HeaderBtn Icon={VisibilityIcon} title="Preview " />
-                      </Link>
+                  <div
+                    data-tut="reactour__from"
+                    style={{ width: "200px" }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={fromtext}
+                      onChange={(e) => {
+                        setfromtext(e.target.value);
+                        setshowoptions(false);
+                      }}
+                    />
+                  </div>
+                  <div
+                    data-tut="reactour__message"
+                    style={{ width: "200px" }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={message}
+                      onChange={(e) => {
+                        setmessage(e.target.value);
+                        setshowoptions(false);
+                      }}
+                    />
+                  </div>
+                  <div
+                    data-tut="reactour__occasion"
+                    style={{ width: "200px" }}
+                    className="RightSideBar2__Btn"
+                  >
+                    <CreateIcon
+                      style={{
+                        margin: "0 10px 0 5px",
+                        color: "#ffffff",
+                        fontSize: "large",
+                      }}
+                    />
+                    <InputBase
+                      className="RightSideBar2__Btn"
+                      multiline
+                      style={{
+                        color: "#068dc0",
+                        margin: "0",
+                        backgroundColor: "#ffffff",
+                        width: "200px",
+                      }}
+                      value={occassion}
+                      onChange={(e) => {
+                        setoccassion(e.target.value);
+                        setshowoptions(false);
+                      }}
+                    />
+                  </div>
+                </center>
+                <center>
+                  {loading ? (
+                    <Loader
+                      type="BallTriangle"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                    />
+                  ) : (
+                    <div style={{ marginTop: "20px" }}>
+                      {edit.text == "" || isTourOpen ? (
+                        <button
+                          className="main-button"
+                          onClick={() => {
+                            handleFireBaseUpload();
+                            setshowoptions(true);
+                          }}
+                          data-tut="reactour__generatelink"
+                        >
+                          Generate Link
+                        </button>
+                      ) : null}
+                      {edit.text != "" || isTourOpen ? (
+                        <button
+                          className="main-button"
+                          onClick={() => {
+                            handleFireBaseUpload();
+                            setshowoptions(true);
+                          }}
+                          data-tut="reactour__updatepack"
+                        >
+                          Update pack
+                        </button>
+                      ) : null}
                     </div>
-                    <div
-                      data-tut="reactour__copylink"
-                      style={{ width: "200px", marginTop: "20px" }}
-                    >
-                      <Copy livelink={livelink} />
-                    </div>
-                    {edit.text == "" || isTourOpen ? (
+                  )}
+                </center>
+                <center>
+                  {(livelink && showoptions && !loading) || isTourOpen ? (
+                    <div>
                       <div
-                        data-tut="reactour__addtopack"
+                        data-tut="reactour__preview"
                         style={{ marginTop: "20px" }}
                       >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
+                        <Link class="logo" to={previewlink} target="_blank">
+                          <HeaderBtn Icon={VisibilityIcon} title="Preview " />
+                        </Link>
                       </div>
-                    ) : null}
-                  </div>
-                ) : null}
+                      <div
+                        data-tut="reactour__copylink"
+                        style={{ width: "200px", marginTop: "20px" }}
+                      >
+                        <Copy livelink={livelink} />
+                      </div>
+                      {edit.text == "" || isTourOpen ? (
+                        <div
+                          data-tut="reactour__addtopack"
+                          style={{ marginTop: "20px" }}
+                        >
+                          <HeaderBtn
+                            handleClick={() => {
+                              EditPack();
+                            }}
+                            Icon={ShareIcon}
+                            title="Add to Pack "
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </center>
               </center>
             </div>
           </div>

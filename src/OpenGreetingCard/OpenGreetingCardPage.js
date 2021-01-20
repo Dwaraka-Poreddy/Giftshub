@@ -183,7 +183,8 @@ function OpenGreetingCardPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
+      <br />
+      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid ">
         <div class="row">
           <div class="  col-lg-9 px-0 mb-3">
             <OpenGreetingCard

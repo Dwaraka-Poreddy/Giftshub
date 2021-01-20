@@ -37,6 +37,7 @@ const MemoryGamePage = lazy(() => import("./MemoryGame/MemoryGamePage"));
 const SplitWallImagePage = lazy(() =>
   import("./SplitWallImage/SplitWallImagePage.js")
 );
+const LiveHexagonalAnim = lazy(() => import("./LivePages/LiveHexagonalAnim"));
 const LiveCalandar = lazy(() => import("./LivePages/LiveCalandar"));
 const LiveThreeDCarousel = lazy(() => import("./LivePages/LiveThreeDCarousel"));
 const LiveJourney = lazy(() => import("./LivePages/LiveJourney"));
@@ -47,7 +48,9 @@ const LiveThreeDImage = lazy(() => import("./LivePages/LiveThreeDImage"));
 const LiveSlidePuzzle = lazy(() => import("./LivePages/LiveSlidePuzzle"));
 const LiveSpecialCard = lazy(() => import("./LivePages/LiveSpecialCard"));
 const SlidePuzzlePage = lazy(() => import("./SlidePuzzle/SlidePuzzlePage"));
-const SlidePuzzleAnswer = lazy(() => import("./SlidePuzzle/SlidePuzzleAnswer"));
+const HexagonalAnimPage = lazy(() =>
+  import("./HexagonalAnim/HexagonalAnimPage")
+);
 const ThreeDImagePage = lazy(() => import("./ThreeDImage/ThreeDImagePage"));
 const LiveCubesPage = lazy(() => import("./LivePages/LiveCubesPage"));
 const LiveNewsPaper = lazy(() => import("./LivePages/LiveNewsPaper"));
@@ -65,6 +68,9 @@ const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ContinuePack = lazy(() => import("./pages/ContinuePack"));
 const SoundRecorder = lazy(() => import("./SoundRecorder"));
+const ScheduledLiveHexagonalAnim = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveHexagonalAnim")
+);
 const ScheduledLiveMagazine = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveMagazine")
 );
@@ -173,8 +179,8 @@ export default function App() {
           <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
           <Route
             exact
-            path="/slidepuzzleanswer"
-            component={SlidePuzzleAnswer}
+            path="/hexagonalanimpage"
+            component={HexagonalAnimPage}
           />
           <Route exact path="/magazinepage" component={MagazinePage} />
           <Route exact path="/greet" component={Header} />
@@ -231,6 +237,11 @@ export default function App() {
             path="/live/opengreetingcard/:slug"
             component={LiveOpenGreetingCard}
           />
+          <Route
+            exact
+            path="/live/hexagonalanim/:slug"
+            component={LiveHexagonalAnim}
+          />
           <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
           <Route
             exact
@@ -244,6 +255,12 @@ export default function App() {
             component={LiveAnimatedFramePage}
           />
           <Route exact path="/live/magazine/:slug" component={LiveMagazine} />
+
+          <Route
+            exact
+            path="/scheduledlive/hexagonalanim/:id/:slug"
+            component={ScheduledLiveHexagonalAnim}
+          />
           <Route
             exact
             path="/scheduledlive/magazine/:id/:slug"

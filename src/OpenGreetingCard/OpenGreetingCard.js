@@ -14,7 +14,6 @@ export default function OpenGreetingCard({
   const timer = () => {
     setTimeout(() => {
       setOpenCard("gc_carrd open");
-
       setTimeout(() => {
         setOpenCard("gc_carrd");
         timer();
@@ -25,10 +24,6 @@ export default function OpenGreetingCard({
   useEffect(() => {
     timer();
   });
-
-  useEffect(() => {
-    console.log("New path:", document.URL);
-  }, [document.URL]);
 
   return (
     <div className="opengreetingcardmaindiv">

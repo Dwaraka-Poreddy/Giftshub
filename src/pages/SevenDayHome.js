@@ -60,6 +60,12 @@ function SevenDayHome({ history }) {
       content: "Memory Game",
       url: "",
     },
+    {
+      id: "hexagonalanim",
+      ismailsent: false,
+      content: " Hexagonal Animation",
+      url: "",
+    },
     { id: "cubes", ismailsent: false, content: " 3D Heart", url: "" },
     { id: "collage", ismailsent: false, content: "Collage", url: "" },
     {

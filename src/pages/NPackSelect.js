@@ -19,6 +19,14 @@ const allComp = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS60_0gL8ZRN3M91p7rKmcrV8mU_hL3bbejKA&usqp=CAU",
   },
   {
+    id: "hexagonalanim",
+    ismailsent: false,
+    content: "Hexagonal Animation",
+    url: "",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFrames.PNG?alt=media&token=349119f7-5722-4887-8bd7-c4586f916f94",
+  },
+  {
     id: "journey",
     ismailsent: false,
     content: "Journey",

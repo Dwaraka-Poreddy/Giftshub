@@ -15,6 +15,7 @@ import ScheduledSwatchBookPage from "../SwatchBook/ScheduledSwatchBookPage";
 import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
 import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
 import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
+import ScheduledHexagonalAnimPage from "../HexagonalAnim/ScheduledHexagonalAnimPage";
 import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
 import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
 import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
@@ -234,6 +235,17 @@ function ContinuePack({ match, history }) {
   }
 
   function getStepContent(step) {
+    if (dataid[step] === "hexagonalanim") {
+      return (
+        <ScheduledHexagonalAnimPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
     if (dataid[step] === "magazine") {
       return (
         <ScheduledMagazinePage
