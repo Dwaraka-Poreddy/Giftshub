@@ -172,13 +172,11 @@ export default function LandingPage() {
       {/* {isMobileOnly ? null : isTablet ? null : browview()} */}
       <body id="page-top">
         <NavBar />
-
         {isMobileOnly
           ? mobviewMainCarousel()
           : isTablet
           ? browviewMainCarousel()
           : browviewMainCarousel()}
-
         <section class="partners mt-n5">
           <div class="container py-0">
             <div class="card shadow-lg ">
@@ -295,300 +293,52 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
-        <header class="hiro-header home-header" id="1services">
-          <div class="container wow fadeInUp">
-            <div
-              id="hiroHeaderCarousel"
-              class="hiro-header-carousel carousel slide"
-              data-ride="carousel"
-              data-interval="4000"
-            >
-              <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                  <div class="row">
-                    <div
-                      class="col-md-6 "
-                      data-aos="fade-up"
-                      data-aos-duration="3000"
-                    >
-                      <h1
-                        class="carousel-item-title"
-                        data-animation="animated fadeInRight"
-                        data-number="01"
-                      >
-                        <span>Remarkable Digital Products</span>
-                      </h1>
-                      <p
-                        class="carousel-item-description"
-                        data-animation="animated fadeInRight"
-                      >
-                        Lorem ipsum is placeholder text commonly used in the
-                        graphic, print, and publishing industries for.
-                      </p>
-                      <a
-                        href="#!"
-                        class="carousel-item-link link-hover-fx"
-                        data-animation="animated fadeInRight"
-                      >
-                        READ MORE
-                      </a>
-                      <ul
-                        class="carousel-item-social-links nav"
-                        data-animation="animated fadeInRight"
-                      >
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            FACEBOOK
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            TWITTER
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            BEHANCE
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-6">
-                      <img
-                        src={require("./Images/avatar.jpg")}
-                        alt="Remarkable Digital Products"
-                        class="img-fluid w-100 rounded"
-                        width="372px"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h1
-                        class="carousel-item-title"
-                        data-animation="animated fadeInRight"
-                        data-number="02"
-                      >
-                        <span>Remarkable Digital Products</span>
-                      </h1>
-                      <p
-                        class="carousel-item-description"
-                        data-animation="animated fadeInRight"
-                      >
-                        Lorem ipsum is placeholder text commonly used in the
-                        graphic, print, and publishing industries for.
-                      </p>
-                      <a
-                        href="#!"
-                        class="carousel-item-link link-hover-fx"
-                        data-animation="animated fadeInRight"
-                      >
-                        READ MORE
-                      </a>
-                      <ul
-                        class="carousel-item-social-links nav"
-                        data-animation="animated fadeInRight"
-                      >
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            FACEBOOK
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            TWITTER
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            BEHANCE
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-6">
-                      <img
-                        src={require("./Images/avatar.jpg")}
-                        alt="<span>Remarkable Digital Products</span>"
-                        class="img-fluid w-100 rounded"
-                        width="372px"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h1
-                        class="carousel-item-title"
-                        data-animation="animated fadeInRight"
-                        data-number="03"
-                      >
-                        <span>Remarkable Digital Products</span>
-                      </h1>
-                      <p
-                        class="carousel-item-description"
-                        data-animation="animated fadeInRight"
-                      >
-                        Lorem ipsum is placeholder text commonly used in the
-                        graphic, print, and publishing industries for.
-                      </p>
-                      <a
-                        href="#!"
-                        class="carousel-item-link link-hover-fx"
-                        data-animation="animated fadeInRight"
-                      >
-                        READ MORE
-                      </a>
-                      <ul
-                        class="carousel-item-social-links nav"
-                        data-animation="animated fadeInRight"
-                      >
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            FACEBOOK
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            TWITTER
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!" class="link-hover-fx">
-                            BEHANCE
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-6">
-                      <img
-                        src={require("./Images/avatar.jpg")}
-                        alt="Remarkable Digital Products"
-                        class="img-fluid w-100 rounded"
-                        width="372px"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <ol class="carousel-indicators">
-                <li
-                  data-target="#hiroHeaderCarousel"
-                  data-slide-to="0"
-                  class="active"
-                ></li>
-                <li data-target="#hiroHeaderCarousel" data-slide-to="1"></li>
-                <li data-target="#hiroHeaderCarousel" data-slide-to="2"></li>
-              </ol>
-            </div>
-          </div>
-        </header>
-
-        {/* <!-- =====================================
-        ==== Start Process --> */}
-
-        <div
-          id="Process"
-          class="process section-padding bg-img bg-fixed pos-re text-center"
-          data-overlay-dark="7"
-          data-background="assets/images/bg6.jpg"
-        >
-          <div class="container">
-            <div class="row">
-              <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4>
-                  <span>Our</span> Process
-                </h4>
-                <p>
-                  We are a passionate digital design agency that specializes in
-                  beautiful and easy-to-use digital design & web development
-                  services.
+        <br />
+        <br />
+        <div className="container">
+          <div class="card-deck">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
                 </p>
               </div>
-              <div class="full-width clearfix"></div>
-              <div class="row">
-                <div class="col-lg-3 col-md-6">
-                  <div class="item first mb-md50">
-                    <img
-                      src={require("./Images/arrow.png")}
-                      class="tobotm"
-                      alt=""
-                    />
-                    <span class="icon fa fa-address-book"></span>
-
-                    <div class="cont">
-                      <h3>01</h3>
-                      <h6>Ideas</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                  <div class="item odd mb-md50">
-                    <img src={require("./Images/arrow.png")} alt="" />
-                    <span class="icon fa fa-address-book"></span>
-                    <div class="cont">
-                      <h3>02</h3>
-                      <h6>Planning</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                  <div class="item mb-sm50">
-                    <img
-                      src={require("./Images/arrow.png")}
-                      class="tobotm"
-                      alt=""
-                    />
-                    <span class="icon fa fa-address-book"></span>
-                    <div class="cont">
-                      <h3>03</h3>
-                      <h6>Development</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                  <div class="item odd">
-                    <span class="icon fa fa-address-book"></span>
-                    <div class="cont">
-                      <h3>04</h3>
-                      <h6>Testing</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This card has supporting text below as a natural lead-in to
+                  additional content.
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This card has even longer
+                  content than the first to show that equal height action.
+                </p>
+                <p class="card-text">
+                  <small>Last updated 3 mins ago</small>
+                </p>
               </div>
             </div>
           </div>
-
-          <div class="curve curve-gray-t curve-top"></div>
-          <div class="curve curve-bottom"></div>
-        </div>
-
-        {/* <!-- End Process ====
-      ======================================= --> */}
-
+        </div>{" "}
+        <br />
+        <br />
         <section id="team" class="pb-5">
           <div class="container">
             <div className="row equal">
@@ -608,45 +358,147 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <Link to="/home">
-          <button
-            onClick={() => {
-              dispatch({
-                type: "REDIRECT_USER",
-                payload: {
-                  days_redirect: "n",
-                },
-              });
-            }}
-            className="main-button"
-          >
-            n-Day Pack
-          </button>
-        </Link>
-        <Link to="/recommendedhome">
-          <button
-            onClick={() => {
-              dispatch({
-                type: "REDIRECT_USER",
-                payload: {
-                  days_redirect: "r",
-                },
-              });
-            }}
-            className="main-button"
-          >
-            Recommended pack
-          </button>{" "}
-        </Link>
+        <center>
+          <Link to="/home">
+            <button
+              onClick={() => {
+                dispatch({
+                  type: "REDIRECT_USER",
+                  payload: {
+                    days_redirect: "n",
+                  },
+                });
+              }}
+              className="main-button"
+            >
+              n-Day Pack
+            </button>
+          </Link>
+          <Link to="/recommendedhome">
+            <button
+              onClick={() => {
+                dispatch({
+                  type: "REDIRECT_USER",
+                  payload: {
+                    days_redirect: "r",
+                  },
+                });
+              }}
+              className="main-button"
+            >
+              Recommended pack
+            </button>{" "}
+          </Link>
+        </center>
       </body>
-      <button
+      {/* <button
         onClick={() => {
           analytics.logEvent("goal_completion", { name: "lever_puzzle" });
           console.log("startuser");
         }}
       >
         Click
-      </button>
+      </button> */}
+      {/* <!-- =====================================
+        ==== Start Process --> */}
+
+      <div
+        id="Process"
+        class="process section-padding bg-img bg-fixed pos-re text-center"
+        data-overlay-dark="7"
+        data-background="assets/images/bg6.jpg"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+              <h4>
+                <span>Our</span> Process
+              </h4>
+              <p>
+                We are a passionate digital design agency that specializes in
+                beautiful and easy-to-use digital design & web development
+                services.
+              </p>
+            </div>
+            <div class="full-width clearfix"></div>
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="item first mb-md50">
+                  <img
+                    src={require("./Images/arrow.png")}
+                    class="tobotm"
+                    alt=""
+                  />
+                  <span class="icon fa fa-address-book"></span>
+
+                  <div class="cont">
+                    <h3>01</h3>
+                    <h6>Ideas</h6>
+                    <p>
+                      Nulla metus metus ullamcorper vel tincidunt sed euismod
+                      nibh Quisque volutpat
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6">
+                <div class="item odd mb-md50">
+                  <img src={require("./Images/arrow.png")} alt="" />
+                  <span class="icon fa fa-address-book"></span>
+                  <div class="cont">
+                    <h3>02</h3>
+                    <h6>Planning</h6>
+                    <p>
+                      Nulla metus metus ullamcorper vel tincidunt sed euismod
+                      nibh Quisque volutpat
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6">
+                <div class="item mb-sm50">
+                  <img
+                    src={require("./Images/arrow.png")}
+                    class="tobotm"
+                    alt=""
+                  />
+                  <span class="icon fa fa-address-book"></span>
+                  <div class="cont">
+                    <h3>03</h3>
+                    <h6>Development</h6>
+                    <p>
+                      Nulla metus metus ullamcorper vel tincidunt sed euismod
+                      nibh Quisque volutpat
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6">
+                <div class="item odd">
+                  <span class="icon fa fa-address-book"></span>
+                  <div class="cont">
+                    <h3>04</h3>
+                    <h6>Testing</h6>
+                    <p>
+                      Nulla metus metus ullamcorper vel tincidunt sed euismod
+                      nibh Quisque volutpat
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curve curve-gray-t curve-top"></div>
+        <div class="curve curve-bottom"></div>
+      </div>
+
+      {/* <!-- End Process ====
+      ======================================= --> */}
     </div>
   );
 }

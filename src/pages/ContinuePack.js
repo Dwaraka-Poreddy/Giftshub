@@ -10,7 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
 import ScheduledChallengePage from "../Challenge/ScheduledChallengePage";
 import ScheduledAboutQuizPage from "../AboutQuiz/ScheduledAboutQuizPage";
-import ScheduledCalandarPage from "../Calandar/ScheduledCalandarPage";
+import ScheduledCalendarPage from "../Calendar/ScheduledCalendarPage";
+
 import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
 import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
 import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
@@ -282,9 +283,9 @@ function ContinuePack({ match, history }) {
         />
       );
     }
-    if (dataid[step] === "calandar") {
+    if (dataid[step] === "calendar") {
       return (
-        <ScheduledCalandarPage
+        <ScheduledCalendarPage
           isTourOpen={isTourOpen}
           setTourOpend={setTourOpend}
           step={step}

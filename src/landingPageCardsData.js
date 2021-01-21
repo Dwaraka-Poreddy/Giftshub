@@ -1,7 +1,7 @@
 const items = [
   {
     id: "1",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a",
     link: "/cubespage",
@@ -13,7 +13,7 @@ const items = [
   },
   {
     id: "2",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344",
     link: "/slidepuzzlepage",
@@ -25,7 +25,7 @@ const items = [
   },
   {
     id: "3",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeD.PNG?alt=media&token=3ef0492e-9919-4c5d-a441-d6f1b0d8e817",
     link: "/threedimagepage",
@@ -37,8 +37,7 @@ const items = [
   },
   {
     id: "4",
-    img:
-      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalised-rakhi-newspaper-9918857eg.jpg?alt=media&token=57382869-c91c-4043-95b0-77b05f17e871",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
     link: "/newspaperpage",
@@ -50,7 +49,7 @@ const items = [
   },
   {
     id: "5",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
     link: "/collagepage",
@@ -61,7 +60,7 @@ const items = [
   },
   {
     id: "6",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fanimatedframegif.gif?alt=media&token=bafa0360-c449-4c4b-8d5e-d6bcd747d61d",
     link: "/animatedframePage",
@@ -73,7 +72,7 @@ const items = [
   },
   {
     id: "7",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FgreetingCardgif.gif?alt=media&token=a0cf3864-72b8-4a18-a1da-3425fd480810",
     link: "/opengreetingcardpage",
@@ -85,7 +84,7 @@ const items = [
   },
   {
     id: "8",
-    img: "https://picsum.photos/300/200",
+    img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspecialcaardgif.gif?alt=media&token=e004265d-6a48-425b-808b-46fc68ebc4ea",
     text:
@@ -94,6 +93,102 @@ const items = [
     badge1: "",
     badge2: "",
     link: "/specialcardpage",
+  },
+  {
+    id: "9",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FgreetingCardgif.gif?alt=media&token=a0cf3864-72b8-4a18-a1da-3425fd480810",
+    link: "/magazinepage",
+    text:
+      "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
+    title: "Magazine",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "10",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fspecialcaardgif.gif?alt=media&token=e004265d-6a48-425b-808b-46fc68ebc4ea",
+    text:
+      " Create an animated effect of two pictures with an underlying text which surprises you everytime you hover on it!",
+    title: "About Quiz",
+    badge1: "",
+    badge2: "",
+    link: "/aboutquizpage",
+  },
+  {
+    id: "11",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcubes.gif?alt=media&token=8d9e3342-cb8e-4be1-9f01-7d0c42364c0a",
+    link: "/calendarpage",
+    text:
+      " The heart symbol is known to be the patent of love and affection for about 300+ years now",
+    title: "Calendar",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "12",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fslidepuzz.gif?alt=media&token=94a0c8b8-d680-4113-aa63-bb89d5b0a344",
+    link: "/journeypage",
+    text:
+      "“We do not stop playing because we are old, we grow old because we stop playing”",
+    title: "Our Journey",
+    badge1: "Valentine",
+    badge2: "",
+  },
+  {
+    id: "13",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeD.PNG?alt=media&token=3ef0492e-9919-4c5d-a441-d6f1b0d8e817",
+    link: "/swatchbookpage",
+    text:
+      " “Love is made up of three unconditional properties in equal measure : Acceptance, Understanding and Appreciation”.",
+    title: "Swatch Book ",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "14",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
+    link: "/challengepage",
+    text:
+      "  What better way to express greetings than to announce it as the newspaper headlines!",
+    title: "Challenge",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "15",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
+    link: "/memorygamepage",
+    text:
+      "  What better way to express greetings than to announce it as the newspaper headlines!",
+    title: "Memory Game",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "16",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
+    link: "/hexagonalanimpage",
+    text:
+      "  What better way to express greetings than to announce it as the newspaper headlines!",
+    title: "Hexagonal Frame",
+    badge1: "",
+    badge2: "",
   },
 ];
 

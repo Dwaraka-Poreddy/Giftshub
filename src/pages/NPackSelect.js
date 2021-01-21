@@ -27,9 +27,9 @@ const allComp = [
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemo.PNG?alt=media&token=beeb8d64-7501-4051-91e9-d15ba8977de4",
   },
   {
-    id: "calandar",
+    id: "calendar",
     ismailsent: false,
-    content: "Calander",
+    content: "Calendar",
     url: "",
     img:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeDsqr.PNG?alt=media&token=89f9386d-931d-4642-a744-761ef2b97f2d",

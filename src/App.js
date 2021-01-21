@@ -15,7 +15,7 @@ const ChallengePage = lazy(() => import("./Challenge/ChallengePage"));
 const AboutQuizPage = lazy(() => import("./AboutQuiz/AboutQuizPage"));
 const JourneyPage = lazy(() => import("./Journey/JourneyPage"));
 const SwatchBookPage = lazy(() => import("./SwatchBook/SwatchBookPage"));
-const CalandarPage = lazy(() => import("./Calandar/CalandarPage"));
+const CalendarPage = lazy(() => import("./Calendar/CalandarPage"));
 const AboutUs = lazy(() => import("./AboutUs"));
 const LandingPage = lazy(() => import("./LandingPage"));
 const Studio = lazy(() => import("./Studio/Studio.js"));
@@ -42,7 +42,7 @@ const SplitWallImagePage = lazy(() =>
 );
 const LiveHexagonalAnim = lazy(() => import("./LivePages/LiveHexagonalAnim"));
 const LiveChallenge = lazy(() => import("./LivePages/LiveChallenge"));
-const LiveCalandar = lazy(() => import("./LivePages/LiveCalandar"));
+const LiveCalendar = lazy(() => import("./LivePages/LiveCalendar"));
 const LiveThreeDCarousel = lazy(() => import("./LivePages/LiveThreeDCarousel"));
 const LiveJourney = lazy(() => import("./LivePages/LiveJourney"));
 const LiveAboutQuiz = lazy(() => import("./LivePages/LiveAboutQuiz"));
@@ -81,8 +81,8 @@ const ScheduledLiveChallenge = lazy(() =>
 const ScheduledLiveMagazine = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveMagazine")
 );
-const ScheduledLiveCalandar = lazy(() =>
-  import("./ScheduledLivePages/ScheduledLiveCalandar")
+const ScheduledLiveCalendar = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveCalendar")
 );
 const ScheduledLiveAboutQuiz = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveAboutQuiz")
@@ -184,7 +184,7 @@ export default function App() {
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/aboutquizpage" component={AboutQuizPage} />
           <Route exact path="/journeypage" component={JourneyPage} />
-          <Route exact path="/calandarpage" component={CalandarPage} />
+          <Route exact path="/calendarpage" component={CalendarPage} />
           <Route exact path="/swatchbookpage" component={SwatchBookPage} />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/sound" component={SoundRecorder} />
@@ -239,7 +239,7 @@ export default function App() {
           <Route exact path="/live/challenge/:slug" component={LiveChallenge} />
           <Route exact path="/live/aboutquiz/:slug" component={LiveAboutQuiz} />
           <Route exact path="/live/journey/:slug" component={LiveJourney} />
-          <Route exact path="/live/calandar/:slug" component={LiveCalandar} />
+          <Route exact path="/live/calendar/:slug" component={LiveCalendar} />
           <Route
             exact
             path="/live/swatchbook/:slug"
@@ -372,8 +372,8 @@ export default function App() {
           />
           <Route
             exact
-            path="/scheduledlive/calandar/:id/:slug"
-            component={ScheduledLiveCalandar}
+            path="/scheduledlive/calendar/:id/:slug"
+            component={ScheduledLiveCalendar}
           />
         </Switch>
       </Suspense>

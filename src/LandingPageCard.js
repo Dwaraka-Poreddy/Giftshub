@@ -12,9 +12,8 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
             <div class="frontside">
               <div class="card">
                 <div class="card-body text-center">
-                  <p>
-                    <img class=" img-fluid" src={img} alt="card" />
-                  </p>
+                  <img class=" img-fluid" src={img} alt="card" />
+
                   <br />
                   <h4 class="card-title">{title}</h4>
                 </div>
@@ -22,7 +21,7 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
             </div>
             <div class="backside">
               <div class="card">
-                <div class="card-body text-center mt-4">
+                <div class="card-body text-center ">
                   <video
                     style={{ width: "100%", height: "auto" }}
                     className="videoTag"
