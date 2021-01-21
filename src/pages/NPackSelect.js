@@ -11,6 +11,14 @@ const allComp = [
       "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
   },
   {
+    id: "challenge",
+    ismailsent: false,
+    content: "Challenge",
+    url: "",
+    img:
+      "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
+  },
+  {
     id: "aboutquiz",
     ismailsent: false,
     content: "About Quiz",

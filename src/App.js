@@ -10,6 +10,8 @@ const UserPacksPage = lazy(() => import("./UserPages/UserPacksPage"));
 const ThreeDCarouselPage = lazy(() =>
   import("./ThreeDCarousel/ThreeDCarouselPage")
 );
+const Challenge = lazy(() => import("./Challenge/Challenge"));
+const ChallengePage = lazy(() => import("./Challenge/ChallengePage"));
 const AboutQuizPage = lazy(() => import("./AboutQuiz/AboutQuizPage"));
 const JourneyPage = lazy(() => import("./Journey/JourneyPage"));
 const SwatchBookPage = lazy(() => import("./SwatchBook/SwatchBookPage"));
@@ -39,6 +41,7 @@ const SplitWallImagePage = lazy(() =>
   import("./SplitWallImage/SplitWallImagePage.js")
 );
 const LiveHexagonalAnim = lazy(() => import("./LivePages/LiveHexagonalAnim"));
+const LiveChallenge = lazy(() => import("./LivePages/LiveChallenge"));
 const LiveCalandar = lazy(() => import("./LivePages/LiveCalandar"));
 const LiveThreeDCarousel = lazy(() => import("./LivePages/LiveThreeDCarousel"));
 const LiveJourney = lazy(() => import("./LivePages/LiveJourney"));
@@ -71,6 +74,9 @@ const ContinuePack = lazy(() => import("./pages/ContinuePack"));
 const SoundRecorder = lazy(() => import("./SoundRecorder"));
 const ScheduledLiveHexagonalAnim = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveHexagonalAnim")
+);
+const ScheduledLiveChallenge = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveChallenge")
 );
 const ScheduledLiveMagazine = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveMagazine")
@@ -173,6 +179,8 @@ export default function App() {
             path="/threedcarouselpage"
             component={ThreeDCarouselPage}
           />
+          <Route exact path="/challengePage" component={ChallengePage} />
+          <Route exact path="/challenge" component={Challenge} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/aboutquizpage" component={AboutQuizPage} />
           <Route exact path="/journeypage" component={JourneyPage} />
@@ -228,6 +236,7 @@ export default function App() {
             path="/live/threedcarousel/:slug"
             component={LiveThreeDCarousel}
           />
+          <Route exact path="/live/challenge/:slug" component={LiveChallenge} />
           <Route exact path="/live/aboutquiz/:slug" component={LiveAboutQuiz} />
           <Route exact path="/live/journey/:slug" component={LiveJourney} />
           <Route exact path="/live/calandar/:slug" component={LiveCalandar} />
@@ -280,6 +289,11 @@ export default function App() {
             exact
             path="/scheduledlive/aboutquiz/:id/:slug"
             component={ScheduledLiveAboutQuiz}
+          />
+          <Route
+            exact
+            path="/scheduledlive/challenge/:id/:slug"
+            component={ScheduledLiveChallenge}
           />
           <Route
             exact
