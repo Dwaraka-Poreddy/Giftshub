@@ -1,15 +1,15 @@
 .journey {
   font-family: "Raleway", sans-serif;
-  background-image: radial-gradient(circle at center, #899dc4, #495d84);
+  /* background-image: radial-gradient(circle at center, #899dc4, #495d84); */
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 220px;
   width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(ellipse at bottom, #1b2735, #090a0f);
+  /* background: radial-gradient(ellipse at bottom, #1b2735, #090a0f); */
   font-weight: 300;
 }
 
@@ -44,8 +44,7 @@
 .journeycenter,
 .journeyright,
 .journeylefter,
-.journeyrighter,
-.heart-shape {
+.journeyrighter {
   width: 200px;
   height: 150px;
   transform-style: preserve-3d;
@@ -63,28 +62,20 @@
   cursor: pointer;
   background-blend-mode: color-burn;
 }
-@media only screen and (max-width: 600px) {
-  .journeyleft,
-  .journeycenter,
-  .journeyright,
-  .journeylefter,
-  .journeyrighter,
-  .heart-shape,
-  .heart-shape {
-    width: 60px;
-    height: 45px;
+@media only screen and (max-width: 414px) {
+  .journeyall {
+    transform: rotateZ(90deg) scale(0.4) !important ;
   }
-  .journeyall:hover {
-    perspective: 350px;
-    transition: all 1.3s ease-in;
-    transform: perspective(350px) rotateX(0deg);
+  .journey {
+    height: 459px !important;
   }
-  .journeytext {
-    font-size: 7px;
-    transform: translateY(12px) !important;
+}
+@media only screen and (min-width: 414px) and (max-width: 600px) {
+  .journeyall {
+    transform: rotateZ(90deg) scale(0.5) !important ;
   }
-  .journeyexplainer {
-    font-size: 0.8rem !important;
+  .journey {
+    height: 664px !important;
   }
 }
 @media only screen and (min-width: 600px) and (max-width: 800px) {
@@ -92,7 +83,7 @@
   .journeycenter,
   .journeyright,
   .journeylefter,
-  .journeyrighter .heart-shape {
+  .journeyrighter {
     width: 120px;
     height: 90px;
   }
@@ -113,16 +104,16 @@
 .journeycenter:hover,
 .journeyright:hover,
 .journeylefter:hover,
-.journeyrighter:hover .heart-shape:hover {
+.journeyrighter:hover {
   box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
   background-color: #ccf;
 }
-@media only screen and (min-width: 800px) and (max-width: 1000px) {
+@media only screen and (min-width: 800px) and (max-width: 1048px) {
   .journeyleft,
   .journeycenter,
   .journeyright,
   .journeylefter,
-  .journeyrighter .heart-shape {
+  .journeyrighter {
     width: 160px;
     height: 120px;
   }
@@ -139,11 +130,33 @@
     font-size: 1.6rem !important;
   }
 }
+@media only screen and (min-width: 1048px) and (max-width: 1450px) {
+  .journeyleft,
+  .journeycenter,
+  .journeyright,
+  .journeylefter,
+  .journeyrighter {
+    width: 180px;
+    height: 135px;
+  }
+  .journeyall:hover {
+    perspective: 900px;
+    transition: all 1.3s ease-in;
+    transform: perspective(350px) rotateX(0deg);
+  }
+  .journeytext {
+    font-size: 12px;
+    transform: translateY(20px) !important;
+  }
+  .journeyexplainer {
+    font-size: 1.6rem !important;
+  }
+}
 .journeyleft:hover,
 .journeycenter:hover,
 .journeyright:hover,
 .journeylefter:hover,
-.journeyrighter:hover .heart-shape:hover {
+.journeyrighter:hover {
   box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
   background-color: #ccf;
 }
@@ -180,9 +193,7 @@
 .journeyrighter {
   transform: translateX(60px) translateZ(-50px) rotateY(10deg);
 }
-.heart-shape {
-  transform: translateX(90px) translateZ(-75px) rotateY(15deg);
-}
+
 .journeyexplainer {
   font-weight: 300;
   font-size: 2rem;
@@ -214,43 +225,4 @@
 }
 .ref::first-letter {
   font-size: 12px;
-}
-.heart-shape {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  /* opacity: 0; */
-  background-blend-mode: color-burn;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.heart-shape:before,
-.heart-shape:after {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  content: "";
-  transform-style: preserve-3d;
-
-  transition: all 0.3s ease;
-  transition-delay: 1s;
-
-  background-color: #58d;
-  cursor: pointer;
-  background-blend-mode: color-burn;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-}
-.heart-shape:before {
-  bottom: 0px;
-  left: -100px;
-}
-.heart-shape:after {
-  top: -100px;
-  right: 0px;
 }

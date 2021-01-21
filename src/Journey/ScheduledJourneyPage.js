@@ -405,7 +405,18 @@ function ScheduledJourneyPage({
       />
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-9" style={{ height: "70vh", marginTop: "50px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundImage:
+                "radial-gradient(circle at center, #899dc4, #495d84)",
+              background:
+                "radial-gradient(ellipse at bottom, #1b2735, #090a0f)",
+            }}
+            class="  col-lg-9"
+          >
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -414,7 +425,7 @@ function ScheduledJourneyPage({
                 width={100}
               />
             ) : (
-              <div>
+              <div style={{ width: "100%" }}>
                 <Journey
                   fbimg1={fbimg1}
                   fbimg2={fbimg2}
@@ -446,344 +457,400 @@ function ScheduledJourneyPage({
           >
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput1"
-                  name="LocalfileInput1"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile1}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop1 ? (
-                  <CropPage
-                    send={send1}
-                    setfbimg={setfbimg1}
-                    setimage_url={setimage_url1}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop1}
-                    setopencrop={setopencrop1}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput1">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput2"
-                  name="LocalfileInput2"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile2}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop2 ? (
-                  <CropPage
-                    send={send2}
-                    setfbimg={setfbimg2}
-                    setimage_url={setimage_url2}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop2}
-                    setopencrop={setopencrop2}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput2">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput3"
-                  name="LocalfileInput3"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile3}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop3 ? (
-                  <CropPage
-                    send={send3}
-                    setfbimg={setfbimg3}
-                    setimage_url={setimage_url3}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop3}
-                    setopencrop={setopencrop3}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput3">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput4"
-                  name="LocalfileInput4"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile4}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop4 ? (
-                  <CropPage
-                    send={send4}
-                    setfbimg={setfbimg4}
-                    setimage_url={setimage_url4}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop4}
-                    setopencrop={setopencrop4}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput4">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput5"
-                  name="LocalfileInput5"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile5}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop5 ? (
-                  <CropPage
-                    send={send5}
-                    setfbimg={setfbimg5}
-                    setimage_url={setimage_url5}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop5}
-                    setopencrop={setopencrop5}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput5">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput6"
-                  name="LocalfileInput6"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile6}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop6 ? (
-                  <CropPage
-                    send={send6}
-                    setfbimg={setfbimg6}
-                    setimage_url={setimage_url6}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop6}
-                    setopencrop={setopencrop6}
-                  />
-                ) : null}
-                <label htmlFor="LocalfileInput6">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
-                </label>
+                <div className="container-fluid">
+                  <div className="row" style={{ margin: "auto" }}>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput1"
+                        name="LocalfileInput1"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile1}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop1 ? (
+                        <CropPage
+                          send={send1}
+                          setfbimg={setfbimg1}
+                          setimage_url={setimage_url1}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop1}
+                          setopencrop={setopencrop1}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput1">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
+                      </label>
+                    </div>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput2"
+                        name="LocalfileInput2"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile2}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop2 ? (
+                        <CropPage
+                          send={send2}
+                          setfbimg={setfbimg2}
+                          setimage_url={setimage_url2}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop2}
+                          setopencrop={setopencrop2}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput2">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
+                      </label>
+                    </div>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput3"
+                        name="LocalfileInput3"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile3}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop3 ? (
+                        <CropPage
+                          send={send3}
+                          setfbimg={setfbimg3}
+                          setimage_url={setimage_url3}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop3}
+                          setopencrop={setopencrop3}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput3">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
+                      </label>
+                    </div>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput4"
+                        name="LocalfileInput4"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile4}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop4 ? (
+                        <CropPage
+                          send={send4}
+                          setfbimg={setfbimg4}
+                          setimage_url={setimage_url4}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop4}
+                          setopencrop={setopencrop4}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput4">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
+                      </label>
+                    </div>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput5"
+                        name="LocalfileInput5"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile5}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop5 ? (
+                        <CropPage
+                          send={send5}
+                          setfbimg={setfbimg5}
+                          setimage_url={setimage_url5}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop5}
+                          setopencrop={setopencrop5}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput5">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
+                      </label>
+                    </div>
+                    <div
+                      style={{
+                        margin: "auto",
+                      }}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/* "
+                        className={secclasses.input}
+                        id="LocalfileInput6"
+                        name="LocalfileInput6"
+                        multiple
+                        type="file"
+                        accept="image/*"
+                        onChange={onSelectFile6}
+                        onClick={(event) => {
+                          event.target.value = null;
+                        }}
+                      />
+                      {opencrop6 ? (
+                        <CropPage
+                          send={send6}
+                          setfbimg={setfbimg6}
+                          setimage_url={setimage_url6}
+                          aspect_ratio={1 / 1}
+                          opencrop={opencrop6}
+                          setopencrop={setopencrop6}
+                        />
+                      ) : null}
+                      <label htmlFor="LocalfileInput6">
+                        <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <center>
+              <center style={{ marginTop: "3px" }}>
                 <div data-tut="reactour__para">
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={heading}
-                      onChange={(e) => {
-                        setheading(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={t1}
-                      onChange={(e) => {
-                        sett1(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={t2}
-                      onChange={(e) => {
-                        sett2(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={t3}
-                      onChange={(e) => {
-                        sett3(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={t4}
-                      onChange={(e) => {
-                        sett4(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "200px",
-                      marginTop: "20px",
-                    }}
-                    className="RightSideBar2__Btn"
-                  >
-                    <CreateIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
-                    <InputBase
-                      className="RightSideBar2__Btn"
-                      multiline
-                      style={{
-                        color: "#068dc0",
-                        margin: "0",
-                        backgroundColor: "#ffffff",
-                        width: "200px",
-                      }}
-                      value={t5}
-                      onChange={(e) => {
-                        sett5(e.target.value);
-                      }}
-                    />
+                  <div className="container-fluid">
+                    <div className="row" style={{ margin: "auto" }}>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={heading}
+                          onChange={(e) => {
+                            setheading(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={t1}
+                          onChange={(e) => {
+                            sett1(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={t2}
+                          onChange={(e) => {
+                            sett2(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={t3}
+                          onChange={(e) => {
+                            sett3(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={t4}
+                          onChange={(e) => {
+                            sett4(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "200px",
+                          marginTop: "20px",
+                          margin: "auto",
+                          marginBottom: "12px",
+                        }}
+                        className="RightSideBar2__Btn"
+                      >
+                        <CreateIcon
+                          style={{
+                            margin: "0 10px 0 5px",
+                            color: "#ffffff",
+                            fontSize: "large",
+                          }}
+                        />
+                        <InputBase
+                          className="RightSideBar2__Btn"
+                          multiline
+                          style={{
+                            color: "#068dc0",
+                            margin: "0",
+                            backgroundColor: "#ffffff",
+                            width: "200px",
+                          }}
+                          value={t5}
+                          onChange={(e) => {
+                            sett5(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </center>

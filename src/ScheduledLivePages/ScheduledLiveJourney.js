@@ -128,45 +128,59 @@ export default function ScheduledLiveCubes({ match }) {
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <ScheduledLiveNavBar slug={match.params.slug} />
       <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.8", height: "70vh" }}>
-          {loading ? (
-            <Loader
-              type="BallTriangle"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          ) : (
-            <div>
-              {new Date(Livelinks.Bday_date) -
-                +new Date() -
-                19800000 -
-                86400000 * (dataurl.length - today - 1) >
-              0 ? (
-                <div>
-                  <h5 className="example"> This Gift opens in </h5>
-                  <CircleTimer
-                    Bday={
-                      +new Date(Livelinks.Bday_date) -
-                      +new Date() -
-                      19800000 -
-                      86400000 * (dataurl.length - today - 1)
-                    }
-                  />
-                </div>
-              ) : (
-                <div>
+        {loading ? (
+          <Loader
+            type="BallTriangle"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        ) : (
+          <div>
+            {new Date(Livelinks.Bday_date) -
+              +new Date() -
+              19800000 -
+              86400000 * (dataurl.length - today - 1) >
+            0 ? (
+              <div>
+                <h5 className="example"> This Gift opens in </h5>
+                <CircleTimer
+                  Bday={
+                    +new Date(Livelinks.Bday_date) -
+                    +new Date() -
+                    19800000 -
+                    86400000 * (dataurl.length - today - 1)
+                  }
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundImage:
+                    "radial-gradient(circle at center, #899dc4, #495d84)",
+                  background:
+                    "radial-gradient(ellipse at bottom, #1b2735, #090a0f)",
+                  width: "100vw",
+                  height: "100vh",
+                }}
+              >
+                <div style={{ width: "100%" }}>
                   <center>
                     {" "}
+                    <br />
                     {dataurl.length - today - 1 == 0 ? (
-                      <h1 className="example">The Big day is here !!!</h1>
+                      <h1 style={{ color: "#ffffff" }}>
+                        The Big day is here !!!
+                      </h1>
                     ) : dataurl.length - today - 1 == 1 ? (
-                      <h1 className="example">
+                      <h1 style={{ color: "#ffffff" }}>
                         {dataurl.length - today - 1} day to go !!!
                       </h1>
                     ) : (
-                      <h1 className="example">
+                      <h1 style={{ color: "#ffffff" }}>
                         {dataurl.length - today - 1} days to go !!!
                       </h1>
                     )}
@@ -186,56 +200,11 @@ export default function ScheduledLiveCubes({ match }) {
                     heading={heading}
                   />
                 </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        <div style={{ flex: "0.1" }}></div>
-      </div>
-      <footer style={{ padding: "30px 0", marginTop: "150px" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+              </div>
+            )}
           </div>
-        </div>
-      </footer>
+        )}
+      </div>
     </div>
   );
 }
