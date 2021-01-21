@@ -13,7 +13,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
   const [fbimg, setfbimg] = useState("");
   const database = firebase.firestore();
   const [Livelinks, setLivelinks] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
   const [dataurl, setdataurl] = useState([]);
   const [today, settoday] = useState();
   const [bestscore, setbestscore] = useState();
@@ -35,6 +35,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
     }
   };
   async function getDoc() {
+    setloading(true);
     const snapshot = await database
       .collection("Livelinks")
       .doc(match.params.slug)
@@ -52,8 +53,9 @@ function ScheduledLiveSlidePuzzle({ match }) {
       dataurl[index] = item.url;
     });
   }
-  useEffect(() => {
-    getDoc();
+  useEffect(async () => {
+    await getDoc();
+    // setloading(false);
   }, []);
   useEffect(() => {
     setloading(true);

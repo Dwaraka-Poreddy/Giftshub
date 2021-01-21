@@ -53,7 +53,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
     <div className="App">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6">
+          <div className="col-lg-6 mb-3">
             <div
               style={{
                 backgroundImage: "url(" + fbimg + ")",
@@ -83,12 +83,12 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
               })}
             </div>
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-6 mb-3">
             {!showplayAgain ? (
               <div class="container">
                 <div class="card p-3">
                   {quesnumber > 0 ? (
-                    <h4>
+                    <h4 style={{ textAlign: "center" }}>
                       {correct} Correct out of {quesnumber}
                     </h4>
                   ) : null}
@@ -99,8 +99,14 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                       fontSize: "1.5rem",
                       fontWeight: "500",
                       lineHeight: "1.2",
+                      textAlign: "center",
                     }}
                   >
+                    {" "}
+                    {console.log(
+                      items[quesArray[quesnumber]].question2_live,
+                      "itemsarray"
+                    )}
                     {items[quesArray[quesnumber]].question2_live}
                   </h4>
                   <center>
@@ -145,40 +151,44 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                     fontSize: "1.5rem",
                     fontWeight: "500",
                     lineHeight: "1.2",
+                    textAlign: "center",
+                    lineHeight: "1.2",
                   }}
                 >
                   Total Score {correct} out of {quesArray.length}
                 </h4>
-                <button
-                  class="btn btn-success"
-                  onClick={() => {
-                    setshowPlayagain(false);
-                    setcorrect(0);
-                    setquesnumber(0);
-                    setbgcolrs([
-                      "red",
-                      "blue",
-                      "orange",
-                      "green",
-                      "yellow",
-                      "purple",
-                      "red",
-                      "blue",
-                      "orange",
-                      "green",
-                      "yellow",
-                      "purple",
-                      "red",
-                      "blue",
-                      "orange",
-                      "green",
-                      "yellow",
-                      "purple",
-                    ]);
-                  }}
-                >
-                  Play Again
-                </button>
+                <center>
+                  <button
+                    class="btn btn-success"
+                    onClick={() => {
+                      setshowPlayagain(false);
+                      setcorrect(0);
+                      setquesnumber(0);
+                      setbgcolrs([
+                        "red",
+                        "blue",
+                        "orange",
+                        "green",
+                        "yellow",
+                        "purple",
+                        "red",
+                        "blue",
+                        "orange",
+                        "green",
+                        "yellow",
+                        "purple",
+                        "red",
+                        "blue",
+                        "orange",
+                        "green",
+                        "yellow",
+                        "purple",
+                      ]);
+                    }}
+                  >
+                    Play Again
+                  </button>
+                </center>
               </div>
             )}
           </div>

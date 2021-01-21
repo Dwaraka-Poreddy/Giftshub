@@ -169,7 +169,7 @@ export default function LandingPage() {
   };
   return (
     <div className="App">
-      {isMobileOnly ? null : isTablet ? null : browview()}
+      {/* {isMobileOnly ? null : isTablet ? null : browview()} */}
       <body id="page-top">
         <NavBar />
 

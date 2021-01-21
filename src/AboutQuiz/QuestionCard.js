@@ -27,24 +27,27 @@ export default function AboutQuiz({
     <div className="App">
       <div className="contaier-fluid">
         <div className="row">
-          {JSON.stringify(quesArray)}
-          {JSON.stringify(answersArray)}
+          {/* {JSON.stringify(quesArray)}
+          {JSON.stringify(answersArray)} */}
           <div className="col-lg-10">
             {!isselectcomplete ? (
               <div class="container">
                 <div class="card p-3">
                   {quesArray.length ? (
-                    <h4> {quesArray.length} Questions Selected. </h4>
+                    <h4 style={{ textAlign: "center" }}>
+                      {" "}
+                      {quesArray.length} Questions Selected.{" "}
+                    </h4>
                   ) : null}
                   <button
-                    style={{ margin: "auto", width: "300px" }}
+                    style={{ margin: "auto", width: "fit-content" }}
                     type="button"
                     class="btn btn-primary "
                     onClick={() => {
                       setquesnumber(quesnumber + 1);
                     }}
                   >
-                    SKIP THIS QUESTION
+                    Skip this question
                   </button>
                   <div
                     style={{
@@ -52,6 +55,7 @@ export default function AboutQuiz({
                       fontSize: "1.5rem",
                       fontWeight: "500",
                       lineHeight: "1.2",
+                      textAlign: "center",
                     }}
                   >
                     {items[quesnumber].question_set}
@@ -109,23 +113,26 @@ export default function AboutQuiz({
                     fontSize: "1.5rem",
                     fontWeight: "500",
                     lineHeight: "1.2",
+                    textAlign: "center",
                   }}
                 >
                   {quesArray.length} Questions selected successfully!
                 </h4>
-                <button
-                  style={{ margin: "auto", width: "200px" }}
-                  type="button"
-                  class="btn btn-primary "
-                  onClick={() => {
-                    setisselectcomplete(false);
-                    setquesArray([]);
-                    setanswersArray([]);
-                    setquesnumber(0);
-                  }}
-                >
-                  Select Again
-                </button>
+                <center>
+                  <button
+                    style={{ margin: "auto", width: "200px" }}
+                    type="button"
+                    class="btn btn-primary "
+                    onClick={() => {
+                      setisselectcomplete(false);
+                      setquesArray([]);
+                      setanswersArray([]);
+                      setquesnumber(0);
+                    }}
+                  >
+                    Select Again
+                  </button>
+                </center>
               </>
             )}
           </div>

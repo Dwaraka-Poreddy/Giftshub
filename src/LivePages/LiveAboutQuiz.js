@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import LiveQuestionCard from "../AboutQuiz/LiveQuestionCard";
-import items from "../AboutQuiz/questions";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
@@ -28,6 +27,7 @@ export default function LiveThreeDImage({ match }) {
   return (
     <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
       <LiveNavBar />
+      <br /> <br /> <br /> <br />
       <div style={{ backgroundColor: "#70cff3" }}>
         <div>
           {loading ? (
@@ -39,7 +39,9 @@ export default function LiveThreeDImage({ match }) {
             />
           ) : (
             <>
-              {console.log(items[quesArray[0]].question, "livepage ofnum")}
+              {" "}
+              {console.log(quesArray, "quesarray")}
+              {console.log(answersArray, "answerArray")}
               <LiveQuestionCard
                 quesArray={quesArray}
                 answersArray={answersArray}

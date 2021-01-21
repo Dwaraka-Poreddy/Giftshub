@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./ThreeDImage.css";
 
 export default function ThreeDImage({ fbimg, firstcol, secondcol }) {
-  // const [firstcol, setfirstcol] = useState("#302015");
-  // const [secondcol, setsecondcol] = useState("#1c1008");
   return (
     <div
       style={{

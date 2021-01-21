@@ -78,6 +78,9 @@ const ScheduledLiveMagazine = lazy(() =>
 const ScheduledLiveCalandar = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveCalandar")
 );
+const ScheduledLiveAboutQuiz = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveAboutQuiz")
+);
 const ScheduledLiveThreeDCarousel = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveThreeDCarousel")
 );
@@ -273,7 +276,11 @@ export default function App() {
             component={LiveAnimatedFramePage}
           />
           <Route exact path="/live/magazine/:slug" component={LiveMagazine} />
-
+          <Route
+            exact
+            path="/scheduledlive/aboutquiz/:id/:slug"
+            component={ScheduledLiveAboutQuiz}
+          />
           <Route
             exact
             path="/scheduledlive/hexagonalanim/:id/:slug"

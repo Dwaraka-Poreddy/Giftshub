@@ -8,6 +8,7 @@ import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Share from "../Utils/Share";
+import ScheduledAboutQuizPage from "../AboutQuiz/ScheduledAboutQuizPage";
 import ScheduledCalandarPage from "../Calandar/ScheduledCalandarPage";
 import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
 import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
@@ -236,6 +237,17 @@ function ContinuePack({ match, history }) {
   }
 
   function getStepContent(step) {
+    if (dataid[step] === "aboutquiz") {
+      return (
+        <ScheduledAboutQuizPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
     if (dataid[step] === "hexagonalanim") {
       return (
         <ScheduledHexagonalAnimPage

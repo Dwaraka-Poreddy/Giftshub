@@ -11,6 +11,14 @@ const allComp = [
       "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
   },
   {
+    id: "aboutquiz",
+    ismailsent: false,
+    content: "About Quiz",
+    url: "",
+    img:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemo.PNG?alt=media&token=beeb8d64-7501-4051-91e9-d15ba8977de4",
+  },
+  {
     id: "calandar",
     ismailsent: false,
     content: "Calander",
