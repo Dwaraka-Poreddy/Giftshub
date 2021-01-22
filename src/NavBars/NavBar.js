@@ -4,7 +4,7 @@ import firebase from "firebase";
 import { useHistory } from "react-router-dom";
 import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-function NavBar() {
+export default function DummyNavBar() {
   const [navstate, setnavstate] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
@@ -16,7 +16,6 @@ function NavBar() {
       setnavstate(false);
     }
   };
-
   let dispatch = useDispatch();
   let history = useHistory();
   // spread operater
@@ -31,7 +30,7 @@ function NavBar() {
     history.push("/login");
   };
   return (
-    <body>
+    <div style={{ color: "red" }}>
       <nav
         class={
           !navstate
@@ -56,15 +55,26 @@ function NavBar() {
             Menu
             <i class="fas fa-bars ml-1"></i>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent-rasedul"
+          >
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link js-scroll-trigger" href={`/`}>
+                  HOME
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href={`/aboutus`}>
+                  ABOUT US
+                </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
               {!user ? (
                 <>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href={`/aboutus`}>
-                      ABOUT US
-                    </a>
-                  </li>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href={`/login`}>
                       LOGIN
@@ -78,13 +88,29 @@ function NavBar() {
                 </>
               ) : (
                 <>
+                  {" "}
                   <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger p-0" href={`/`}>
+                    <a
+                      class="nav-link js-scroll-trigger"
+                      href={`/userpackspage`}
+                    >
+                      MY PACKS
+                    </a>
+                  </li>
+                  <li class="nav-item avatar dropdown">
+                    <a
+                      class="nav-link dropdown-toggle p-0"
+                      id="navbarDropdownMenuLink-5"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {user.email.split("@")[0]}
                       {user.profilepic ? (
                         <img
-                          width="45"
+                          width="40"
                           src={user.profilepic}
-                          class="md-avatar rounded-circle mr-2"
+                          class="md-avatar rounded-circle ml-3"
                           alt="avatar image"
                         />
                       ) : (
@@ -95,31 +121,32 @@ function NavBar() {
                           alt="avatar image"
                         />
                       )}{" "}
-                      {user.email.split("@")[0]}
                     </a>
-                  </li>
 
-                  <li class="nav-item">
-                    <a
-                      class="nav-link js-scroll-trigger"
-                      href={`/userpackspage`}
+                    <div
+                      class="dropdown-menu dropdown-menu-right dropdown-secondary"
+                      aria-labelledby="navbarDropdownMenuLink-5"
                     >
-                      MY PACKS
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href={`/aboutus`}>
-                      ABOUT US
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      onClick={logout}
-                      class="nav-link js-scroll-trigger"
-                      href={`/login`}
-                    >
-                      LOGOUT
-                    </a>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="">
+                          Your Profile
+                        </a>
+                      </li>
+                      <li class="nav-item ">
+                        {user && (
+                          <a class="nav-link" href={`/userpackspage`}>
+                            My Packs
+                          </a>
+                        )}
+                      </li>
+                      <li class="nav-item ">
+                        {user && (
+                          <a onClick={logout} class="nav-link" href={`/login`}>
+                            Logout
+                          </a>
+                        )}
+                      </li>
+                    </div>
                   </li>
                 </>
               )}
@@ -127,8 +154,6 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </body>
+    </div>
   );
 }
-
-export default NavBar;

@@ -234,7 +234,7 @@ export default function LandingPage() {
           Contact Mail
         </a>
       </div>
-      {isMobileOnly ? null : isTablet ? null : browview()}
+      {/* {isMobileOnly ? null : isTablet ? null : browview()} */}
 
       <body id="page-top">
         <NavBar />

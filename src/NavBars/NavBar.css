@@ -74,3 +74,8 @@
     margin-right: 0;
   }
 }
+.dropdown-menu,
+.dropdown-menu-right,
+.dropdown-secondary {
+  background-color: #252a34 !important;
+}
