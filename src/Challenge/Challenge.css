@@ -1,5 +1,6 @@
 .App {
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: "Roboto", sans-serif;
   margin: auto;
   width: 100%;
   text-align: justify;
@@ -49,7 +50,8 @@
 
 #about2 {
   text-align: justify;
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Lato", sans-serif; */
   padding: 40px 0px 120px 0;
   position: relative;
 
@@ -101,7 +103,9 @@
 #about h5,
 #about2 h5 {
   text-align: justify;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+
+  /* font-family: "Open Sans", sans-serif; */
   font-size: 26px;
   font-weight: 700;
   color: #ffffff;
@@ -167,7 +171,9 @@ section {
 
 .section-heading h2 {
   text-align: justify;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+
+  /* font-family: "Open Sans", sans-serif; */
   text-align: center;
   font-size: 48px;
   font-weight: 300;
@@ -234,7 +240,9 @@ section {
 
 .welcome-area .header-text h1 {
   text-align: justify;
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
+
+  /* font-family: "Raleway", sans-serif; */
   font-weight: 400;
   font-size: 45px;
   line-height: 50px;
@@ -245,7 +253,9 @@ section {
 
 .welcome-area .header-text p {
   text-align: justify;
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
+
+  /* font-family: "Raleway", sans-serif; */
   font-weight: 300;
   font-size: 17px;
   color: #fff;

@@ -48,16 +48,18 @@ const baseStyle = {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    borderRadius: "15px",
+    borderRadius: "5px",
+    width: "80vw",
+    height: "auto",
+    minWidth: "320px",
+    maxWidth: "840px",
     position: "absolute",
-    width: "70vw",
-    height: "97vh",
-    maxWidth: "1000px",
-    // minWidth: "400px",
+    color: "#ffffff",
     marginTop: "0vh",
+    marginBottom: "0vh",
     border: null,
-    backgroundColor: "#303030",
-    padding: theme.spacing(2, 4, 3),
+    backgroundColor: "#009dd9",
+    padding: theme.spacing(0, 0, 0),
   },
   DelBut: {
     position: "sticky",

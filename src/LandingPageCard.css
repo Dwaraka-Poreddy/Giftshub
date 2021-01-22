@@ -1,5 +1,5 @@
 #team {
-  background: #c3404e !important;
+  background-image: linear-gradient(#fb6e6e, #c35b5b);
   padding: 60px 0;
 }
 .btn-primary {
@@ -19,6 +19,18 @@ section .section-title {
   border: none;
   background: #ffffff;
 } */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: initial;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.35rem;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .image-flip:hover .backside,
   .image-flip.hover .backside {
@@ -103,8 +115,10 @@ section .section-title {
   color: #007b5e !important;
 }
 .card-title {
+  font-family: "Roboto", sans-serif;
   margin-bottom: 0.75rem;
   margin-top: 0.75rem;
+  font-size: 21px;
 }
 /* .frontside .card .card-title,
 .backside .card .card-title {

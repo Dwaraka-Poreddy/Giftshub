@@ -255,8 +255,7 @@ function ScheduledThreeDImagePage({
 
       <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
         <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7 mb-3">
+          <div class="  col-lg-9 mb-3">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -274,7 +273,7 @@ function ScheduledThreeDImagePage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
+
           <div
             className="threedrnav  col-lg-3"
             style={{
@@ -288,79 +287,89 @@ function ScheduledThreeDImagePage({
           >
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={4 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={4 / 3}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <div data-tut="reactour__gradient">
-                <input
-                  type="color"
-                  id="FirstColor"
-                  initialValue={firstcol}
-                  value={firstcol}
-                  onChange={(e) => {
-                    setfirstcol(e.target.value);
-                    setshowoptions(false);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="FirstColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Left Color " />
-                </label>
-                <input
-                  type="color"
-                  id="ToColor"
-                  initialValue={secondcol}
-                  value={secondcol}
-                  onChange={(e) => {
-                    setsecondcol(e.target.value);
-                    setshowoptions(false);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="ToColor">
-                  <HeaderBtn Icon={GradientIcon} title="Gradient Right Color" />
-                </label>
+                <center>
+                  <input
+                    type="color"
+                    id="FirstColor"
+                    initialValue={firstcol}
+                    value={firstcol}
+                    onChange={(e) => {
+                      setfirstcol(e.target.value);
+                      setshowoptions(false);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="FirstColor">
+                    <HeaderBtn
+                      Icon={GradientIcon}
+                      title="Gradient Left Color "
+                    />
+                  </label>
+                  <input
+                    type="color"
+                    id="ToColor"
+                    initialValue={secondcol}
+                    value={secondcol}
+                    onChange={(e) => {
+                      setsecondcol(e.target.value);
+                      setshowoptions(false);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="ToColor">
+                    <HeaderBtn
+                      Icon={GradientIcon}
+                      title="Gradient Right Color"
+                    />
+                  </label>
+                </center>
               </div>
               <center>
                 {loading ? (

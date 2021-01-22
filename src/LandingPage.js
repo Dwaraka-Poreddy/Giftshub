@@ -19,6 +19,7 @@ import $ from "jquery";
 import NavBar from "./NavBars/NavBar";
 import firebase from "./firebase";
 import "./Buttons.css";
+import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
 const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -150,13 +151,18 @@ export default function LandingPage() {
         <br />
 
         <div
+          id="demo"
           style={{ overflow: "hidden" }}
-          id="carouselExampleControls"
           class="carousel slide"
           data-ride="carousel"
         >
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+          </ul>
           <div class="carousel-inner zoomcarousel">
-            <div class="carousel-item active">
+            <div class="carousel-item active zoomcarousel">
               <img
                 class="d-block w-100"
                 src={require("./Images/zoomcarouselsquare.jpg")}
@@ -167,7 +173,6 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 src={require("./Images/zoomcarousel0square.jpg")}
-                jpg
                 alt="Second slide"
               />
             </div>
@@ -175,11 +180,16 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 src={require("./Images/zoomcarousel2square.jpg")}
-                jpg
-                alt="Second slide"
+                alt="Third Slide "
               />
             </div>
           </div>
+          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
         </div>
       </>
     );
@@ -187,13 +197,18 @@ export default function LandingPage() {
   const browviewMainCarousel = () => {
     return (
       <div
+        id="demo"
         style={{ overflow: "hidden" }}
-        id="carouselExampleControls"
         class="carousel slide"
         data-ride="carousel"
       >
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
         <div class="carousel-inner zoomcarousel">
-          <div class="carousel-item active">
+          <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
               src={require("./Images/zoomcarousel.jpg")}
@@ -204,19 +219,33 @@ export default function LandingPage() {
             <img
               class="d-block w-100"
               src={require("./Images/zoomcarousel0.jpg")}
-              jpg
               alt="Second slide"
             />
           </div>
-          <div class="carousel-item zoomcarousel">
+          {/* <div class="carousel-item zoomcarousel">
             <img
               class="d-block w-100"
               src={require("./Images/zoomcarousel2.jpg")}
-              jpg
-              alt="Second slide"
+              alt="Third Slide "
             />
-          </div>
+          </div> */}
         </div>
+        <a
+          style={{ zIndex: "10" }}
+          class="carousel-control-prev"
+          href="#demo"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a
+          style={{ zIndex: "10" }}
+          class="carousel-control-next"
+          href="#demo"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </a>
       </div>
     );
   };
@@ -234,7 +263,7 @@ export default function LandingPage() {
           Contact Mail
         </a>
       </div>
-      {/* {isMobileOnly ? null : isTablet ? null : browview()} */}
+      {isMobileOnly ? null : isTablet ? null : browview()}
 
       <body id="page-top">
         <NavBar />
@@ -243,11 +272,18 @@ export default function LandingPage() {
           : isTablet
           ? browviewMainCarousel()
           : browviewMainCarousel()}
-        <section class="partners mt-n5">
+
+        <section
+          class="partners"
+          style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
+        >
           <div class="container py-0">
             <div class="card shadow-lg ">
               <div class="card-body p-3">
                 <div class="swiper-container">
+                  <center>
+                    <h4>Our Gifts</h4>
+                  </center>
                   <OwlCarousel
                     style={{ zIndex: "5" }}
                     dots={false}
@@ -359,13 +395,12 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <br />
-        <br />
+
         <div class="welcome-area" id="welcome">
           <div class="header-text">
             <div class="container">
               <center>
-                <h1>Personalised free virtual gifting</h1>
+                <h1> Free personalised gifting</h1>
               </center>
               <div class="row">
                 <div
@@ -380,7 +415,10 @@ export default function LandingPage() {
                     ways and bringing you closer.
                   </p>
                   <center>
-                    <button className="main-button"> Know More</button>
+                    <button className="main-button">
+                      Video Tour{" "}
+                      <PlayArrowOutlinedIcon style={{ marginBottom: "3px" }} />
+                    </button>
                   </center>
                 </div>
               </div>
@@ -388,24 +426,27 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <br />
-        <br />
         <div class="container">
+          <center>
+            <h1 className="landingservicesheading"> Services</h1>
+          </center>
           <div class="card-deck mb-3 text-center">
-            <div class="card mb-4 box-shadow">
-              <div class="card-header">
+            <div class="card mb-4 box-shadow ">
+              <div class="card-header landingservicescardhead">
                 <h4 class="my-0 font-weight-normal">Recommended pack</h4>
               </div>
               <div class="card-body">
                 <h1 class="card-title pricing-card-title">
                   $0 <small class="text-muted">/ mo</small>
                 </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>10 users included</li>
-                  <li>2 GB of storage</li>
-                  <li>Email support</li>
-                  <li>Help center access</li>
-                </ul>
+                <center>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>10 users included</li>
+                    <li>2 GB of storage</li>
+                    <li>Email support</li>
+                    <li>Help center access</li>
+                  </ul>
+                </center>
                 <center>
                   <Link to="/recommendedhome">
                     <div class="slidehoverbtnouter">
@@ -427,44 +468,9 @@ export default function LandingPage() {
                 </center>
               </div>
             </div>
-            <div class="card mb-4 box-shadow">
-              <div class="card-header">
-                <h4 class="my-0 font-weight-normal">n-Day Pack</h4>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title pricing-card-title">
-                  $0 <small class="text-muted">/ mo</small>
-                </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>20 users included</li>
-                  <li>10 GB of storage</li>
-                  <li>Priority email support</li>
-                  <li>Help center access</li>
-                </ul>
-                <center>
-                  <Link to="/home">
-                    <div class="slidehoverbtnouter">
-                      <div
-                        onClick={() => {
-                          dispatch({
-                            type: "REDIRECT_USER",
-                            payload: {
-                              days_redirect: "n",
-                            },
-                          });
-                        }}
-                        class="slidehoverbtnbutton"
-                      >
-                        <div class="slidehoverbtntext"> n-Day Pack</div>
-                      </div>
-                    </div>
-                  </Link>
-                </center>
-              </div>
-            </div>{" "}
-            <div class="card mb-4 box-shadow">
-              <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Valentines Pack</h4>
+            <div class="card mb-4 box-shadow ">
+              <div class="card-header landingservicescardhead">
+                <h4 class="my-0 font-weight-normal ">Valentines Pack</h4>
               </div>
               <div class="card-body">
                 <h1 class="card-title pricing-card-title">
@@ -490,7 +496,42 @@ export default function LandingPage() {
                         }}
                         class="slidehoverbtnbutton"
                       >
-                        <div class="slidehoverbtntext">Valentines Pack</div>
+                        <div class="slidehoverbtntext"> Valentines Pack</div>
+                      </div>
+                    </div>
+                  </Link>
+                </center>
+              </div>
+            </div>{" "}
+            <div class="card mb-4 box-shadow ">
+              <div class="card-header landingservicescardhead">
+                <h4 class="my-0 font-weight-normal ">N-Day Pack </h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  $0 <small class="text-muted">/ mo</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 users included</li>
+                  <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <center>
+                  <Link to="/home">
+                    <div class="slidehoverbtnouter">
+                      <div
+                        onClick={() => {
+                          dispatch({
+                            type: "REDIRECT_USER",
+                            payload: {
+                              days_redirect: "n",
+                            },
+                          });
+                        }}
+                        class="slidehoverbtnbutton"
+                      >
+                        <div class="slidehoverbtntext">N-Day Pack</div>
                       </div>
                     </div>
                   </Link>
@@ -500,10 +541,17 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <br />
-        <br />
         <section id="team" class="pb-5">
           <div class="container">
+            <center>
+              <h1
+                style={{ color: "#ffffff" }}
+                className="landingservicesheading"
+              >
+                {" "}
+                Customizable gifts
+              </h1>
+            </center>
             <div className="row equal">
               {LandingPageCardsData.map((item, index) => {
                 return (
@@ -542,9 +590,7 @@ export default function LandingPage() {
         <div class="container">
           <div class="row">
             <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-              <h4>
-                <span>Our</span> Process
-              </h4>
+              <h1 className="landingservicesheading"> Our Process</h1>
               <p>
                 We are a passionate digital design agency that specializes in
                 beautiful and easy-to-use digital design & web development
@@ -630,6 +676,40 @@ export default function LandingPage() {
 
       {/* <!-- End Process ====
       ======================================= --> */}
+      <div class="welcome-area1" id="welcome1">
+        <div class="header-text">
+          <div class="container">
+            <center>
+              <h1> Free personalised gifting</h1>
+            </center>
+            <div class="row">
+              <div
+                class="left-text col-xs-12"
+                data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
+              >
+                <p>
+                  Gifts manifest our emotions and transform them into meaningful
+                  forms of love! In a digital age of fast paced lifestyle, we at
+                  Gift’s Hub aim to stand apart in providing you the old-school
+                  way of wishing your loved ones in several ways and bringing
+                  you closer.Gift-planning can be quite a challenging task given
+                  the hectic schedules we all have, currently. So to waste no
+                  more time and to bid goodbyes to all the reminders and alarms,
+                  we introduce our automatic gift generation feature which keeps
+                  a track of the D-day and time, releasing the appropriate gift
+                  component on the desired day! Lead a guilt-free life once you
+                  choose your suitable package and customize them accordingly,
+                  because we at Gift’s Hub promise to deliver blissful content
+                  as and when you intend us to! Express love, this Valentine’s
+                  Day with our free personalized virtual gifting service. Upload
+                  pictures & text, create puzzles and together make memories!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div
         class="fb-like"
         data-href="https://www.facebook.com/Bestpricedude"

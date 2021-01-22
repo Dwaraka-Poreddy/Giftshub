@@ -11,3 +11,8 @@
     margin: 0;
   }
 } */
+.hearteditarea {
+  margin-right: 30px !important;
+  margin-left: 30px !important;
+  background-color: #f7f7f7;
+}

@@ -11,7 +11,6 @@ import Share from "../Utils/Share";
 import ScheduledChallengePage from "../Challenge/ScheduledChallengePage";
 import ScheduledAboutQuizPage from "../AboutQuiz/ScheduledAboutQuizPage";
 import ScheduledCalendarPage from "../Calendar/ScheduledCalendarPage";
-
 import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
 import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
 import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";

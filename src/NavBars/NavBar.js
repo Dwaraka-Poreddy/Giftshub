@@ -59,11 +59,10 @@ export default function DummyNavBar() {
             class="collapse navbar-collapse"
             id="navbarSupportedContent-rasedul"
           >
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto nav-flex-icons">
               <li class="nav-item active">
                 <a class="nav-link js-scroll-trigger" href={`/`}>
                   HOME
-                  <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -71,8 +70,6 @@ export default function DummyNavBar() {
                   ABOUT US
                 </a>
               </li>
-            </ul>
-            <ul class="navbar-nav ml-auto nav-flex-icons">
               {!user ? (
                 <>
                   <li class="nav-item">

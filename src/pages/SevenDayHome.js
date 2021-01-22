@@ -25,6 +25,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Swiper.css";
 import $ from "jquery";
 import "../Buttons.css";
+import "./SevenDayHome.css";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -260,8 +261,8 @@ function SevenDayHome({ history }) {
 
       <div className="container">
         <div className="row border">
-          <div className="col-md-4 col-lg-3 p-0">
-            <div class="card text-center border-0">
+          <div className="col-md-4 col-lg-3 p-0 recommendedcard">
+            <div class="card text-center border-0 recommendedcard">
               <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">

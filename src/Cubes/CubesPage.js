@@ -258,7 +258,7 @@ function CubesPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <br />
       <br />
@@ -275,8 +275,8 @@ function CubesPage() {
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 ">
+        <div class="row hearteditarea">
           <div class="  col-lg-9 mt-0 mt-lg-5">
             <br />
             <Cubes
@@ -298,12 +298,12 @@ function CubesPage() {
           <div
             className="cubesrnav col-lg-3  "
             style={{
-              backgroundColor: "#009dd9",
+              backgroundColor: "rgb(252 200 122)",
               justifyContent: "center",
               alignItems: "center",
               position: "sticky",
               top: "0",
-              right: "0",
+              right: "30px",
             }}
           >
             <BrowserView>

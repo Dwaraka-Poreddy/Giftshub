@@ -1,6 +1,7 @@
 .App {
   /* background-color: #ffffff !important; */
   /* font-family: sans-serif; */
+  font-family: "Roboto", sans-serif;
   text-align: center;
 }
 .productCardDiv {
@@ -30,7 +31,8 @@
   margin-bottom: -20px !important;
   align-items: center;
   vertical-align: middle;
-  font-family: Noto Sans JP;
+  font-family: "Roboto", sans-serif;
+  /* font-family: Noto Sans JP; */
   letter-spacing: 3px;
   display: flex;
   align-items: center;
@@ -48,7 +50,8 @@
   margin-top: 20px;
   align-items: center;
   vertical-align: middle;
-  font-family: Noto Sans JP;
+  font-family: "Roboto", sans-serif;
+  /* font-family: Noto Sans JP; */
   letter-spacing: 3px;
   display: flex;
   align-items: center;
