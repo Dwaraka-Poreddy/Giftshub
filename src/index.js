@@ -10,7 +10,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducers/index";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+import $ from "jquery";
+import Popper from "popper.js";
 const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(

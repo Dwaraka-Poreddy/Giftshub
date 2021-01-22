@@ -12,8 +12,12 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
             <div class="frontside">
               <div class="card">
                 <div class="card-body text-center">
-                  <img class=" img-fluid" src={img} alt="card" />
-
+                  <img
+                    style={{ width: "100%", height: "auto" }}
+                    class=" img-fluid"
+                    src={img}
+                    alt="card"
+                  />
                   <br />
                   <h4 class="card-title">{title}</h4>
                 </div>

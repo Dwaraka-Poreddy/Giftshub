@@ -1,5 +1,5 @@
 #team {
-  background: #eee !important;
+  background: #c3404e !important;
   padding: 60px 0;
 }
 .btn-primary {
@@ -19,26 +19,26 @@ section .section-title {
   border: none;
   background: #ffffff;
 } */
+@media (hover: hover) and (pointer: fine) {
+  .image-flip:hover .backside,
+  .image-flip.hover .backside {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: 0.25rem;
+    transform: scale(1.05);
+  }
 
-.image-flip:hover .backside,
-.image-flip.hover .backside {
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  transform: rotateY(0deg);
-  border-radius: 0.25rem;
-  transform: scale(1.05);
+  .image-flip:hover .frontside,
+  .image-flip.hover .frontside {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
 }
-
-.image-flip:hover .frontside,
-.image-flip.hover .frontside {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-}
-
 .mainflip {
   -webkit-transition: 1s;
   -webkit-transform-style: preserve-3d;
@@ -102,12 +102,20 @@ section .section-title {
   font-size: 18px;
   color: #007b5e !important;
 }
-
-.frontside .card .card-title,
+.card-title {
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+}
+/* .frontside .card .card-title,
 .backside .card .card-title {
   color: #007b5e !important;
+} */
+.frontside .card .card-body {
+  padding: 5px;
 }
-
+.backside .card .card-body {
+  padding: 5px;
+}
 .frontside .card .card-body img {
   /* width: 120px; */
   height: 120px;

@@ -57,7 +57,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
             <div
               style={{
                 backgroundImage: "url(" + fbimg + ")",
-
+                transition: "all 0.5s ease-out",
                 // height: calc(width / 2),
                 width: "100%",
                 // height: "75vh",
@@ -77,6 +77,7 @@ export default function AboutQuiz({ quesArray, answersArray, fbimg }) {
                       backgroundColor: bgcolrs[index],
                       height: divheight,
                       opacity: "0.8",
+                      transition: "all 1s ease-out",
                     }}
                   ></div>
                 );

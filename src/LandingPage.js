@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import $ from "jquery";
 import NavBar from "./NavBars/NavBar";
 import firebase from "./firebase";
-
+import "./Buttons.css";
 const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ export default function LandingPage() {
           zIndex: "5",
         }}
       >
-        <Particles
+        {/* <Particles
           params={{
             particles: {
               number: {
@@ -83,6 +83,59 @@ export default function LandingPage() {
                 onhover: {
                   enable: true,
                   mode: "repulse",
+                },
+              },
+            },
+          }}
+        /> */}
+        <Particles
+          params={{
+            particles: {
+              number: {
+                value: 160,
+                density: {
+                  enable: false,
+                },
+              },
+              size: {
+                value: 3,
+                random: true,
+                anim: {
+                  speed: 4,
+                  size_min: 0.3,
+                },
+              },
+              line_linked: {
+                enable: false,
+              },
+              move: {
+                random: true,
+                speed: 1,
+                direction: "top",
+                out_mode: "out",
+              },
+            },
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: "bubble",
+                },
+                onclick: {
+                  enable: true,
+                  mode: "repulse",
+                },
+              },
+              modes: {
+                bubble: {
+                  distance: 250,
+                  duration: 2,
+                  size: 0,
+                  opacity: 0,
+                },
+                repulse: {
+                  distance: 400,
+                  duration: 4,
                 },
               },
             },
@@ -169,7 +222,20 @@ export default function LandingPage() {
   };
   return (
     <div className="App">
-      {/* {isMobileOnly ? null : isTablet ? null : browview()} */}
+      <div
+        style={{ display: "none" }}
+        itemscope
+        itemtype="http://schema.org/Person"
+      >
+        <span itemprop="name">DWARAKA POREDDY</span>
+        <span itemprop="company">The GIFTSHUB Company</span>
+        <span itemprop="tel">8367770505</span>
+        <a itemprop="email" href="contact.giftshub@gmail.com">
+          Contact Mail
+        </a>
+      </div>
+      {isMobileOnly ? null : isTablet ? null : browview()}
+
       <body id="page-top">
         <NavBar />
         {isMobileOnly
@@ -295,48 +361,145 @@ export default function LandingPage() {
         </section>
         <br />
         <br />
-        <div className="container">
-          <div class="card-deck">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This card has supporting text below as a natural lead-in to
-                  additional content.
-                </p>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content than the first to show that equal height action.
-                </p>
-                <p class="card-text">
-                  <small>Last updated 3 mins ago</small>
-                </p>
+        <div class="welcome-area" id="welcome">
+          <div class="header-text">
+            <div class="container">
+              <center>
+                <h1>Personalised free virtual gifting</h1>
+              </center>
+              <div class="row">
+                <div
+                  class="left-text col-xs-12"
+                  data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
+                >
+                  <p>
+                    Gifts manifest our emotions and transform them into
+                    meaningful forms of love! In a digital age of fast paced
+                    lifestyle, we at Gift’s Hub aim to stand apart in providing
+                    you the old-school way of wishing your loved ones in several
+                    ways and bringing you closer.
+                  </p>
+                  <center>
+                    <button className="main-button"> Know More</button>
+                  </center>
+                </div>
               </div>
             </div>
           </div>
-        </div>{" "}
+        </div>
+
+        <br />
+        <br />
+        <div class="container">
+          <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Recommended pack</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  $0 <small class="text-muted">/ mo</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>10 users included</li>
+                  <li>2 GB of storage</li>
+                  <li>Email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <center>
+                  <Link to="/recommendedhome">
+                    <div class="slidehoverbtnouter">
+                      <div
+                        onClick={() => {
+                          dispatch({
+                            type: "REDIRECT_USER",
+                            payload: {
+                              days_redirect: "r",
+                            },
+                          });
+                        }}
+                        class="slidehoverbtnbutton"
+                      >
+                        <div class="slidehoverbtntext">Recommended pack</div>
+                      </div>
+                    </div>
+                  </Link>
+                </center>
+              </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">n-Day Pack</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  $0 <small class="text-muted">/ mo</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 users included</li>
+                  <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <center>
+                  <Link to="/home">
+                    <div class="slidehoverbtnouter">
+                      <div
+                        onClick={() => {
+                          dispatch({
+                            type: "REDIRECT_USER",
+                            payload: {
+                              days_redirect: "n",
+                            },
+                          });
+                        }}
+                        class="slidehoverbtnbutton"
+                      >
+                        <div class="slidehoverbtntext"> n-Day Pack</div>
+                      </div>
+                    </div>
+                  </Link>
+                </center>
+              </div>
+            </div>{" "}
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Valentines Pack</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  $0 <small class="text-muted">/ mo</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 users included</li>
+                  <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <center>
+                  <Link to="/">
+                    <div class="slidehoverbtnouter">
+                      <div
+                        onClick={() => {
+                          // dispatch({
+                          //   type: "REDIRECT_USER",
+                          //   payload: {
+                          //     days_redirect: "n",
+                          //   },
+                          // });
+                        }}
+                        class="slidehoverbtnbutton"
+                      >
+                        <div class="slidehoverbtntext">Valentines Pack</div>
+                      </div>
+                    </div>
+                  </Link>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <br />
         <br />
         <section id="team" class="pb-5">
@@ -358,38 +521,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <center>
-          <Link to="/home">
-            <button
-              onClick={() => {
-                dispatch({
-                  type: "REDIRECT_USER",
-                  payload: {
-                    days_redirect: "n",
-                  },
-                });
-              }}
-              className="main-button"
-            >
-              n-Day Pack
-            </button>
-          </Link>
-          <Link to="/recommendedhome">
-            <button
-              onClick={() => {
-                dispatch({
-                  type: "REDIRECT_USER",
-                  payload: {
-                    days_redirect: "r",
-                  },
-                });
-              }}
-              className="main-button"
-            >
-              Recommended pack
-            </button>{" "}
-          </Link>
-        </center>
       </body>
       {/* <button
         onClick={() => {
@@ -499,6 +630,15 @@ export default function LandingPage() {
 
       {/* <!-- End Process ====
       ======================================= --> */}
+      <div
+        class="fb-like"
+        data-href="https://www.facebook.com/Bestpricedude"
+        data-width="200"
+        data-layout="button"
+        data-action="like"
+        data-size="small"
+        data-share="true"
+      ></div>
     </div>
   );
 }

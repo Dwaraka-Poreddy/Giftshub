@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Swiper.css";
 import $ from "jquery";
+import "../Buttons.css";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -258,34 +259,35 @@ function SevenDayHome({ history }) {
       <br />
 
       <div className="container">
-        <div className="row">
-          <div className="col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
-                alt="Card image cap"
-              />
+        <div className="row border">
+          <div className="col-md-4 col-lg-3 p-0">
+            <div class="card text-center border-0">
               <div class="card-body">
-                <button
-                  onClick={() => {
-                    setopenModal(true);
-                    dispatch({
-                      type: "REDIRECT_USER",
-                      payload: {
-                        days_redirect: "3",
-                      },
-                    });
-                  }}
-                  className="main-button"
-                >
-                  3-Day Pack
-                </button>
-                {/* <p class="card-text">Some quick example text to build</p> */}
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <div class="slidehoverbtnouter">
+                  <div
+                    onClick={() => {
+                      setopenModal(true);
+                      dispatch({
+                        type: "REDIRECT_USER",
+                        payload: {
+                          days_redirect: "3",
+                        },
+                      });
+                    }}
+                    class="slidehoverbtnbutton"
+                  >
+                    <div class="slidehoverbtntext">3-Day Pack</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-md-8 col-lg-9 ">
+          <div className="col-md-8 col-lg-9 p-0">
             <section
               class="partners "
               style={{
@@ -294,9 +296,9 @@ function SevenDayHome({ history }) {
                 transform: "translate(0,-50%)",
               }}
             >
-              <div class="container ">
+              <div class="container p-0">
                 <div class="card shadow-lg ">
-                  <div class="card-body p-2">
+                  <div class="card-body  p-5">
                     <div class="swiper-container">
                       <OwlCarousel
                         style={{ zIndex: "5" }}
@@ -340,34 +342,35 @@ function SevenDayHome({ history }) {
           </div>
         </div>{" "}
         <br />
-        <div className="row">
-          <div className="col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
-                alt="Card image cap"
-              />
+        <div className="row border">
+          <div className="col-md-4 col-lg-3 p-0">
+            <div class="card text-center border-0">
               <div class="card-body">
-                {/* <p class="card-text">Some quick example text to build</p> */}
-                <button
-                  onClick={() => {
-                    setopenModal(true);
-                    dispatch({
-                      type: "REDIRECT_USER",
-                      payload: {
-                        days_redirect: "5",
-                      },
-                    });
-                  }}
-                  className="main-button"
-                >
-                  5-Day Pack
-                </button>
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <div class="slidehoverbtnouter">
+                  <div
+                    onClick={() => {
+                      setopenModal(true);
+                      dispatch({
+                        type: "REDIRECT_USER",
+                        payload: {
+                          days_redirect: "5",
+                        },
+                      });
+                    }}
+                    class="slidehoverbtnbutton"
+                  >
+                    <div class="slidehoverbtntext">5-Day Pack</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-md-8 col-lg-9 ">
+          <div className="col-md-8 col-lg-9 p-0">
             <section
               class="partners "
               style={{
@@ -376,7 +379,7 @@ function SevenDayHome({ history }) {
                 transform: "translate(0,-50%)",
               }}
             >
-              <div class="container ">
+              <div class="container p-0">
                 <div class="card shadow-lg ">
                   <div class="card-body p-5">
                     <div class="swiper-container">
@@ -436,34 +439,35 @@ function SevenDayHome({ history }) {
           </div>
         </div>
         <br />
-        <div className="row">
-          <div className="col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://www.katalystcreativegroup.com/images/blog/maintenance/404-page-not-found-message.jpg"
-                alt="Card image cap"
-              />
+        <div className="row border">
+          <div className="col-md-4 col-lg-3 p-0 shadow-none">
+            <div class="card text-center border-0">
               <div class="card-body">
-                {/* <p class="card-text">Some quick example text to build</p> */}
-                <button
-                  onClick={() => {
-                    setopenModal(true);
-                    dispatch({
-                      type: "REDIRECT_USER",
-                      payload: {
-                        days_redirect: "7",
-                      },
-                    });
-                  }}
-                  className="main-button"
-                >
-                  7-Day Pack
-                </button>
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <div class="slidehoverbtnouter">
+                  <div
+                    onClick={() => {
+                      setopenModal(true);
+                      dispatch({
+                        type: "REDIRECT_USER",
+                        payload: {
+                          days_redirect: "7",
+                        },
+                      });
+                    }}
+                    class="slidehoverbtnbutton"
+                  >
+                    <div class="slidehoverbtntext">7-Day Pack</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-md-8 col-lg-9 ">
+          <div className="col-md-8 col-lg-9 p-0">
             <section
               class="partners "
               style={{
@@ -472,7 +476,7 @@ function SevenDayHome({ history }) {
                 transform: "translate(0,-50%)",
               }}
             >
-              <div class="container ">
+              <div class="container p-0">
                 <div class="card shadow-lg ">
                   <div class="card-body p-5">
                     <div class="swiper-container">
@@ -796,49 +800,6 @@ function SevenDayHome({ history }) {
       ) : (
         <div>{error ? <p>Ops, there is an error :(</p> : null}</div>
       )}
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

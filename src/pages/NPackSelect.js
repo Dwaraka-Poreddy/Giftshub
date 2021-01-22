@@ -288,49 +288,53 @@ class N_Pack_Select extends Component {
                   style={getListStyle(snapshot.isDraggingOver)}
                 >
                   {this.state.items.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
+                    <div className="container-fluid">
+                      <div class="row">
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
                         >
-                          <div
-                            class="card p-0 shadow-none"
-                            style={{ color: "red" }}
-                          >
-                            <div class="row no-gutters">
-                              <div class="col-3">
-                                <img
-                                  style={{ height: "100%" }}
-                                  src={item.img}
-                                  class="card-img"
-                                  alt={index}
-                                />
-                              </div>
-                              <div class="col-9">
-                                <div
-                                  class="card-body "
-                                  style={{
-                                    padding: "1rem 1.25rem ",
-                                  }}
-                                >
-                                  {item.content}
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
+                            >
+                              <div
+                                class="card p-0 shadow-none"
+                                style={{ color: "red" }}
+                              >
+                                <div class="row no-gutters">
+                                  <div class="col-3">
+                                    <img
+                                      style={{ height: "100%" }}
+                                      src={item.img}
+                                      class="card-img"
+                                      alt={index}
+                                    />
+                                  </div>
+                                  <div class="col-9">
+                                    <div
+                                      class="card-body "
+                                      style={{
+                                        padding: "1rem 1.25rem ",
+                                      }}
+                                    >
+                                      {item.content}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      )}
-                    </Draggable>
+                          )}
+                        </Draggable>{" "}
+                      </div>
+                    </div>
                   ))}
                   {provided.placeholder}
                 </div>

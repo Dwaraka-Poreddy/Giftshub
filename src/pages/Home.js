@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import firebase from "../firebase";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Fab from "@material-ui/core/Fab";
-import CloseIcon from "@material-ui/icons/Close";
 import CropPage from "../Utils/CropPage";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -18,32 +14,9 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 
-const useStyles = makeStyles((theme) => ({
-  margin: {},
-  paper: {
-    borderRadius: "5px",
-    width: "100%",
-    height: "70vh",
-    minWidth: "280px",
-    maxWidth: "900px",
-    position: "absolute",
-    color: "#ffffff",
-    marginTop: "0vh",
-    border: null,
-    backgroundColor: "#ffffff",
-    padding: theme.spacing(0, 0, 0),
-  },
-  DelBut: {
-    position: "sticky",
-    bottom: theme.spacing(142),
-    left: theme.spacing(250),
-  },
-}));
-
 const Home = ({ history }) => {
   const [loading, setloading] = useState(false);
-  const classes = useStyles();
-  const [openModal, setopenModal] = useState(false);
+
   const { user } = useSelector((state) => ({ ...state }));
   const [npackorder, setnpackorder] = useState([]);
   const database = firebase.firestore();
@@ -137,357 +110,268 @@ const Home = ({ history }) => {
   };
 
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
-        height: "80vh",
-      }}
-    >
+    <div>
       <NavBar />
       <br />
+      <br /> <br />
       <br />
-      <br />
-      <br />
-
-      <button
-        className="main-button"
-        onClick={() => {
-          setopenModal(true);
-        }}
-      >
-        Create New Pack
-      </button>
-      <br />
-      <br />
-      <Modal
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          overflowY: "auto",
-          alignItems: "center",
-        }}
-        open={openModal}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {
-          <div className={classes.paper}>
-            {loading ? (
-              <center>
-                {" "}
-                <Loader
-                  type="BallTriangle"
-                  color="#00BFFF"
-                  height={300}
-                  width={300}
-                />
-              </center>
-            ) : (
-              <div>
-                <div
-                  style={{ backgroundColor: "#ffffff" }}
-                  class="container-fluid pt-3"
-                >
-                  <div>
-                    <center>
-                      <form onSubmit={CreatePack}>
-                        {" "}
-                        <div class="row">
-                          <div class="col-xl-4  p-0 pt-3">
-                            <div className={classes.margin}>
-                              <Grid
-                                container
-                                spacing={1}
-                                alignItems="flex-end"
-                                style={{ width: "250px" }}
-                              >
-                                <Grid item>
-                                  <FolderSharedOutlinedIcon
-                                    style={{ fill: "#0196de" }}
-                                  />
-                                </Grid>
-                                <Grid style={{ width: "210px" }} item>
-                                  <TextField
-                                    required
-                                    InputLabelProps={{
-                                      style: { color: "#0196de" },
-                                    }}
-                                    id="input-with-icon-grid"
-                                    label="Folder Name"
-                                    value={Folder_name}
-                                    onChange={(e) =>
-                                      setFolder_name(e.target.value)
-                                    }
-                                  />
-                                </Grid>
-                              </Grid>
-                            </div>
-                            <br />
-                            <div className={classes.margin}>
-                              <Grid
-                                container
-                                spacing={1}
-                                alignItems="flex-end"
-                                style={{ width: "250px" }}
-                              >
-                                <Grid item>
-                                  <AccountCircleOutlinedIcon
-                                    style={{ fill: "#0196de" }}
-                                  />
-                                </Grid>
-                                <Grid style={{ width: "210px" }} item>
-                                  <TextField
-                                    InputLabelProps={{
-                                      style: { color: "#0196de" },
-                                    }}
-                                    id="input-with-icon-grid"
-                                    label="Your Name"
-                                    value={From_name}
-                                    onChange={(e) =>
-                                      setFrom_name(e.target.value)
-                                    }
-                                    required
-                                  />
-                                </Grid>
-                              </Grid>
-                            </div>
-                            <br />
-                            <div className={classes.margin}>
-                              <Grid
-                                container
-                                spacing={1}
-                                alignItems="flex-end"
-                                style={{ width: "250px" }}
-                              >
-                                <Grid item>
-                                  <AccountCircleOutlinedIcon
-                                    style={{ fill: "#0196de" }}
-                                  />
-                                </Grid>
-                                <Grid style={{ width: "210px" }} item>
-                                  <TextField
-                                    InputLabelProps={{
-                                      style: { color: "#0196de" },
-                                    }}
-                                    id="input-with-icon-grid"
-                                    label="Receivers Name"
-                                    value={To_name}
-                                    onChange={(e) => setTo_name(e.target.value)}
-                                    required
-                                  />
-                                </Grid>
-                              </Grid>
-                            </div>
-                            <br />
-                            <center>
-                              <div>
-                                <input
-                                  required
-                                  style={{ display: "none" }}
-                                  accept="image/* "
-                                  id="ImageInput"
-                                  name="ImageInput"
-                                  type="file"
-                                  accept="image/*"
-                                  onChange={onSelectFile}
-                                  onClick={(event) => {
-                                    event.target.value = null;
-                                  }}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 col-lg-3"></div>
+        </div>
+      </div>
+      <div>
+        {loading ? (
+          <center>
+            {" "}
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={300}
+              width={300}
+            />
+          </center>
+        ) : (
+          <center>
+            <div>
+              <div
+                style={{ backgroundColor: "#ffffff" }}
+                class="container-fluid pt-3"
+              >
+                <div>
+                  <center>
+                    <form onSubmit={CreatePack}>
+                      {" "}
+                      <div class="row">
+                        <div class="col-md-4 col-lg-3 p-0 pt-3">
+                          <div>
+                            <Grid
+                              container
+                              spacing={1}
+                              alignItems="flex-end"
+                              style={{ width: "250px" }}
+                            >
+                              <Grid item>
+                                <FolderSharedOutlinedIcon
+                                  style={{ fill: "#0196de" }}
                                 />
-                                {opencrop ? (
-                                  <CropPage
-                                    send={send}
-                                    setfbimg={setfbimg}
-                                    setimage_url={setimage_url}
-                                    aspect_ratio={1 / 1}
-                                    opencrop={opencrop}
-                                    setopencrop={setopencrop}
-                                  />
-                                ) : null}
-                                <label htmlFor="ImageInput">
-                                  <div
+                              </Grid>
+                              <Grid style={{ width: "210px" }} item>
+                                <TextField
+                                  required
+                                  InputLabelProps={{
+                                    style: { color: "#0196de" },
+                                  }}
+                                  id="input-with-icon-grid"
+                                  label="Folder Name"
+                                  value={Folder_name}
+                                  onChange={(e) =>
+                                    setFolder_name(e.target.value)
+                                  }
+                                />
+                              </Grid>
+                            </Grid>
+                          </div>
+                          <br />
+                          <div>
+                            <Grid
+                              container
+                              spacing={1}
+                              alignItems="flex-end"
+                              style={{ width: "250px" }}
+                            >
+                              <Grid item>
+                                <AccountCircleOutlinedIcon
+                                  style={{ fill: "#0196de" }}
+                                />
+                              </Grid>
+                              <Grid style={{ width: "210px" }} item>
+                                <TextField
+                                  InputLabelProps={{
+                                    style: { color: "#0196de" },
+                                  }}
+                                  id="input-with-icon-grid"
+                                  label="Your Name"
+                                  value={From_name}
+                                  onChange={(e) => setFrom_name(e.target.value)}
+                                  required
+                                />
+                              </Grid>
+                            </Grid>
+                          </div>
+                          <br />
+                          <div>
+                            <Grid
+                              container
+                              spacing={1}
+                              alignItems="flex-end"
+                              style={{ width: "250px" }}
+                            >
+                              <Grid item>
+                                <AccountCircleOutlinedIcon
+                                  style={{ fill: "#0196de" }}
+                                />
+                              </Grid>
+                              <Grid style={{ width: "210px" }} item>
+                                <TextField
+                                  InputLabelProps={{
+                                    style: { color: "#0196de" },
+                                  }}
+                                  id="input-with-icon-grid"
+                                  label="Receivers Name"
+                                  value={To_name}
+                                  onChange={(e) => setTo_name(e.target.value)}
+                                  required
+                                />
+                              </Grid>
+                            </Grid>
+                          </div>
+                          <br />
+                          <center>
+                            <div>
+                              <input
+                                required
+                                style={{ display: "none" }}
+                                accept="image/* "
+                                id="ImageInput"
+                                name="ImageInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={onSelectFile}
+                                onClick={(event) => {
+                                  event.target.value = null;
+                                }}
+                              />
+                              {opencrop ? (
+                                <CropPage
+                                  send={send}
+                                  setfbimg={setfbimg}
+                                  setimage_url={setimage_url}
+                                  aspect_ratio={1 / 1}
+                                  opencrop={opencrop}
+                                  setopencrop={setopencrop}
+                                />
+                              ) : null}
+                              <label htmlFor="ImageInput">
+                                <div
+                                  style={{
+                                    height: "45px",
+                                    width: "250px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    border: "1px solid #0196de",
+                                    cursor: "pointer",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  {send ? (
+                                    <CheckBoxOutlinedIcon
+                                      style={{
+                                        fill: "#0196de",
+                                        marginLeft: "7px",
+                                      }}
+                                    />
+                                  ) : (
+                                    <ImageOutlinedIcon
+                                      style={{
+                                        fill: "#0196de",
+                                        marginLeft: "7px",
+                                      }}
+                                    />
+                                  )}
+                                  <h2
                                     style={{
-                                      height: "45px",
-                                      width: "250px",
-                                      display: "flex",
-                                      alignItems: "center",
-                                      border: "1px solid #0196de",
-                                      cursor: "pointer",
-                                      borderRadius: "5px",
+                                      fontSize: "18px",
+                                      color: "#0196de",
+                                      marginLeft: "8px",
+                                      marginBottom: "0",
                                     }}
                                   >
-                                    {send ? (
-                                      <CheckBoxOutlinedIcon
-                                        style={{
-                                          fill: "#0196de",
-                                          marginLeft: "7px",
-                                        }}
-                                      />
-                                    ) : (
-                                      <ImageOutlinedIcon
-                                        style={{
-                                          fill: "#0196de",
-                                          marginLeft: "7px",
-                                        }}
-                                      />
-                                    )}
-                                    <h2
-                                      style={{
-                                        fontSize: "18px",
-                                        color: "#0196de",
-                                        marginLeft: "8px",
-                                        marginBottom: "0",
-                                      }}
-                                    >
-                                      {send
-                                        ? "Image added"
-                                        : "Add your image *"}{" "}
-                                    </h2>{" "}
-                                  </div>
-                                </label>
-                              </div>
-                            </center>
-                            <br />
-                            <TextField
-                              style={{}}
-                              id="date"
-                              label="Event Date"
-                              type="date"
-                              value={Bday_date}
-                              defaultValue={Bday_date}
-                              className={classes.textField}
-                              onChange={(e) =>
-                                setBday_date(e.target.value.toLocaleString())
-                              }
-                              InputLabelProps={{
-                                shrink: true,
-                                style: { color: "#0196de" },
-                              }}
-                            />{" "}
-                            <br />
-                            <br />
-                          </div>
-                          <div class="col-xl-7 ml-0 mr-0">
-                            <center>
-                              <NpackSelect setpackfunc={setpackfunc} />
-                            </center>
-                          </div>
+                                    {send ? "Image added" : "Add your image *"}{" "}
+                                  </h2>{" "}
+                                </div>
+                              </label>
+                            </div>
+                          </center>
+                          <br />
+                          <TextField
+                            style={{}}
+                            id="date"
+                            label="Event Date"
+                            type="date"
+                            value={Bday_date}
+                            defaultValue={Bday_date}
+                            onChange={(e) =>
+                              setBday_date(e.target.value.toLocaleString())
+                            }
+                            InputLabelProps={{
+                              shrink: true,
+                              style: { color: "#0196de" },
+                            }}
+                          />{" "}
+                          <br />
+                          <br />
                         </div>
-                        <br />
-                        <center>
-                          {npackorder.length == 0 || !Bday_date ? (
-                            <>
-                              <input
+                        <div class="col-md-8 col-lg-9 ml-0 mr-0">
+                          <center>
+                            <NpackSelect setpackfunc={setpackfunc} />
+                          </center>
+                        </div>
+                      </div>
+                      <br />
+                      <center>
+                        {npackorder.length == 0 || !Bday_date ? (
+                          <>
+                            <input
+                              disabled
+                              style={{ display: "none" }}
+                              id="submit"
+                              type="submit"
+                              value="Create 7 day pack"
+                            />
+                            <label style={{ opacity: "0.4" }} htmlFor="submit">
+                              <button
                                 disabled
-                                style={{ display: "none" }}
-                                id="submit"
-                                type="submit"
-                                value="Create 7 day pack"
-                              />
-                              <label
-                                style={{ opacity: "0.4" }}
-                                htmlFor="submit"
+                                style={{ cursor: "default" }}
+                                className="main-button"
                               >
-                                <button
-                                  disabled
-                                  style={{ cursor: "default" }}
-                                  className="main-button"
-                                >
-                                  {" "}
-                                  Create {npackorder.length} day pack
-                                </button>
-                              </label>
-                            </>
-                          ) : (
-                            <>
-                              <input
-                                style={{ display: "none" }}
-                                id="submit"
-                                type="submit"
-                                value="Create 7 day pack"
-                              />
-                              <label htmlFor="submit">
-                                <button className="main-button">
-                                  {" "}
-                                  Create {npackorder.length} day pack
-                                </button>
-                              </label>
-                            </>
-                          )}{" "}
-                        </center>
-                      </form>
-                    </center>
-                  </div>
-
-                  <br />
+                                {" "}
+                                Create {npackorder.length} day pack
+                              </button>
+                            </label>
+                          </>
+                        ) : (
+                          <>
+                            <input
+                              style={{ display: "none" }}
+                              id="submit"
+                              type="submit"
+                              value="Create 7 day pack"
+                            />
+                            <label htmlFor="submit">
+                              <button className="main-button">
+                                {" "}
+                                Create {npackorder.length} day pack
+                              </button>
+                            </label>
+                          </>
+                        )}{" "}
+                      </center>
+                    </form>
+                  </center>
                 </div>
 
-                <Fab
-                  onClick={() => {
-                    setopenModal(false);
-                    setsend(false);
-                  }}
-                  className={classes.DelBut}
-                  color="primary"
-                  aria-label="add"
-                >
-                  <CloseIcon />
-                </Fab>
+                <br />
               </div>
-            )}
-          </div>
-        }
-      </Modal>
-      <hr />
+            </div>
+          </center>
+        )}
+      </div>
       {loading ? (
         <Loader type="BallTriangle" color="#00BFFF" height={100} width={100} />
       ) : (
         <div>{error ? <p>Ops, there is an error :(</p> : null}</div>
       )}
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

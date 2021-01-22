@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
+import Error404Page from "./Error404Page";
 const UserPacksPage = lazy(() => import("./UserPages/UserPacksPage"));
 const ThreeDCarouselPage = lazy(() =>
   import("./ThreeDCarousel/ThreeDCarouselPage")
@@ -375,6 +376,7 @@ export default function App() {
             path="/scheduledlive/calendar/:id/:slug"
             component={ScheduledLiveCalendar}
           />
+          <Route path="*" component={Error404Page} />
         </Switch>
       </Suspense>
     </div>
