@@ -148,7 +148,7 @@ function ScheduledThreeDCarouselPage({
       setCLoading(false);
     }
   }, []);
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
@@ -156,7 +156,7 @@ function ScheduledThreeDCarouselPage({
     var ud4 = uuidv4();
     var ud5 = uuidv4();
     var ud6 = uuidv4();
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -180,7 +180,7 @@ function ScheduledThreeDCarouselPage({
       setpreviewlink("/scheduledlive/threedcarousel/" + edit.text + "/" + slug);
       setloading(false);
     } else if (!livelink) {
-      const todoRef = firebase.database().ref("ThreeDCarousel");
+      const todoRef = await firebase.database().ref("ThreeDCarousel");
       const todo = {
         url1: fbimg1,
         url2: fbimg2,
@@ -190,7 +190,7 @@ function ScheduledThreeDCarouselPage({
         url6: fbimg6,
         text: text,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/threedcarousel/" +
           newKey +
@@ -198,145 +198,46 @@ function ScheduledThreeDCarouselPage({
           slug
       );
       setpreviewlink("/scheduledlive/threedcarousel/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          //catches the errors
-          console.log(err);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/threedcarousel/" +
+        newKey +
+        "/" +
+        slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          storage
-            .ref("images")
-            .child(ud1)
-            .putString(image_url1, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl1) => {
-                storage
-                  .ref("images")
-                  .child(ud2)
-                  .putString(image_url2, "base64", { contentType: "image/jpg" })
-                  .then((savedImage) => {
-                    savedImage.ref.getDownloadURL().then((downUrl2) => {
-                      storage
-                        .ref("images")
-                        .child(ud3)
-                        .putString(image_url3, "base64", {
-                          contentType: "image/jpg",
-                        })
-                        .then((savedImage) => {
-                          savedImage.ref.getDownloadURL().then((downUrl3) => {
-                            storage
-                              .ref("images")
-                              .child(ud4)
-                              .putString(image_url4, "base64", {
-                                contentType: "image/jpg",
-                              })
-                              .then((savedImage) => {
-                                savedImage.ref
-                                  .getDownloadURL()
-                                  .then((downUrl4) => {
-                                    storage
-                                      .ref("images")
-                                      .child(ud5)
-                                      .putString(image_url5, "base64", {
-                                        contentType: "image/jpg",
-                                      })
-                                      .then((savedImage) => {
-                                        savedImage.ref
-                                          .getDownloadURL()
-                                          .then((downUrl5) => {
-                                            storage
-                                              .ref("images")
-                                              .child(ud6)
-                                              .putString(image_url6, "base64", {
-                                                contentType: "image/jpg",
-                                              })
-                                              .then((savedImage) => {
-                                                savedImage.ref
-                                                  .getDownloadURL()
-                                                  .then((downUrl6) => {
-                                                    const todoRef = firebase
-                                                      .database()
-                                                      .ref("ThreeDCarousel");
-                                                    const todo = {
-                                                      url1: downUrl1,
-                                                      url2: downUrl2,
-                                                      url3: downUrl3,
-                                                      url4: downUrl4,
-                                                      url5: downUrl5,
-                                                      url6: downUrl6,
-                                                      text: text,
-                                                    };
-                                                    var newKey = todoRef
-                                                      .push(todo)
-                                                      .getKey();
-                                                    setlivelink(
-                                                      "http://giftshub.live/scheduledlive/threedcarousel/" +
-                                                        newKey +
-                                                        "/" +
-                                                        slug
-                                                    );
-
-                                                    setpreviewlink(
-                                                      "/scheduledlive/threedcarousel/" +
-                                                        newKey +
-                                                        "/" +
-                                                        slug
-                                                    );
-                                                  });
-                                              });
-                                          });
-                                        setloading(false);
-                                      });
-                                  });
-                              });
-                          });
-                        });
-                    });
-                  });
-              });
-            });
-        }
+        { merge: true }
       );
+      toast.success(" 3D Carousel successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success(" 3D Carousel updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success(" 3D Carousel successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
@@ -368,7 +269,7 @@ function ScheduledThreeDCarouselPage({
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -380,10 +281,9 @@ function ScheduledThreeDCarouselPage({
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7" style={{ height: "70vh", marginTop: "50px" }}>
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9  mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -405,18 +305,7 @@ function ScheduledThreeDCarouselPage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
-          <div
-            className="cubesrnav col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <center>
                 <div data-tut="reactour__text">
@@ -452,168 +341,170 @@ function ScheduledThreeDCarouselPage({
                 </div>
               </center>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput1"
-                  name="LocalfileInput1"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile1}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop1 ? (
-                  <CropPage
-                    send={send1}
-                    setfbimg={setfbimg1}
-                    setimage_url={setimage_url1}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop1}
-                    setopencrop={setopencrop1}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput1"
+                    name="LocalfileInput1"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile1}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput1">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput2"
-                  name="LocalfileInput2"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile2}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop2 ? (
-                  <CropPage
-                    send={send2}
-                    setfbimg={setfbimg2}
-                    setimage_url={setimage_url2}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop2}
-                    setopencrop={setopencrop2}
+                  {opencrop1 ? (
+                    <CropPage
+                      send={send1}
+                      setfbimg={setfbimg1}
+                      setimage_url={setimage_url1}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop1}
+                      setopencrop={setopencrop1}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput1">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput2"
+                    name="LocalfileInput2"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile2}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput2">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput3"
-                  name="LocalfileInput3"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile3}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop3 ? (
-                  <CropPage
-                    send={send3}
-                    setfbimg={setfbimg3}
-                    setimage_url={setimage_url3}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop3}
-                    setopencrop={setopencrop3}
+                  {opencrop2 ? (
+                    <CropPage
+                      send={send2}
+                      setfbimg={setfbimg2}
+                      setimage_url={setimage_url2}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop2}
+                      setopencrop={setopencrop2}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput2">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput3"
+                    name="LocalfileInput3"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile3}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput3">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput4"
-                  name="LocalfileInput4"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile4}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop4 ? (
-                  <CropPage
-                    send={send4}
-                    setfbimg={setfbimg4}
-                    setimage_url={setimage_url4}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop4}
-                    setopencrop={setopencrop4}
+                  {opencrop3 ? (
+                    <CropPage
+                      send={send3}
+                      setfbimg={setfbimg3}
+                      setimage_url={setimage_url3}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop3}
+                      setopencrop={setopencrop3}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput3">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 3" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput4"
+                    name="LocalfileInput4"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile4}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput4">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput5"
-                  name="LocalfileInput5"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile5}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop5 ? (
-                  <CropPage
-                    send={send5}
-                    setfbimg={setfbimg5}
-                    setimage_url={setimage_url5}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop5}
-                    setopencrop={setopencrop5}
+                  {opencrop4 ? (
+                    <CropPage
+                      send={send4}
+                      setfbimg={setfbimg4}
+                      setimage_url={setimage_url4}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop4}
+                      setopencrop={setopencrop4}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput4">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 4" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput5"
+                    name="LocalfileInput5"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile5}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput5">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
-                </label>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput6"
-                  name="LocalfileInput6"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile6}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop6 ? (
-                  <CropPage
-                    send={send6}
-                    setfbimg={setfbimg6}
-                    setimage_url={setimage_url6}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop6}
-                    setopencrop={setopencrop6}
+                  {opencrop5 ? (
+                    <CropPage
+                      send={send5}
+                      setfbimg={setfbimg5}
+                      setimage_url={setimage_url5}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop5}
+                      setopencrop={setopencrop5}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput5">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 5" />
+                  </label>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput6"
+                    name="LocalfileInput6"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile6}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput6">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
-                </label>
+                  {opencrop6 ? (
+                    <CropPage
+                      send={send6}
+                      setfbimg={setfbimg6}
+                      setimage_url={setimage_url6}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop6}
+                      setopencrop={setopencrop6}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput6">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 6" />
+                  </label>
+                </center>
               </div>
               <center>
                 {loading ? (
@@ -634,7 +525,7 @@ function ScheduledThreeDCarouselPage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -669,20 +560,6 @@ function ScheduledThreeDCarouselPage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

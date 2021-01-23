@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import $ from "jquery";
 import NavBar from "./NavBars/NavBar";
+import Footer from "./Footers/Footer";
 import firebase from "./firebase";
 import "./Buttons.css";
 import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
@@ -709,6 +710,33 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      <div className="socialMedia">
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <img
+                style={{ width: "100%", maxWidth: "200px" }}
+                src={require("./Images/facebook.png")}
+                alt="First slide"
+              />
+            </div>
+            <div className="col-4">
+              <img
+                style={{ width: "100%", maxWidth: "200px" }}
+                src={require("./Images/youtube.png")}
+                alt="First slide"
+              />
+            </div>
+            <div className="col-4">
+              <img
+                style={{ width: "100%", maxWidth: "200px" }}
+                src={require("./Images/instagram.png")}
+                alt="First slide"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div
         class="fb-like"
@@ -719,6 +747,7 @@ export default function LandingPage() {
         data-size="small"
         data-share="true"
       ></div>
+      <Footer />
     </div>
   );
 }

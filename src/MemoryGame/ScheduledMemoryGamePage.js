@@ -164,37 +164,8 @@ function ScheduledMemoryGamePage({
       />
     );
   };
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Memory Game successfully added to your pack");
-    getDoc();
-  }
-  const handleFireBaseUpload = () => {
+  async function EditPack() {}
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
@@ -202,7 +173,7 @@ function ScheduledMemoryGamePage({
     var ud4 = uuidv4();
     var ud5 = uuidv4();
     var ud6 = uuidv4();
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -235,118 +206,42 @@ function ScheduledMemoryGamePage({
         url5: fbimg5,
         url6: fbimg6,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/memorygame/" + newKey + "/" + slug
       );
 
       setpreviewlink("/scheduledlive/memorygame/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          //catches the errors
-          console.log(err);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/memorygame/" + newKey + "/" + slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          console.log(image_url1);
-          storage
-            .ref("images")
-            .child(ud1)
-            .putString(image_url1, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl1) => {
-                storage
-                  .ref("images")
-                  .child(ud2)
-                  .putString(image_url2, "base64", { contentType: "image/jpg" })
-                  .then((savedImage) => {
-                    savedImage.ref.getDownloadURL().then((downUrl2) => {
-                      storage
-                        .ref("images")
-                        .child(ud3)
-                        .putString(image_url3, "base64", {
-                          contentType: "image/jpg",
-                        })
-                        .then((savedImage) => {
-                          savedImage.ref.getDownloadURL().then((downUrl3) => {
-                            storage
-                              .ref("images")
-                              .child(ud4)
-                              .putString(image_url4, "base64", {
-                                contentType: "image/jpg",
-                              })
-                              .then((savedImage) => {
-                                savedImage.ref
-                                  .getDownloadURL()
-                                  .then((downUrl4) => {
-                                    storage
-                                      .ref("images")
-                                      .child(ud5)
-                                      .putString(image_url5, "base64", {
-                                        contentType: "image/jpg",
-                                      })
-                                      .then((savedImage) => {
-                                        savedImage.ref
-                                          .getDownloadURL()
-                                          .then((downUrl5) => {
-                                            storage
-                                              .ref("images")
-                                              .child(ud6)
-                                              .putString(image_url6, "base64", {
-                                                contentType: "image/jpg",
-                                              })
-                                              .then((savedImage) => {
-                                                savedImage.ref
-                                                  .getDownloadURL()
-                                                  .then((downUrl6) => {
-                                                    const todoRef = firebase
-                                                      .database()
-                                                      .ref("MemoryGame");
-                                                    const todo = {
-                                                      url1: downUrl1,
-                                                      url2: downUrl2,
-                                                      url3: downUrl3,
-                                                      url4: downUrl4,
-                                                      url5: downUrl5,
-                                                      url6: downUrl6,
-                                                    };
-                                                    var newKey = todoRef
-                                                      .push(todo)
-                                                      .getKey();
-                                                    setlivelink(
-                                                      "http://giftshub.live/scheduledlive/memorygame/" +
-                                                        newKey +
-                                                        "/" +
-                                                        slug
-                                                    );
-                                                    console.log(
-                                                      livelink,
-                                                      "livelink"
-                                                    );
-                                                    setpreviewlink(
-                                                      "/scheduledlive/memorygame/" +
-                                                        newKey +
-                                                        "/" +
-                                                        slug
-                                                    );
-                                                  });
-                                                setloading(false);
-                                              });
-                                          });
-                                      });
-                                  });
-                              });
-                          });
-                        });
-                    });
-                  });
-              });
-            });
-        }
+        { merge: true }
       );
+      toast.success("Memory Game successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("Memory Game updated successfully");
@@ -387,7 +282,7 @@ function ScheduledMemoryGamePage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -400,8 +295,8 @@ function ScheduledMemoryGamePage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div
             style={{
               display: "flex",
@@ -411,7 +306,7 @@ function ScheduledMemoryGamePage({
               marginLeft: "auto",
               marginRight: "auto",
             }}
-            class="  col-lg-9 mb-3 "
+            class="  col-lg-9  mb-3 px-0"
           >
             {Cloading ? (
               <Loader
@@ -425,17 +320,7 @@ function ScheduledMemoryGamePage({
             )}
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>
@@ -622,7 +507,7 @@ function ScheduledMemoryGamePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -657,20 +542,6 @@ function ScheduledMemoryGamePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

@@ -276,7 +276,7 @@ function JourneyPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <br />
       <br />
@@ -293,8 +293,8 @@ function JourneyPage() {
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div
             style={{
               display: "flex",
@@ -305,7 +305,7 @@ function JourneyPage() {
               background:
                 "radial-gradient(ellipse at bottom, #1b2735, #090a0f)",
             }}
-            class="  col-lg-9"
+            class="  col-lg-9 mb-3 px-0"
           >
             <div style={{ width: "100%" }}>
               {" "}
@@ -326,17 +326,7 @@ function JourneyPage() {
             </div>
           </div>
 
-          <div
-            className="cubesrnav col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div

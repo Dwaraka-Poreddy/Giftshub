@@ -34,17 +34,6 @@ import { isMobileOnly, isTablet } from "react-device-detect";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  backgroundColor: "#5f5f5f",
-  borderRadius: "15px",
-  color: "#bdbdbd",
-  outline: "none",
-  transition: "border .24s ease-in-out",
-};
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -64,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   DelBut: {
     position: "sticky",
     bottom: theme.spacing(142),
-    left: theme.spacing(200),
+    left: theme.spacing(250),
   },
 }));
 
@@ -88,8 +77,6 @@ const secuseStyles = makeStyles((theme) => ({
 export default function SpecialCardPage() {
   const [showoptions, setshowoptions] = useState(false);
   const [loading, setloading] = useState(false);
-  const [Snackopen, setSnackopen] = React.useState(false);
-  const [infoSnackopen, setinfoSnackopen] = React.useState(false);
   const classes = useStyles();
   const [imageAsFile, setImageAsFile] = useState("");
   const [progress, setProgress] = useState(0);
@@ -382,6 +369,12 @@ export default function SpecialCardPage() {
                       <div>
                         <div>
                           <ReactCrop
+                            imageStyle={{
+                              minWidth: "290px",
+                              maxWidth: "800px",
+                              maxHeight: "450px",
+                              width: "100%",
+                            }}
                             src={upImg}
                             onImageLoaded={onLoad}
                             crop={crop}
@@ -399,7 +392,7 @@ export default function SpecialCardPage() {
                           </div>
                           <div>
                             <center>
-                              <div style={{ width: "40%" }}>
+                              <div>
                                 {" "}
                                 <HeaderBtn
                                   handleClick={() => {

@@ -95,11 +95,11 @@ function ScheduledOpenGreetingCardPage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -132,7 +132,7 @@ function ScheduledOpenGreetingCardPage({
         totext: totext,
         fromtext: fromtext,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/opengreetingcard/" +
           newKey +
@@ -140,82 +140,45 @@ function ScheduledOpenGreetingCardPage({
           slug
       );
       setpreviewlink("/scheduledlive/opengreetingcard/" + newKey + "/" + slug);
-
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
-        },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("OpenGreetingCard");
-                const todo = {
-                  url: downUrl,
-                  message: message,
-                  occassion: occassion,
-                  totext: totext,
-                  fromtext: fromtext,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/opengreetingcard/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/opengreetingcard/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
-      );
-    }
-    {
-      edit.text != "" && toast.success("Greeting Card updated successfully");
-    }
-  };
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/opengreetingcard/" +
+        newKey +
+        "/" +
+        slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
         {
           array_data: newdata,
         },
         { merge: true }
       );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Greeting Card successfully added to your pack");
-    getDoc();
-  }
+      toast.success("Greeting Card successfully added to your pack");
+      getDoc();
+      setloading(false);
+    }
+    {
+      edit.text != "" && toast.success("Greeting Card updated successfully");
+    }
+  };
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -470,7 +433,7 @@ function ScheduledOpenGreetingCardPage({
                           }}
                           data-tut="reactour__generatelink"
                         >
-                          Generate Link
+                          Add to Pack
                         </button>
                       ) : null}
                       {edit.text != "" || isTourOpen ? (
@@ -505,20 +468,6 @@ function ScheduledOpenGreetingCardPage({
                       >
                         <Copy livelink={livelink} />
                       </div>
-                      {edit.text == "" || isTourOpen ? (
-                        <div
-                          data-tut="reactour__addtopack"
-                          style={{ marginTop: "20px" }}
-                        >
-                          <HeaderBtn
-                            handleClick={() => {
-                              EditPack();
-                            }}
-                            Icon={ShareIcon}
-                            title="Add to Pack "
-                          />
-                        </div>
-                      ) : null}
                     </div>
                   ) : null}
                 </center>

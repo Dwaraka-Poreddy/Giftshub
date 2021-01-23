@@ -18,7 +18,7 @@ import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
-
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -137,7 +137,7 @@ function AboutQuizPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />{" "}
       <Tour
         onRequestClose={() => {
@@ -153,9 +153,9 @@ function AboutQuizPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9">
             <QuestionCard
               quesArray={quesArray}
               setquesArray={setquesArray}
@@ -164,17 +164,7 @@ function AboutQuizPage() {
               fbimg={fbimg}
             />
           </div>
-          <div
-            className="  col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div

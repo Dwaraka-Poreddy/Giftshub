@@ -19,6 +19,7 @@ import Tour from "reactour";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import GradientIcon from "@material-ui/icons/Gradient";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -84,12 +85,12 @@ function ScheduledSwatchBookPage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -120,89 +121,50 @@ function ScheduledSwatchBookPage({
         name: toname,
         handscol: handscol,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/swatchbook/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/swatchbook/" + newKey + "/" + slug);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/swatchbook/" + newKey + "/" + slug;
 
-      setloading(false);
-    } else {
-      console.log("in else bbb");
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("SwatchBook");
-                const todo = {
-                  url: downUrl,
-                  name: toname,
-                  handscol: handscol,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/swatchbook/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/swatchbook/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+
+      toast.success("Swatch Book successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("Swatch Book updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-
-    toast.success("Swatch Book successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -255,7 +217,7 @@ function ScheduledSwatchBookPage({
   }, [toname]);
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -268,10 +230,9 @@ function ScheduledSwatchBookPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="  col-lg-7">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div id="magazine" class="  col-lg-9  mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -283,47 +244,38 @@ function ScheduledSwatchBookPage({
               <div>{func()}</div>
             )}
           </div>
-          <div class="col-lg-1"></div>
-          <div
-            className="threedrnav  col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={4 / 3}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={4 / 3}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center>
                 <div data-tut="reactour__head">
@@ -374,27 +326,29 @@ function ScheduledSwatchBookPage({
                 </div>
               </center>
               <div data-tut="reactour__handcol">
-                <input
-                  type="color"
-                  id="handcol"
-                  initialValue={handscol}
-                  value={handscol}
-                  onChange={(e) => {
-                    sethandscol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="handcol">
-                  <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
-                </label>
+                <center>
+                  <input
+                    type="color"
+                    id="handcol"
+                    initialValue={handscol}
+                    value={handscol}
+                    onChange={(e) => {
+                      sethandscol(e.target.value);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="handcol">
+                    <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
+                  </label>
+                </center>
               </div>
               <center>
                 {loading ? (
@@ -415,7 +369,7 @@ function ScheduledSwatchBookPage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -450,20 +404,6 @@ function ScheduledSwatchBookPage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

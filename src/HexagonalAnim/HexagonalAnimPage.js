@@ -17,6 +17,7 @@ import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -257,7 +258,7 @@ function HexagonalAnimPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <br />
       <br />
@@ -274,9 +275,9 @@ function HexagonalAnimPage() {
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9 mt-0 ">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9 mt-0  mb-3 px-0">
             <HexagonalAnim
               fbimg1={fbimg1}
               fbimg2={fbimg2}
@@ -293,17 +294,7 @@ function HexagonalAnimPage() {
             />
           </div>
 
-          <div
-            className="cubesrnav col-lg-3  "
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div

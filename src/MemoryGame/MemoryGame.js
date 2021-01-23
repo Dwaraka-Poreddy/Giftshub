@@ -185,18 +185,18 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
             <div className="row">
               <div className="col-lg-2"></div>{" "}
               <div className="col-lg-8">
-                <h6 style={{ color: "#ffffff", textAlign: "justify" }}>
+                <h6 style={{ color: "#000", textAlign: "justify" }}>
                   Greetings of the day and wish you many more! Welcome to a fun
                   game challenging your wits and hoping to put up a big wide
                   smile on your special day.
                 </h6>{" "}
                 <br />
-                <h5 style={{ color: "#ffffff", textAlign: "justify" }}>
+                <h5 style={{ color: "#000", textAlign: "justify" }}>
                   Instructions -
                 </h5>
                 <ol>
                   <li>
-                    <p style={{ color: "#ffffff", textAlign: "justify" }}>
+                    <p style={{ color: "#000", textAlign: "justify" }}>
                       {" "}
                       There are 6 pictures behind these 12 tiles and finish this
                       game by matching the two tiles of the same picture
@@ -204,7 +204,7 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
                     </p>
                   </li>
                   <li>
-                    <p style={{ color: "#ffffff", textAlign: "justify" }}>
+                    <p style={{ color: "#000", textAlign: "justify" }}>
                       At a given time only 2 tiles will be shown, so familiarise
                       yourself with where each picture is and finish the game to
                       beat your own personal best!

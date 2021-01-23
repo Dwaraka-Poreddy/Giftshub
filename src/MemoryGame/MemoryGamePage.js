@@ -18,6 +18,7 @@ import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -280,7 +281,7 @@ function CubesPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <Tour
         onRequestClose={() => {
@@ -296,8 +297,8 @@ function CubesPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div
             style={{
               display: "flex",
@@ -307,22 +308,12 @@ function CubesPage() {
               marginLeft: "auto",
               marginRight: "auto",
             }}
-            class="  col-lg-9 mb-3"
+            class="  col-lg-9  mb-3 px-0"
           >
             <div> {func()}</div>
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div
@@ -331,7 +322,6 @@ function CubesPage() {
                     padding: "20px 0 0 0 ",
                   }}
                 >
-                  {/* {livelink ? null : ( */}
                   <span style={{ color: "#ffffff" }}>
                     {" "}
                     Hello! Allow us to give you a small tour on how to generate

@@ -85,11 +85,11 @@ function ScheduledMagazinePage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -113,85 +113,47 @@ function ScheduledMagazinePage({
         name: name,
         text: text,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/magazine/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/magazine/" + newKey + "/" + slug);
-
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
-        },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("Magazine");
-                const todo = {
-                  url: fbimg,
-                  name: name,
-                  text: text,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/magazine/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/magazine/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
-      );
-    }
-    {
-      edit.text != "" && toast.success("Greeting Card updated successfully");
-    }
-  };
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/magazine/" + newKey + "/" + slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
         {
           array_data: newdata,
         },
         { merge: true }
       );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Magazine successfully added to your pack");
-    getDoc();
-  }
+      toast.success("Magazine successfully added to your pack");
+      getDoc();
+      setloading(false);
+    }
+    {
+      edit.text != "" && toast.success("Greeting Card updated successfully");
+    }
+  };
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -385,7 +347,7 @@ function ScheduledMagazinePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -420,20 +382,6 @@ function ScheduledMagazinePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

@@ -85,11 +85,11 @@ function ScheduledChallengePage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -110,83 +110,48 @@ function ScheduledChallengePage({
         url: fbimg,
         wishes: wishes,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/challenge/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/challenge/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/challenge/" + newKey + "/" + slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("Challenge");
-                const todo = {
-                  url: fbimg,
-                  wishes: wishes,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/challenge/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/challenge/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+      toast.success("Challenge successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("Challenge updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Challenge successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
@@ -233,7 +198,7 @@ function ScheduledChallengePage({
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -245,10 +210,9 @@ function ScheduledChallengePage({
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="col-lg-1 "></div>
-          <div class="col-lg-7 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9  mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -262,19 +226,7 @@ function ScheduledChallengePage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
-
-          <div
-            className=" col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             {" "}
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
@@ -361,7 +313,7 @@ function ScheduledChallengePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -397,20 +349,6 @@ function ScheduledChallengePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

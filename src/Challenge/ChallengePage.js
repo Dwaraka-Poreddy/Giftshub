@@ -133,7 +133,7 @@ function ChallengePage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <div>
         {" "}
@@ -153,22 +153,12 @@ function ChallengePage() {
       <br />
       <br />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9  mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9  mb-3 px-0">
             <DummyChallenge fbimg={fbimg} />
           </div>
-          <div
-            className="   col-lg-3   mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div

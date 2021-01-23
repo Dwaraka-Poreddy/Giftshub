@@ -210,7 +210,7 @@ function ScheduledCollagePage({
     );
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
@@ -221,7 +221,7 @@ function ScheduledCollagePage({
     var ud7 = uuidv4();
     var ud8 = uuidv4();
     var ud9 = uuidv4();
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -260,233 +260,50 @@ function ScheduledCollagePage({
         url8: fbimg8,
         url9: fbimg9,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/collage/" + newKey + "/" + slug
       );
       console.log(livelink, "livelink");
       setpreviewlink("scheduledlive/collage/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      console.log("in else bbb");
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          //catches the errors
-          console.log(err);
-        },
-        () => {
-          console.log(image_url1);
-          storage
-            .ref("images")
-            .child(ud1)
-            .putString(image_url1, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl1) => {
-                storage
-                  .ref("images")
-                  .child(ud2)
-                  .putString(image_url2, "base64", { contentType: "image/jpg" })
-                  .then((savedImage) => {
-                    savedImage.ref.getDownloadURL().then((downUrl2) => {
-                      storage
-                        .ref("images")
-                        .child(ud3)
-                        .putString(image_url3, "base64", {
-                          contentType: "image/jpg",
-                        })
-                        .then((savedImage) => {
-                          savedImage.ref.getDownloadURL().then((downUrl3) => {
-                            storage
-                              .ref("images")
-                              .child(ud4)
-                              .putString(image_url4, "base64", {
-                                contentType: "image/jpg",
-                              })
-                              .then((savedImage) => {
-                                savedImage.ref
-                                  .getDownloadURL()
-                                  .then((downUrl4) => {
-                                    storage
-                                      .ref("images")
-                                      .child(ud5)
-                                      .putString(image_url5, "base64", {
-                                        contentType: "image/jpg",
-                                      })
-                                      .then((savedImage) => {
-                                        savedImage.ref
-                                          .getDownloadURL()
-                                          .then((downUrl5) => {
-                                            storage
-                                              .ref("images")
-                                              .child(ud6)
-                                              .putString(image_url6, "base64", {
-                                                contentType: "image/jpg",
-                                              })
-                                              .then((savedImage) => {
-                                                savedImage.ref
-                                                  .getDownloadURL()
-                                                  .then((downUrl6) => {
-                                                    storage
-                                                      .ref("images")
-                                                      .child(ud7)
-                                                      .putString(
-                                                        image_url7,
-                                                        "base64",
-                                                        {
-                                                          contentType:
-                                                            "image/jpg",
-                                                        }
-                                                      )
-                                                      .then((savedImage) => {
-                                                        savedImage.ref
-                                                          .getDownloadURL()
-                                                          .then((downUrl7) => {
-                                                            storage
-                                                              .ref("images")
-                                                              .child(ud8)
-                                                              .putString(
-                                                                image_url8,
-                                                                "base64",
-                                                                {
-                                                                  contentType:
-                                                                    "image/jpg",
-                                                                }
-                                                              )
-                                                              .then(
-                                                                (
-                                                                  savedImage
-                                                                ) => {
-                                                                  savedImage.ref
-                                                                    .getDownloadURL()
-                                                                    .then(
-                                                                      (
-                                                                        downUrl8
-                                                                      ) => {
-                                                                        storage
-                                                                          .ref(
-                                                                            "images"
-                                                                          )
-                                                                          .child(
-                                                                            ud9
-                                                                          )
-                                                                          .putString(
-                                                                            image_url9,
-                                                                            "base64",
-                                                                            {
-                                                                              contentType:
-                                                                                "image/jpg",
-                                                                            }
-                                                                          )
-                                                                          .then(
-                                                                            (
-                                                                              savedImage
-                                                                            ) => {
-                                                                              savedImage.ref
-                                                                                .getDownloadURL()
-                                                                                .then(
-                                                                                  (
-                                                                                    downUrl9
-                                                                                  ) => {
-                                                                                    const todoRef = firebase
-                                                                                      .database()
-                                                                                      .ref(
-                                                                                        "Collage"
-                                                                                      );
-                                                                                    const todo = {
-                                                                                      url1: downUrl1,
-                                                                                      url2: downUrl2,
-                                                                                      url3: downUrl3,
-                                                                                      url4: downUrl4,
-                                                                                      url5: downUrl5,
-                                                                                      url6: downUrl6,
-                                                                                      url7: downUrl7,
-                                                                                      url8: downUrl8,
-                                                                                      url9: downUrl9,
-                                                                                    };
-                                                                                    var newKey = todoRef
-                                                                                      .push(
-                                                                                        todo
-                                                                                      )
-                                                                                      .getKey();
-                                                                                    setlivelink(
-                                                                                      "http://giftshub.live/scheduledlive/collage/" +
-                                                                                        newKey +
-                                                                                        "/" +
-                                                                                        slug
-                                                                                    );
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/collage/" + newKey + "/" + slug;
 
-                                                                                    setpreviewlink(
-                                                                                      "scheduledlive/collage/" +
-                                                                                        newKey +
-                                                                                        "/" +
-                                                                                        slug
-                                                                                    );
-                                                                                  }
-                                                                                );
-                                                                              setloading(
-                                                                                false
-                                                                              );
-                                                                            }
-                                                                          );
-                                                                      }
-                                                                    );
-                                                                }
-                                                              );
-                                                          });
-                                                      });
-                                                  });
-                                              });
-                                          });
-                                      });
-                                  });
-                              });
-                          });
-                        });
-                    });
-                  });
-              });
-            });
-        }
-      );
-    }
-    {
-      edit.text != "" && toast.success("Collagee updated successfully");
-    }
-  };
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
         {
           array_data: newdata,
         },
         { merge: true }
       );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Collage successfully added to your pack");
+      toast.success("Collage successfully added to your pack");
 
-    getDoc();
-  }
+      getDoc();
+      setloading(false);
+    }
+    {
+      edit.text != "" && toast.success("Collagee updated successfully");
+    }
+  };
+  async function EditPack() {}
   const tourConfig = [
     {
       selector: '[data-tut="reactour__changeImage"]',
@@ -816,7 +633,7 @@ function ScheduledCollagePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -851,20 +668,6 @@ function ScheduledCollagePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

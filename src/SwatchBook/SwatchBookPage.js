@@ -157,7 +157,7 @@ function TicketDeckPage() {
   }, [toname]);
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <div>
         {" "}
@@ -176,20 +176,12 @@ function TicketDeckPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9 mb-3">{func()}</div>
-          <div
-            className="   col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div id="magazine" class="  col-lg-9  mb-3 px-0">
+            {func()}
+          </div>
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div
@@ -299,27 +291,29 @@ function TicketDeckPage() {
                 </div>
               </center>
               <div data-tut="reactour__handcol">
-                <input
-                  type="color"
-                  id="handcol"
-                  initialValue={handscol}
-                  value={handscol}
-                  onChange={(e) => {
-                    sethandscol(e.target.value);
-                  }}
-                  placement="right"
-                  autoAdjust="true"
-                  style={{
-                    margin: "auto",
-                    visibility: "hidden",
-                    position: "relative",
-                    display: "flex",
-                    height: "5px",
-                  }}
-                />
-                <label htmlFor="handcol">
-                  <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
-                </label>
+                <center>
+                  <input
+                    type="color"
+                    id="handcol"
+                    initialValue={handscol}
+                    value={handscol}
+                    onChange={(e) => {
+                      sethandscol(e.target.value);
+                    }}
+                    placement="right"
+                    autoAdjust="true"
+                    style={{
+                      margin: "auto",
+                      visibility: "hidden",
+                      position: "relative",
+                      display: "flex",
+                      height: "5px",
+                    }}
+                  />
+                  <label htmlFor="handcol">
+                    <HeaderBtn Icon={GradientIcon} title="Clock hands color" />
+                  </label>
+                </center>
               </div>
               <center data-tut="reactour__generatelink">
                 <div style={{ marginTop: "20px" }}>

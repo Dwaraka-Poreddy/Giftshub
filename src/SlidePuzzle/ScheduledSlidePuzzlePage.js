@@ -79,12 +79,12 @@ function ScheduledSlidePuzzlePage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -108,86 +108,48 @@ function ScheduledSlidePuzzlePage({
         url: fbimg,
         best_score: 100000,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/slidepuzzle/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/slidepuzzle/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          //catches the errors
-          console.log(err);
-        },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                console.log(downUrl);
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("SlidePuzzle");
-                const todo = {
-                  url: downUrl,
-                  best_score: 100000,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/slidepuzzle/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/slidepuzzle/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
-      );
-    }
-    {
-      edit.text != "" && toast.success("Slide Puzzle updated successfully");
-    }
-  };
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/slidepuzzle/" + newKey + "/" + slug;
 
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
         {
           array_data: newdata,
         },
         { merge: true }
       );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Slide Puzzle successfully added to your pack");
-    getDoc();
-  }
+      toast.success("Slide Puzzle successfully added to your pack");
+      getDoc();
+      setloading(false);
+    }
+    {
+      edit.text != "" && toast.success("Slide Puzzle updated successfully");
+    }
+  };
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -328,7 +290,7 @@ function ScheduledSlidePuzzlePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -363,20 +325,6 @@ function ScheduledSlidePuzzlePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

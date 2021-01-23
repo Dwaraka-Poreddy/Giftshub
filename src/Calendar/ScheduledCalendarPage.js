@@ -18,6 +18,7 @@ import Tour from "reactour";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import GradientIcon from "@material-ui/icons/Gradient";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -83,12 +84,12 @@ function ScheduledCalendarPage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -116,89 +117,50 @@ function ScheduledCalendarPage({
         name: toname,
         handscol: handscol,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
         "http://giftshub.live/scheduledlive/calendar/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/calendar/" + newKey + "/" + slug);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/calendar/" + newKey + "/" + slug;
 
-      setloading(false);
-    } else {
-      console.log("in else bbb");
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                const todoRef = firebase.database().ref("Calendar");
-                const todo = {
-                  url: downUrl,
-                  name: toname,
-                  handscol: handscol,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://giftshub.live/scheduledlive/calendar/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/calendar/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+
+      toast.success("calendar successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("Calendar updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-
-    toast.success("calendar successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -245,7 +207,7 @@ function ScheduledCalendarPage({
   }, [toname]);
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -258,8 +220,8 @@ function ScheduledCalendarPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class=" col-xl-10 p-0 mb-3">
             {Cloading ? (
               <Loader
@@ -273,17 +235,7 @@ function ScheduledCalendarPage({
             )}
           </div>
 
-          <div
-            className="   col-xl-2 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className=" editpagesrightnav  col-xl-2 mb-3">
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>
@@ -410,7 +362,7 @@ function ScheduledCalendarPage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to Pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -445,20 +397,6 @@ function ScheduledCalendarPage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

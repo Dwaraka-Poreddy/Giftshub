@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
-import GradientIcon from "@material-ui/icons/Gradient";
+import "../Buttons.css";
 import Tour from "reactour";
 
 const secuseStyles = makeStyles((theme) => ({
@@ -195,7 +195,7 @@ function ScheduledAboutQuizPage({
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -208,9 +208,9 @@ function ScheduledAboutQuizPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -230,17 +230,7 @@ function ScheduledAboutQuizPage({
               </div>
             )}
           </div>
-          <div
-            className="  col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>
@@ -328,20 +318,6 @@ function ScheduledAboutQuizPage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
-                      <div
-                        data-tut="reactour__addtopack"
-                        style={{ marginTop: "20px" }}
-                      >
-                        <HeaderBtn
-                          handleClick={() => {
-                            EditPack();
-                          }}
-                          Icon={ShareIcon}
-                          title="Add to Pack "
-                        />
-                      </div>
-                    ) : null}
                   </div>
                 ) : null}
               </center>

@@ -85,7 +85,6 @@ function ScheduledThreeDImagePage({
   const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
-    console.log(ud);
 
     const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
