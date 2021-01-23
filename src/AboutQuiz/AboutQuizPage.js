@@ -71,7 +71,7 @@ function AboutQuizPage() {
         answersArray: answersArray,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/aboutquiz/" + newKey);
+      setlivelink("http://giftshub.live/live/aboutquiz/" + newKey);
       setpreviewlink("/live/aboutquiz/" + newKey);
 
       setloading(false);
@@ -100,7 +100,7 @@ function AboutQuizPage() {
                   answersArray: answersArray,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/aboutquiz/" + newKey);
+                setlivelink("http://giftshub.live/live/aboutquiz/" + newKey);
                 setpreviewlink("/live/aboutquiz/" + newKey);
               });
               setloading(false);

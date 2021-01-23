@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "react-loader-spinner";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -81,7 +80,7 @@ function OpenGreetingCardPage() {
         fromtext: fromtext,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/opengreetingcard/" + newKey);
+      setlivelink("http://giftshub.live/live/opengreetingcard/" + newKey);
       setpreviewlink("/live/opengreetingcard/" + newKey);
 
       setloading(false);
@@ -113,7 +112,7 @@ function OpenGreetingCardPage() {
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/live/opengreetingcard/" + newKey
+                  "http://giftshub.live/live/opengreetingcard/" + newKey
                 );
                 setpreviewlink("/live/opengreetingcard/" + newKey);
               });
@@ -167,7 +166,7 @@ function OpenGreetingCardPage() {
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <Tour
         onRequestClose={() => {
@@ -184,8 +183,8 @@ function OpenGreetingCardPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid ">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0 ">
+        <div class="row editpageseditarea">
           <div class="  col-lg-9 px-0 mb-3">
             <OpenGreetingCard
               fbimg={fbimg}
@@ -196,17 +195,7 @@ function OpenGreetingCardPage() {
             />
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             <BrowserView>
               <center>
                 <div

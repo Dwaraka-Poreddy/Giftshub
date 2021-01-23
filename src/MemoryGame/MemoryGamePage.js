@@ -146,7 +146,7 @@ function CubesPage() {
         url6: fbimg6,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/memorygame/" + newKey);
+      setlivelink("http://giftshub.live/live/memorygame/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/memorygame/" + newKey);
 
@@ -226,7 +226,7 @@ function CubesPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/memorygame/" +
+                                                      "http://giftshub.live/live/memorygame/" +
                                                         newKey
                                                     );
                                                     console.log(

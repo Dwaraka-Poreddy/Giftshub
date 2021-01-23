@@ -70,7 +70,7 @@ function ChallengePage() {
         url: fbimg,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/challenge/" + newKey);
+      setlivelink("http://giftshub.live/live/challenge/" + newKey);
       setpreviewlink("/live/challenge/" + newKey);
 
       setloading(false);
@@ -96,7 +96,7 @@ function ChallengePage() {
                   url: downUrl,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/challenge/" + newKey);
+                setlivelink("http://giftshub.live/live/challenge/" + newKey);
                 setpreviewlink("/live/challenge/" + newKey);
               });
               setloading(false);

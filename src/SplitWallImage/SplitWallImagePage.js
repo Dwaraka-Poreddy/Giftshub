@@ -65,7 +65,7 @@ function OpenGreetingCardPage() {
         url: fbimg,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/splitwall/" + newKey);
+      setlivelink("http://giftshub.live/live/splitwall/" + newKey);
       setpreviewlink("/live/splitwall/" + newKey);
 
       setloading(false);
@@ -92,7 +92,7 @@ function OpenGreetingCardPage() {
                   url: downUrl,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/splitwall/" + newKey);
+                setlivelink("http://giftshub.live/live/splitwall/" + newKey);
                 setpreviewlink("/live/splitwall/" + newKey);
               });
               setloading(false);

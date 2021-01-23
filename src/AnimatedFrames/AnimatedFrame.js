@@ -3,7 +3,7 @@ import "./AnimatedFrame.css";
 import "../Buttons.css";
 export default function AnimatedFrame({ fbimg1, fbimg2, title }) {
   return (
-    <div className="AnimatedApp" style={{ backgroundColor: "#70cff3" }}>
+    <div className="AnimatedApp">
       <center style={{ marginTop: "13px" }}>
         <div
           style={{

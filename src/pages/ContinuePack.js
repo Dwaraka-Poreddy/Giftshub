@@ -174,7 +174,7 @@ function ContinuePack({ match, history }) {
     setloading(false);
 
     setlivelink(
-      "http://localhost:3000/scheduledlive/main/" + `${match.params.slug}`
+      "http://giftshub.live/scheduledlive/main/" + `${match.params.slug}`
     );
 
     await getDocnew();

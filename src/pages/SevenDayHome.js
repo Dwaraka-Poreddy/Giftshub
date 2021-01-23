@@ -26,12 +26,13 @@ import "../Swiper.css";
 import $ from "jquery";
 import "../Buttons.css";
 import "./SevenDayHome.css";
+
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
     borderRadius: "5px",
     width: "100%",
-    maxWidth: "700px",
+    maxWidth: "320px",
     minWidth: "280px",
     position: "absolute",
     color: "#ffffff",
@@ -43,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
     bottom: theme.spacing(142),
     left: theme.spacing(250),
+    backgroundColor: "#fb7777",
+    margin: "5px",
+    color: "#ffffff",
+    width: "35px",
+    height: "35px",
   },
 }));
 
@@ -262,7 +268,10 @@ function SevenDayHome({ history }) {
       <div className="container">
         <div className="row border">
           <div className="col-md-4 col-lg-3 p-0 recommendedcard">
-            <div class="card text-center border-0 recommendedcard">
+            <div
+              style={{ height: "100%" }}
+              class="card text-center border-0 recommendedcard"
+            >
               <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">
@@ -344,8 +353,11 @@ function SevenDayHome({ history }) {
         </div>{" "}
         <br />
         <div className="row border">
-          <div className="col-md-4 col-lg-3 p-0">
-            <div class="card text-center border-0">
+          <div className="col-md-4 col-lg-3 p-0 recommendedcard">
+            <div
+              style={{ height: "100%" }}
+              class="card text-center border-0 recommendedcard"
+            >
               <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">
@@ -441,8 +453,11 @@ function SevenDayHome({ history }) {
         </div>
         <br />
         <div className="row border">
-          <div className="col-md-4 col-lg-3 p-0 shadow-none">
-            <div class="card text-center border-0">
+          <div className="col-md-4 col-lg-3 p-0 recommendedcard">
+            <div
+              style={{ height: "100%" }}
+              class="card text-center border-0 recommendedcard"
+            >
               <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">
@@ -564,7 +579,7 @@ function SevenDayHome({ history }) {
             ) : (
               <div>
                 <div
-                  style={{ backgroundColor: "#ffffff" }}
+                  style={{ backgroundColor: "#ffffff", borderRadius: "5px" }}
                   class="container-fluid pt-3"
                 >
                   <div class="p-3">
@@ -579,13 +594,13 @@ function SevenDayHome({ history }) {
                           >
                             <Grid item>
                               <FolderSharedOutlinedIcon
-                                style={{ fill: "#0196de" }}
+                                style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
                             <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
-                                  style: { color: "#0196de" },
+                                  style: { color: "rgb(66 66 66)" },
                                 }}
                                 id="input-with-icon-grid"
                                 label="Folder Name"
@@ -606,13 +621,13 @@ function SevenDayHome({ history }) {
                           >
                             <Grid item>
                               <AccountCircleOutlinedIcon
-                                style={{ fill: "#0196de" }}
+                                style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
                             <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
-                                  style: { color: "#0196de" },
+                                  style: { color: "rgb(66 66 66)" },
                                 }}
                                 id="input-with-icon-grid"
                                 label="Your Name"
@@ -633,13 +648,13 @@ function SevenDayHome({ history }) {
                           >
                             <Grid item>
                               <AccountCircleOutlinedIcon
-                                style={{ fill: "#0196de" }}
+                                style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
                             <Grid style={{ width: "210px" }} item>
                               <TextField
                                 InputLabelProps={{
-                                  style: { color: "#0196de" },
+                                  style: { color: "rgb(66 66 66)" },
                                 }}
                                 id="input-with-icon-grid"
                                 label="Receivers Name"
@@ -679,10 +694,10 @@ function SevenDayHome({ history }) {
                             <div
                               style={{
                                 height: "45px",
-                                width: "250px",
+                                width: "230px",
                                 display: "flex",
                                 alignItems: "center",
-                                border: "1px solid #0196de",
+                                border: "1px solid rgb(66 66 66)",
                                 cursor: "pointer",
                                 borderRadius: "5px",
                               }}
@@ -690,14 +705,14 @@ function SevenDayHome({ history }) {
                               {send ? (
                                 <CheckBoxOutlinedIcon
                                   style={{
-                                    fill: "#0196de",
+                                    fill: "rgb(66 66 66)",
                                     marginLeft: "7px",
                                   }}
                                 />
                               ) : (
                                 <ImageOutlinedIcon
                                   style={{
-                                    fill: "#0196de",
+                                    fill: "rgb(66 66 66)",
                                     marginLeft: "7px",
                                   }}
                                 />
@@ -705,7 +720,7 @@ function SevenDayHome({ history }) {
                               <h2
                                 style={{
                                   fontSize: "18px",
-                                  color: "#0196de",
+                                  color: "rgb(66 66 66)",
                                   marginLeft: "8px",
                                   marginBottom: "0",
                                 }}
@@ -730,7 +745,7 @@ function SevenDayHome({ history }) {
                           }}
                           InputLabelProps={{
                             shrink: true,
-                            style: { color: "#0196de" },
+                            style: { color: "rgb(66 66 66)" },
                           }}
                         />{" "}
                         <br />
@@ -752,7 +767,7 @@ function SevenDayHome({ history }) {
                                 <button
                                   disabled
                                   style={{ cursor: "default" }}
-                                  className="main-button"
+                                  className="modal-button"
                                 >
                                   {" "}
                                   Create {days_page.days_redirect} day pack
@@ -768,7 +783,7 @@ function SevenDayHome({ history }) {
                                 value="Create 7 day pack"
                               />
                               <label htmlFor="submit">
-                                <button className="main-button">
+                                <button className="modal-button">
                                   {" "}
                                   Create {days_page.days_redirect} day pack
                                 </button>

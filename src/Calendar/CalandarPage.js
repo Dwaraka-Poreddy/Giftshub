@@ -71,7 +71,7 @@ function CalendarPage() {
         secondcol: secondcol,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/calendar/" + newKey);
+      setlivelink("http://giftshub.live/live/calendar/" + newKey);
       setpreviewlink("/live/calendar/" + newKey);
 
       setloading(false);
@@ -100,7 +100,7 @@ function CalendarPage() {
                   secondcol: secondcol,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/calendar/" + newKey);
+                setlivelink("http://giftshub.live/live/calendar/" + newKey);
                 setpreviewlink("/live/calendar/" + newKey);
               });
               setloading(false);

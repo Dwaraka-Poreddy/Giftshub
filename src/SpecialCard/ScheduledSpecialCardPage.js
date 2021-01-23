@@ -3,7 +3,6 @@ import HeaderBtn from "../Studio/HeaderBtn";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import SpecialCard from "./SpecialCard";
-
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -111,7 +110,7 @@ function ScheduledSpecialCardPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/specialcard/" +
+        "http://giftshub.live/scheduledlive/specialcard/" +
           edit.text +
           "/" +
           slug
@@ -128,7 +127,7 @@ function ScheduledSpecialCardPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/specialcard/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/specialcard/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/specialcard/" + newKey + "/" + slug);
       setloading(false);
@@ -156,7 +155,7 @@ function ScheduledSpecialCardPage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/specialcard/" +
+                  "http://giftshub.live/scheduledlive/specialcard/" +
                     newKey +
                     "/" +
                     slug
@@ -251,7 +250,7 @@ function ScheduledSpecialCardPage({
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -263,10 +262,9 @@ function ScheduledSpecialCardPage({
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="col-lg-1 "></div>
-          <div class="col-lg-7 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="col-lg-9 d-flex justify-content-center mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -285,49 +283,40 @@ function ScheduledSpecialCardPage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
 
-          <div
-            className=" col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3  mb-3">
             {" "}
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={1 / 1}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={1 / 1}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
 
               <center>

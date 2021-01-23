@@ -16,6 +16,7 @@ import Copy from "../Utils/Copy";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -239,7 +240,7 @@ function ScheduledCollagePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/collage/" + edit.text + "/" + slug
+        "http://giftshub.live/scheduledlive/collage/" + edit.text + "/" + slug
       );
       console.log(livelink, "livelink");
       setpreviewlink("scheduledlive/collage/" + edit.text + "/" + slug);
@@ -261,7 +262,7 @@ function ScheduledCollagePage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/collage/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/collage/" + newKey + "/" + slug
       );
       console.log(livelink, "livelink");
       setpreviewlink("scheduledlive/collage/" + newKey + "/" + slug);
@@ -410,7 +411,7 @@ function ScheduledCollagePage({
                                                                                       )
                                                                                       .getKey();
                                                                                     setlivelink(
-                                                                                      "http://localhost:3000/scheduledlive/collage/" +
+                                                                                      "http://giftshub.live/scheduledlive/collage/" +
                                                                                         newKey +
                                                                                         "/" +
                                                                                         slug
@@ -519,7 +520,7 @@ function ScheduledCollagePage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -532,9 +533,9 @@ function ScheduledCollagePage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class=" col-lg-9 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class=" col-lg-9 mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -547,17 +548,7 @@ function ScheduledCollagePage({
             )}
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className=" editpagesrightnav col-lg-3 mb-3">
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>

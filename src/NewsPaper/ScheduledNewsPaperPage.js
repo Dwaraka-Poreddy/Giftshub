@@ -8,18 +8,16 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./NewsPaperPage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tour from "reactour";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -104,10 +102,7 @@ function ScheduledNewsPaperPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/newspaper/" +
-          edit.text +
-          "/" +
-          slug
+        "http://giftshub.live/scheduledlive/newspaper/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + edit.text + "/" + slug);
 
@@ -121,7 +116,7 @@ function ScheduledNewsPaperPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/newspaper/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/newspaper/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
 
@@ -150,7 +145,7 @@ function ScheduledNewsPaperPage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/newspaper/" +
+                  "http://giftshub.live/scheduledlive/newspaper/" +
                     newKey +
                     "/" +
                     slug
@@ -240,7 +235,7 @@ function ScheduledNewsPaperPage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -253,10 +248,9 @@ function ScheduledNewsPaperPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-1"></div>
-          <div class="mb-3  col-lg-7">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="mb-3  col-lg-9 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -275,51 +269,42 @@ function ScheduledNewsPaperPage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
-          <div
-            className=" col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             <p style={{ color: "#ffffff" }}>
               {" "}
               date will be displayed based on the scheduled event date
             </p>
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={16 / 9}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={16 / 9}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center>
                 <div

@@ -125,7 +125,7 @@ function HexagonalAnimPage() {
         url6: fbimg6,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/hexagonalanim/" + newKey);
+      setlivelink("http://giftshub.live/live/hexagonalanim/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/hexagonalanim/" + newKey);
 
@@ -205,7 +205,7 @@ function HexagonalAnimPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/hexagonalanim/" +
+                                                      "http://giftshub.live/live/hexagonalanim/" +
                                                         newKey
                                                     );
                                                     console.log(

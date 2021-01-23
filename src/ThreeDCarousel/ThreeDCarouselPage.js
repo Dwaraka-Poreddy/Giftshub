@@ -129,7 +129,7 @@ function ThreeDCarouselPage() {
         text: text,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/threedcarousel/" + newKey);
+      setlivelink("http://giftshub.live/live/threedcarousel/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/threedcarousel/" + newKey);
 
@@ -210,7 +210,7 @@ function ThreeDCarouselPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/threedcarousel/" +
+                                                      "http://giftshub.live/live/threedcarousel/" +
                                                         newKey
                                                     );
                                                     console.log(

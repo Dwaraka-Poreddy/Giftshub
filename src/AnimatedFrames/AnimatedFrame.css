@@ -1,6 +1,6 @@
 /* @import url(https://fonts.googleapis.com/css?family=Pacifico); */
 .AnimatedApp {
-  background-color: #70cff3 !important;
+  /* background-color: #70cff3 !important; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -15,7 +15,7 @@ a {
   white-space: nowrap;
   width: 1000px;
   height: 500px;
-  background-color: #70cff3 !important;
+  /* background-color: #70cff3 !important; */
   overflow: hidden;
   background-size: cover;
   position: relative;
@@ -183,10 +183,4 @@ a {
   font-size: 40px;
   color: beige;
   text-shadow: 0 5px 17px rgba(87, 87, 80, 0.85);
-}
-
-@media only screen and (min-width: 1200px) {
-  .AnimatedApp {
-    transform: scale(1.1, 1.05);
-  }
 }

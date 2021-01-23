@@ -17,6 +17,7 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -186,7 +187,7 @@ function CollagePage() {
         url9: fbimg9,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/collage/" + newKey);
+      setlivelink("http://giftshub.live/live/collage/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("live/collage/" + newKey);
 
@@ -334,7 +335,7 @@ function CollagePage() {
                                                                                       )
                                                                                       .getKey();
                                                                                     setlivelink(
-                                                                                      "http://localhost:3000/live/collage/" +
+                                                                                      "http://giftshub.live/live/collage/" +
                                                                                         newKey
                                                                                     );
                                                                                     console.log(
@@ -398,7 +399,7 @@ function CollagePage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <Tour
         onRequestClose={() => {
@@ -414,21 +415,11 @@ function CollagePage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class=" col-lg-9 mb-3">{func()}</div>
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class=" col-lg-9 mb-3 px-0">{func()}</div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className=" editpagesrightnav col-lg-3 mb-3">
             <BrowserView>
               <center>
                 <div

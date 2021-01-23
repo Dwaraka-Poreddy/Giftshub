@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Magazine from "./Magazine";
 import { BrowserView } from "react-device-detect";
-
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
-
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -16,7 +14,6 @@ import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -83,7 +80,7 @@ function MagazinePage() {
         text: text,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/magazine/" + newKey);
+      setlivelink("http://giftshub.live/live/magazine/" + newKey);
       setpreviewlink("/live/magazine/" + newKey);
 
       setloading(false);
@@ -111,7 +108,7 @@ function MagazinePage() {
                   text: text,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/magazine/" + newKey);
+                setlivelink("http://giftshub.live/live/magazine/" + newKey);
                 setpreviewlink("/live/magazine/" + newKey);
               });
               setloading(false);
@@ -172,7 +169,7 @@ function MagazinePage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <br />
       <br />
@@ -188,24 +185,12 @@ function MagazinePage() {
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="col-lg-1"></div>
-          <div id="magazine" ref={docToPrint} class="  col-lg-7">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div id="magazine" ref={docToPrint} class="  col-lg-9  mb-3 px-0">
             <Magazine fbimg={fbimg} text={text} name={name} BDate={BDate} />
           </div>
-          <div class="col-lg-1"></div>
-          <div
-            className="newspaperrnav col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div
@@ -234,33 +219,35 @@ function MagazinePage() {
             </BrowserView>
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput"
-                  name="LocalfileInput"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop ? (
-                  <CropPage
-                    send={send}
-                    setfbimg={setfbimg}
-                    setimage_url={setimage_url}
-                    aspect_ratio={3 / 4}
-                    opencrop={opencrop}
-                    setopencrop={setopencrop}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput"
+                    name="LocalfileInput"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image " />
-                </label>
+                  {opencrop ? (
+                    <CropPage
+                      send={send}
+                      setfbimg={setfbimg}
+                      setimage_url={setimage_url}
+                      aspect_ratio={3 / 4}
+                      opencrop={opencrop}
+                      setopencrop={setopencrop}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image " />
+                  </label>
+                </center>
               </div>
               <center>
                 <div data-tut="reactour__head">
@@ -335,13 +322,6 @@ function MagazinePage() {
                     }}
                     className="RightSideBar2__Btn"
                   >
-                    <DateRangeIcon
-                      style={{
-                        margin: "0 10px 0 5px",
-                        color: "#ffffff",
-                        fontSize: "large",
-                      }}
-                    />
                     <input
                       className="RightSideBar2__Btn"
                       type="date"
@@ -349,7 +329,6 @@ function MagazinePage() {
                         color: "#068dc0",
                         margin: "0",
                         backgroundColor: "#ffffff",
-                        width: "150px",
                       }}
                       value={BDate}
                       onChange={(e) => {

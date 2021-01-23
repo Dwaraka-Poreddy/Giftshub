@@ -172,7 +172,7 @@ function ScheduledThreeDCarouselPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/threedcarousel/" +
+        "http://giftshub.live/scheduledlive/threedcarousel/" +
           edit.text +
           "/" +
           slug
@@ -192,7 +192,7 @@ function ScheduledThreeDCarouselPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/threedcarousel/" +
+        "http://giftshub.live/scheduledlive/threedcarousel/" +
           newKey +
           "/" +
           slug
@@ -274,7 +274,7 @@ function ScheduledThreeDCarouselPage({
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/scheduledlive/threedcarousel/" +
+                                                      "http://giftshub.live/scheduledlive/threedcarousel/" +
                                                         newKey +
                                                         "/" +
                                                         slug

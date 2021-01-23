@@ -82,12 +82,12 @@ function ScheduledAboutQuizPage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -101,10 +101,7 @@ function ScheduledAboutQuizPage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/aboutquiz/" +
-          edit.text +
-          "/" +
-          slug
+        "http://giftshub.live/scheduledlive/aboutquiz/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/aboutquiz/" + edit.text + "/" + slug);
 
@@ -117,90 +114,50 @@ function ScheduledAboutQuizPage({
         quesArray: quesArray,
         answersArray: answersArray,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/aboutquiz/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/aboutquiz/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/aboutquiz/" + newKey + "/" + slug);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/aboutquiz/" + newKey + "/" + slug;
 
-      setloading(false);
-    } else {
-      console.log("in else bbb");
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                console.log(downUrl, "downurl");
-                const todoRef = firebase.database().ref("AboutQuiz");
-                const todo = {
-                  url: downUrl,
-                  quesArray: quesArray,
-                  answersArray: answersArray,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://localhost:3000/scheduledlive/aboutquiz/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/aboutquiz/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+
+      toast.success("About Quiz successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("About Quiz updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-
-    toast.success("About Quiz successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
 
   const tourConfig = [
     {

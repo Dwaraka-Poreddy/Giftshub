@@ -8,16 +8,14 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./CubesPage.css";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -160,7 +158,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/cubes/" + edit.text + "/" + slug
+        "http://giftshub.live/scheduledlive/cubes/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/cubes/" + edit.text + "/" + slug);
       setloading(false);
@@ -176,7 +174,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/cubes/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/cubes/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/cubes/" + newKey + "/" + slug);
       setloading(false);
@@ -254,7 +252,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/scheduledlive/cubes/" +
+                                                      "http://giftshub.live/scheduledlive/cubes/" +
                                                         newKey +
                                                         "/" +
                                                         slug
@@ -348,7 +346,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -360,8 +358,8 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class="  col-lg-9">
             {Cloading ? (
               <Loader
@@ -391,17 +389,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
             )}
           </div>
 
-          <div
-            className="cubesrnav col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3">
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
                 <center>

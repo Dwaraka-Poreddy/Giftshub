@@ -8,7 +8,6 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./ThreeDImagePage.css";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -19,7 +18,7 @@ import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
-
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -73,7 +72,7 @@ function ThreeDImagePage() {
         secondcol: secondcol,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/threedimage/" + newKey);
+      setlivelink("http://giftshub.live/live/threedimage/" + newKey);
       setpreviewlink("/live/threedimage/" + newKey);
 
       setloading(false);
@@ -102,7 +101,7 @@ function ThreeDImagePage() {
                   secondcol: secondcol,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/threedimage/" + newKey);
+                setlivelink("http://giftshub.live/live/threedimage/" + newKey);
                 setpreviewlink("/live/threedimage/" + newKey);
               });
               setloading(false);
@@ -139,7 +138,7 @@ function ThreeDImagePage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <div>
         {" "}
@@ -159,9 +158,9 @@ function ThreeDImagePage() {
       <br />
       <br />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9  mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9  mb-3 px-0">
             <ThreeDImage
               firstcol={firstcol}
               secondcol={secondcol}
@@ -169,17 +168,7 @@ function ThreeDImagePage() {
             />
           </div>
 
-          <div
-            className="threedrnav   col-lg-3   mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className=" editpagesrightnav   col-lg-3   mb-3">
             <BrowserView>
               <center>
                 <div

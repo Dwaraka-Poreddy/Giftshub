@@ -103,7 +103,7 @@ function ScheduledSwatchBookPage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/swatchbook/" +
+        "http://giftshub.live/scheduledlive/swatchbook/" +
           edit.text +
           "/" +
           slug
@@ -122,7 +122,7 @@ function ScheduledSwatchBookPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/swatchbook/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/swatchbook/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/swatchbook/" + newKey + "/" + slug);
 
@@ -152,7 +152,7 @@ function ScheduledSwatchBookPage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/swatchbook/" +
+                  "http://giftshub.live/scheduledlive/swatchbook/" +
                     newKey +
                     "/" +
                     slug

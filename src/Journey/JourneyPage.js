@@ -140,7 +140,7 @@ function JourneyPage() {
         heading: heading,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/journey/" + newKey);
+      setlivelink("http://giftshub.live/live/journey/" + newKey);
       setpreviewlink("/live/journey/" + newKey);
 
       setloading(false);
@@ -225,7 +225,7 @@ function JourneyPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/journey/" +
+                                                      "http://giftshub.live/live/journey/" +
                                                         newKey
                                                     );
                                                     console.log(

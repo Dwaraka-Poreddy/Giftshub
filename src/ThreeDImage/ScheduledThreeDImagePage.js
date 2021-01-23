@@ -9,7 +9,6 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./ThreeDImagePage.css";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import { useSelector } from "react-redux";
@@ -18,7 +17,7 @@ import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
 import GradientIcon from "@material-ui/icons/Gradient";
 import Tour from "reactour";
-
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -83,16 +82,16 @@ function ScheduledThreeDImagePage({
     setopencrop(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud = uuidv4();
     console.log(ud);
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
-      console.log("in if bbb");
+      console.log("in case 1");
       const todoRef = firebase.database().ref("ThreeDImage/" + edit.text);
       const todo = {
         url: fbimg,
@@ -102,7 +101,7 @@ function ScheduledThreeDImagePage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/threedimage/" +
+        "http://giftshub.live/scheduledlive/threedimage/" +
           edit.text +
           "/" +
           slug
@@ -112,97 +111,99 @@ function ScheduledThreeDImagePage({
 
       setloading(false);
     } else if (!livelink) {
-      console.log("in elseif bbb");
+      console.log("in case 2");
       const todoRef = firebase.database().ref("ThreeDImage");
       const todo = {
         url: fbimg,
         firstcol: firstcol,
         secondcol: secondcol,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/threedimage/" + newKey + "/" + slug
+        "https://giftshub.live/scheduledlive/threedimage/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/threedimage/" + newKey + "/" + slug);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "https://giftshub.live/scheduledlive/threedimage/" +
+        newKey +
+        "/" +
+        slug;
 
-      setloading(false);
-    } else {
-      console.log("in else bbb");
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          console.log(image_url);
-          var s = storage
-            .ref("images")
-            .child(ud)
-            .putString(image_url, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl) => {
-                setFireUrl(downUrl);
-                console.log(downUrl, "downurl");
-                const todoRef = firebase.database().ref("ThreeDImage");
-                const todo = {
-                  url: downUrl,
-                  firstcol: firstcol,
-                  secondcol: secondcol,
-                };
-                var newKey = todoRef.push(todo).getKey();
-                setlivelink(
-                  "http://localhost:3000/scheduledlive/threedimage/" +
-                    newKey +
-                    "/" +
-                    slug
-                );
-                setpreviewlink(
-                  "/scheduledlive/threedimage/" + newKey + "/" + slug
-                );
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+
+      toast.success("3D image successfully added to your pack");
+      getDoc();
+      setloading(false);
+      // } else {
+      //   console.log("in case 3");
+      //   uploadTask.on(
+      //     "state_changed",
+      //     (snapshot) => {},
+      //     (err) => {
+      //       console.log(err);
+      //     },
+      //     () => {
+      //       console.log(image_url);
+      //       var s = storage
+      //         .ref("images")
+      //         .child(ud)
+      //         .putString(image_url, "base64", { contentType: "image/jpg" })
+      //         .then((savedImage) => {
+      //           savedImage.ref.getDownloadURL().then((downUrl) => {
+      //             setFireUrl(downUrl);
+      //             console.log(downUrl, "downurl");
+      //             const todoRef = firebase.database().ref("ThreeDImage");
+      //             const todo = {
+      //               url: downUrl,
+      //               firstcol: firstcol,
+      //               secondcol: secondcol,
+      //             };
+      //             var newKey = todoRef.push(todo).getKey();
+      //             setlivelink(
+      //               "http://giftshub.live/scheduledlive/threedimage/" +
+      //                 newKey +
+      //                 "/" +
+      //                 slug
+      //             );
+      //             setpreviewlink(
+      //               "/scheduledlive/threedimage/" + newKey + "/" + slug
+      //             );
+      //           });
+      //           setloading(false);
+      //         });
+      //     }
+      //   );
     }
     {
       edit.text != "" && toast.success("3D image updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-
-    toast.success("3D image successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -240,7 +241,7 @@ function ScheduledThreeDImagePage({
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -253,9 +254,9 @@ function ScheduledThreeDImagePage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="  col-lg-9 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="  col-lg-9 mb-3 px-0">
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -274,17 +275,7 @@ function ScheduledThreeDImagePage({
             )}
           </div>
 
-          <div
-            className="threedrnav  col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="threedrnav editpagesrightnav  mb-3 col-lg-3">
             <div style={{ justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>
@@ -390,7 +381,7 @@ function ScheduledThreeDImagePage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (
@@ -425,7 +416,7 @@ function ScheduledThreeDImagePage({
                     >
                       <Copy livelink={livelink} />
                     </div>
-                    {edit.text == "" || isTourOpen ? (
+                    {/* {edit.text == "" || isTourOpen ? (
                       <div
                         data-tut="reactour__addtopack"
                         style={{ marginTop: "20px" }}
@@ -438,7 +429,7 @@ function ScheduledThreeDImagePage({
                           title="Add to Pack "
                         />
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </div>
                 ) : null}
               </center>

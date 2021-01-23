@@ -103,12 +103,12 @@ function ScheduledAnimatedFramesPage({
     setopencrop2(true);
   };
 
-  const handleFireBaseUpload = () => {
+  const handleFireBaseUpload = async () => {
     setloading(true);
     var ud1 = uuidv4();
     var ud2 = uuidv4();
 
-    const uploadTask = storage
+    const uploadTask = await storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     if (edit.text != "") {
@@ -120,7 +120,7 @@ function ScheduledAnimatedFramesPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/animatedframe/" +
+        "http://giftshub.live/scheduledlive/animatedframe/" +
           edit.text +
           "/" +
           slug
@@ -134,95 +134,54 @@ function ScheduledAnimatedFramesPage({
         url2: fbimg2,
         title: title,
       };
-      var newKey = todoRef.push(todo).getKey();
+      var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/animatedframe/" +
+        "http://giftshub.live/scheduledlive/animatedframe/" +
           newKey +
           "/" +
           slug
       );
       setpreviewlink("/scheduledlive/animatedframe/" + newKey + "/" + slug);
-      setloading(false);
-    } else {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          console.log(err);
+      const snapshot = await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .get();
+      const data = snapshot.data().array_data;
+      const newdata = data;
+      newdata[step].url =
+        "http://giftshub.live/scheduledlive/animatedframe/" +
+        newKey +
+        "/" +
+        slug;
+      await database
+        .collection("n-day-pack")
+        .doc(`${user.uid}`)
+        .collection("giftshub")
+        .doc(slug)
+        .update(
+          {
+            array_data: newdata,
+          },
+          { merge: true }
+        );
+      await database.collection("Livelinks").doc(slug).update(
+        {
+          array_data: newdata,
         },
-        () => {
-          storage
-            .ref("images")
-            .child(ud1)
-            .putString(image_url1, "base64", { contentType: "image/jpg" })
-            .then((savedImage) => {
-              savedImage.ref.getDownloadURL().then((downUrl1) => {
-                storage
-                  .ref("images")
-                  .child(ud2)
-                  .putString(image_url2, "base64", { contentType: "image/jpg" })
-                  .then((savedImage) => {
-                    savedImage.ref.getDownloadURL().then((downUrl2) => {
-                      const todoRef = firebase.database().ref("AnimatedFrame");
-                      const todo = {
-                        url1: downUrl1,
-                        url2: downUrl2,
-                        title: title,
-                      };
-                      var newKey = todoRef.push(todo).getKey();
-                      setlivelink(
-                        "http://localhost:3000/scheduledlive/animatedframe/" +
-                          newKey +
-                          "/" +
-                          slug
-                      );
-
-                      setpreviewlink(
-                        "/scheduledlive/animatedframe/" + newKey + "/" + slug
-                      );
-                    });
-                  });
-              });
-              setloading(false);
-            });
-        }
+        { merge: true }
       );
+      toast.success("Animated Frame successfully added to your pack");
+      getDoc();
+      setloading(false);
     }
     {
       edit.text != "" && toast.success("Animated Frame updated successfully");
     }
   };
 
-  async function EditPack() {
-    const snapshot = await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .get();
-    const data = snapshot.data().array_data;
-    const newdata = data;
-    newdata[step].url = livelink;
-    await database
-      .collection("n-day-pack")
-      .doc(`${user.uid}`)
-      .collection("giftshub")
-      .doc(slug)
-      .update(
-        {
-          array_data: newdata,
-        },
-        { merge: true }
-      );
-    await database.collection("Livelinks").doc(slug).update(
-      {
-        array_data: newdata,
-      },
-      { merge: true }
-    );
-    toast.success("Animated Frame successfully added to your pack");
-    getDoc();
-  }
+  async function EditPack() {}
 
   const tourConfig = [
     {
@@ -261,7 +220,7 @@ function ScheduledAnimatedFramesPage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -274,10 +233,9 @@ function ScheduledAnimatedFramesPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="col-lg-1 "></div>
-          <div class="col-lg-7 ">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="col-lg-9 px-0 mb-3" style={{ margin: "auto" }}>
             {Cloading ? (
               <Loader
                 type="BallTriangle"
@@ -291,78 +249,71 @@ function ScheduledAnimatedFramesPage({
               </div>
             )}
           </div>
-          <div class="col-lg-1"></div>
 
-          <div
-            className="newspaperrnav col-lg-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             {" "}
             <div style={{ justifyContent: "center", padding: "20px 0" }}>
               <div data-tut="reactour__changeImage">
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput1"
-                  name="LocalfileInput1"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile1}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop1 ? (
-                  <CropPage
-                    send={send1}
-                    setfbimg={setfbimg1}
-                    setimage_url={setimage_url1}
-                    aspect_ratio={2 / 1}
-                    opencrop={opencrop1}
-                    setopencrop={setopencrop1}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput1"
+                    name="LocalfileInput1"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile1}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput1">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
-                </label>
+                  {opencrop1 ? (
+                    <CropPage
+                      send={send1}
+                      setfbimg={setfbimg1}
+                      setimage_url={setimage_url1}
+                      aspect_ratio={2 / 1}
+                      opencrop={opencrop1}
+                      setopencrop={setopencrop1}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput1">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 1" />
+                  </label>
+                </center>
               </div>
               <div>
-                <input
-                  style={{ display: "none" }}
-                  accept="image/* "
-                  className={secclasses.input}
-                  id="LocalfileInput2"
-                  name="LocalfileInput2"
-                  multiple
-                  type="file"
-                  accept="image/*"
-                  onChange={onSelectFile2}
-                  onClick={(event) => {
-                    event.target.value = null;
-                  }}
-                />
-                {opencrop2 ? (
-                  <CropPage
-                    send={send2}
-                    setfbimg={setfbimg2}
-                    setimage_url={setimage_url2}
-                    aspect_ratio={2 / 1}
-                    opencrop={opencrop2}
-                    setopencrop={setopencrop2}
+                <center>
+                  <input
+                    style={{ display: "none" }}
+                    accept="image/* "
+                    className={secclasses.input}
+                    id="LocalfileInput2"
+                    name="LocalfileInput2"
+                    multiple
+                    type="file"
+                    accept="image/*"
+                    onChange={onSelectFile2}
+                    onClick={(event) => {
+                      event.target.value = null;
+                    }}
                   />
-                ) : null}
-                <label htmlFor="LocalfileInput2">
-                  <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
-                </label>
+                  {opencrop2 ? (
+                    <CropPage
+                      send={send2}
+                      setfbimg={setfbimg2}
+                      setimage_url={setimage_url2}
+                      aspect_ratio={2 / 1}
+                      opencrop={opencrop2}
+                      setopencrop={setopencrop2}
+                    />
+                  ) : null}
+                  <label htmlFor="LocalfileInput2">
+                    <HeaderBtn Icon={ImageIcon} title="Change  image 2" />
+                  </label>
+                </center>
               </div>
               <center>
                 <div>
@@ -417,7 +368,7 @@ function ScheduledAnimatedFramesPage({
                         }}
                         data-tut="reactour__generatelink"
                       >
-                        Generate Link
+                        Add to pack
                       </button>
                     ) : null}
                     {edit.text != "" || isTourOpen ? (

@@ -8,7 +8,7 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-
+import "../Buttons.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
@@ -113,7 +113,7 @@ function ScheduledOpenGreetingCardPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/opengreetingcard/" +
+        "http://giftshub.live/scheduledlive/opengreetingcard/" +
           edit.text +
           "/" +
           slug
@@ -134,7 +134,7 @@ function ScheduledOpenGreetingCardPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/opengreetingcard/" +
+        "http://giftshub.live/scheduledlive/opengreetingcard/" +
           newKey +
           "/" +
           slug
@@ -168,7 +168,7 @@ function ScheduledOpenGreetingCardPage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/opengreetingcard/" +
+                  "http://giftshub.live/scheduledlive/opengreetingcard/" +
                     newKey +
                     "/" +
                     slug
@@ -269,7 +269,7 @@ function ScheduledOpenGreetingCardPage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -282,8 +282,8 @@ function ScheduledOpenGreetingCardPage({
         accentColor={accentColor}
       />
 
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class="  col-lg-9 px-0 mb-3">
             {Cloading ? (
               <Loader
@@ -305,17 +305,7 @@ function ScheduledOpenGreetingCardPage({
             )}
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             <div style={{ padding: "20px 0", justifyContent: "center" }}>
               <center>
                 <div data-tut="reactour__changeImage">

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
 import { BrowserView } from "react-device-detect";
-
 import domtoimage from "dom-to-image-more";
 import html2canvas from "html2canvas";
 import * as htmlToImage from "html-to-image";
@@ -14,10 +13,8 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./NewsPaperPage.css";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -26,7 +23,6 @@ import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import "../Buttons.css";
 var base64Img = require("base64-img");
@@ -88,7 +84,7 @@ function NewsPaperPage() {
         eventDate: BDate,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/newspaper/" + newKey);
+      setlivelink("http://giftshub.live/live/newspaper/" + newKey);
       setpreviewlink("/live/newspaper/" + newKey);
 
       setloading(false);
@@ -118,7 +114,7 @@ function NewsPaperPage() {
                   eventDate: BDate,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/newspaper/" + newKey);
+                setlivelink("http://giftshub.live/live/newspaper/" + newKey);
                 setpreviewlink("/live/newspaper/" + newKey);
               });
               setloading(false);
@@ -179,7 +175,7 @@ function NewsPaperPage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <Tour
         onRequestClose={() => {
@@ -195,9 +191,9 @@ function NewsPaperPage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div ref={docToPrint} id="newspaper" class="  col-lg-9 mb-3">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div ref={docToPrint} id="newspaper" class="px-0  col-lg-9 mb-3">
             <NewsPaper
               fbimg={fbimg}
               head={head}
@@ -206,17 +202,7 @@ function NewsPaperPage() {
             />
           </div>
 
-          <div
-            className="newspaperrnav col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             <BrowserView>
               <center>
                 <div

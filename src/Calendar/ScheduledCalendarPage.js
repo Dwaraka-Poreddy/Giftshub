@@ -102,7 +102,7 @@ function ScheduledCalendarPage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/calendar/" + edit.text + "/" + slug
+        "http://giftshub.live/scheduledlive/calendar/" + edit.text + "/" + slug
       );
       console.log(livelink, "live");
       setpreviewlink("/scheduledlive/calendar/" + edit.text + "/" + slug);
@@ -118,7 +118,7 @@ function ScheduledCalendarPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/calendar/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/calendar/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/calendar/" + newKey + "/" + slug);
 
@@ -148,7 +148,7 @@ function ScheduledCalendarPage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/calendar/" +
+                  "http://giftshub.live/scheduledlive/calendar/" +
                     newKey +
                     "/" +
                     slug

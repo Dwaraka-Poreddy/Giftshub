@@ -163,7 +163,7 @@ function ScheduledHexagonalAnimPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/hexagonalanim/" +
+        "http://giftshub.live/scheduledlive/hexagonalanim/" +
           edit.text +
           "/" +
           slug
@@ -182,7 +182,7 @@ function ScheduledHexagonalAnimPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/hexagonalanim/" +
+        "http://giftshub.live/scheduledlive/hexagonalanim/" +
           newKey +
           "/" +
           slug
@@ -263,7 +263,7 @@ function ScheduledHexagonalAnimPage({
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/scheduledlive/hexagonalanim/" +
+                                                      "http://giftshub.live/scheduledlive/hexagonalanim/" +
                                                         newKey +
                                                         "/" +
                                                         slug

@@ -100,10 +100,7 @@ function ScheduledChallengePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/challenge/" +
-          edit.text +
-          "/" +
-          slug
+        "http://giftshub.live/scheduledlive/challenge/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/challenge/" + edit.text + "/" + slug);
       setloading(false);
@@ -115,7 +112,7 @@ function ScheduledChallengePage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/challenge/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/challenge/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/challenge/" + newKey + "/" + slug);
       setloading(false);
@@ -141,7 +138,7 @@ function ScheduledChallengePage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/challenge/" +
+                  "http://giftshub.live/scheduledlive/challenge/" +
                     newKey +
                     "/" +
                     slug

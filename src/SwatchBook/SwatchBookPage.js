@@ -76,7 +76,7 @@ function TicketDeckPage() {
         handscol: handscol,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
+      setlivelink("http://giftshub.live/live/swatchbook/" + newKey);
       setpreviewlink("/live/swatchbook/" + newKey);
 
       setloading(false);
@@ -105,7 +105,7 @@ function TicketDeckPage() {
                   handscol: handscol,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/swatchbook/" + newKey);
+                setlivelink("http://giftshub.live/live/swatchbook/" + newKey);
                 setpreviewlink("/live/swatchbook/" + newKey);
               });
               setloading(false);

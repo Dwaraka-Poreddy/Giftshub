@@ -191,7 +191,7 @@ function ScheduledJourneyPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/journey/" + edit.text + "/" + slug
+        "http://giftshub.live/scheduledlive/journey/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/journey/" + edit.text + "/" + slug);
       setloading(false);
@@ -213,7 +213,7 @@ function ScheduledJourneyPage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/journey/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/journey/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/journey/" + newKey + "/" + slug);
       setloading(false);
@@ -297,7 +297,7 @@ function ScheduledJourneyPage({
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/scheduledlive/journey/" +
+                                                      "http://giftshub.live/scheduledlive/journey/" +
                                                         newKey +
                                                         "/" +
                                                         slug

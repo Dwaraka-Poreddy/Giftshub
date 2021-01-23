@@ -217,7 +217,7 @@ function ScheduledMemoryGamePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/memorygame/" +
+        "http://giftshub.live/scheduledlive/memorygame/" +
           edit.text +
           "/" +
           slug
@@ -237,7 +237,7 @@ function ScheduledMemoryGamePage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/memorygame/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/memorygame/" + newKey + "/" + slug
       );
 
       setpreviewlink("/scheduledlive/memorygame/" + newKey + "/" + slug);
@@ -317,7 +317,7 @@ function ScheduledMemoryGamePage({
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/scheduledlive/memorygame/" +
+                                                      "http://giftshub.live/scheduledlive/memorygame/" +
                                                         newKey +
                                                         "/" +
                                                         slug

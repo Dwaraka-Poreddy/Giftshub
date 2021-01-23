@@ -8,8 +8,6 @@ import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import "./CubesPage.css";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
@@ -19,6 +17,7 @@ import Tour from "reactour";
 import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { BrowserView } from "react-device-detect";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -127,7 +126,7 @@ function CubesPage() {
         url6: fbimg6,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/cubes/" + newKey);
+      setlivelink("http://giftshub.live/live/cubes/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/cubes/" + newKey);
 
@@ -207,7 +206,7 @@ function CubesPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://localhost:3000/live/cubes/" +
+                                                      "http://giftshub.live/live/cubes/" +
                                                         newKey
                                                     );
                                                     console.log(
@@ -275,8 +274,8 @@ function CubesPage() {
         accentColor={accentColor}
       />
 
-      <div class="container-fluid pt-3 ">
-        <div class="row hearteditarea">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class="  col-lg-9 mt-0 mt-lg-5">
             <br />
             <Cubes
@@ -295,17 +294,7 @@ function CubesPage() {
             />
           </div>
 
-          <div
-            className="cubesrnav col-lg-3  "
-            style={{
-              backgroundColor: "rgb(252 200 122)",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "30px",
-            }}
-          >
+          <div className=" col-lg-3  editpagesrightnav mb-3">
             <BrowserView>
               <center>
                 <div

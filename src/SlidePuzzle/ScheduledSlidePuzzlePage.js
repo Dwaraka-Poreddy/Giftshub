@@ -10,14 +10,13 @@ import ShareIcon from "@material-ui/icons/Share";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "react-loader-spinner";
-import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Tour from "reactour";
+import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -96,7 +95,7 @@ function ScheduledSlidePuzzlePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://localhost:3000/scheduledlive/slidepuzzle/" +
+        "http://giftshub.live/scheduledlive/slidepuzzle/" +
           edit.text +
           "/" +
           slug
@@ -111,7 +110,7 @@ function ScheduledSlidePuzzlePage({
       };
       var newKey = todoRef.push(todo).getKey();
       setlivelink(
-        "http://localhost:3000/scheduledlive/slidepuzzle/" + newKey + "/" + slug
+        "http://giftshub.live/scheduledlive/slidepuzzle/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/slidepuzzle/" + newKey + "/" + slug);
       setloading(false);
@@ -140,7 +139,7 @@ function ScheduledSlidePuzzlePage({
                 };
                 var newKey = todoRef.push(todo).getKey();
                 setlivelink(
-                  "http://localhost:3000/scheduledlive/slidepuzzle/" +
+                  "http://giftshub.live/scheduledlive/slidepuzzle/" +
                     newKey +
                     "/" +
                     slug
@@ -226,7 +225,7 @@ function ScheduledSlidePuzzlePage({
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <Tour
         onRequestClose={() => {
           setTourOpend(false);
@@ -238,8 +237,8 @@ function ScheduledSlidePuzzlePage({
         rounded={5}
         accentColor={accentColor}
       />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class="col-lg-7 col-xl-5 mb-xs-0 mb-sm-5 mt-5 p-0">
             <div
               style={{
@@ -277,17 +276,7 @@ function ScheduledSlidePuzzlePage({
             <div>{Cloading ? null : <SlidePuzzleAnswer fbimg={fbimg} />}</div>
           </div>
 
-          <div
-            className="threedrnav col-xl-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-xl-3 mb-3">
             <div style={{ padding: "20px 0 0 0 ", justifyContent: "center" }}>
               <div data-tut="reactour__changeImage">
                 <center>

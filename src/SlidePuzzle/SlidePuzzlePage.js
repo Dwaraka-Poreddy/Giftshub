@@ -75,7 +75,7 @@ function SlidePuzzlePage() {
         best_score: 100000,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/slidepuzzle/" + newKey);
+      setlivelink("http://giftshub.live/live/slidepuzzle/" + newKey);
       setpreviewlink("/live/slidepuzzle/" + newKey);
 
       setloading(false);
@@ -103,7 +103,7 @@ function SlidePuzzlePage() {
                   best_score: 100000,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://localhost:3000/live/slidepuzzle/" + newKey);
+                setlivelink("http://giftshub.live/live/slidepuzzle/" + newKey);
                 setpreviewlink("/live/slidepuzzle/" + newKey);
               });
               setloading(false);
@@ -139,7 +139,7 @@ function SlidePuzzlePage() {
     },
   ];
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <Tour
         onRequestClose={() => {
@@ -155,9 +155,9 @@ function SlidePuzzlePage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid pt-3">
-        <div class="row">
-          <div class="col-lg-7 col-xl-5 mb-xs-0 mb-sm-5 mt-5 p-0">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
+          <div class="col-lg-7 col-xl-5 mb-xs-0 mb-sm-5 mt-5 p-0  mt-0 mt-lg-4">
             {" "}
             <div
               style={{
@@ -185,17 +185,7 @@ function SlidePuzzlePage() {
             </div>
           </div>
 
-          <div
-            className="threedrnav col-xl-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-xl-3  mb-3">
             <BrowserView>
               <center>
                 <div

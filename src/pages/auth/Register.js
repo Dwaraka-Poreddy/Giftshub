@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { useSelector } from "react-redux";
 import AuthHeader from "../../components/nav/Header";
 const Register = ({ history }) => {
-  const [email, setEmail] = useState("");
+  const [ReEmail, setReEmail] = useState("");
 
   const { user } = useSelector((state) => ({ ...state }));
 
@@ -15,31 +15,34 @@ const Register = ({ history }) => {
     }
   }, [user]);
 
-  const handleSubmit = async (e) => {
-    console.log(process.env.REACT_APP_REGISTER_REDIRECT_URL, "handle submit");
+  const handleRegisterSubmit = async (e) => {
+    console.log(
+      process.env.REACT_APP_REGISTER_REDIRECT_URL,
+      "handle register submit"
+    );
     e.preventDefault();
     const config = {
       url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
       handleCodeInApp: true,
     };
-    await auth.sendSignInLinkToEmail(email, config);
+    await auth.sendSignInLinkToEmail(ReEmail, config);
     toast.success(
-      `Email is sent to ${email}.Click the link to complete your registration.`
+      `Email is sent to ${ReEmail}.Click the link to complete your registration.`
     );
     //save email in local storage
-    window.localStorage.setItem("emailForRegistration", email);
+    window.localStorage.setItem("emailForRegistration", ReEmail);
     console.log();
     // clear state
-    setEmail("");
+    setReEmail("");
   };
 
   const registerForm = () => (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleRegisterSubmit}>
       <input
         type="email"
         className="form-control"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={ReEmail}
+        onChange={(e) => setReEmail(e.target.value)}
         placeholder="Your Email"
         autoFocus
       />
@@ -50,7 +53,7 @@ const Register = ({ history }) => {
         block
         shape="round"
         type="primary"
-        onClick={handleSubmit}
+        onClick={handleRegisterSubmit}
         className="btn btn-raised"
       >
         Register

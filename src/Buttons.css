@@ -98,3 +98,17 @@ div {
   background-position: left bottom;
   color: #ffffff;
 }
+
+.editpagesrightnav {
+  background-color: rgb(252 200 122);
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  right: 30px;
+}
+.editpageseditarea {
+  margin-right: 30px !important;
+  margin-left: 30px !important;
+  background-color: #f7f7f7;
+}

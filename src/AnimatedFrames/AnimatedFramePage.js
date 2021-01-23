@@ -18,6 +18,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import "../Buttons.css";
 import { BrowserView } from "react-device-detect";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -85,7 +86,7 @@ export default function AnimatedFramePage() {
         title: title,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://localhost:3000/live/animatedframe/" + newKey);
+      setlivelink("http://giftshub.live/live/animatedframe/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/animatedframe/" + newKey);
       setloading(false);
@@ -120,7 +121,7 @@ export default function AnimatedFramePage() {
                       };
                       var newKey = todoRef.push(todo).getKey();
                       setlivelink(
-                        "http://localhost:3000/live/animatedframe/" + newKey
+                        "http://giftshub.live/live/animatedframe/" + newKey
                       );
                       console.log(livelink);
                       setpreviewlink("/live/animatedframe/" + newKey);
@@ -163,7 +164,7 @@ export default function AnimatedFramePage() {
   ];
 
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <div>
         {" "}
@@ -183,23 +184,13 @@ export default function AnimatedFramePage() {
       <br />
       <br />
       <br />
-      <div style={{ backgroundColor: "#70cff3" }} class="container-fluid ">
-        <div class="row">
+      <div class="container-fluid pt-3 px-0">
+        <div class="row editpageseditarea">
           <div class="col-lg-9 px-0 mb-3" style={{ margin: "auto" }}>
             <AnimatedFrame fbimg1={fbimg1} fbimg2={fbimg2} title={title} />
           </div>
 
-          <div
-            className=" col-lg-3 mb-3"
-            style={{
-              backgroundColor: "#009dd9",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "sticky",
-              top: "0",
-              right: "0",
-            }}
-          >
+          <div className="editpagesrightnav col-lg-3 mb-3">
             <BrowserView>
               <center>
                 <div
