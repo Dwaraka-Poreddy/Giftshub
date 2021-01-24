@@ -63,6 +63,14 @@ function ScheduledLiveNavBar({ slug }) {
                   About
                 </a>
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link js-scroll-trigger"
+                  href={`/scheduledlive/main/${slug}`}
+                >
+                  Home
+                </a>
+              </li>
               {dataurl.map((item, index) => {
                 if (item != "") {
                   if (index == daystep.day - 1) {

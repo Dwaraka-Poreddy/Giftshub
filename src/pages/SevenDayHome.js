@@ -69,9 +69,9 @@ function SevenDayHome({ history }) {
       url: "",
     },
     {
-      id: "hexagonalanim",
+      id: "honeycomb",
       ismailsent: false,
-      content: " Hexagonal Animation",
+      content: " Honey Comb ",
       url: "",
     },
     { id: "cubes", ismailsent: false, content: " 3D Heart", url: "" },
@@ -737,7 +737,7 @@ function SevenDayHome({ history }) {
                           label="Birthday"
                           type="date"
                           value={Bday_date}
-                          // defaultValue={Bday_date}
+                          defaultValue={Bday_date}
                           className={classes.textField}
                           onChange={(e) => {
                             console.log(Bday_date, "birthday", e.target.value);

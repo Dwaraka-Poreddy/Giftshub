@@ -301,9 +301,9 @@ section {
 }
 
 @media (max-width: 765px) {
-  .welcome-area {
+  /* .welcome-area {
     margin-bottom: 100px;
-  }
+  } */
   .welcome-area .header-text {
     text-align: justify;
     top: 55% !important;

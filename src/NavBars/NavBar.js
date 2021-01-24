@@ -77,11 +77,6 @@ export default function DummyNavBar() {
                       LOGIN
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href={`/register`}>
-                      REGISTER
-                    </a>
-                  </li>
                 </>
               ) : (
                 <>

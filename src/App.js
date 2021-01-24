@@ -11,6 +11,15 @@ const UserPacksPage = lazy(() => import("./UserPages/UserPacksPage"));
 const ThreeDCarouselPage = lazy(() =>
   import("./ThreeDCarousel/ThreeDCarouselPage")
 );
+const VioletGreetingCard = lazy(() =>
+  import("./VioletGreetingCard/VioletGreetingCard")
+);
+const EnvelopeGreetingCard = lazy(() =>
+  import("./EnvelopeGreetingCard/EnvelopeGreetingCard")
+);
+const BrownGreetingCard = lazy(() =>
+  import("./BrownGreetingCard/BrownGreetingCard")
+);
 const Challenge = lazy(() => import("./Challenge/Challenge"));
 const ChallengePage = lazy(() => import("./Challenge/ChallengePage"));
 const AboutQuizPage = lazy(() => import("./AboutQuiz/AboutQuizPage"));
@@ -18,7 +27,7 @@ const JourneyPage = lazy(() => import("./Journey/JourneyPage"));
 const SwatchBookPage = lazy(() => import("./SwatchBook/SwatchBookPage"));
 const CalendarPage = lazy(() => import("./Calendar/CalandarPage"));
 const AboutUs = lazy(() => import("./AboutUs"));
-const LandingPage = lazy(() => import("./LandingPage"));
+const LandingPage = lazy(() => import("./LandingPage/LandingPage"));
 const Studio = lazy(() => import("./Studio/Studio.js"));
 const Header = lazy(() => import("./Studio/Header"));
 const MainPage = lazy(() => import("./MainPage"));
@@ -41,7 +50,7 @@ const MemoryGamePage = lazy(() => import("./MemoryGame/MemoryGamePage"));
 const SplitWallImagePage = lazy(() =>
   import("./SplitWallImage/SplitWallImagePage.js")
 );
-const LiveHexagonalAnim = lazy(() => import("./LivePages/LiveHexagonalAnim"));
+const LiveHoneyComb = lazy(() => import("./LivePages/LiveHoneyComb"));
 const LiveChallenge = lazy(() => import("./LivePages/LiveChallenge"));
 const LiveCalendar = lazy(() => import("./LivePages/LiveCalendar"));
 const LiveThreeDCarousel = lazy(() => import("./LivePages/LiveThreeDCarousel"));
@@ -53,9 +62,7 @@ const LiveThreeDImage = lazy(() => import("./LivePages/LiveThreeDImage"));
 const LiveSlidePuzzle = lazy(() => import("./LivePages/LiveSlidePuzzle"));
 const LiveSpecialCard = lazy(() => import("./LivePages/LiveSpecialCard"));
 const SlidePuzzlePage = lazy(() => import("./SlidePuzzle/SlidePuzzlePage"));
-const HexagonalAnimPage = lazy(() =>
-  import("./HexagonalAnim/HexagonalAnimPage")
-);
+const HoneyCombPage = lazy(() => import("./HoneyComb/HoneyCombPage"));
 const ThreeDImagePage = lazy(() => import("./ThreeDImage/ThreeDImagePage"));
 const LiveCubesPage = lazy(() => import("./LivePages/LiveCubesPage"));
 const LiveNewsPaper = lazy(() => import("./LivePages/LiveNewsPaper"));
@@ -67,14 +74,13 @@ const LiveMemoryGame = lazy(() => import("./LivePages/LiveMemoryGame"));
 const LiveCollage = lazy(() => import("./LivePages/LiveCollage"));
 const SevenDayHome = lazy(() => import("./pages/SevenDayHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
-const Register = lazy(() => import("./pages/auth/Register"));
 const Home = lazy(() => import("./pages/Home"));
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ContinuePack = lazy(() => import("./pages/ContinuePack"));
 const SoundRecorder = lazy(() => import("./SoundRecorder"));
-const ScheduledLiveHexagonalAnim = lazy(() =>
-  import("./ScheduledLivePages/ScheduledLiveHexagonalAnim")
+const ScheduledLiveHoneyComb = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveHoneyComb")
 );
 const ScheduledLiveChallenge = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveChallenge")
@@ -153,7 +159,7 @@ export default function App() {
     <div className="App">
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Free Personalized Virtual Gifting</title>
+        <title>Gifts Hub - Free Personalized Virtual Gifting</title>
         <meta
           name="description"
           content="Send flowers online @399 from best flower shop. Order flowers to India with Ferns N Petals & get midnight, same day flower delivery with free."
@@ -180,6 +186,21 @@ export default function App() {
             path="/threedcarouselpage"
             component={ThreeDCarouselPage}
           />
+          <Route
+            exact
+            path="/violetgreetingcard"
+            component={VioletGreetingCard}
+          />{" "}
+          <Route
+            exact
+            path="/envelopegreetingcard"
+            component={EnvelopeGreetingCard}
+          />{" "}
+          <Route
+            exact
+            path="/browngreetingcard"
+            component={BrownGreetingCard}
+          />
           <Route exact path="/challengePage" component={ChallengePage} />
           <Route exact path="/challenge" component={Challenge} />
           <Route exact path="/aboutus" component={AboutUs} />
@@ -194,27 +215,19 @@ export default function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/studio" component={Studio} />
           <Route exact path="/recommendedhome" component={SevenDayHome} />
-
           <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/register/complete" component={RegisterComplete} />
           <Route exact path="/forgot/password" component={ForgotPassword} />
-
           <Route exact path="/mainpage" component={MainPage} />
           <Route exact path="/memorygamepage" component={MemoryGamePage} />
           <Route exact path="/collagepage" component={CollagePage} />
           <Route exact path="/newspaperpage" component={NewsPaperPage} />
           <Route exact path="/cubespage" component={CubesPage} />
           <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
-          <Route
-            exact
-            path="/hexagonalanimpage"
-            component={HexagonalAnimPage}
-          />
+          <Route exact path="/honeycombpage" component={HoneyCombPage} />
           <Route exact path="/magazinepage" component={MagazinePage} />
           <Route exact path="/greet" component={Header} />
-
           <Route
             exact
             path="/opengreetingcardpage"
@@ -268,11 +281,7 @@ export default function App() {
             path="/live/opengreetingcard/:slug"
             component={LiveOpenGreetingCard}
           />
-          <Route
-            exact
-            path="/live/hexagonalanim/:slug"
-            component={LiveHexagonalAnim}
-          />
+          <Route exact path="/live/honeycomb/:slug" component={LiveHoneyComb} />
           <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
           <Route
             exact
@@ -298,8 +307,8 @@ export default function App() {
           />
           <Route
             exact
-            path="/scheduledlive/hexagonalanim/:id/:slug"
-            component={ScheduledLiveHexagonalAnim}
+            path="/scheduledlive/honeycomb/:id/:slug"
+            component={ScheduledLiveHoneyComb}
           />
           <Route
             exact

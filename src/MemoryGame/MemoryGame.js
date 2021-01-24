@@ -158,7 +158,7 @@ function MemoryGame({ fbimg1, fbimg2, fbimg3, fbimg4, fbimg5, fbimg6 }) {
                 <div>
                   You Win !
                   <br />
-                  Finished in {duration} seconds
+                  {/* Finished in {duration} seconds */}
                 </div>
               )}
             </div>

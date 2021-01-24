@@ -6,7 +6,7 @@ import CircleTimer from "./CircleTimer";
 import "./ScheduledLiveMainPage.css";
 import bgvideo from "../Images/mainpagebg.mp4";
 import giftvideo from "../Images/giftgif.mp4";
-import "../LandingPage.css";
+import "../LandingPage/LandingPage.css";
 function ScheduledLiveMainPage({ match }) {
   const database = firebase.firestore();
   const [FolderData, setFolderData] = useState("");
@@ -86,62 +86,10 @@ function ScheduledLiveMainPage({ match }) {
     <div>
       {" "}
       <body id="page-top">
-        {/* <ScheduledLiveNavBar slug={match.params.slug} /> */}
-        <nav
-          class={
-            !navstate
-              ? "navbar navbar-expand-lg navbar-dark fixed-top"
-              : "navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink"
-          }
-          id="mainNav"
-        >
-          <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-              <img src={require("../Images/navbar-logo.svg")} alt="" />
-            </a>
-            <button
-              class="navbar-toggler navbar-toggler-right"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              Menu
-              <i class="fas fa-bars ml-1"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#1services">
-                    Services
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#Process">
-                    Process
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#about">
-                    About
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#team">
-                    Team
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="#contact">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+        <ScheduledLiveNavBar slug={match.params.slug} />
+        <br />
+        <br />
+        <br />
         <video
           style={{
             width: "100%",

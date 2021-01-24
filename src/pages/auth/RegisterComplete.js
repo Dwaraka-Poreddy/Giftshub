@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
-
+import NavBar from "../../NavBars/NavBar";
 // destructing props (history) below
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -68,11 +68,18 @@ const RegisterComplete = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <h4>Complete Your Register</h4>
-          {CompleteRegistrationForm()}
+    <div>
+      {" "}
+      <NavBar />
+      <br />
+      <br />
+      <br />
+      <div className="container p-5">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <h4>Complete Your Register</h4>
+            {CompleteRegistrationForm()}
+          </div>
         </div>
       </div>
     </div>

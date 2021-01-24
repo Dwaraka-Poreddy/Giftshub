@@ -43,9 +43,9 @@ const allComp = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS60_0gL8ZRN3M91p7rKmcrV8mU_hL3bbejKA&usqp=CAU",
   },
   {
-    id: "hexagonalanim",
+    id: "honeycomb",
     ismailsent: false,
-    content: "Hexagonal Animation",
+    content: "Honey Comb ",
     url: "",
     img:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFrames.PNG?alt=media&token=349119f7-5722-4887-8bd7-c4586f916f94",
@@ -210,13 +210,11 @@ const getItemStyle1 = (isDragging, draggableStyle) => ({
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: grid,
-  width: 250,
   minHeight: 150,
 });
 const getListStyle1 = (isDraggingOver) => ({
   background: isDraggingOver ? "lightgreen" : "#70cff3",
   padding: grid,
-  width: 250,
   minHeight: 150,
 });
 class N_Pack_Select extends Component {
@@ -271,15 +269,13 @@ class N_Pack_Select extends Component {
     }
   };
 
-  // Normally you would want to split things out into separate components.
-  // But in this example everything is just done in one place for simplicity
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div class="row">
-          <div class="col-lg-6 p-0 pt-3 ">
+          <div class="col-lg-8   ">
             <center>
-              <h3>All Components</h3>
+              <h3>All Gifts</h3>
             </center>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
@@ -287,64 +283,56 @@ class N_Pack_Select extends Component {
                   ref={provided.innerRef}
                   style={getListStyle(snapshot.isDraggingOver)}
                 >
-                  {this.state.items.map((item, index) => (
-                    <div className="container-fluid">
-                      <div class="row">
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
+                  {" "}
+                  <div className="container-fluid">
+                    <div className="row">
+                      {this.state.items.map((item, index) => (
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-3 p-1"
+                          // style={{ height: "235px" }}
                         >
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                            >
+                          <Draggable
+                            key={item.id}
+                            draggableId={item.id}
+                            index={index}
+                          >
+                            {(provided, snapshot) => (
                               <div
-                                class="card p-0 shadow-none"
-                                style={{ color: "red" }}
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.draggableProps.style
+                                )}
                               >
-                                <div class="row no-gutters">
-                                  <div class="col-3">
-                                    <img
-                                      style={{ height: "100%" }}
-                                      src={item.img}
-                                      class="card-img"
-                                      alt={index}
-                                    />
-                                  </div>
-                                  <div class="col-9">
-                                    <div
-                                      class="card-body "
-                                      style={{
-                                        padding: "1rem 1.25rem ",
-                                      }}
-                                    >
-                                      {item.content}
-                                    </div>
-                                  </div>
+                                <div class="card">
+                                  <img
+                                    style={{ height: "100%" }}
+                                    class="card-img-top"
+                                    // src={item.img}
+                                    src="https://picsum.photos/200/200"
+                                    alt={index}
+                                  />
+
+                                  <h5 class="card-title"> {item.content}</h5>
                                 </div>
                               </div>
-                            </div>
-                          )}
-                        </Draggable>{" "}
-                      </div>
+                            )}
+                          </Draggable>{" "}
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                   {provided.placeholder}
                 </div>
               )}
             </Droppable>
           </div>
 
-          <div class="col-lg-6 p-0 pt-3 pb-3 ">
+          <div class="col-lg-4  ">
             <center>
-              <h1>Your Pack</h1>
+              <h3>Your Pack</h3>
             </center>
             <Droppable droppableId="droppable2">
               {(provided, snapshot) => (
@@ -379,8 +367,9 @@ class N_Pack_Select extends Component {
                             <div class="row no-gutters">
                               <div class="col-3">
                                 <img
-                                  style={{ height: "100%" }}
-                                  src={item.img}
+                                  style={{ width: "50%" }}
+                                  src="https://picsum.photos/100/100"
+                                  // src={item.img}
                                   class="card-img"
                                   alt={index}
                                 />

@@ -25,13 +25,21 @@ export default function LiveTicketDeck({ match }) {
     setloading(false);
   }, []);
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
-      <LiveNavBar />
+    <div
+      style={{
+        background:
+          "url(https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fegg_shell.jpg?alt=media&token=c32757c0-9119-4740-beb5-ea90c327aec9)",
+        height: "100vh",
+      }}
+    >
+      {/* <LiveNavBar />
+      <br /> */}
       <br />
       <br />
-      <br />
-
-      <div style={{ backgroundColor: "#70cff3" }}>
+      <center>
+        <h1 className="example">Happy Birthday Meher Gajula!!!</h1>
+      </center>
+      <div>
         {loading ? (
           <Loader
             type="BallTriangle"

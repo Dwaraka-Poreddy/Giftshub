@@ -368,9 +368,9 @@ welcome
 }
 
 @media (max-width: 765px) {
-  .welcome-area {
+  /* .welcome-area {
     margin-bottom: 100px;
-  }
+  } */
 
   .welcome-area .header-text .buttons {
     display: none;

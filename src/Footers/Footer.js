@@ -78,7 +78,7 @@ export default function Footer() {
                   Opportunities.
                 </p>
               </div>
-              <div class="col-md-2 col-sm-6">
+              <div class="col-md-2 col-6">
                 <h3>Quick LInks</h3>
                 <ul class="footer-links">
                   <li>
@@ -93,43 +93,33 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-6">
                 <h3>OUR SERVICES</h3>
                 <ul class="footer-category">
                   <li>
-                    <a href="#">Fresher Jobs</a>
+                    <a href="#">Valentines Pack</a>
                   </li>
                   <li>
-                    <a href="#">InternEdge - Internships &amp; Projects </a>
+                    <a href="#">Recommended pack </a>
                   </li>
                   <li>
-                    <a href="#">Resume Edge - Resume Writing Services</a>
+                    <a href="#">N-Day Pack</a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>
               </div>
               <div class="col-md-3 col-sm-6">
-                <h3>triedge Events</h3>
+                <h3>Contact Us</h3>
                 <ul class="footer-links">
                   <li>
-                    <a href="#">Triedge Events</a>
+                    <a href="#">+918367770505</a>
                   </li>
 
                   <li>
-                    <a href="#">Jobs &AMP; Internship Fair 2019</a>
+                    <a href="#">contact.giftshub@gmail.com</a>
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="container-fluid">
-            <div class="copyright">
-              {" "}
-              Copyright 2019 | All Rights Reserved by TRIEDGE Solutions Pvt.
-              Ltd.
             </div>
           </div>
         </div>

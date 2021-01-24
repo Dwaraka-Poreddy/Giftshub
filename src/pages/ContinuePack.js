@@ -18,7 +18,7 @@ import ScheduledSwatchBookPage from "../SwatchBook/ScheduledSwatchBookPage";
 import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
 import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
 import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
-import ScheduledHexagonalAnimPage from "../HexagonalAnim/ScheduledHexagonalAnimPage";
+import ScheduledHoneyCombPage from "../HoneyComb/ScheduledHoneyCombPage";
 import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
 import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
 import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
@@ -260,9 +260,9 @@ function ContinuePack({ match, history }) {
         />
       );
     }
-    if (dataid[step] === "hexagonalanim") {
+    if (dataid[step] === "honeycomb") {
       return (
-        <ScheduledHexagonalAnimPage
+        <ScheduledHoneyCombPage
           isTourOpen={isTourOpen}
           setTourOpend={setTourOpend}
           step={step}

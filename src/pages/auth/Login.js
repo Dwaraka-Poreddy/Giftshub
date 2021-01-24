@@ -6,7 +6,7 @@ import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import AuthHeader from "../../components/nav/Header";
+import NavBar from "../../NavBars/NavBar";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [ReEmail, setReEmail] = useState("");
@@ -65,7 +65,7 @@ const Login = ({ history }) => {
         shape="round"
         type="primary"
         onClick={handleRegisterSubmit}
-        className="btn btn-raised"
+        className="btn btn-danger btn-raised"
       >
         Register
       </Button>
@@ -161,11 +161,12 @@ const Login = ({ history }) => {
       style={{
         background:
           "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
-        height: "80vh",
       }}
     >
-      {" "}
-      <AuthHeader />
+      <NavBar />
+      <br />
+      <br />
+      <br />
       <div className="container p-3">
         <div className="row">
           <div className="col-md-6 ">

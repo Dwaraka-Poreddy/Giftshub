@@ -52,6 +52,7 @@ table {
   color: #ff3c31;
   text-align: center;
   width: 100%;
+  font-size: 0.9rem !important;
 }
 .weekname {
   width: 40px;
