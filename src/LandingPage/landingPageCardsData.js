@@ -183,6 +183,18 @@ const items = [
     img: "https://picsum.photos/400/200",
     gif:
       "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
+    link: "/threedcarouselpage",
+    text:
+      "  What better way to express greetings than to announce it as the newspaper headlines!",
+    title: "3D Carousel",
+    badge1: "",
+    badge2: "",
+  },
+  {
+    id: "17",
+    img: "https://picsum.photos/400/200",
+    gif:
+      "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fcollagegif.gif?alt=media&token=5fbcb973-36a0-4c48-a565-c5868c783022",
     link: "/honeycombpage",
     text:
       "  What better way to express greetings than to announce it as the newspaper headlines!",

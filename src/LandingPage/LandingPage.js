@@ -161,14 +161,16 @@ export default function LandingPage() {
             <div class="carousel-item active zoomcarousel">
               <img
                 class="d-block w-100"
-                src={require("../Images/zoomcarouselsquare.jpg")}
+                // src={require("../Images/zoomcarouselsquare.jpg")}
+                src={require("../Images/Picture2.png")}
                 alt="First slide"
               />
             </div>
             <div class="carousel-item zoomcarousel">
               <img
                 class="d-block w-100"
-                src={require("../Images/zoomcarousel0square.jpg")}
+                // src={require("../Images/zoomcarousel0square.jpg")}
+                src={require("../Images/Picture2.png")}
                 alt="Second slide"
               />
             </div>
@@ -198,18 +200,26 @@ export default function LandingPage() {
         class="carousel slide"
         data-ride="carousel"
       >
+        {" "}
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
         <div class="carousel-inner zoomcarousel">
           <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
-              src={require("../Images/zoomcarousel.jpg")}
+              // src={require("../Images/zoomcarousel.jpg")}
+              src={require("../Images/Picture1.png")}
               alt="First slide"
             />
           </div>
           <div class="carousel-item zoomcarousel">
             <img
               class="d-block w-100"
-              src={require("../Images/zoomcarousel0.jpg")}
+              // src={require("../Images/zoomcarousel0.jpg")}
+              src={require("../Images/Picture1.png")}
               alt="Second slide"
             />
           </div>
@@ -262,7 +272,7 @@ export default function LandingPage() {
           ? browviewMainCarousel()
           : browviewMainCarousel()}
 
-        <section
+        {/* <section
           class="partners"
           style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
         >
@@ -282,14 +292,12 @@ export default function LandingPage() {
                     items={5}
                     responsive={responsive}
                     autoplay
-                    // autoplayHoverPause
                   >
                     <div class="swiper-wrapper align-items-center">
                       <div class="swiper-slide">
                         <img
                           src={require("../Images/logos/animatedframes.png")}
                           alt=""
-                          // style={{ maxHeight: "60px" }}
                         />
                       </div>
                     </div>
@@ -297,93 +305,80 @@ export default function LandingPage() {
                       <img
                         src={require("../Images/logos/journey.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/memorygame.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/newspaper.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/collage.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedcarousel.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/calender.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedheart.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/slidepuzzle.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/greetingcard.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/magazine.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/surprisecard.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedframe.png")}
                         alt=""
-                        // style={{ maxHeight: "60px" }}
                       />
                     </div>
-                    {/* </div> */}
                   </OwlCarousel>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <div class="welcome-area" id="welcome">
           <div class="header-text">
@@ -420,7 +415,7 @@ export default function LandingPage() {
             <h1 className="landingservicesheading"> Services</h1>
           </center>
           <div class="card-deck mb-3 text-center">
-            <div class="card mb-4 box-shadow ">
+            <div class="card mb-4 box-shadow landingpageservicescard">
               <div class="card-header landingservicescardhead">
                 <h4 class="my-0 font-weight-normal">Recommended pack</h4>
               </div>
@@ -457,7 +452,7 @@ export default function LandingPage() {
                 </center>
               </div>
             </div>
-            <div class="card mb-4 box-shadow ">
+            <div class="card mb-4 box-shadow landingpageservicescard">
               <div class="card-header landingservicescardhead">
                 <h4 class="my-0 font-weight-normal ">Valentines Pack</h4>
               </div>
@@ -492,7 +487,7 @@ export default function LandingPage() {
                 </center>
               </div>
             </div>{" "}
-            <div class="card mb-4 box-shadow ">
+            <div class="card mb-4 box-shadow landingpageservicescard">
               <div class="card-header landingservicescardhead">
                 <h4 class="my-0 font-weight-normal ">N-Day Pack </h4>
               </div>
@@ -700,35 +695,41 @@ export default function LandingPage() {
         <div className="container">
           <center>
             <h1 className="landingservicesheading"> Spread the Love</h1>
-          </center>
+          </center>{" "}
           <div className="row">
+            <div className="col-4"></div>
             <div className="col-4">
-              <center>
-                <img
-                  style={{ width: "100%", maxWidth: "200px" }}
-                  src={require("../Images/facebook.png")}
-                  alt="First slide"
-                />
-              </center>
+              <div className="row">
+                <div className="col-4">
+                  <center>
+                    <img
+                      style={{ width: "60px" }}
+                      src={require("../Images/facebook.png")}
+                      alt="First slide"
+                    />
+                  </center>
+                </div>
+                <div className="col-4">
+                  <center>
+                    <img
+                      style={{ width: "60px" }}
+                      src={require("../Images/youtube.png")}
+                      alt="First slide"
+                    />
+                  </center>
+                </div>
+                <div className="col-4">
+                  <center>
+                    <img
+                      style={{ width: "60px" }}
+                      src={require("../Images/instagram.png")}
+                      alt="First slide"
+                    />
+                  </center>
+                </div>
+              </div>
             </div>
-            <div className="col-4">
-              <center>
-                <img
-                  style={{ width: "100%", maxWidth: "200px" }}
-                  src={require("../Images/youtube.png")}
-                  alt="First slide"
-                />
-              </center>
-            </div>
-            <div className="col-4">
-              <center>
-                <img
-                  style={{ width: "100%", maxWidth: "200px" }}
-                  src={require("../Images/instagram.png")}
-                  alt="First slide"
-                />
-              </center>
-            </div>
+            <div className="col-4"></div>
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined"
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import { useDispatch } from "react-redux";
+import CakeIcon from "@material-ui/icons/Cake";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Swiper.css";
 import $ from "jquery";
@@ -116,6 +117,7 @@ function SevenDayHome({ history }) {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
+  const [wishes, setwishes] = useState("");
   const [Bday_date, setBday_date] = useState(new Date());
 
   $(document).ready(function () {
@@ -182,6 +184,7 @@ function SevenDayHome({ history }) {
               sevendayPackPack
                 .add({
                   Folder_name: Folder_name,
+                  wishes: wishes,
                   fbimg: downUrl,
                   Bday_date: Bday_date,
                   From_name: From_name,
@@ -195,6 +198,7 @@ function SevenDayHome({ history }) {
                     .collection("/Livelinks");
                   var LivelinkPackPack = LivelinkPack.doc(docRef.id).set({
                     Folder_name: Folder_name,
+                    wishes: wishes,
                     fbimg: downUrl,
                     From_name: From_name,
                     Bday_date: Bday_date,
@@ -586,18 +590,13 @@ function SevenDayHome({ history }) {
                     <center>
                       <form onSubmit={CreatePack}>
                         <div className={classes.margin}>
-                          <Grid
-                            container
-                            spacing={1}
-                            alignItems="flex-end"
-                            style={{ width: "250px" }}
-                          >
+                          <Grid container spacing={1} alignItems="flex-end">
                             <Grid item>
                               <FolderSharedOutlinedIcon
                                 style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
-                            <Grid style={{ width: "210px" }} item>
+                            <Grid item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "rgb(66 66 66)" },
@@ -613,18 +612,13 @@ function SevenDayHome({ history }) {
                         </div>
                         <br />
                         <div className={classes.margin}>
-                          <Grid
-                            container
-                            spacing={1}
-                            alignItems="flex-end"
-                            style={{ width: "250px" }}
-                          >
+                          <Grid container spacing={1} alignItems="flex-end">
                             <Grid item>
                               <AccountCircleOutlinedIcon
                                 style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
-                            <Grid style={{ width: "210px" }} item>
+                            <Grid item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "rgb(66 66 66)" },
@@ -640,18 +634,13 @@ function SevenDayHome({ history }) {
                         </div>
                         <br />
                         <div className={classes.margin}>
-                          <Grid
-                            container
-                            spacing={1}
-                            alignItems="flex-end"
-                            style={{ width: "250px" }}
-                          >
+                          <Grid container spacing={1} alignItems="flex-end">
                             <Grid item>
                               <AccountCircleOutlinedIcon
                                 style={{ fill: "rgb(66 66 66)" }}
                               />
                             </Grid>
-                            <Grid style={{ width: "210px" }} item>
+                            <Grid item>
                               <TextField
                                 InputLabelProps={{
                                   style: { color: "rgb(66 66 66)" },
@@ -665,6 +654,46 @@ function SevenDayHome({ history }) {
                             </Grid>
                           </Grid>
                         </div>
+                        <br />
+                        <div className={classes.margin}>
+                          <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                              <CakeIcon style={{ fill: "rgb(66 66 66)" }} />
+                            </Grid>
+                            <Grid item>
+                              <TextField
+                                InputLabelProps={{
+                                  style: { color: "rgb(66 66 66)" },
+                                }}
+                                id="input-with-icon-grid"
+                                label="Receivers Name"
+                                placeholder="Many more Happy Returns of the day"
+                                value={wishes}
+                                onChange={(e) => setwishes(e.target.value)}
+                                required
+                              />
+                            </Grid>
+                          </Grid>
+                        </div>
+                        <br />
+                        <TextField
+                          style={{}}
+                          id="date"
+                          label="Birthday"
+                          type="date"
+                          value={Bday_date}
+                          defaultValue={Bday_date}
+                          className={classes.textField}
+                          onChange={(e) => {
+                            console.log(Bday_date, "birthday", e.target.value);
+                            setBday_date(e.target.value.toLocaleString());
+                          }}
+                          InputLabelProps={{
+                            shrink: true,
+                            style: { color: "rgb(66 66 66)" },
+                          }}
+                        />{" "}
+                        <br />
                         <br />
                         <div style={{ height: "45px" }}>
                           <input
@@ -730,25 +759,6 @@ function SevenDayHome({ history }) {
                             </div>
                           </label>
                         </div>
-                        <br />
-                        <TextField
-                          style={{}}
-                          id="date"
-                          label="Birthday"
-                          type="date"
-                          value={Bday_date}
-                          defaultValue={Bday_date}
-                          className={classes.textField}
-                          onChange={(e) => {
-                            console.log(Bday_date, "birthday", e.target.value);
-                            setBday_date(e.target.value.toLocaleString());
-                          }}
-                          InputLabelProps={{
-                            shrink: true,
-                            style: { color: "rgb(66 66 66)" },
-                          }}
-                        />{" "}
-                        <br />
                         <br />
                         <center>
                           {!Bday_date ? (

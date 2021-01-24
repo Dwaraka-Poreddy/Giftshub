@@ -19,7 +19,7 @@ export default function ThreeDCarousel({
   useEffect(() => {
     setodrag(document.getElementById("drag-container"));
     setospin(document.getElementById("spin-container"));
-    setaImg(document.getElementsByTagName("img"));
+    setaImg(document.getElementsByClassName("threedCarouselImg"));
   }, []);
   setTimeout(init, 100);
 
@@ -110,12 +110,12 @@ export default function ThreeDCarousel({
     <div id="ThreeDCarouseldiv">
       <div id="drag-container">
         <div style={{ height: "170px", width: "120px" }} id="spin-container">
-          <img src={fbimg1} alt="" />
-          <img src={fbimg2} alt="" />
-          <img src={fbimg3} alt="" />
-          <img src={fbimg4} alt="" />
-          <img src={fbimg5} alt="" />
-          <img src={fbimg6} alt="" />
+          <img className="threedCarouselImg" src={fbimg1} alt="" />
+          <img className="threedCarouselImg" src={fbimg2} alt="" />
+          <img className="threedCarouselImg" src={fbimg3} alt="" />
+          <img className="threedCarouselImg" src={fbimg4} alt="" />
+          <img className="threedCarouselImg" src={fbimg5} alt="" />
+          <img className="threedCarouselImg" src={fbimg6} alt="" />
           <p>{text}</p>
         </div>
         <div

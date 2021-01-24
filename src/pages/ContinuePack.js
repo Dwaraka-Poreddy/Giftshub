@@ -200,7 +200,7 @@ function ContinuePack({ match, history }) {
   }));
   const Browview = () => {
     return (
-      <div class="col-lg-6">
+      <div class="col-lg-6 sharebannertext">
         {" "}
         <p>
           {" "}
@@ -466,18 +466,25 @@ function ContinuePack({ match, history }) {
           {!loading ? (
             <div>
               <div className="Laptopstepper">
-                <Stepper alternativeLabel nonLinear activeStep={activeStep}>
-                  {steps.map((label, index) => (
-                    <Step key={label}>
-                      <StepButton
-                        onClick={handleStep(index)}
-                        completed={completed[index]}
-                      >
-                        {label}
-                      </StepButton>
-                    </Step>
-                  ))}
-                </Stepper>
+                <div className="container px-0">
+                  <Stepper
+                    className="px-0"
+                    alternativeLabel
+                    nonLinear
+                    activeStep={activeStep}
+                  >
+                    {steps.map((label, index) => (
+                      <Step key={label}>
+                        <StepButton
+                          onClick={handleStep(index)}
+                          completed={completed[index]}
+                        >
+                          {label}
+                        </StepButton>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </div>
               </div>
               <div className="mobilestepper">
                 <Paper square elevation={0}>
@@ -541,11 +548,11 @@ function ContinuePack({ match, history }) {
                   <center>
                     {" "}
                     {daycounter == 0 ? (
-                      <h1 className="example">The Big day is here !!!</h1>
+                      <h1 className="ndaystogo">The Big day is here !!!</h1>
                     ) : daycounter == 1 ? (
-                      <h1 className="example">{daycounter} day to go !!!</h1>
+                      <h1 className="ndaystogo">{daycounter} day to go !!!</h1>
                     ) : (
-                      <h1 className="example">{daycounter} days to go !!!</h1>
+                      <h1 className="ndaystogo">{daycounter} days to go !!!</h1>
                     )}
                   </center>
                   {!loading && getStepContent(activeStep)}
@@ -557,11 +564,11 @@ function ContinuePack({ match, history }) {
                   <center>
                     {" "}
                     {daycounter == 0 ? (
-                      <h1 className="example">The Big day is here !!!</h1>
+                      <h1 className="ndaystogo">The Big day is here !!!</h1>
                     ) : daycounter == 1 ? (
-                      <h1 className="example">{daycounter} day to go !!!</h1>
+                      <h1 className="ndaystogo">{daycounter} day to go !!!</h1>
                     ) : (
-                      <h1 className="example">{daycounter} days to go !!!</h1>
+                      <h1 className="ndaystogo">{daycounter} days to go !!!</h1>
                     )}
                   </center>
                   {!loading && getStepContent(activeStep)}
@@ -575,19 +582,19 @@ function ContinuePack({ match, history }) {
   };
 
   return (
-    <div style={{ backgroundColor: "#70cff3", textAlign: "justify" }}>
+    <div style={{ textAlign: "justify" }}>
       <NavBar />
       <br />
       <br />
       <br />
       <br />
       <div style={{ backgroundColor: "#d3d3d3" }} class="container">
-        <div class="row">
-          <div class="col-lg-6 ">
+        <div class="row sharebanner">
+          <div class="col-lg-6 sharebannertext">
             <p>
               This is a simple hero unit, a simple jumbotron-style component for
-              calling extra attention to featured content or information. <br />{" "}
-              only one link for all components
+              calling extra attention to featured content or information. only
+              one link for all components
             </p>
             <center>
               <div

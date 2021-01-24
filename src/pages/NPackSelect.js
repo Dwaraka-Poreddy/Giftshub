@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import $ from "jquery";
+import "./NPackSelect.css";
 const allComp = [
   {
     id: "magazine",
@@ -190,7 +191,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
+  // background: isDragging
+  //   ? "linear-gradient(#fdc46f, #f9deb6)"
+  //   : "linear-gradient(#fdc46f, #f9deb6)",
 
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -202,18 +205,24 @@ const getItemStyle1 = (isDragging, draggableStyle) => ({
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "green",
+  // background: isDragging
+  //   ? "linear-gradient(#fdc46f, #f9deb6)"
+  //   : "linear-gradient(#fdc46f, #f9deb6)",
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
+  background: isDraggingOver
+    ? "linear-gradient(#fdc46f, #f9deb6)"
+    : "linear-gradient(#fdc46f, #f9deb6)",
   padding: grid,
   minHeight: 150,
 });
 const getListStyle1 = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightgreen" : "#70cff3",
+  background: isDraggingOver
+    ? "linear-gradient(#fdc46f, #f9deb6)"
+    : "linear-gradient(#fdc46f, #f9deb6)",
   padding: grid,
   minHeight: 150,
 });
@@ -274,9 +283,6 @@ class N_Pack_Select extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div class="row">
           <div class="col-lg-8   ">
-            <center>
-              <h3>All Gifts</h3>
-            </center>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div
@@ -285,6 +291,9 @@ class N_Pack_Select extends Component {
                 >
                   {" "}
                   <div className="container-fluid">
+                    <center>
+                      <h3>All Gifts</h3>
+                    </center>
                     <div className="row">
                       {this.state.items.map((item, index) => (
                         <div
@@ -306,16 +315,19 @@ class N_Pack_Select extends Component {
                                   provided.draggableProps.style
                                 )}
                               >
-                                <div class="card">
+                                <div class="card npackselectcard">
                                   <img
                                     style={{ height: "100%" }}
-                                    class="card-img-top"
+                                    class="card-img-top npackselectcardimg"
                                     // src={item.img}
                                     src="https://picsum.photos/200/200"
                                     alt={index}
                                   />
 
-                                  <h5 class="card-title"> {item.content}</h5>
+                                  <h5 class="card-title npackselectcardtitle">
+                                    {" "}
+                                    {item.content}
+                                  </h5>
                                 </div>
                               </div>
                             )}
@@ -329,17 +341,17 @@ class N_Pack_Select extends Component {
               )}
             </Droppable>
           </div>
-
-          <div class="col-lg-4  ">
-            <center>
-              <h3>Your Pack</h3>
-            </center>
+          <div class="col-lg-1  ">Arrow</div>
+          <div class="col-lg-3  ">
             <Droppable droppableId="droppable2">
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
                   style={getListStyle1(snapshot.isDraggingOver)}
                 >
+                  <center>
+                    <h3>Your Pack</h3>
+                  </center>
                   {this.state.selected.map((item, index) => (
                     <Draggable
                       key={item.id}
@@ -360,14 +372,11 @@ class N_Pack_Select extends Component {
                             provided.draggableProps.style
                           )}
                         >
-                          <div
-                            class="card p-0 shadow-none"
-                            style={{ color: "red" }}
-                          >
+                          <div class="card  shadow-none">
                             <div class="row no-gutters">
-                              <div class="col-3">
+                              <div class="col-3 m-auto">
                                 <img
-                                  style={{ width: "50%" }}
+                                  style={{ width: "45px" }}
                                   src="https://picsum.photos/100/100"
                                   // src={item.img}
                                   class="card-img"
@@ -376,12 +385,12 @@ class N_Pack_Select extends Component {
                               </div>
                               <div class="col-9">
                                 <div
-                                  class="card-body "
+                                  class="card-body px-0"
                                   style={{
                                     padding: "1rem 1.25rem ",
                                   }}
                                 >
-                                  {item.content}-Day {index}
+                                  Day {index} ({item.content})
                                 </div>
                               </div>
                             </div>

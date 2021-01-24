@@ -41,7 +41,11 @@ export default function DummyNavBar() {
       >
         <div class="container">
           <a class="navbar-brand js-scroll-trigger" href={`/`}>
-            <img src={require("../Images/navbar-logo.svg")} alt="" />
+            <img
+              style={{ height: "50px" }}
+              src={require("../Images/giftshublogo.png")}
+              alt=""
+            />
           </a>
           <button
             class="navbar-toggler navbar-toggler-right"
@@ -55,10 +59,7 @@ export default function DummyNavBar() {
             Menu
             <i class="fas fa-bars ml-1"></i>
           </button>
-          <div
-            class="collapse navbar-collapse"
-            id="navbarSupportedContent-rasedul"
-          >
+          <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto nav-flex-icons">
               <li class="nav-item active">
                 <a class="nav-link js-scroll-trigger" href={`/`}>
@@ -119,18 +120,6 @@ export default function DummyNavBar() {
                       class="dropdown-menu dropdown-menu-right dropdown-secondary"
                       aria-labelledby="navbarDropdownMenuLink-5"
                     >
-                      <li class="nav-item ">
-                        <a class="nav-link" href="">
-                          Your Profile
-                        </a>
-                      </li>
-                      <li class="nav-item ">
-                        {user && (
-                          <a class="nav-link" href={`/userpackspage`}>
-                            My Packs
-                          </a>
-                        )}
-                      </li>
                       <li class="nav-item ">
                         {user && (
                           <a onClick={logout} class="nav-link" href={`/login`}>

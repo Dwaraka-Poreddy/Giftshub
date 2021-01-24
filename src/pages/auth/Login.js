@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NavBar from "../../NavBars/NavBar";
+import Footer from "../../Footers/Footer";
+import "./Login.css";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [ReEmail, setReEmail] = useState("");
@@ -27,16 +29,18 @@ const Login = ({ history }) => {
   }, [user]);
 
   const handleRegisterSubmit = async (e) => {
-    console.log(
-      process.env.REACT_APP_REGISTER_REDIRECT_URL,
-      "handle register submit"
-    );
     e.preventDefault();
+
     const config = {
       url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
       handleCodeInApp: true,
     };
+    console.log(
+      process.env.REACT_APP_REGISTER_REDIRECT_URL,
+      "handle register submit"
+    );
     await auth.sendSignInLinkToEmail(ReEmail, config);
+
     toast.success(
       `Email is sent to ${ReEmail}.Click the link to complete your registration.`
     );
@@ -63,9 +67,9 @@ const Login = ({ history }) => {
         className="mb-3"
         block
         shape="round"
-        type="primary"
+        type="danger"
         onClick={handleRegisterSubmit}
-        className="btn btn-danger btn-raised"
+        className="mb-3"
       >
         Register
       </Button>
@@ -137,8 +141,11 @@ const Login = ({ history }) => {
           placeholder="Your Password "
         />
       </div>
-      <Link to="/forgot/password" className="float-right text-danger">
-        Forgot Password
+      <Link
+        to="/forgot/password"
+        className="float-right text-danger logintxtdngr"
+      >
+        Forgot Password ?
       </Link>
 
       <Button
@@ -157,48 +164,48 @@ const Login = ({ history }) => {
   );
 
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% )",
-      }}
-    >
+    <div>
       <NavBar />
+      <br />
       <br />
       <br />
       <br />
       <div className="container p-3">
         <div className="row">
-          <div className="col-md-6 ">
-            {loading ? (
-              <h4 className="text-danger"> Loading.. </h4>
-            ) : (
-              <h4>Login</h4>
-            )}
-            {loginForm()}
-            <br />
-            <center>
-              <h3>OR</h3>
-            </center>
-            <hr />
-            <Button
-              onClick={handleGoogleLogin}
-              type="danger"
-              block
-              shape="round"
-              icon={<GoogleOutlined />}
-              size="large"
-              className="mb-3"
-            >
-              Login with Google
-            </Button>
-          </div>
-          <div className="col-md-6 ">
-            <h4>Register</h4>
-            {registerForm()}
+          <div className="col-7 mx-auto loginrow">
+            <div className="row">
+              <div className="col-md-6 ">
+                {loading ? (
+                  <h4 className="text-danger "> Loading.. </h4>
+                ) : (
+                  <h4 className="loginh4">Login</h4>
+                )}
+                {loginForm()}
+
+                <center>
+                  <h3 style={{ fontSize: "17px" }}>OR</h3>
+                </center>
+                <Button
+                  onClick={handleGoogleLogin}
+                  type="danger"
+                  block
+                  shape="round"
+                  icon={<GoogleOutlined />}
+                  size="large"
+                  className="mb-3"
+                >
+                  Login with Google
+                </Button>
+              </div>
+              <div className="col-md-6 ">
+                <h4 className="loginh4">Register</h4>
+                {registerForm()}
+              </div>
+            </div>{" "}
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -14,7 +14,9 @@ import TextField from "@material-ui/core/TextField";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
+import CakeIcon from "@material-ui/icons/Cake";
 import { isMobileOnly, isTablet } from "react-device-detect";
+import "./Home.css";
 const Home = ({ history }) => {
   const [loading, setloading] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
@@ -30,6 +32,7 @@ const Home = ({ history }) => {
   const [fbimg, setfbimg] = useState();
   const [imageAsFile, setImageAsFile] = useState("");
   const [image_url, setimage_url] = useState();
+  const [wishes, setwishes] = useState("");
   const [Bday_date, setBday_date] = useState(Date.now());
 
   useEffect(() => {
@@ -76,6 +79,7 @@ const Home = ({ history }) => {
               sevendayPackPack
                 .add({
                   Folder_name: Folder_name,
+                  wishes: wishes,
                   fbimg: downUrl,
                   Bday_date: Bday_date,
                   From_name: From_name,
@@ -89,6 +93,7 @@ const Home = ({ history }) => {
                     .collection("/Livelinks");
                   var LivelinkPackPack = LivelinkPack.doc(docRef.id).set({
                     Folder_name: Folder_name,
+                    wishes: wishes,
                     fbimg: downUrl,
                     From_name: From_name,
                     Bday_date: Bday_date,
@@ -120,21 +125,22 @@ const Home = ({ history }) => {
       <br />
       <br /> <br />
       <br />
-      <div class="container">
+      <div class="container inputmodal">
         <div className="row">
           <div className="col-sm-6 col-md-4 col-lg-3 pt-3">
             <Grid
+              style={{ width: "100%" }}
               container
               spacing={1}
               alignItems="flex-end"
-              style={{ width: "250px" }}
               className="mx-auto"
             >
               <Grid item>
                 <FolderSharedOutlinedIcon style={{ fill: "rgb(66 66 66)" }} />
               </Grid>
-              <Grid style={{ width: "210px" }} item>
+              <Grid style={{ width: "80%" }} item>
                 <TextField
+                  fullWidth="true"
                   required
                   InputLabelProps={{
                     style: { color: "rgb(66 66 66)" },
@@ -149,17 +155,18 @@ const Home = ({ history }) => {
           </div>
           <div className="col-sm-6  col-md-4 col-lg-3 pt-3">
             <Grid
+              style={{ width: "100%" }}
               container
               spacing={1}
               alignItems="flex-end"
-              style={{ width: "250px" }}
               className="mx-auto"
             >
               <Grid item>
                 <AccountCircleOutlinedIcon style={{ fill: "rgb(66 66 66)" }} />
               </Grid>
-              <Grid style={{ width: "210px" }} item>
+              <Grid style={{ width: "80%" }} item>
                 <TextField
+                  fullWidth="true"
                   InputLabelProps={{
                     style: { color: "rgb(66 66 66)" },
                   }}
@@ -175,17 +182,18 @@ const Home = ({ history }) => {
           <br />
           <div className="col-sm-6  col-md-4 col-lg-3 pt-3">
             <Grid
+              style={{ width: "100%" }}
               container
               spacing={1}
               alignItems="flex-end"
-              style={{ width: "250px" }}
               className="mx-auto"
             >
               <Grid item>
                 <AccountCircleOutlinedIcon style={{ fill: "rgb(66 66 66)" }} />
               </Grid>
-              <Grid style={{ width: "210px" }} item>
+              <Grid style={{ width: "80%" }} item>
                 <TextField
+                  fullWidth="true"
                   InputLabelProps={{
                     style: { color: "rgb(66 66 66)" },
                   }}
@@ -200,91 +208,134 @@ const Home = ({ history }) => {
           </div>
           <br />
           <div className="col-sm-6  col-md-4 col-lg-3 pt-3">
-            <center>
-              <TextField
-                style={{ width: "210px" }}
-                id="date"
-                label="Event Date"
-                type="date"
-                value={Bday_date}
-                defaultValue={Bday_date}
-                onChange={(e) => setBday_date(e.target.value.toLocaleString())}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "rgb(66 66 66)" },
-                }}
-              />
-            </center>
+            <Grid
+              style={{ width: "100%" }}
+              container
+              spacing={1}
+              alignItems="flex-end"
+              className="mx-auto"
+            >
+              <Grid item>
+                <AccountCircleOutlinedIcon style={{ fill: "rgb(66 66 66)" }} />
+              </Grid>
+              <Grid style={{ width: "80%" }} item>
+                <TextField
+                  fullWidth="true"
+                  id="date"
+                  label="Event Date"
+                  type="date"
+                  value={Bday_date}
+                  defaultValue={Bday_date}
+                  onChange={(e) =>
+                    setBday_date(e.target.value.toLocaleString())
+                  }
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { color: "rgb(66 66 66)" },
+                  }}
+                />
+              </Grid>
+            </Grid>
           </div>{" "}
           <br />
-          <div className="col-sm-6  col-md-4 col-lg-3 pt-3 mx-auto">
-            <center>
-              <input
-                required
-                style={{ display: "none" }}
-                accept="image/* "
-                id="ImageInput"
-                name="ImageInput"
-                type="file"
-                accept="image/*"
-                onChange={onSelectFile}
-                onClick={(event) => {
-                  event.target.value = null;
-                }}
-              />
-              {opencrop ? (
-                <CropPage
-                  send={send}
-                  setfbimg={setfbimg}
-                  setimage_url={setimage_url}
-                  aspect_ratio={1 / 1}
-                  opencrop={opencrop}
-                  setopencrop={setopencrop}
-                />
-              ) : null}
-              <label htmlFor="ImageInput">
-                <div
-                  style={{
-                    height: "45px",
-                    width: "210px",
-                    display: "flex",
-                    alignItems: "center",
-                    border: "1px solid rgb(66 66 66)",
-                    cursor: "pointer",
-                    borderRadius: "5px",
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-6 pt-3 ml-0 ml-sm-n2">
+                <center>
+                  <Grid
+                    container
+                    spacing={1}
+                    alignItems="flex-end"
+                    style={{ width: "100%" }}
+                  >
+                    <Grid item>
+                      <CakeIcon style={{ fill: "rgb(66 66 66)" }} />
+                    </Grid>
+                    <Grid style={{ width: "80%" }} item>
+                      <TextField
+                        fullWidth="true"
+                        InputLabelProps={{
+                          style: { color: "rgb(66 66 66)" },
+                        }}
+                        id="input-with-icon-grid"
+                        placeholder="Many more Happy Returns of the day"
+                        label="Wishes"
+                        value={wishes}
+                        onChange={(e) => setwishes(e.target.value)}
+                        required
+                      />
+                    </Grid>
+                  </Grid>
+                </center>
+              </div>
+              <div className="col-sm-6   pt-4">
+                <input
+                  required
+                  style={{ display: "none" }}
+                  accept="image/* "
+                  id="ImageInput"
+                  name="ImageInput"
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFile}
+                  onClick={(event) => {
+                    event.target.value = null;
                   }}
-                >
-                  {send ? (
-                    <CheckBoxOutlinedIcon
-                      style={{
-                        fill: "rgb(66 66 66)",
-                        marginLeft: "7px",
-                      }}
-                    />
-                  ) : (
-                    <ImageOutlinedIcon
-                      style={{
-                        fill: "rgb(66 66 66)",
-                        marginLeft: "7px",
-                      }}
-                    />
-                  )}
-                  <h2
+                />
+                {opencrop ? (
+                  <CropPage
+                    send={send}
+                    setfbimg={setfbimg}
+                    setimage_url={setimage_url}
+                    aspect_ratio={1 / 1}
+                    opencrop={opencrop}
+                    setopencrop={setopencrop}
+                  />
+                ) : null}
+                <label htmlFor="ImageInput">
+                  <div
                     style={{
-                      fontSize: "18px",
-                      color: "rgb(66 66 66)",
-                      marginLeft: "8px",
-                      marginBottom: "0",
+                      height: "45px",
+                      width: "210px",
+                      display: "flex",
+                      alignItems: "center",
+                      border: "1px solid rgb(66 66 66)",
+                      cursor: "pointer",
+                      borderRadius: "5px",
                     }}
                   >
-                    {send ? "Image added" : "Add your image *"}{" "}
-                  </h2>{" "}
-                </div>
-              </label>
-            </center>
-          </div>
-          <br />
-          <br />
+                    {send ? (
+                      <CheckBoxOutlinedIcon
+                        style={{
+                          fill: "rgb(66 66 66)",
+                          marginLeft: "7px",
+                        }}
+                      />
+                    ) : (
+                      <ImageOutlinedIcon
+                        style={{
+                          fill: "rgb(66 66 66)",
+                          marginLeft: "7px",
+                        }}
+                      />
+                    )}
+                    <h2
+                      style={{
+                        fontSize: "18px",
+                        color: "rgb(66 66 66)",
+                        marginLeft: "8px",
+                        marginBottom: "0",
+                      }}
+                    >
+                      {send ? "Image added" : "Add your image *"}{" "}
+                    </h2>{" "}
+                  </div>
+                </label>
+              </div>
+              <br />
+              <br />
+            </div>
+          </div>{" "}
         </div>
       </div>
       <br />

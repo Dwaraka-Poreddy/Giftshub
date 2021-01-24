@@ -108,11 +108,10 @@ export default function ScheduledLiveThreeDCarousel({ match }) {
   });
 
   return (
-    <div style={{ backgroundColor: "#70cff3", height: "100vh" }}>
+    <div style={{ height: "100vh" }}>
       <ScheduledLiveNavBar slug={match.params.slug} />
       <div style={{ display: "flex" }}>
-        <div style={{ flex: "0.1" }}></div>
-        <div style={{ flex: "0.8", height: "70vh" }}>
+        <div style={{ flex: "01" }}>
           {loading ? (
             <Loader
               type="BallTriangle"
@@ -168,52 +167,7 @@ export default function ScheduledLiveThreeDCarousel({ match }) {
             </div>
           )}
         </div>
-
-        <div style={{ flex: "0.1" }}></div>
       </div>
-      <footer style={{ padding: "30px 0", marginTop: "150px" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-md-12 col-sm-12">
-              <p className="copyright">
-                Copyright © 2020 Gift's Hub Company . Design:{" "}
-                <a rel="nofollow" href="/">
-                  Gift's Hub
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-5 col-md-12 col-sm-12">
-              <ul className="social">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-rss" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
