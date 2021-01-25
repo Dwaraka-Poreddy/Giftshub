@@ -1,7 +1,7 @@
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: linear-gradient(#fdc46f, #f9deb6);
+  background: linear-gradient(#fdc46f, #f9deb6) !important;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -39,7 +39,7 @@
 }
 #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #fed136;
+  color: rgb(66 66 66);
 }
 
 @media (min-width: 992px) {
@@ -80,5 +80,5 @@
 .dropdown-menu,
 .dropdown-menu-right,
 .dropdown-secondary {
-  background-color: linear-gradient(#fdc46f, #f9deb6) !important;
+  background: linear-gradient(#fdc46f, #f9deb6) !important;
 }

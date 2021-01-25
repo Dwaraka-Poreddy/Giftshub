@@ -14,12 +14,14 @@
   margin: 15px 8px;
   box-shadow: 2px 2px 5px 0px rgb(82, 0, 67);
   border: 1px solid; /*border: 1px solid #622657;*/
+  cursor: pointer;
 }
 .round-btn a {
   display: block !important;
   padding: 7px 12px;
   font-size: 18px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .round-btn .icon {
   padding: 3px;

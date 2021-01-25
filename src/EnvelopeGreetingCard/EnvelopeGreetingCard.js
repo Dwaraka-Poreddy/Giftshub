@@ -8,7 +8,7 @@ export default function EnvelopeGreetingCard() {
     }
   };
   return (
-    <div>
+    <div className="envelopecardbody">
       <div
         onClick={() => {
           handlechangeclass();
@@ -22,8 +22,14 @@ export default function EnvelopeGreetingCard() {
           </div>
         </div>
         <div class="EnvelopeGreetingCardback">
-          <div class="EnvelopeGreetingCardletter">
-            <p>I hope your day is as amazing and fun as </p>
+          <div
+            style={{
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1476234251651-f353703a034d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80)",
+            }}
+            class="EnvelopeGreetingCardletter"
+          >
+            <p> I hope your day is as amazing and fun as </p>
             <p>I am... </p>
             <p>HBD Older Sis</p>
 

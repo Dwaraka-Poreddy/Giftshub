@@ -75,6 +75,7 @@ const LiveCollage = lazy(() => import("./LivePages/LiveCollage"));
 const SevenDayHome = lazy(() => import("./pages/SevenDayHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Home = lazy(() => import("./pages/Home"));
+const DummyHome = lazy(() => import("./pages/DummyHome"));
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ContinuePack = lazy(() => import("./pages/ContinuePack"));
@@ -212,6 +213,7 @@ export default function App() {
           <Route exact path="/sound" component={SoundRecorder} />
           <Route exact path="/animatedframe" component={AnimatedFrame} />
           <Route exact path="/userpackspage" component={UserPacksPage} />
+          <Route exact path="/dummyhome" component={DummyHome} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/studio" component={Studio} />
           <Route exact path="/recommendedhome" component={SevenDayHome} />

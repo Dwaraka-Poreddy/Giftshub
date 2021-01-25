@@ -30,8 +30,9 @@ export default function DummyNavBar() {
     history.push("/login");
   };
   return (
-    <div style={{ color: "red" }}>
+    <div>
       <nav
+        // style={{ background: "linear-gradient(#fdc46f, #f9deb6)" }}
         class={
           !navstate
             ? "navbar navbar-expand-lg navbar-dark fixed-top"

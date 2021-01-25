@@ -248,6 +248,33 @@ export default function LandingPage() {
       </div>
     );
   };
+  $(".tab_content").hide();
+  $(".tab_content:first").show();
+
+  /* if in tab mode */
+  $("ul.tabs li").click(function () {
+    $(".tab_content").hide();
+    var activeTab = $(this).attr("rel");
+    $("#" + activeTab).fadeIn();
+
+    $("ul.tabs li").removeClass("active");
+    $(this).addClass("active");
+
+    $(".tab_drawer_heading").removeClass("d_active");
+    $(".tab_drawer_heading[rel^='" + activeTab + "']").addClass("d_active");
+  });
+  /* if in drawer mode */
+  $(".tab_drawer_heading").click(function () {
+    $(".tab_content").hide();
+    var d_activeTab = $(this).attr("rel");
+    $("#" + d_activeTab).fadeIn();
+
+    $(".tab_drawer_heading").removeClass("d_active");
+    $(this).addClass("d_active");
+
+    $("ul.tabs li").removeClass("active");
+    $("ul.tabs li[rel^='" + d_activeTab + "']").addClass("active");
+  });
   return (
     <div className="App">
       <div
@@ -266,11 +293,13 @@ export default function LandingPage() {
 
       <body id="page-top">
         <NavBar />
-        {isMobileOnly
-          ? mobviewMainCarousel()
-          : isTablet
-          ? browviewMainCarousel()
-          : browviewMainCarousel()}
+        <div className="landingbannermodal">
+          {isMobileOnly
+            ? mobviewMainCarousel()
+            : isTablet
+            ? browviewMainCarousel()
+            : browviewMainCarousel()}
+        </div>
 
         {/* <section
           class="partners"
@@ -533,21 +562,153 @@ export default function LandingPage() {
               Customizable Gifts
             </h1>
           </center>
-          <div class="container">
-            <div className="row equal">
-              {LandingPageCardsData.map((item, index) => {
-                return (
-                  <LandingPageCard
-                    img={item.img}
-                    gif={item.gif}
-                    link={item.link}
-                    title={item.title}
-                    badge1={item.badge1}
-                    badge2={item.badge2}
-                    text={item.text}
-                  />
-                );
-              })}
+          <div className="container">
+            <ul class="tabs">
+              <li class="active" rel="tab1">
+                Trending
+              </li>
+              <li rel="tab2">Valentine</li>
+              <li rel="tab3">Games</li>
+              <li rel="tab4">Typographic</li>
+              <li rel="tab5"> Dynamic</li>
+              <li rel="tab6"> Greeting Cards</li>
+            </ul>
+            <div class="tab_container">
+              <h3 class="d_active tab_drawer_heading" rel="tab1">
+                Trending
+              </h3>
+              <div id="tab1" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[0].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="tab_drawer_heading" rel="tab2">
+                Valentine
+              </h3>
+              <div id="tab2" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[0].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="tab_drawer_heading" rel="tab3">
+                Games
+              </h3>
+              <div id="tab3" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[1].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="tab_drawer_heading" rel="tab4">
+                Typographic
+              </h3>
+              <div id="tab4" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[2].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <h3 class="tab_drawer_heading" rel="tab5">
+                Dynamic
+              </h3>
+              <div id="tab5" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[3].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <h3 class="tab_drawer_heading" rel="tab6">
+                Greeting Cards
+              </h3>
+              <div id="tab6" class="tab_content">
+                <div class="container">
+                  <div className="row equal">
+                    {LandingPageCardsData[4].map((item, index) => {
+                      return (
+                        <LandingPageCard
+                          img={item.img}
+                          gif={item.gif}
+                          link={item.link}
+                          title={item.title}
+                          badge1={item.badge1}
+                          badge2={item.badge2}
+                          text={item.text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

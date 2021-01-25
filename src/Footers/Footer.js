@@ -1,4 +1,14 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faYoutube,
+  faTwitter,
+  faLinkedin,
+  faWhatsapp,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
 export default function Footer() {
   return (
@@ -17,7 +27,7 @@ export default function Footer() {
               <form class="newsletter">
                 <input type="text" placeholder="Email Address" />
                 <button class="newsletter_submit_btn" type="submit">
-                  <i class="fa fa-paper-plane"></i>
+                  <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
               </form>
             </div>
@@ -27,32 +37,32 @@ export default function Footer() {
                   <div>
                     <li class="round-btn btn-facebook">
                       <a href="#">
-                        <i class="fab fa-facebook-f"></i>
+                        <FontAwesomeIcon icon={faFacebook} />
                       </a>
                     </li>
                     <li class="round-btn btn-linkedin">
                       <a href="#">
-                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        <FontAwesomeIcon icon={faLinkedin} />
                       </a>
                     </li>
                     <li class="round-btn btn-twitter">
                       <a href="#">
-                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                        <FontAwesomeIcon icon={faTwitter} />
                       </a>
                     </li>
                     <li class="round-btn btn-instagram">
                       <a href="#">
-                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <FontAwesomeIcon icon={faInstagram} />
                       </a>
                     </li>
                     <li class="round-btn btn-whatsapp">
                       <a href="#">
-                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <FontAwesomeIcon icon={faWhatsapp} />
                       </a>
                     </li>
                     <li class="round-btn btn-envelop">
                       <a href="#">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <FontAwesomeIcon icon={faEnvelope} />
                       </a>
                     </li>
                   </div>
