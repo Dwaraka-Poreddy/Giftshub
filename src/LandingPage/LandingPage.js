@@ -162,7 +162,7 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 // src={require("../Images/zoomcarouselsquare.jpg")}
-                src={require("../Images/Picture2.png")}
+                src={require("../Images/v22.jpg")}
                 alt="First slide"
               />
             </div>
@@ -170,7 +170,7 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 // src={require("../Images/zoomcarousel0square.jpg")}
-                src={require("../Images/Picture2.png")}
+                src={require("../Images/valentines1.jpg")}
                 alt="Second slide"
               />
             </div>
@@ -210,7 +210,7 @@ export default function LandingPage() {
           <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
-              src={require("../Images/zoomcarousel.jpg")}
+              src={require("../Images/v22.jpg")}
               // src={require("../Images/Picture1.png")}
               alt="First slide"
             />
@@ -218,7 +218,7 @@ export default function LandingPage() {
           <div class="carousel-item zoomcarousel">
             <img
               class="d-block w-100"
-              src={require("../Images/zoomcarousel0.jpg")}
+              src={require("../Images/valentines1.jpg")}
               // src={require("../Images/Picture1.png")}
               alt="Second slide"
             />
@@ -301,7 +301,7 @@ export default function LandingPage() {
             : browviewMainCarousel()}
         </div>
 
-        {/* <section
+        <section
           class="partners"
           style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
         >
@@ -407,7 +407,7 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </section> */}
+        </section>
 
         <div class="welcome-area" id="welcome">
           <div class="header-text">

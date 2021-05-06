@@ -309,7 +309,7 @@ header.masthead {
   }
 }
 .zoomcarousel {
-  animation: ease-in 6s linear infinite 0s;
+  animation: ease-in 3s linear infinite 0s;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -324,7 +324,7 @@ header.masthead {
     transform: scale(1, 1);
   }
   to {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.08, 1.08);
   }
 }
 
@@ -514,6 +514,6 @@ ul.tabs li.active {
 }
 @media screen and (min-width: 992px) {
   .landingbannermodal {
-    margin-top: 108px !important;
+    margin-top: 60px !important;
   }
 }
