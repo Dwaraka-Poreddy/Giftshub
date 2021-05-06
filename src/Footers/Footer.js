@@ -79,9 +79,11 @@ export default function Footer() {
           <div class="container second_class_bdr">
             <div class="row">
               <div class="col-md-4 col-sm-6">
-                <div class="footer-logo">
-                  <img src={require("../Images/navbar-logo.svg")} alt="logo" />
+                <div class="footer-logo center column" >
+                  <img src="https://o.remove.bg/downloads/a242d5b0-3284-457d-9998-ac81d4b2f93d/gift-removebg-preview.png" alt="logo" />
+                  <h1>GiftsHUB</h1>
                 </div>
+
                 <p>
                   Your one-stop career platform to find Jobs, Internships,
                   Professional Trainings, Projects, and Volunteering

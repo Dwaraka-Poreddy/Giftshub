@@ -210,16 +210,16 @@ export default function LandingPage() {
           <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
-              // src={require("../Images/zoomcarousel.jpg")}
-              src={require("../Images/Picture1.png")}
+              src={require("../Images/zoomcarousel.jpg")}
+              // src={require("../Images/Picture1.png")}
               alt="First slide"
             />
           </div>
           <div class="carousel-item zoomcarousel">
             <img
               class="d-block w-100"
-              // src={require("../Images/zoomcarousel0.jpg")}
-              src={require("../Images/Picture1.png")}
+              src={require("../Images/zoomcarousel0.jpg")}
+              // src={require("../Images/Picture1.png")}
               alt="Second slide"
             />
           </div>

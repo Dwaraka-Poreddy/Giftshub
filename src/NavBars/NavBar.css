@@ -1,7 +1,19 @@
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background: linear-gradient(#fdc46f, #f9deb6) !important;
+  background: #000 !important;
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column{
+  flex-direction: column;
+}
+.nav-title{
+  font-size: 10px!important;
+  color: #7f7575!important;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;

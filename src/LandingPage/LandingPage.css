@@ -360,7 +360,7 @@ header.masthead {
   padding: 4rem 0;
 }
 #landingpageservices {
-  padding: 4rem 0;
+  padding: 10rem 0;
 }
 
 .bannercarouselcontrol {
@@ -422,8 +422,8 @@ ul.tabs {
   float: left;
   list-style: none;
   height: 32px;
-  border-bottom: 1px solid #333;
   width: 100%;
+  border-bottom: 11px solid white;
 }
 
 ul.tabs li {
@@ -433,17 +433,23 @@ ul.tabs li {
   padding: 0px 21px;
   height: 31px;
   line-height: 31px;
-  border-top: 1px solid #333;
-  border-left: 1px solid #333;
-  border-bottom: 1px solid #333;
+  /* border-top: 1px solid #DADADA;
+  border-left: 1px solid #DADADA;
+  border-bottom: 1px solid #DADADA; */
   background-color: #666;
   color: #ccc;
   overflow: hidden;
   position: relative;
+  width: 16.66%;
+  text-align: center;
+  BORDER-RADIUS: 8PX 8PX 0 0;
+}
+#team{
+  height: 100vh;
 }
 
 .tab_last {
-  border-right: 1px solid #333;
+  border-right: 1px solid #DADADA;
 }
 
 ul.tabs li:hover {
@@ -459,7 +465,6 @@ ul.tabs li.active {
 }
 
 .tab_container {
-  border: 1px solid #333;
   border-top: none;
   clear: both;
   float: left;

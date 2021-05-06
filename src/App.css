@@ -309,15 +309,19 @@ button.main-button:hover {
 welcome
 --------------------------------------------- 
 */
+#page-top{
+  background-color: #fcfcfc;
+}
+
 #welcome {
   display: flex;
-  background-image: linear-gradient(#fdc46f, 65%, #f9deb6);
+  background-image: linear-gradient(#fdc46f, 80%, #fcfcfc);
   align-items: center;
   justify-content: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  padding: 3rem 1rem 3rem 1rem;
+  padding: 10rem 1rem 10rem 1rem;
   font-family: "Roboto", sans-serif;
 }
 
