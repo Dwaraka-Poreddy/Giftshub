@@ -44,7 +44,7 @@ export default function DummyNavBar() {
           <a class="navbar-brand js-scroll-trigger center column nav-title" href={`/`}>
             <img
               style={{ height: "50px" }}
-              src="https://o.remove.bg/downloads/a242d5b0-3284-457d-9998-ac81d4b2f93d/gift-removebg-preview.png"
+              src={require("../Images/gift-removebg-preview.png")}
               alt=""
             />
             GiftsHUB

@@ -162,7 +162,7 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 // src={require("../Images/zoomcarouselsquare.jpg")}
-                src={require("../Images/v22.jpg")}
+                src={require("../Images/v22m.jpg")}
                 alt="First slide"
               />
             </div>
@@ -170,7 +170,7 @@ export default function LandingPage() {
               <img
                 class="d-block w-100"
                 // src={require("../Images/zoomcarousel0square.jpg")}
-                src={require("../Images/valentines1.jpg")}
+                src={require("../Images/valentines1m.jpg")}
                 alt="Second slide"
               />
             </div>
