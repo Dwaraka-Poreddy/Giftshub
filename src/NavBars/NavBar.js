@@ -41,13 +41,15 @@ export default function DummyNavBar() {
         id="mainNav"
       >
         <div class="container">
-          <a class="navbar-brand js-scroll-trigger center column nav-title" href={`/`}>
+          <a
+            class="navbar-brand js-scroll-trigger center column nav-title"
+            href={`/`}
+          >
             <img
               style={{ height: "50px" }}
-              src={require("../Images/gift-removebg-preview.png")}
+              src={require("../Images/giftshublogo.png")}
               alt=""
             />
-            GiftsHUB
           </a>
           <button
             class="navbar-toggler navbar-toggler-right"

@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./LandingPageCard.css";
+import sample from "../Images/gift-removebg-preview.png";
 import { Link } from "react-router-dom";
-import sample from "../Images/bgvideo.mp4";
+
 function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
   return (
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-3">
@@ -26,15 +27,13 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
             <div class="backside">
               <div class="card">
                 <div class="card-body text-center ">
-                  <video
-                    style={{ width: "100%", height: "auto" }}
-                    className="videoTag"
-                    autoPlay
-                    loop
-                    muted
-                  >
-                    <source src={sample} type="video/mp4" />
-                  </video>{" "}
+                  <img
+                    style={{ width: "70%", height: "auto" }}
+                    class=" img-fluid"
+                    src={sample}
+                    alt="card"
+                  />
+
                   <br />
                   <h5>
                     {badge1 && (

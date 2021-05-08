@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Girassol&family=Lobster&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Reggae+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Girassol&family=Lobster&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Girassol&display=swap");
 .hiro-loader {
   position: fixed;
   left: 0px;
@@ -15,19 +15,26 @@
 html {
   scroll-behavior: smooth;
 }
-*{
-  font-family: 'Lobster', cursive!important;
+* {
+  font-family: "Lobster", cursive !important;
 }
-p,a,.dropdown-toggle,li,.slidehoverbtntext,button,.card-title,h3{
-  font-family: 'Raleway', sans-serif!important;
+p,
+a,
+.dropdown-toggle,
+li,
+.slidehoverbtntext,
+button,
+.card-title,
+h3 {
+  font-family: "Raleway", sans-serif !important;
 }
-#landingpageservices .card-deck .card .card-header .my-0{
-  font-family: 'Lobster', cursive!important;
+#landingpageservices .card-deck .card .card-header .my-0 {
+  font-family: "Lobster", cursive !important;
 }
-h4{
+h4 {
   font-weight: bold;
 }
-.header-text .container .row{
+.header-text .container .row {
   width: 70%;
   margin: 0 auto;
 }
@@ -39,10 +46,10 @@ a:hover {
   text-decoration: none;
   border-radius: 30px;
 }
-.mb-0{
+.mb-0 {
   font-size: 25px;
   color: #fdc674;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
 
@@ -135,8 +142,7 @@ a:hover {
        [ 06 Process ]
   -----------------------------------------------------------------*/
 #Process {
-  
-  background-image: linear-gradient(#f33f3f, #fff)!important;
+  background-image: linear-gradient(#f33f3f, #fff) !important;
   padding: 4rem 0;
 }
 .process .item {
@@ -222,7 +228,7 @@ a:hover {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: #292921;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -282,7 +288,7 @@ a:hover {
   #mainNav.navbar-shrink {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #212529;
+    background-color: #fb6e6e;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
@@ -382,12 +388,19 @@ header.masthead {
   letter-spacing: 0px;
   padding: 0px 0px 65px 0px;
   margin: 0px 0px;
+  color: #fff !important;
+}
+#landingservicesheading {
+  color: #000 !important;
+}
+.landindservivestext {
+  color: #fff !important;
 }
 #socialMedia {
   padding: 4rem 0;
 }
 #landingpageservices {
-  padding: 7rem 0;
+  padding: 5rem 0 7rem 0;
 }
 
 .bannercarouselcontrol {
@@ -470,16 +483,15 @@ ul.tabs li {
   position: relative;
   width: 16.66%;
   text-align: center;
-  BORDER-RADIUS: 8PX 8PX 0 0;
+  border-radius: 8px 8px 0 0;
 }
-#team{
+#team {
   height: 100vh;
-  background-image: linear-gradient(#fb6e6e, #f33f3f)!important;
-
+  background-image: linear-gradient(#fb6e6e, #f33f3f) !important;
 }
 
 .tab_last {
-  border-right: 1px solid #DADADA;
+  border-right: 1px solid #dadada;
 }
 
 ul.tabs li:hover {
@@ -512,20 +524,20 @@ ul.tabs li.active {
   display: none;
 }
 .headline:after {
-  content:' ';
+  content: " ";
   position: absolute;
-  display:block;
+  display: block;
   width: 100px;
   margin: 0 2%;
-  border:2px solid orange;
-  border-radius:4px;
-  -webkit-border-radius:4px;
-  -moz-border-radius:4px;
-  box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-  -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-left: 48%;
-transform: translateX(-50%);
+  border: 2px solid orange;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  left: 48%;
+  transform: translateX(-50%);
 }
 .headline {
   font-family: Calibri, "Helvetica", san-serif;
@@ -533,7 +545,6 @@ transform: translateX(-50%);
   color: black;
   font-size: 30px;
   position: relative;
-
 }
 @media screen and (max-width: 480px) {
   .tabs {
@@ -559,12 +570,12 @@ transform: translateX(-50%);
     background-color: #000;
     color: #fff;
   }
-  .tab_container{
+  .tab_container {
     background: #0000;
   }
 }
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
   .landingbannermodal {
     margin-top: 69px !important;
   }
@@ -573,4 +584,17 @@ transform: translateX(-50%);
   .landingbannermodal {
     margin-top: 60px !important;
   }
+} */
+
+.freegifting {
+  padding-bottom: 40px !important;
+}
+.videotourbtn {
+  margin-top: 25px !important;
+}
+.tablis {
+  height: 45px !important;
+  line-height: 45px !important;
+  font-family: "Lobster", cursive !important;
+  font-size: 24px !important;
 }

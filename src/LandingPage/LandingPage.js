@@ -211,8 +211,9 @@ export default function LandingPage() {
           <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
+              //src={require("../Images/dumcarousel.jpg")}
               src={require("../Images/v22.jpg")}
-              // src={require("../Images/Picture1.png")}
+              //src={require("../Images/Picture1.png")}
               alt="First slide"
             />
           </div>
@@ -428,7 +429,7 @@ export default function LandingPage() {
           <div class="header-text">
             <div class="container">
               <center>
-                <h1> Free personalised gifting</h1>
+                <h1 className="freegifting"> Free personalised gifting</h1>
               </center>
               <div class="row">
                 <div
@@ -443,7 +444,7 @@ export default function LandingPage() {
                     ways and bringing you closer.
                   </p>
                   <center>
-                    <button className="main-button">
+                    <button className="main-button videotourbtn">
                       Video Tour{" "}
                       <PlayArrowOutlinedIcon style={{ marginBottom: "3px" }} />
                     </button>
@@ -456,7 +457,10 @@ export default function LandingPage() {
 
         <div class="container" id="landingpageservices">
           <center>
-            <h1 className="landingservicesheading"> Services</h1>
+            <h1 className="landingservicesheading" id="landingservicesheading">
+              {" "}
+              Services
+            </h1>
           </center>
           <div class="card-deck mb-3 text-center">
             <div class="card mb-4 box-shadow landingpageservicescard">
@@ -579,14 +583,26 @@ export default function LandingPage() {
           </center>
           <div className="container">
             <ul class="tabs">
-              <li class="active" rel="tab1">
+              <li class="active tablis" rel="tab1">
                 Trending
               </li>
-              <li rel="tab2">Valentine</li>
-              <li rel="tab3">Games</li>
-              <li rel="tab4">Typographic</li>
-              <li rel="tab5"> Dynamic</li>
-              <li rel="tab6"> Greeting Cards</li>
+              <li rel="tab2" className="tablis">
+                Valentine
+              </li>
+              <li rel="tab3" className="tablis">
+                Games
+              </li>
+              <li rel="tab4" className="tablis">
+                Typographic
+              </li>
+              <li rel="tab5" className="tablis">
+                {" "}
+                Dynamic
+              </li>
+              <li rel="tab6" className="tablis">
+                {" "}
+                Greeting Cards
+              </li>
             </ul>
             <div class="tab_container">
               <h3 class="d_active tab_drawer_heading" rel="tab1">
@@ -749,7 +765,7 @@ export default function LandingPage() {
           <div class="row">
             <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
               <h1 className="landingservicesheading"> Our Process</h1>
-              <p>
+              <p className="landindservivestext">
                 We are a passionate digital design agency that specializes in
                 beautiful and easy-to-use digital design & web development
                 services.

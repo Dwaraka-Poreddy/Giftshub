@@ -1,27 +1,36 @@
 #mainNav {
-  padding-top: 0.3rem!important;
-  padding-bottom: 0.3rem!important; 
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
 }
-.navbar-nav li a{
+.navbar-nav li a {
   color: black;
 }
-#navbarResponsive .navbar-nav li a{
-  color: black!important;
+#navbarResponsive .navbar-nav li a {
+  color: black !important;
 }
-#page-top .navbar .container .navbar-shrink .container .nav-bar #navbarResponsive .navbar-nav li a{
-  color: white!important;
+#page-top
+  .navbar
+  .container
+  .navbar-shrink
+  .container
+  .nav-bar
+  #navbarResponsive
+  .navbar-nav
+  li
+  a {
+  color: white !important;
 }
-.center{
+.center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.column{
+.column {
   flex-direction: column;
 }
-.nav-title{
-  font-size: 10px!important;
-  color: #7f7575!important;
+.nav-title {
+  font-size: 10px !important;
+  color: #7f7575 !important;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -100,5 +109,7 @@
 .dropdown-menu,
 .dropdown-menu-right,
 .dropdown-secondary {
-  background: linear-gradient(#fdc46f, #f9deb6) !important;
+  /* background: #fb6e6e !important; */
+  background: transparent;
+  border: 0px !important;
 }
