@@ -343,7 +343,7 @@ welcome
 
 .welcome-area .header-text p {
   font-weight: 300;
-  font-size: 15px;
+  font-size: 17px;
   color: #000;
   line-height: 24px;
   letter-spacing: 0px;
@@ -402,10 +402,13 @@ welcome
 /*    ------------------------
 ----------------------------------
           */
+#welcome .header-text .container .row .left-text p{
+  color: black!important;
+}
 
 #welcome1 {
   display: flex;
-  background-image: linear-gradient(#fb6e6e, #c35b5b);
+  background-image: linear-gradient(#fdc46f, 80%, #fcfcfc);
 
   align-items: center;
   justify-content: center;
@@ -429,13 +432,13 @@ welcome
   line-height: 80px;
   letter-spacing: 0px;
   margin-bottom: 0px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .welcome-area1 .header-text p {
   font-weight: 300;
   font-size: 15px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   line-height: 24px;
   letter-spacing: 0px;
   margin-bottom: 15px;

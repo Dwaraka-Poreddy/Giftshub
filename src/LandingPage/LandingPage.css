@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Girassol&family=Lobster&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
 .hiro-loader {
   position: fixed;
   left: 0px;
@@ -10,7 +15,22 @@
 html {
   scroll-behavior: smooth;
 }
-
+*{
+  font-family: 'Lobster', cursive!important;
+}
+p,a,.dropdown-toggle,li,.slidehoverbtntext,button,.card-title,h3{
+  font-family: 'Raleway', sans-serif!important;
+}
+#landingpageservices .card-deck .card .card-header .my-0{
+  font-family: 'Lobster', cursive!important;
+}
+h4{
+  font-weight: bold;
+}
+.header-text .container .row{
+  width: 70%;
+  margin: 0 auto;
+}
 /*# sourceMappingURL=style.css.map */
 
 /* New Button Style */
@@ -18,6 +38,12 @@ a:hover {
   color: inherit;
   text-decoration: none;
   border-radius: 30px;
+}
+.mb-0{
+  font-size: 25px;
+  color: #fdc674;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 
 .butn {
@@ -109,7 +135,8 @@ a:hover {
        [ 06 Process ]
   -----------------------------------------------------------------*/
 #Process {
-  background-color: #f8f9fa;
+  
+  background-image: linear-gradient(#f33f3f, #fff)!important;
   padding: 4rem 0;
 }
 .process .item {
@@ -353,14 +380,14 @@ header.masthead {
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0px;
-  padding: 0px 0px 25px 0px;
+  padding: 0px 0px 65px 0px;
   margin: 0px 0px;
 }
 #socialMedia {
   padding: 4rem 0;
 }
 #landingpageservices {
-  padding: 10rem 0;
+  padding: 7rem 0;
 }
 
 .bannercarouselcontrol {
@@ -428,6 +455,7 @@ ul.tabs {
 
 ul.tabs li {
   float: left;
+  font-size: 18px;
   margin: 0;
   cursor: pointer;
   padding: 0px 21px;
@@ -446,6 +474,8 @@ ul.tabs li {
 }
 #team{
   height: 100vh;
+  background-image: linear-gradient(#fb6e6e, #f33f3f)!important;
+
 }
 
 .tab_last {
@@ -465,18 +495,12 @@ ul.tabs li.active {
 }
 
 .tab_container {
-
   border-top: none;
   clear: both;
   float: left;
   width: 100%;
-  background: #fff0;
+  background: #fff;
   overflow: auto;
-  display: flex;
-  height: 500px;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .tab_content {
@@ -486,12 +510,31 @@ ul.tabs li.active {
 
 .tab_drawer_heading {
   display: none;
-  width: 90%;
-  text-align: center;
-  border-radius: 10px;
+}
+.headline:after {
+  content:' ';
+  position: absolute;
+  display:block;
+  width: 100px;
+  margin: 0 2%;
+  border:2px solid orange;
+  border-radius:4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+left: 48%;
+transform: translateX(-50%);
+}
+.headline {
+  font-family: Calibri, "Helvetica", san-serif;
+  line-height: 1.5em;
+  color: black;
+  font-size: 30px;
+  position: relative;
 
 }
-
 @media screen and (max-width: 480px) {
   .tabs {
     display: none;
@@ -499,21 +542,25 @@ ul.tabs li.active {
   .tab_drawer_heading {
     background-color: #000;
     color: #fff;
+    border-radius: 10px;
     border-top: 1px solid #000;
     margin: 0;
     padding: 5px 20px;
+    margin: 0 0 20px 0;
     display: block;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-align: center;
   }
   .d_active {
-    background-color: black;
+    background-color: #000;
     color: #fff;
+  }
+  .tab_container{
+    background: #0000;
   }
 }
 

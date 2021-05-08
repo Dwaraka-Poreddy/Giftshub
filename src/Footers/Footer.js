@@ -29,7 +29,7 @@ export default function Footer() {
                 <input type="text" placeholder="Email Address" />
                 <button class="newsletter_submit_btn" type="submit">
                   <FontAwesomeIcon icon={faPaperPlane} />
-                  <FontAwesomeIcon icon={faCoffee} />
+                  
                 </button>
               </form>
             </div>
@@ -139,6 +139,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      &copy;<a>designed by</a>
     </footer>
   );
 }

@@ -1,7 +1,15 @@
 #mainNav {
   padding-top: 0.3rem!important;
-  padding-bottom: 0.3rem!important;
-  background: #000 !important;
+  padding-bottom: 0.3rem!important; 
+}
+.navbar-nav li a{
+  color: black;
+}
+#navbarResponsive .navbar-nav li a{
+  color: black!important;
+}
+#page-top .navbar .container .navbar-shrink .container .nav-bar #navbarResponsive .navbar-nav li a{
+  color: white!important;
 }
 .center{
   display: flex;

@@ -110,7 +110,7 @@
 }
 
 .footer-links li:before {
-  content: "\f105";
+  
   font-family: "FontAwesome";
   padding-right: 10px;
   color: #ccc;
@@ -124,7 +124,6 @@
 }
 
 .footer-category li:before {
-  content: "\f105";
   font-family: "FontAwesome";
   padding-right: 10px;
   color: #b3b3b3;

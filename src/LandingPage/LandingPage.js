@@ -223,13 +223,13 @@ export default function LandingPage() {
               alt="Second slide"
             />
           </div>
-          {/* <div class="carousel-item zoomcarousel">
+          <div class="carousel-item zoomcarousel">
             <img
               class="d-block w-100"
-              src={require("../Images/zoomcarousel2.jpg")}
+              src={require("../Images/v23.jpg")}
               alt="Third Slide "
             />
-          </div> */}
+          </div>
         </div>
         <a
           class="carousel-control-prev bannercarouselcontrol bannercarouselcontrolleft"
