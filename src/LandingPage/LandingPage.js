@@ -886,7 +886,10 @@ export default function LandingPage() {
       <div id="socialMedia">
         <div className="container">
           <center>
-            <h1 className="landingservicesheading"> Spread the Love</h1>
+            <h1 className="landingservicesheading" id="landingservicesheading">
+              {" "}
+              Spread the Love here
+            </h1>
           </center>{" "}
           <div className="row">
             <div className="col-4"></div>
