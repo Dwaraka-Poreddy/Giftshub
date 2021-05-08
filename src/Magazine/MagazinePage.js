@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Magazine from "./Magazine";
 import { BrowserView } from "react-device-detect";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
-import * as htmlToImage from "html-to-image";
+
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
 import ShareIcon from "@material-ui/icons/Share";
@@ -117,19 +115,6 @@ function MagazinePage() {
       );
     }
   };
-
-  function handleMagazineDownlod(el) {
-    var canvas = document.getElementById("magazine");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("magazine"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "Magazine");
-        });
-    });
-  }
 
   const tourConfig = [
     {

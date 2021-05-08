@@ -1,11 +1,26 @@
 import React from "react";
 import NavBar from "./NavBars/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Helmet } from "react-helmet";
 import "./AboutUs.css";
 import Footer from "./Footers/Footer";
 export default function AboutUs() {
   return (
     <div>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Gifts Hub - ABout us Page</title>
+        <meta
+          name="description"
+          content=" Pre-renders a web app into static HTML. Uses Headless Chrome to crawl all available links starting from the root. Heavily inspired by prep and react-snapshot, but written from scratch."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content=" personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
       <br />
       <br />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 import { toast } from "react-toastify";
 import { Button } from "antd";
-import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
+import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutlineOutlined";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -153,7 +153,7 @@ const Login = ({ history }) => {
         type="primary"
         block
         shape="round"
-        icon={<MailOutlined />}
+        icon={<MailOutlineOutlinedIcon />}
         size="large"
         disabled={!email || !password}
         className="mb-3"
@@ -190,7 +190,7 @@ const Login = ({ history }) => {
                   type="danger"
                   block
                   shape="round"
-                  icon={<GoogleOutlined />}
+                  icon={<MailOutlineOutlinedIcon style={{ color: "red" }} />}
                   size="large"
                   className="mb-3"
                 >

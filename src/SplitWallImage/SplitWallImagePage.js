@@ -16,7 +16,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import CropPage from "../Utils/CropPage";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-import AuthHeader from "../components/nav/Header";
+import NavBar from "../NavBars/NavBar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -104,7 +104,7 @@ function OpenGreetingCardPage() {
 
   return (
     <div style={{ backgroundColor: "#70cff3" }}>
-      <AuthHeader />
+      <NavBar />
       <br />
       <br />
       <br />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./LandingPage.css";
 import "../Swiper.css";
+import { Helmet } from "react-helmet";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -277,6 +278,20 @@ export default function LandingPage() {
   });
   return (
     <div className="App">
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Gifts Hub - Landing Page</title>
+        <meta
+          name="description"
+          content=" the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content=" personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <div
         style={{ display: "none" }}
         itemscope

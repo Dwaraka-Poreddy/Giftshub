@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsPaper from "./NewsPaper";
 import { BrowserView } from "react-device-detect";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
-import * as htmlToImage from "html-to-image";
+
 import "../Buttons.css";
 import ImageIcon from "@material-ui/icons/Image";
 import firebase from "../firebase";
@@ -25,7 +23,7 @@ import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import "../Buttons.css";
-var base64Img = require("base64-img");
+
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -123,19 +121,6 @@ function NewsPaperPage() {
       );
     }
   };
-
-  function handleImageDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
-    });
-  }
 
   const tourConfig = [
     {

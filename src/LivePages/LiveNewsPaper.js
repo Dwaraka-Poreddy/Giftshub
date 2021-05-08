@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewsPaper from "../NewsPaper/NewsPaper";
 import firebase from "../firebase";
 import HeaderBtn from "../Studio/HeaderBtn";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
+
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
@@ -32,18 +31,6 @@ function LiveNewsPaper({ match }) {
       });
     setloading(false);
   }, []);
-  function handleMemeDownlod(el) {
-    var canvas = document.getElementById("newspaper");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("newspaper"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "NewsPaper");
-        });
-    });
-  }
 
   return (
     <div>

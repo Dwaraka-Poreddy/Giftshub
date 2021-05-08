@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import NewsPaper from "../NewsPaper/NewsPaper";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
 import CircleTimer from "./CircleTimer";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 function ScheduledLiveNewsPaper({ match }) {

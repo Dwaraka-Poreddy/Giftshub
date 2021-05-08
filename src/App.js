@@ -28,9 +28,7 @@ const SwatchBookPage = lazy(() => import("./SwatchBook/SwatchBookPage"));
 const CalendarPage = lazy(() => import("./Calendar/CalandarPage"));
 const AboutUs = lazy(() => import("./AboutUs"));
 const LandingPage = lazy(() => import("./LandingPage/LandingPage"));
-const Studio = lazy(() => import("./Studio/Studio.js"));
-const Header = lazy(() => import("./Studio/Header"));
-const MainPage = lazy(() => import("./MainPage"));
+
 const MagazinePage = lazy(() => import("./Magazine/MagazinePage"));
 const NewsPaperPage = lazy(() => import("./NewsPaper/NewsPaperPage"));
 const CollagePage = lazy(() => import("./Collage/CollagePage"));
@@ -75,11 +73,10 @@ const LiveCollage = lazy(() => import("./LivePages/LiveCollage"));
 const SevenDayHome = lazy(() => import("./pages/SevenDayHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Home = lazy(() => import("./pages/Home"));
-const DummyHome = lazy(() => import("./pages/DummyHome"));
+
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ContinuePack = lazy(() => import("./pages/ContinuePack"));
-const SoundRecorder = lazy(() => import("./SoundRecorder"));
 const ScheduledLiveHoneyComb = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveHoneyComb")
 );
@@ -210,18 +207,14 @@ export default function App() {
           <Route exact path="/calendarpage" component={CalendarPage} />
           <Route exact path="/swatchbookpage" component={SwatchBookPage} />
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/sound" component={SoundRecorder} />
           <Route exact path="/animatedframe" component={AnimatedFrame} />
           <Route exact path="/userpackspage" component={UserPacksPage} />
-          <Route exact path="/dummyhome" component={DummyHome} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/studio" component={Studio} />
           <Route exact path="/recommendedhome" component={SevenDayHome} />
           <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register/complete" component={RegisterComplete} />
           <Route exact path="/forgot/password" component={ForgotPassword} />
-          <Route exact path="/mainpage" component={MainPage} />
           <Route exact path="/memorygamepage" component={MemoryGamePage} />
           <Route exact path="/collagepage" component={CollagePage} />
           <Route exact path="/newspaperpage" component={NewsPaperPage} />
@@ -229,7 +222,6 @@ export default function App() {
           <Route exact path="/slidepuzzlepage" component={SlidePuzzlePage} />
           <Route exact path="/honeycombpage" component={HoneyCombPage} />
           <Route exact path="/magazinepage" component={MagazinePage} />
-          <Route exact path="/greet" component={Header} />
           <Route
             exact
             path="/opengreetingcardpage"

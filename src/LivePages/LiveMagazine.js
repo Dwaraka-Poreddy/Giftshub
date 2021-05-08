@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Magazine from "../Magazine/Magazine";
 import firebase from "../firebase";
 import HeaderBtn from "../Studio/HeaderBtn";
-import domtoimage from "dom-to-image-more";
-import html2canvas from "html2canvas";
+
 import { Link } from "react-router-dom";
 import LiveNavBar from "../NavBars/LiveNavBar";
 import Loader from "react-loader-spinner";
@@ -28,19 +27,6 @@ function LiveMagazine({ match }) {
       });
     setloading(false);
   }, []);
-
-  function handleMemeDownlod(el) {
-    var canvas = document.getElementById("magazine");
-    html2canvas(canvas).then(function (canvas) {
-      domtoimage
-        .toBlob(document.getElementById("magazine"))
-
-        .then(function (base64image) {
-          console.log();
-          window.saveAs(base64image, "magazine");
-        });
-    });
-  }
 
   return (
     <div>
