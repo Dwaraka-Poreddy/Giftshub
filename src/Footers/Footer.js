@@ -9,7 +9,7 @@ import {
   faWhatsapp,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import "./Footer.css";
 export default function Footer() {
   return (
@@ -29,7 +29,6 @@ export default function Footer() {
                 <input type="text" placeholder="Email Address" />
                 <button class="newsletter_submit_btn" type="submit">
                   <FontAwesomeIcon icon={faPaperPlane} />
-                  
                 </button>
               </form>
             </div>
@@ -81,14 +80,12 @@ export default function Footer() {
           <div class="container second_class_bdr">
             <div class="row">
               <div class="col-md-4 col-sm-6">
-                <div class="footer-logo center column" >
-                  <h1>Gifts HUB</h1>
+                <div class="footer-logo center column">
+                  <h1 className="brandname">Gifts Hub</h1>
                 </div>
 
                 <p>
-                  Your one-stop 
-                  
-                  career platform to find Jobs, Internships,
+                  Your one-stop career platform to find Jobs, Internships,
                   Professional Trainings, Projects, and Volunteering
                   Opportunities.
                 </p>

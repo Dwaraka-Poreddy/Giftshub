@@ -161,7 +161,7 @@ export default function LandingPage() {
           <div class="carousel-inner zoomcarousel">
             <div class="carousel-item active zoomcarousel">
               <img
-                class="d-block w-100"
+                class="d-block w-100 mobilecarouselimg"
                 // src={require("../Images/zoomcarouselsquare.jpg")}
                 src={require("../Images/v22m.jpg")}
                 alt="First slide"
@@ -169,7 +169,7 @@ export default function LandingPage() {
             </div>
             <div class="carousel-item zoomcarousel">
               <img
-                class="d-block w-100"
+                class="d-block w-100 mobilecarouselimg"
                 // src={require("../Images/zoomcarousel0square.jpg")}
                 src={require("../Images/valentines1m.jpg")}
                 alt="Second slide"
@@ -202,11 +202,11 @@ export default function LandingPage() {
         data-ride="carousel"
       >
         {" "}
-        <ul class="carousel-indicators">
+        {/* <ul class="carousel-indicators">
           <li data-target="#demo" data-slide-to="0" class="active"></li>
           <li data-target="#demo" data-slide-to="1"></li>
           <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
+        </ul> */}
         <div class="carousel-inner zoomcarousel">
           <div class="carousel-item active zoomcarousel">
             <img
@@ -281,15 +281,16 @@ export default function LandingPage() {
     <div className="App">
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Gifts Hub - Landing Page</title>
+        <title>Gifts Hub - Free Personalized Virtual Gifting</title>
         <meta
           name="description"
-          content=" the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+          content=" Gifts manifest our emotions and transform them into meaningful forms of love! 
+          In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
         />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"
-          content=" personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
         />
         <meta name="language" content="EN" />
       </Helmet>
@@ -444,10 +445,15 @@ export default function LandingPage() {
                     ways and bringing you closer.
                   </p>
                   <center>
-                    <button className="main-button videotourbtn">
-                      Video Tour{" "}
-                      <PlayArrowOutlinedIcon style={{ marginBottom: "3px" }} />
-                    </button>
+                    <Link to="/samplegifts">
+                      {" "}
+                      <button className="main-button videotourbtn">
+                        Sample Gifts{" "}
+                        <PlayArrowOutlinedIcon
+                          style={{ marginBottom: "3px" }}
+                        />
+                      </button>
+                    </Link>
                   </center>
                 </div>
               </div>
@@ -777,10 +783,10 @@ export default function LandingPage() {
                 <div class="item first mb-md50">
                   <img
                     src={require("../Images/arrow.png")}
-                    class="tobotm"
+                    class="tobotm processarrow"
                     alt=""
                   />
-                  <span class="icon fa fa-address-book"></span>
+                  <span class="icon fa fa-address-book processline"></span>
 
                   <div class="cont">
                     <h3>01</h3>
@@ -795,8 +801,12 @@ export default function LandingPage() {
 
               <div class="col-lg-3 col-md-6">
                 <div class="item odd mb-md50">
-                  <img src={require("../Images/arrow.png")} alt="" />
-                  <span class="icon fa fa-address-book"></span>
+                  <img
+                    className="processarrow"
+                    src={require("../Images/arrow.png")}
+                    alt=""
+                  />
+                  <span class="icon fa fa-address-book processline"></span>
                   <div class="cont">
                     <h3>02</h3>
                     <h6>Planning</h6>
@@ -812,10 +822,10 @@ export default function LandingPage() {
                 <div class="item mb-sm50">
                   <img
                     src={require("../Images/arrow.png")}
-                    class="tobotm"
+                    class="tobotm processarrow"
                     alt=""
                   />
-                  <span class="icon fa fa-address-book"></span>
+                  <span class="icon fa fa-address-book processline"></span>
                   <div class="cont">
                     <h3>03</h3>
                     <h6>Development</h6>
@@ -829,7 +839,7 @@ export default function LandingPage() {
 
               <div class="col-lg-3 col-md-6">
                 <div class="item odd">
-                  <span class="icon fa fa-address-book"></span>
+                  <span class="icon fa fa-address-book processline"></span>
                   <div class="cont">
                     <h3>04</h3>
                     <h6>Testing</h6>
@@ -888,7 +898,7 @@ export default function LandingPage() {
           <center>
             <h1 className="landingservicesheading" id="landingservicesheading">
               {" "}
-              Spread the Love here
+              Spread the Love
             </h1>
           </center>{" "}
           <div className="row">

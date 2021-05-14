@@ -3,16 +3,15 @@
                                     Social Icons
   =========================================================================================
   */
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
-.footer-logo img{
+.footer-logo img {
   height: 100px;
   object-fit: cover;
 }
-.footer-logo h1{
-  
+.footer-logo h1 {
   color: #fff;
-  font-family: 'Kaushan Script', cursive;
+  font-family: "Kaushan Script", cursive;
 }
 .round-btn {
   display: inline;
@@ -110,7 +109,6 @@
 }
 
 .footer-links li:before {
-  
   font-family: "FontAwesome";
   padding-right: 10px;
   color: #ccc;
@@ -261,4 +259,7 @@ footer li {
   .copyright {
     font-size: 13px;
   }
+}
+.brandname {
+  color: #fdc46f !important;
 }

@@ -9,10 +9,10 @@ export default function AboutUs() {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Gifts Hub - ABout us Page</title>
+        <title>ABout Us </title>
         <meta
           name="description"
-          content=" Pre-renders a web app into static HTML. Uses Headless Chrome to crawl all available links starting from the root. Heavily inspired by prep and react-snapshot, but written from scratch."
+          content=" Srinivas and Dwarak built this fabulous website to send free virtual gifts. Gifts manifest our emotions and transform them into meaningful forms."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -243,6 +243,16 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+      <p>
+        Gift-planning can be quite a challenging task given the hectic schedules
+        we all have, currently. So to waste no more time and to bid goodbyes to
+        all the reminders and alarms, we introduce our automatic gift generation
+        feature which keeps a track of the D-day and time, releasing the
+        appropriate gift component on the desired day! Lead a guilt-free life
+        once you choose your suitable package and customize them accordingly,
+        because we at Gift’s Hub promise to deliver blissful content as and when
+        you intend us to!
+      </p>
       <br />
       <Footer />
     </div>

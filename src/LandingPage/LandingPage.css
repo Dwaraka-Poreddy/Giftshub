@@ -228,7 +228,7 @@ a:hover {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #292921;
+  background-color: #fb6e6e;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -597,4 +597,14 @@ ul.tabs li.active {
   line-height: 45px !important;
   font-family: "Lobster", cursive !important;
   font-size: 24px !important;
+}
+.processarrow {
+  filter: invert(1);
+}
+.processline {
+  filter: invert(0.5);
+}
+.mobilecarouselimg {
+  margin-top: -15%;
+  margin-bottom: -15%;
 }

@@ -125,7 +125,7 @@ section .section-title {
   color: #007b5e !important;
 } */
 .frontside .card .card-body {
-  padding: 5px;
+  padding: 0px;
 }
 .backside .card .card-body {
   padding: 5px;

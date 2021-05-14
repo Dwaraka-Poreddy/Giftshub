@@ -109,7 +109,7 @@
 .dropdown-menu,
 .dropdown-menu-right,
 .dropdown-secondary {
-  /* background: #fb6e6e !important; */
-  background: transparent;
+  background: #fb6e6e !important;
+
   border: 0px !important;
 }

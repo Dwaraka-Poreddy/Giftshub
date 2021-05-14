@@ -28,7 +28,7 @@ const SwatchBookPage = lazy(() => import("./SwatchBook/SwatchBookPage"));
 const CalendarPage = lazy(() => import("./Calendar/CalandarPage"));
 const AboutUs = lazy(() => import("./AboutUs"));
 const LandingPage = lazy(() => import("./LandingPage/LandingPage"));
-
+const SampleGifts = lazy(() => import("./SampleGifts/SampleGifts"));
 const MagazinePage = lazy(() => import("./Magazine/MagazinePage"));
 const NewsPaperPage = lazy(() => import("./NewsPaper/NewsPaperPage"));
 const CollagePage = lazy(() => import("./Collage/CollagePage"));
@@ -160,7 +160,8 @@ export default function App() {
         <title>Gifts Hub - Free Personalized Virtual Gifting</title>
         <meta
           name="description"
-          content="Send flowers online @399 from best flower shop. Order flowers to India with Ferns N Petals & get midnight, same day flower delivery with free."
+          content="Gifts manifest our emotions and transform them into meaningful forms of love! 
+          In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -173,6 +174,7 @@ export default function App() {
         fallback={
           <div className="col text-center p-5">
             <h1> Gifts' Hub Website On The Way...</h1>
+            <img src={require("./Images/giftgif.gif")} alt="starting gif" />
             {/* <LoadingOutlined /> */}
           </div>
         }
@@ -199,6 +201,7 @@ export default function App() {
             path="/browngreetingcard"
             component={BrownGreetingCard}
           />
+          <Route exact path="/samplegifts" component={SampleGifts} />
           <Route exact path="/challengePage" component={ChallengePage} />
           <Route exact path="/challenge" component={Challenge} />
           <Route exact path="/aboutus" component={AboutUs} />

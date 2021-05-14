@@ -27,7 +27,7 @@ import "../Swiper.css";
 import $ from "jquery";
 import "../Buttons.css";
 import "./SevenDayHome.css";
-
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles((theme) => ({
   margin: {},
   paper: {
@@ -263,6 +263,20 @@ function SevenDayHome({ history }) {
   };
   return (
     <div>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Our Recommended Pack</title>
+        <meta
+          name="description"
+          content="We offer standard as well as custom made packages, suitable for your requirements and generate a link which is all-time accessible on any web browser. After all, we understand that it is these little things that will trip you down the memory lane and help you relive all these moments together anytime, anywhere and anyway you want!"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
       <br />
       <br />

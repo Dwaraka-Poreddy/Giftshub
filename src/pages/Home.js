@@ -16,6 +16,7 @@ import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import FolderSharedOutlinedIcon from "@material-ui/icons/FolderSharedOutlined";
 import CakeIcon from "@material-ui/icons/Cake";
 import { isMobileOnly, isTablet } from "react-device-detect";
+import { Helmet } from "react-helmet";
 import "./Home.css";
 const Home = ({ history }) => {
   const [loading, setloading] = useState(false);
@@ -121,6 +122,20 @@ const Home = ({ history }) => {
   };
   return (
     <div>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Create Your Pack</title>
+        <meta
+          name="description"
+          content="Gift-planning can be quite a challenging task given the hectic schedules we all have, currently. So to waste no more time and to bid goodbyes to all the reminders and alarms, we introduce our automatic gift generation feature which keeps a track of the D-day and time, releasing the appropriate gift component on the desired day! Lead a guilt-free life once you choose your suitable package and customize them accordingly, because we at Gift’s Hub promise to deliver blissful content as and when you intend us to!"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
       <br />
       <br /> <br />
