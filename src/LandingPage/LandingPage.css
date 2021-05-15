@@ -461,9 +461,10 @@ ul.tabs {
   padding: 0;
   float: left;
   list-style: none;
-  height: 32px;
+  background-color: #f2e5d2;
+  /* height: 32px; */
   width: 100%;
-  border-bottom: 11px solid white;
+  /* border-bottom: 11px solid white; */
 }
 
 ul.tabs li {
@@ -472,38 +473,41 @@ ul.tabs li {
   margin: 0;
   cursor: pointer;
   padding: 0px 21px;
-  height: 31px;
+  /* height: 31px; */
   line-height: 31px;
   /* border-top: 1px solid #DADADA;
   border-left: 1px solid #DADADA;
   border-bottom: 1px solid #DADADA; */
-  background-color: #666;
-  color: #ccc;
+  background-color: #f2e5d2;
+  color: rgb(0, 0, 0);
   overflow: hidden;
   position: relative;
   width: 16.66%;
   text-align: center;
-  border-radius: 8px 8px 0 0;
+  /* border-radius: 100px; */
 }
 #team {
   height: 100vh;
   background-image: linear-gradient(#fb6e6e, #f33f3f) !important;
 }
 
-.tab_last {
+/* .tab_last {
   border-right: 1px solid #dadada;
-}
+} */
 
 ul.tabs li:hover {
-  background-color: #ccc;
-  color: #333;
+  background-color: #fcc87a;
+  color: rgb(255, 255, 255);
+  border-radius: 100px;
 }
 
 ul.tabs li.active {
-  background-color: #fff;
-  color: #333;
-  border-bottom: 1px solid #fff;
+  background-color: #fcc87a;
+  color: rgb(255, 255, 255);
+  border-bottom: 2px solid #fcc87a;
   display: block;
+  border-radius: 100px;
+  /* border: 2px solid #f33f3f; */
 }
 
 .tab_container {
@@ -511,8 +515,10 @@ ul.tabs li.active {
   clear: both;
   float: left;
   width: 100%;
-  background: #fff;
+  background: #fcc87a !important;
   overflow: auto;
+  /* border-radius: 25px; */
+  /* border: 2px solid #f33f3f; */
 }
 
 .tab_content {
@@ -589,8 +595,36 @@ ul.tabs li.active {
 .freegifting {
   padding-bottom: 40px !important;
 }
-.videotourbtn {
+.samplegiftsbtn {
   margin-top: 25px !important;
+  border: 1px solid#f36969 !important;
+  outline: none !important;
+  cursor: pointer;
+  color: #f36969 !important;
+  font-size: 15px !important;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 10px 18px;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #f36969 50%, #fff 0);
+  background-size: 210% 100%;
+  background-position: 100% 100%;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.samplegiftsbtn:hover {
+  background-position: left bottom;
+  color: #ffffff !important;
+}
+.samplegiftsbtn:hover .samplegiftsbtnarrow {
+  transform: rotate(120deg) !important;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 .tablis {
   height: 45px !important;

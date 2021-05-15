@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import "./UserPacksPage.css";
 import firebase from "../firebase";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import NavBar from "../NavBars/NavBar";
+import Footer from "../Footers/Footer";
 import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 function UserPacksPage({ history }) {
@@ -87,191 +89,200 @@ function UserPacksPage({ history }) {
     );
   });
   return (
-    <div style={{ backgroundColor: "#70cff3" }}>
+    <div>
       <NavBar />
       <br />
       <br />
       <br />
-      <ul>
-        {gifts.map((gift, index) => (
-          <div>
-            <div class="container">
-              <div class="card">
-                <h5
-                  class="card-header "
-                  style={{ justifyContent: "space-between" }}
-                >
-                  {" "}
-                  <div class="row">
-                    <div class="col-6">{gift.Folder_name}</div>{" "}
-                    <div class="col-6">{gift.Bday_date.toLocaleString()}</div>{" "}
-                  </div>
-                </h5>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-3 p-0 ">
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div
-                            style={{
-                              height: "38.5px",
-                              alignItems: "center",
-                              border: "none",
-                            }}
-                            class="col-12  "
-                          >
-                            <h2
-                              style={{
-                                fontSize: "18px",
-                                color: "#0196de",
-                                marginLeft: "8px",
-                                marginTop: "10px",
-                                marginBottom: "0",
-                              }}
-                            >
-                              {gift.To_name}
-                            </h2>
-                          </div>
-                          <div class="col-6 col-md-12">
+      <div className="userspacks py-5">
+        <ul>
+          {gifts.map((gift, index) => (
+            <div>
+              <div class="container">
+                <div class="card">
+                  <h5
+                    class="card-header "
+                    style={{
+                      justifyContent: "space-between",
+                      color: "#fff",
+                      background:
+                        "linear-gradient(rgb(255 120 120), 85%, rgb(234 161 161)) ",
+                    }}
+                  >
+                    {" "}
+                    <div class="row">
+                      <div class="col-6">{gift.Folder_name}</div>{" "}
+                      <div class="col-6">{gift.Bday_date.toLocaleString()}</div>{" "}
+                    </div>
+                  </h5>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3 p-0 ">
+                        <div class="container-fluid">
+                          <div class="row">
                             <div
                               style={{
                                 height: "38.5px",
                                 alignItems: "center",
-                                border: "1px solid #0196de",
-                                cursor: "pointer",
-                                borderRadius: "5px",
+                                border: "none",
                               }}
-                              class="col-12"
+                              class="col-12  "
                             >
-                              <Link
-                                class="logo"
-                                to={`/scheduledlive/main/${gift.id}`}
-                                target="_blank"
+                              <h2
+                                style={{
+                                  color: "#fdc46f",
+                                }}
+                              >
+                                {gift.To_name}
+                              </h2>
+                            </div>
+                            <div class="col-6 col-md-12">
+                              <div
+                                style={{
+                                  height: "38.5px",
+                                  alignItems: "center",
+                                  border: "1px solid #fdc46f",
+                                  cursor: "pointer",
+                                  borderRadius: "5px",
+                                }}
+                                class="col-12"
+                              >
+                                <Link
+                                  class="logo"
+                                  to={`/scheduledlive/main/${gift.id}`}
+                                  target="_blank"
+                                >
+                                  <h2
+                                    style={{
+                                      fontSize: "18px",
+                                      color: "#fdc46f",
+                                      marginLeft: "8px",
+                                      marginTop: "10px",
+                                      marginBottom: "0",
+                                    }}
+                                  >
+                                    {" "}
+                                    Preview{" "}
+                                  </h2>
+                                </Link>
+                              </div>
+                            </div>
+
+                            <div class="col-6 col-md-12">
+                              <div
+                                onClick={() => {
+                                  handleDelete(gift.id);
+                                }}
+                                class="col-12"
+                                style={{
+                                  height: "38.5px",
+                                  // width: "242.63px",
+                                  alignItems: "center",
+                                  border: "1px solid #fb6e6e",
+                                  cursor: "pointer",
+                                  borderRadius: "5px",
+                                  backgroundColor: "#fd6e6e",
+                                }}
                               >
                                 <h2
                                   style={{
                                     fontSize: "18px",
-                                    color: "#0196de",
+                                    color: "#fff",
                                     marginLeft: "8px",
                                     marginTop: "10px",
                                     marginBottom: "0",
                                   }}
                                 >
-                                  {" "}
-                                  Preview{" "}
-                                </h2>
-                              </Link>
-                            </div>
-                          </div>
-
-                          <div class="col-6 col-md-12">
-                            <div
-                              onClick={() => {
-                                handleDelete(gift.id);
-                              }}
-                              class="col-12"
-                              style={{
-                                height: "38.5px",
-                                // width: "242.63px",
-                                alignItems: "center",
-                                border: "1px solid #0196de",
-                                cursor: "pointer",
-                                borderRadius: "5px",
-                              }}
-                            >
-                              <h2
-                                style={{
-                                  fontSize: "18px",
-                                  color: "#0196de",
-                                  marginLeft: "8px",
-                                  marginTop: "10px",
-                                  marginBottom: "0",
-                                }}
-                              >
-                                Delete
-                              </h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-7 p-0 ">
-                      {" "}
-                      <div class="container-fluid">
-                        <div class="row">
-                          {gift.array_data.map((c) => (
-                            <div
-                              style={{
-                                border: "none",
-                              }}
-                              class="col-6 col-md-4  p-0 m-0 "
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  textAlign: "justify",
-                                }}
-                              >
-                                {c.url ? (
-                                  <CheckCircle
-                                    style={{
-                                      fill: "#0196de",
-                                      margin: "5px 7px",
-                                    }}
-                                  />
-                                ) : (
-                                  <img
-                                    style={{
-                                      width: "23.5px",
-                                      height: "23.5px",
-                                      margin: "5px 11px 0 8px",
-                                    }}
-                                    src="assets/images/icon.png"
-                                    alt=""
-                                  />
-                                )}
-                                <h2
-                                  style={{
-                                    fontSize: "18px",
-                                    color: "#0196de",
-                                    marginLeft: "8px",
-                                    marginTop: "10px",
-                                    marginBottom: "3px",
-                                  }}
-                                >
-                                  {" "}
-                                  {c.content}
+                                  Delete
                                 </h2>
                               </div>
                             </div>
-                          ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-2">
-                      {" "}
-                      <div>
-                        <center>
-                          <br />
-                          <Link to={`/ContinuePack/${gift.id}`}>
-                            <button
-                              style={{ height: "100%", margin: "auto" }}
-                              class="main-button"
-                            >
-                              Proceed
-                            </button>
-                          </Link>{" "}
-                        </center>
+                      <div class="col-md-7 p-0 ">
+                        {" "}
+                        <div class="container-fluid">
+                          <div class="row">
+                            {gift.array_data.map((c) => (
+                              <div
+                                style={{
+                                  border: "none",
+                                }}
+                                class="col-6 col-md-4  p-0 m-0 "
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    textAlign: "justify",
+                                  }}
+                                >
+                                  {c.url ? (
+                                    <CheckCircle
+                                      style={{
+                                        fill: "#fdc46f",
+                                        margin: "5px 7px",
+                                      }}
+                                    />
+                                  ) : (
+                                    <img
+                                      style={{
+                                        width: "23.5px",
+                                        height: "23.5px",
+                                        margin: "5px 11px 0 8px",
+                                      }}
+                                      src="assets/images/icon.png"
+                                      alt=""
+                                    />
+                                  )}
+                                  <h2
+                                    style={{
+                                      fontSize: "18px",
+                                      color: "#fb6e6e",
+                                      marginLeft: "8px",
+                                      marginTop: "10px",
+                                      marginBottom: "3px",
+                                    }}
+                                  >
+                                    {" "}
+                                    {c.content}
+                                  </h2>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        {" "}
+                        <div>
+                          <center>
+                            <br />
+                            <Link to={`/ContinuePack/${gift.id}`}>
+                              <button
+                                style={{
+                                  height: "100%",
+                                  margin: "auto",
+                                  backgroundColor: "#fdc46f",
+                                }}
+                                class="main-button"
+                              >
+                                Proceed
+                              </button>
+                            </Link>{" "}
+                          </center>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <br />
             </div>
-            <br />
-          </div>
-        ))}
-      </ul>
+          ))}
+        </ul>{" "}
+      </div>
+      <Footer />
     </div>
   );
 }

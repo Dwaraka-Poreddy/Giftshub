@@ -4,9 +4,9 @@ function SpecialCard({ fbimg, head1, para, head2 }) {
   return (
     <div style={{ flex: "0.8", alignItems: "center" }}>
       <div class="container">
-        <center>
+        {/* <center>
           <h1 className="specialcardHoverText">Hover the card below !!!</h1>
-        </center>
+        </center> */}
         <div class="row">
           <div class="col p-0">
             <div

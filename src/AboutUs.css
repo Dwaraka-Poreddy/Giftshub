@@ -2,202 +2,186 @@ body {
   margin-top: 20px;
 }
 
-/* Team */
-
-.team-member {
-  background: #fff;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+.aboutus {
+  background: linear-gradient(#fdc46f, #fff) !important;
+}
+.aboutuspara {
+  width: 95%;
+  text-align: justify;
+  margin: auto;
 }
 
-.team-member .team-photo {
-  background: #fff;
-  min-height: 200px;
+/**** Sass Variables ****/
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
+/* body {
+  font-family: "Open Sans", sans-serif;
+  background: #333;
+} */
+
+.containerdum {
+  max-width: 900px;
+  display: flex;
+  justify-content: space-evenly;
   margin: 0 auto;
-  padding: 24px 24px 32px 24px;
 }
 
-.team-member .team-attrs {
-  padding: 2px 16px 16px 16px;
-  color: #303030;
-}
-
-.team-member .team-attrs .team-name {
-  font-size: 21px;
-}
-
-.team-member .team-attrs .team-position {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #a7a7a7;
-}
-
-.team-member .team-content {
-  color: #303030;
-  opacity: 0.8;
-  padding: 16px 24px 40px 24px;
-}
-
-.team-member:hover {
-  box-shadow: 2px 3px 9px rgba(0, 0, 0, 0.2);
-}
-
-/*------------------------------------------------------------------
-[10. Hover Effects]
-*/
-
-.item-wrap {
-  margin-bottom: 30px;
-}
-
-figure {
+.card-wrapper {
+  width: 400px;
+  height: 500px;
   position: relative;
-  overflow: hidden;
-  text-align: center;
 }
 
-figure img {
-  position: relative;
-  opacity: 1;
-}
-
-figure figcaption {
-  padding: 1em;
-  color: #303030;
-  text-transform: uppercase;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-figure figcaption > .fig-description a {
-  z-index: 1000;
-  text-indent: 200%;
-  white-space: nowrap;
-  font-size: 0;
-}
-
-figure figcaption:before,
-figure figcaption:after {
-  pointer-events: none;
-}
-
-figure figcaption,
-figure figcaption > a {
+.card {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 450px;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.card .card-image {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
+  z-index: 2;
+  background-color: #000;
+  transition: 0.5s;
+}
+.card:hover img {
+  opacity: 0.4;
+  transition: 0.5s;
 }
 
-figure h3 {
-  word-spacing: -0.15em;
-  font-family: "Montserrat", sans-serif;
+.card:hover .card-image {
+  transform: translateY(-100px);
+  transition: all 0.9s;
 }
 
-figure h3 span {
-  font-family: "Montserrat", sans-serif;
+/**** Social Icons *****/
+.social-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: flex;
+}
+.social-icons li {
+  list-style: none;
+}
+.social-icons li a {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #fff;
+  font-size: 23px;
+  color: #333;
+  font-weight: bold;
+  margin: 0 6px;
+  transition: 0.4s;
+  transform: translateY(200px);
+  opacity: 0;
 }
 
-figure h3,
-figure p {
-  margin: 0;
-}
-
-figure p {
-  letter-spacing: 1px;
-  font-size: 68.5%;
-}
-
-/* Team Hover */
-
-figure.effect-zoe {
-  margin: 0;
-  width: 100%;
-  height: auto;
-  min-width: 200px;
-  max-height: none;
-  max-width: none;
-  float: none;
-}
-
-figure.effect-zoe img {
-  display: inline-block;
+.card:hover .social-icons li a {
+  transform: translateY(0px);
   opacity: 1;
 }
 
-figure.effect-zoe p.icon-links {
-  margin: 0px;
+.social-icons li a:hover {
+  background: #000;
+  transition: 0.2s;
 }
-
-figure.effect-zoe p.icon-links a {
+.social-icons li a:hover .aboutusfabicons {
   color: #fff;
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-  -webkit-transform: translate3d(0, 200%, 0);
-  transform: translate3d(0, 200%, 0);
 }
 
-figure.effect-zoe p.icon-links a i::before {
+.social-icons li a .aboutusfabicons {
+  transition: 0.8s;
+}
+.social-icons li a .aboutusfabicons:hover {
+  transform: rotateY(360deg);
   color: #fff;
-  font-size: 24px;
-  display: inline-block;
-  padding: 15px 10px;
-  margin-left: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-figure.effect-zoe p.icon-links a:hover i::before {
-  color: #f2f2f2;
-}
-
-figure.effect-zoe p.phone-number a {
-  color: #fff;
-  font-size: 12px;
-}
-
-figure.effect-zoe p.phone-number a:hover {
-  color: #f2f2f2;
-  text-decoration: none;
-}
-
-figure.effect-zoe figcaption {
-  top: auto;
-  bottom: 0;
-  padding: 0;
-  height: 8em;
-  background: #a7a7a7;
-  border-top: 3px solid #fff;
-  color: #5d5d5d;
-  -webkit-transition: -webkit-transform 0.5s;
-  transition: transform 0.5s;
-  -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
-}
-
-figure.effect-zoe:hover figcaption,
-figure.effect-zoe:hover h2,
-figure.effect-zoe:hover p.icon-links a {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-figure.effect-zoe:hover p.icon-links a:nth-child(3) {
-  -webkit-transition-delay: 0.1s;
+.card:hover li:nth-child(1) a {
   transition-delay: 0.1s;
 }
 
-figure.effect-zoe:hover p.icon-links a:nth-child(2) {
-  -webkit-transition-delay: 0.15s;
-  transition-delay: 0.15s;
+.card:hover li:nth-child(2) a {
+  transition-delay: 0.2s;
 }
 
-figure.effect-zoe:hover p.icon-links a:first-child {
-  -webkit-transition-delay: 0.2s;
-  transition-delay: 0.2s;
+.card:hover li:nth-child(3) a {
+  transition-delay: 0.3s;
+}
+
+.card:hover li:nth-child(4) a {
+  transition-delay: 0.4s;
+}
+
+/**** Personal Details ****/
+.details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  height: 120px;
+  z-index: 1;
+  padding: 10px;
+}
+.details h2 {
+  margin: 30px 0;
+  padding: 0;
+  text-align: center;
+}
+.details h2 .job-title {
+  font-size: 1rem;
+  line-height: 2.5rem;
+  color: #333;
+  font-weight: 300;
+}
+
+.jane {
+  position: absolute;
+  bottom: -120px;
+  left: 0;
+  opacity: 0;
+  background: #fff;
+  width: 100%;
+  height: 120px;
+  z-index: 3;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+.profile-two .social-icons li a {
+  border-radius: 50%;
+}
+
+.card:hover .profile-img--two {
+  transform: rotateY(180deg);
+}
+
+.card:hover .jane {
+  bottom: 0;
+  left: 0;
+  transition-delay: 0.5s;
+  opacity: 1;
 }

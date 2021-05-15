@@ -309,7 +309,7 @@ button.main-button:hover {
 welcome
 --------------------------------------------- 
 */
-#page-top{
+#page-top {
   background-color: #fcfcfc;
 }
 
@@ -402,8 +402,8 @@ welcome
 /*    ------------------------
 ----------------------------------
           */
-#welcome .header-text .container .row .left-text p{
-  color: black!important;
+#welcome .header-text .container .row .left-text p {
+  color: black !important;
 }
 
 #welcome1 {
@@ -755,7 +755,7 @@ footer
 */
 footer {
   background-color: #fff;
-  padding: 60px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 footer .social {

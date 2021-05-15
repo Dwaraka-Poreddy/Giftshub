@@ -1,5 +1,12 @@
 import React from "react";
 import NavBar from "./NavBars/NavBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "./AboutUs.css";
@@ -25,235 +32,200 @@ export default function AboutUs() {
       <br />
       <br />
       <br />
-      <br />
-
-      <div class="container">
-        <div class="row bootstrap snippets bootdey">
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure class="effect-zoe">
-                <div class="team-photo">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                    alt="Rachel James Johnes"
-                    class="img-responsive"
-                  />
-                </div>
-                <div class="team-attrs">
-                  <div class="team-name font-accident-two-bold-italic">
-                    Jack Moss
-                  </div>
-                  <div class="team-position">Founder</div>
-                </div>
-                {/* <div class="team-content small">
-                  Truong is also the recipient of The George C. Lin Emerging
-                  Filmmaker Award from the San Diego
-                </div> */}
-                <figcaption>
-                  <p class="icon-links">
-                    <a href="#!">
-                      <i class="fa fa-google"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </p>
-
-                  <p class="phone-number">
-                    <a href="#!">tel: 1 234 567-89-10</a>
-                  </p>
-                </figcaption>
-              </figure>
+      <div className="container containerdum">
+        <div className="card-wrapper">
+          <div className="card">
+            <div className="card-image">
+              <img
+                src="https://image.ibb.co/dUTfmJ/profile_img.jpg"
+                alt="profile one"
+              />
             </div>
-            <div class="dividewhite4"></div>
+            <ul className="social-icons">
+              <li>
+                <a href>
+                  {/* <i className="fab fa-facebook-f" /> */}
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faFacebookF}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faGithub}
+                  />
+                  {/* <i className="fab fa-instagram" /> */}
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faTwitter}
+                  />
+                  {/* <i className="fab fa-twitter" /> */}
+                </a>
+              </li>
+              <li>
+                <a href>
+                  {/* <i className="fab fa-dribbble" /> */}
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faLinkedinIn}
+                  />
+                </a>
+              </li>
+            </ul>
+            <div className="details">
+              <h2>
+                Srinivas Konduri
+                <br />
+                <span className="job-title">UI Developer</span>
+              </h2>
+            </div>
           </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure class="effect-zoe">
-                <div class="team-photo">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                    alt="Rachel James Johnes"
-                    class="img-responsive"
-                  />
-                </div>
-                <div class="team-attrs">
-                  <div class="team-name font-accident-two-bold-italic">
-                    Kate Keppler
-                  </div>
-                  <div class="team-position">Founder</div>
-                </div>
-                {/* <div class="team-content small">
-                  Truong is also the recipient of The George C. Lin Emerging
-                  Filmmaker Award from the San Diego
-                </div> */}
-                <figcaption>
-                  <p class="icon-links">
-                    <a href="#!">
-                      <i class="fa fa-google"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </p>
+        </div>
 
-                  <p class="phone-number">
-                    <a href="#!">tel: 1 234 567-89-10</a>
-                  </p>
-                </figcaption>
-              </figure>
+        {/* ////////////////// */}
+        <div className="card-wrapper">
+          <div className="card">
+            <div className="card-image">
+              <img
+                src="https://image.ibb.co/dUTfmJ/profile_img.jpg"
+                alt="profile one"
+              />
             </div>
-            <div class="dividewhite4"></div>
+            <ul className="social-icons">
+              <li>
+                <a href>
+                  {/* <i className="fab fa-facebook-f" /> */}
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faFacebookF}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faGithub}
+                  />
+                  {/* <i className="fab fa-instagram" /> */}
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faTwitter}
+                  />
+                  {/* <i className="fab fa-twitter" /> */}
+                </a>
+              </li>
+              <li>
+                <a href>
+                  {/* <i className="fab fa-dribbble" /> */}
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faLinkedinIn}
+                  />
+                </a>
+              </li>
+            </ul>
+            <div className="details">
+              <h2>
+                Dwaraka Poreddy
+                <br />
+                <span className="job-title">UI Developer</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        {/* end box wrapper */}
+        {/* <div className="card-wrapper">
+          <div className="card profile-two">
+            <div className="card-image profile-img--two">
+              <img
+                src="https://image.ibb.co/c9rY6J/profile02.jpg"
+                alt="profile two"
+              />
+            </div>
+
+            <ul className="social-icons">
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faFacebookF}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faGithub}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faTwitter}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <FontAwesomeIcon
+                    className="aboutusfabicons"
+                    icon={faLinkedinIn}
+                  />
+                </a>
+              </li>
+            </ul>
+            <div className="details jane">
+              <h2>
+                Dwaraka Poreddy
+                <br />
+                <span className="job-title">UI Designer</span>
+              </h2>
+            </div>
+          </div>
+        </div> */}
+        {/* END box wrapper */}
+      </div>
+      {/* END container */} <br /> <br />
+      <div class="aboutus">
+        <div class="header-text">
+          <div class="container py-5">
+            <div class="row">
+              <div
+                class="left-text col-xs-12"
+                data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
+              >
+                <p className="aboutuspara">
+                  Gift-planning can be quite a challenging task given the hectic
+                  schedules we all have, currently. So to waste no more time and
+                  to bid goodbyes to all the reminders and alarms, we introduce
+                  our automatic gift generation feature which keeps a track of
+                  the D-day and time, releasing the appropriate gift component
+                  on the desired day! Lead a guilt-free life once you choose
+                  your suitable package and customize them accordingly, because
+                  we at Gift’s Hub promise to deliver blissful content as and
+                  when you intend us to!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row bootstrap snippets bootdey">
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure class="effect-zoe">
-                <div class="team-photo">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                    alt="Rachel James Johnes"
-                    class="img-responsive"
-                  />
-                </div>
-                <div class="team-attrs">
-                  <div class="team-name font-accident-two-bold-italic">
-                    Jack Moss
-                  </div>
-                  <div class="team-position">UI, UX</div>
-                </div>
-                {/* <div class="team-content small">
-                  Truong is also the recipient of The George C. Lin Emerging
-                  Filmmaker Award from the San Diego
-                </div> */}
-                <figcaption>
-                  <p class="icon-links">
-                    <a href="#!">
-                      <i class="fa fa-google"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </p>
-
-                  <p class="phone-number">
-                    <a href="#!">tel: 1 234 567-89-10</a>
-                  </p>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="dividewhite4"></div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure class="effect-zoe">
-                <div class="team-photo">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                    alt="Rachel James Johnes"
-                    class="img-responsive"
-                  />
-                </div>
-                <div class="team-attrs">
-                  <div class="team-name font-accident-two-bold-italic">
-                    Mario Quinn
-                  </div>
-                  <div class="team-position">content</div>
-                </div>
-                {/* <div class="team-content small">
-                  Truong is also the recipient of The George C. Lin Emerging
-                  Filmmaker Award from the San Diego
-                </div> */}
-                <figcaption>
-                  <p class="icon-links">
-                    <a href="#!">
-                      <i class="fa fa-google"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </p>
-
-                  <p class="phone-number">
-                    <a href="#!">tel: 1 234 567-89-10</a>
-                  </p>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="dividewhite4"></div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure class="effect-zoe">
-                <div class="team-photo">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                    alt="Rachel James Johnes"
-                    class="img-responsive"
-                  />
-                </div>
-                <div class="team-attrs">
-                  <div class="team-name font-accident-two-bold-italic">
-                    Ramon Vasquez
-                  </div>
-                  <div class="team-position">Public relations</div>
-                </div>
-                {/* <div class="team-content small">
-                  Truong is also the recipient of The George C. Lin Emerging
-                  Filmmaker Award from the San Diego
-                </div> */}
-                <figcaption>
-                  <p class="icon-links">
-                    <a href="#!">
-                      <i class="fa fa-google"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </p>
-
-                  <p class="phone-number">
-                    <a href="#!">tel: 1 234 567-89-10</a>
-                  </p>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="dividewhite4"></div>
-          </div>
-        </div>
-      </div>
-      <p>
-        Gift-planning can be quite a challenging task given the hectic schedules
-        we all have, currently. So to waste no more time and to bid goodbyes to
-        all the reminders and alarms, we introduce our automatic gift generation
-        feature which keeps a track of the D-day and time, releasing the
-        appropriate gift component on the desired day! Lead a guilt-free life
-        once you choose your suitable package and customize them accordingly,
-        because we at Gift’s Hub promise to deliver blissful content as and when
-        you intend us to!
-      </p>
-      <br />
       <Footer />
     </div>
   );

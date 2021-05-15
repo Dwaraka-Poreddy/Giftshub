@@ -447,9 +447,10 @@ export default function LandingPage() {
                   <center>
                     <Link to="/samplegifts">
                       {" "}
-                      <button className="main-button videotourbtn">
+                      <button className="main-button samplegiftsbtn">
                         Sample Gifts{" "}
                         <PlayArrowOutlinedIcon
+                          className="samplegiftsbtnarrow"
                           style={{ marginBottom: "3px" }}
                         />
                       </button>
@@ -474,15 +475,16 @@ export default function LandingPage() {
                 <h4 class="my-0 font-weight-normal">Recommended pack</h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">
+                {/* <h1 class="card-title pricing-card-title">
                   $0 <small class="text-muted">/ mo</small>
-                </h1>
+                </h1> */}
                 <center>
                   <ul class="list-unstyled mt-3 mb-4">
-                    <li>10 users included</li>
-                    <li>2 GB of storage</li>
-                    <li>Email support</li>
-                    <li>Help center access</li>
+                    <p>
+                      Choose from the recommended 3,5 & 7 day packs and free
+                      yourself from the hustle of picking the best.
+                    </p>
+                    <p>Happy Gifting !!!</p>
                   </ul>
                 </center>
                 <center>
@@ -511,14 +513,16 @@ export default function LandingPage() {
                 <h4 class="my-0 font-weight-normal ">Valentines Pack</h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">
+                {/* <h1 class="card-title pricing-card-title">
                   $0 <small class="text-muted">/ mo</small>
-                </h1>
+                </h1> */}
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>20 users included</li>
-                  <li>10 GB of storage</li>
-                  <li>Priority email support</li>
-                  <li>Help center access</li>
+                  <p>
+                    Make this valentines day special with fourteen different
+                    gifts one on each day from two weeks before february 14
+                  </p>
+
+                  <p>Happy Valentine !!!</p>
                 </ul>
                 <center>
                   <Link to="/">
@@ -546,14 +550,15 @@ export default function LandingPage() {
                 <h4 class="my-0 font-weight-normal ">N-Day Pack </h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">
+                {/* <h1 class="card-title pricing-card-title">
                   $0 <small class="text-muted">/ mo</small>
-                </h1>
+                </h1> */}
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>20 users included</li>
-                  <li>10 GB of storage</li>
-                  <li>Priority email support</li>
-                  <li>Help center access</li>
+                  <p>
+                    Choose the total number of gifts necessary based on the
+                    occassion and customize them in your own way.
+                  </p>
+                  <p>Happy Gifting !!!</p>
                 </ul>
                 <center>
                   <Link to="/home">
@@ -589,10 +594,10 @@ export default function LandingPage() {
           </center>
           <div className="container">
             <ul class="tabs">
-              <li class="active tablis" rel="tab1">
+              <li class=" tablis" rel="tab1">
                 Trending
               </li>
-              <li rel="tab2" className="tablis">
+              <li rel="tab2" className="active tablis">
                 Valentine
               </li>
               <li rel="tab3" className="tablis">

@@ -9,7 +9,7 @@ import {
   faWhatsapp,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+
 import "./Footer.css";
 export default function Footer() {
   return (
@@ -81,7 +81,7 @@ export default function Footer() {
             <div class="row">
               <div class="col-md-4 col-sm-6">
                 <div class="footer-logo center column">
-                  <h1 className="brandname">Gifts Hub</h1>
+                  <h1 className="brandname">GiftsHub</h1>
                 </div>
 
                 <p>
@@ -94,14 +94,14 @@ export default function Footer() {
                 <h3>Quick LInks</h3>
                 <ul class="footer-links">
                   <li>
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>
-                    <a href="#">About us</a>
+                    <a href="/aboutus">About us</a>
                   </li>
 
                   <li>
-                    <a href="#">Contact Us</a>
+                    <a href="userpackspage">My Packs</a>
                   </li>
                 </ul>
               </div>
@@ -112,10 +112,10 @@ export default function Footer() {
                     <a href="#">Valentines Pack</a>
                   </li>
                   <li>
-                    <a href="#">Recommended pack </a>
+                    <a href="recommendedhome">Recommended pack </a>
                   </li>
                   <li>
-                    <a href="#">N-Day Pack</a>
+                    <a href="home">N-Day Pack</a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -136,7 +136,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      &copy;<a>designed by</a>
     </footer>
   );
 }

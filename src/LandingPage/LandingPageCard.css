@@ -28,7 +28,7 @@ section .section-title {
   background-color: #fff;
   background-clip: initial;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.35rem;
+  border-radius: 10px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -39,7 +39,7 @@ section .section-title {
     -o-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     transform: rotateY(0deg);
-    border-radius: 0.25rem;
+    border-radius: 10px;
     transform: scale(1.05);
   }
 
