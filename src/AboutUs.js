@@ -32,8 +32,8 @@ export default function AboutUs() {
       <br />
       <br />
       <br />
-      <div className="container containerdum">
-        <div className="card-wrapper">
+      <div className=" containerdum">
+        <div className="card-wrapper boom">
           <div className="card">
             <div className="card-image">
               <img
@@ -90,7 +90,7 @@ export default function AboutUs() {
         </div>
 
         {/* ////////////////// */}
-        <div className="card-wrapper">
+        <div className="card-wrapper boom">
           <div className="card">
             <div className="card-image">
               <img

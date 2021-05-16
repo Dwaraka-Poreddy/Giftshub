@@ -15,6 +15,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Loader from "react-loader-spinner";
 import NavBar from "../NavBars/NavBar";
+import Footer from "../Footers/Footer";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
@@ -840,6 +841,8 @@ function SevenDayHome({ history }) {
       ) : (
         <div>{error ? <p>Ops, there is an error :(</p> : null}</div>
       )}
+      <br />
+      <Footer />
     </div>
   );
 }

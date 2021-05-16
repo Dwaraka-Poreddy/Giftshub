@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import NpackSelect from "./NPackSelect";
 import NpackSelectMobile from "./NPackSelectMobile";
 import NavBar from "../NavBars/NavBar";
+import Footer from "../Footers/Footer";
 import Loader from "react-loader-spinner";
 import Grid from "@material-ui/core/Grid";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
@@ -418,7 +419,9 @@ const Home = ({ history }) => {
             </form>
           </div>
         )}
-      </div>
+      </div>{" "}
+      <br />
+      <Footer />
     </div>
   );
 };

@@ -22,6 +22,153 @@ import Footer from "../Footers/Footer";
 import firebase from "../firebase";
 import "../Buttons.css";
 import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
+import Tabs from "react-responsive-tabs";
+import "react-responsive-tabs/styles.css";
+const presidents = [
+  {
+    name: "Trending",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[0].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Valentine",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[0].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: " Games",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[1].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Typographic",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[2].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Dynamic",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[3].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Greeting Cards",
+    biography: (
+      <div class="container">
+        <div className="row equal">
+          {LandingPageCardsData[4].map((item, index) => {
+            return (
+              <LandingPageCard
+                img={item.img}
+                gif={item.gif}
+                link={item.link}
+                title={item.title}
+                badge1={item.badge1}
+                badge2={item.badge2}
+                text={item.text}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ),
+  },
+];
+function getTabs() {
+  return presidents.map((president, index) => ({
+    title: president.name,
+    getContent: () => president.biography,
+    /* Optional parameters */
+    key: index,
+    tabClassName: "tab",
+    panelClassName: "panel",
+  }));
+}
+
 const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -71,26 +218,6 @@ export default function LandingPage() {
           zIndex: "5",
         }}
       >
-        {/* <Particles
-          params={{
-            particles: {
-              number: {
-                value: 100,
-              },
-              size: {
-                value: 3,
-              },
-            },
-            interactivity: {
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-            },
-          }}
-        /> */}
         <Particles
           params={{
             particles: {
@@ -250,33 +377,7 @@ export default function LandingPage() {
       </div>
     );
   };
-  $(".tab_content").hide();
-  $(".tab_content:first").show();
 
-  /* if in tab mode */
-  $("ul.tabs li").click(function () {
-    $(".tab_content").hide();
-    var activeTab = $(this).attr("rel");
-    $("#" + activeTab).fadeIn();
-
-    $("ul.tabs li").removeClass("active");
-    $(this).addClass("active");
-
-    $(".tab_drawer_heading").removeClass("d_active");
-    $(".tab_drawer_heading[rel^='" + activeTab + "']").addClass("d_active");
-  });
-  /* if in drawer mode */
-  $(".tab_drawer_heading").click(function () {
-    $(".tab_content").hide();
-    var d_activeTab = $(this).attr("rel");
-    $("#" + d_activeTab).fadeIn();
-
-    $(".tab_drawer_heading").removeClass("d_active");
-    $(this).addClass("d_active");
-
-    $("ul.tabs li").removeClass("active");
-    $("ul.tabs li[rel^='" + d_activeTab + "']").addClass("active");
-  });
   return (
     <div className="App">
       <Helmet>
@@ -317,7 +418,6 @@ export default function LandingPage() {
             ? browviewMainCarousel()
             : browviewMainCarousel()}
         </div>
-
         <section
           class="partners"
           style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
@@ -425,7 +525,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <div class="welcome-area" id="welcome">
           <div class="header-text">
             <div class="container">
@@ -461,7 +560,6 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-
         <div class="container" id="landingpageservices">
           <center>
             <h1 className="landingservicesheading" id="landingservicesheading">
@@ -583,7 +681,6 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-
         <section id="team" class="pb-5">
           {" "}
           <center>
@@ -593,169 +690,15 @@ export default function LandingPage() {
             </h1>
           </center>
           <div className="container">
-            <ul class="tabs">
-              <li class=" tablis" rel="tab1">
-                Trending
-              </li>
-              <li rel="tab2" className="active tablis">
-                Valentine
-              </li>
-              <li rel="tab3" className="tablis">
-                Games
-              </li>
-              <li rel="tab4" className="tablis">
-                Typographic
-              </li>
-              <li rel="tab5" className="tablis">
-                {" "}
-                Dynamic
-              </li>
-              <li rel="tab6" className="tablis">
-                {" "}
-                Greeting Cards
-              </li>
-            </ul>
-            <div class="tab_container">
-              <h3 class="d_active tab_drawer_heading" rel="tab1">
-                Trending
-              </h3>
-              <div id="tab1" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[0].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <h3 class="tab_drawer_heading" rel="tab2">
-                Valentine
-              </h3>
-              <div id="tab2" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[0].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <h3 class="tab_drawer_heading" rel="tab3">
-                Games
-              </h3>
-              <div id="tab3" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[1].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <h3 class="tab_drawer_heading" rel="tab4">
-                Typographic
-              </h3>
-              <div id="tab4" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[2].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              <h3 class="tab_drawer_heading" rel="tab5">
-                Dynamic
-              </h3>
-              <div id="tab5" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[3].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              <h3 class="tab_drawer_heading" rel="tab6">
-                Greeting Cards
-              </h3>
-              <div id="tab6" class="tab_content">
-                <div class="container">
-                  <div className="row equal">
-                    {LandingPageCardsData[4].map((item, index) => {
-                      return (
-                        <LandingPageCard
-                          img={item.img}
-                          gif={item.gif}
-                          link={item.link}
-                          title={item.title}
-                          badge1={item.badge1}
-                          badge2={item.badge2}
-                          text={item.text}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Tabs
+              items={getTabs()}
+              showMore={false}
+              transformWidth={"0"}
+              selectedTabKey={1}
+            />
           </div>
         </section>
-      </body>
-      {/* <button
+        {/* <button
         onClick={() => {
           analytics.logEvent("goal_completion", { name: "lever_puzzle" });
           console.log("startuser");
@@ -763,188 +706,190 @@ export default function LandingPage() {
       >
         Click
       </button> */}
-      {/* <!-- =====================================
+        {/* <!-- =====================================
         ==== Start Process --> */}
-
-      <div
-        id="Process"
-        class="process section-padding bg-img bg-fixed pos-re text-center"
-        data-overlay-dark="7"
-        data-background="assets/images/bg6.jpg"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-              <h1 className="landingservicesheading"> Our Process</h1>
-              <p className="landindservivestext">
-                We are a passionate digital design agency that specializes in
-                beautiful and easy-to-use digital design & web development
-                services.
-              </p>
-            </div>
-            <div class="full-width clearfix"></div>
-            <div class="row">
-              <div class="col-lg-3 col-md-6">
-                <div class="item first mb-md50">
-                  <img
-                    src={require("../Images/arrow.png")}
-                    class="tobotm processarrow"
-                    alt=""
-                  />
-                  <span class="icon fa fa-address-book processline"></span>
-
-                  <div class="cont">
-                    <h3>01</h3>
-                    <h6>Ideas</h6>
-                    <p>
-                      Nulla metus metus ullamcorper vel tincidunt sed euismod
-                      nibh Quisque volutpat
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6">
-                <div class="item odd mb-md50">
-                  <img
-                    className="processarrow"
-                    src={require("../Images/arrow.png")}
-                    alt=""
-                  />
-                  <span class="icon fa fa-address-book processline"></span>
-                  <div class="cont">
-                    <h3>02</h3>
-                    <h6>Planning</h6>
-                    <p>
-                      Nulla metus metus ullamcorper vel tincidunt sed euismod
-                      nibh Quisque volutpat
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6">
-                <div class="item mb-sm50">
-                  <img
-                    src={require("../Images/arrow.png")}
-                    class="tobotm processarrow"
-                    alt=""
-                  />
-                  <span class="icon fa fa-address-book processline"></span>
-                  <div class="cont">
-                    <h3>03</h3>
-                    <h6>Development</h6>
-                    <p>
-                      Nulla metus metus ullamcorper vel tincidunt sed euismod
-                      nibh Quisque volutpat
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6">
-                <div class="item odd">
-                  <span class="icon fa fa-address-book processline"></span>
-                  <div class="cont">
-                    <h3>04</h3>
-                    <h6>Testing</h6>
-                    <p>
-                      Nulla metus metus ullamcorper vel tincidunt sed euismod
-                      nibh Quisque volutpat
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="curve curve-gray-t curve-top"></div>
-        <div class="curve curve-bottom"></div>
-      </div>
-
-      {/* <!-- End Process ====
-      ======================================= --> */}
-      <div class="welcome-area1" id="welcome1">
-        <div class="header-text">
+        <div
+          id="Process"
+          class="process section-padding bg-img bg-fixed pos-re text-center"
+          data-overlay-dark="7"
+          data-background="assets/images/bg6.jpg"
+        >
           <div class="container">
-            <center>
-              <h1> Free personalised gifting</h1>
-            </center>
             <div class="row">
-              <div
-                class="left-text col-xs-12"
-                data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
-              >
-                <p>
-                  Gifts manifest our emotions and transform them into meaningful
-                  forms of love! In a digital age of fast paced lifestyle, we at
-                  Gift’s Hub aim to stand apart in providing you the old-school
-                  way of wishing your loved ones in several ways and bringing
-                  you closer.Gift-planning can be quite a challenging task given
-                  the hectic schedules we all have, currently. So to waste no
-                  more time and to bid goodbyes to all the reminders and alarms,
-                  we introduce our automatic gift generation feature which keeps
-                  a track of the D-day and time, releasing the appropriate gift
-                  component on the desired day! Lead a guilt-free life once you
-                  choose your suitable package and customize them accordingly,
-                  because we at Gift’s Hub promise to deliver blissful content
-                  as and when you intend us to! Express love, this Valentine’s
-                  Day with our free personalized virtual gifting service. Upload
-                  pictures & text, create puzzles and together make memories!
+              <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                <h1 className="landingservicesheading mt-5"> Our Process</h1>
+                <p className="landindservivestext">
+                  We are a passionate digital design agency that specializes in
+                  beautiful and easy-to-use digital design & web development
+                  services.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="socialMedia">
-        <div className="container">
-          <center>
-            <h1 className="landingservicesheading" id="landingservicesheading">
-              {" "}
-              Spread the Love
-            </h1>
-          </center>{" "}
-          <div className="row">
-            <div className="col-4"></div>
-            <div className="col-4">
-              <div className="row">
-                <div className="col-4">
-                  <center>
+              <div class="full-width clearfix"></div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="item first mb-md50">
                     <img
-                      style={{ width: "60px" }}
-                      src={require("../Images/facebook.png")}
-                      alt="First slide"
+                      src={require("../Images/arrow.png")}
+                      class="tobotm processarrow"
+                      alt=""
                     />
-                  </center>
+                    <span class="icon fa fa-address-book processline"></span>
+
+                    <div class="cont">
+                      <h3>01</h3>
+                      <h6>Ideas</h6>
+                      <p>
+                        Nulla metus metus ullamcorper vel tincidunt sed euismod
+                        nibh Quisque volutpat
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-4">
-                  <center>
+
+                <div class="col-lg-3 col-md-6">
+                  <div class="item odd mb-md50">
                     <img
-                      style={{ width: "60px" }}
-                      src={require("../Images/youtube.png")}
-                      alt="First slide"
+                      className="processarrow"
+                      src={require("../Images/arrow.png")}
+                      alt=""
                     />
-                  </center>
+                    <span class="icon fa fa-address-book processline"></span>
+                    <div class="cont">
+                      <h3>02</h3>
+                      <h6>Planning</h6>
+                      <p>
+                        Nulla metus metus ullamcorper vel tincidunt sed euismod
+                        nibh Quisque volutpat
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-4">
-                  <center>
+
+                <div class="col-lg-3 col-md-6">
+                  <div class="item mb-sm50">
                     <img
-                      style={{ width: "60px" }}
-                      src={require("../Images/instagram.png")}
-                      alt="First slide"
+                      src={require("../Images/arrow.png")}
+                      class="tobotm processarrow"
+                      alt=""
                     />
-                  </center>
+                    <span class="icon fa fa-address-book processline"></span>
+                    <div class="cont">
+                      <h3>03</h3>
+                      <h6>Development</h6>
+                      <p>
+                        Nulla metus metus ullamcorper vel tincidunt sed euismod
+                        nibh Quisque volutpat
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                  <div class="item odd">
+                    <span class="icon fa fa-address-book processline"></span>
+                    <div class="cont">
+                      <h3>04</h3>
+                      <h6>Testing</h6>
+                      <p>
+                        Nulla metus metus ullamcorper vel tincidunt sed euismod
+                        nibh Quisque volutpat
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-4"></div>
+          </div>
+
+          <div class="curve curve-gray-t curve-top"></div>
+          <div class="curve curve-bottom"></div>
+        </div>
+        {/* <!-- End Process ====
+      ======================================= --> */}
+        <div class="welcome-area1" id="welcome1">
+          <div class="header-text">
+            <div class="container">
+              <center>
+                <h1> Free personalised gifting</h1>
+              </center>
+              <div class="row">
+                <div
+                  class="left-text col-xs-12"
+                  data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
+                >
+                  <p>
+                    Gifts manifest our emotions and transform them into
+                    meaningful forms of love! In a digital age of fast paced
+                    lifestyle, we at Gift’s Hub aim to stand apart in providing
+                    you the old-school way of wishing your loved ones in several
+                    ways and bringing you closer.Gift-planning can be quite a
+                    challenging task given the hectic schedules we all have,
+                    currently. So to waste no more time and to bid goodbyes to
+                    all the reminders and alarms, we introduce our automatic
+                    gift generation feature which keeps a track of the D-day and
+                    time, releasing the appropriate gift component on the
+                    desired day! Lead a guilt-free life once you choose your
+                    suitable package and customize them accordingly, because we
+                    at Gift’s Hub promise to deliver blissful content as and
+                    when you intend us to! Express love, this Valentine’s Day
+                    with our free personalized virtual gifting service. Upload
+                    pictures & text, create puzzles and together make memories!
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <Footer />
+        <div id="socialMedia">
+          <div className="container">
+            <center>
+              <h1
+                className="landingservicesheading"
+                id="landingservicesheading"
+              >
+                {" "}
+                Spread the Love
+              </h1>
+            </center>{" "}
+            <div className="row">
+              <div className="col-4"></div>
+              <div className="col-4">
+                <div className="row">
+                  <div className="col-4">
+                    <center>
+                      <img
+                        style={{ width: "60px" }}
+                        src={require("../Images/facebook.png")}
+                        alt="First slide"
+                      />
+                    </center>
+                  </div>
+                  <div className="col-4">
+                    <center>
+                      <img
+                        style={{ width: "60px" }}
+                        src={require("../Images/youtube.png")}
+                        alt="First slide"
+                      />
+                    </center>
+                  </div>
+                  <div className="col-4">
+                    <center>
+                      <img
+                        style={{ width: "60px" }}
+                        src={require("../Images/instagram.png")}
+                        alt="First slide"
+                      />
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-4"></div>
+            </div>
+          </div>
+        </div>
+        <Footer />{" "}
+      </body>
     </div>
   );
 }

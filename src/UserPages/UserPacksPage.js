@@ -128,13 +128,13 @@ function UserPacksPage({ history }) {
                               }}
                               class="col-12  "
                             >
-                              <h2
+                              <h4
                                 style={{
                                   color: "#fdc46f",
                                 }}
                               >
-                                {gift.To_name}
-                              </h2>
+                                {gift.To_name.substring(0, 10)}
+                              </h4>
                             </div>
                             <div class="col-6 col-md-12">
                               <div

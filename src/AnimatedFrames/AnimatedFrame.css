@@ -3,6 +3,7 @@
   /* background-color: #70cff3 !important; */
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden !important;
 }
 
 a {

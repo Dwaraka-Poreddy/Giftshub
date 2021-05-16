@@ -32,8 +32,8 @@ body {
 
 .card-wrapper {
   width: 400px;
-  height: 500px;
-  position: relative;
+  height: 400px;
+  /* position: relative; */
 }
 
 .card {
@@ -184,4 +184,33 @@ body {
   left: 0;
   transition-delay: 0.5s;
   opacity: 1;
+}
+@media screen and (max-width: 873px) and (min-width: 768px) {
+  .boom {
+    transform: scale(0.8) !important;
+  }
+}
+@media screen and (min-width: 350px) {
+  .boom {
+    transform: scale(0.4) !important;
+    height: 160px;
+  }
+}
+@media screen and (min-width: 480px) {
+  .boom {
+    transform: scale(0.6) !important;
+    height: 240px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .boom {
+    transform: scale(0.7) !important;
+    height: 280px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .boom {
+    transform: scale(0.9) !important;
+    height: 400px;
+  }
 }
