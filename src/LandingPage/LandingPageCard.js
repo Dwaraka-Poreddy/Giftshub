@@ -11,11 +11,18 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
         <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
           <div class="mainflip">
             <div class="frontside">
-              <div class="card">
+              <div
+                class="card tabcard"
+                style={{
+                  backgroundImage: "url(" + img + ")",
+                }}
+              >
                 <div class="card-body text-center">
                   <img
-                    style={{ width: "100%", height: "auto" }}
-                    class=" img-fluid"
+                    style={{
+                      backgroundImage: "url(" + img + ")",
+                    }}
+                    class=" img-fluid tabcardimg"
                     src={img}
                     alt="card"
                   />

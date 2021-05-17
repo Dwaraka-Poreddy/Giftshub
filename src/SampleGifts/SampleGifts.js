@@ -3,19 +3,15 @@ import "./SampleGifts.css";
 import NavBar from "../NavBars/NavBar";
 import Footer from "../Footers/Footer";
 import { Helmet } from "react-helmet";
-import ThreeDImage from "../ThreeDImage/ThreeDImage";
 import SpecialCard from "../SpecialCard/SpecialCard";
 import Journey from "../Journey/Journey";
 import SlidePuzzle from "../SlidePuzzle/SlidePuzzle";
 import HoneyComb from "../HoneyComb/HoneyComb";
-import SwatchBook from "../SwatchBook/SwatchBook";
-import NewsPaper from "../NewsPaper/NewsPaper";
 import Cubes from "../Cubes/Cubes";
 import VioletGreetingCard from "../VioletGreetingCard/VioletGreetingCard";
 import Magazine from "../Magazine/Magazine";
 import ThreeDCarousel from "../ThreeDCarousel/ThreeDCarousel";
 import AnimatedFrame from "../AnimatedFrames/AnimatedFrame";
-import BrownGreetingCard from "../BrownGreetingCard/BrownGreetingCard";
 const handlepuzzlescore = (e) => {
   console.log("Yoooo");
 };
@@ -37,10 +33,7 @@ function SampleGifts() {
         <meta name="language" content="EN" />
       </Helmet>
       <NavBar />
-      {/* 
-      <br />
-      <br />
-      <hr /> */}
+
       <div class="samplegifts">
         <div class="header-text">
           <div class="container pt-5">

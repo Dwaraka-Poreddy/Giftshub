@@ -8,6 +8,14 @@ import NavBar from "../NavBars/NavBar";
 import Footer from "../Footers/Footer";
 import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { toast } from "react-toastify";
+const options = {
+  position: "top-center",
+  style: {
+    color: "#fff",
+    backgroundColor: "#fb6e6e",
+  },
+};
 function UserPacksPage({ history }) {
   const { user } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
@@ -75,6 +83,7 @@ function UserPacksPage({ history }) {
       .catch(function (error) {
         console.error("Error removing document: ", error);
       });
+    toast.success("Pack deleted succesfully ", options);
   };
   $(document).ready(function () {
     $(".card").hover(
@@ -91,24 +100,14 @@ function UserPacksPage({ history }) {
   return (
     <div>
       <NavBar />
-      <br />
-      <br />
-      <br />
+
       <div className="userspacks py-5">
-        <ul>
+        <ul className="py-5">
           {gifts.map((gift, index) => (
             <div>
               <div class="container">
                 <div class="card">
-                  <h5
-                    class="card-header "
-                    style={{
-                      justifyContent: "space-between",
-                      color: "#fff",
-                      background:
-                        "linear-gradient(rgb(255 120 120), 85%, rgb(234 161 161)) ",
-                    }}
-                  >
+                  <h5 class="card-header userpackscardheader">
                     {" "}
                     <div class="row">
                       <div class="col-6">{gift.Folder_name}</div>{" "}
@@ -120,47 +119,19 @@ function UserPacksPage({ history }) {
                       <div class="col-md-3 p-0 ">
                         <div class="container-fluid">
                           <div class="row">
-                            <div
-                              style={{
-                                height: "38.5px",
-                                alignItems: "center",
-                                border: "none",
-                              }}
-                              class="col-12  "
-                            >
-                              <h4
-                                style={{
-                                  color: "#fdc46f",
-                                }}
-                              >
+                            <div className="userpackspkname" class="col-12  ">
+                              <h4 className="userpackspknametext">
                                 {gift.To_name.substring(0, 10)}
                               </h4>
                             </div>
                             <div class="col-6 col-md-12">
-                              <div
-                                style={{
-                                  height: "38.5px",
-                                  alignItems: "center",
-                                  border: "1px solid #fdc46f",
-                                  cursor: "pointer",
-                                  borderRadius: "5px",
-                                }}
-                                class="col-12"
-                              >
+                              <div id="userpackspreview" class="col-12">
                                 <Link
                                   class="logo"
                                   to={`/scheduledlive/main/${gift.id}`}
                                   target="_blank"
                                 >
-                                  <h2
-                                    style={{
-                                      fontSize: "18px",
-                                      color: "#fdc46f",
-                                      marginLeft: "8px",
-                                      marginTop: "10px",
-                                      marginBottom: "0",
-                                    }}
-                                  >
+                                  <h2 className="userpackspreviewtext">
                                     {" "}
                                     Preview{" "}
                                   </h2>
@@ -174,27 +145,9 @@ function UserPacksPage({ history }) {
                                   handleDelete(gift.id);
                                 }}
                                 class="col-12"
-                                style={{
-                                  height: "38.5px",
-                                  // width: "242.63px",
-                                  alignItems: "center",
-                                  border: "1px solid #fb6e6e",
-                                  cursor: "pointer",
-                                  borderRadius: "5px",
-                                  backgroundColor: "#fd6e6e",
-                                }}
+                                className="userpacksdelete"
                               >
-                                <h2
-                                  style={{
-                                    fontSize: "18px",
-                                    color: "#fff",
-                                    marginLeft: "8px",
-                                    marginTop: "10px",
-                                    marginBottom: "0",
-                                  }}
-                                >
-                                  Delete
-                                </h2>
+                                <h2 className="userpacksdeletetext">Delete</h2>
                               </div>
                             </div>
                           </div>
@@ -218,32 +171,15 @@ function UserPacksPage({ history }) {
                                   }}
                                 >
                                   {c.url ? (
-                                    <CheckCircle
-                                      style={{
-                                        fill: "#fdc46f",
-                                        margin: "5px 7px",
-                                      }}
-                                    />
+                                    <CheckCircle className="userpacksdoneicon" />
                                   ) : (
                                     <img
-                                      style={{
-                                        width: "23.5px",
-                                        height: "23.5px",
-                                        margin: "5px 11px 0 8px",
-                                      }}
+                                      className="userpackspendingimg"
                                       src="assets/images/icon.png"
                                       alt=""
                                     />
                                   )}
-                                  <h2
-                                    style={{
-                                      fontSize: "18px",
-                                      color: "#fb6e6e",
-                                      marginLeft: "8px",
-                                      marginTop: "10px",
-                                      marginBottom: "3px",
-                                    }}
-                                  >
+                                  <h2 className="userpacksitems">
                                     {" "}
                                     {c.content}
                                   </h2>
@@ -259,14 +195,7 @@ function UserPacksPage({ history }) {
                           <center>
                             <br />
                             <Link to={`/ContinuePack/${gift.id}`}>
-                              <button
-                                style={{
-                                  height: "100%",
-                                  margin: "auto",
-                                  backgroundColor: "#fdc46f",
-                                }}
-                                class="main-button"
-                              >
+                              <button class="main-button userpacksproceed">
                                 Proceed
                               </button>
                             </Link>{" "}

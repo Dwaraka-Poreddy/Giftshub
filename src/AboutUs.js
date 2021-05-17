@@ -7,7 +7,6 @@ import {
   faLinkedinIn,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "./AboutUs.css";
 import Footer from "./Footers/Footer";

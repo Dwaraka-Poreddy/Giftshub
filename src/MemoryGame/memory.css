@@ -1,18 +1,18 @@
 .grid-memcard {
   position: relative;
-  background-color: #70cff3;
+  background-color: #f95e5e;
   border-radius: 5px;
 }
 
 .memcard {
-  background-color: #009dd9 !important;
+  background-color: rgb(252 200 122) !important;
   border-radius: 0;
   width: 100%;
   height: auto;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid #f95e5e;
 }
 .memcard::before {
-  background-color: #009dd9 !important;
+  background-color: rgb(252 200 122) !important;
   width: 100%;
   height: auto;
   /* height: 250px !important; */
@@ -37,7 +37,7 @@
   transition: 0.4s;
   backface-visibility: hidden;
   padding: 1px;
-  background-color: #70cff3;
+  background-color: #f95e5e !important;
   border-radius: 5px;
 }
 

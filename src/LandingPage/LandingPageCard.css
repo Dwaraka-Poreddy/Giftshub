@@ -116,9 +116,15 @@ section .section-title {
 }
 .card-title {
   font-family: "Roboto", sans-serif;
-  margin-bottom: 0.75rem;
-  margin-top: 0.75rem;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
   font-size: 21px;
+  background-color: #f95e5e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #fff;
 }
 /* .frontside .card .card-title,
 .backside .card .card-title {
@@ -132,8 +138,19 @@ section .section-title {
 }
 .frontside .card .card-body img {
   /* width: 120px; */
-  height: 120px;
+  height: 151.2px;
 }
 .image-flip {
-  height: calc(100% - 15px) !important;
+  height: calc(100% -25px) !important;
+}
+.tabcardimg {
+  width: auto;
+  height: 180px;
+  opacity: 0;
+}
+.tabcard {
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  border: 0px !important;
 }
