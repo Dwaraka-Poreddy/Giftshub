@@ -24,6 +24,26 @@ import "../Buttons.css";
 import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
 import Tabs from "react-responsive-tabs";
 import "react-responsive-tabs/styles.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+const useFAQStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: "33.33%",
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+}));
 const presidents = [
   {
     name: "Trending",
@@ -173,6 +193,12 @@ const analytics = firebase.analytics();
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [navstate, setnavstate] = useState(false);
+  const FAQclasses = useFAQStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   $(document).ready(function () {
     $(".card").hover(
       function () {
@@ -223,9 +249,13 @@ export default function LandingPage() {
             particles: {
               number: {
                 value: 160,
+                color: "#fb6e6e",
                 density: {
                   enable: false,
                 },
+              },
+              color: {
+                value: "#fb6e6e",
               },
               size: {
                 value: 3,
@@ -260,14 +290,19 @@ export default function LandingPage() {
                 bubble: {
                   distance: 250,
                   duration: 2,
-                  size: 0,
-                  opacity: 0,
+                  size: 5,
+                  opacity: 1,
+                  color: "#fb6e6e",
                 },
                 repulse: {
                   distance: 400,
                   duration: 4,
+                  color: "#fb6e6e",
                 },
               },
+            },
+            color: {
+              value: "#fb6e6e",
             },
           }}
         />
@@ -564,7 +599,7 @@ export default function LandingPage() {
           <center>
             <h1 className="landingservicesheading" id="landingservicesheading">
               {" "}
-              Services
+              Our Packs
             </h1>
           </center>
           <div class="card-deck mb-3 text-center">
@@ -719,9 +754,8 @@ export default function LandingPage() {
               <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
                 <h1 className="landingservicesheading mt-5"> Our Process</h1>
                 <p className="landindservivestext">
-                  We are a passionate digital design agency that specializes in
-                  beautiful and easy-to-use digital design & web development
-                  services.
+                  We are a passionate gift-making agency that specializes in
+                  beautiful and easy-to-make virtual personalized gifts.
                 </p>
               </div>
               <div class="full-width clearfix"></div>
@@ -737,11 +771,8 @@ export default function LandingPage() {
 
                     <div class="cont">
                       <h3>01</h3>
-                      <h6>Ideas</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
+                      <h6>Choose</h6>
+                      <p>Select the pack of your choice for the occasion</p>
                     </div>
                   </div>
                 </div>
@@ -756,11 +787,8 @@ export default function LandingPage() {
                     <span class="icon fa fa-address-book processline"></span>
                     <div class="cont">
                       <h3>02</h3>
-                      <h6>Planning</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
+                      <h6>Generate</h6>
+                      <p>Input the details as you would like</p>
                     </div>
                   </div>
                 </div>
@@ -775,11 +803,8 @@ export default function LandingPage() {
                     <span class="icon fa fa-address-book processline"></span>
                     <div class="cont">
                       <h3>03</h3>
-                      <h6>Development</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
+                      <h6>Retain</h6>
+                      <p>Finish up and save the pack</p>
                     </div>
                   </div>
                 </div>
@@ -789,11 +814,8 @@ export default function LandingPage() {
                     <span class="icon fa fa-address-book processline"></span>
                     <div class="cont">
                       <h3>04</h3>
-                      <h6>Testing</h6>
-                      <p>
-                        Nulla metus metus ullamcorper vel tincidunt sed euismod
-                        nibh Quisque volutpat
-                      </p>
+                      <h6>Relax</h6>
+                      <p>Relax back while we schedule your package</p>
                     </div>
                   </div>
                 </div>
@@ -857,11 +879,14 @@ export default function LandingPage() {
                 <div className="row">
                   <div className="col-4">
                     <center>
-                      <img
-                        style={{ width: "60px" }}
-                        src={require("../Images/facebook.png")}
-                        alt="First slide"
-                      />
+                      <a href="https://www.facebook.com/Giftshub/">
+                        {" "}
+                        <img
+                          style={{ width: "60px" }}
+                          src={require("../Images/facebook.png")}
+                          alt="First slide"
+                        />
+                      </a>
                     </center>
                   </div>
                   <div className="col-4">
@@ -887,6 +912,128 @@ export default function LandingPage() {
               <div className="col-4"></div>
             </div>
           </div>
+        </div>
+        <div className={FAQclasses.root} className="container mb-5">
+          <center>
+            <h3 className="landingservicesheading" id="landingservicesheading">
+              Frequently Asked Questions
+            </h3>
+          </center>
+          <Accordion
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={FAQclasses.heading}>
+                Is it free ?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                It is completely free. No debit/Credit card is required. Make
+                personalized gifts and surprise your loved ones.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2bh-content"
+              id="panel2bh-header"
+            >
+              <Typography className={FAQclasses.heading}>
+                Same Day Delivery ?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                People say that we have gotten 25 years older but our creative
+                think tanks are growing younger with each passing day. Inspired
+                by the current trends, we keep coming up with new floral
+                arrangements & gifts for almost every emotion, celebration and
+                occasion.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3bh-content"
+              id="panel3bh-header"
+            >
+              <Typography className={FAQclasses.heading}>
+                What are virtual gifts ?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Life is full of varied experiences and experiences count. They
+                help us stride through tough times and make our lives
+                meaningful. We at IGP are committed to giving you and loved
+                one's experiences that are sure to be cherished for a very long
+                time. We are India's best online gift store wherein you will
+                find amazing gift ideas for all your special relationships.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel4"}
+            onChange={handleChange("panel4")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4bh-content"
+              id="panel4bh-header"
+            >
+              <Typography className={FAQclasses.heading}>
+                What are the categories available ?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Don’t tell that you are really thinking of waiting for the
+                birthday or anniversary or some other day to provide expression
+                to your love. If you want to show you care and you love and you
+                adore any of your relationships there can be no better moment
+                than Right Now!
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5bh-content"
+              id="panel5bh-header"
+            >
+              <Typography className={FAQclasses.heading}>
+                What is personalized gifting ?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                The moment you enter into this world you get wrapped with
+                relations. The very first relation which is closest to your
+                heart and which is the epitome of selfless, patient and caring
+                love is that of a mother. Then there is your father. He is and
+                will always continue to be a superhero for his children. It is
+                like he knows every wish of yours even before it crawls into
+                your mind
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
         <Footer />{" "}
       </body>

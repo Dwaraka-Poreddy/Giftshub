@@ -175,7 +175,7 @@ function UserPacksPage({ history }) {
                                   ) : (
                                     <img
                                       className="userpackspendingimg"
-                                      src="assets/images/icon.png"
+                                      src={require("../Images/iconcopy.png")}
                                       alt=""
                                     />
                                   )}

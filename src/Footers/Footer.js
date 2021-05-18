@@ -37,7 +37,7 @@ export default function Footer() {
                 <div class="standard_social_links">
                   <div>
                     <li class="round-btn btn-facebook">
-                      <a href="#">
+                      <a href="https://www.facebook.com/Giftshub/">
                         <FontAwesomeIcon icon={faFacebook} />
                       </a>
                     </li>
@@ -47,12 +47,12 @@ export default function Footer() {
                       </a>
                     </li>
                     <li class="round-btn btn-twitter">
-                      <a href="#">
+                      <a href="https://twitter.com/Giftshub/">
                         <FontAwesomeIcon icon={faTwitter} />
                       </a>
                     </li>
                     <li class="round-btn btn-instagram">
-                      <a href="#">
+                      <a href="https://www.instagram.com/Giftshub/">
                         <FontAwesomeIcon icon={faInstagram} />
                       </a>
                     </li>
