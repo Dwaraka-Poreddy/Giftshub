@@ -231,9 +231,6 @@ const Home = ({ history }) => {
               alignItems="flex-end"
               className="mx-auto"
             >
-              <Grid item>
-                <AccountCircleOutlinedIcon style={{ fill: "rgb(66 66 66)" }} />
-              </Grid>
               <Grid style={{ width: "80%" }} item>
                 <TextField
                   fullWidth="true"

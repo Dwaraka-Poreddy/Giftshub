@@ -423,8 +423,8 @@ export default function LandingPage() {
           style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
         >
           <div class="container py-0">
-            <div class="card shadow-lg ">
-              <div class="card-body p-3">
+            <div class="card shadow-lg swiper-container-container">
+              <div class="card-body swiper-container1">
                 <div class="swiper-container">
                   <center>
                     <h4 className="mb-0">Customizable gifts</h4>
@@ -623,7 +623,7 @@ export default function LandingPage() {
                   <p>Happy Valentine !!!</p>
                 </ul>
                 <center>
-                  <Link to="/">
+                  <Link to="/valentinehome">
                     <div class="slidehoverbtnouter">
                       <div
                         onClick={() => {

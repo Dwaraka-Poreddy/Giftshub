@@ -681,7 +681,7 @@ function SevenDayHome({ history }) {
                                   style: { color: "rgb(66 66 66)" },
                                 }}
                                 id="input-with-icon-grid"
-                                label="Receivers Name"
+                                label="Wishes"
                                 placeholder="Many more Happy Returns of the day"
                                 value={wishes}
                                 onChange={(e) => setwishes(e.target.value)}
@@ -694,7 +694,7 @@ function SevenDayHome({ history }) {
                         <TextField
                           style={{}}
                           id="date"
-                          label="Birthday"
+                          label="Event Date"
                           type="date"
                           value={Bday_date}
                           defaultValue={Bday_date}

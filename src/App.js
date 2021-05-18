@@ -71,6 +71,7 @@ const LiveMagazine = lazy(() => import("./LivePages/LiveMagazine"));
 const LiveMemoryGame = lazy(() => import("./LivePages/LiveMemoryGame"));
 const LiveCollage = lazy(() => import("./LivePages/LiveCollage"));
 const SevenDayHome = lazy(() => import("./pages/SevenDayHome"));
+const ValentineHome = lazy(() => import("./pages/ValentineHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Home = lazy(() => import("./pages/Home"));
 
@@ -214,6 +215,7 @@ export default function App() {
           <Route exact path="/userpackspage" component={UserPacksPage} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/recommendedhome" component={SevenDayHome} />
+          <Route exact path="/valentinehome" component={ValentineHome} />
           <Route exact path="/ContinuePack/:slug" component={ContinuePack} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register/complete" component={RegisterComplete} />

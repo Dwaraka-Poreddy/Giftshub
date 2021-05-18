@@ -464,6 +464,8 @@ header.masthead {
   background-color: #f2e5d2;
   /* height: 32px; */
   width: 100%;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
   /* border-bottom: 11px solid white; */
 }
 
@@ -485,6 +487,8 @@ header.masthead {
   position: relative;
   width: 16.66%;
   text-align: center;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
   /* border-radius: 100px; */
 }
 #team {
@@ -524,6 +528,8 @@ header.masthead {
   -webkit-box-shadow: inset 0px 0px 4px 4px #f95e5e;
   -moz-box-shadow: inset 0px 0px 4px 4px #f95e5e;
   box-shadow: inset 0px 0px 4px 4px #f95e5e;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
 }
 
 @media screen and (max-width: 1024px) {

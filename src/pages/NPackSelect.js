@@ -8,77 +8,77 @@ const allComp = [
     ismailsent: false,
     content: "Magazine",
     url: "",
-    img: "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
+    img: require("../Images/cardimages/magazine.PNG"),
   },
   {
     id: "challenge",
     ismailsent: false,
     content: "Challenge",
     url: "",
-    img: "https://img.timeinc.net/time/images/covers/asia/2012/20121105_600.jpg",
+    img: require("../Images/cardimages/challenge.PNG"),
   },
   {
     id: "aboutquiz",
     ismailsent: false,
     content: "About Quiz",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemo.PNG?alt=media&token=beeb8d64-7501-4051-91e9-d15ba8977de4",
+    img: require("../Images/cardimages/aboutquiz.PNG"),
   },
   {
     id: "calendar",
     ismailsent: false,
     content: "Calendar",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FthreeDsqr.PNG?alt=media&token=89f9386d-931d-4642-a744-761ef2b97f2d",
+    img: require("../Images/cardimages/calender.PNG"),
   },
   {
     id: "threedcarousel",
     ismailsent: false,
     content: "3D Carousel",
     url: "",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS60_0gL8ZRN3M91p7rKmcrV8mU_hL3bbejKA&usqp=CAU",
+    img: require("../Images/cardimages/3dcarousel.PNG"),
   },
   {
     id: "honeycomb",
     ismailsent: false,
     content: "Honey Comb ",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFrames.PNG?alt=media&token=349119f7-5722-4887-8bd7-c4586f916f94",
+    img: require("../Images/cardimages/honeycomb.PNG"),
   },
   {
     id: "journey",
     ismailsent: false,
     content: "Journey",
     url: "",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz4nl3tuB44qN7Y6k4Kl-N4bf2M9ZX7CPUg&usqp=CAU",
+    img: require("../Images/cardimages/journey.PNG"),
   },
   {
     id: "swatchbook",
     ismailsent: false,
     content: "Swatch Book",
     url: "",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz4nl3tuB44qN7Y6k4Kl-N4bf2M9ZX7CPUg&usqp=CAU",
+    img: require("../Images/cardimages/swatchBook.PNG"),
   },
   {
     id: "puzzle",
     ismailsent: false,
     content: "Slide Puzzle",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Ftom-and-jerry-hd-background.jpg?alt=media&token=a5fb8323-7899-46d7-8119-16b69e1e2531",
+    img: require("../Images/cardimages/slidepuzzle.PNG"),
   },
   {
     id: "specialcard",
     ismailsent: false,
     content: "Special Card",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FSpecialCard.PNG?alt=media&token=1fdfb6d2-3bcd-42e7-b10c-4537a10b914a",
+    img: require("../Images/cardimages/specialCard.PNG"),
   },
   {
     id: "animatedframe",
     ismailsent: false,
     content: "Animated Frame ",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FAnimatedFrames.PNG?alt=media&token=349119f7-5722-4887-8bd7-c4586f916f94",
+    img: require("../Images/cardimages/animatedFrames.PNG"),
   },
   {
     id: "threedimage",
@@ -92,21 +92,21 @@ const allComp = [
     ismailsent: false,
     content: "Greeting Card",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FGreeting.PNG?alt=media&token=6ee929be-de78-4b21-a046-ed716c52b8da",
+    img: require("../Images/cardimages/greetingcardviolet.PNG"),
   },
   {
     id: "cubes",
     ismailsent: false,
     content: " 3D Heart",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2FCubessqare.PNG?alt=media&token=5d65ad64-985a-4335-9274-da1fdc115f5e",
+    img: require("../Images/cardimages/3dheart.PNG"),
   },
   {
     id: "memorygame",
     ismailsent: false,
     content: "Memory Game",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fmemo.PNG?alt=media&token=beeb8d64-7501-4051-91e9-d15ba8977de4",
+    img: require("../Images/cardimages/memorygame.PNG"),
   },
   {
     id: "collage",
@@ -120,7 +120,7 @@ const allComp = [
     ismailsent: false,
     content: "NewsPaper",
     url: "",
-    img: "https://firebasestorage.googleapis.com/v0/b/update-image.appspot.com/o/imp%2Fpersonalisednewspapersq-9918857eg.jpg?alt=media&token=48bf0687-fa71-471d-acc3-207f346dd1b9",
+    img: require("../Images/cardimages/newspaper.PNG"),
   },
 ];
 
@@ -302,8 +302,8 @@ class N_Pack_Select extends Component {
                                   <img
                                     style={{ height: "100%" }}
                                     class="card-img-top npackselectcardimg"
-                                    // src={item.img}
-                                    src="https://picsum.photos/200/200"
+                                    src={item.img}
+                                    //src="https://picsum.photos/200/200"
                                     alt={index}
                                   />
 
