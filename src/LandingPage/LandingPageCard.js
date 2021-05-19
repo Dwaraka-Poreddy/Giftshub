@@ -4,7 +4,7 @@ import "./LandingPageCard.css";
 import sample from "../Images/gift-removebg-preview.png";
 import { Link } from "react-router-dom";
 
-function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
+function LandingPageCard({ img, link, title, text, badge1, badge2 }) {
   return (
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-3">
       <Link to={link}>
@@ -18,14 +18,7 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
                 }}
               >
                 <div class="card-body text-center">
-                  <img
-                    style={{
-                      backgroundImage: "url(" + img + ")",
-                    }}
-                    class=" img-fluid tabcardimg"
-                    src={img}
-                    alt="card"
-                  />
+                  <img class=" img-fluid tabcardimg" src={img} alt={title} />
                   <br />
                   <h4 class="card-title">{title}</h4>
                 </div>
@@ -35,10 +28,9 @@ function LandingPageCard({ img, gif, link, title, text, badge1, badge2 }) {
               <div class="card">
                 <div class="card-body text-center ">
                   <img
-                    style={{ width: "70%", height: "auto" }}
-                    class=" img-fluid"
+                    class=" img-fluid cardbackgiftimage"
                     src={sample}
-                    alt="card"
+                    alt={title}
                   />
 
                   <br />

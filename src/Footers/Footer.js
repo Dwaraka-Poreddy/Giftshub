@@ -37,32 +37,41 @@ export default function Footer() {
                 <div class="standard_social_links">
                   <div>
                     <li class="round-btn btn-facebook">
-                      <a href="https://www.facebook.com/Giftshub/">
+                      <a
+                        href="https://www.facebook.com/Giftshub/"
+                        name="footerfacebook"
+                      >
                         <FontAwesomeIcon icon={faFacebook} />
                       </a>
                     </li>
                     <li class="round-btn btn-linkedin">
-                      <a href="#">
+                      <a href="#" name="footerlinkedin">
                         <FontAwesomeIcon icon={faLinkedin} />
                       </a>
                     </li>
                     <li class="round-btn btn-twitter">
-                      <a href="https://twitter.com/Giftshub/">
+                      <a
+                        href="https://twitter.com/Giftshub/"
+                        name="footertwitter"
+                      >
                         <FontAwesomeIcon icon={faTwitter} />
                       </a>
                     </li>
                     <li class="round-btn btn-instagram">
-                      <a href="https://www.instagram.com/Giftshub/">
+                      <a
+                        href="https://www.instagram.com/Giftshub/"
+                        name="footerinstagram"
+                      >
                         <FontAwesomeIcon icon={faInstagram} />
                       </a>
                     </li>
                     <li class="round-btn btn-whatsapp">
-                      <a href="#">
+                      <a href="#" name="footerwhatsapp">
                         <FontAwesomeIcon icon={faWhatsapp} />
                       </a>
                     </li>
                     <li class="round-btn btn-envelop">
-                      <a href="#">
+                      <a href="#" name="footermail">
                         <FontAwesomeIcon icon={faEnvelope} />
                       </a>
                     </li>
@@ -94,14 +103,20 @@ export default function Footer() {
                 <h3>Quick LInks</h3>
                 <ul class="footer-links">
                   <li>
-                    <a href="/">Home</a>
+                    <a href="/" name="home">
+                      Home
+                    </a>
                   </li>
                   <li>
-                    <a href="/aboutus">About us</a>
+                    <a href="/aboutus" name="aboutus">
+                      About us
+                    </a>
                   </li>
 
                   <li>
-                    <a href="userpackspage">My Packs</a>
+                    <a href="userpackspage" name="mypacks">
+                      My Packs
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -109,13 +124,19 @@ export default function Footer() {
                 <h3>OUR SERVICES</h3>
                 <ul class="footer-category">
                   <li>
-                    <a href="#">Valentines Pack</a>
+                    <a href="#" name="valentinespack">
+                      Valentines Pack
+                    </a>
                   </li>
                   <li>
-                    <a href="recommendedhome">Recommended pack </a>
+                    <a href="recommendedhome" name="recommendedpack">
+                      Recommended pack{" "}
+                    </a>
                   </li>
                   <li>
-                    <a href="home">N-Day Pack</a>
+                    <a href="home" name="ndayhome">
+                      N-Day Pack
+                    </a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -124,11 +145,16 @@ export default function Footer() {
                 <h3>Contact Us</h3>
                 <ul class="footer-links">
                   <li>
-                    <a href="#">+918367770505</a>
+                    <a href="#" name="contactnumber">
+                      +918367770505
+                    </a>
                   </li>
 
                   <li>
-                    <a href="#">contact.giftshub@gmail.com</a>
+                    <a href="#" name="contactmail">
+                      c{/*  */}ont{/*  */}act.{/*  */}gif{/*  */}tshub@g{" "}
+                      {/*  */}mail.co{/*  */}m
+                    </a>
                   </li>
                 </ul>
               </div>

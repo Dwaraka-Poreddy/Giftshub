@@ -42,7 +42,7 @@ function ScheduledLiveNavBar({ slug }) {
       >
         <div class="container">
           <a class="navbar-brand js-scroll-trigger" href={`/`}>
-            <img src={require("../Images/navbar-logo.svg")} alt="" />
+            <img src={require("../Images/giftshublogo.png")} alt="" />
           </a>
           <button
             class="navbar-toggler navbar-toggler-right"

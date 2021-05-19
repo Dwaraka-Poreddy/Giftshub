@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 import { toast } from "react-toastify";
-import { Button } from "antd";
 import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutlineOutlined";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,12 +8,25 @@ import { useSelector } from "react-redux";
 import NavBar from "../../NavBars/NavBar";
 import Footer from "../../Footers/Footer";
 import "./Login.css";
+import Button1 from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Helmet } from "react-helmet";
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+    borderRadius: 25,
+    width: 300,
+  },
+}));
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [ReEmail, setReEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   let dispatch = useDispatch();
+  const classes = useStyles();
 
   const { user } = useSelector((state) => ({ ...state }));
   const { days_page } = useSelector((state) => ({ ...state }));
@@ -62,17 +74,16 @@ const Login = ({ history }) => {
         autoFocus
       />
       <br />
-      <Button
-        size="large"
-        className="mb-3"
-        block
-        shape="round"
-        type="danger"
+
+      <Button1
+        variant="contained"
+        color="secondary"
         onClick={handleRegisterSubmit}
-        className="mb-3"
+        startIcon={<MailOutlineOutlinedIcon />}
+        className={classes.button}
       >
         Register
-      </Button>
+      </Button1>
     </form>
   );
 
@@ -147,24 +158,35 @@ const Login = ({ history }) => {
       >
         Forgot Password ?
       </Link>
-
-      <Button
-        onClick={handleSubmit}
-        type="primary"
-        block
-        shape="round"
-        icon={<MailOutlineOutlinedIcon />}
-        size="large"
+      <Button1
+        variant="contained"
+        color="secondary"
         disabled={!email || !password}
-        className="mb-3"
+        onClick={handleSubmit}
+        startIcon={<MailOutlineOutlinedIcon />}
+        className={classes.button}
       >
-        Login with Email/ Password
-      </Button>
+        Login with Email & Password
+      </Button1>
     </form>
   );
 
   return (
     <div>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Giftshub - signup / login page</title>
+        <meta
+          name="description"
+          content="Signup at once and get the opportunity to grab these wonderful, free, easily shareable and life long accessable gifts."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
       <br />
       <br />
@@ -185,17 +207,15 @@ const Login = ({ history }) => {
                 <center>
                   <h3 style={{ fontSize: "17px" }}>OR</h3>
                 </center>
-                <Button
+                <Button1
+                  variant="contained"
+                  color="secondary"
                   onClick={handleGoogleLogin}
-                  type="danger"
-                  block
-                  shape="round"
-                  icon={<MailOutlineOutlinedIcon style={{ color: "red" }} />}
-                  size="large"
-                  className="mb-3"
+                  startIcon={<FontAwesomeIcon icon={faGoogle} />}
+                  className={classes.button}
                 >
                   Login with Google
-                </Button>
+                </Button1>
               </div>
               <div className="col-md-6 ">
                 <h4 className="loginh4">Register</h4>

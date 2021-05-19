@@ -39,6 +39,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { isMobileOnly, isTablet } from "react-device-detect";
 import "./ContinuePack.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Helmet } from "react-helmet";
 const usemodStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -583,6 +584,20 @@ function ContinuePack({ match, history }) {
 
   return (
     <div style={{ textAlign: "justify" }}>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Edit Your Pack</title>
+        <meta
+          name="description"
+          content="Edit the gifts you have chosen for your loved ones and save them to gift them as these are free and wonderful gifts"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
       <br />
       <br />

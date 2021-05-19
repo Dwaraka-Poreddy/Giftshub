@@ -54,7 +54,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -76,7 +75,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -98,7 +96,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -120,7 +117,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -142,7 +138,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -164,7 +159,6 @@ const presidents = [
             return (
               <LandingPageCard
                 img={item.img}
-                gif={item.gif}
                 link={item.link}
                 title={item.title}
                 badge1={item.badge1}
@@ -236,14 +230,7 @@ export default function LandingPage() {
   };
   const browview = () => {
     return (
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "20%",
-          zIndex: "5",
-        }}
-      >
+      <div className="particlesdiv">
         <Particles
           params={{
             particles: {
@@ -314,17 +301,11 @@ export default function LandingPage() {
       <>
         <br />
 
-        <div
-          id="demo"
-          style={{ overflow: "hidden" }}
-          class="carousel slide"
-          data-ride="carousel"
-        >
+        <div id="demo" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner zoomcarousel">
             <div class="carousel-item active zoomcarousel">
               <img
                 class="d-block w-100 mobilecarouselimg"
-                // src={require("../Images/zoomcarouselsquare.jpg")}
                 src={require("../Images/v22m.jpg")}
                 alt="First slide"
               />
@@ -332,23 +313,25 @@ export default function LandingPage() {
             <div class="carousel-item zoomcarousel">
               <img
                 class="d-block w-100 mobilecarouselimg"
-                // src={require("../Images/zoomcarousel0square.jpg")}
                 src={require("../Images/valentines1m.jpg")}
                 alt="Second slide"
               />
             </div>
-            {/* <div class="carousel-item zoomcarousel">
-              <img
-                class="d-block w-100"
-                src={require("../Images/zoomcarousel2square.jpg")}
-                alt="Third Slide "
-              />
-            </div> */}
           </div>
-          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <a
+            class="carousel-control-prev"
+            href="#demo"
+            data-slide="prev"
+            name="carouselprev"
+          >
             <span class="carousel-control-prev-icon"></span>
           </a>
-          <a class="carousel-control-next" href="#demo" data-slide="next">
+          <a
+            class="carousel-control-next"
+            href="#demo"
+            data-slide="next"
+            name="carouselnext"
+          >
             <span class="carousel-control-next-icon"></span>
           </a>
         </div>
@@ -357,12 +340,7 @@ export default function LandingPage() {
   };
   const browviewMainCarousel = () => {
     return (
-      <div
-        id="demo"
-        style={{ overflow: "hidden" }}
-        class="carousel slide"
-        data-ride="carousel"
-      >
+      <div id="demo" class="carousel slide" data-ride="carousel">
         {" "}
         {/* <ul class="carousel-indicators">
           <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -373,9 +351,7 @@ export default function LandingPage() {
           <div class="carousel-item active zoomcarousel">
             <img
               class="d-block w-100"
-              //src={require("../Images/dumcarousel.jpg")}
               src={require("../Images/v22.jpg")}
-              //src={require("../Images/Picture1.png")}
               alt="First slide"
             />
           </div>
@@ -383,7 +359,6 @@ export default function LandingPage() {
             <img
               class="d-block w-100"
               src={require("../Images/valentines1.jpg")}
-              // src={require("../Images/Picture1.png")}
               alt="Second slide"
             />
           </div>
@@ -399,6 +374,7 @@ export default function LandingPage() {
           class="carousel-control-prev bannercarouselcontrol bannercarouselcontrolleft"
           href="#demo"
           data-slide="prev"
+          name="carouselleft"
         >
           <span class="carousel-control-prev-icon"></span>
         </a>
@@ -406,6 +382,7 @@ export default function LandingPage() {
           class="carousel-control-next bannercarouselcontrol bannercarouselcontrolright"
           href="#demo"
           data-slide="next"
+          name="carouselright"
         >
           <span class="carousel-control-next-icon"></span>
         </a>
@@ -426,22 +403,40 @@ export default function LandingPage() {
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"
-          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india,"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
         />
         <meta name="language" content="EN" />
+        <meta property="og:url" content="https://giftshub.live" />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="Gifts Hub - Free Personalized Virtual Gifting"
+        />
+        <meta
+          property="og:description"
+          content="Gifts manifest our emotions and transform them into meaningful forms of love! In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
+        />
+        <meta
+          property="og:image"
+          content="https://giftshub.live/static/media/giftshublogo.1d76fab1.png"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@giftshub" />
+        <meta name="twitter:creator" content="@Srinivas" />
+        <meta
+          name="twitter:title"
+          content="Gifts Hub - Free Personalized Virtual Gifting"
+        />
+        <meta
+          name="twitter:description"
+          content="Gifts manifest our emotions and transform them into meaningful forms of love! In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
+        />
+        <meta
+          name="twitter:image"
+          content="https://giftshub.live/static/media/giftshublogo.1d76fab1.png"
+        />
       </Helmet>
-      <div
-        style={{ display: "none" }}
-        itemscope
-        itemtype="http://schema.org/Person"
-      >
-        <span itemprop="name">DWARAKA POREDDY</span>
-        <span itemprop="company">The GIFTSHUB Company</span>
-        <span itemprop="tel">8367770505</span>
-        <a itemprop="email" href="contact.giftshub@gmail.com">
-          Contact Mail
-        </a>
-      </div>
+
       {isMobileOnly ? null : isTablet ? null : browview()}
 
       <body id="page-top">
@@ -453,19 +448,15 @@ export default function LandingPage() {
             ? browviewMainCarousel()
             : browviewMainCarousel()}
         </div>
-        <section
-          class="partners"
-          style={{ marginTop: "-82.5px", marginBottom: "-82.5px" }}
-        >
+        <section class="partners partnerssection">
           <div class="container py-0">
             <div class="card shadow-lg swiper-container-container">
               <div class="card-body swiper-container1">
-                <div class="swiper-container">
-                  <center>
-                    <h4 className="mb-0">Customizable gifts</h4>
-                  </center>
+                <div class="swiper-container ">
+                  <h4 className="mb-0 text-center">Customizable gifts</h4>
+
                   <OwlCarousel
-                    style={{ zIndex: "5" }}
+                    className="owlcarouselsecondary"
                     dots={false}
                     loop
                     margin={0}
@@ -478,80 +469,80 @@ export default function LandingPage() {
                       <div class="swiper-slide">
                         <img
                           src={require("../Images/logos/animatedframes.png")}
-                          alt=""
+                          alt="swiperanimframes"
                         />
                       </div>
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/journey.png")}
-                        alt=""
+                        alt="swiperjourney"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/memorygame.png")}
-                        alt=""
+                        alt="swipermemorygame"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/newspaper.png")}
-                        alt=""
+                        alt="swipernewspaper"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/collage.png")}
-                        alt=""
+                        alt="swipercollage"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedcarousel.png")}
-                        alt=""
+                        alt="swiper3dcarousel"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/calender.png")}
-                        alt=""
+                        alt="swipercalender"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedheart.png")}
-                        alt=""
+                        alt="swiper3dheart"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/slidepuzzle.png")}
-                        alt=""
+                        alt="swiperskidepuzzle"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/greetingcard.png")}
-                        alt=""
+                        alt="swipergreetingcard"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/magazine.png")}
-                        alt=""
+                        alt="swipermagazine"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/surprisecard.png")}
-                        alt=""
+                        alt="swipersurprisecard"
                       />
                     </div>
                     <div class="swiper-slide">
                       <img
                         src={require("../Images/logos/threedframe.png")}
-                        alt=""
+                        alt="swiper3dframe"
                       />
                     </div>
                   </OwlCarousel>
@@ -563,82 +554,82 @@ export default function LandingPage() {
         <div class="welcome-area" id="welcome">
           <div class="header-text">
             <div class="container">
-              <center>
-                <h1 className="freegifting"> Free personalised gifting</h1>
-              </center>
+              <h1 className="freegifting text-center">
+                {" "}
+                Free personalised gifting
+              </h1>
+
               <div class="row">
                 <div
                   class="left-text col-xs-12"
                   data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
                 >
                   <p>
-                    Gifts manifest our emotions and transform them into
-                    meaningful forms of love! In a digital age of fast paced
-                    lifestyle, we at Gift’s Hub aim to stand apart in providing
-                    you the old-school way of wishing your loved ones in several
-                    ways and bringing you closer.
+                    Gift-planning can be quite a challenging task given the
+                    hectic schedules we all have, currently. So to waste no more
+                    time and to bid goodbyes to all the reminders and alarms, we
+                    introduce our automatic gift generation feature which keeps
+                    a track of the D-day and time, releasing the appropriate
+                    gift component on the desired day! Lead a guilt-free life
+                    once you choose your suitable package and customize them
+                    accordingly, because we at Gift’s Hub promise to deliver
+                    blissful content as and when you intend us to! Express love,
+                    this Valentine’s Day
                   </p>
-                  <center>
+                  <div className="text-center">
                     <Link to="/samplegifts">
                       {" "}
                       <button className="main-button samplegiftsbtn">
                         Sample Gifts{" "}
-                        <PlayArrowOutlinedIcon
-                          className="samplegiftsbtnarrow"
-                          style={{ marginBottom: "3px" }}
-                        />
+                        <PlayArrowOutlinedIcon className="samplegiftsbtnarrow" />
                       </button>
                     </Link>
-                  </center>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="container" id="landingpageservices">
-          <center>
-            <h1 className="landingservicesheading" id="landingservicesheading">
-              {" "}
-              Our Packs
-            </h1>
-          </center>
+          <h2
+            className="landingservicesheading text-center landingpagemainheadings"
+            id="landingservicesheading"
+          >
+            {" "}
+            Our Packs
+          </h2>
+
           <div class="card-deck mb-3 text-center">
             <div class="card mb-4 box-shadow landingpageservicescard">
               <div class="card-header landingservicescardhead">
                 <h4 class="my-0 font-weight-normal">Recommended pack</h4>
               </div>
               <div class="card-body">
-                {/* <h1 class="card-title pricing-card-title">
-                  $0 <small class="text-muted">/ mo</small>
-                </h1> */}
-                <center>
-                  <ul class="list-unstyled mt-3 mb-4">
-                    <p>
-                      Choose from the recommended 3,5 & 7 day packs and free
-                      yourself from the hustle of picking the best.
-                    </p>
-                    <p>Happy Gifting !!!</p>
-                  </ul>
-                </center>
-                <center>
-                  <Link to="/recommendedhome">
-                    <div class="slidehoverbtnouter">
-                      <div
-                        onClick={() => {
-                          dispatch({
-                            type: "REDIRECT_USER",
-                            payload: {
-                              days_redirect: "r",
-                            },
-                          });
-                        }}
-                        class="slidehoverbtnbutton"
-                      >
-                        <div class="slidehoverbtntext">Recommended pack</div>
-                      </div>
+                <ul class="list-unstyled mt-3 mb-4 mx-auto">
+                  <p>
+                    Choose from the recommended 3,5 & 7 day packs and free
+                    yourself from the hustle of picking the best.
+                  </p>
+                  <p>Happy Gifting !!!</p>
+                </ul>
+
+                <Link to="/recommendedhome">
+                  <div class="slidehoverbtnouter">
+                    <div
+                      onClick={() => {
+                        dispatch({
+                          type: "REDIRECT_USER",
+                          payload: {
+                            days_redirect: "r",
+                          },
+                        });
+                      }}
+                      class="slidehoverbtnbutton"
+                    >
+                      <div class="slidehoverbtntext">Recommended pack</div>
                     </div>
-                  </Link>
-                </center>
+                  </div>
+                </Link>
               </div>
             </div>
             <div class="card mb-4 box-shadow landingpageservicescard">
@@ -646,9 +637,6 @@ export default function LandingPage() {
                 <h4 class="my-0 font-weight-normal ">Valentines Pack</h4>
               </div>
               <div class="card-body">
-                {/* <h1 class="card-title pricing-card-title">
-                  $0 <small class="text-muted">/ mo</small>
-                </h1> */}
                 <ul class="list-unstyled mt-3 mb-4">
                   <p>
                     Make this valentines day special with fourteen different
@@ -657,25 +645,24 @@ export default function LandingPage() {
 
                   <p>Happy Valentine !!!</p>
                 </ul>
-                <center>
-                  <Link to="/valentinehome">
-                    <div class="slidehoverbtnouter">
-                      <div
-                        onClick={() => {
-                          // dispatch({
-                          //   type: "REDIRECT_USER",
-                          //   payload: {
-                          //     days_redirect: "n",
-                          //   },
-                          // });
-                        }}
-                        class="slidehoverbtnbutton"
-                      >
-                        <div class="slidehoverbtntext"> Valentines Pack</div>
-                      </div>
+
+                <Link to="/valentinehome">
+                  <div class="slidehoverbtnouter">
+                    <div
+                      onClick={() => {
+                        // dispatch({
+                        //   type: "REDIRECT_USER",
+                        //   payload: {
+                        //     days_redirect: "n",
+                        //   },
+                        // });
+                      }}
+                      class="slidehoverbtnbutton"
+                    >
+                      <div class="slidehoverbtntext"> Valentines Pack</div>
                     </div>
-                  </Link>
-                </center>
+                  </div>
+                </Link>
               </div>
             </div>{" "}
             <div class="card mb-4 box-shadow landingpageservicescard">
@@ -683,9 +670,6 @@ export default function LandingPage() {
                 <h4 class="my-0 font-weight-normal ">N-Day Pack </h4>
               </div>
               <div class="card-body">
-                {/* <h1 class="card-title pricing-card-title">
-                  $0 <small class="text-muted">/ mo</small>
-                </h1> */}
                 <ul class="list-unstyled mt-3 mb-4">
                   <p>
                     Choose the total number of gifts necessary based on the
@@ -693,37 +677,34 @@ export default function LandingPage() {
                   </p>
                   <p>Happy Gifting !!!</p>
                 </ul>
-                <center>
-                  <Link to="/home">
-                    <div class="slidehoverbtnouter">
-                      <div
-                        onClick={() => {
-                          dispatch({
-                            type: "REDIRECT_USER",
-                            payload: {
-                              days_redirect: "n",
-                            },
-                          });
-                        }}
-                        class="slidehoverbtnbutton"
-                      >
-                        <div class="slidehoverbtntext">N-Day Pack</div>
-                      </div>
+
+                <Link to="/home">
+                  <div class="slidehoverbtnouter">
+                    <div
+                      onClick={() => {
+                        dispatch({
+                          type: "REDIRECT_USER",
+                          payload: {
+                            days_redirect: "n",
+                          },
+                        });
+                      }}
+                      class="slidehoverbtnbutton"
+                    >
+                      <div class="slidehoverbtntext">N-Day Pack</div>
                     </div>
-                  </Link>
-                </center>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
         </div>
         <section id="team" class="pb-5">
           {" "}
-          <center>
-            <h1 style={{ color: "#ffffff" }} className="landingservicesheading">
-              {" "}
-              Customizable Gifts
-            </h1>
-          </center>
+          <h2 className="landingservicesheading text-center landingpagemainheadings">
+            {" "}
+            Customizable Gifts
+          </h2>
           <div className="container">
             <Tabs
               items={getTabs()}
@@ -752,7 +733,10 @@ export default function LandingPage() {
           <div class="container">
             <div class="row">
               <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h1 className="landingservicesheading mt-5"> Our Process</h1>
+                <h3 className="landingservicesheading mt-5 landingpagemainheadings">
+                  {" "}
+                  Our Process
+                </h3>
                 <p className="landindservivestext">
                   We are a passionate gift-making agency that specializes in
                   beautiful and easy-to-make virtual personalized gifts.
@@ -765,7 +749,7 @@ export default function LandingPage() {
                     <img
                       src={require("../Images/arrow.png")}
                       class="tobotm processarrow"
-                      alt=""
+                      alt="processarrow"
                     />
                     <span class="icon fa fa-address-book processline"></span>
 
@@ -782,7 +766,7 @@ export default function LandingPage() {
                     <img
                       className="processarrow"
                       src={require("../Images/arrow.png")}
-                      alt=""
+                      alt="swiperarrow"
                     />
                     <span class="icon fa fa-address-book processline"></span>
                     <div class="cont">
@@ -798,7 +782,7 @@ export default function LandingPage() {
                     <img
                       src={require("../Images/arrow.png")}
                       class="tobotm processarrow"
-                      alt=""
+                      alt="swiperarrow"
                     />
                     <span class="icon fa fa-address-book processline"></span>
                     <div class="cont">
@@ -831,31 +815,43 @@ export default function LandingPage() {
         <div class="welcome-area1" id="welcome1">
           <div class="header-text">
             <div class="container">
-              <center>
-                <h1> Free personalised gifting</h1>
-              </center>
+              <h5 className="text-center landingpagemainheadings">
+                {" "}
+                Free personalised gifting
+              </h5>
+
               <div class="row">
                 <div
                   class="left-text col-xs-12"
                   data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
                 >
                   <p>
-                    Gifts manifest our emotions and transform them into
-                    meaningful forms of love! In a digital age of fast paced
-                    lifestyle, we at Gift’s Hub aim to stand apart in providing
-                    you the old-school way of wishing your loved ones in several
-                    ways and bringing you closer.Gift-planning can be quite a
-                    challenging task given the hectic schedules we all have,
-                    currently. So to waste no more time and to bid goodbyes to
-                    all the reminders and alarms, we introduce our automatic
-                    gift generation feature which keeps a track of the D-day and
-                    time, releasing the appropriate gift component on the
-                    desired day! Lead a guilt-free life once you choose your
-                    suitable package and customize them accordingly, because we
-                    at Gift’s Hub promise to deliver blissful content as and
-                    when you intend us to! Express love, this Valentine’s Day
-                    with our free personalized virtual gifting service. Upload
-                    pictures & text, create puzzles and together make memories!
+                    Gift-planning can be quite a challenging task given the
+                    hectic schedules we all have, currently. So to waste no more
+                    valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                    personalised, gifts, customized, scheduled, virtual ,
+                    free,e-gift, online gifts, online gift delivery, buy gifts
+                    online, online gift shop, send gifts, gifts to india, pack,
+                    gifting, free, valentines, love, n-day pack, we at gifts,
+                    valentines pack, recommended pack, gifts hub, accordingly,
+                    because we at Gift’s Hub promise to deliver blissful content
+                    as and when you intend us to! Express love, this Valentine’s
+                    Day with our free personalized virtual gifting service.
+                    Upload pictures & text, create puzzles and together make
+                    memories! Surprise your loved ones with goodies on special
+                    occasions. If you are looking for a Father’s Day gift, it’s
+                    an excellent way to shop and grab amazing deals at the same
+                    time. Everything that you would find in an actual offline
+                    gifting shop can be found online these days, that too with
+                    great discounts. When you shop through Gifts Hub online
+                    store, you do not just get to choose from some very unique
+                    and high quality gifting collection, you also get to have
+                    valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                    personalised, gifts, customized, scheduled, virtual ,
+                    free,e-gift, online gifts, online gift delivery, buy gifts
+                    online, online gift shop, send gifts, gifts to india, pack,
+                    gifting, free, valentines, love, n-day pack, we at gifts,
+                    valentines pack, recommended pack, gifts hub,
                   </p>
                 </div>
               </div>
@@ -864,61 +860,66 @@ export default function LandingPage() {
         </div>
         <div id="socialMedia">
           <div className="container">
-            <center>
-              <h1
-                className="landingservicesheading"
-                id="landingservicesheading"
-              >
-                {" "}
-                Spread the Love
-              </h1>
-            </center>{" "}
+            <h3
+              className="landingservicesheading text-center landingpagemainheadings"
+              id="landingservicesheading"
+            >
+              {" "}
+              Spread the Love
+            </h3>
+
             <div className="row">
-              <div className="col-4"></div>
-              <div className="col-4">
+              <div className="mx-auto">
                 <div className="row">
-                  <div className="col-4">
-                    <center>
-                      <a href="https://www.facebook.com/Giftshub/">
-                        {" "}
-                        <img
-                          style={{ width: "60px" }}
-                          src={require("../Images/facebook.png")}
-                          alt="First slide"
-                        />
-                      </a>
-                    </center>
-                  </div>
-                  <div className="col-4">
-                    <center>
+                  <div className="col-4 mx-auto">
+                    <a
+                      href="https://www.facebook.com/Giftshub/"
+                      name="facebook"
+                    >
+                      {" "}
                       <img
-                        style={{ width: "60px" }}
-                        src={require("../Images/youtube.png")}
+                        className="spreadlovesocialicons"
+                        src={require("../Images/facebook.png")}
                         alt="First slide"
                       />
-                    </center>
+                    </a>
                   </div>
-                  <div className="col-4">
-                    <center>
-                      <img
-                        style={{ width: "60px" }}
-                        src={require("../Images/instagram.png")}
-                        alt="First slide"
-                      />
-                    </center>
+                  <div className="col-4 mx-auto">
+                    <img
+                      className="spreadlovesocialicons"
+                      src={require("../Images/youtube.png")}
+                      alt="First slide"
+                    />
+                  </div>
+                  <div className="col-4 mx-auto">
+                    <img
+                      className="spreadlovesocialicons"
+                      src={require("../Images/instagram.png")}
+                      alt="First slide"
+                    />
                   </div>
                 </div>
               </div>
-              <div className="col-4"></div>
             </div>
           </div>
         </div>
         <div className={FAQclasses.root} className="container mb-5">
-          <center>
-            <h3 className="landingservicesheading" id="landingservicesheading">
-              Frequently Asked Questions
-            </h3>
-          </center>
+          <h5
+            className="landingservicesheading text-center"
+            id="landingservicesheading"
+          >
+            Frequently Asked Questions
+          </h5>
+          <p>
+            With our same day and midnight delivery services, you can then get
+            your orders delivered on short notices or even at exact midnight to
+            valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+            personalised, gifts, customized, scheduled, virtual , free,e-gift,
+            online gifts, online gift delivery, buy gifts online, online gift
+            shop, send gifts, gifts to india, pack, gifting, free, valentines,
+            love, n-day pack, we at gifts, valentines pack, recommended pack,
+            gifts hub,
+          </p>
           <Accordion
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
@@ -935,7 +936,13 @@ export default function LandingPage() {
             <AccordionDetails>
               <Typography>
                 It is completely free. No debit/Credit card is required. Make
-                personalized gifts and surprise your loved ones.
+                personalized gifts and surprise your loved ones. These are some
+                valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                personalised, gifts, customized, scheduled, virtual ,
+                free,e-gift, online gifts, online gift delivery, buy gifts
+                online, online gift shop, send gifts, gifts to india, pack,
+                gifting, free, valentines, love, n-day pack, we at gifts,
+                valentines pack, recommended pack, gifts hub,
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -956,9 +963,12 @@ export default function LandingPage() {
               <Typography>
                 People say that we have gotten 25 years older but our creative
                 think tanks are growing younger with each passing day. Inspired
-                by the current trends, we keep coming up with new floral
-                arrangements & gifts for almost every emotion, celebration and
-                occasion.
+                valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                personalised, gifts, customized, scheduled, virtual ,
+                free,e-gift, online gifts, online gift delivery, buy gifts
+                online, online gift shop, send gifts, gifts to india, pack,
+                gifting, free, valentines, love, n-day pack, we at gifts,
+                valentines pack, recommended pack, gifts hub,
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -979,10 +989,12 @@ export default function LandingPage() {
               <Typography>
                 Life is full of varied experiences and experiences count. They
                 help us stride through tough times and make our lives
-                meaningful. We at IGP are committed to giving you and loved
-                one's experiences that are sure to be cherished for a very long
-                time. We are India's best online gift store wherein you will
-                find amazing gift ideas for all your special relationships.
+                valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                personalised, gifts, customized, scheduled, virtual ,
+                free,e-gift, online gifts, online gift delivery, buy gifts
+                online, online gift shop, send gifts, gifts to india, pack,
+                gifting, free, valentines, love, n-day pack, we at gifts,
+                valentines pack, recommended pack, gifts hub,
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -1005,7 +1017,13 @@ export default function LandingPage() {
                 birthday or anniversary or some other day to provide expression
                 to your love. If you want to show you care and you love and you
                 adore any of your relationships there can be no better moment
-                than Right Now!
+                than Right Now! that offers a wide array of gifts
+                valentine,greetings,gifts for all,gifs,gifthub,giftshub,
+                personalised, gifts, customized, scheduled, virtual ,
+                free,e-gift, online gifts, online gift delivery, buy gifts
+                online, online gift shop, send gifts, gifts to india, pack,
+                gifting, free, valentines, love, n-day pack, we at gifts,
+                valentines pack, recommended pack, gifts hub,
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -1030,7 +1048,9 @@ export default function LandingPage() {
                 love is that of a mother. Then there is your father. He is and
                 will always continue to be a superhero for his children. It is
                 like he knows every wish of yours even before it crawls into
-                your mind
+                your mind for the people you hold close to your heart and show
+                how much you care for their happiness. Gifts Hub is a renowned
+                Indian gifting portal.
               </Typography>
             </AccordionDetails>
           </Accordion>

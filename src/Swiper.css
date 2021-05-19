@@ -1,3 +1,7 @@
+.partnerssection {
+  margin-top: -82.5px !important;
+  margin-bottom: -82.5px !important;
+}
 .swiper-wrapper {
   position: relative;
   width: 100%;
@@ -15,7 +19,9 @@
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
-
+.owlcarouselsecondary {
+  z-index: 5;
+}
 .swiper-slide {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;

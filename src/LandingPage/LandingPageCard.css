@@ -154,3 +154,10 @@ section .section-title {
   background-position: center;
   border: 0px !important;
 }
+.spreadlovesocialicons {
+  width: 60px;
+}
+.cardbackgiftimage {
+  width: 70%;
+  height: auto;
+}

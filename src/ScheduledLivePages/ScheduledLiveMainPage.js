@@ -5,7 +5,7 @@ import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 import "./ScheduledLiveMainPage.css";
 import bgvideo from "../Images/mainpagebg.mp4";
-import giftvideo from "../Images/giftgif.mp4";
+import { Helmet } from "react-helmet";
 import "../LandingPage/LandingPage.css";
 function ScheduledLiveMainPage({ match }) {
   const database = firebase.firestore();
@@ -85,6 +85,20 @@ function ScheduledLiveMainPage({ match }) {
   return (
     <div>
       {" "}
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Gifted live main page</title>
+        <meta
+          name="description"
+          content="Yaaay!!! A gift for you from your loved ones. signup and keep spreading this never ending love with our eternal gifts."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <body id="page-top">
         <ScheduledLiveNavBar slug={match.params.slug} />
         <br />
@@ -140,18 +154,9 @@ function ScheduledLiveMainPage({ match }) {
                           style={{
                             width: "100%",
                           }}
-                          src={require("../Images/giftgif.gif")}
+                          src={require("../Images/giftgif.webm")}
                           alt="Heading"
                         />
-                        {/* <video
-                        style={{ width: "100%", height: "auto" }}
-                        className="videoTag"
-                        autoPlay
-                        loop
-                        muted
-                      >
-                        <source src={giftvideo} type="video/mp4" />
-                      </video> */}
                       </center>
                     </div>
                     <div className="col-md-6">

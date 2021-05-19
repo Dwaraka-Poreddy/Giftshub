@@ -175,7 +175,7 @@ export default function App() {
         fallback={
           <div className="col text-center p-5">
             <h1> Gifts' Hub Website On The Way...</h1>
-            <img src={require("./Images/giftgif.gif")} alt="starting gif" />
+            <img src={require("./Images/giftgif.webm")} alt="starting gif" />
             {/* <LoadingOutlined /> */}
           </div>
         }

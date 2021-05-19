@@ -3,7 +3,7 @@ import { hydrate, render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "antd/dist/antd.css";
+
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";

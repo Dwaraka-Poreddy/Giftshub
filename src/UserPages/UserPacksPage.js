@@ -9,6 +9,7 @@ import Footer from "../Footers/Footer";
 import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 const options = {
   position: "top-center",
   style: {
@@ -99,6 +100,20 @@ function UserPacksPage({ history }) {
   });
   return (
     <div>
+      <Helmet>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title> Your Packs</title>
+        <meta
+          name="description"
+          content="Create as any many free gifts as you like that are free, virtual, easily shareable and most importantly life long accessable."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
+        />
+        <meta name="language" content="EN" />
+      </Helmet>
       <NavBar />
 
       <div className="userspacks py-5">
