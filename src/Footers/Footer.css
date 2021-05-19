@@ -15,7 +15,7 @@
   float: left;
   margin: 15px 8px;
   box-shadow: 2px 2px 5px 0px rgb(82, 0, 67);
-  border: 1px solid; /*border: 1px solid #622657;*/
+  border: 1px solid;
   cursor: pointer;
 }
 .round-btn a {
@@ -57,69 +57,53 @@
 .standard_header .standard_social_links {
   margin-left: 1rem;
 }
-
-/*
-    =========================================================================================
-                                      footer
-    =========================================================================================
-    */
-
 .footer-wrap {
   padding-top: 43px;
   background-size: cover;
 }
-
 .footer-wrap h3 {
   color: #fff;
   font-size: 17px;
   text-transform: uppercase;
   margin-bottom: 25px;
 }
-
 .footer-wrap p {
   font-size: 13px;
   line-height: 24px;
   color: #b3b3b3;
   margin-top: 15px;
 }
-
 .footer-wrap p a {
   color: #fff;
   text-decoration: underline;
   font-style: italic;
 }
-
 .footer-wrap p a:hover {
   text-decoration: none;
   color: #ff7800;
 }
-
 .footer-links li a {
   font-size: 13px;
   line-height: 30px;
   color: #ccc;
   text-decoration: none;
 }
-
 .footer-links li:before {
   font-family: "FontAwesome";
   padding-right: 10px;
   color: #ccc;
 }
-
 .footer-category li a {
   font-size: 13px;
   line-height: 30px;
   color: #ccc;
   text-decoration: none;
 }
-
 .footer-category li:before {
   font-family: "FontAwesome";
   padding-right: 10px;
   color: #b3b3b3;
 }
-
 .address {
   color: #b3b3b3;
   font-size: 14px;
@@ -127,37 +111,31 @@
   padding-left: 30px;
   line-height: 30px;
 }
-
 .address:before {
-  content: "\f277";
+  content: "f277";
   font-family: "FontAwesome";
   position: absolute;
   top: 0;
   left: 0;
 }
-
 .info a {
   color: #b3b3b3;
   font-size: 14px;
   line-height: 30px;
   font-weight: normal;
 }
-
 .fa-phone:before {
-  content: "\f095";
+  content: "f095";
 }
-
 .info a {
   color: #b3b3b3;
   font-size: 14px;
   line-height: 30px;
   font-weight: normal;
 }
-
 .fa-fax:before {
-  content: "\f1ac";
+  content: "f1ac";
 }
-
 .copyright {
   border-top: 1px solid #111;
   font-size: 14px;
@@ -182,7 +160,6 @@ footer .first_class h3 {
 footer {
   background: #333;
 }
-
 footer .newsletter input[type="text"] {
   width: 100%;
   background: #fff;
@@ -192,7 +169,6 @@ footer .newsletter input[type="text"] {
   border-radius: 50px;
   margin-top: 12px;
 }
-
 .newsletter .newsletter_submit_btn {
   background: #fff;
   position: absolute;
@@ -202,34 +178,24 @@ footer .newsletter input[type="text"] {
   font-size: 17px;
   color: #333;
 }
-
 footer .second_class_bdr {
   padding-top: 25px;
   border-top: 1px solid #222;
 }
-
-/* footer .btn-facebook a {
-  padding: 6px 14px !important;
-} */
-
 footer .btn-envelop a {
   color: #d6403a;
   font-size: 15px;
   padding: 12px 12px;
 }
-
 footer .round-btn a {
   padding: 6px 12px;
 }
-
 footer .round-btn {
   box-shadow: 2px 2px 5px 0px #222 !important;
 }
-
 footer .round-btn {
   margin: 15px 4px;
 }
-
 footer dl,
 ol,
 ul {
@@ -238,12 +204,10 @@ ul {
 footer li {
   list-style: none;
 }
-
 @media (max-width: 768px) {
   .footer-wrap h3 {
     margin-top: 27px;
   }
-
   footer .round-btn {
     margin: 15px 4px;
   }

@@ -50,18 +50,6 @@
   }
 }
 @media (max-width: 768px) {
-  /* .swiper-wrapper {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
-  .swiper-slide {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  } */
   .swiper-container-container {
     -webkit-transform: scale(0.8);
     transform: scale(0.8);

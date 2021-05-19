@@ -1,5 +1,4 @@
 div {
-  /* text-align: center; */
 }
 .RightSideBar2__Btn {
   display: flex;
@@ -10,24 +9,20 @@ div {
   margin-right: 5px;
   background-color: #f36969;
 }
-
 .RightSideBar2__Btn__icon {
-  color: #ffffff;
+  color: #fff;
   font-size: large !important;
 }
-
 .RightSideBar2__Btn__title {
   flex: 1;
   margin-left: 5px;
   font-weight: 700;
   font-size: 16px;
 }
-
 .RightSideBar2__Btn:hover {
   background-color: #068dc0;
   cursor: pointer;
 }
-
 .RightSideBar2__Text {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -35,7 +30,6 @@ div {
   font-weight: 700;
   font-size: 15px;
 }
-
 .HeaderBtn {
   display: flex;
   align-items: center;
@@ -45,12 +39,10 @@ div {
   background-color: #f36969;
   width: 200px;
 }
-
 .HeaderBtn__icon {
-  color: #ffffff;
+  color: #fff;
   font-size: large !important;
 }
-
 .HeaderBtn__title {
   flex: 1;
   margin-left: 5px;
@@ -58,21 +50,13 @@ div {
   color: white !important;
   text-decoration: none !important;
 }
-
 .HeaderBtn:hover {
   background-color: #068dc0;
-
   cursor: pointer;
 }
-
 .HeaderBtn.selected {
   background-color: #70cff3;
 }
-/* 
-.slidehoverbtnouter {
-  margin: 50px;
-} */
-
 .slidehoverbtnbutton {
   border: 1px solid#f36969;
   outline: none;
@@ -92,12 +76,10 @@ div {
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-
 .slidehoverbtnbutton:hover {
   background-position: left bottom;
-  color: #ffffff;
+  color: #fff;
 }
-
 .editpagesrightnav {
   background-color: rgb(252 200 122);
   justify-content: center;

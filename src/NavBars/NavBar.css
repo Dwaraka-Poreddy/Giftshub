@@ -35,9 +35,6 @@
 #mainNav .navbar-toggler {
   padding: 0.75rem;
   font-family: "Roboto", sans-serif;
-  /* font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   font-size: 0.75rem;
   color: #fff;
   text-transform: uppercase;
@@ -47,9 +44,6 @@
 #mainNav .navbar-brand {
   color: #fed136;
   font-family: "Roboto", sans-serif;
-  /* font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   font-weight: 700;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
@@ -59,9 +53,6 @@
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Roboto", sans-serif;
-  /* font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   font-size: 0.95rem;
   color: rgb(255, 255, 255);
   letter-spacing: 0.0625em;
@@ -70,7 +61,6 @@
 #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: rgb(66 66 66);
 }
-
 @media (min-width: 992px) {
   #mainNav {
     padding-top: 1.5rem;
@@ -110,6 +100,5 @@
 .dropdown-menu-right,
 .dropdown-secondary {
   background: #fb6e6e !important;
-
   border: 0px !important;
 }
