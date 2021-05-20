@@ -80,7 +80,7 @@ export default function Footer() {
               </div>
               <div class="clearfix"></div>
               <div class="col-md-12">
-                <h3 style={{ textAlign: "right" }}>Stay Connected</h3>
+                <h3 className="text-right">Stay Connected</h3>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
             <div class="row">
               <div class="col-md-4 col-sm-6">
                 <div class="footer-logo center column">
-                  <h1 className="brandname">GiftsHub</h1>
+                  <h5 className="brandname">GiftsHub</h5>
                 </div>
 
                 <p>

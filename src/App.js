@@ -161,8 +161,7 @@ export default function App() {
         <title>Gifts Hub - Free Personalized Virtual Gifting</title>
         <meta
           name="description"
-          content="Gifts manifest our emotions and transform them into meaningful forms of love! 
-          In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
+          content="Gifts manifest our emotions. In this digital age GiftsHub aim in providing you several ways of wishing your loved ones."
         />
         <meta name="robots" content="index, follow" />
         <meta

@@ -176,7 +176,7 @@ const items = [
       text: "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
       title: "Greeting Card",
       badge1: "Wishing",
-      badge2: "",
+      badge2: "Message",
     },
     {
       id: "1",
@@ -196,7 +196,7 @@ const items = [
       text: "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
       title: "Greeting Card",
       badge1: "Wishing",
-      badge2: "",
+      badge2: "Message",
     },
     {
       id: "3",
@@ -212,7 +212,7 @@ const items = [
 
   // {
   //   id: "3",
-  //   img: "https://picsum.photos/400/200",
+  //   img: require("../Images/cardimages/greetingcardviolet.PNG"),
   //
   //   link: "/threedimagepage",
   //   text:
@@ -224,13 +224,13 @@ const items = [
 
   // {
   //   id: "5",
-  //   img: "https://picsum.photos/400/200",
+  //   img: require("../Images/cardimages/greetingcardviolet.PNG"),
   //
   //   link: "/collagepage",
   //   text: " Photographs are the stories that we fail to put in words.",
   //   title: "Collage",
   //   badge1: "Laptop",
-  //   badge2: "",
+  //   badge2: "Memory",
   // },
 ];
 

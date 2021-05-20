@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./LandingPage.css";
-import "../Swiper.css";
+import "./LandingPage.min.css";
 import { Helmet } from "react-helmet";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import OwlCarousel from "react-owl-carousel";
@@ -20,7 +17,6 @@ import $ from "jquery";
 import NavBar from "../NavBars/NavBar";
 import Footer from "../Footers/Footer";
 import firebase from "../firebase";
-import "../Buttons.css";
 import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
 import Tabs from "react-responsive-tabs";
 import "react-responsive-tabs/styles.css";
@@ -33,10 +29,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 const useFAQStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    backgroundColor: "#ffdfb0",
+  },
+  content: {
+    backgroundColor: "#ffdfb0",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
     flexShrink: 0,
   },
   secondaryHeading: {
@@ -397,8 +396,7 @@ export default function LandingPage() {
         <title>Gifts Hub - Free Personalized Virtual Gifting</title>
         <meta
           name="description"
-          content=" Gifts manifest our emotions and transform them into meaningful forms of love! 
-          In a digital age of fast paced lifestyle, we at Gift’s Hub aim to stand apart in providing you the old-school way of wishing your loved ones in several ways and bringing you closer."
+          content="Gifts manifest our emotions. In this digital age GiftsHub aim in providing you special ways of wishing your loved ones."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -449,8 +447,8 @@ export default function LandingPage() {
             : browviewMainCarousel()}
         </div>
         <section class="partners partnerssection">
-          <div class="container py-0">
-            <div class="card shadow-lg swiper-container-container">
+          <div class="container py-0 ">
+            <div class="card shadow-lg swiper-container-container partnerszindex">
               <div class="card-body swiper-container1">
                 <div class="swiper-container ">
                   <h4 className="mb-0 text-center">Customizable gifts</h4>
@@ -826,16 +824,17 @@ export default function LandingPage() {
                   data-scroll-reveal="enter left move 30px over 0.6s after 0.4s"
                 >
                   <p>
-                    Gift-planning can be quite a challenging task given the
-                    hectic schedules we all have, currently. So to waste no more
+                    Check out all our sample gifts. Discover our features and
+                    generate a single URL that is shareable on all main
+                    platforms like Facebook, Twitter, Email and WhatsApp. This
+                    link automatically updates itself using a countdown timer
+                    and saves you from the hassle of designing everyday.
                     valentine,greetings,gifts for all,gifs,gifthub,giftshub,
                     personalised, gifts, customized, scheduled, virtual ,
                     free,e-gift, online gifts, online gift delivery, buy gifts
                     online, online gift shop, send gifts, gifts to india, pack,
                     gifting, free, valentines, love, n-day pack, we at gifts,
                     valentines pack, recommended pack, gifts hub, accordingly,
-                    because we at Gift’s Hub promise to deliver blissful content
-                    as and when you intend us to! Express love, this Valentine’s
                     Day with our free personalized virtual gifting service.
                     Upload pictures & text, create puzzles and together make
                     memories! Surprise your loved ones with goodies on special
@@ -925,6 +924,7 @@ export default function LandingPage() {
             onChange={handleChange("panel1")}
           >
             <AccordionSummary
+              className="faqtabhead"
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1bh-content"
               id="panel1bh-header"
@@ -933,7 +933,7 @@ export default function LandingPage() {
                 Is it free ?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="faqtabtext">
               <Typography>
                 It is completely free. No debit/Credit card is required. Make
                 personalized gifts and surprise your loved ones. These are some
@@ -954,12 +954,13 @@ export default function LandingPage() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2bh-content"
               id="panel2bh-header"
+              className="faqtabhead"
             >
               <Typography className={FAQclasses.heading}>
                 Same Day Delivery ?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="faqtabtext">
               <Typography>
                 People say that we have gotten 25 years older but our creative
                 think tanks are growing younger with each passing day. Inspired
@@ -980,12 +981,13 @@ export default function LandingPage() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3bh-content"
               id="panel3bh-header"
+              className="faqtabhead"
             >
               <Typography className={FAQclasses.heading}>
                 What are virtual gifts ?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="faqtabtext">
               <Typography>
                 Life is full of varied experiences and experiences count. They
                 help us stride through tough times and make our lives
@@ -1006,12 +1008,13 @@ export default function LandingPage() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel4bh-content"
               id="panel4bh-header"
+              className="faqtabhead"
             >
               <Typography className={FAQclasses.heading}>
                 What are the categories available ?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="faqtabtext">
               <Typography>
                 Don’t tell that you are really thinking of waiting for the
                 birthday or anniversary or some other day to provide expression
@@ -1035,12 +1038,13 @@ export default function LandingPage() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel5bh-content"
               id="panel5bh-header"
+              className="faqtabhead"
             >
               <Typography className={FAQclasses.heading}>
                 What is personalized gifting ?
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="faqtabtext">
               <Typography>
                 The moment you enter into this world you get wrapped with
                 relations. The very first relation which is closest to your

@@ -238,10 +238,10 @@ function ValentineHome({ history }) {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Valentines Day Pack</title>
+        <title>Gifts Hub - Valentines Pack Page</title>
         <meta
           name="description"
-          content="We offer standard as well as custom made packages, suitable for your requirements and generate a link which is all-time accessible on any web browser. After all, we understand that it is these little things that will trip you down the memory lane and help you relive all these moments together anytime, anywhere and anyway you want!"
+          content="All you need is love. Checkout this valentines pack and spread the love for 14 days straight before the special day."
         />
         <meta name="robots" content="index, follow" />
         <meta

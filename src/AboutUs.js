@@ -15,7 +15,7 @@ export default function AboutUs() {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>ABout Us </title>
+        <title>Gifts Hub - ABout Us Page</title>
         <meta
           name="description"
           content=" Srinivas and Dwarak built this fabulous website to send free virtual gifts. Gifts manifest our emotions and transform them into meaningful forms."

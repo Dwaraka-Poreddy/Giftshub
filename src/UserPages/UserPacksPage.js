@@ -102,10 +102,10 @@ function UserPacksPage({ history }) {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title> Your Packs</title>
+        <title>Gifts Hub - Your Packs Page</title>
         <meta
           name="description"
-          content="Create as any many free gifts as you like that are free, virtual, easily shareable and most importantly life long accessable."
+          content="Create as any many free gifts as you like and never stop surprising your loved ones with our marvellous gifts."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -140,16 +140,13 @@ function UserPacksPage({ history }) {
                               </h4>
                             </div>
                             <div class="col-6 col-md-12">
-                              <div id="userpackspreview" class="col-12">
+                              <div class="col-12">
                                 <Link
                                   class="logo"
                                   to={`/scheduledlive/main/${gift.id}`}
                                   target="_blank"
                                 >
-                                  <h2 className="userpackspreviewtext">
-                                    {" "}
-                                    Preview{" "}
-                                  </h2>
+                                  <h2 id="userpackspreview"> Preview </h2>
                                 </Link>
                               </div>
                             </div>
@@ -160,9 +157,8 @@ function UserPacksPage({ history }) {
                                   handleDelete(gift.id);
                                 }}
                                 class="col-12"
-                                className="userpacksdelete"
                               >
-                                <h2 className="userpacksdeletetext">Delete</h2>
+                                <h2 id="userpacksdelete">Delete</h2>
                               </div>
                             </div>
                           </div>

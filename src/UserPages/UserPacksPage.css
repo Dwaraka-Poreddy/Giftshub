@@ -1,46 +1,7 @@
 .userspacks {
   background: linear-gradient(#fdc46f, 50%, #fcfcfc);
 }
-.userpacksdeletetext {
-  font-size: 18px;
-  color: #fb6e6e;
-  margin-top: 10px;
-  margin-left: 8px;
-  margin-bottom: 0;
-}
-.userpacksdelete {
-  height: 38.5px;
-  align-items: center;
-  border: 1px solid #fb6e6e;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.userpacksdelete:hover {
-  background: linear-gradient(rgb(255 120 120), 45%, rgb(234 161 161));
-}
-.userpacksdelete:hover .userpacksdeletetext {
-  color: #fff !important;
-}
-.userpackspreviewtext {
-  font-size: 18px;
-  color: #fdc46f;
-  margin-top: 10px;
-  margin-left: 8px;
-  margin-bottom: 0;
-}
-#userpackspreview {
-  height: 38.5px;
-  align-items: center;
-  border: 1px solid #fdc46f;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#userpackspreview:hover {
-  background: linear-gradient(#fdc46f, 45%, #f1ebac);
-}
-#userpackspreview:hover .userpackspreviewtext {
-  color: #fff !important;
-}
+
 .userpackscardheader {
   justify-content: space-between;
   color: #fff;
@@ -76,10 +37,10 @@
   outline: none !important;
   cursor: pointer;
   color: #fdc46f !important;
-  font-size: 18px !important;
+  font-size: 18px;
   border-radius: 20px;
   display: inline-block;
-  padding: 6px 18px !important;
+  padding: 6px 15px !important;
   letter-spacing: 0.25px;
   text-transform: uppercase;
   background: linear-gradient(90deg, #fdc46f 50%, #fff 0);
@@ -91,6 +52,50 @@
   transition: all 0.5s ease-out;
 }
 .userpacksproceed:hover {
+  background-position: left bottom;
+  color: #ffffff !important;
+}
+#userpacksdelete {
+  border: 2px solid#fb6e6e !important;
+  outline: none !important;
+  cursor: pointer;
+  color: #fb6e6e !important;
+  font-size: 18px;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 6px 33px !important;
+  letter-spacing: 0.25px;
+  background: linear-gradient(90deg, #fb6e6e 50%, #fff 0);
+  background-size: 210% 100%;
+  background-position: 100% 100%;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+#userpacksdelete:hover {
+  background-position: left bottom;
+  color: #ffffff !important;
+}
+#userpackspreview {
+  border: 2px solid#fdc46f !important;
+  outline: none !important;
+  cursor: pointer;
+  color: #fdc46f !important;
+  font-size: 18px;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 6px 27px !important;
+  letter-spacing: 0.25px;
+  background: linear-gradient(90deg, #fdc46f 50%, #fff 0);
+  background-size: 210% 100%;
+  background-position: 100% 100%;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+#userpackspreview:hover {
   background-position: left bottom;
   color: #ffffff !important;
 }

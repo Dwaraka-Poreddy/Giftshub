@@ -178,7 +178,7 @@ const Login = ({ history }) => {
         <title>Giftshub - signup / login page</title>
         <meta
           name="description"
-          content="Signup at once and get the opportunity to grab these wonderful, free, easily shareable and life long accessable gifts."
+          content="Signup at once and get the opportunity to know about our Giftshub and the heart throbbing gifts we have for you here."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -194,7 +194,7 @@ const Login = ({ history }) => {
       <br />
       <div className="container p-3">
         <div className="row">
-          <div className="col-7 mx-auto loginrow">
+          <div className=" mx-auto loginrow">
             <div className="row">
               <div className="col-md-6 ">
                 {loading ? (

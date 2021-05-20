@@ -32,7 +32,6 @@ export default function DummyNavBar() {
   return (
     <div>
       <nav
-        // style={{ background: "linear-gradient(#fdc46f, #f9deb6)" }}
         class={
           !navstate
             ? "navbar navbar-expand-lg navbar-dark fixed-top"
@@ -46,9 +45,9 @@ export default function DummyNavBar() {
             href={`/`}
           >
             <img
-              style={{ height: "50px" }}
               src={require("../Images/giftshublogo.png")}
-              alt=""
+              alt="giftshublogo"
+              className="giftshublogoimg"
             />
           </a>
           <button
@@ -113,7 +112,7 @@ export default function DummyNavBar() {
                       ) : (
                         <img
                           width="40"
-                          src="https://banner2.cleanpng.com/20180327/ssq/kisspng-computer-icons-user-profile-avatar-profile-5ab9e3b05772c0.6947928615221318883582.jpg"
+                          src={require("../Images/userdefaultavatar.png")}
                           class="md-avatar rounded-circle ml-3"
                           alt="avatar image"
                         />

@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./LandingPageCard.css";
 import sample from "../Images/gift-removebg-preview.png";
 import { Link } from "react-router-dom";

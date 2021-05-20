@@ -90,7 +90,7 @@ function ScheduledLiveMainPage({ match }) {
         <title>Gifted live main page</title>
         <meta
           name="description"
-          content="Yaaay!!! A gift for you from your loved ones. signup and keep spreading this never ending love with our eternal gifts."
+          content="Yaaay!!! A gift for you from your loved ones made using GiftsHub with love. Enjoy your day with our eternal gifts."
         />
         <meta name="robots" content="index, follow" />
         <meta

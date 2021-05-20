@@ -266,10 +266,10 @@ function SevenDayHome({ history }) {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Our Recommended Pack</title>
+        <title>Gifts Hub - Our Recommended Packs Page</title>
         <meta
           name="description"
-          content="We offer standard as well as custom made packages, suitable for your requirements and generate a link which is all-time accessible on any web browser. After all, we understand that it is these little things that will trip you down the memory lane and help you relive all these moments together anytime, anywhere and anyway you want!"
+          content="We have sorted and separated our gifts based on the occasion they fit perfectly into. Relax, choose the pack you needed."
         />
         <meta name="robots" content="index, follow" />
         <meta

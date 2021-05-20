@@ -20,10 +20,10 @@ function SampleGifts() {
     <div>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Sample Gifts</title>
+        <title>Gifts Hub - Sample Gifts Page</title>
         <meta
           name="description"
-          content="Check out all our sample gifts.Discover our features and generate a single URL that is shareable on all main platforms like Facebook, Twitter, Email and WhatsApp. This link automatically updates itself using a countdown timer and saves you from the hassle of designing everyday."
+          content="Check out all our sample gifts made for you with extreme love and care. Choose the gifts that pulled your heart strings."
         />
         <meta name="robots" content="index, follow" />
         <meta

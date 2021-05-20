@@ -489,7 +489,7 @@ function ContinuePack({ match, history }) {
               </div>
               <div className="mobilestepper">
                 <Paper square elevation={0}>
-                  <Typography>
+                  <Typography className="text-center">
                     {datacontent[activeStep]}
                     {completed[activeStep] && (
                       <CheckCircleIcon style={{ color: "green" }} />
@@ -544,7 +544,10 @@ function ContinuePack({ match, history }) {
           <div>
             {allStepsCompleted() && !loading ? (
               <div>
-                <Typography className={Stepperclasses.instructions}>
+                <Typography
+                  className={Stepperclasses.instructions}
+                  className="text-center"
+                >
                   All Componenets completed - you&apos;re finished
                   <center>
                     {" "}
@@ -561,7 +564,10 @@ function ContinuePack({ match, history }) {
               </div>
             ) : (
               <div>
-                <Typography className={Stepperclasses.instructions}>
+                <Typography
+                  className={Stepperclasses.instructions}
+                  className="text-center"
+                >
                   <center>
                     {" "}
                     {daycounter == 0 ? (
@@ -586,10 +592,10 @@ function ContinuePack({ match, history }) {
     <div style={{ textAlign: "justify" }}>
       <Helmet>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Edit Your Pack</title>
+        <title>Gifts Hub - Edit Your Pack Page</title>
         <meta
           name="description"
-          content="Edit the gifts you have chosen for your loved ones and save them to gift them as these are free and wonderful gifts"
+          content="Now that you have chosen the perfect gifts for your loved one, take one step further and customize them with your love."
         />
         <meta name="robots" content="index, follow" />
         <meta
