@@ -36,14 +36,14 @@ export default function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://image.ibb.co/dUTfmJ/profile_img.jpg"
+                src={require("./Images/SrinivasKonduri.png")}
                 alt="profile one"
+                id="srinivaskonduri"
               />
             </div>
             <ul className="social-icons">
               <li>
-                <a href>
-                  {/* <i className="fab fa-facebook-f" /> */}
+                <a href="https://www.facebook.com/srinivas.koool">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faFacebookF}
@@ -51,12 +51,11 @@ export default function AboutUs() {
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="https://github.com/srinivaskool">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faGithub}
                   />
-                  {/* <i className="fab fa-instagram" /> */}
                 </a>
               </li>
               <li>
@@ -65,12 +64,10 @@ export default function AboutUs() {
                     className="aboutusfabicons"
                     icon={faTwitter}
                   />
-                  {/* <i className="fab fa-twitter" /> */}
                 </a>
               </li>
               <li>
-                <a href>
-                  {/* <i className="fab fa-dribbble" /> */}
+                <a href="https://www.linkedin.com/in/srinivas-konduri/">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faLinkedinIn}
@@ -82,25 +79,24 @@ export default function AboutUs() {
               <h2>
                 Srinivas Konduri
                 <br />
-                <span className="job-title">UI Developer</span>
+                <span className="job-title">FULL STACK WEB DEVELOPER</span>
               </h2>
             </div>
           </div>
         </div>
 
-        {/* ////////////////// */}
         <div className="card-wrapper boom">
           <div className="card">
             <div className="card-image">
               <img
-                src="https://image.ibb.co/dUTfmJ/profile_img.jpg"
+                src={require("./Images/DwarakaPoreddy.png")}
                 alt="profile one"
+                id="dwarakaporeddy"
               />
             </div>
             <ul className="social-icons">
               <li>
-                <a href>
-                  {/* <i className="fab fa-facebook-f" /> */}
+                <a href="https://www.facebook.com/dwarakanathreddy.poreddy">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faFacebookF}
@@ -108,12 +104,11 @@ export default function AboutUs() {
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="https://github.com/Dwaraka-Poreddy">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faGithub}
                   />
-                  {/* <i className="fab fa-instagram" /> */}
                 </a>
               </li>
               <li>
@@ -122,12 +117,10 @@ export default function AboutUs() {
                     className="aboutusfabicons"
                     icon={faTwitter}
                   />
-                  {/* <i className="fab fa-twitter" /> */}
                 </a>
               </li>
               <li>
-                <a href>
-                  {/* <i className="fab fa-dribbble" /> */}
+                <a href="https://www.linkedin.com/in/dwarakanatha-reddy-poreddy-3bbb231b1/">
                   <FontAwesomeIcon
                     className="aboutusfabicons"
                     icon={faLinkedinIn}
@@ -139,68 +132,13 @@ export default function AboutUs() {
               <h2>
                 Dwaraka Poreddy
                 <br />
-                <span className="job-title">UI Developer</span>
+                <span className="job-title">FULL STACK WEB DEVELOPER</span>
               </h2>
             </div>
           </div>
         </div>
-
-        {/* end box wrapper */}
-        {/* <div className="card-wrapper">
-          <div className="card profile-two">
-            <div className="card-image profile-img--two">
-              <img
-                src="https://image.ibb.co/c9rY6J/profile02.jpg"
-                alt="profile two"
-              />
-            </div>
-
-            <ul className="social-icons">
-              <li>
-                <a href>
-                  <FontAwesomeIcon
-                    className="aboutusfabicons"
-                    icon={faFacebookF}
-                  />
-                </a>
-              </li>
-              <li>
-                <a href>
-                  <FontAwesomeIcon
-                    className="aboutusfabicons"
-                    icon={faGithub}
-                  />
-                </a>
-              </li>
-              <li>
-                <a href>
-                  <FontAwesomeIcon
-                    className="aboutusfabicons"
-                    icon={faTwitter}
-                  />
-                </a>
-              </li>
-              <li>
-                <a href>
-                  <FontAwesomeIcon
-                    className="aboutusfabicons"
-                    icon={faLinkedinIn}
-                  />
-                </a>
-              </li>
-            </ul>
-            <div className="details jane">
-              <h2>
-                Dwaraka Poreddy
-                <br />
-                <span className="job-title">UI Designer</span>
-              </h2>
-            </div>
-          </div>
-        </div> */}
-        {/* END box wrapper */}
       </div>
-      {/* END container */} <br /> <br />
+      <br /> <br />
       <div class="aboutus">
         <div class="header-text">
           <div class="container py-5">

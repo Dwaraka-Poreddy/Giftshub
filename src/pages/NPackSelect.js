@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import $ from "jquery";
+import SyncAltIcon from "@material-ui/icons/SyncAlt";
 import "./NPackSelect.css";
 const allComp = [
   {
@@ -298,12 +299,15 @@ class N_Pack_Select extends Component {
                                   provided.draggableProps.style
                                 )}
                               >
-                                <div class="card npackselectcard">
+                                <div
+                                  style={{
+                                    backgroundImage: "url(" + item.img + ")",
+                                  }}
+                                  class="card npackselectcard"
+                                >
                                   <img
-                                    style={{ height: "100%" }}
                                     class="card-img-top npackselectcardimg"
                                     src={item.img}
-                                    //src="https://picsum.photos/200/200"
                                     alt={index}
                                   />
 
@@ -324,7 +328,9 @@ class N_Pack_Select extends Component {
               )}
             </Droppable>
           </div>
-          <div class="col-lg-1  ">Arrow</div>
+          <div class="col-lg-1  ">
+            <SyncAltIcon className="nselectarrow" />
+          </div>
           <div class="col-lg-3  ">
             <Droppable droppableId="droppable2">
               {(provided, snapshot) => (
@@ -360,8 +366,7 @@ class N_Pack_Select extends Component {
                               <div class="col-3 m-auto">
                                 <img
                                   style={{ width: "45px" }}
-                                  src="https://picsum.photos/100/100"
-                                  // src={item.img}
+                                  src={item.img}
                                   class="card-img"
                                   alt={index}
                                 />
@@ -373,7 +378,7 @@ class N_Pack_Select extends Component {
                                     padding: "1rem 1.25rem ",
                                   }}
                                 >
-                                  Day {index} ({item.content})
+                                  Day {index} : {item.content}
                                 </div>
                               </div>
                             </div>

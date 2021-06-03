@@ -124,7 +124,7 @@ export default function Footer() {
                 <h3>OUR SERVICES</h3>
                 <ul class="footer-category">
                   <li>
-                    <a href="#" name="valentinespack">
+                    <a href="valentinehome" name="valentinespack">
                       Valentines Pack
                     </a>
                   </li>
@@ -152,8 +152,8 @@ export default function Footer() {
 
                   <li>
                     <a href="#" name="contactmail">
-                      c{/*  */}ont{/*  */}act.{/*  */}gif{/*  */}tshub@g{" "}
-                      {/*  */}mail.co{/*  */}m
+                      c{/*  */}ont{/*  */}act.{/*  */}gif{/*  */}tshub@g{/*  */}
+                      mail.co{/*  */}m
                     </a>
                   </li>
                 </ul>
