@@ -1,4 +1,3 @@
-# Giftshub   https://giftshub.live/
 # Gifts-Hub-Free-Personalised-Gifting
 
 ![Project Image](README_IMAGES/1.jpeg)
