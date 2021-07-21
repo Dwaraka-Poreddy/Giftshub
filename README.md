@@ -11,7 +11,6 @@ Gifts Hub is a free personalized virtual gifting website. This website includes 
 ### Table of Contents
 
 - [Description](#description)
-- [Analysis and Process](#Analysis-and-Process)
 - [Demo](#demo)
 - [Project Layout](#project-layout)
 - [References](#references)
@@ -102,6 +101,7 @@ This is just a sample for 3 folders indide src. All folders have the same struct
 
 ## Author Info
 
-- LinkedIn - [Srinivas K](https://www.linkedin.com/in/srinivas-konduri/)
+- LinkedIn - [Dwaraka Poreddy](https://www.linkedin.com/in/dwarakanath-reddy-poreddy-3bbb231b1/)
+- Github - [Dwaraka Poreddy](https://github.com/Dwaraka-Poreddy)
 
 #### [Back To The Top](#Gifts-Hub-Free-Personalised-Gifting)
