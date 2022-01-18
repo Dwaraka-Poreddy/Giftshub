@@ -123,6 +123,13 @@ const allComp = [
     url: "",
     img: require("../Images/cardimages/newspaper.PNG"),
   },
+  {
+    id: "envelopegreetingcard",
+    ismailsent: false,
+    content: "Envelope Card",
+    url: "",
+    img: require("../Images/cardimages/greetingcardviolet.PNG"),
+  },
 ];
 
 const selectComp = [];

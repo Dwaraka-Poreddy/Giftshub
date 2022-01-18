@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import CircleTimer from "./CircleTimer";
+import "../SwatchBook/SwatchBook.css";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 export default function ScheduledLiveSwatchBook({ match }) {
   const database = firebase.firestore();

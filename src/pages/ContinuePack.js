@@ -25,6 +25,7 @@ import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
 import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
 import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
 import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
+import ScheduledEnvelopeGreetingCardPage from "../EnvelopeGreetingCard/ScheduledEnvelopeGreetingCardPage";
 import Loader from "react-loader-spinner";
 import Copy from "../Utils/Copy";
 import Paper from "@material-ui/core/Paper";
@@ -426,6 +427,17 @@ function ContinuePack({ match, history }) {
         />
       );
     }
+    if (dataid[step] === "envelopegreetingcard") {
+      return (
+        <ScheduledEnvelopeGreetingCardPage
+          isTourOpen={isTourOpen}
+          setTourOpend={setTourOpend}
+          step={step}
+          slug={slag}
+          getDoc={getDoc}
+        />
+      );
+    }
   }
   const Stepperclasses = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -660,12 +672,12 @@ function ContinuePack({ match, history }) {
                                   <div style={{ width: "200px" }}>
                                     <Copy livelink={livelink} />
                                   </div>
+                                  <Share
+                                    livelink={livelink}
+                                    to={data1.To_name}
+                                    from={data1.From_name}
+                                  />
                                 </center>
-                                <Share
-                                  livelink={livelink}
-                                  to={data1.To_name}
-                                  from={data1.From_name}
-                                />
                               </div>
                             </div>
                           </div>

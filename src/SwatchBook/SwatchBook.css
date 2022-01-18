@@ -40,6 +40,7 @@
 .swatchH6 {
   font-size: 10px;
   font-weight: bold;
+  color: #4a4a4a;
 }
 .swatchH2 {
   font-size: 26px;
@@ -50,6 +51,7 @@
   bottom: -50%;
   right: 40px;
   font-weight: bold;
+  color: #4a4a4a;
 }
 .swatchcircle {
   width: 20px;
@@ -71,6 +73,9 @@
   left: 0;
 }
 @media only screen and (max-width: 600px) {
+  .example {
+    font-size: 1.5rem;
+  }
   .swatchticket {
     width: 65px;
     height: 182px;
@@ -94,11 +99,13 @@
   }
   .swatchH6 {
     font-size: 6px;
+    color: #4a4a4a;
   }
   .swatchH2 {
     font-size: 12px;
     bottom: -43%;
     right: 100px;
+    color: #4a4a4a;
   }
   .swatchcircle {
     width: 10px;
@@ -136,12 +143,14 @@
 
   .swatchH6 {
     font-size: 7px;
+    color: #4a4a4a;
   }
 
   .swatchH2 {
     font-size: 17px;
     bottom: -46%;
     right: 82px;
+    color: #4a4a4a;
   }
   .swatchcircle {
     width: 13px;
@@ -176,12 +185,14 @@
 
   .swatchH6 {
     font-size: 10px;
+    color: #4a4a4a;
   }
 
   .swatchH2 {
     font-size: 22px;
     bottom: -54%;
     right: 50px;
+    color: #4a4a4a;
   }
   .swatchcircle {
     width: 17px;

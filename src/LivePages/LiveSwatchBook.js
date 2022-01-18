@@ -3,6 +3,7 @@ import SwatchBook from "../SwatchBook/SwatchBook";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
+import "../SwatchBook/SwatchBook.css";
 export default function LiveTicketDeck({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [name, setname] = useState("");
@@ -37,7 +38,7 @@ export default function LiveTicketDeck({ match }) {
       <br />
       <br />
       <center>
-        <h1 className="example">Happy Birthday Meher Gajula!!!</h1>
+        <h1 className="example">Best Wishes {name}</h1>
       </center>
       <div>
         {loading ? (

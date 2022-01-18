@@ -108,6 +108,12 @@ function ValentineHome({ history }) {
       url: "",
     },
     {
+      id: "envelopegreetingcard",
+      ismailsent: false,
+      content: "Envelope Card",
+      url: "",
+    },
+    {
       id: "aboutquiz",
       ismailsent: false,
       content: "About Quiz",

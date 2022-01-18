@@ -20,6 +20,7 @@ import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import GradientIcon from "@material-ui/icons/Gradient";
+import DoneIcon from "@material-ui/icons/Done";
 import "../Buttons.css";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -253,15 +254,19 @@ function TicketDeckPage() {
                       }}
                       className="RightSideBar2__Btn"
                     >
-                      <CreateIcon
+                      <DoneIcon
                         onClick={() => {
                           seteditname(false);
                           settoname(dummytoname);
                         }}
+                        // onMouseEnter={()=>{
+
+                        // }}
                         style={{
                           margin: "0 10px 0 5px",
                           color: "#ffffff",
                           fontSize: "large",
+                          background: "#87b11d",
                         }}
                       />
                       <InputBase

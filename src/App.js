@@ -14,9 +14,9 @@ const ThreeDCarouselPage = lazy(() =>
 const VioletGreetingCard = lazy(() =>
   import("./VioletGreetingCard/VioletGreetingCard")
 );
-const EnvelopeGreetingCard = lazy(() =>
-  import("./EnvelopeGreetingCard/EnvelopeGreetingCard")
-);
+// const EnvelopeGreetingCard = lazy(() =>
+//   import("./EnvelopeGreetingCard/EnvelopeGreetingCard")
+// );
 const BrownGreetingCard = lazy(() =>
   import("./BrownGreetingCard/BrownGreetingCard")
 );
@@ -35,6 +35,12 @@ const CollagePage = lazy(() => import("./Collage/CollagePage"));
 const CubesPage = lazy(() => import("./Cubes/CubesPage"));
 const OpenGreetingCardPage = lazy(() =>
   import("./OpenGreetingCard/OpenGreetingCardPage")
+);
+const EnvelopeGreetingCardPage = lazy(() =>
+  import("./EnvelopeGreetingCard/EnvelopeGreetingCardPage")
+);
+const LiveEnvelopeGreetingCard = lazy(() =>
+  import("./LivePages/LiveEnvelopeGreetingCard")
 );
 const LiveOpenGreetingCard = lazy(() =>
   import("./LivePages/LiveOpenGreetingCard")
@@ -126,6 +132,9 @@ const ScheduledLiveThreeDImagePage = lazy(() =>
 const ScheduledLiveOpenGreetCard = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveOpenGreetCard")
 );
+const ScheduledLiveEnvelopeGreetCard = lazy(() =>
+  import("./ScheduledLivePages/ScheduledLiveEnvelopeGreetCard")
+);
 const ScheduledLiveCubes = lazy(() =>
   import("./ScheduledLivePages/ScheduledLiveCubes")
 );
@@ -191,11 +200,11 @@ export default function App() {
             path="/violetgreetingcard"
             component={VioletGreetingCard}
           />{" "}
-          <Route
+          {/* <Route
             exact
             path="/envelopegreetingcard"
             component={EnvelopeGreetingCard}
-          />{" "}
+          />{" "} */}
           <Route
             exact
             path="/browngreetingcard"
@@ -230,6 +239,11 @@ export default function App() {
             exact
             path="/opengreetingcardpage"
             component={OpenGreetingCardPage}
+          />
+          <Route
+            exact
+            path="/envelopegreetingcardpage"
+            component={EnvelopeGreetingCardPage}
           />
           <Route exact path="/specialcardpage" component={SpecialCardPage} />
           <Route
@@ -278,6 +292,11 @@ export default function App() {
             exact
             path="/live/opengreetingcard/:slug"
             component={LiveOpenGreetingCard}
+          />
+          <Route
+            exact
+            path="/live/envelopegreetingcard/:slug"
+            component={LiveEnvelopeGreetingCard}
           />
           <Route exact path="/live/honeycomb/:slug" component={LiveHoneyComb} />
           <Route exact path="/live/cubes/:slug" component={LiveCubesPage} />
@@ -362,6 +381,11 @@ export default function App() {
             exact
             path="/scheduledlive/opengreetingcard/:id/:slug"
             component={ScheduledLiveOpenGreetCard}
+          />
+          <Route
+            exact
+            path="/scheduledlive/envelopegreetingcard/:id/:slug"
+            component={ScheduledLiveEnvelopeGreetCard}
           />
           <Route
             exact

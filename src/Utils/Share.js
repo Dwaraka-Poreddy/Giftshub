@@ -93,7 +93,7 @@ function Share({ livelink, from, to }) {
           <HeaderBtn Icon={WhatsAppIcon} title="Whatsapp " />
         </WhatsappShareButton>
       </div>{" "}
-      <div className="mx-auto text-center">
+      <div>
         {showform ? (
           <form
             onSubmit={(e) => {

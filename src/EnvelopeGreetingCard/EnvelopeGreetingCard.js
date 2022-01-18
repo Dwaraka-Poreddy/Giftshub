@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./EnvelopeGreetingCard.css";
-export default function EnvelopeGreetingCard() {
+import { BrowserView, MobileView, TabletView } from "react-device-detect";
+export default function EnvelopeGreetingCard({
+  fbimg,
+  message,
+  occassion,
+  totext,
+  fromtext,
+}) {
   const [mainclass, setmainclass] = useState("new");
   const handlechangeclass = () => {
     if (mainclass === "new") {
@@ -17,22 +24,20 @@ export default function EnvelopeGreetingCard() {
       >
         <div class="EnvelopeGreetingCardfront">
           <div class="EnvelopeGreetingCardmail">
-            <p>Happy Birthday</p>
+            <p>{occassion}</p>
             <p>Click me</p>
           </div>
         </div>
         <div class="EnvelopeGreetingCardback">
           <div
             style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1476234251651-f353703a034d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80)",
+              backgroundImage: "url(" + fbimg + ")",
             }}
             class="EnvelopeGreetingCardletter"
           >
-            <p> I hope your day is as amazing and fun as </p>
-            <p>I am... </p>
-            <p>HBD Older Sis</p>
-
+            <p> {message} </p>
+            <p>{fromtext}</p>
+            <p>{totext}</p>
             <div class="EnvelopeGreetingCardbox">
               <div class="EnvelopeGreetingCardcake">
                 <div class="EnvelopeGreetingCardcandle">

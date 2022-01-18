@@ -184,7 +184,7 @@ const items = [
 
       link: "/violetgreetingcard",
       text: "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
-      title: "Greeting Card",
+      title: "Violet Card",
       badge1: "Wishing",
       badge2: "Message",
     },
@@ -192,9 +192,9 @@ const items = [
       id: "2",
       img: require("../Images/cardimages/greetingcardviolet.PNG"),
 
-      link: "/envelopegreetingcard",
+      link: "/envelopegreetingcardpage",
       text: "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
-      title: "Greeting Card",
+      title: "Envelope Card",
       badge1: "Wishing",
       badge2: "Message",
     },
@@ -204,7 +204,7 @@ const items = [
 
       link: "/browngreetingcard",
       text: "  The cliche’ greeting cards never go out of style and is the classic form to express your feelings.",
-      title: "Greeting Card",
+      title: "Brown Card",
       badge1: "Wishing",
       badge2: "Message",
     },
