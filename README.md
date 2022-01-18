@@ -99,7 +99,7 @@ This is just a sample for 3 folders indide src. All folders have the same struct
 
 ## Author Info
 
-- LinkedIn - [Dwaraka Poreddy](https://www.linkedin.com/in/dwarakanath-reddy-poreddy-3bbb231b1/)
+- LinkedIn - [Dwaraka Poreddy](https://www.linkedin.com/in/dwaraka-poreddy-3bbb231b1/)
 - Github - [Dwaraka Poreddy](https://github.com/Dwaraka-Poreddy)
 
 #### [Back To The Top](#Gifts-Hub-Free-Personalised-Gifting)
