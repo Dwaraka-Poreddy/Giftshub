@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import "./LandingPage.min.css";
-import { Helmet } from "react-helmet";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Aos from "aos";
-import "aos/dist/aos.css";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import LandingPageCard from "./LandingPageCard";
-import LandingPageCardsData from "./landingPageCardsData";
-import Particles from "react-particles-js";
-import { isMobileOnly, isTablet } from "react-device-detect";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import $ from "jquery";
-import NavBar from "../NavBars/NavBar";
-import Footer from "../Footers/Footer";
-import firebase from "../firebase";
-import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
-import Tabs from "react-responsive-tabs";
-import "react-responsive-tabs/styles.css";
-import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PlayArrowOutlinedIcon from "@material-ui/icons/PlayArrowOutlined";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import $ from "jquery";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import React, { useEffect, useState } from "react";
+import { isMobileOnly, isTablet } from "react-device-detect";
+import { Helmet } from "react-helmet";
+import OwlCarousel from "react-owl-carousel";
+import Particles from "react-particles-js";
+import { useDispatch } from "react-redux";
+import Tabs from "react-responsive-tabs";
+import "react-responsive-tabs/styles.css";
+import { Link } from "react-router-dom";
+import firebase from "../firebase";
+import Footer from "../Footers/Footer";
+import NavBar from "../NavBars/NavBar";
+import "./LandingPage.min.css";
+import LandingPageCard from "./LandingPageCard";
+import LandingPageCardsData from "./landingPageCardsData";
 const useFAQStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -404,7 +404,7 @@ export default function LandingPage() {
           content="valentine,greetings,gifts for all,gifs,gifthub,giftshub, personalised, gifts, customized, scheduled, virtual , free,e-gift, online gifts, online gift delivery, buy gifts online, online gift shop, send gifts, gifts to india, pack, gifting, free, valentines, love, n-day pack, we at gifts, valentines pack, recommended pack, gifts hub"
         />
         <meta name="language" content="EN" />
-        <meta property="og:url" content="https://giftshub.live" />
+        <meta property="og:url" content="https://update-image.web.app" />
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
@@ -416,7 +416,7 @@ export default function LandingPage() {
         />
         <meta
           property="og:image"
-          content="https://giftshub.live/static/media/giftshublogo.1d76fab1.png"
+          content="https://update-image.web.app/static/media/giftshublogo.1d76fab1.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@giftshub" />
@@ -431,7 +431,7 @@ export default function LandingPage() {
         />
         <meta
           name="twitter:image"
-          content="https://giftshub.live/static/media/giftshublogo.1d76fab1.png"
+          content="https://update-image.web.app/static/media/giftshublogo.1d76fab1.png"
         />
       </Helmet>
 

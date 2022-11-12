@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
 import SwatchBook from "./SwatchBook";
 
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import { toast } from "react-toastify";
-import Loader from "react-loader-spinner";
-import Tour from "reactour";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
 import GradientIcon from "@material-ui/icons/Gradient";
+import ImageIcon from "@material-ui/icons/Image";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -104,7 +102,7 @@ function ScheduledSwatchBookPage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/swatchbook/" +
+        "http://update-image.web.app/scheduledlive/swatchbook/" +
           edit.text +
           "/" +
           slug
@@ -123,7 +121,7 @@ function ScheduledSwatchBookPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/swatchbook/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/swatchbook/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/swatchbook/" + newKey + "/" + slug);
       const snapshot = await database
@@ -135,7 +133,7 @@ function ScheduledSwatchBookPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/swatchbook/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/swatchbook/" + newKey + "/" + slug;
 
       await database
         .collection("n-day-pack")

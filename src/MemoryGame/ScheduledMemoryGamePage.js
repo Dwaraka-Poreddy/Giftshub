@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
 
 import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
+import firebase, { storage } from "../firebase";
 
-import MemoryGame from "./MemoryGame";
-import LinkIcon from "@material-ui/icons/Link";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Tour from "reactour";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import MemoryGame from "./MemoryGame";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -188,7 +185,7 @@ function ScheduledMemoryGamePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/memorygame/" +
+        "http://update-image.web.app/scheduledlive/memorygame/" +
           edit.text +
           "/" +
           slug
@@ -208,7 +205,7 @@ function ScheduledMemoryGamePage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/memorygame/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/memorygame/" + newKey + "/" + slug
       );
 
       setpreviewlink("/scheduledlive/memorygame/" + newKey + "/" + slug);
@@ -221,7 +218,7 @@ function ScheduledMemoryGamePage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/memorygame/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/memorygame/" + newKey + "/" + slug;
       await database
         .collection("n-day-pack")
         .doc(`${user.uid}`)

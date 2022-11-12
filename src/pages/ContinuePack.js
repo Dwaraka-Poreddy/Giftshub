@@ -1,46 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import firebase from "../firebase";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
+import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import Modal from "@material-ui/core/Modal";
+import Paper from "@material-ui/core/Paper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
-import Button from "@material-ui/core/Button";
+import Stepper from "@material-ui/core/Stepper";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Share from "../Utils/Share";
-import ScheduledChallengePage from "../Challenge/ScheduledChallengePage";
-import ScheduledAboutQuizPage from "../AboutQuiz/ScheduledAboutQuizPage";
-import ScheduledCalendarPage from "../Calendar/ScheduledCalendarPage";
-import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
-import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
-import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
-import ScheduledSwatchBookPage from "../SwatchBook/ScheduledSwatchBookPage";
-import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
-import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
-import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
-import ScheduledHoneyCombPage from "../HoneyComb/ScheduledHoneyCombPage";
-import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
-import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
-import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
-import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
-import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
-import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
-import ScheduledEnvelopeGreetingCardPage from "../EnvelopeGreetingCard/ScheduledEnvelopeGreetingCardPage";
-import Loader from "react-loader-spinner";
-import Copy from "../Utils/Copy";
-import Paper from "@material-ui/core/Paper";
-import MobileStepper from "@material-ui/core/MobileStepper";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CloseIcon from "@material-ui/icons/Close";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import NavBar from "../NavBars/NavBar";
-import Modal from "@material-ui/core/Modal";
-import Fab from "@material-ui/core/Fab";
-import CloseIcon from "@material-ui/icons/Close";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import { isMobileOnly, isTablet } from "react-device-detect";
-import "./ContinuePack.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+import { isMobileOnly, isTablet } from "react-device-detect";
 import { Helmet } from "react-helmet";
+import Loader from "react-loader-spinner";
+import { useDispatch, useSelector } from "react-redux";
+import ScheduledAboutQuizPage from "../AboutQuiz/ScheduledAboutQuizPage";
+import ScheduledAnimatedFrame from "../AnimatedFrames/ScheduledAnimatedFramePage";
+import ScheduledCalendarPage from "../Calendar/ScheduledCalendarPage";
+import ScheduledChallengePage from "../Challenge/ScheduledChallengePage";
+import ScheduledCollagePage from "../Collage/ScheduledCollagePage";
+import ScheduledCubesPage from "../Cubes/ScheduledCubesPage";
+import ScheduledEnvelopeGreetingCardPage from "../EnvelopeGreetingCard/ScheduledEnvelopeGreetingCardPage";
+import firebase from "../firebase";
+import ScheduledHoneyCombPage from "../HoneyComb/ScheduledHoneyCombPage";
+import ScheduledJourneyPage from "../Journey/ScheduledJourneyPage";
+import ScheduledMagazinePage from "../Magazine/ScheduledMagazinePage";
+import ScheduledMemoryGamePage from "../MemoryGame/ScheduledMemoryGamePage";
+import NavBar from "../NavBars/NavBar";
+import ScheduledNewsPaperPage from "../NewsPaper/ScheduledNewsPaperPage";
+import ScheduledOpenGreetingCardPage from "../OpenGreetingCard/ScheduledOpenGreetingCardPage";
+import ScheduledSlidePuzzlePage from "../SlidePuzzle/ScheduledSlidePuzzlePage";
+import ScheduledSpecialCardPage from "../SpecialCard/ScheduledSpecialCardPage";
+import ScheduledSwatchBookPage from "../SwatchBook/ScheduledSwatchBookPage";
+import ScheduledThreeDCarouselPage from "../ThreeDCarousel/ScheduledThreeDCarouselPage";
+import ScheduledThreeDImagePage from "../ThreeDImage/ScheduledThreeDImagePage";
+import Copy from "../Utils/Copy";
+import Share from "../Utils/Share";
+import "./ContinuePack.css";
 const usemodStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "5px",
@@ -176,7 +176,7 @@ function ContinuePack({ match, history }) {
     setloading(false);
 
     setlivelink(
-      "http://giftshub.live/scheduledlive/main/" + `${match.params.slug}`
+      "http://update-image.web.app/scheduledlive/main/" + `${match.params.slug}`
     );
 
     await getDocnew();

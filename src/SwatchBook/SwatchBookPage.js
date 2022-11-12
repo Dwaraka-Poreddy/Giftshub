@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import SwatchBook from "./SwatchBook";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import Loader from "react-loader-spinner";
-import Tour from "reactour";
-import CropPage from "../Utils/CropPage";
-import ImageIcon from "@material-ui/icons/Image";
-import NavBar from "../NavBars/NavBar";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
+import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
-import GradientIcon from "@material-ui/icons/Gradient";
 import DoneIcon from "@material-ui/icons/Done";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import GradientIcon from "@material-ui/icons/Gradient";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useEffect, useState } from "react";
+import { BrowserView } from "react-device-detect";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
+import SwatchBook from "./SwatchBook";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -77,7 +76,7 @@ function TicketDeckPage() {
         handscol: handscol,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/swatchbook/" + newKey);
+      setlivelink("http://update-image.web.app/live/swatchbook/" + newKey);
       setpreviewlink("/live/swatchbook/" + newKey);
 
       setloading(false);
@@ -106,7 +105,7 @@ function TicketDeckPage() {
                   handscol: handscol,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://giftshub.live/live/swatchbook/" + newKey);
+                setlivelink("http://update-image.web.app/live/swatchbook/" + newKey);
                 setpreviewlink("/live/swatchbook/" + newKey);
               });
               setloading(false);

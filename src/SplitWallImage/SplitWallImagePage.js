@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
 import SplitWallImage from "./SplitWallImage";
 
 import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import Loader from "react-loader-spinner";
-import InputBase from "@material-ui/core/InputBase";
-import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import NavBar from "../NavBars/NavBar";
+import ShareIcon from "@material-ui/icons/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
+import { v4 as uuidv4 } from "uuid";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -65,7 +62,7 @@ function OpenGreetingCardPage() {
         url: fbimg,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/splitwall/" + newKey);
+      setlivelink("http://update-image.web.app/live/splitwall/" + newKey);
       setpreviewlink("/live/splitwall/" + newKey);
 
       setloading(false);
@@ -92,7 +89,7 @@ function OpenGreetingCardPage() {
                   url: downUrl,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://giftshub.live/live/splitwall/" + newKey);
+                setlivelink("http://update-image.web.app/live/splitwall/" + newKey);
                 setpreviewlink("/live/splitwall/" + newKey);
               });
               setloading(false);

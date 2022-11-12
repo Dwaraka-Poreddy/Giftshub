@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import QuestionCard from "./QuestionCard";
 import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import "./AboutQuiz.css";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import "../Buttons.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
+import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import "./AboutQuiz.css";
+import QuestionCard from "./QuestionCard";
 
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -101,7 +99,7 @@ function ScheduledAboutQuizPage({
 
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/aboutquiz/" + edit.text + "/" + slug
+        "http://update-image.web.app/scheduledlive/aboutquiz/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/aboutquiz/" + edit.text + "/" + slug);
 
@@ -116,7 +114,7 @@ function ScheduledAboutQuizPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/aboutquiz/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/aboutquiz/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/aboutquiz/" + newKey + "/" + slug);
       const snapshot = await database
@@ -128,7 +126,7 @@ function ScheduledAboutQuizPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/aboutquiz/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/aboutquiz/" + newKey + "/" + slug;
 
       await database
         .collection("n-day-pack")

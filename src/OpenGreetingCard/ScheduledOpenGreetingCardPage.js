@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import OpenGreetingCard from "./OpenGreetingCard";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import "../Buttons.css";
 import InputBase from "@material-ui/core/InputBase";
+import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
-import LinkIcon from "@material-ui/icons/Link";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import { toast } from "react-toastify";
+import ImageIcon from "@material-ui/icons/Image";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
+import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import OpenGreetingCard from "./OpenGreetingCard";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -113,7 +109,7 @@ function ScheduledOpenGreetingCardPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/opengreetingcard/" +
+        "http://update-image.web.app/scheduledlive/opengreetingcard/" +
           edit.text +
           "/" +
           slug
@@ -134,7 +130,7 @@ function ScheduledOpenGreetingCardPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/opengreetingcard/" +
+        "http://update-image.web.app/scheduledlive/opengreetingcard/" +
           newKey +
           "/" +
           slug
@@ -149,7 +145,7 @@ function ScheduledOpenGreetingCardPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/opengreetingcard/" +
+        "http://update-image.web.app/scheduledlive/opengreetingcard/" +
         newKey +
         "/" +
         slug;

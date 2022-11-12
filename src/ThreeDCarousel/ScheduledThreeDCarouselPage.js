@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import ThreeDCarousel from "./ThreeDCarouselDummy";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import CreateIcon from "@material-ui/icons/Create";
 import InputBase from "@material-ui/core/InputBase";
-import CropPage from "../Utils/CropPage";
+import { makeStyles } from "@material-ui/core/styles";
+import CreateIcon from "@material-ui/icons/Create";
+import ImageIcon from "@material-ui/icons/Image";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
 import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import ThreeDCarousel from "./ThreeDCarouselDummy";
 
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Loader from "react-loader-spinner";
 import Tour from "reactour";
 const secuseStyles = makeStyles((theme) => ({
   root: {
@@ -172,7 +170,7 @@ function ScheduledThreeDCarouselPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/threedcarousel/" +
+        "http://update-image.web.app/scheduledlive/threedcarousel/" +
           edit.text +
           "/" +
           slug
@@ -192,7 +190,7 @@ function ScheduledThreeDCarouselPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/threedcarousel/" +
+        "http://update-image.web.app/scheduledlive/threedcarousel/" +
           newKey +
           "/" +
           slug
@@ -207,7 +205,7 @@ function ScheduledThreeDCarouselPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/threedcarousel/" +
+        "http://update-image.web.app/scheduledlive/threedcarousel/" +
         newKey +
         "/" +
         slug;

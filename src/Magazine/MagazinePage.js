@@ -1,28 +1,25 @@
-import React, { useState } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Magazine from "./Magazine";
+import React, { useState } from "react";
 import { BrowserView } from "react-device-detect";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Magazine from "./Magazine";
 
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import Tour from "reactour";
-import NavBar from "../NavBars/NavBar";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import DateRangeIcon from "@material-ui/icons/DateRange";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -78,7 +75,7 @@ function MagazinePage() {
         text: text,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/magazine/" + newKey);
+      setlivelink("http://update-image.web.app/live/magazine/" + newKey);
       setpreviewlink("/live/magazine/" + newKey);
 
       setloading(false);
@@ -106,7 +103,7 @@ function MagazinePage() {
                   text: text,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://giftshub.live/live/magazine/" + newKey);
+                setlivelink("http://update-image.web.app/live/magazine/" + newKey);
                 setpreviewlink("/live/magazine/" + newKey);
               });
               setloading(false);

@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { toast } from "react-toastify";
 import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import Loader from "react-loader-spinner";
-import Collage from "./Collage";
-import LinkIcon from "@material-ui/icons/Link";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Collage from "./Collage";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -240,7 +237,7 @@ function ScheduledCollagePage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/collage/" + edit.text + "/" + slug
+        "http://update-image.web.app/scheduledlive/collage/" + edit.text + "/" + slug
       );
       console.log(livelink, "livelink");
       setpreviewlink("scheduledlive/collage/" + edit.text + "/" + slug);
@@ -262,7 +259,7 @@ function ScheduledCollagePage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/collage/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/collage/" + newKey + "/" + slug
       );
       console.log(livelink, "livelink");
       setpreviewlink("scheduledlive/collage/" + newKey + "/" + slug);
@@ -275,7 +272,7 @@ function ScheduledCollagePage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/collage/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/collage/" + newKey + "/" + slug;
 
       await database
         .collection("n-day-pack")

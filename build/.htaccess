@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www.giftshub.live [NC]
-RewriteRule ^(.*)$ https://giftshub.live [L,R=301,NC]
+RewriteCond %{HTTP_HOST} ^www.update-image.web.app [NC]
+RewriteRule ^(.*)$ https://update-image.web.app [L,R=301,NC]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteBase /subdirectory

@@ -29,7 +29,7 @@ Just add photos and text can your gift is ready and you will get a sharable link
 
 <br>
 
-### Live Demo - [GiftsHub](https://giftshub.live/)
+### Live Demo - [GiftsHub](https://update-image.web.app/)
 
 <br>
 

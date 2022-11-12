@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Cubes from "./Cubes";
 import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Cubes from "./Cubes";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -158,7 +156,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/cubes/" + edit.text + "/" + slug
+        "http://update-image.web.app/scheduledlive/cubes/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/cubes/" + edit.text + "/" + slug);
       setloading(false);
@@ -174,7 +172,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/cubes/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/cubes/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/cubes/" + newKey + "/" + slug);
       const snapshot = await database
@@ -186,7 +184,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/cubes/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/cubes/" + newKey + "/" + slug;
       await database
         .collection("n-day-pack")
         .doc(`${user.uid}`)

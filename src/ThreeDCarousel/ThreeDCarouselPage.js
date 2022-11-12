@@ -1,25 +1,24 @@
-import React, { useState } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import Loader from "react-loader-spinner";
-import Tour from "reactour";
-import NavBar from "../NavBars/NavBar";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import { BrowserView } from "react-device-detect";
 import InputBase from "@material-ui/core/InputBase";
+import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
-import ThreeDCarousel from "./ThreeDCarouselDummy";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useState } from "react";
+import { BrowserView } from "react-device-detect";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
+import ThreeDCarousel from "./ThreeDCarouselDummy";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -130,7 +129,7 @@ function ThreeDCarouselPage() {
         text: text,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/threedcarousel/" + newKey);
+      setlivelink("http://update-image.web.app/live/threedcarousel/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/threedcarousel/" + newKey);
 
@@ -211,7 +210,7 @@ function ThreeDCarouselPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://giftshub.live/live/threedcarousel/" +
+                                                      "http://update-image.web.app/live/threedcarousel/" +
                                                         newKey
                                                     );
                                                     console.log(

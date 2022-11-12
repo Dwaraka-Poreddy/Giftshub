@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
 import AnimatedFrame from "./AnimatedFrame";
 
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
 import CreateIcon from "@material-ui/icons/Create";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { toast } from "react-toastify";
+import ImageIcon from "@material-ui/icons/Image";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import "../Buttons.css";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
+import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -120,7 +118,7 @@ function ScheduledAnimatedFramesPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/animatedframe/" +
+        "http://update-image.web.app/scheduledlive/animatedframe/" +
           edit.text +
           "/" +
           slug
@@ -136,7 +134,7 @@ function ScheduledAnimatedFramesPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/animatedframe/" +
+        "http://update-image.web.app/scheduledlive/animatedframe/" +
           newKey +
           "/" +
           slug
@@ -151,7 +149,7 @@ function ScheduledAnimatedFramesPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/animatedframe/" +
+        "http://update-image.web.app/scheduledlive/animatedframe/" +
         newKey +
         "/" +
         slug;

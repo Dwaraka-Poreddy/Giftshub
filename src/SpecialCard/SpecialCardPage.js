@@ -1,36 +1,31 @@
-import React, {
-  useMemo,
-  useState,
-  useCallback,
-  useRef,
-  useEffect,
-} from "react";
-import SpecialCard from "./SpecialCard";
-import { v4 as uuidv4 } from "uuid";
-import ReactCrop from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
-import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
-import HeaderBtn from "../Studio/HeaderBtn";
-import ImageIcon from "@material-ui/icons/Image";
+import Fab from "@material-ui/core/Fab";
 import InputBase from "@material-ui/core/InputBase";
-import CreateIcon from "@material-ui/icons/Create";
-import NavBar from "../NavBars/NavBar";
-import firebase from "../firebase";
-import { storage } from "../firebase";
 import Modal from "@material-ui/core/Modal";
+import { makeStyles } from "@material-ui/core/styles";
+import CloseIcon from "@material-ui/icons/Close";
+import CreateIcon from "@material-ui/icons/Create";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import MuiAlert from "@material-ui/lab/Alert";
-import ShareIcon from "@material-ui/icons/Share";
-import CloseIcon from "@material-ui/icons/Close";
+import React, {
+    useCallback, useEffect, useRef, useState
+} from "react";
+import { isMobileOnly, isTablet } from "react-device-detect";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
+import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import HeaderBtn from "../Studio/HeaderBtn";
 import Copy from "../Utils/Copy";
 import Share from "../Utils/Share";
-import Tour from "reactour";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
-import Fab from "@material-ui/core/Fab";
-import Loader from "react-loader-spinner";
-import "../Buttons.css";
-import { isMobileOnly, isTablet } from "react-device-detect";
+import SpecialCard from "./SpecialCard";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -163,7 +158,7 @@ export default function SpecialCardPage() {
         para: para,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/specialcard/" + newKey);
+      setlivelink("http://update-image.web.app/live/specialcard/" + newKey);
       setpreviewlink("/live/specialcard/" + newKey);
 
       setloading(false);
@@ -197,7 +192,7 @@ export default function SpecialCardPage() {
                   para: para,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://giftshub.live/live/specialcard/" + newKey);
+                setlivelink("http://update-image.web.app/live/specialcard/" + newKey);
                 setpreviewlink("/live/specialcard/" + newKey);
               });
               setloading(false);

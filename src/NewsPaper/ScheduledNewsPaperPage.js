@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import NewsPaper from "./NewsPaper";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
 import InputBase from "@material-ui/core/InputBase";
+import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import { toast } from "react-toastify";
+import ImageIcon from "@material-ui/icons/Image";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import NewsPaper from "./NewsPaper";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -101,7 +99,7 @@ function ScheduledNewsPaperPage({
       };
       todoRef.update(todo);
       setlivelink(
-        "http://giftshub.live/scheduledlive/newspaper/" + edit.text + "/" + slug
+        "http://update-image.web.app/scheduledlive/newspaper/" + edit.text + "/" + slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + edit.text + "/" + slug);
 
@@ -115,7 +113,7 @@ function ScheduledNewsPaperPage({
       };
       var newKey = await todoRef.push(todo).getKey();
       setlivelink(
-        "http://giftshub.live/scheduledlive/newspaper/" + newKey + "/" + slug
+        "http://update-image.web.app/scheduledlive/newspaper/" + newKey + "/" + slug
       );
       setpreviewlink("/scheduledlive/newspaper/" + newKey + "/" + slug);
       const snapshot = await database
@@ -127,7 +125,7 @@ function ScheduledNewsPaperPage({
       const data = snapshot.data().array_data;
       const newdata = data;
       newdata[step].url =
-        "http://giftshub.live/scheduledlive/newspaper/" + newKey + "/" + slug;
+        "http://update-image.web.app/scheduledlive/newspaper/" + newKey + "/" + slug;
       await database
         .collection("n-day-pack")
         .doc(`${user.uid}`)

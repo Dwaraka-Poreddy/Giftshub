@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import Collage from "./Collage";
-import NavBar from "../NavBars/NavBar";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import Loader from "react-loader-spinner";
-import Tour from "reactour";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useEffect, useState } from "react";
 import { BrowserView } from "react-device-detect";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
+import Collage from "./Collage";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -187,7 +186,7 @@ function CollagePage() {
         url9: fbimg9,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/collage/" + newKey);
+      setlivelink("http://update-image.web.app/live/collage/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("live/collage/" + newKey);
 
@@ -335,7 +334,7 @@ function CollagePage() {
                                                                                       )
                                                                                       .getKey();
                                                                                     setlivelink(
-                                                                                      "http://giftshub.live/live/collage/" +
+                                                                                      "http://update-image.web.app/live/collage/" +
                                                                                         newKey
                                                                                     );
                                                                                     console.log(

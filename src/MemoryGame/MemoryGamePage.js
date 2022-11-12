@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderBtn from "../Studio/HeaderBtn";
 
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import Loader from "react-loader-spinner";
-import MemoryGame from "./MemoryGame";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import Tour from "reactour";
-import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import { BrowserView } from "react-device-detect";
+import Loader from "react-loader-spinner";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
+import MemoryGame from "./MemoryGame";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -147,7 +146,7 @@ function CubesPage() {
         url6: fbimg6,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/memorygame/" + newKey);
+      setlivelink("http://update-image.web.app/live/memorygame/" + newKey);
       console.log(livelink, "livelink");
       setpreviewlink("/live/memorygame/" + newKey);
 
@@ -227,7 +226,7 @@ function CubesPage() {
                                                       .push(todo)
                                                       .getKey();
                                                     setlivelink(
-                                                      "http://giftshub.live/live/memorygame/" +
+                                                      "http://update-image.web.app/live/memorygame/" +
                                                         newKey
                                                     );
                                                     console.log(

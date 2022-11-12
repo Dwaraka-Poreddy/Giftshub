@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import HeaderBtn from "../Studio/HeaderBtn";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import QuestionCard from "./QuestionCard";
-import ImageIcon from "@material-ui/icons/Image";
-import firebase from "../firebase";
-import ShareIcon from "@material-ui/icons/Share";
-import { storage } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
-import "./AboutQuiz.css";
-import CropPage from "../Utils/CropPage";
-import Copy from "../Utils/Copy";
-import Share from "../Utils/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import Loader from "react-loader-spinner";
-import Tour from "reactour";
-import NavBar from "../NavBars/NavBar";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import ImageIcon from "@material-ui/icons/Image";
+import ShareIcon from "@material-ui/icons/Share";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import React, { useState } from "react";
 import { BrowserView } from "react-device-detect";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import Tour from "reactour";
+import { v4 as uuidv4 } from "uuid";
 import "../Buttons.css";
+import firebase, { storage } from "../firebase";
+import NavBar from "../NavBars/NavBar";
+import HeaderBtn from "../Studio/HeaderBtn";
+import Copy from "../Utils/Copy";
+import CropPage from "../Utils/CropPage";
+import Share from "../Utils/Share";
+import "./AboutQuiz.css";
+import QuestionCard from "./QuestionCard";
 const secuseStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -71,7 +70,7 @@ function AboutQuizPage() {
         answersArray: answersArray,
       };
       var newKey = todoRef.push(todo).getKey();
-      setlivelink("http://giftshub.live/live/aboutquiz/" + newKey);
+      setlivelink("http://update-image.web.app/live/aboutquiz/" + newKey);
       setpreviewlink("/live/aboutquiz/" + newKey);
 
       setloading(false);
@@ -100,7 +99,7 @@ function AboutQuizPage() {
                   answersArray: answersArray,
                 };
                 var newKey = todoRef.push(todo).getKey();
-                setlivelink("http://giftshub.live/live/aboutquiz/" + newKey);
+                setlivelink("http://update-image.web.app/live/aboutquiz/" + newKey);
                 setpreviewlink("/live/aboutquiz/" + newKey);
               });
               setloading(false);
