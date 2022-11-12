@@ -57,9 +57,15 @@
   color: rgb(255, 255, 255);
   letter-spacing: 0.0625em;
 }
-#mainNav .navbar-nav .nav-item .nav-link.active,
+/* #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: rgb(66 66 66);
+} */
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover {
+  background-color: #fed136 !important;
+  border-radius: 30px;
+
 }
 @media (min-width: 992px) {
   #mainNav {

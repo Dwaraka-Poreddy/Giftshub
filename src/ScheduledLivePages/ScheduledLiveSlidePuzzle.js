@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import firebase from "../firebase";
+import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import SlidePuzzle from "../SlidePuzzle/SlidePuzzle";
 import SlidePuzzleAnswer from "../SlidePuzzle/SlidePuzzleAnswer";
-import firebase from "../firebase";
-import "./ScheduledLiveSlidePuzzle.css";
-import Loader from "react-loader-spinner";
 import CircleTimer from "./CircleTimer";
-import { toast } from "react-toastify";
-import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
+import "./ScheduledLiveSlidePuzzle.css";
 function ScheduledLiveSlidePuzzle({ match }) {
   let dispatch = useDispatch();
   const [fbimg, setfbimg] = useState("");
@@ -127,7 +127,7 @@ function ScheduledLiveSlidePuzzle({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

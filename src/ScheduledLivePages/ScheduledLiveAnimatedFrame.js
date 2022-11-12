@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
 import AnimatedFrame from "../AnimatedFrames/AnimatedFrame";
 import firebase from "../firebase";
-import Loader from "react-loader-spinner";
-import CircleTimer from "./CircleTimer";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
+import CircleTimer from "./CircleTimer";
 function ScheduledLiveAnimatedFrame({ match }) {
   let dispatch = useDispatch();
   const database = firebase.firestore();
@@ -111,7 +111,7 @@ function ScheduledLiveAnimatedFrame({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

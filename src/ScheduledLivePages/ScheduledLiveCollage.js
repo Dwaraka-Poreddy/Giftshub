@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Collage from "../Collage/Collage";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import Collage from "../Collage/Collage";
 import firebase from "../firebase";
-import CircleTimer from "./CircleTimer";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
+import CircleTimer from "./CircleTimer";
 export default function LiveCollagePage({ match }) {
   let dispatch = useDispatch();
   const [loading, setloading] = useState(false);
@@ -131,7 +131,7 @@ export default function LiveCollagePage({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

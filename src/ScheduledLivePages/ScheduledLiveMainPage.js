@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
+// import bgvideo from "../Images/mainpagebg.mp4";
+import heart from "../Images/heart.jpeg";
+import "../LandingPage/LandingPage.css";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 import "./ScheduledLiveMainPage.css";
-import bgvideo from "../Images/mainpagebg.mp4";
-import { Helmet } from "react-helmet";
-import "../LandingPage/LandingPage.css";
 function ScheduledLiveMainPage({ match }) {
   const database = firebase.firestore();
   const [FolderData, setFolderData] = useState("");
@@ -104,7 +105,7 @@ function ScheduledLiveMainPage({ match }) {
         <br />
         <br />
         <br />
-        <video
+        {/* <video
           style={{
             width: "100%",
             height: "auto",
@@ -117,18 +118,26 @@ function ScheduledLiveMainPage({ match }) {
           loop
           muted
         >
-          <source src={bgvideo} type="video/mp4" />
-        </video>
+          <source src={bgvideo1} type="video/mp4" />
+        </video> */}
+        <img  style={{
+            width: "100%",
+            height: "auto",
+            position: "fixed",
+            top: "0",
+            left: "0",
+            opacity:"0.5"
+          }} src={heart}/>
         <div style={{ display: "flex" }}>
           <div style={{ flex: "0.1" }}></div>
           <div style={{ flex: "0.8" }}>
             {loading ? (
-              <Loader
+             <center><Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
-              />
+              /></center> 
             ) : (
               <div>
                 {new Date(Livelinks.Bday_date) - +new Date() - 19800000 > 0 ? (
@@ -155,6 +164,7 @@ function ScheduledLiveMainPage({ match }) {
                             width: "100%",
                           }}
                           src={require("../Images/giftgif.webm")}
+                          // src="https://media.giphy.com/media/IjmMzurYulKEw/giphy.gif"
                           alt="Heading"
                         />
                       </center>

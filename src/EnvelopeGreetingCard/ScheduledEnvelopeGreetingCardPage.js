@@ -252,7 +252,7 @@ function ScheduledEnvelopeGreetingCardPage({
             {Cloading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

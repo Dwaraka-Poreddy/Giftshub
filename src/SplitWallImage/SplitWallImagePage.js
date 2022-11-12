@@ -165,7 +165,7 @@ function OpenGreetingCardPage() {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
                 // timeout={3000} //3 secs

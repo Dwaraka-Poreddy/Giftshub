@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import SplitWallImage from "../SplitWallImage/SplitWallImage";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
+import SplitWallImage from "../SplitWallImage/SplitWallImage";
 
 export default function LiveSplitWall({ match }) {
   const [fbimg, setfbimg] = useState("");
@@ -30,7 +30,7 @@ export default function LiveSplitWall({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

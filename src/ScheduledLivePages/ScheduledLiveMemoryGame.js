@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import MemoryGame from "../MemoryGame/MemoryGame";
-import firebase from "../firebase";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import firebase from "../firebase";
+import MemoryGame from "../MemoryGame/MemoryGame";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
 import CircleTimer from "./CircleTimer";
 export default function ScheduledLiveMemoryGame({ match }) {
@@ -140,7 +140,7 @@ export default function ScheduledLiveMemoryGame({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

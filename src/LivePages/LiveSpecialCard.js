@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import SpecialCard from "../SpecialCard/SpecialCard";
-import LiveNavBar from "../NavBars/LiveNavBar";
-import firebase from "../firebase";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import firebase from "../firebase";
+import LiveNavBar from "../NavBars/LiveNavBar";
+import SpecialCard from "../SpecialCard/SpecialCard";
 export default function LiveSpecialCard({ match }) {
   const [fbimg, setfbimg] = useState("");
   const [head1, sethead1] = useState("");
@@ -42,7 +42,7 @@ export default function LiveSpecialCard({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

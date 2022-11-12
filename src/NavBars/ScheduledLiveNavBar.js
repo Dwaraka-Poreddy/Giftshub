@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import firebase from "../firebase";
-import { useSelector } from "react-redux";
-import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import firebase from "../firebase";
+import "./NavBar.css";
 function ScheduledLiveNavBar({ slug }) {
   const { daystep } = useSelector((state) => ({ ...state }));
   const database = firebase.firestore();
@@ -28,6 +28,7 @@ function ScheduledLiveNavBar({ slug }) {
   }
   useEffect(async () => {
     await getDoc();
+    print(daystep, "daystep");
   }, []);
 
   return (
@@ -59,13 +60,13 @@ function ScheduledLiveNavBar({ slug }) {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">
+                <a class="nav-link js-scroll-trigger" href="https://update-image.web.app/aboutus/">
                   About
                 </a>
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link js-scroll-trigger"
+                  class={`nav-link js-scroll-trigger ${(daystep == null)&& active}`}
                   href={`/scheduledlive/main/${slug}`}
                 >
                   Home

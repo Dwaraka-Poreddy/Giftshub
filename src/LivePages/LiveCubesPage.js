@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Cubes from "../Cubes/Cubes";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import Cubes from "../Cubes/Cubes";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveCubesPage({ match }) {
@@ -53,7 +53,7 @@ export default function LiveCubesPage({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

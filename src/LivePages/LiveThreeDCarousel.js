@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import ThreeDCarousel from "../ThreeDCarousel/ThreeDCarousel";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
+import ThreeDCarousel from "../ThreeDCarousel/ThreeDCarousel";
 export default function LiveThreeDCarousel({ match }) {
   const [fbimg1, setfbimg1] = useState("");
   const [fbimg2, setfbimg2] = useState("");
@@ -47,7 +47,7 @@ export default function LiveThreeDCarousel({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

@@ -261,7 +261,7 @@ function ScheduledCubesPage({ step, slug, getDoc, isTourOpen, setTourOpend }) {
             {Cloading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

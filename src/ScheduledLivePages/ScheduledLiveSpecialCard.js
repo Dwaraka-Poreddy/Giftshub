@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SpecialCard from "../SpecialCard/SpecialCard";
-import firebase from "../firebase";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import CircleTimer from "./CircleTimer";
+import { useDispatch } from "react-redux";
+import firebase from "../firebase";
 import ScheduledLiveNavBar from "../NavBars/ScheduledLiveNavBar";
+import SpecialCard from "../SpecialCard/SpecialCard";
+import CircleTimer from "./CircleTimer";
 function ScheduledLiveSpecialCard({ match }) {
   let dispatch = useDispatch();
   const database = firebase.firestore();
@@ -117,7 +117,7 @@ function ScheduledLiveSpecialCard({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Collage from "../Collage/Collage";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import Collage from "../Collage/Collage";
 import firebase from "../firebase";
 import LiveNavBar from "../NavBars/LiveNavBar";
 export default function LiveCollagePage({ match }) {
@@ -72,7 +72,7 @@ export default function LiveCollagePage({ match }) {
             {loading ? (
               <Loader
                 type="BallTriangle"
-                color="#00BFFF"
+                color="#fdc674"
                 height={100}
                 width={100}
               />
